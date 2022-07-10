@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F496C48-2B45-4F83-B182-3179007C6474}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AssetManagement</RootNamespace>
+    <AssemblyName>AssetManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>7030130_0Bp_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v21.2.UI, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EPPlus, Version=6.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.0.5\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.0.0\lib\net452\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.0.0\lib\net452\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetMngDb.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssetMngDb.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="AssetMngDbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssetMngDbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\AddNewAssetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\AddNewAssetForm.Designer.cs">
+      <DependentUpon>AddNewAssetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\ManageAssetTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\ManageAssetTblForm.Designer.cs">
+      <DependentUpon>ManageAssetTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\TransactAssetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\TransactAssetForm.Designer.cs">
+      <DependentUpon>TransactAssetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MoveAssetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\MoveAssetForm.Designer.cs">
+      <DependentUpon>MoveAssetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\AddNewMinorCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\AddNewMinorCategoryForm.Designer.cs">
+      <DependentUpon>AddNewMinorCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageCurrencyTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageCurrencyTblForm.Designer.cs">
+      <DependentUpon>ManageCurrencyTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageEstateAreaUnitTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageEstateAreaUnitTblForm.Designer.cs">
+      <DependentUpon>ManageEstateAreaUnitTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageTransactionTypeTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageTransactionTypeTblForm.Designer.cs">
+      <DependentUpon>ManageTransactionTypeTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageSquareTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageSquareTblForm.Designer.cs">
+      <DependentUpon>ManageSquareTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageSectionTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageSectionTblForm.Designer.cs">
+      <DependentUpon>ManageSectionTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageDepartmentTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageDepartmentTblForm.Designer.cs">
+      <DependentUpon>ManageDepartmentTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageCategoriesTblsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageCategoriesTblsForm.Designer.cs">
+      <DependentUpon>ManageCategoriesTblsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\SetAppDateAndTimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\SetAppDateAndTimeForm.Designer.cs">
+      <DependentUpon>SetAppDateAndTimeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="StaticCode.cs" />
+    <None Include="AssetMngDb.dbml.layout">
+      <DependentUpon>AssetMngDb.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Assets\AddNewAssetForm.resx">
+      <DependentUpon>AddNewAssetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\ManageAssetTblForm.resx">
+      <DependentUpon>ManageAssetTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\TransactAssetForm.resx">
+      <DependentUpon>TransactAssetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\MoveAssetForm.resx">
+      <DependentUpon>MoveAssetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\AddNewMinorCategoryForm.resx">
+      <DependentUpon>AddNewMinorCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageCurrencyTblForm.resx">
+      <DependentUpon>ManageCurrencyTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageEstateAreaUnitTblForm.resx">
+      <DependentUpon>ManageEstateAreaUnitTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageTransactionTypeTblForm.resx">
+      <DependentUpon>ManageTransactionTypeTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageSquareTblForm.resx">
+      <DependentUpon>ManageSquareTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageSectionTblForm.resx">
+      <DependentUpon>ManageSectionTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageDepartmentTblForm.resx">
+      <DependentUpon>ManageDepartmentTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageCategoriesTblsForm.resx">
+      <DependentUpon>ManageCategoriesTblsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\SetAppDateAndTimeForm.resx">
+      <DependentUpon>SetAppDateAndTimeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="AssetMngDb.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>AssetMngDb.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7030130_0Bp_icon.ico" />
+    <Content Include="Db\AssetMngDb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Db\AssetMngDb_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>AssetMngDb.mdf</DependentUpon>
+    </Content>
+    <None Include="Resources\3208660.png" />
+    <None Include="Resources\7065712.png" />
+    <None Include="Resources\8115025.png" />
+    <None Include="Resources\7040278.png" />
+    <None Include="Resources\1592276.png" />
+    <None Include="Resources\2719309.png" />
+    <None Include="Resources\21377241.png" />
+    <None Include="Resources\21377251.png" />
+    <None Include="Resources\8586322.png" />
+    <None Include="Resources\8571415.png" />
+    <None Include="Resources\10096362.png" />
+    <None Include="Resources\2998707.png" />
+    <None Include="Resources\8115004.png" />
+    <None Include="Resources\2901904.png" />
+    <None Include="Resources\9857137.png" />
+    <None Include="Resources\5596774.png" />
+    <None Include="Resources\1570810.png" />
+    <None Include="Resources\3753098.png" />
+    <None Include="Resources\2137724.png" />
+    <None Include="Resources\2137725.png" />
+    <None Include="Resources\223645.png" />
+    <None Include="Resources\5928140.png" />
+    <None Include="Resources\1477227.png" />
+    <None Include="Resources\6423204.png" />
+    <None Include="Resources\6847722.png" />
+    <None Include="Resources\981382.png" />
+    <None Include="Resources\2771406.png" />
+    <None Include="Resources\2137707.png" />
+    <None Include="Resources\2137710.png" />
+    <None Include="Resources\1209542.png" />
+    <None Include="Resources\53595381.png" />
+    <None Include="Resources\2912643.png" />
+    <None Include="Resources\7976039.png" />
+    <None Include="Resources\36435101.png" />
+    <None Include="Resources\4186636.png" />
+    <None Include="Resources\3034410.png" />
+    <None Include="Resources\1192551.png" />
+    <None Include="Resources\228050.png" />
+    <None Include="Resources\2027306.png" />
+    <None Include="Resources\6345982.png" />
+    <None Include="AssetMngDbDataSet.xsc">
+      <DependentUpon>AssetMngDbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AssetMngDbDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AssetMngDbDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AssetMngDbDataSet.xss">
+      <DependentUpon>AssetMngDbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\472964.png" />
+    <None Include="Resources\3631135.png" />
+    <None Include="Resources\3633425.png" />
+    <None Include="Resources\1573959.png" />
+    <None Include="Resources\5359538.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

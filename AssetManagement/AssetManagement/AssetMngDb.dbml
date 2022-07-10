@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AssetMngDb" Class="AssetMngDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AssetMovementTbl" Member="AssetMovementTbls">
+    <Type Name="AssetMovementTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FieldChanged" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OldValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="NewValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MovementDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="AssetMovedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AssetMovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserTbl_AssetMovementTbl" Member="UserTbl" ThisKey="AssetMovedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
+      <Association Name="AssetTbl_AssetMovementTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTbl" Member="UserTbls">
+    <Type Name="UserTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordUpdatedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UserTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetMovedBy" Type="AssetMovementTbl" />
+      <Association Name="UserTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="InsertedBy" Type="AssetTbl" />
+      <Association Name="UserTbl_AssetTbl1" Member="AssetTbls1" ThisKey="ID" OtherKey="LastModifiedBy" Type="AssetTbl" />
+      <Association Name="UserTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="TransactionMadeBy" Type="AssetTransactionTbl" />
+      <Association Name="DepartmentTbl_UserTbl" Member="DepartmentTbl" ThisKey="UserDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
+      <Association Name="UserRoleTbl_UserTbl" Member="UserRoleTbl" ThisKey="UserRole" OtherKey="ID" Type="UserRoleTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetTbl" Member="AssetTbls">
+    <Type Name="AssetTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="AssetSection" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetDept" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetSquare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetMinorCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AssetSpecifications" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Model" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Volume" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PurchasePrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PurchasePriceCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlaceOfPresence" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CurrentStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BenefitPercentage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ActualCurrentPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ActualCurrentPriceCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoreDetails" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AssetNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EstateAddress" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="OwnerName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="OfUsed" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="EstateOwnershipDocumentWith" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="EstateArea" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EstateAreaUnit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CarPanelNumber" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CarManufacturingYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CarChassisNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CarEngineNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CurrentDestructionRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LifeSpanInMonths" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IsSold" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastModifiedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AssetTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetMovementTbl" />
+      <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetTransactionTbl" />
+      <Association Name="UserTbl_AssetTbl" Member="UserTbl" ThisKey="InsertedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
+      <Association Name="UserTbl_AssetTbl1" Member="UserTbl1" ThisKey="LastModifiedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
+      <Association Name="CurrencyTbl_AssetTbl" Member="CurrencyTbl" ThisKey="ActualCurrentPriceCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
+      <Association Name="CurrencyTbl_AssetTbl1" Member="CurrencyTbl1" ThisKey="PurchasePriceCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
+      <Association Name="DepartmentTbl_AssetTbl" Member="DepartmentTbl" ThisKey="AssetDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
+      <Association Name="EstateAreaUnitTbl_AssetTbl" Member="EstateAreaUnitTbl" ThisKey="EstateAreaUnit" OtherKey="ID" Type="EstateAreaUnitTbl" IsForeignKey="true" />
+      <Association Name="MinorCategoryTbl_AssetTbl" Member="MinorCategoryTbl" ThisKey="AssetMinorCategory" OtherKey="ID" Type="MinorCategoryTbl" IsForeignKey="true" />
+      <Association Name="SectionTbl_AssetTbl" Member="SectionTbl" ThisKey="AssetSection" OtherKey="ID" Type="SectionTbl" IsForeignKey="true" />
+      <Association Name="SquareTbl_AssetTbl" Member="SquareTbl" ThisKey="AssetSquare" OtherKey="ID" Type="SquareTbl" IsForeignKey="true" />
+      <Association Name="StatusTbl_AssetTbl" Member="StatusTbl" ThisKey="CurrentStatus" OtherKey="ID" Type="StatusTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetTransactionTbl" Member="AssetTransactionTbls">
+    <Type Name="AssetTransactionTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionNotes" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TransactionMadeOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TransactionMadeBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MoneyAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyAmountCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
+      <Association Name="UserTbl_AssetTransactionTbl" Member="UserTbl" ThisKey="TransactionMadeBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
+      <Association Name="CurrencyTbl_AssetTransactionTbl" Member="CurrencyTbl" ThisKey="MoneyAmountCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
+      <Association Name="TransactionTypeTbl_AssetTransactionTbl" Member="TransactionTypeTbl" ThisKey="TransactionType" OtherKey="ID" Type="TransactionTypeTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CurrencyTbl" Member="CurrencyTbls">
+    <Type Name="CurrencyTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="CurrencyTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="ActualCurrentPriceCurrency" Type="AssetTbl" />
+      <Association Name="CurrencyTbl_AssetTbl1" Member="AssetTbls1" ThisKey="ID" OtherKey="PurchasePriceCurrency" Type="AssetTbl" />
+      <Association Name="CurrencyTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="MoneyAmountCurrency" Type="AssetTransactionTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepartmentTbl" Member="DepartmentTbls">
+    <Type Name="DepartmentTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentHQ" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="DepartmentTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserDept" Type="UserTbl" />
+      <Association Name="DepartmentTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetDept" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateAreaUnitTbl" Member="EstateAreaUnitTbls">
+    <Type Name="EstateAreaUnitTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateAreaUnitName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="EstateAreaUnitTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="EstateAreaUnit" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MainCategoryTbl" Member="MainCategoryTbls">
+    <Type Name="MainCategoryTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MainCategoryDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="MainCategoryTbl_MinorCategoryTbl" Member="MinorCategoryTbls" ThisKey="ID" OtherKey="MainCategory" Type="MinorCategoryTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MinorCategoryTbl" Member="MinorCategoryTbls">
+    <Type Name="MinorCategoryTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MinorCategoryDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="MainCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductiveAgeInYears" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DestructionRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="MinorCategoryTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetMinorCategory" Type="AssetTbl" />
+      <Association Name="MainCategoryTbl_MinorCategoryTbl" Member="MainCategoryTbl" ThisKey="MainCategory" OtherKey="ID" Type="MainCategoryTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OptionsTbl" Member="OptionsTbls">
+    <Type Name="OptionsTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetCodePrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ActiveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SectionTbl" Member="SectionTbls">
+    <Type Name="SectionTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="SectionTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSection" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SquareTbl" Member="SquareTbls">
+    <Type Name="SquareTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SquareLocation" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="SquareTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSquare" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StatusTbl" Member="StatusTbls">
+    <Type Name="StatusTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="StatusTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="CurrentStatus" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TransactionTypeTbl" Member="TransactionTypeTbls">
+    <Type Name="TransactionTypeTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransactionTypeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="TransactionTypeTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="TransactionType" Type="AssetTransactionTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRoleTbl" Member="UserRoleTbls">
+    <Type Name="UserRoleTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AddNewAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdateExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SearchAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DropAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdateExistedInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SearchInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteInventoryRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewAssetMovement" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageAssetMovements" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewAssetTransaction" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageAssetTransactions" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageUsers" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PromoteDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewMainCategory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageMainCategories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewMinorCategory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageMinorCategories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewDepartment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageDepartments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewSection" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageSections" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewSquare" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageSquares" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewCurrency" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageCurrencies" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewEstateAreaUnit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageEstateAreaUnits" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewTransactionType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageTransactionTypes" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SetDateAndTime" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BackupDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RestoreDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreateAssetsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="UserRoleTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserRole" Type="UserTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetMoveVw" Member="AssetMoveVws">
+    <Type Name="AssetMoveVw">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
+    <Type Name="MinorCategoryVw">
+      <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetVw" Member="AssetVws">
+    <Type Name="AssetVw">
+      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AssetManagement.AuxTables
+{
+    public partial class AddNewMinorCategoryForm : Form
+    {
+        public AddNewMinorCategoryForm()
+        {
+            InitializeComponent();
+        }
+
+        private void AddNewMinorCategoryForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.MainCategoryTbl' table. You can move, or remove it, as needed.
+            this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
+            this.MinimumSize = this.Size;
+        }
+
+        private void productiveAgeInYearsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addNewMinorCategoryBtn_OK_Click(object sender, EventArgs e)
+        {
+            if (mainCategoryLookUpEdit.EditValue == null)
+            {
+                mainAlertControl.Show(this, "اختر الفئة الرئيسية أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            MinorCategoryTbl newMiCaRecord = new MinorCategoryTbl()
+            {
+                MinorCategoryName = minorCategoryNameTextBox.Text.Trim(),
+                MinorCategoryDescription = minorCategoryDescriptionTextBox.Text.Trim(),
+                MainCategory = Convert.ToInt32(mainCategoryLookUpEdit.EditValue),
+                ProductiveAgeInYears = Convert.ToInt32(productiveAgeInYearsNumericUpDown.Value),
+                DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
+            };
+            StaticCode.mainDbContext.MinorCategoryTbls.InsertOnSubmit(newMiCaRecord);
+            StaticCode.mainDbContext.SubmitChanges();
+            mainAlertControl.Show(this, "تمت إضافة الفئة الفرعية", StaticCode.ApplicationTitle);
+
+            minorCategoryNameTextBox.Text = minorCategoryDescriptionTextBox.Text = "";
+            mainCategoryLookUpEdit.EditValue = null;
+            productiveAgeInYearsNumericUpDown.Value = 1;
+            minorCategoryNameTextBox.Focus();
+        }
+
+        private void addNewMinorCategoryBtn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
