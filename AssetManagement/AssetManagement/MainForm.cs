@@ -2,6 +2,7 @@
 using AssetManagement.AuxTables;
 using AssetManagement.Options;
 using AssetManagement.Properties;
+using AssetManagement.Users;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,10 @@ namespace AssetManagement
 
         private void ApplyUserRolesOnInterface()
         {
+            activeUserRoleBarStaticItem.Caption = $"الحساب النشط {StaticCode.activeUserRole.RoleName}";
+            StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
+            StaticCode.mainDbContext.SubmitChanges();
+
             addNewAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -47,15 +52,15 @@ namespace AssetManagement
             addNewAssetMovementBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAssetMovement == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewAssetTransactionBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAssetTransaction == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewUserBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            manageUsersBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageUserTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageUserRoleTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            backupDbBarButtonItem.Visibility = (StaticCode.activeUserRole.BackupDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            restoreDbBarButtonItem.Visibility = (StaticCode.activeUserRole.RestoreDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.MinimumSize = this.Size;
-            activeUserRoleBarStaticItem.Caption = $"الحساب النشط {StaticCode.activeUserRole.RoleName}";
-            StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
-            StaticCode.mainDbContext.SubmitChanges();
 
             ApplyUserRolesOnInterface();
         }
@@ -262,7 +267,8 @@ namespace AssetManagement
 
         private void addNewAssetTransactionBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            TransacteAssetForm trsFrm = new TransacteAssetForm();
+            trsFrm.ShowDialog();
         }
 
         private void manageAssetMovementTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -277,10 +283,84 @@ namespace AssetManagement
 
         private void addNewUserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            AddNewUserForm usrFrm = new AddNewUserForm();
+            usrFrm.ShowDialog();
         }
 
-        private void manageUsersBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void manageUserTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageUserTblForm mngusrFrm = new ManageUserTblForm();
+            mngusrFrm.ShowDialog();
+        }
+
+        private void loginBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoginForm logFrm = new LoginForm();
+            DialogResult logResult = logFrm.ShowDialog();
+            if (logResult == DialogResult.OK)
+            {
+                ApplyUserRolesOnInterface();
+            }
+        }
+
+        private void manageUserRoleTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageUserRoleTblForm mngusrrlFrm = new ManageUserRoleTblForm();
+            mngusrrlFrm.ShowDialog();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("هل تريد بالتاكيد إغلاق البرنامج؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void backupDbBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!Directory.Exists(StaticCode.BackupFolder))
+                Directory.CreateDirectory(StaticCode.BackupFolder);
+            string backupDbFileName = $"{StaticCode.BackupFolder}AssetMngDb{DateTime.Now.Ticks}.bak";
+            bool dbBackedup = StaticCode.BackupDb(backupDbFileName);
+            if (dbBackedup)
+                mainAlertControl.Show(this, "تم النسخ الاحتياطي بنجاح", StaticCode.ApplicationTitle);
+            else
+                mainAlertControl.Show(this, "لم يتم النسخ الاحتياطي، حاول لاحقاً", StaticCode.ApplicationTitle);
+        }
+
+        private void restoreDbBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("هل تريد بالتاكيد استعادة نسخة سابقة من قاعدة البيانات؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            OpenFileDialog bakOFD = new OpenFileDialog() { Filter = "Backup file (*.bak)|*.bak" };
+            if (bakOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+            bool dbRestored = StaticCode.RestoreDb(bakOFD.FileName);
+            if (dbRestored)
+            {
+                mainAlertControl.Show(this, "تم استعادة قاعدة البيانات لكن تحتاج لإعادة تشغيل البرنامج ليتم تطبيق التغييرات", StaticCode.ApplicationTitle);
+            }
+            else
+            {
+                mainAlertControl.Show(this, "لم يتم استعادة قاعدة البيانات، حاول لاحقاُ", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void addNewAssetInventoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            NewAssetInventoryForm invFrm = new NewAssetInventoryForm();
+            invFrm.ShowDialog();
+        }
+
+        private void manageAssetInventoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
         }

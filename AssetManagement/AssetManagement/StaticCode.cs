@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AssetManagement.Properties;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -18,8 +20,47 @@ namespace AssetManagement
         public static int ShiftSeconds = 0;
         #endregion
 
-        #region Data
+        #region Db
         public static AssetMngDbDataContext mainDbContext = new AssetMngDbDataContext();
+        public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
+
+        public static bool BackupDb(string backupName)
+        {
+            try
+            {
+                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                if (dbConn.State != System.Data.ConnectionState.Open)
+                    dbConn.Open();
+                using (SqlCommand backupDbComm = new SqlCommand($"Backup DATABASE AssetMngDb TO DISK='{backupName}'", dbConn))
+                {
+                    backupDbComm.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool RestoreDb(string backupName)
+        {
+            try
+            {
+                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                if (dbConn.State != System.Data.ConnectionState.Open)
+                    dbConn.Open();
+                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE AssetMngDb FROM DISK='{backupName}' WITH REPLACE", dbConn))
+                {
+                    backupDbComm.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region Login

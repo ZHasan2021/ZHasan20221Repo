@@ -38,8 +38,8 @@ namespace AssetManagement.AuxTables
             this.minorCategoryDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.minorCategoryDescriptionLabel = new System.Windows.Forms.Label();
             this.mainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
             this.productiveAgeInYearsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.productiveAgeInYearsLabel = new System.Windows.Forms.Label();
@@ -48,8 +48,8 @@ namespace AssetManagement.AuxTables
             this.addNewMinorCategoryBtn_Cancel = new System.Windows.Forms.Button();
             this.addNewMinorCategoryBtn_OK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productiveAgeInYearsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +88,7 @@ namespace AssetManagement.AuxTables
             // mainCategoryLabel
             // 
             this.mainCategoryLabel.AutoSize = true;
-            this.mainCategoryLabel.Location = new System.Drawing.Point(42, 222);
+            this.mainCategoryLabel.Location = new System.Drawing.Point(42, 182);
             this.mainCategoryLabel.Name = "mainCategoryLabel";
             this.mainCategoryLabel.Size = new System.Drawing.Size(177, 24);
             this.mainCategoryLabel.TabIndex = 20;
@@ -96,7 +96,7 @@ namespace AssetManagement.AuxTables
             // 
             // minorCategoryDescriptionTextBox
             // 
-            this.minorCategoryDescriptionTextBox.Location = new System.Drawing.Point(255, 131);
+            this.minorCategoryDescriptionTextBox.Location = new System.Drawing.Point(255, 111);
             this.minorCategoryDescriptionTextBox.Name = "minorCategoryDescriptionTextBox";
             this.minorCategoryDescriptionTextBox.Size = new System.Drawing.Size(249, 32);
             this.minorCategoryDescriptionTextBox.TabIndex = 15;
@@ -104,7 +104,7 @@ namespace AssetManagement.AuxTables
             // minorCategoryDescriptionLabel
             // 
             this.minorCategoryDescriptionLabel.AutoSize = true;
-            this.minorCategoryDescriptionLabel.Location = new System.Drawing.Point(42, 134);
+            this.minorCategoryDescriptionLabel.Location = new System.Drawing.Point(42, 114);
             this.minorCategoryDescriptionLabel.Name = "minorCategoryDescriptionLabel";
             this.minorCategoryDescriptionLabel.Size = new System.Drawing.Size(146, 24);
             this.minorCategoryDescriptionLabel.TabIndex = 10;
@@ -112,7 +112,7 @@ namespace AssetManagement.AuxTables
             // 
             // mainCategoryLookUpEdit
             // 
-            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(255, 219);
+            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(255, 179);
             this.mainCategoryLookUpEdit.Name = "mainCategoryLookUpEdit";
             this.mainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -128,15 +128,15 @@ namespace AssetManagement.AuxTables
             this.mainCategoryLookUpEdit.Size = new System.Drawing.Size(249, 30);
             this.mainCategoryLookUpEdit.TabIndex = 25;
             // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // mainCategoryTblBindingSource
             // 
             this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // mainCategoryTblTableAdapter
             // 
@@ -144,7 +144,7 @@ namespace AssetManagement.AuxTables
             // 
             // productiveAgeInYearsNumericUpDown
             // 
-            this.productiveAgeInYearsNumericUpDown.Location = new System.Drawing.Point(255, 308);
+            this.productiveAgeInYearsNumericUpDown.Location = new System.Drawing.Point(255, 248);
             this.productiveAgeInYearsNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -163,7 +163,7 @@ namespace AssetManagement.AuxTables
             // productiveAgeInYearsLabel
             // 
             this.productiveAgeInYearsLabel.AutoSize = true;
-            this.productiveAgeInYearsLabel.Location = new System.Drawing.Point(42, 310);
+            this.productiveAgeInYearsLabel.Location = new System.Drawing.Point(42, 250);
             this.productiveAgeInYearsLabel.Name = "productiveAgeInYearsLabel";
             this.productiveAgeInYearsLabel.Size = new System.Drawing.Size(185, 24);
             this.productiveAgeInYearsLabel.TabIndex = 30;
@@ -172,7 +172,7 @@ namespace AssetManagement.AuxTables
             // destructionRateLabel
             // 
             this.destructionRateLabel.AutoSize = true;
-            this.destructionRateLabel.Location = new System.Drawing.Point(42, 403);
+            this.destructionRateLabel.Location = new System.Drawing.Point(42, 323);
             this.destructionRateLabel.Name = "destructionRateLabel";
             this.destructionRateLabel.Size = new System.Drawing.Size(108, 24);
             this.destructionRateLabel.TabIndex = 40;
@@ -181,7 +181,7 @@ namespace AssetManagement.AuxTables
             // destructionRateNumericUpDown
             // 
             this.destructionRateNumericUpDown.DecimalPlaces = 2;
-            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(255, 401);
+            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(255, 321);
             this.destructionRateNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -200,7 +200,7 @@ namespace AssetManagement.AuxTables
             // addNewMinorCategoryBtn_Cancel
             // 
             this.addNewMinorCategoryBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
-            this.addNewMinorCategoryBtn_Cancel.Location = new System.Drawing.Point(780, 368);
+            this.addNewMinorCategoryBtn_Cancel.Location = new System.Drawing.Point(772, 303);
             this.addNewMinorCategoryBtn_Cancel.Name = "addNewMinorCategoryBtn_Cancel";
             this.addNewMinorCategoryBtn_Cancel.Size = new System.Drawing.Size(69, 65);
             this.addNewMinorCategoryBtn_Cancel.TabIndex = 105;
@@ -210,7 +210,7 @@ namespace AssetManagement.AuxTables
             // addNewMinorCategoryBtn_OK
             // 
             this.addNewMinorCategoryBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
-            this.addNewMinorCategoryBtn_OK.Location = new System.Drawing.Point(661, 368);
+            this.addNewMinorCategoryBtn_OK.Location = new System.Drawing.Point(653, 303);
             this.addNewMinorCategoryBtn_OK.Name = "addNewMinorCategoryBtn_OK";
             this.addNewMinorCategoryBtn_OK.Size = new System.Drawing.Size(69, 65);
             this.addNewMinorCategoryBtn_OK.TabIndex = 100;
@@ -221,7 +221,7 @@ namespace AssetManagement.AuxTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 493);
+            this.ClientSize = new System.Drawing.Size(909, 384);
             this.Controls.Add(this.addNewMinorCategoryBtn_Cancel);
             this.Controls.Add(this.addNewMinorCategoryBtn_OK);
             this.Controls.Add(this.destructionRateLabel);
@@ -236,7 +236,7 @@ namespace AssetManagement.AuxTables
             this.Controls.Add(this.minorCategoryNameLabel);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "AddNewMinorCategoryForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -245,8 +245,8 @@ namespace AssetManagement.AuxTables
             this.Text = "إضافة فئة فرعية جديدة";
             this.Load += new System.EventHandler(this.AddNewMinorCategoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productiveAgeInYearsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).EndInit();
             this.ResumeLayout(false);

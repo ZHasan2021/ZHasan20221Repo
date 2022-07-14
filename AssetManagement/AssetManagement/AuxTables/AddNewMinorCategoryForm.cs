@@ -26,7 +26,7 @@ namespace AssetManagement.AuxTables
 
         private void productiveAgeInYearsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-
+            destructionRateNumericUpDown.Value = (decimal)100 / productiveAgeInYearsNumericUpDown.Value;
         }
 
         private void addNewMinorCategoryBtn_OK_Click(object sender, EventArgs e)

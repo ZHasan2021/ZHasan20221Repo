@@ -70,6 +70,7 @@
     <Reference Include="DevExpress.XtraCharts.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v21.2.Win, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -130,6 +131,24 @@
     </Compile>
     <Compile Include="Assets\ManageAssetTblForm.Designer.cs">
       <DependentUpon>ManageAssetTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\NewAssetInventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\NewAssetInventoryForm.Designer.cs">
+      <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ManageUserRoleTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ManageUserRoleTblForm.Designer.cs">
+      <DependentUpon>ManageUserRoleTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ManageUserTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ManageUserTblForm.Designer.cs">
+      <DependentUpon>ManageUserTblForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\TransactAssetForm.cs">
       <SubType>Form</SubType>
@@ -217,6 +236,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="StaticCode.cs" />
+    <Compile Include="Users\AddNewUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddNewUserForm.Designer.cs">
+      <DependentUpon>AddNewUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\AddNewUserRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddNewUserRoleForm.Designer.cs">
+      <DependentUpon>AddNewUserRoleForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
+      <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ManageUserRoleTblForm.resx">
+      <DependentUpon>ManageUserRoleTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ManageUserTblForm.resx">
+      <DependentUpon>ManageUserTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\AddNewUserForm.resx">
+      <DependentUpon>AddNewUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="AssetMngDb.dbml.layout">
       <DependentUpon>AssetMngDb.dbml</DependentUpon>
     </None>
@@ -294,6 +337,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\3620142.png" />
+    <None Include="Resources\744804.png" />
+    <None Include="Resources\2529580.png" />
+    <None Include="Resources\968279.png" />
+    <None Include="Resources\5323293.png" />
+    <None Include="Resources\2072008.png" />
+    <None Include="Resources\2072009.png" />
     <None Include="Resources\3208660.png" />
     <None Include="Resources\7065712.png" />
     <None Include="Resources\8115025.png" />

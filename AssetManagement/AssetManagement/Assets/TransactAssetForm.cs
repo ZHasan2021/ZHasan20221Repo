@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssetManagement.AuxTables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,19 +22,15 @@ namespace AssetManagement.Assets
 
         private void TransacteAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.TransactionTypeTbl' table. You can move, or remove it, as needed.
             this.transactionTypeTblTableAdapter.Fill(this.assetMngDbDataSet.TransactionTypeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTransactionTbl' table. You can move, or remove it, as needed.
             this.assetTransactionTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTransactionTbl);
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMoveVw' table. You can move, or remove it, as needed.
-            this.assetMoveVwTableAdapter.Fill(this.assetMngDbDataSet.AssetMoveVw);
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
-            this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.SquareTbl' table. You can move, or remove it, as needed.
-            this.squareTblTableAdapter.Fill(this.assetMngDbDataSet.SquareTbl);
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
-            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             assetTransactionTblBindingNavigator.Visible = StaticCode.activeUserRole.ManageAssetTransactions == true;
+            manageTransactionTypeTblBtn.Visible = StaticCode.activeUserRole.ManageTransactionTypes == true;
+            manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             this.MinimumSize = this.Size;
         }
 
@@ -46,12 +43,22 @@ namespace AssetManagement.Assets
 
             if (transactionTypeLookUpEdit.EditValue == null)
             {
-                mainAlertControl.Show(this, "اختر نوع التصريف إليه أولاً", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اختر نوع التصريف أولاً", StaticCode.ApplicationTitle);
                 return;
             }
             if (assetTransactionDateDateEdit.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر تاريخ التصريف أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (moneyAmountCurrencyLookUpEdit.EditValue == null && moneyAmountNumericUpDown.Value != 0)
+            {
+                mainAlertControl.Show(this, "اختر العملة أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (moneyAmountCurrencyLookUpEdit.EditValue != null && moneyAmountNumericUpDown.Value == 0)
+            {
+                mainAlertControl.Show(this, "اكتب مبلغ البيع أو الشراء أولاً", StaticCode.ApplicationTitle);
                 return;
             }
 
@@ -65,6 +72,8 @@ namespace AssetManagement.Assets
                     TransactionType = Convert.ToInt32(transactionTypeLookUpEdit.EditValue),
                     TransactionDate = Convert.ToDateTime(assetTransactionDateDateEdit.EditValue),
                     TransactionNotes = assetNotesTextBox.Text.Trim(),
+                    MoneyAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
+                    MoneyAmountCurrency = (moneyAmountNumericUpDown.Value == 0) ? 1 : Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstMv);
                 assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked == true;
@@ -73,7 +82,7 @@ namespace AssetManagement.Assets
                 assetToTransact.AssetNotes = assetNotesTextBox.Text.Trim();
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
-                this.assetMoveVwBindingSource.EndEdit();
+                this.assetTransactionTblBindingSource.EndEdit();
                 assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == srchRes.ID);
                 mainAlertControl.Show(this, "تم تصريف الأصل وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
             }
@@ -107,6 +116,20 @@ namespace AssetManagement.Assets
             this.Validate();
             assetTransactionTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+        }
+
+        private void manageTransactionTypeTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageTransactionTypeTblForm tatyFrm = new ManageTransactionTypeTblForm();
+            tatyFrm.ShowDialog();
+            this.transactionTypeTblTableAdapter.Fill(this.assetMngDbDataSet.TransactionTypeTbl);
+        }
+
+        private void manageCurrencyTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageCurrencyTblForm tatyFrm = new ManageCurrencyTblForm();
+            tatyFrm.ShowDialog();
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
         }
     }
 }
