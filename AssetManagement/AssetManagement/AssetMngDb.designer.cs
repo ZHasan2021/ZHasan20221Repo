@@ -2404,6 +2404,12 @@ namespace AssetManagement
 		
 		private int _MoneyAmountCurrency;
 		
+		private System.Nullable<bool> _GetAssetOutOfWork;
+		
+		private System.Nullable<bool> _WithDestroying;
+		
+		private System.Nullable<double> _CurrentPriceWithDestroying;
+		
 		private EntityRef<AssetTbl> _AssetTbl;
 		
 		private EntityRef<UserTbl> _UserTbl;
@@ -2434,6 +2440,12 @@ namespace AssetManagement
     partial void OnMoneyAmountChanged();
     partial void OnMoneyAmountCurrencyChanging(int value);
     partial void OnMoneyAmountCurrencyChanged();
+    partial void OnGetAssetOutOfWorkChanging(System.Nullable<bool> value);
+    partial void OnGetAssetOutOfWorkChanged();
+    partial void OnWithDestroyingChanging(System.Nullable<bool> value);
+    partial void OnWithDestroyingChanged();
+    partial void OnCurrentPriceWithDestroyingChanging(System.Nullable<double> value);
+    partial void OnCurrentPriceWithDestroyingChanged();
     #endregion
 		
 		public AssetTransactionTbl()
@@ -2637,6 +2649,66 @@ namespace AssetManagement
 					this._MoneyAmountCurrency = value;
 					this.SendPropertyChanged("MoneyAmountCurrency");
 					this.OnMoneyAmountCurrencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GetAssetOutOfWork", DbType="Bit")]
+		public System.Nullable<bool> GetAssetOutOfWork
+		{
+			get
+			{
+				return this._GetAssetOutOfWork;
+			}
+			set
+			{
+				if ((this._GetAssetOutOfWork != value))
+				{
+					this.OnGetAssetOutOfWorkChanging(value);
+					this.SendPropertyChanging();
+					this._GetAssetOutOfWork = value;
+					this.SendPropertyChanged("GetAssetOutOfWork");
+					this.OnGetAssetOutOfWorkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WithDestroying", DbType="Bit")]
+		public System.Nullable<bool> WithDestroying
+		{
+			get
+			{
+				return this._WithDestroying;
+			}
+			set
+			{
+				if ((this._WithDestroying != value))
+				{
+					this.OnWithDestroyingChanging(value);
+					this.SendPropertyChanging();
+					this._WithDestroying = value;
+					this.SendPropertyChanged("WithDestroying");
+					this.OnWithDestroyingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentPriceWithDestroying", DbType="Float")]
+		public System.Nullable<double> CurrentPriceWithDestroying
+		{
+			get
+			{
+				return this._CurrentPriceWithDestroying;
+			}
+			set
+			{
+				if ((this._CurrentPriceWithDestroying != value))
+				{
+					this.OnCurrentPriceWithDestroyingChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentPriceWithDestroying = value;
+					this.SendPropertyChanged("CurrentPriceWithDestroying");
+					this.OnCurrentPriceWithDestroyingChanged();
 				}
 			}
 		}
@@ -4241,13 +4313,7 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _UpdateExistedAsset;
 		
-		private System.Nullable<bool> _SearchAssets;
-		
-		private System.Nullable<bool> _ViewAssets;
-		
 		private System.Nullable<bool> _DeleteAssetRecord;
-		
-		private System.Nullable<bool> _DropAssets;
 		
 		private System.Nullable<bool> _AddNewInventory;
 		
@@ -4331,14 +4397,8 @@ namespace AssetManagement
     partial void OnAddNewAssetChanged();
     partial void OnUpdateExistedAssetChanging(System.Nullable<bool> value);
     partial void OnUpdateExistedAssetChanged();
-    partial void OnSearchAssetsChanging(System.Nullable<bool> value);
-    partial void OnSearchAssetsChanged();
-    partial void OnViewAssetsChanging(System.Nullable<bool> value);
-    partial void OnViewAssetsChanged();
     partial void OnDeleteAssetRecordChanging(System.Nullable<bool> value);
     partial void OnDeleteAssetRecordChanged();
-    partial void OnDropAssetsChanging(System.Nullable<bool> value);
-    partial void OnDropAssetsChanged();
     partial void OnAddNewInventoryChanging(System.Nullable<bool> value);
     partial void OnAddNewInventoryChanged();
     partial void OnUpdateExistedInventoryChanging(System.Nullable<bool> value);
@@ -4495,46 +4555,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SearchAssets", DbType="Bit")]
-		public System.Nullable<bool> SearchAssets
-		{
-			get
-			{
-				return this._SearchAssets;
-			}
-			set
-			{
-				if ((this._SearchAssets != value))
-				{
-					this.OnSearchAssetsChanging(value);
-					this.SendPropertyChanging();
-					this._SearchAssets = value;
-					this.SendPropertyChanged("SearchAssets");
-					this.OnSearchAssetsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewAssets", DbType="Bit")]
-		public System.Nullable<bool> ViewAssets
-		{
-			get
-			{
-				return this._ViewAssets;
-			}
-			set
-			{
-				if ((this._ViewAssets != value))
-				{
-					this.OnViewAssetsChanging(value);
-					this.SendPropertyChanging();
-					this._ViewAssets = value;
-					this.SendPropertyChanged("ViewAssets");
-					this.OnViewAssetsChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteAssetRecord", DbType="Bit")]
 		public System.Nullable<bool> DeleteAssetRecord
 		{
@@ -4551,26 +4571,6 @@ namespace AssetManagement
 					this._DeleteAssetRecord = value;
 					this.SendPropertyChanged("DeleteAssetRecord");
 					this.OnDeleteAssetRecordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DropAssets", DbType="Bit")]
-		public System.Nullable<bool> DropAssets
-		{
-			get
-			{
-				return this._DropAssets;
-			}
-			set
-			{
-				if ((this._DropAssets != value))
-				{
-					this.OnDropAssetsChanging(value);
-					this.SendPropertyChanging();
-					this._DropAssets = value;
-					this.SendPropertyChanged("DropAssets");
-					this.OnDropAssetsChanged();
 				}
 			}
 		}

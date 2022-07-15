@@ -96,6 +96,11 @@ namespace AssetManagement.Assets
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewAssetWizardControl_FinishClick(object sender, CancelEventArgs e)
         {
             progressPanel1.Visible = true;
@@ -104,7 +109,7 @@ namespace AssetManagement.Assets
             {
                 AssetTbl newAssetRecord = new AssetTbl()
                 {
-                    AssetCode = assetCodeTextBox.Text.Trim(),
+                    AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
@@ -129,7 +134,7 @@ namespace AssetManagement.Assets
                     OfUsed = ofUsedTextBox.Text.Trim(),
                     EstateOwnershipDocumentWith = estateOwnershipDocumentWithTextBox.Text.Trim(),
                     EstateArea = estateAreaTextBox.Text.Trim(),
-                    EstateAreaUnit = (estateAreaUnitLookUpEdit.EditValue == null) ? 0 : Convert.ToInt32(estateAreaUnitLookUpEdit.EditValue),
+                    EstateAreaUnit = (estateAreaUnitLookUpEdit.EditValue == null) ? 1 : Convert.ToInt32(estateAreaUnitLookUpEdit.EditValue),
                     CarPanelNumber = carPanelNumberTextBox.Text.Trim(),
                     CarChassisNumber = carChassisNumberTextBox.Text.Trim(),
                     CarManufacturingYear = Convert.ToInt32(carManufacturingYearNumericUpDown.Value),

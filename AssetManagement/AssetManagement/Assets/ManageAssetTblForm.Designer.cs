@@ -48,8 +48,8 @@ namespace AssetManagement.Assets
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.assetGridControl = new DevExpress.XtraGrid.GridControl();
-            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolbarFormManager1 = new DevExpress.XtraBars.ToolbarForm.ToolbarFormManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -116,8 +116,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager2)).BeginInit();
@@ -182,6 +182,7 @@ namespace AssetManagement.Assets
             this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.assetGridControl.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = false;
             this.assetGridControl.Location = new System.Drawing.Point(0, 96);
             this.assetGridControl.MainView = this.assetVwGridView;
             this.assetGridControl.Name = "assetGridControl";
@@ -190,11 +191,6 @@ namespace AssetManagement.Assets
             this.assetGridControl.UseEmbeddedNavigator = true;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetVwGridView});
-            // 
-            // assetVwBindingSource
-            // 
-            this.assetVwBindingSource.DataMember = "AssetVw";
-            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetVwGridView
             // 
@@ -241,6 +237,11 @@ namespace AssetManagement.Assets
             this.assetVwGridView.GridControl = this.assetGridControl;
             this.assetVwGridView.Name = "assetVwGridView";
             this.assetVwGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // toolbarFormManager1
             // 
@@ -836,8 +837,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager2)).EndInit();

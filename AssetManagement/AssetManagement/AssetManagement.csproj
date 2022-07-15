@@ -132,11 +132,23 @@
     <Compile Include="Assets\ManageAssetTblForm.Designer.cs">
       <DependentUpon>ManageAssetTblForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\DeleteAssetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\DeleteAssetForm.Designer.cs">
+      <DependentUpon>DeleteAssetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assets\NewAssetInventoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Assets\NewAssetInventoryForm.Designer.cs">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\ManageUserRoleTblForm.cs">
       <SubType>Form</SubType>
@@ -248,8 +260,14 @@
     <Compile Include="Users\AddNewUserRoleForm.Designer.cs">
       <DependentUpon>AddNewUserRoleForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Assets\DeleteAssetForm.resx">
+      <DependentUpon>DeleteAssetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\ManageUserRoleTblForm.resx">
       <DependentUpon>ManageUserRoleTblForm.cs</DependentUpon>
@@ -337,6 +355,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\36435102.png" />
+    <None Include="Resources\821619.png" />
+    <None Include="Resources\4110306.png" />
+    <None Include="Resources\1087037.png" />
     <None Include="Resources\3620142.png" />
     <None Include="Resources\744804.png" />
     <None Include="Resources\2529580.png" />

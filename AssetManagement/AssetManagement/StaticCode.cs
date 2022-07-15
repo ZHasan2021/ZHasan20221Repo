@@ -22,6 +22,7 @@ namespace AssetManagement
 
         #region Db
         public static AssetMngDbDataContext mainDbContext = new AssetMngDbDataContext();
+        public static OptionsTbl appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
 
         public static bool BackupDb(string backupName)

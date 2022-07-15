@@ -74,6 +74,9 @@ namespace AssetManagement.Assets
                     TransactionNotes = assetNotesTextBox.Text.Trim(),
                     MoneyAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                     MoneyAmountCurrency = (moneyAmountNumericUpDown.Value == 0) ? 1 : Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
+                    GetAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked,
+                    WithDestroying = getAssetOutOfWorkCheckBox.Checked && withDestroyingCheckBox.Checked,
+                    CurrentPriceWithDestroying = Convert.ToDouble(currentPriceWithDestroyingNumericUpDown.Value),
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstMv);
                 assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked == true;
@@ -95,13 +98,13 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             moveAssetGroupBox.Visible = false;
-            var assetsByCodeQry = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
+            var assetsByCodeQry = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
             if (assetsByCodeQry.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحمل رقم الكود الذي أدخلته", StaticCode.ApplicationTitle);
                 return;
             }
-            srchRes = assetsByCodeQry.First();
+            srchRes = StaticCode.mainDbContext.AssetMoveVws.Single(ast => ast.ID == assetsByCodeQry.First().ID);
             moveAssetGroupBox.Visible = true;
             assetInfoLabel.Text = $"فئة الأصل الرئيسية: {srchRes.MainCategoryName}، فئة الأصل الثانوية: {srchRes.MinorCategoryName}، حالة الأصل {srchRes.StatusName}";
             fromDepartmentTextBox.Text = srchRes.DepartmentName;
@@ -130,6 +133,17 @@ namespace AssetManagement.Assets
             ManageCurrencyTblForm tatyFrm = new ManageCurrencyTblForm();
             tatyFrm.ShowDialog();
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
+        }
+
+        private void getAssetOutOfWorkCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            withDestroyingCheckBox.Visible = getAssetOutOfWorkCheckBox.Checked;
+            withDestroyingCheckBox.Checked = false;
+        }
+
+        private void assetMoveVwGridControl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -142,13 +142,13 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             moveAssetGroupBox.Visible = false;
-            var assetsByCodeQry = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
+            var assetsByCodeQry = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
             if (assetsByCodeQry.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحمل رقم الكود الذي أدخلته", StaticCode.ApplicationTitle);
                 return;
             }
-            srchRes = assetsByCodeQry.First();
+            srchRes = StaticCode.mainDbContext.AssetMoveVws.Single(ast => ast.ID == assetsByCodeQry.First().ID);
             moveAssetGroupBox.Visible = true;
             assetInfoLabel.Text = $"فئة الأصل الرئيسية: {srchRes.MainCategoryName}، فئة الأصل الثانوية: {srchRes.MinorCategoryName}، حالة الأصل {srchRes.StatusName}";
             fromDepartmentTextBox.Text = srchRes.DepartmentName;

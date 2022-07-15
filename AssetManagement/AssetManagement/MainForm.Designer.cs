@@ -34,7 +34,6 @@ namespace AssetManagement
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.modifyExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.searchAssetsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMainCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMinorCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.activeUserRoleBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
@@ -42,7 +41,6 @@ namespace AssetManagement
             this.addNewAssetInventoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.encryptExportedFileBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.exportDataBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.viewAssetTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageCategoriesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageAssetInventoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.setAppDateAndTimeBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -61,12 +59,12 @@ namespace AssetManagement
             this.manageAssetTransactionTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageUserTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewUserBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.assetCodePrefixBarEditItem = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.loginBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageUserRoleTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.backupDbBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.restoreDbBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteAssetsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.optionsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -83,6 +81,7 @@ namespace AssetManagement
             this.appDateAndTimeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.usersAccountsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.additionalOptionsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
@@ -90,8 +89,6 @@ namespace AssetManagement
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
@@ -107,7 +104,6 @@ namespace AssetManagement
             this.mainRibbonControl.SearchEditItem,
             this.addNewAssetBarButtonItem,
             this.modifyExistedAssetBarButtonItem,
-            this.searchAssetsBarButtonItem,
             this.addNewMainCategoryBarButtonItem,
             this.addNewMinorCategoryBarButtonItem,
             this.activeUserRoleBarStaticItem,
@@ -115,7 +111,6 @@ namespace AssetManagement
             this.addNewAssetInventoryBarButtonItem,
             this.encryptExportedFileBarCheckItem,
             this.exportDataBarButtonItem,
-            this.viewAssetTblBarButtonItem,
             this.manageCategoriesBarButtonItem,
             this.manageAssetInventoryTblBarButtonItem,
             this.setAppDateAndTimeBarButtonItem,
@@ -134,14 +129,15 @@ namespace AssetManagement
             this.manageAssetTransactionTblBarButtonItem,
             this.manageUserTblBarButtonItem,
             this.addNewUserBarButtonItem,
-            this.assetCodePrefixBarEditItem,
             this.loginBarButtonItem,
             this.manageUserRoleTblBarButtonItem,
             this.backupDbBarButtonItem,
-            this.restoreDbBarButtonItem});
+            this.restoreDbBarButtonItem,
+            this.deleteAssetsBarButtonItem,
+            this.optionsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.mainRibbonControl.MaxItemId = 38;
+            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(5);
+            this.mainRibbonControl.MaxItemId = 40;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 515;
@@ -172,14 +168,6 @@ namespace AssetManagement
             this.modifyExistedAssetBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1573959;
             this.modifyExistedAssetBarButtonItem.Name = "modifyExistedAssetBarButtonItem";
             this.modifyExistedAssetBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // searchAssetsBarButtonItem
-            // 
-            this.searchAssetsBarButtonItem.Caption = "بحث عن أصل";
-            this.searchAssetsBarButtonItem.Id = 3;
-            this.searchAssetsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2027306;
-            this.searchAssetsBarButtonItem.Name = "searchAssetsBarButtonItem";
-            this.searchAssetsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // addNewMainCategoryBarButtonItem
             // 
@@ -235,15 +223,6 @@ namespace AssetManagement
             this.exportDataBarButtonItem.Name = "exportDataBarButtonItem";
             this.exportDataBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.exportDataBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportDataBarButtonItem_ItemClick);
-            // 
-            // viewAssetTblBarButtonItem
-            // 
-            this.viewAssetTblBarButtonItem.Caption = "استعراص جدول الأصول";
-            this.viewAssetTblBarButtonItem.Id = 11;
-            this.viewAssetTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._53595381;
-            this.viewAssetTblBarButtonItem.Name = "viewAssetTblBarButtonItem";
-            this.viewAssetTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.viewAssetTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageAssetTblBarButtonItem_ItemClick);
             // 
             // manageCategoriesBarButtonItem
             // 
@@ -404,19 +383,6 @@ namespace AssetManagement
             this.addNewUserBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewUserBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewUserBarButtonItem_ItemClick);
             // 
-            // assetCodePrefixBarEditItem
-            // 
-            this.assetCodePrefixBarEditItem.Caption = "لاحقة كود الأصل";
-            this.assetCodePrefixBarEditItem.Edit = this.repositoryItemTextEdit1;
-            this.assetCodePrefixBarEditItem.Id = 33;
-            this.assetCodePrefixBarEditItem.Name = "assetCodePrefixBarEditItem";
-            this.assetCodePrefixBarEditItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
             // loginBarButtonItem
             // 
             this.loginBarButtonItem.Caption = "الدخول بحساب مختلف";
@@ -453,6 +419,24 @@ namespace AssetManagement
             this.restoreDbBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.restoreDbBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.restoreDbBarButtonItem_ItemClick);
             // 
+            // deleteAssetsBarButtonItem
+            // 
+            this.deleteAssetsBarButtonItem.Caption = "حذف أصل";
+            this.deleteAssetsBarButtonItem.Id = 38;
+            this.deleteAssetsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._4110306;
+            this.deleteAssetsBarButtonItem.Name = "deleteAssetsBarButtonItem";
+            this.deleteAssetsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.deleteAssetsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteAssetsBarButtonItem_ItemClick);
+            // 
+            // optionsBarButtonItem
+            // 
+            this.optionsBarButtonItem.Caption = "إعدادات التطبيق";
+            this.optionsBarButtonItem.Id = 39;
+            this.optionsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._821619;
+            this.optionsBarButtonItem.Name = "optionsBarButtonItem";
+            this.optionsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.optionsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.optionsBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -485,8 +469,7 @@ namespace AssetManagement
             // existedAssetsRibbonPageGroup
             // 
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.modifyExistedAssetBarButtonItem);
-            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.searchAssetsBarButtonItem);
-            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.viewAssetTblBarButtonItem);
+            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.deleteAssetsBarButtonItem);
             this.existedAssetsRibbonPageGroup.Name = "existedAssetsRibbonPageGroup";
             this.existedAssetsRibbonPageGroup.Text = "جدول الأصول - Assets table";
             // 
@@ -592,9 +575,14 @@ namespace AssetManagement
             // 
             // additionalOptionsRibbonPageGroup
             // 
-            this.additionalOptionsRibbonPageGroup.ItemLinks.Add(this.assetCodePrefixBarEditItem);
+            this.additionalOptionsRibbonPageGroup.ItemLinks.Add(this.optionsBarButtonItem);
             this.additionalOptionsRibbonPageGroup.Name = "additionalOptionsRibbonPageGroup";
             this.additionalOptionsRibbonPageGroup.Text = "إعدادات إضافية";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // ribbonStatusBar1
             // 
@@ -603,7 +591,7 @@ namespace AssetManagement
             this.ribbonStatusBar1.ItemLinks.Add(this.appDateBarStaticItem);
             this.ribbonStatusBar1.ItemLinks.Add(this.appTimeBarStaticItem);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 831);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.mainRibbonControl;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1439, 33);
@@ -712,22 +700,6 @@ namespace AssetManagement
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "إدارة حسابات المستخدمين";
-            this.barButtonItem1.Id = 29;
-            this.barButtonItem1.ImageOptions.Image = global::AssetManagement.Properties.Resources._7065712;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "إدارة حسابات المستخدمين";
-            this.barButtonItem2.Id = 29;
-            this.barButtonItem2.ImageOptions.Image = global::AssetManagement.Properties.Resources._7065712;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -762,7 +734,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem addNewAssetBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem modifyExistedAssetBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup existedAssetsRibbonPageGroup;
-        private DevExpress.XtraBars.BarButtonItem searchAssetsBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem addNewMainCategoryBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem addNewMinorCategoryBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
@@ -780,7 +751,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonPage manageAuxTablesRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup auxTablesRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
-        private DevExpress.XtraBars.BarButtonItem viewAssetTblBarButtonItem;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private DevExpress.XtraBars.BarButtonItem manageCategoriesBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPage optionsRibbonPage;
@@ -806,16 +776,15 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageUserTblBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup usersAccountsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem addNewUserBarButtonItem;
-        private DevExpress.XtraBars.BarEditItem assetCodePrefixBarEditItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup additionalOptionsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem loginBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageUserRoleTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem backupDbBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup backupAndRestoreRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem restoreDbBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem deleteAssetsBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem optionsBarButtonItem;
     }
 }
 

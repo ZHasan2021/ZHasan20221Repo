@@ -96,6 +96,9 @@
       <Column Name="TransactionMadeBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MoneyAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="MoneyAmountCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GetAssetOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="WithDestroying" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CurrentPriceWithDestroying" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
       <Association Name="UserTbl_AssetTransactionTbl" Member="UserTbl" ThisKey="TransactionMadeBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
       <Association Name="CurrencyTbl_AssetTransactionTbl" Member="CurrencyTbl" ThisKey="MoneyAmountCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
@@ -189,10 +192,7 @@
       <Column Name="RoleName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="AddNewAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="SearchAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ViewAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DropAssets" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateExistedInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="SearchInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />

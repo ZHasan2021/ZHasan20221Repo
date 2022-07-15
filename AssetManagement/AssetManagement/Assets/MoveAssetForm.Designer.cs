@@ -704,6 +704,7 @@ namespace AssetManagement.Assets
             // 
             // MoveAssetForm
             // 
+            this.AcceptButton = this.searchAssetBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 758);
