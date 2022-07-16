@@ -12,7 +12,8 @@ namespace AssetManagement.Assets
 {
     public partial class MoveAssetForm : Form
     {
-        AssetMoveVw srchRes = null;
+        IQueryable<AssetMoveVw> srchRes = null;
+        AssetMoveVw currSrchRes = null;
 
         public MoveAssetForm()
         {
@@ -21,6 +22,8 @@ namespace AssetManagement.Assets
 
         private void MoveAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
+            this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMovementTbl' table. You can move, or remove it, as needed.
             this.assetMovementTblTableAdapter.Fill(this.assetMngDbDataSet.AssetMovementTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMoveVw' table. You can move, or remove it, as needed.
@@ -33,6 +36,11 @@ namespace AssetManagement.Assets
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             assetMovementTblBindingNavigator.Visible = StaticCode.activeUserRole.ManageAssetMovements == true;
             this.MinimumSize = this.Size;
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
         }
 
         private void assetMoveBtn_Click(object sender, EventArgs e)
@@ -69,7 +77,7 @@ namespace AssetManagement.Assets
 
             try
             {
-                AssetTbl assetToMove = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == srchRes.ID);
+                AssetTbl assetToMove = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
                 if (toDepartmentCheckBox.Checked)
                     assetToMove.AssetDept = Convert.ToInt32(toDepartmentLookUpEdit.EditValue);
                 if (toSectionCheckBox.Checked)
@@ -130,7 +138,7 @@ namespace AssetManagement.Assets
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
                 this.assetMoveVwBindingSource.EndEdit();
-                assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == srchRes.ID);
+                assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
                 mainAlertControl.Show(this, "تم نقل الأصل وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
             }
             catch
@@ -141,21 +149,35 @@ namespace AssetManagement.Assets
 
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
-            moveAssetGroupBox.Visible = false;
-            var assetsByCodeQry = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
-            if (assetsByCodeQry.Count() == 0)
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = false;
+            srchRes = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
+            if (srchRes.Count() == 0)
             {
-                mainAlertControl.Show(this, "لا يوجد أصل يحمل رقم الكود الذي أدخلته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            srchRes = StaticCode.mainDbContext.AssetMoveVws.Single(ast => ast.ID == assetsByCodeQry.First().ID);
-            moveAssetGroupBox.Visible = true;
-            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {srchRes.MainCategoryName}، فئة الأصل الثانوية: {srchRes.MinorCategoryName}، حالة الأصل {srchRes.StatusName}";
-            fromDepartmentTextBox.Text = srchRes.DepartmentName;
-            fromSectionTextBox.Text = srchRes.SectionName;
-            fromSquareTextBox.Text = srchRes.SquareName;
-            fromCustodianNameTextBox.Text = srchRes.CustodianName;
-            assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == srchRes.ID);
+            searchResultsListBox.DataSource = srchRes;
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
+
+        }
+
+        private void viewAssetInformationBtn_Click(object sender, EventArgs e)
+        {
+            moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = false;
+            if (searchResultsListBox.SelectedIndex == -1)
+            {
+                mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
+                return;
+            }
+            currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
+            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName}";
+            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
+            fromSectionTextBox.Text = currSrchRes.SectionName;
+            fromSquareTextBox.Text = currSrchRes.SquareName;
+            fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
+            assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
+            moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = true;
+            toDepartmentCheckBox.Checked = toSectionCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = false;
         }
 
         private void toDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -183,11 +205,6 @@ namespace AssetManagement.Assets
             this.Validate();
             assetMovementTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
-        }
-
-        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
-        {
-            e.AlertForm.Size = new Size(350, 100);
         }
     }
 }

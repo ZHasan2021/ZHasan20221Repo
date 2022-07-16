@@ -13,7 +13,8 @@ namespace AssetManagement.Assets
 {
     public partial class TransacteAssetForm : Form
     {
-        AssetMoveVw srchRes = null;
+        IQueryable<AssetMoveVw> srchRes = null;
+        AssetMoveVw currSrchRes = null;
 
         public TransacteAssetForm()
         {
@@ -32,6 +33,11 @@ namespace AssetManagement.Assets
             manageTransactionTypeTblBtn.Visible = StaticCode.activeUserRole.ManageTransactionTypes == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             this.MinimumSize = this.Size;
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
         }
 
         private void assetTransactBtn_Click(object sender, EventArgs e)
@@ -64,7 +70,7 @@ namespace AssetManagement.Assets
 
             try
             {
-                AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == srchRes.ID);
+                AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
 
                 AssetTransactionTbl newAstMv = new AssetTransactionTbl()
                 {
@@ -86,7 +92,7 @@ namespace AssetManagement.Assets
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
                 this.assetTransactionTblBindingSource.EndEdit();
-                assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == srchRes.ID);
+                assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
                 mainAlertControl.Show(this, "تم تصريف الأصل وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
             }
             catch
@@ -97,21 +103,34 @@ namespace AssetManagement.Assets
 
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
-            moveAssetGroupBox.Visible = false;
-            var assetsByCodeQry = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
-            if (assetsByCodeQry.Count() == 0)
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = assetTransactionPanel.Visible = false;
+            srchRes = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
+            if (srchRes.Count() == 0)
             {
-                mainAlertControl.Show(this, "لا يوجد أصل يحمل رقم الكود الذي أدخلته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            srchRes = StaticCode.mainDbContext.AssetMoveVws.Single(ast => ast.ID == assetsByCodeQry.First().ID);
-            moveAssetGroupBox.Visible = true;
-            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {srchRes.MainCategoryName}، فئة الأصل الثانوية: {srchRes.MinorCategoryName}، حالة الأصل {srchRes.StatusName}";
-            fromDepartmentTextBox.Text = srchRes.DepartmentName;
-            fromSectionTextBox.Text = srchRes.SectionName;
-            fromSquareTextBox.Text = srchRes.SquareName;
-            fromCustodianNameTextBox.Text = srchRes.CustodianName;
-            assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(astr => astr.AssetID == srchRes.ID);
+            searchResultsListBox.DataSource = srchRes;
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
+
+        }
+
+        private void viewAssetInformationBtn_Click(object sender, EventArgs e)
+        {
+            moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = assetTransactionPanel.Visible = false;
+            if (searchResultsListBox.SelectedIndex == -1)
+            {
+                mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
+                return;
+            }
+            currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
+            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName}";
+            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
+            fromSectionTextBox.Text = currSrchRes.SectionName;
+            fromSquareTextBox.Text = currSrchRes.SquareName;
+            fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
+            assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
+            moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = assetTransactionPanel.Visible = true;
         }
 
         private void assetTransactionTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

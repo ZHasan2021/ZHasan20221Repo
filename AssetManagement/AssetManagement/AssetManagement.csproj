@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -378,6 +379,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\2762550.png" />
+    <None Include="Resources\41866361.png" />
+    <None Include="Resources\2407198.png" />
+    <None Include="Resources\8341961.png" />
     <None Include="Resources\753930.png" />
     <None Include="Resources\2922838.png" />
     <None Include="Resources\3643517.png" />

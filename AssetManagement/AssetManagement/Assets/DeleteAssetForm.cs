@@ -13,7 +13,8 @@ namespace AssetManagement.Assets
 {
     public partial class DeleteAssetForm : Form
     {
-        AssetMoveVw srchRes = null;
+        IQueryable<AssetMoveVw> srchRes = null;
+        AssetMoveVw currSrchRes = null;
 
         public DeleteAssetForm()
         {
@@ -35,7 +36,12 @@ namespace AssetManagement.Assets
             this.MinimumSize = this.Size;
         }
 
-        private void deleteMoveBtn_Click(object sender, EventArgs e)
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
+        }
+
+        private void deleteAssetBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من أنك تريد حذف سجل الأصل، سيتم أيضاً حذف سجلات النقل والتصريف والإهلاك الخاصة بهذا الأصل؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -44,11 +50,11 @@ namespace AssetManagement.Assets
 
             try
             {
-                AssetTbl assetToDelete = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == srchRes.ID);
-                var assetToDelete_Movement = StaticCode.mainDbContext.AssetMovementTbls.Where(astm => astm.AssetID == srchRes.ID);
+                AssetTbl assetToDelete = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
+                var assetToDelete_Movement = StaticCode.mainDbContext.AssetMovementTbls.Where(astm => astm.AssetID == currSrchRes.ID);
                 foreach (AssetMovementTbl oneRec1 in assetToDelete_Movement)
                     StaticCode.mainDbContext.AssetMovementTbls.DeleteOnSubmit(StaticCode.mainDbContext.AssetMovementTbls.Single(astm => astm.ID == oneRec1.ID));
-                var assetToDelete_Transaction = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt => astt.AssetID == srchRes.ID);
+                var assetToDelete_Transaction = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt => astt.AssetID == currSrchRes.ID);
                 foreach (AssetTransactionTbl oneRec2 in assetToDelete_Transaction)
                     StaticCode.mainDbContext.AssetTransactionTbls.DeleteOnSubmit(StaticCode.mainDbContext.AssetTransactionTbls.Single(astt => astt.ID == oneRec2.ID));
                 StaticCode.mainDbContext.SubmitChanges();
@@ -68,20 +74,33 @@ namespace AssetManagement.Assets
 
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
-            moveAssetGroupBox.Visible = false;
-            var assetsByCodeQry = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode == assetCodeTextBox.Text.Trim());
-            if (assetsByCodeQry.Count() == 0)
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = deleteAssetGroupBox.Visible = false;
+            srchRes = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
+            if (srchRes.Count() == 0)
             {
-                mainAlertControl.Show(this, "لا يوجد أصل يحمل رقم الكود الذي أدخلته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            srchRes = StaticCode.mainDbContext.AssetMoveVws.Single(ast => ast.ID == assetsByCodeQry.First().ID);
-            moveAssetGroupBox.Visible = true;
-            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {srchRes.MainCategoryName}، فئة الأصل الثانوية: {srchRes.MinorCategoryName}، حالة الأصل {srchRes.StatusName}";
-            fromDepartmentTextBox.Text = srchRes.DepartmentName;
-            fromSectionTextBox.Text = srchRes.SectionName;
-            fromSquareTextBox.Text = srchRes.SquareName;
-            fromCustodianNameTextBox.Text = srchRes.CustodianName;
+            searchResultsListBox.DataSource = srchRes;
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
+
+        }
+
+        private void viewAssetInformationBtn_Click(object sender, EventArgs e)
+        {
+            deleteAssetGroupBox.Visible = false;
+            if (searchResultsListBox.SelectedIndex == -1)
+            {
+                mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
+                return;
+            }
+            currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
+            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName}";
+            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
+            fromSectionTextBox.Text = currSrchRes.SectionName;
+            fromSquareTextBox.Text = currSrchRes.SquareName;
+            fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
+            deleteAssetGroupBox.Visible = true;
         }
     }
 }

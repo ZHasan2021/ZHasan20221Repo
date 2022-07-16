@@ -358,5 +358,11 @@ namespace AssetManagement
             AssetsStatsForm statFrm = new AssetsStatsForm();
             statFrm.ShowDialog();
         }
+
+        private void setAppDateAndTimeBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SetAppDateAndTimeForm appDtFrm = new SetAppDateAndTimeForm();
+            appDtFrm.ShowDialog();
+        }
     }
 }

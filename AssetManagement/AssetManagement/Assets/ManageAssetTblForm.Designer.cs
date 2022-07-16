@@ -78,6 +78,8 @@ namespace AssetManagement.Assets
             this.colAssetSquare = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetMinorCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetSpecifications = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colItemsQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAssetStock = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVolume = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -202,6 +204,8 @@ namespace AssetManagement.Assets
             this.colAssetSquare,
             this.colAssetMinorCategory,
             this.colAssetSpecifications,
+            this.colItemsQuantity,
+            this.colAssetStock,
             this.colModel,
             this.colColor,
             this.colVolume,
@@ -518,13 +522,31 @@ namespace AssetManagement.Assets
             this.colAssetSpecifications.VisibleIndex = 6;
             this.colAssetSpecifications.Width = 94;
             // 
+            // colItemsQuantity
+            // 
+            this.colItemsQuantity.FieldName = "ItemsQuantity";
+            this.colItemsQuantity.MinWidth = 25;
+            this.colItemsQuantity.Name = "colItemsQuantity";
+            this.colItemsQuantity.Visible = true;
+            this.colItemsQuantity.VisibleIndex = 7;
+            this.colItemsQuantity.Width = 94;
+            // 
+            // colAssetStock
+            // 
+            this.colAssetStock.FieldName = "AssetStock";
+            this.colAssetStock.MinWidth = 25;
+            this.colAssetStock.Name = "colAssetStock";
+            this.colAssetStock.Visible = true;
+            this.colAssetStock.VisibleIndex = 8;
+            this.colAssetStock.Width = 94;
+            // 
             // colModel
             // 
             this.colModel.FieldName = "Model";
             this.colModel.MinWidth = 25;
             this.colModel.Name = "colModel";
             this.colModel.Visible = true;
-            this.colModel.VisibleIndex = 7;
+            this.colModel.VisibleIndex = 9;
             this.colModel.Width = 94;
             // 
             // colColor
@@ -533,7 +555,7 @@ namespace AssetManagement.Assets
             this.colColor.MinWidth = 25;
             this.colColor.Name = "colColor";
             this.colColor.Visible = true;
-            this.colColor.VisibleIndex = 8;
+            this.colColor.VisibleIndex = 10;
             this.colColor.Width = 94;
             // 
             // colVolume
@@ -542,7 +564,7 @@ namespace AssetManagement.Assets
             this.colVolume.MinWidth = 25;
             this.colVolume.Name = "colVolume";
             this.colVolume.Visible = true;
-            this.colVolume.VisibleIndex = 9;
+            this.colVolume.VisibleIndex = 11;
             this.colVolume.Width = 94;
             // 
             // colPurchaseDate
@@ -551,7 +573,7 @@ namespace AssetManagement.Assets
             this.colPurchaseDate.MinWidth = 25;
             this.colPurchaseDate.Name = "colPurchaseDate";
             this.colPurchaseDate.Visible = true;
-            this.colPurchaseDate.VisibleIndex = 10;
+            this.colPurchaseDate.VisibleIndex = 12;
             this.colPurchaseDate.Width = 94;
             // 
             // colPurchasePrice
@@ -560,7 +582,7 @@ namespace AssetManagement.Assets
             this.colPurchasePrice.MinWidth = 25;
             this.colPurchasePrice.Name = "colPurchasePrice";
             this.colPurchasePrice.Visible = true;
-            this.colPurchasePrice.VisibleIndex = 11;
+            this.colPurchasePrice.VisibleIndex = 13;
             this.colPurchasePrice.Width = 94;
             // 
             // colPurchasePriceCurrency
@@ -569,7 +591,7 @@ namespace AssetManagement.Assets
             this.colPurchasePriceCurrency.MinWidth = 25;
             this.colPurchasePriceCurrency.Name = "colPurchasePriceCurrency";
             this.colPurchasePriceCurrency.Visible = true;
-            this.colPurchasePriceCurrency.VisibleIndex = 12;
+            this.colPurchasePriceCurrency.VisibleIndex = 14;
             this.colPurchasePriceCurrency.Width = 94;
             // 
             // colPlaceOfPresence
@@ -578,7 +600,7 @@ namespace AssetManagement.Assets
             this.colPlaceOfPresence.MinWidth = 25;
             this.colPlaceOfPresence.Name = "colPlaceOfPresence";
             this.colPlaceOfPresence.Visible = true;
-            this.colPlaceOfPresence.VisibleIndex = 13;
+            this.colPlaceOfPresence.VisibleIndex = 15;
             this.colPlaceOfPresence.Width = 94;
             // 
             // colCurrentStatus
@@ -587,7 +609,7 @@ namespace AssetManagement.Assets
             this.colCurrentStatus.MinWidth = 25;
             this.colCurrentStatus.Name = "colCurrentStatus";
             this.colCurrentStatus.Visible = true;
-            this.colCurrentStatus.VisibleIndex = 14;
+            this.colCurrentStatus.VisibleIndex = 16;
             this.colCurrentStatus.Width = 94;
             // 
             // colBenefitPercentage
@@ -596,7 +618,7 @@ namespace AssetManagement.Assets
             this.colBenefitPercentage.MinWidth = 25;
             this.colBenefitPercentage.Name = "colBenefitPercentage";
             this.colBenefitPercentage.Visible = true;
-            this.colBenefitPercentage.VisibleIndex = 15;
+            this.colBenefitPercentage.VisibleIndex = 17;
             this.colBenefitPercentage.Width = 94;
             // 
             // colActualCurrentPrice
@@ -605,7 +627,7 @@ namespace AssetManagement.Assets
             this.colActualCurrentPrice.MinWidth = 25;
             this.colActualCurrentPrice.Name = "colActualCurrentPrice";
             this.colActualCurrentPrice.Visible = true;
-            this.colActualCurrentPrice.VisibleIndex = 16;
+            this.colActualCurrentPrice.VisibleIndex = 18;
             this.colActualCurrentPrice.Width = 94;
             // 
             // colActualCurrentPriceCurrency
@@ -614,7 +636,7 @@ namespace AssetManagement.Assets
             this.colActualCurrentPriceCurrency.MinWidth = 25;
             this.colActualCurrentPriceCurrency.Name = "colActualCurrentPriceCurrency";
             this.colActualCurrentPriceCurrency.Visible = true;
-            this.colActualCurrentPriceCurrency.VisibleIndex = 17;
+            this.colActualCurrentPriceCurrency.VisibleIndex = 19;
             this.colActualCurrentPriceCurrency.Width = 94;
             // 
             // colCustodianName
@@ -623,7 +645,7 @@ namespace AssetManagement.Assets
             this.colCustodianName.MinWidth = 25;
             this.colCustodianName.Name = "colCustodianName";
             this.colCustodianName.Visible = true;
-            this.colCustodianName.VisibleIndex = 18;
+            this.colCustodianName.VisibleIndex = 20;
             this.colCustodianName.Width = 94;
             // 
             // colMoreDetails
@@ -632,7 +654,7 @@ namespace AssetManagement.Assets
             this.colMoreDetails.MinWidth = 25;
             this.colMoreDetails.Name = "colMoreDetails";
             this.colMoreDetails.Visible = true;
-            this.colMoreDetails.VisibleIndex = 19;
+            this.colMoreDetails.VisibleIndex = 21;
             this.colMoreDetails.Width = 94;
             // 
             // colAssetNotes
@@ -641,7 +663,7 @@ namespace AssetManagement.Assets
             this.colAssetNotes.MinWidth = 25;
             this.colAssetNotes.Name = "colAssetNotes";
             this.colAssetNotes.Visible = true;
-            this.colAssetNotes.VisibleIndex = 20;
+            this.colAssetNotes.VisibleIndex = 22;
             this.colAssetNotes.Width = 94;
             // 
             // colEstateAddress
@@ -650,7 +672,7 @@ namespace AssetManagement.Assets
             this.colEstateAddress.MinWidth = 25;
             this.colEstateAddress.Name = "colEstateAddress";
             this.colEstateAddress.Visible = true;
-            this.colEstateAddress.VisibleIndex = 21;
+            this.colEstateAddress.VisibleIndex = 23;
             this.colEstateAddress.Width = 94;
             // 
             // colOwnerName
@@ -659,7 +681,7 @@ namespace AssetManagement.Assets
             this.colOwnerName.MinWidth = 25;
             this.colOwnerName.Name = "colOwnerName";
             this.colOwnerName.Visible = true;
-            this.colOwnerName.VisibleIndex = 22;
+            this.colOwnerName.VisibleIndex = 24;
             this.colOwnerName.Width = 94;
             // 
             // colOfUsed
@@ -668,7 +690,7 @@ namespace AssetManagement.Assets
             this.colOfUsed.MinWidth = 25;
             this.colOfUsed.Name = "colOfUsed";
             this.colOfUsed.Visible = true;
-            this.colOfUsed.VisibleIndex = 23;
+            this.colOfUsed.VisibleIndex = 25;
             this.colOfUsed.Width = 94;
             // 
             // colEstateOwnershipDocumentWith
@@ -677,7 +699,7 @@ namespace AssetManagement.Assets
             this.colEstateOwnershipDocumentWith.MinWidth = 25;
             this.colEstateOwnershipDocumentWith.Name = "colEstateOwnershipDocumentWith";
             this.colEstateOwnershipDocumentWith.Visible = true;
-            this.colEstateOwnershipDocumentWith.VisibleIndex = 24;
+            this.colEstateOwnershipDocumentWith.VisibleIndex = 26;
             this.colEstateOwnershipDocumentWith.Width = 94;
             // 
             // colEstateArea
@@ -686,7 +708,7 @@ namespace AssetManagement.Assets
             this.colEstateArea.MinWidth = 25;
             this.colEstateArea.Name = "colEstateArea";
             this.colEstateArea.Visible = true;
-            this.colEstateArea.VisibleIndex = 25;
+            this.colEstateArea.VisibleIndex = 27;
             this.colEstateArea.Width = 94;
             // 
             // colEstateAreaUnit
@@ -695,7 +717,7 @@ namespace AssetManagement.Assets
             this.colEstateAreaUnit.MinWidth = 25;
             this.colEstateAreaUnit.Name = "colEstateAreaUnit";
             this.colEstateAreaUnit.Visible = true;
-            this.colEstateAreaUnit.VisibleIndex = 26;
+            this.colEstateAreaUnit.VisibleIndex = 28;
             this.colEstateAreaUnit.Width = 94;
             // 
             // colCarPanelNumber
@@ -704,7 +726,7 @@ namespace AssetManagement.Assets
             this.colCarPanelNumber.MinWidth = 25;
             this.colCarPanelNumber.Name = "colCarPanelNumber";
             this.colCarPanelNumber.Visible = true;
-            this.colCarPanelNumber.VisibleIndex = 27;
+            this.colCarPanelNumber.VisibleIndex = 29;
             this.colCarPanelNumber.Width = 94;
             // 
             // colCarManufacturingYear
@@ -713,7 +735,7 @@ namespace AssetManagement.Assets
             this.colCarManufacturingYear.MinWidth = 25;
             this.colCarManufacturingYear.Name = "colCarManufacturingYear";
             this.colCarManufacturingYear.Visible = true;
-            this.colCarManufacturingYear.VisibleIndex = 28;
+            this.colCarManufacturingYear.VisibleIndex = 30;
             this.colCarManufacturingYear.Width = 94;
             // 
             // colCarChassisNumber
@@ -722,7 +744,7 @@ namespace AssetManagement.Assets
             this.colCarChassisNumber.MinWidth = 25;
             this.colCarChassisNumber.Name = "colCarChassisNumber";
             this.colCarChassisNumber.Visible = true;
-            this.colCarChassisNumber.VisibleIndex = 29;
+            this.colCarChassisNumber.VisibleIndex = 31;
             this.colCarChassisNumber.Width = 94;
             // 
             // colCarEngineNumber
@@ -731,7 +753,7 @@ namespace AssetManagement.Assets
             this.colCarEngineNumber.MinWidth = 25;
             this.colCarEngineNumber.Name = "colCarEngineNumber";
             this.colCarEngineNumber.Visible = true;
-            this.colCarEngineNumber.VisibleIndex = 30;
+            this.colCarEngineNumber.VisibleIndex = 32;
             this.colCarEngineNumber.Width = 94;
             // 
             // colCurrentDestructionRate
@@ -740,7 +762,7 @@ namespace AssetManagement.Assets
             this.colCurrentDestructionRate.MinWidth = 25;
             this.colCurrentDestructionRate.Name = "colCurrentDestructionRate";
             this.colCurrentDestructionRate.Visible = true;
-            this.colCurrentDestructionRate.VisibleIndex = 31;
+            this.colCurrentDestructionRate.VisibleIndex = 33;
             this.colCurrentDestructionRate.Width = 94;
             // 
             // colLifeSpanInMonths
@@ -749,7 +771,7 @@ namespace AssetManagement.Assets
             this.colLifeSpanInMonths.MinWidth = 25;
             this.colLifeSpanInMonths.Name = "colLifeSpanInMonths";
             this.colLifeSpanInMonths.Visible = true;
-            this.colLifeSpanInMonths.VisibleIndex = 32;
+            this.colLifeSpanInMonths.VisibleIndex = 34;
             this.colLifeSpanInMonths.Width = 94;
             // 
             // colIsSold
@@ -758,7 +780,7 @@ namespace AssetManagement.Assets
             this.colIsSold.MinWidth = 25;
             this.colIsSold.Name = "colIsSold";
             this.colIsSold.Visible = true;
-            this.colIsSold.VisibleIndex = 33;
+            this.colIsSold.VisibleIndex = 35;
             this.colIsSold.Width = 94;
             // 
             // colIsOutOfWork
@@ -767,7 +789,7 @@ namespace AssetManagement.Assets
             this.colIsOutOfWork.MinWidth = 25;
             this.colIsOutOfWork.Name = "colIsOutOfWork";
             this.colIsOutOfWork.Visible = true;
-            this.colIsOutOfWork.VisibleIndex = 34;
+            this.colIsOutOfWork.VisibleIndex = 36;
             this.colIsOutOfWork.Width = 94;
             // 
             // colInsertedOn
@@ -776,7 +798,7 @@ namespace AssetManagement.Assets
             this.colInsertedOn.MinWidth = 25;
             this.colInsertedOn.Name = "colInsertedOn";
             this.colInsertedOn.Visible = true;
-            this.colInsertedOn.VisibleIndex = 35;
+            this.colInsertedOn.VisibleIndex = 37;
             this.colInsertedOn.Width = 94;
             // 
             // colLastModifiedOn
@@ -785,7 +807,7 @@ namespace AssetManagement.Assets
             this.colLastModifiedOn.MinWidth = 25;
             this.colLastModifiedOn.Name = "colLastModifiedOn";
             this.colLastModifiedOn.Visible = true;
-            this.colLastModifiedOn.VisibleIndex = 36;
+            this.colLastModifiedOn.VisibleIndex = 38;
             this.colLastModifiedOn.Width = 94;
             // 
             // colInsertedBy
@@ -794,7 +816,7 @@ namespace AssetManagement.Assets
             this.colInsertedBy.MinWidth = 25;
             this.colInsertedBy.Name = "colInsertedBy";
             this.colInsertedBy.Visible = true;
-            this.colInsertedBy.VisibleIndex = 37;
+            this.colInsertedBy.VisibleIndex = 39;
             this.colInsertedBy.Width = 94;
             // 
             // colLastModifiedBy
@@ -803,7 +825,7 @@ namespace AssetManagement.Assets
             this.colLastModifiedBy.MinWidth = 25;
             this.colLastModifiedBy.Name = "colLastModifiedBy";
             this.colLastModifiedBy.Visible = true;
-            this.colLastModifiedBy.VisibleIndex = 38;
+            this.colLastModifiedBy.VisibleIndex = 40;
             this.colLastModifiedBy.Width = 94;
             // 
             // ManageAssetTblForm
@@ -890,6 +912,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colAssetSquare;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetMinorCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetSpecifications;
+        private DevExpress.XtraGrid.Columns.GridColumn colItemsQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn colAssetStock;
         private DevExpress.XtraGrid.Columns.GridColumn colModel;
         private DevExpress.XtraGrid.Columns.GridColumn colColor;
         private DevExpress.XtraGrid.Columns.GridColumn colVolume;

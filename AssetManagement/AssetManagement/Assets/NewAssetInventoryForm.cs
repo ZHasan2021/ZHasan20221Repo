@@ -41,7 +41,7 @@ namespace AssetManagement.Assets
 
         private void searchAllRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            customSearchGroupBox.Visible = searchAllRadioButton.Checked;
+            customSearchGroupBox.Visible = customSearchRadioButton.Checked;
         }
 
         private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)

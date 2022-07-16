@@ -29,7 +29,7 @@ namespace AssetManagement.Assets
             msSqlParams.ServerName = @"(localdb)\MSSQLLocalDB";
             msSqlParams.DatabaseName = "AssetMngDb";
 
-            DashboardSqlDataSource sqlDataSource = new DashboardSqlDataSource( "Data Source 1", msSqlParams);
+            DashboardSqlDataSource sqlDataSource = new DashboardSqlDataSource("Data Source 1", msSqlParams);
             SelectQuery selectQuery = SelectQueryFluentBuilder
                 .AddTable("AssetTbl")
                 .SelectColumns("AssetCode", "AssetDept")

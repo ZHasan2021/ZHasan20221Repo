@@ -111,6 +111,8 @@ namespace AssetManagement.Assets
                 {
                     AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
+                    ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
+                    AssetStock = Convert.ToDouble(assetStockNumericUpDown.Value),
                     AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),

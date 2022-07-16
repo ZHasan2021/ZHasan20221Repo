@@ -31,8 +31,6 @@ namespace AssetManagement.Assets
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransacteAssetForm));
-            this.assetCodeTextBox = new System.Windows.Forms.TextBox();
-            this.assetCodeLabel = new System.Windows.Forms.Label();
             this.moveAssetGroupBox = new System.Windows.Forms.GroupBox();
             this.assetTransactionPanel = new System.Windows.Forms.Panel();
             this.currentPriceWithDestroyingLabel = new System.Windows.Forms.Label();
@@ -96,12 +94,16 @@ namespace AssetManagement.Assets
             this.fromSquareLabel = new System.Windows.Forms.Label();
             this.fromSectionLabel = new System.Windows.Forms.Label();
             this.fromDepartmentLabel = new System.Windows.Forms.Label();
-            this.searchAssetBtn = new System.Windows.Forms.Button();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.assetTransactionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter();
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
+            this.viewAssetInformationBtn = new System.Windows.Forms.Button();
+            this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.searchAssetBtn = new System.Windows.Forms.Button();
+            this.assetCodeLabel = new System.Windows.Forms.Label();
+            this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.moveAssetGroupBox.SuspendLayout();
             this.assetTransactionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).BeginInit();
@@ -124,22 +126,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // assetCodeTextBox
-            // 
-            this.assetCodeTextBox.Location = new System.Drawing.Point(200, 54);
-            this.assetCodeTextBox.Name = "assetCodeTextBox";
-            this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
-            this.assetCodeTextBox.TabIndex = 5;
-            // 
-            // assetCodeLabel
-            // 
-            this.assetCodeLabel.AutoSize = true;
-            this.assetCodeLabel.Location = new System.Drawing.Point(72, 58);
-            this.assetCodeLabel.Name = "assetCodeLabel";
-            this.assetCodeLabel.Size = new System.Drawing.Size(86, 24);
-            this.assetCodeLabel.TabIndex = 0;
-            this.assetCodeLabel.Text = "كود الأصل:";
-            // 
             // moveAssetGroupBox
             // 
             this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -156,9 +142,9 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Controls.Add(this.fromSectionLabel);
             this.moveAssetGroupBox.Controls.Add(this.fromDepartmentLabel);
             this.moveAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 131);
+            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 179);
             this.moveAssetGroupBox.Name = "moveAssetGroupBox";
-            this.moveAssetGroupBox.Size = new System.Drawing.Size(1325, 705);
+            this.moveAssetGroupBox.Size = new System.Drawing.Size(1276, 622);
             this.moveAssetGroupBox.TabIndex = 100;
             this.moveAssetGroupBox.TabStop = false;
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
@@ -185,39 +171,43 @@ namespace AssetManagement.Assets
             this.assetTransactionPanel.Controls.Add(this.assetTransactionDateLabel);
             this.assetTransactionPanel.Controls.Add(this.transactionTypeLookUpEdit);
             this.assetTransactionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetTransactionPanel.Location = new System.Drawing.Point(3, 157);
+            this.assetTransactionPanel.Location = new System.Drawing.Point(3, 140);
             this.assetTransactionPanel.Name = "assetTransactionPanel";
-            this.assetTransactionPanel.Size = new System.Drawing.Size(1319, 290);
+            this.assetTransactionPanel.Size = new System.Drawing.Size(1270, 224);
             this.assetTransactionPanel.TabIndex = 200;
+            this.assetTransactionPanel.Visible = false;
             // 
             // currentPriceWithDestroyingLabel
             // 
             this.currentPriceWithDestroyingLabel.AutoSize = true;
-            this.currentPriceWithDestroyingLabel.Location = new System.Drawing.Point(1076, 238);
+            this.currentPriceWithDestroyingLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPriceWithDestroyingLabel.Location = new System.Drawing.Point(1080, 181);
             this.currentPriceWithDestroyingLabel.Name = "currentPriceWithDestroyingLabel";
-            this.currentPriceWithDestroyingLabel.Size = new System.Drawing.Size(186, 24);
+            this.currentPriceWithDestroyingLabel.Size = new System.Drawing.Size(158, 21);
             this.currentPriceWithDestroyingLabel.TabIndex = 275;
             this.currentPriceWithDestroyingLabel.Text = "القيمة الحالية مع الإهلاك:";
             // 
             // currentPriceWithDestroyingNumericUpDown
             // 
             this.currentPriceWithDestroyingNumericUpDown.DecimalPlaces = 2;
-            this.currentPriceWithDestroyingNumericUpDown.Location = new System.Drawing.Point(871, 234);
+            this.currentPriceWithDestroyingNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPriceWithDestroyingNumericUpDown.Location = new System.Drawing.Point(871, 177);
             this.currentPriceWithDestroyingNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
             this.currentPriceWithDestroyingNumericUpDown.Name = "currentPriceWithDestroyingNumericUpDown";
-            this.currentPriceWithDestroyingNumericUpDown.Size = new System.Drawing.Size(188, 32);
+            this.currentPriceWithDestroyingNumericUpDown.Size = new System.Drawing.Size(188, 28);
             this.currentPriceWithDestroyingNumericUpDown.TabIndex = 280;
             // 
             // withDestroyingCheckBox
             // 
             this.withDestroyingCheckBox.AutoSize = true;
-            this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 98);
+            this.withDestroyingCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 75);
             this.withDestroyingCheckBox.Name = "withDestroyingCheckBox";
-            this.withDestroyingCheckBox.Size = new System.Drawing.Size(94, 28);
+            this.withDestroyingCheckBox.Size = new System.Drawing.Size(86, 25);
             this.withDestroyingCheckBox.TabIndex = 235;
             this.withDestroyingCheckBox.Text = "مع إهلاك";
             this.withDestroyingCheckBox.UseVisualStyleBackColor = true;
@@ -226,8 +216,9 @@ namespace AssetManagement.Assets
             // manageCurrencyTblBtn
             // 
             this.manageCurrencyTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageCurrencyTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(313, 153);
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(264, 110);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCurrencyTblBtn.TabIndex = 270;
@@ -237,17 +228,18 @@ namespace AssetManagement.Assets
             // moneyAmountCurrencyLabel
             // 
             this.moneyAmountCurrencyLabel.AutoSize = true;
-            this.moneyAmountCurrencyLabel.Location = new System.Drawing.Point(732, 168);
+            this.moneyAmountCurrencyLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moneyAmountCurrencyLabel.Location = new System.Drawing.Point(732, 127);
             this.moneyAmountCurrencyLabel.Name = "moneyAmountCurrencyLabel";
-            this.moneyAmountCurrencyLabel.Size = new System.Drawing.Size(56, 24);
+            this.moneyAmountCurrencyLabel.Size = new System.Drawing.Size(49, 21);
             this.moneyAmountCurrencyLabel.TabIndex = 260;
             this.moneyAmountCurrencyLabel.Text = "العملة:";
             // 
             // moneyAmountCurrencyLookUpEdit
             // 
-            this.moneyAmountCurrencyLookUpEdit.Location = new System.Drawing.Point(403, 165);
+            this.moneyAmountCurrencyLookUpEdit.Location = new System.Drawing.Point(403, 123);
             this.moneyAmountCurrencyLookUpEdit.Name = "moneyAmountCurrencyLookUpEdit";
-            this.moneyAmountCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moneyAmountCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moneyAmountCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
             this.moneyAmountCurrencyLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -257,7 +249,7 @@ namespace AssetManagement.Assets
             this.moneyAmountCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
             this.moneyAmountCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
             this.moneyAmountCurrencyLookUpEdit.Properties.ValueMember = "ID";
-            this.moneyAmountCurrencyLookUpEdit.Size = new System.Drawing.Size(261, 30);
+            this.moneyAmountCurrencyLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.moneyAmountCurrencyLookUpEdit.TabIndex = 265;
             // 
             // currencyTblBindingSource
@@ -273,8 +265,9 @@ namespace AssetManagement.Assets
             // manageTransactionTypeTblBtn
             // 
             this.manageTransactionTypeTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageTransactionTypeTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageTransactionTypeTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageTransactionTypeTblBtn.Location = new System.Drawing.Point(313, 13);
+            this.manageTransactionTypeTblBtn.Location = new System.Drawing.Point(264, 10);
             this.manageTransactionTypeTblBtn.Name = "manageTransactionTypeTblBtn";
             this.manageTransactionTypeTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageTransactionTypeTblBtn.TabIndex = 225;
@@ -284,47 +277,52 @@ namespace AssetManagement.Assets
             // moneyAmountLabel
             // 
             this.moneyAmountLabel.AutoSize = true;
-            this.moneyAmountLabel.Location = new System.Drawing.Point(1181, 168);
+            this.moneyAmountLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moneyAmountLabel.Location = new System.Drawing.Point(1167, 127);
             this.moneyAmountLabel.Name = "moneyAmountLabel";
-            this.moneyAmountLabel.Size = new System.Drawing.Size(81, 24);
+            this.moneyAmountLabel.Size = new System.Drawing.Size(71, 21);
             this.moneyAmountLabel.TabIndex = 250;
             this.moneyAmountLabel.Text = "سعر البيع:";
             // 
             // moneyAmountNumericUpDown
             // 
             this.moneyAmountNumericUpDown.DecimalPlaces = 2;
-            this.moneyAmountNumericUpDown.Location = new System.Drawing.Point(871, 164);
+            this.moneyAmountNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moneyAmountNumericUpDown.Location = new System.Drawing.Point(871, 123);
             this.moneyAmountNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
             this.moneyAmountNumericUpDown.Name = "moneyAmountNumericUpDown";
-            this.moneyAmountNumericUpDown.Size = new System.Drawing.Size(188, 32);
+            this.moneyAmountNumericUpDown.Size = new System.Drawing.Size(188, 28);
             this.moneyAmountNumericUpDown.TabIndex = 255;
             // 
             // assetNotesLabel
             // 
             this.assetNotesLabel.AutoSize = true;
-            this.assetNotesLabel.Location = new System.Drawing.Point(710, 100);
+            this.assetNotesLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetNotesLabel.Location = new System.Drawing.Point(710, 77);
             this.assetNotesLabel.Name = "assetNotesLabel";
-            this.assetNotesLabel.Size = new System.Drawing.Size(78, 24);
+            this.assetNotesLabel.Size = new System.Drawing.Size(70, 21);
             this.assetNotesLabel.TabIndex = 240;
             this.assetNotesLabel.Text = "ملاحظات:";
             // 
             // assetNotesTextBox
             // 
-            this.assetNotesTextBox.Location = new System.Drawing.Point(250, 96);
+            this.assetNotesTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetNotesTextBox.Location = new System.Drawing.Point(250, 73);
             this.assetNotesTextBox.Name = "assetNotesTextBox";
-            this.assetNotesTextBox.Size = new System.Drawing.Size(414, 32);
+            this.assetNotesTextBox.Size = new System.Drawing.Size(414, 28);
             this.assetNotesTextBox.TabIndex = 245;
             // 
             // getAssetOutOfWorkCheckBox
             // 
             this.getAssetOutOfWorkCheckBox.AutoSize = true;
-            this.getAssetOutOfWorkCheckBox.Location = new System.Drawing.Point(1069, 98);
+            this.getAssetOutOfWorkCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.getAssetOutOfWorkCheckBox.Location = new System.Drawing.Point(1071, 75);
             this.getAssetOutOfWorkCheckBox.Name = "getAssetOutOfWorkCheckBox";
-            this.getAssetOutOfWorkCheckBox.Size = new System.Drawing.Size(193, 28);
+            this.getAssetOutOfWorkCheckBox.Size = new System.Drawing.Size(167, 25);
             this.getAssetOutOfWorkCheckBox.TabIndex = 230;
             this.getAssetOutOfWorkCheckBox.Text = "إخراج الأصل من الخدمة";
             this.getAssetOutOfWorkCheckBox.UseVisualStyleBackColor = true;
@@ -332,9 +330,10 @@ namespace AssetManagement.Assets
             // 
             // assetTransactBtn
             // 
+            this.assetTransactBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetTransactBtn.Image = global::AssetManagement.Properties.Resources._1592276;
             this.assetTransactBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.assetTransactBtn.Location = new System.Drawing.Point(21, 191);
+            this.assetTransactBtn.Location = new System.Drawing.Point(52, 131);
             this.assetTransactBtn.Name = "assetTransactBtn";
             this.assetTransactBtn.Size = new System.Drawing.Size(163, 74);
             this.assetTransactBtn.TabIndex = 400;
@@ -346,40 +345,42 @@ namespace AssetManagement.Assets
             // assetTransactionDateDateEdit
             // 
             this.assetTransactionDateDateEdit.EditValue = null;
-            this.assetTransactionDateDateEdit.Location = new System.Drawing.Point(871, 25);
+            this.assetTransactionDateDateEdit.Location = new System.Drawing.Point(871, 23);
             this.assetTransactionDateDateEdit.Name = "assetTransactionDateDateEdit";
-            this.assetTransactionDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetTransactionDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetTransactionDateDateEdit.Properties.Appearance.Options.UseFont = true;
             this.assetTransactionDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.assetTransactionDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.assetTransactionDateDateEdit.Size = new System.Drawing.Size(259, 30);
+            this.assetTransactionDateDateEdit.Size = new System.Drawing.Size(259, 28);
             this.assetTransactionDateDateEdit.TabIndex = 210;
             // 
             // transactionTypeLabel
             // 
             this.transactionTypeLabel.AutoSize = true;
-            this.transactionTypeLabel.Location = new System.Drawing.Point(688, 28);
+            this.transactionTypeLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionTypeLabel.Location = new System.Drawing.Point(688, 27);
             this.transactionTypeLabel.Name = "transactionTypeLabel";
-            this.transactionTypeLabel.Size = new System.Drawing.Size(100, 24);
+            this.transactionTypeLabel.Size = new System.Drawing.Size(86, 21);
             this.transactionTypeLabel.TabIndex = 215;
             this.transactionTypeLabel.Text = "نوع التصريف:";
             // 
             // assetTransactionDateLabel
             // 
             this.assetTransactionDateLabel.AutoSize = true;
-            this.assetTransactionDateLabel.Location = new System.Drawing.Point(1148, 28);
+            this.assetTransactionDateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetTransactionDateLabel.Location = new System.Drawing.Point(1140, 27);
             this.assetTransactionDateLabel.Name = "assetTransactionDateLabel";
-            this.assetTransactionDateLabel.Size = new System.Drawing.Size(114, 24);
+            this.assetTransactionDateLabel.Size = new System.Drawing.Size(98, 21);
             this.assetTransactionDateLabel.TabIndex = 205;
             this.assetTransactionDateLabel.Text = "تاريخ التصريف:";
             // 
             // transactionTypeLookUpEdit
             // 
-            this.transactionTypeLookUpEdit.Location = new System.Drawing.Point(403, 25);
+            this.transactionTypeLookUpEdit.Location = new System.Drawing.Point(403, 23);
             this.transactionTypeLookUpEdit.Name = "transactionTypeLookUpEdit";
-            this.transactionTypeLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionTypeLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionTypeLookUpEdit.Properties.Appearance.Options.UseFont = true;
             this.transactionTypeLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -389,7 +390,7 @@ namespace AssetManagement.Assets
             this.transactionTypeLookUpEdit.Properties.DataSource = this.transactionTypeTblBindingSource;
             this.transactionTypeLookUpEdit.Properties.DisplayMember = "TransactionTypeName";
             this.transactionTypeLookUpEdit.Properties.ValueMember = "ID";
-            this.transactionTypeLookUpEdit.Size = new System.Drawing.Size(261, 30);
+            this.transactionTypeLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.transactionTypeLookUpEdit.TabIndex = 220;
             // 
             // transactionTypeTblBindingSource
@@ -429,14 +430,14 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.assetTransactionTblBindingNavigatorSaveItem});
-            this.assetTransactionTblBindingNavigator.Location = new System.Drawing.Point(3, 447);
+            this.assetTransactionTblBindingNavigator.Location = new System.Drawing.Point(3, 364);
             this.assetTransactionTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetTransactionTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.assetTransactionTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.assetTransactionTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.assetTransactionTblBindingNavigator.Name = "assetTransactionTblBindingNavigator";
             this.assetTransactionTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.assetTransactionTblBindingNavigator.Size = new System.Drawing.Size(1319, 27);
+            this.assetTransactionTblBindingNavigator.Size = new System.Drawing.Size(1270, 27);
             this.assetTransactionTblBindingNavigator.TabIndex = 500;
             // 
             // bindingNavigatorAddNewItem
@@ -543,13 +544,13 @@ namespace AssetManagement.Assets
             // 
             this.assetMoveVwGridControl.DataSource = this.assetTransactionTblBindingSource;
             this.assetMoveVwGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 474);
+            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 391);
             this.assetMoveVwGridControl.MainView = this.assetMoveVwGridView;
             this.assetMoveVwGridControl.Name = "assetMoveVwGridControl";
             this.assetMoveVwGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.transactionTypeRepositoryItemLookUpEdit,
             this.moneyAmountCurrencyRepositoryItemLookUpEdit});
-            this.assetMoveVwGridControl.Size = new System.Drawing.Size(1319, 228);
+            this.assetMoveVwGridControl.Size = new System.Drawing.Size(1270, 228);
             this.assetMoveVwGridControl.TabIndex = 600;
             this.assetMoveVwGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetMoveVwGridView});
@@ -725,84 +726,79 @@ namespace AssetManagement.Assets
             // 
             // fromSquareTextBox
             // 
+            this.fromSquareTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSquareTextBox.Location = new System.Drawing.Point(290, 41);
             this.fromSquareTextBox.Name = "fromSquareTextBox";
             this.fromSquareTextBox.ReadOnly = true;
-            this.fromSquareTextBox.Size = new System.Drawing.Size(261, 32);
+            this.fromSquareTextBox.Size = new System.Drawing.Size(261, 28);
             this.fromSquareTextBox.TabIndex = 120;
             // 
             // fromSectionTextBox
             // 
+            this.fromSectionTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSectionTextBox.Location = new System.Drawing.Point(756, 88);
             this.fromSectionTextBox.Name = "fromSectionTextBox";
             this.fromSectionTextBox.ReadOnly = true;
-            this.fromSectionTextBox.Size = new System.Drawing.Size(261, 32);
+            this.fromSectionTextBox.Size = new System.Drawing.Size(261, 28);
             this.fromSectionTextBox.TabIndex = 130;
             // 
             // fromDepartmentTextBox
             // 
+            this.fromDepartmentTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDepartmentTextBox.Location = new System.Drawing.Point(756, 41);
             this.fromDepartmentTextBox.Name = "fromDepartmentTextBox";
             this.fromDepartmentTextBox.ReadOnly = true;
-            this.fromDepartmentTextBox.Size = new System.Drawing.Size(261, 32);
+            this.fromDepartmentTextBox.Size = new System.Drawing.Size(261, 28);
             this.fromDepartmentTextBox.TabIndex = 110;
             // 
             // fromCustodianNameTextBox
             // 
+            this.fromCustodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromCustodianNameTextBox.Location = new System.Drawing.Point(290, 88);
             this.fromCustodianNameTextBox.Name = "fromCustodianNameTextBox";
             this.fromCustodianNameTextBox.ReadOnly = true;
-            this.fromCustodianNameTextBox.Size = new System.Drawing.Size(261, 32);
+            this.fromCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
             this.fromCustodianNameTextBox.TabIndex = 140;
             // 
             // fromCustodianNameLabel
             // 
             this.fromCustodianNameLabel.AutoSize = true;
+            this.fromCustodianNameLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromCustodianNameLabel.Location = new System.Drawing.Point(571, 92);
             this.fromCustodianNameLabel.Name = "fromCustodianNameLabel";
-            this.fromCustodianNameLabel.Size = new System.Drawing.Size(112, 24);
+            this.fromCustodianNameLabel.Size = new System.Drawing.Size(97, 21);
             this.fromCustodianNameLabel.TabIndex = 135;
             this.fromCustodianNameLabel.Text = "صاحب العهدة:";
             // 
             // fromSquareLabel
             // 
             this.fromSquareLabel.AutoSize = true;
+            this.fromSquareLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSquareLabel.Location = new System.Drawing.Point(619, 45);
             this.fromSquareLabel.Name = "fromSquareLabel";
-            this.fromSquareLabel.Size = new System.Drawing.Size(64, 24);
+            this.fromSquareLabel.Size = new System.Drawing.Size(54, 21);
             this.fromSquareLabel.TabIndex = 115;
             this.fromSquareLabel.Text = "الساحة:";
             // 
             // fromSectionLabel
             // 
             this.fromSectionLabel.AutoSize = true;
+            this.fromSectionLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSectionLabel.Location = new System.Drawing.Point(1093, 92);
             this.fromSectionLabel.Name = "fromSectionLabel";
-            this.fromSectionLabel.Size = new System.Drawing.Size(56, 24);
+            this.fromSectionLabel.Size = new System.Drawing.Size(49, 21);
             this.fromSectionLabel.TabIndex = 125;
             this.fromSectionLabel.Text = "الدائرة:";
             // 
             // fromDepartmentLabel
             // 
             this.fromDepartmentLabel.AutoSize = true;
+            this.fromDepartmentLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDepartmentLabel.Location = new System.Drawing.Point(1093, 45);
             this.fromDepartmentLabel.Name = "fromDepartmentLabel";
-            this.fromDepartmentLabel.Size = new System.Drawing.Size(56, 24);
+            this.fromDepartmentLabel.Size = new System.Drawing.Size(49, 21);
             this.fromDepartmentLabel.TabIndex = 105;
             this.fromDepartmentLabel.Text = "القسم:";
-            // 
-            // searchAssetBtn
-            // 
-            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.searchAssetBtn.Location = new System.Drawing.Point(552, 33);
-            this.searchAssetBtn.Name = "searchAssetBtn";
-            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
-            this.searchAssetBtn.TabIndex = 50;
-            this.searchAssetBtn.Text = "بحث";
-            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchAssetBtn.UseVisualStyleBackColor = true;
-            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
             // 
             // mainAlertControl
             // 
@@ -816,8 +812,8 @@ namespace AssetManagement.Assets
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // tableAdapterManager
             // 
@@ -851,16 +847,79 @@ namespace AssetManagement.Assets
             // 
             this.transactionTypeTblTableAdapter.ClearBeforeFill = true;
             // 
+            // viewAssetInformationBtn
+            // 
+            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
+            this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1058, 45);
+            this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
+            this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
+            this.viewAssetInformationBtn.TabIndex = 105;
+            this.viewAssetInformationBtn.Text = "عرض معلومات الأصل";
+            this.viewAssetInformationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.viewAssetInformationBtn.UseVisualStyleBackColor = true;
+            this.viewAssetInformationBtn.Visible = false;
+            this.viewAssetInformationBtn.Click += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // searchResultsListBox
+            // 
+            this.searchResultsListBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.FormattingEnabled = true;
+            this.searchResultsListBox.ItemHeight = 24;
+            this.searchResultsListBox.Location = new System.Drawing.Point(598, 25);
+            this.searchResultsListBox.Name = "searchResultsListBox";
+            this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
+            this.searchResultsListBox.TabIndex = 104;
+            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.Visible = false;
+            this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // searchAssetBtn
+            // 
+            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
+            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.searchAssetBtn.Location = new System.Drawing.Point(225, 78);
+            this.searchAssetBtn.Name = "searchAssetBtn";
+            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
+            this.searchAssetBtn.TabIndex = 103;
+            this.searchAssetBtn.Text = "بحث";
+            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.searchAssetBtn.UseVisualStyleBackColor = true;
+            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
+            // 
+            // assetCodeLabel
+            // 
+            this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeLabel.AutoSize = true;
+            this.assetCodeLabel.Location = new System.Drawing.Point(57, 29);
+            this.assetCodeLabel.Name = "assetCodeLabel";
+            this.assetCodeLabel.Size = new System.Drawing.Size(86, 24);
+            this.assetCodeLabel.TabIndex = 101;
+            this.assetCodeLabel.Text = "كود الأصل:";
+            // 
+            // assetCodeTextBox
+            // 
+            this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeTextBox.Location = new System.Drawing.Point(185, 25);
+            this.assetCodeTextBox.Name = "assetCodeTextBox";
+            this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
+            this.assetCodeTextBox.TabIndex = 102;
+            // 
             // TransacteAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1325, 836);
-            this.Controls.Add(this.moveAssetGroupBox);
+            this.ClientSize = new System.Drawing.Size(1276, 801);
+            this.Controls.Add(this.viewAssetInformationBtn);
+            this.Controls.Add(this.searchResultsListBox);
             this.Controls.Add(this.searchAssetBtn);
             this.Controls.Add(this.assetCodeLabel);
             this.Controls.Add(this.assetCodeTextBox);
+            this.Controls.Add(this.moveAssetGroupBox);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -900,10 +959,6 @@ namespace AssetManagement.Assets
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox assetCodeTextBox;
-        private System.Windows.Forms.Label assetCodeLabel;
-        private System.Windows.Forms.Button searchAssetBtn;
         private System.Windows.Forms.GroupBox moveAssetGroupBox;
         private System.Windows.Forms.Label fromCustodianNameLabel;
         private DevExpress.XtraEditors.LookUpEdit transactionTypeLookUpEdit;
@@ -972,5 +1027,10 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colGetAssetOutOfWork;
         private DevExpress.XtraGrid.Columns.GridColumn colWithDestroying;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrentPriceWithDestroying;
+        private System.Windows.Forms.Button viewAssetInformationBtn;
+        private System.Windows.Forms.ListBox searchResultsListBox;
+        private System.Windows.Forms.Button searchAssetBtn;
+        private System.Windows.Forms.Label assetCodeLabel;
+        private System.Windows.Forms.TextBox assetCodeTextBox;
     }
 }

@@ -302,9 +302,9 @@ namespace AssetManagement.AuxTables
             // addNewMainCategoryBtn_Cancel
             // 
             this.addNewMainCategoryBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
-            this.addNewMainCategoryBtn_Cancel.Location = new System.Drawing.Point(19, 48);
+            this.addNewMainCategoryBtn_Cancel.Location = new System.Drawing.Point(19, 35);
             this.addNewMainCategoryBtn_Cancel.Name = "addNewMainCategoryBtn_Cancel";
-            this.addNewMainCategoryBtn_Cancel.Size = new System.Drawing.Size(69, 65);
+            this.addNewMainCategoryBtn_Cancel.Size = new System.Drawing.Size(78, 78);
             this.addNewMainCategoryBtn_Cancel.TabIndex = 155;
             this.addNewMainCategoryBtn_Cancel.UseVisualStyleBackColor = true;
             this.addNewMainCategoryBtn_Cancel.Click += new System.EventHandler(this.addNewMainCategoryBtn_Cancel_Click);
@@ -312,9 +312,9 @@ namespace AssetManagement.AuxTables
             // addNewMainCategoryBtn_OK
             // 
             this.addNewMainCategoryBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
-            this.addNewMainCategoryBtn_OK.Location = new System.Drawing.Point(117, 48);
+            this.addNewMainCategoryBtn_OK.Location = new System.Drawing.Point(117, 35);
             this.addNewMainCategoryBtn_OK.Name = "addNewMainCategoryBtn_OK";
-            this.addNewMainCategoryBtn_OK.Size = new System.Drawing.Size(69, 65);
+            this.addNewMainCategoryBtn_OK.Size = new System.Drawing.Size(78, 78);
             this.addNewMainCategoryBtn_OK.TabIndex = 150;
             this.addNewMainCategoryBtn_OK.UseVisualStyleBackColor = true;
             this.addNewMainCategoryBtn_OK.Click += new System.EventHandler(this.addNewMainCategoryBtn_OK_Click);
@@ -330,9 +330,9 @@ namespace AssetManagement.AuxTables
             // 
             this.addNewMainCategoryBtn.Image = global::AssetManagement.Properties.Resources._223645;
             this.addNewMainCategoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(1027, 122);
+            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(1008, 119);
             this.addNewMainCategoryBtn.Name = "addNewMainCategoryBtn";
-            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(172, 102);
+            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(229, 102);
             this.addNewMainCategoryBtn.TabIndex = 60;
             this.addNewMainCategoryBtn.Text = "إضافة فئة رئيسية جديدة";
             this.addNewMainCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

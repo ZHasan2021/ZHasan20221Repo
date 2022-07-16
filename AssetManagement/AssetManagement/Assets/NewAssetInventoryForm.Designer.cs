@@ -720,8 +720,10 @@ namespace AssetManagement.Assets
             // 
             this.assetGridControl.DataSource = this.assetTblBindingSource;
             this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assetGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.assetGridControl.Location = new System.Drawing.Point(0, 488);
             this.assetGridControl.MainView = this.assetGridView;
+            this.assetGridControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.assetGridControl.Name = "assetGridControl";
             this.assetGridControl.Size = new System.Drawing.Size(1441, 343);
             this.assetGridControl.TabIndex = 600;
@@ -776,6 +778,7 @@ namespace AssetManagement.Assets
             this.colLastModifiedOn,
             this.colInsertedBy,
             this.colLastModifiedBy});
+            this.assetGridView.DetailHeight = 437;
             this.assetGridView.GridControl = this.assetGridControl;
             this.assetGridView.Name = "assetGridView";
             // 
@@ -783,381 +786,381 @@ namespace AssetManagement.Assets
             // 
             this.colID.Caption = "معرف الأصل";
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
+            this.colID.MinWidth = 100;
             this.colID.Name = "colID";
-            this.colID.Width = 94;
+            this.colID.Width = 117;
             // 
             // colAssetCode
             // 
             this.colAssetCode.Caption = "كود الأصل";
             this.colAssetCode.FieldName = "AssetCode";
-            this.colAssetCode.MinWidth = 80;
+            this.colAssetCode.MinWidth = 100;
             this.colAssetCode.Name = "colAssetCode";
             this.colAssetCode.Visible = true;
             this.colAssetCode.VisibleIndex = 0;
-            this.colAssetCode.Width = 108;
+            this.colAssetCode.Width = 135;
             // 
             // colAssetSection
             // 
             this.colAssetSection.Caption = "الدائرة";
             this.colAssetSection.FieldName = "AssetSection";
-            this.colAssetSection.MinWidth = 120;
+            this.colAssetSection.MinWidth = 150;
             this.colAssetSection.Name = "colAssetSection";
             this.colAssetSection.Visible = true;
             this.colAssetSection.VisibleIndex = 1;
-            this.colAssetSection.Width = 120;
+            this.colAssetSection.Width = 150;
             // 
             // colAssetDept
             // 
             this.colAssetDept.Caption = "القسم";
             this.colAssetDept.FieldName = "AssetDept";
-            this.colAssetDept.MinWidth = 120;
+            this.colAssetDept.MinWidth = 150;
             this.colAssetDept.Name = "colAssetDept";
             this.colAssetDept.Visible = true;
             this.colAssetDept.VisibleIndex = 2;
-            this.colAssetDept.Width = 120;
+            this.colAssetDept.Width = 150;
             // 
             // colAssetSquare
             // 
             this.colAssetSquare.Caption = "الساحة";
             this.colAssetSquare.FieldName = "AssetSquare";
-            this.colAssetSquare.MinWidth = 120;
+            this.colAssetSquare.MinWidth = 150;
             this.colAssetSquare.Name = "colAssetSquare";
             this.colAssetSquare.Visible = true;
             this.colAssetSquare.VisibleIndex = 3;
-            this.colAssetSquare.Width = 120;
+            this.colAssetSquare.Width = 150;
             // 
             // colAssetMinorCategory
             // 
             this.colAssetMinorCategory.Caption = "الفئة الفرعية";
             this.colAssetMinorCategory.FieldName = "AssetMinorCategory";
-            this.colAssetMinorCategory.MinWidth = 120;
+            this.colAssetMinorCategory.MinWidth = 150;
             this.colAssetMinorCategory.Name = "colAssetMinorCategory";
             this.colAssetMinorCategory.Visible = true;
             this.colAssetMinorCategory.VisibleIndex = 4;
-            this.colAssetMinorCategory.Width = 120;
+            this.colAssetMinorCategory.Width = 150;
             // 
             // colAssetSpecifications
             // 
             this.colAssetSpecifications.Caption = "مواصفات الأصل";
             this.colAssetSpecifications.FieldName = "AssetSpecifications";
-            this.colAssetSpecifications.MinWidth = 150;
+            this.colAssetSpecifications.MinWidth = 187;
             this.colAssetSpecifications.Name = "colAssetSpecifications";
             this.colAssetSpecifications.Visible = true;
             this.colAssetSpecifications.VisibleIndex = 5;
-            this.colAssetSpecifications.Width = 150;
+            this.colAssetSpecifications.Width = 187;
             // 
             // colModel
             // 
             this.colModel.Caption = "الموديل";
             this.colModel.FieldName = "Model";
-            this.colModel.MinWidth = 100;
+            this.colModel.MinWidth = 125;
             this.colModel.Name = "colModel";
             this.colModel.Visible = true;
             this.colModel.VisibleIndex = 6;
-            this.colModel.Width = 100;
+            this.colModel.Width = 125;
             // 
             // colColor
             // 
             this.colColor.Caption = "اللون";
             this.colColor.FieldName = "Color";
-            this.colColor.MinWidth = 80;
+            this.colColor.MinWidth = 100;
             this.colColor.Name = "colColor";
             this.colColor.Visible = true;
             this.colColor.VisibleIndex = 7;
-            this.colColor.Width = 94;
+            this.colColor.Width = 117;
             // 
             // colVolume
             // 
             this.colVolume.Caption = "السعة أو الحجم";
             this.colVolume.FieldName = "Volume";
-            this.colVolume.MinWidth = 100;
+            this.colVolume.MinWidth = 125;
             this.colVolume.Name = "colVolume";
             this.colVolume.Visible = true;
             this.colVolume.VisibleIndex = 8;
-            this.colVolume.Width = 100;
+            this.colVolume.Width = 125;
             // 
             // colPurchaseDate
             // 
             this.colPurchaseDate.Caption = "تاريخ الشراء";
             this.colPurchaseDate.FieldName = "PurchaseDate";
-            this.colPurchaseDate.MinWidth = 80;
+            this.colPurchaseDate.MinWidth = 100;
             this.colPurchaseDate.Name = "colPurchaseDate";
             this.colPurchaseDate.Visible = true;
             this.colPurchaseDate.VisibleIndex = 9;
-            this.colPurchaseDate.Width = 94;
+            this.colPurchaseDate.Width = 117;
             // 
             // colPurchasePrice
             // 
             this.colPurchasePrice.Caption = "سعر الشراء";
             this.colPurchasePrice.FieldName = "PurchasePrice";
-            this.colPurchasePrice.MinWidth = 80;
+            this.colPurchasePrice.MinWidth = 100;
             this.colPurchasePrice.Name = "colPurchasePrice";
             this.colPurchasePrice.Visible = true;
             this.colPurchasePrice.VisibleIndex = 10;
-            this.colPurchasePrice.Width = 94;
+            this.colPurchasePrice.Width = 117;
             // 
             // colPurchasePriceCurrency
             // 
             this.colPurchasePriceCurrency.Caption = "عملة سعر الشراء";
             this.colPurchasePriceCurrency.FieldName = "PurchasePriceCurrency";
-            this.colPurchasePriceCurrency.MinWidth = 80;
+            this.colPurchasePriceCurrency.MinWidth = 100;
             this.colPurchasePriceCurrency.Name = "colPurchasePriceCurrency";
             this.colPurchasePriceCurrency.Visible = true;
             this.colPurchasePriceCurrency.VisibleIndex = 11;
-            this.colPurchasePriceCurrency.Width = 94;
+            this.colPurchasePriceCurrency.Width = 117;
             // 
             // colPlaceOfPresence
             // 
             this.colPlaceOfPresence.Caption = "مكان التواجد";
             this.colPlaceOfPresence.FieldName = "PlaceOfPresence";
-            this.colPlaceOfPresence.MinWidth = 120;
+            this.colPlaceOfPresence.MinWidth = 150;
             this.colPlaceOfPresence.Name = "colPlaceOfPresence";
             this.colPlaceOfPresence.Visible = true;
             this.colPlaceOfPresence.VisibleIndex = 12;
-            this.colPlaceOfPresence.Width = 120;
+            this.colPlaceOfPresence.Width = 150;
             // 
             // colCurrentStatus
             // 
             this.colCurrentStatus.Caption = "الحالة الآنية";
             this.colCurrentStatus.FieldName = "CurrentStatus";
-            this.colCurrentStatus.MinWidth = 80;
+            this.colCurrentStatus.MinWidth = 100;
             this.colCurrentStatus.Name = "colCurrentStatus";
             this.colCurrentStatus.Visible = true;
             this.colCurrentStatus.VisibleIndex = 13;
-            this.colCurrentStatus.Width = 94;
+            this.colCurrentStatus.Width = 117;
             // 
             // colBenefitPercentage
             // 
             this.colBenefitPercentage.Caption = "نسبة الاستفادة منه";
             this.colBenefitPercentage.FieldName = "BenefitPercentage";
-            this.colBenefitPercentage.MinWidth = 120;
+            this.colBenefitPercentage.MinWidth = 150;
             this.colBenefitPercentage.Name = "colBenefitPercentage";
             this.colBenefitPercentage.Visible = true;
             this.colBenefitPercentage.VisibleIndex = 14;
-            this.colBenefitPercentage.Width = 120;
+            this.colBenefitPercentage.Width = 150;
             // 
             // colActualCurrentPrice
             // 
             this.colActualCurrentPrice.Caption = "السعر الفعلي الحالي";
             this.colActualCurrentPrice.FieldName = "ActualCurrentPrice";
-            this.colActualCurrentPrice.MinWidth = 80;
+            this.colActualCurrentPrice.MinWidth = 100;
             this.colActualCurrentPrice.Name = "colActualCurrentPrice";
             this.colActualCurrentPrice.Visible = true;
             this.colActualCurrentPrice.VisibleIndex = 15;
-            this.colActualCurrentPrice.Width = 94;
+            this.colActualCurrentPrice.Width = 117;
             // 
             // colActualCurrentPriceCurrency
             // 
             this.colActualCurrentPriceCurrency.Caption = "عملة السعر الفعلي الحالي";
             this.colActualCurrentPriceCurrency.FieldName = "ActualCurrentPriceCurrency";
-            this.colActualCurrentPriceCurrency.MinWidth = 80;
+            this.colActualCurrentPriceCurrency.MinWidth = 100;
             this.colActualCurrentPriceCurrency.Name = "colActualCurrentPriceCurrency";
             this.colActualCurrentPriceCurrency.Visible = true;
             this.colActualCurrentPriceCurrency.VisibleIndex = 16;
-            this.colActualCurrentPriceCurrency.Width = 94;
+            this.colActualCurrentPriceCurrency.Width = 117;
             // 
             // colCustodianName
             // 
             this.colCustodianName.Caption = "صاحب العهدة";
             this.colCustodianName.FieldName = "CustodianName";
-            this.colCustodianName.MinWidth = 120;
+            this.colCustodianName.MinWidth = 150;
             this.colCustodianName.Name = "colCustodianName";
             this.colCustodianName.Visible = true;
             this.colCustodianName.VisibleIndex = 17;
-            this.colCustodianName.Width = 120;
+            this.colCustodianName.Width = 150;
             // 
             // colMoreDetails
             // 
             this.colMoreDetails.Caption = "تفاصيل إضافية";
             this.colMoreDetails.FieldName = "MoreDetails";
-            this.colMoreDetails.MinWidth = 150;
+            this.colMoreDetails.MinWidth = 187;
             this.colMoreDetails.Name = "colMoreDetails";
             this.colMoreDetails.Visible = true;
             this.colMoreDetails.VisibleIndex = 18;
-            this.colMoreDetails.Width = 150;
+            this.colMoreDetails.Width = 187;
             // 
             // colAssetNotes
             // 
             this.colAssetNotes.Caption = "ملاحظات أخرى";
             this.colAssetNotes.FieldName = "AssetNotes";
-            this.colAssetNotes.MinWidth = 150;
+            this.colAssetNotes.MinWidth = 187;
             this.colAssetNotes.Name = "colAssetNotes";
             this.colAssetNotes.Visible = true;
             this.colAssetNotes.VisibleIndex = 19;
-            this.colAssetNotes.Width = 251;
+            this.colAssetNotes.Width = 314;
             // 
             // colEstateAddress
             // 
             this.colEstateAddress.Caption = "العنوان الحالي";
             this.colEstateAddress.FieldName = "EstateAddress";
-            this.colEstateAddress.MinWidth = 150;
+            this.colEstateAddress.MinWidth = 187;
             this.colEstateAddress.Name = "colEstateAddress";
             this.colEstateAddress.Visible = true;
             this.colEstateAddress.VisibleIndex = 20;
-            this.colEstateAddress.Width = 150;
+            this.colEstateAddress.Width = 187;
             // 
             // colOwnerName
             // 
             this.colOwnerName.Caption = "اسم المالك";
             this.colOwnerName.FieldName = "OwnerName";
-            this.colOwnerName.MinWidth = 120;
+            this.colOwnerName.MinWidth = 150;
             this.colOwnerName.Name = "colOwnerName";
             this.colOwnerName.Visible = true;
             this.colOwnerName.VisibleIndex = 21;
-            this.colOwnerName.Width = 120;
+            this.colOwnerName.Width = 150;
             // 
             // colOfUsed
             // 
             this.colOfUsed.Caption = "المستغل منه";
             this.colOfUsed.FieldName = "OfUsed";
-            this.colOfUsed.MinWidth = 120;
+            this.colOfUsed.MinWidth = 150;
             this.colOfUsed.Name = "colOfUsed";
             this.colOfUsed.Visible = true;
             this.colOfUsed.VisibleIndex = 22;
-            this.colOfUsed.Width = 120;
+            this.colOfUsed.Width = 150;
             // 
             // colEstateOwnershipDocumentWith
             // 
             this.colEstateOwnershipDocumentWith.Caption = "مع من ورقة الملكية";
             this.colEstateOwnershipDocumentWith.FieldName = "EstateOwnershipDocumentWith";
-            this.colEstateOwnershipDocumentWith.MinWidth = 120;
+            this.colEstateOwnershipDocumentWith.MinWidth = 150;
             this.colEstateOwnershipDocumentWith.Name = "colEstateOwnershipDocumentWith";
             this.colEstateOwnershipDocumentWith.Visible = true;
             this.colEstateOwnershipDocumentWith.VisibleIndex = 23;
-            this.colEstateOwnershipDocumentWith.Width = 1000;
+            this.colEstateOwnershipDocumentWith.Width = 1250;
             // 
             // colEstateArea
             // 
             this.colEstateArea.Caption = "مساحة العقار";
             this.colEstateArea.FieldName = "EstateArea";
-            this.colEstateArea.MinWidth = 80;
+            this.colEstateArea.MinWidth = 100;
             this.colEstateArea.Name = "colEstateArea";
             this.colEstateArea.Visible = true;
             this.colEstateArea.VisibleIndex = 24;
-            this.colEstateArea.Width = 94;
+            this.colEstateArea.Width = 117;
             // 
             // colEstateAreaUnit
             // 
             this.colEstateAreaUnit.Caption = "واحدة مساحة العقار";
             this.colEstateAreaUnit.FieldName = "EstateAreaUnit";
-            this.colEstateAreaUnit.MinWidth = 80;
+            this.colEstateAreaUnit.MinWidth = 100;
             this.colEstateAreaUnit.Name = "colEstateAreaUnit";
             this.colEstateAreaUnit.Visible = true;
             this.colEstateAreaUnit.VisibleIndex = 25;
-            this.colEstateAreaUnit.Width = 1000;
+            this.colEstateAreaUnit.Width = 1250;
             // 
             // colCarPanelNumber
             // 
             this.colCarPanelNumber.Caption = "رقم لوحة المركبة";
             this.colCarPanelNumber.FieldName = "CarPanelNumber";
-            this.colCarPanelNumber.MinWidth = 100;
+            this.colCarPanelNumber.MinWidth = 125;
             this.colCarPanelNumber.Name = "colCarPanelNumber";
             this.colCarPanelNumber.Visible = true;
             this.colCarPanelNumber.VisibleIndex = 26;
-            this.colCarPanelNumber.Width = 100;
+            this.colCarPanelNumber.Width = 125;
             // 
             // colCarManufacturingYear
             // 
             this.colCarManufacturingYear.Caption = "سنة صنع المركبة";
             this.colCarManufacturingYear.FieldName = "CarManufacturingYear";
-            this.colCarManufacturingYear.MinWidth = 80;
+            this.colCarManufacturingYear.MinWidth = 100;
             this.colCarManufacturingYear.Name = "colCarManufacturingYear";
             this.colCarManufacturingYear.Visible = true;
             this.colCarManufacturingYear.VisibleIndex = 27;
-            this.colCarManufacturingYear.Width = 94;
+            this.colCarManufacturingYear.Width = 117;
             // 
             // colCarChassisNumber
             // 
             this.colCarChassisNumber.Caption = "رقم هيكل (شاصيه) المركبة";
             this.colCarChassisNumber.FieldName = "CarChassisNumber";
-            this.colCarChassisNumber.MinWidth = 100;
+            this.colCarChassisNumber.MinWidth = 125;
             this.colCarChassisNumber.Name = "colCarChassisNumber";
             this.colCarChassisNumber.Visible = true;
             this.colCarChassisNumber.VisibleIndex = 28;
-            this.colCarChassisNumber.Width = 100;
+            this.colCarChassisNumber.Width = 125;
             // 
             // colCarEngineNumber
             // 
             this.colCarEngineNumber.Caption = "رقم محرك المركبة";
             this.colCarEngineNumber.FieldName = "CarEngineNumber";
-            this.colCarEngineNumber.MinWidth = 100;
+            this.colCarEngineNumber.MinWidth = 125;
             this.colCarEngineNumber.Name = "colCarEngineNumber";
             this.colCarEngineNumber.Visible = true;
             this.colCarEngineNumber.VisibleIndex = 29;
-            this.colCarEngineNumber.Width = 100;
+            this.colCarEngineNumber.Width = 125;
             // 
             // colCurrentDestructionRate
             // 
             this.colCurrentDestructionRate.Caption = "معدل الإهلاك";
             this.colCurrentDestructionRate.FieldName = "CurrentDestructionRate";
-            this.colCurrentDestructionRate.MinWidth = 80;
+            this.colCurrentDestructionRate.MinWidth = 100;
             this.colCurrentDestructionRate.Name = "colCurrentDestructionRate";
             this.colCurrentDestructionRate.Visible = true;
             this.colCurrentDestructionRate.VisibleIndex = 30;
-            this.colCurrentDestructionRate.Width = 94;
+            this.colCurrentDestructionRate.Width = 117;
             // 
             // colLifeSpanInMonths
             // 
             this.colLifeSpanInMonths.Caption = "العمر الافتراضي المتبقي";
             this.colLifeSpanInMonths.FieldName = "LifeSpanInMonths";
-            this.colLifeSpanInMonths.MinWidth = 80;
+            this.colLifeSpanInMonths.MinWidth = 100;
             this.colLifeSpanInMonths.Name = "colLifeSpanInMonths";
             this.colLifeSpanInMonths.Visible = true;
             this.colLifeSpanInMonths.VisibleIndex = 31;
-            this.colLifeSpanInMonths.Width = 94;
+            this.colLifeSpanInMonths.Width = 117;
             // 
             // colIsSold
             // 
             this.colIsSold.Caption = "مباع";
             this.colIsSold.FieldName = "IsSold";
-            this.colIsSold.MinWidth = 50;
+            this.colIsSold.MinWidth = 62;
             this.colIsSold.Name = "colIsSold";
             this.colIsSold.Visible = true;
             this.colIsSold.VisibleIndex = 32;
-            this.colIsSold.Width = 94;
+            this.colIsSold.Width = 117;
             // 
             // colIsOutOfWork
             // 
             this.colIsOutOfWork.Caption = "خارج الحدمة";
             this.colIsOutOfWork.FieldName = "IsOutOfWork";
-            this.colIsOutOfWork.MinWidth = 50;
+            this.colIsOutOfWork.MinWidth = 62;
             this.colIsOutOfWork.Name = "colIsOutOfWork";
             this.colIsOutOfWork.Visible = true;
             this.colIsOutOfWork.VisibleIndex = 33;
-            this.colIsOutOfWork.Width = 94;
+            this.colIsOutOfWork.Width = 117;
             // 
             // colInsertedOn
             // 
             this.colInsertedOn.Caption = "تاريخ الإضافة";
             this.colInsertedOn.FieldName = "InsertedOn";
-            this.colInsertedOn.MinWidth = 80;
+            this.colInsertedOn.MinWidth = 100;
             this.colInsertedOn.Name = "colInsertedOn";
-            this.colInsertedOn.Width = 94;
+            this.colInsertedOn.Width = 117;
             // 
             // colLastModifiedOn
             // 
             this.colLastModifiedOn.Caption = "تاريخ آخر تعديل";
             this.colLastModifiedOn.FieldName = "LastModifiedOn";
-            this.colLastModifiedOn.MinWidth = 80;
+            this.colLastModifiedOn.MinWidth = 100;
             this.colLastModifiedOn.Name = "colLastModifiedOn";
-            this.colLastModifiedOn.Width = 94;
+            this.colLastModifiedOn.Width = 117;
             // 
             // colInsertedBy
             // 
             this.colInsertedBy.Caption = "الحساب الذي قام بالإضافة";
             this.colInsertedBy.FieldName = "InsertedBy";
-            this.colInsertedBy.MinWidth = 80;
+            this.colInsertedBy.MinWidth = 100;
             this.colInsertedBy.Name = "colInsertedBy";
-            this.colInsertedBy.Width = 94;
+            this.colInsertedBy.Width = 117;
             // 
             // colLastModifiedBy
             // 
             this.colLastModifiedBy.Caption = "الحساب الذي قام بآخر تعديل";
             this.colLastModifiedBy.FieldName = "LastModifiedBy";
-            this.colLastModifiedBy.MinWidth = 80;
+            this.colLastModifiedBy.MinWidth = 100;
             this.colLastModifiedBy.Name = "colLastModifiedBy";
-            this.colLastModifiedBy.Width = 94;
+            this.colLastModifiedBy.Width = 117;
             // 
             // statusTblTableAdapter
             // 
@@ -1169,6 +1172,7 @@ namespace AssetManagement.Assets
             // 
             // NewAssetInventoryForm
             // 
+            this.AcceptButton = this.searchAssetBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1441, 831);

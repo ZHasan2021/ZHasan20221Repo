@@ -39,22 +39,6 @@ namespace AssetManagement.Users
             this.userRoleTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.userRoleGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.userRoleTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter();
-            this.userRoleTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewAsset = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -94,6 +78,22 @@ namespace AssetManagement.Users
             this.colRestoreDb = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colViewStats = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCreateAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.userRoleTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter();
+            this.userRoleTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
@@ -116,10 +116,10 @@ namespace AssetManagement.Users
             gridLevelNode1.RelationName = "userRoleLevel";
             this.userRoleGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.userRoleGridControl.Location = new System.Drawing.Point(0, 31);
+            this.userRoleGridControl.Location = new System.Drawing.Point(0, 27);
             this.userRoleGridControl.MainView = this.userRoleGridView;
             this.userRoleGridControl.Name = "userRoleGridControl";
-            this.userRoleGridControl.Size = new System.Drawing.Size(1213, 630);
+            this.userRoleGridControl.Size = new System.Drawing.Size(1213, 634);
             this.userRoleGridControl.TabIndex = 8;
             this.userRoleGridControl.UseEmbeddedNavigator = true;
             this.userRoleGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -181,6 +181,394 @@ namespace AssetManagement.Users
             this.userRoleGridView.GridControl = this.userRoleGridControl;
             this.userRoleGridView.Name = "userRoleGridView";
             // 
+            // colID
+            // 
+            this.colID.Caption = "معرف نوع الحساب";
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 80;
+            this.colID.Name = "colID";
+            this.colID.Width = 94;
+            // 
+            // colRoleName
+            // 
+            this.colRoleName.Caption = "اسم نوع الحساب";
+            this.colRoleName.FieldName = "RoleName";
+            this.colRoleName.MinWidth = 150;
+            this.colRoleName.Name = "colRoleName";
+            this.colRoleName.Visible = true;
+            this.colRoleName.VisibleIndex = 0;
+            this.colRoleName.Width = 178;
+            // 
+            // colAddNewAsset
+            // 
+            this.colAddNewAsset.Caption = "إضافة أصل جديد";
+            this.colAddNewAsset.FieldName = "AddNewAsset";
+            this.colAddNewAsset.MinWidth = 150;
+            this.colAddNewAsset.Name = "colAddNewAsset";
+            this.colAddNewAsset.Visible = true;
+            this.colAddNewAsset.VisibleIndex = 1;
+            this.colAddNewAsset.Width = 150;
+            // 
+            // colUpdateExistedAsset
+            // 
+            this.colUpdateExistedAsset.Caption = "تعديل أصل موجود";
+            this.colUpdateExistedAsset.FieldName = "UpdateExistedAsset";
+            this.colUpdateExistedAsset.MinWidth = 150;
+            this.colUpdateExistedAsset.Name = "colUpdateExistedAsset";
+            this.colUpdateExistedAsset.Visible = true;
+            this.colUpdateExistedAsset.VisibleIndex = 2;
+            this.colUpdateExistedAsset.Width = 150;
+            // 
+            // colDeleteAssetRecord
+            // 
+            this.colDeleteAssetRecord.Caption = "حذف سجل أصل";
+            this.colDeleteAssetRecord.FieldName = "DeleteAssetRecord";
+            this.colDeleteAssetRecord.MinWidth = 150;
+            this.colDeleteAssetRecord.Name = "colDeleteAssetRecord";
+            this.colDeleteAssetRecord.Visible = true;
+            this.colDeleteAssetRecord.VisibleIndex = 3;
+            this.colDeleteAssetRecord.Width = 150;
+            // 
+            // colAddNewInventory
+            // 
+            this.colAddNewInventory.Caption = "إجراء جرد جديد للأصول";
+            this.colAddNewInventory.FieldName = "AddNewInventory";
+            this.colAddNewInventory.MinWidth = 150;
+            this.colAddNewInventory.Name = "colAddNewInventory";
+            this.colAddNewInventory.Visible = true;
+            this.colAddNewInventory.VisibleIndex = 4;
+            this.colAddNewInventory.Width = 150;
+            // 
+            // colUpdateExistedInventory
+            // 
+            this.colUpdateExistedInventory.Caption = "تعديل سجل جرد موجود";
+            this.colUpdateExistedInventory.FieldName = "UpdateExistedInventory";
+            this.colUpdateExistedInventory.MinWidth = 150;
+            this.colUpdateExistedInventory.Name = "colUpdateExistedInventory";
+            this.colUpdateExistedInventory.Visible = true;
+            this.colUpdateExistedInventory.VisibleIndex = 5;
+            this.colUpdateExistedInventory.Width = 150;
+            // 
+            // colSearchInventories
+            // 
+            this.colSearchInventories.Caption = "بحث ضمن الجرودات";
+            this.colSearchInventories.FieldName = "SearchInventories";
+            this.colSearchInventories.MinWidth = 150;
+            this.colSearchInventories.Name = "colSearchInventories";
+            this.colSearchInventories.Visible = true;
+            this.colSearchInventories.VisibleIndex = 6;
+            this.colSearchInventories.Width = 150;
+            // 
+            // colViewInventories
+            // 
+            this.colViewInventories.Caption = "عرض سجلات الجرد";
+            this.colViewInventories.FieldName = "ViewInventories";
+            this.colViewInventories.MinWidth = 150;
+            this.colViewInventories.Name = "colViewInventories";
+            this.colViewInventories.Visible = true;
+            this.colViewInventories.VisibleIndex = 7;
+            this.colViewInventories.Width = 150;
+            // 
+            // colDeleteInventoryRecord
+            // 
+            this.colDeleteInventoryRecord.Caption = "حذف سجل جرد";
+            this.colDeleteInventoryRecord.FieldName = "DeleteInventoryRecord";
+            this.colDeleteInventoryRecord.MinWidth = 150;
+            this.colDeleteInventoryRecord.Name = "colDeleteInventoryRecord";
+            this.colDeleteInventoryRecord.Visible = true;
+            this.colDeleteInventoryRecord.VisibleIndex = 8;
+            this.colDeleteInventoryRecord.Width = 150;
+            // 
+            // colAddNewAssetMovement
+            // 
+            this.colAddNewAssetMovement.Caption = "نقل أصل";
+            this.colAddNewAssetMovement.FieldName = "AddNewAssetMovement";
+            this.colAddNewAssetMovement.MinWidth = 150;
+            this.colAddNewAssetMovement.Name = "colAddNewAssetMovement";
+            this.colAddNewAssetMovement.Visible = true;
+            this.colAddNewAssetMovement.VisibleIndex = 9;
+            this.colAddNewAssetMovement.Width = 150;
+            // 
+            // colManageAssetMovements
+            // 
+            this.colManageAssetMovements.Caption = "إدارة سجلات نقل الأصول";
+            this.colManageAssetMovements.FieldName = "ManageAssetMovements";
+            this.colManageAssetMovements.MinWidth = 150;
+            this.colManageAssetMovements.Name = "colManageAssetMovements";
+            this.colManageAssetMovements.Visible = true;
+            this.colManageAssetMovements.VisibleIndex = 10;
+            this.colManageAssetMovements.Width = 150;
+            // 
+            // colAddNewAssetTransaction
+            // 
+            this.colAddNewAssetTransaction.Caption = "تصريف أصل";
+            this.colAddNewAssetTransaction.FieldName = "AddNewAssetTransaction";
+            this.colAddNewAssetTransaction.MinWidth = 150;
+            this.colAddNewAssetTransaction.Name = "colAddNewAssetTransaction";
+            this.colAddNewAssetTransaction.Visible = true;
+            this.colAddNewAssetTransaction.VisibleIndex = 11;
+            this.colAddNewAssetTransaction.Width = 150;
+            // 
+            // colManageAssetTransactions
+            // 
+            this.colManageAssetTransactions.Caption = "إدارة سجلات نقل الأصول";
+            this.colManageAssetTransactions.FieldName = "ManageAssetTransactions";
+            this.colManageAssetTransactions.MinWidth = 150;
+            this.colManageAssetTransactions.Name = "colManageAssetTransactions";
+            this.colManageAssetTransactions.Visible = true;
+            this.colManageAssetTransactions.VisibleIndex = 12;
+            this.colManageAssetTransactions.Width = 150;
+            // 
+            // colExportAllData
+            // 
+            this.colExportAllData.Caption = "تصدير البيانات";
+            this.colExportAllData.FieldName = "ExportAllData";
+            this.colExportAllData.MinWidth = 150;
+            this.colExportAllData.Name = "colExportAllData";
+            this.colExportAllData.Visible = true;
+            this.colExportAllData.VisibleIndex = 13;
+            this.colExportAllData.Width = 150;
+            // 
+            // colImportAllData
+            // 
+            this.colImportAllData.Caption = "استيراد البيانات";
+            this.colImportAllData.FieldName = "ImportAllData";
+            this.colImportAllData.MinWidth = 150;
+            this.colImportAllData.Name = "colImportAllData";
+            this.colImportAllData.Visible = true;
+            this.colImportAllData.VisibleIndex = 14;
+            this.colImportAllData.Width = 150;
+            // 
+            // colManageUsers
+            // 
+            this.colManageUsers.Caption = "إدارة حسابات المستخدمين";
+            this.colManageUsers.FieldName = "ManageUsers";
+            this.colManageUsers.MinWidth = 150;
+            this.colManageUsers.Name = "colManageUsers";
+            this.colManageUsers.Visible = true;
+            this.colManageUsers.VisibleIndex = 15;
+            this.colManageUsers.Width = 150;
+            // 
+            // colPromoteDb
+            // 
+            this.colPromoteDb.Caption = "ترقية قاعدة البيانات";
+            this.colPromoteDb.FieldName = "PromoteDb";
+            this.colPromoteDb.MinWidth = 150;
+            this.colPromoteDb.Name = "colPromoteDb";
+            this.colPromoteDb.Visible = true;
+            this.colPromoteDb.VisibleIndex = 16;
+            this.colPromoteDb.Width = 150;
+            // 
+            // colAddNewMainCategory
+            // 
+            this.colAddNewMainCategory.Caption = "إضافة فئة رئيسية جديدة";
+            this.colAddNewMainCategory.FieldName = "AddNewMainCategory";
+            this.colAddNewMainCategory.MinWidth = 150;
+            this.colAddNewMainCategory.Name = "colAddNewMainCategory";
+            this.colAddNewMainCategory.Visible = true;
+            this.colAddNewMainCategory.VisibleIndex = 17;
+            this.colAddNewMainCategory.Width = 150;
+            // 
+            // colManageMainCategories
+            // 
+            this.colManageMainCategories.Caption = "إدارة سجلات الفئات الرئيسية";
+            this.colManageMainCategories.FieldName = "ManageMainCategories";
+            this.colManageMainCategories.MinWidth = 150;
+            this.colManageMainCategories.Name = "colManageMainCategories";
+            this.colManageMainCategories.Visible = true;
+            this.colManageMainCategories.VisibleIndex = 18;
+            this.colManageMainCategories.Width = 150;
+            // 
+            // colAddNewMinorCategory
+            // 
+            this.colAddNewMinorCategory.Caption = "إضافة فئة فرعية جديدة";
+            this.colAddNewMinorCategory.FieldName = "AddNewMinorCategory";
+            this.colAddNewMinorCategory.MinWidth = 150;
+            this.colAddNewMinorCategory.Name = "colAddNewMinorCategory";
+            this.colAddNewMinorCategory.Visible = true;
+            this.colAddNewMinorCategory.VisibleIndex = 19;
+            this.colAddNewMinorCategory.Width = 258;
+            // 
+            // colManageMinorCategories
+            // 
+            this.colManageMinorCategories.Caption = "إدارة سجلات الفئات الفرعية";
+            this.colManageMinorCategories.FieldName = "ManageMinorCategories";
+            this.colManageMinorCategories.MinWidth = 150;
+            this.colManageMinorCategories.Name = "colManageMinorCategories";
+            this.colManageMinorCategories.Visible = true;
+            this.colManageMinorCategories.VisibleIndex = 20;
+            this.colManageMinorCategories.Width = 150;
+            // 
+            // colAddNewDepartment
+            // 
+            this.colAddNewDepartment.Caption = "إضافة قسم جديد";
+            this.colAddNewDepartment.FieldName = "AddNewDepartment";
+            this.colAddNewDepartment.MinWidth = 150;
+            this.colAddNewDepartment.Name = "colAddNewDepartment";
+            this.colAddNewDepartment.Visible = true;
+            this.colAddNewDepartment.VisibleIndex = 21;
+            this.colAddNewDepartment.Width = 258;
+            // 
+            // colManageDepartments
+            // 
+            this.colManageDepartments.Caption = "إدارة جدول الأقسام";
+            this.colManageDepartments.FieldName = "ManageDepartments";
+            this.colManageDepartments.MinWidth = 150;
+            this.colManageDepartments.Name = "colManageDepartments";
+            this.colManageDepartments.Visible = true;
+            this.colManageDepartments.VisibleIndex = 22;
+            this.colManageDepartments.Width = 150;
+            // 
+            // colAddNewSection
+            // 
+            this.colAddNewSection.Caption = "إضافة دائرة جديدة";
+            this.colAddNewSection.FieldName = "AddNewSection";
+            this.colAddNewSection.MinWidth = 150;
+            this.colAddNewSection.Name = "colAddNewSection";
+            this.colAddNewSection.Visible = true;
+            this.colAddNewSection.VisibleIndex = 23;
+            this.colAddNewSection.Width = 150;
+            // 
+            // colManageSections
+            // 
+            this.colManageSections.Caption = "إدارة جدول الدوائر";
+            this.colManageSections.FieldName = "ManageSections";
+            this.colManageSections.MinWidth = 150;
+            this.colManageSections.Name = "colManageSections";
+            this.colManageSections.Visible = true;
+            this.colManageSections.VisibleIndex = 24;
+            this.colManageSections.Width = 150;
+            // 
+            // colAddNewSquare
+            // 
+            this.colAddNewSquare.Caption = "إضافة ساحة جديدة";
+            this.colAddNewSquare.FieldName = "AddNewSquare";
+            this.colAddNewSquare.MinWidth = 150;
+            this.colAddNewSquare.Name = "colAddNewSquare";
+            this.colAddNewSquare.Visible = true;
+            this.colAddNewSquare.VisibleIndex = 25;
+            this.colAddNewSquare.Width = 150;
+            // 
+            // colManageSquares
+            // 
+            this.colManageSquares.Caption = "إدارة جدول الساحات";
+            this.colManageSquares.FieldName = "ManageSquares";
+            this.colManageSquares.MinWidth = 150;
+            this.colManageSquares.Name = "colManageSquares";
+            this.colManageSquares.Visible = true;
+            this.colManageSquares.VisibleIndex = 26;
+            this.colManageSquares.Width = 150;
+            // 
+            // colAddNewCurrency
+            // 
+            this.colAddNewCurrency.Caption = "إضافة عملة جديدة";
+            this.colAddNewCurrency.FieldName = "AddNewCurrency";
+            this.colAddNewCurrency.MinWidth = 150;
+            this.colAddNewCurrency.Name = "colAddNewCurrency";
+            this.colAddNewCurrency.Visible = true;
+            this.colAddNewCurrency.VisibleIndex = 27;
+            this.colAddNewCurrency.Width = 150;
+            // 
+            // colManageCurrencies
+            // 
+            this.colManageCurrencies.Caption = "إدارة جدول العملات";
+            this.colManageCurrencies.FieldName = "ManageCurrencies";
+            this.colManageCurrencies.MinWidth = 150;
+            this.colManageCurrencies.Name = "colManageCurrencies";
+            this.colManageCurrencies.Visible = true;
+            this.colManageCurrencies.VisibleIndex = 28;
+            this.colManageCurrencies.Width = 150;
+            // 
+            // colAddNewEstateAreaUnit
+            // 
+            this.colAddNewEstateAreaUnit.Caption = "إضافة واحدة مساحة عقار جديدة";
+            this.colAddNewEstateAreaUnit.FieldName = "AddNewEstateAreaUnit";
+            this.colAddNewEstateAreaUnit.MinWidth = 150;
+            this.colAddNewEstateAreaUnit.Name = "colAddNewEstateAreaUnit";
+            this.colAddNewEstateAreaUnit.Visible = true;
+            this.colAddNewEstateAreaUnit.VisibleIndex = 29;
+            this.colAddNewEstateAreaUnit.Width = 150;
+            // 
+            // colManageEstateAreaUnits
+            // 
+            this.colManageEstateAreaUnits.Caption = "إدارة جدول واحدات مساحات العقارات";
+            this.colManageEstateAreaUnits.FieldName = "ManageEstateAreaUnits";
+            this.colManageEstateAreaUnits.MinWidth = 150;
+            this.colManageEstateAreaUnits.Name = "colManageEstateAreaUnits";
+            this.colManageEstateAreaUnits.Visible = true;
+            this.colManageEstateAreaUnits.VisibleIndex = 30;
+            this.colManageEstateAreaUnits.Width = 150;
+            // 
+            // colAddNewTransactionType
+            // 
+            this.colAddNewTransactionType.Caption = "إضافة نوع تصريف أصل جديد";
+            this.colAddNewTransactionType.FieldName = "AddNewTransactionType";
+            this.colAddNewTransactionType.MinWidth = 150;
+            this.colAddNewTransactionType.Name = "colAddNewTransactionType";
+            this.colAddNewTransactionType.Visible = true;
+            this.colAddNewTransactionType.VisibleIndex = 31;
+            this.colAddNewTransactionType.Width = 150;
+            // 
+            // colManageTransactionTypes
+            // 
+            this.colManageTransactionTypes.Caption = "إدارة جدول أنواع تصريف الأصول";
+            this.colManageTransactionTypes.FieldName = "ManageTransactionTypes";
+            this.colManageTransactionTypes.MinWidth = 150;
+            this.colManageTransactionTypes.Name = "colManageTransactionTypes";
+            this.colManageTransactionTypes.Visible = true;
+            this.colManageTransactionTypes.VisibleIndex = 32;
+            this.colManageTransactionTypes.Width = 150;
+            // 
+            // colSetDateAndTime
+            // 
+            this.colSetDateAndTime.Caption = "تغيير وقت وتاريخ التطبيق";
+            this.colSetDateAndTime.FieldName = "SetDateAndTime";
+            this.colSetDateAndTime.MinWidth = 150;
+            this.colSetDateAndTime.Name = "colSetDateAndTime";
+            this.colSetDateAndTime.Visible = true;
+            this.colSetDateAndTime.VisibleIndex = 33;
+            this.colSetDateAndTime.Width = 150;
+            // 
+            // colBackupDb
+            // 
+            this.colBackupDb.Caption = "نسخ احتياطي لقاعدة البيانات";
+            this.colBackupDb.FieldName = "BackupDb";
+            this.colBackupDb.MinWidth = 150;
+            this.colBackupDb.Name = "colBackupDb";
+            this.colBackupDb.Visible = true;
+            this.colBackupDb.VisibleIndex = 34;
+            this.colBackupDb.Width = 150;
+            // 
+            // colRestoreDb
+            // 
+            this.colRestoreDb.Caption = "استعادة قاعدة البيانات";
+            this.colRestoreDb.FieldName = "RestoreDb";
+            this.colRestoreDb.MinWidth = 150;
+            this.colRestoreDb.Name = "colRestoreDb";
+            this.colRestoreDb.Visible = true;
+            this.colRestoreDb.VisibleIndex = 35;
+            this.colRestoreDb.Width = 150;
+            // 
+            // colViewStats
+            // 
+            this.colViewStats.Caption = "عرض المخططات الإحصائية";
+            this.colViewStats.FieldName = "ViewStats";
+            this.colViewStats.MinWidth = 150;
+            this.colViewStats.Name = "colViewStats";
+            this.colViewStats.Visible = true;
+            this.colViewStats.VisibleIndex = 36;
+            this.colViewStats.Width = 150;
+            // 
+            // colCreateAssetsReports
+            // 
+            this.colCreateAssetsReports.Caption = "إنشاء تقارير الأصول";
+            this.colCreateAssetsReports.FieldName = "CreateAssetsReports";
+            this.colCreateAssetsReports.MinWidth = 150;
+            this.colCreateAssetsReports.Name = "colCreateAssetsReports";
+            this.colCreateAssetsReports.Visible = true;
+            this.colCreateAssetsReports.VisibleIndex = 37;
+            this.colCreateAssetsReports.Width = 150;
+            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,6 +611,7 @@ namespace AssetManagement.Users
             // userRoleTblBindingNavigator
             // 
             this.userRoleTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.userRoleTblBindingNavigator.BindingSource = this.userRoleTblBindingSource;
             this.userRoleTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.userRoleTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
             this.userRoleTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -246,7 +635,7 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userRoleTblBindingNavigator.Name = "userRoleTblBindingNavigator";
             this.userRoleTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1213, 31);
+            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1213, 27);
             this.userRoleTblBindingNavigator.TabIndex = 6;
             this.userRoleTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -256,13 +645,13 @@ namespace AssetManagement.Users
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -272,7 +661,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -281,7 +670,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -290,13 +679,13 @@ namespace AssetManagement.Users
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -311,7 +700,7 @@ namespace AssetManagement.Users
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -319,7 +708,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -328,410 +717,22 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // userRoleTblBindingNavigatorSaveItem
             // 
             this.userRoleTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.userRoleTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("userRoleTblBindingNavigatorSaveItem.Image")));
             this.userRoleTblBindingNavigatorSaveItem.Name = "userRoleTblBindingNavigatorSaveItem";
-            this.userRoleTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
+            this.userRoleTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.userRoleTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userRoleTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userRoleTblBindingNavigatorSaveItem_Click);
-            // 
-            // colID
-            // 
-            this.colID.Caption = "معرف نوع الحساب";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
-            this.colID.Name = "colID";
-            this.colID.Width = 94;
-            // 
-            // colRoleName
-            // 
-            this.colRoleName.Caption = "اسم نوع الحساب";
-            this.colRoleName.FieldName = "RoleName";
-            this.colRoleName.MinWidth = 120;
-            this.colRoleName.Name = "colRoleName";
-            this.colRoleName.Visible = true;
-            this.colRoleName.VisibleIndex = 0;
-            this.colRoleName.Width = 148;
-            // 
-            // colAddNewAsset
-            // 
-            this.colAddNewAsset.Caption = "إضافة أصل جديد";
-            this.colAddNewAsset.FieldName = "AddNewAsset";
-            this.colAddNewAsset.MinWidth = 80;
-            this.colAddNewAsset.Name = "colAddNewAsset";
-            this.colAddNewAsset.Visible = true;
-            this.colAddNewAsset.VisibleIndex = 1;
-            this.colAddNewAsset.Width = 94;
-            // 
-            // colUpdateExistedAsset
-            // 
-            this.colUpdateExistedAsset.Caption = "تعديل أصل موجود";
-            this.colUpdateExistedAsset.FieldName = "UpdateExistedAsset";
-            this.colUpdateExistedAsset.MinWidth = 80;
-            this.colUpdateExistedAsset.Name = "colUpdateExistedAsset";
-            this.colUpdateExistedAsset.Visible = true;
-            this.colUpdateExistedAsset.VisibleIndex = 2;
-            this.colUpdateExistedAsset.Width = 94;
-            // 
-            // colDeleteAssetRecord
-            // 
-            this.colDeleteAssetRecord.Caption = "حذف سجل أصل";
-            this.colDeleteAssetRecord.FieldName = "DeleteAssetRecord";
-            this.colDeleteAssetRecord.MinWidth = 80;
-            this.colDeleteAssetRecord.Name = "colDeleteAssetRecord";
-            this.colDeleteAssetRecord.Visible = true;
-            this.colDeleteAssetRecord.VisibleIndex = 3;
-            this.colDeleteAssetRecord.Width = 94;
-            // 
-            // colAddNewInventory
-            // 
-            this.colAddNewInventory.Caption = "إجراء جرد جديد للأصول";
-            this.colAddNewInventory.FieldName = "AddNewInventory";
-            this.colAddNewInventory.MinWidth = 80;
-            this.colAddNewInventory.Name = "colAddNewInventory";
-            this.colAddNewInventory.Visible = true;
-            this.colAddNewInventory.VisibleIndex = 4;
-            this.colAddNewInventory.Width = 94;
-            // 
-            // colUpdateExistedInventory
-            // 
-            this.colUpdateExistedInventory.Caption = "تعديل سجل جرد موجود";
-            this.colUpdateExistedInventory.FieldName = "UpdateExistedInventory";
-            this.colUpdateExistedInventory.MinWidth = 80;
-            this.colUpdateExistedInventory.Name = "colUpdateExistedInventory";
-            this.colUpdateExistedInventory.Visible = true;
-            this.colUpdateExistedInventory.VisibleIndex = 5;
-            this.colUpdateExistedInventory.Width = 94;
-            // 
-            // colSearchInventories
-            // 
-            this.colSearchInventories.Caption = "بحث ضمن الجرودات";
-            this.colSearchInventories.FieldName = "SearchInventories";
-            this.colSearchInventories.MinWidth = 80;
-            this.colSearchInventories.Name = "colSearchInventories";
-            this.colSearchInventories.Visible = true;
-            this.colSearchInventories.VisibleIndex = 6;
-            this.colSearchInventories.Width = 94;
-            // 
-            // colViewInventories
-            // 
-            this.colViewInventories.Caption = "عرض سجلات الجرد";
-            this.colViewInventories.FieldName = "ViewInventories";
-            this.colViewInventories.MinWidth = 80;
-            this.colViewInventories.Name = "colViewInventories";
-            this.colViewInventories.Visible = true;
-            this.colViewInventories.VisibleIndex = 7;
-            this.colViewInventories.Width = 94;
-            // 
-            // colDeleteInventoryRecord
-            // 
-            this.colDeleteInventoryRecord.Caption = "حذف سجل جرد";
-            this.colDeleteInventoryRecord.FieldName = "DeleteInventoryRecord";
-            this.colDeleteInventoryRecord.MinWidth = 80;
-            this.colDeleteInventoryRecord.Name = "colDeleteInventoryRecord";
-            this.colDeleteInventoryRecord.Visible = true;
-            this.colDeleteInventoryRecord.VisibleIndex = 8;
-            this.colDeleteInventoryRecord.Width = 94;
-            // 
-            // colAddNewAssetMovement
-            // 
-            this.colAddNewAssetMovement.Caption = "نقل أصل";
-            this.colAddNewAssetMovement.FieldName = "AddNewAssetMovement";
-            this.colAddNewAssetMovement.MinWidth = 80;
-            this.colAddNewAssetMovement.Name = "colAddNewAssetMovement";
-            this.colAddNewAssetMovement.Visible = true;
-            this.colAddNewAssetMovement.VisibleIndex = 9;
-            this.colAddNewAssetMovement.Width = 94;
-            // 
-            // colManageAssetMovements
-            // 
-            this.colManageAssetMovements.Caption = "إدارة سجلات نقل الأصول";
-            this.colManageAssetMovements.FieldName = "ManageAssetMovements";
-            this.colManageAssetMovements.MinWidth = 80;
-            this.colManageAssetMovements.Name = "colManageAssetMovements";
-            this.colManageAssetMovements.Visible = true;
-            this.colManageAssetMovements.VisibleIndex = 10;
-            this.colManageAssetMovements.Width = 94;
-            // 
-            // colAddNewAssetTransaction
-            // 
-            this.colAddNewAssetTransaction.Caption = "تصريف أصل";
-            this.colAddNewAssetTransaction.FieldName = "AddNewAssetTransaction";
-            this.colAddNewAssetTransaction.MinWidth = 80;
-            this.colAddNewAssetTransaction.Name = "colAddNewAssetTransaction";
-            this.colAddNewAssetTransaction.Visible = true;
-            this.colAddNewAssetTransaction.VisibleIndex = 11;
-            this.colAddNewAssetTransaction.Width = 94;
-            // 
-            // colManageAssetTransactions
-            // 
-            this.colManageAssetTransactions.Caption = "إدارة سجلات نقل الأصول";
-            this.colManageAssetTransactions.FieldName = "ManageAssetTransactions";
-            this.colManageAssetTransactions.MinWidth = 80;
-            this.colManageAssetTransactions.Name = "colManageAssetTransactions";
-            this.colManageAssetTransactions.Visible = true;
-            this.colManageAssetTransactions.VisibleIndex = 12;
-            this.colManageAssetTransactions.Width = 94;
-            // 
-            // colExportAllData
-            // 
-            this.colExportAllData.Caption = "تصدير البيانات";
-            this.colExportAllData.FieldName = "ExportAllData";
-            this.colExportAllData.MinWidth = 80;
-            this.colExportAllData.Name = "colExportAllData";
-            this.colExportAllData.Visible = true;
-            this.colExportAllData.VisibleIndex = 13;
-            this.colExportAllData.Width = 94;
-            // 
-            // colImportAllData
-            // 
-            this.colImportAllData.Caption = "استيراد البيانات";
-            this.colImportAllData.FieldName = "ImportAllData";
-            this.colImportAllData.MinWidth = 80;
-            this.colImportAllData.Name = "colImportAllData";
-            this.colImportAllData.Visible = true;
-            this.colImportAllData.VisibleIndex = 14;
-            this.colImportAllData.Width = 94;
-            // 
-            // colManageUsers
-            // 
-            this.colManageUsers.Caption = "إدارة حسابات المستخدمين";
-            this.colManageUsers.FieldName = "ManageUsers";
-            this.colManageUsers.MinWidth = 80;
-            this.colManageUsers.Name = "colManageUsers";
-            this.colManageUsers.Visible = true;
-            this.colManageUsers.VisibleIndex = 15;
-            this.colManageUsers.Width = 94;
-            // 
-            // colPromoteDb
-            // 
-            this.colPromoteDb.Caption = "ترقية قاعدة البيانات";
-            this.colPromoteDb.FieldName = "PromoteDb";
-            this.colPromoteDb.MinWidth = 80;
-            this.colPromoteDb.Name = "colPromoteDb";
-            this.colPromoteDb.Visible = true;
-            this.colPromoteDb.VisibleIndex = 16;
-            this.colPromoteDb.Width = 94;
-            // 
-            // colAddNewMainCategory
-            // 
-            this.colAddNewMainCategory.Caption = "إضافة فئة رئيسية جديدة";
-            this.colAddNewMainCategory.FieldName = "AddNewMainCategory";
-            this.colAddNewMainCategory.MinWidth = 80;
-            this.colAddNewMainCategory.Name = "colAddNewMainCategory";
-            this.colAddNewMainCategory.Visible = true;
-            this.colAddNewMainCategory.VisibleIndex = 17;
-            this.colAddNewMainCategory.Width = 94;
-            // 
-            // colManageMainCategories
-            // 
-            this.colManageMainCategories.Caption = "إدارة سجلات الفئات الرئيسية";
-            this.colManageMainCategories.FieldName = "ManageMainCategories";
-            this.colManageMainCategories.MinWidth = 80;
-            this.colManageMainCategories.Name = "colManageMainCategories";
-            this.colManageMainCategories.Visible = true;
-            this.colManageMainCategories.VisibleIndex = 18;
-            this.colManageMainCategories.Width = 94;
-            // 
-            // colAddNewMinorCategory
-            // 
-            this.colAddNewMinorCategory.Caption = "إضافة فئة فرعية جديدة";
-            this.colAddNewMinorCategory.FieldName = "AddNewMinorCategory";
-            this.colAddNewMinorCategory.MinWidth = 80;
-            this.colAddNewMinorCategory.Name = "colAddNewMinorCategory";
-            this.colAddNewMinorCategory.Visible = true;
-            this.colAddNewMinorCategory.VisibleIndex = 19;
-            this.colAddNewMinorCategory.Width = 258;
-            // 
-            // colManageMinorCategories
-            // 
-            this.colManageMinorCategories.Caption = "إدارة سجلات الفئات الفرعية";
-            this.colManageMinorCategories.FieldName = "ManageMinorCategories";
-            this.colManageMinorCategories.MinWidth = 80;
-            this.colManageMinorCategories.Name = "colManageMinorCategories";
-            this.colManageMinorCategories.Visible = true;
-            this.colManageMinorCategories.VisibleIndex = 20;
-            this.colManageMinorCategories.Width = 94;
-            // 
-            // colAddNewDepartment
-            // 
-            this.colAddNewDepartment.Caption = "إضافة قسم جديد";
-            this.colAddNewDepartment.FieldName = "AddNewDepartment";
-            this.colAddNewDepartment.MinWidth = 80;
-            this.colAddNewDepartment.Name = "colAddNewDepartment";
-            this.colAddNewDepartment.Visible = true;
-            this.colAddNewDepartment.VisibleIndex = 21;
-            this.colAddNewDepartment.Width = 258;
-            // 
-            // colManageDepartments
-            // 
-            this.colManageDepartments.Caption = "إدارة جدول الأقسام";
-            this.colManageDepartments.FieldName = "ManageDepartments";
-            this.colManageDepartments.MinWidth = 80;
-            this.colManageDepartments.Name = "colManageDepartments";
-            this.colManageDepartments.Visible = true;
-            this.colManageDepartments.VisibleIndex = 22;
-            this.colManageDepartments.Width = 94;
-            // 
-            // colAddNewSection
-            // 
-            this.colAddNewSection.Caption = "إضافة دائرة جديدة";
-            this.colAddNewSection.FieldName = "AddNewSection";
-            this.colAddNewSection.MinWidth = 80;
-            this.colAddNewSection.Name = "colAddNewSection";
-            this.colAddNewSection.Visible = true;
-            this.colAddNewSection.VisibleIndex = 23;
-            this.colAddNewSection.Width = 94;
-            // 
-            // colManageSections
-            // 
-            this.colManageSections.Caption = "إدارة جدول الدوائر";
-            this.colManageSections.FieldName = "ManageSections";
-            this.colManageSections.MinWidth = 80;
-            this.colManageSections.Name = "colManageSections";
-            this.colManageSections.Visible = true;
-            this.colManageSections.VisibleIndex = 24;
-            this.colManageSections.Width = 94;
-            // 
-            // colAddNewSquare
-            // 
-            this.colAddNewSquare.Caption = "إضافة ساحة جديدة";
-            this.colAddNewSquare.FieldName = "AddNewSquare";
-            this.colAddNewSquare.MinWidth = 80;
-            this.colAddNewSquare.Name = "colAddNewSquare";
-            this.colAddNewSquare.Visible = true;
-            this.colAddNewSquare.VisibleIndex = 25;
-            this.colAddNewSquare.Width = 94;
-            // 
-            // colManageSquares
-            // 
-            this.colManageSquares.Caption = "إدارة جدول الساحات";
-            this.colManageSquares.FieldName = "ManageSquares";
-            this.colManageSquares.MinWidth = 80;
-            this.colManageSquares.Name = "colManageSquares";
-            this.colManageSquares.Visible = true;
-            this.colManageSquares.VisibleIndex = 26;
-            this.colManageSquares.Width = 94;
-            // 
-            // colAddNewCurrency
-            // 
-            this.colAddNewCurrency.Caption = "إضافة عملة جديدة";
-            this.colAddNewCurrency.FieldName = "AddNewCurrency";
-            this.colAddNewCurrency.MinWidth = 80;
-            this.colAddNewCurrency.Name = "colAddNewCurrency";
-            this.colAddNewCurrency.Visible = true;
-            this.colAddNewCurrency.VisibleIndex = 27;
-            this.colAddNewCurrency.Width = 94;
-            // 
-            // colManageCurrencies
-            // 
-            this.colManageCurrencies.Caption = "إدارة جدول العملات";
-            this.colManageCurrencies.FieldName = "ManageCurrencies";
-            this.colManageCurrencies.MinWidth = 80;
-            this.colManageCurrencies.Name = "colManageCurrencies";
-            this.colManageCurrencies.Visible = true;
-            this.colManageCurrencies.VisibleIndex = 28;
-            this.colManageCurrencies.Width = 94;
-            // 
-            // colAddNewEstateAreaUnit
-            // 
-            this.colAddNewEstateAreaUnit.Caption = "إضافة واحدة مساحة عقار جديدة";
-            this.colAddNewEstateAreaUnit.FieldName = "AddNewEstateAreaUnit";
-            this.colAddNewEstateAreaUnit.MinWidth = 80;
-            this.colAddNewEstateAreaUnit.Name = "colAddNewEstateAreaUnit";
-            this.colAddNewEstateAreaUnit.Visible = true;
-            this.colAddNewEstateAreaUnit.VisibleIndex = 29;
-            this.colAddNewEstateAreaUnit.Width = 94;
-            // 
-            // colManageEstateAreaUnits
-            // 
-            this.colManageEstateAreaUnits.Caption = "إدارة جدول واحدات مساحات العقارات";
-            this.colManageEstateAreaUnits.FieldName = "ManageEstateAreaUnits";
-            this.colManageEstateAreaUnits.MinWidth = 80;
-            this.colManageEstateAreaUnits.Name = "colManageEstateAreaUnits";
-            this.colManageEstateAreaUnits.Visible = true;
-            this.colManageEstateAreaUnits.VisibleIndex = 30;
-            this.colManageEstateAreaUnits.Width = 94;
-            // 
-            // colAddNewTransactionType
-            // 
-            this.colAddNewTransactionType.Caption = "إضافة نوع تصريف أصل جديد";
-            this.colAddNewTransactionType.FieldName = "AddNewTransactionType";
-            this.colAddNewTransactionType.MinWidth = 80;
-            this.colAddNewTransactionType.Name = "colAddNewTransactionType";
-            this.colAddNewTransactionType.Visible = true;
-            this.colAddNewTransactionType.VisibleIndex = 31;
-            this.colAddNewTransactionType.Width = 94;
-            // 
-            // colManageTransactionTypes
-            // 
-            this.colManageTransactionTypes.Caption = "إدارة جدول أنواع تصريف الأصول";
-            this.colManageTransactionTypes.FieldName = "ManageTransactionTypes";
-            this.colManageTransactionTypes.MinWidth = 80;
-            this.colManageTransactionTypes.Name = "colManageTransactionTypes";
-            this.colManageTransactionTypes.Visible = true;
-            this.colManageTransactionTypes.VisibleIndex = 32;
-            this.colManageTransactionTypes.Width = 94;
-            // 
-            // colSetDateAndTime
-            // 
-            this.colSetDateAndTime.Caption = "تغيير وقت وتاريخ التطبيق";
-            this.colSetDateAndTime.FieldName = "SetDateAndTime";
-            this.colSetDateAndTime.MinWidth = 80;
-            this.colSetDateAndTime.Name = "colSetDateAndTime";
-            this.colSetDateAndTime.Visible = true;
-            this.colSetDateAndTime.VisibleIndex = 33;
-            this.colSetDateAndTime.Width = 94;
-            // 
-            // colBackupDb
-            // 
-            this.colBackupDb.Caption = "نسخ احتياطي لقاعدة البيانات";
-            this.colBackupDb.FieldName = "BackupDb";
-            this.colBackupDb.MinWidth = 80;
-            this.colBackupDb.Name = "colBackupDb";
-            this.colBackupDb.Visible = true;
-            this.colBackupDb.VisibleIndex = 34;
-            this.colBackupDb.Width = 94;
-            // 
-            // colRestoreDb
-            // 
-            this.colRestoreDb.Caption = "استعادة قاعدة البيانات";
-            this.colRestoreDb.FieldName = "RestoreDb";
-            this.colRestoreDb.MinWidth = 80;
-            this.colRestoreDb.Name = "colRestoreDb";
-            this.colRestoreDb.Visible = true;
-            this.colRestoreDb.VisibleIndex = 35;
-            this.colRestoreDb.Width = 94;
-            // 
-            // colViewStats
-            // 
-            this.colViewStats.Caption = "عرض المخططات الإحصائية";
-            this.colViewStats.FieldName = "ViewStats";
-            this.colViewStats.MinWidth = 80;
-            this.colViewStats.Name = "colViewStats";
-            this.colViewStats.Visible = true;
-            this.colViewStats.VisibleIndex = 36;
-            this.colViewStats.Width = 94;
-            // 
-            // colCreateAssetsReports
-            // 
-            this.colCreateAssetsReports.Caption = "إنشاء تقارير الأصول";
-            this.colCreateAssetsReports.FieldName = "CreateAssetsReports";
-            this.colCreateAssetsReports.MinWidth = 80;
-            this.colCreateAssetsReports.Name = "colCreateAssetsReports";
-            this.colCreateAssetsReports.Visible = true;
-            this.colCreateAssetsReports.VisibleIndex = 37;
-            this.colCreateAssetsReports.Width = 94;
             // 
             // ManageUserRoleTblForm
             // 

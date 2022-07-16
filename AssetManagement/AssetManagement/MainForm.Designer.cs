@@ -76,6 +76,8 @@ namespace AssetManagement
             this.assetsReportsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsMovementsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.financeRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.manageAuxTablesRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.auxTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.exportImportDataRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -103,7 +105,7 @@ namespace AssetManagement
             // 
             this.mainRibbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(89);
             this.mainRibbonControl.ExpandCollapseItem.Id = 0;
-            this.mainRibbonControl.Font = new System.Drawing.Font("Mudir MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mainRibbonControl.Font = new System.Drawing.Font("Mudir MT", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mainRibbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.mainRibbonControl.ExpandCollapseItem,
             this.mainRibbonControl.SearchEditItem,
@@ -144,27 +146,28 @@ namespace AssetManagement
             this.importDataBarButtonItem,
             this.viewStatsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10);
             this.mainRibbonControl.MaxItemId = 43;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 1006;
             this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.assetsRibbonPage,
+            this.financeRibbonPage,
             this.manageAuxTablesRibbonPage,
             this.exportImportDataRibbonPage,
             this.optionsRibbonPage});
             this.mainRibbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.mainRibbonControl.Size = new System.Drawing.Size(1439, 231);
+            this.mainRibbonControl.Size = new System.Drawing.Size(1439, 295);
             this.mainRibbonControl.StatusBar = this.ribbonStatusBar1;
             // 
             // addNewAssetBarButtonItem
             // 
             this.addNewAssetBarButtonItem.Caption = "إضافة أصل جديد";
             this.addNewAssetBarButtonItem.Id = 1;
-            this.addNewAssetBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._5359538;
             this.addNewAssetBarButtonItem.ImageOptions.ImageIndex = 41;
+            this.addNewAssetBarButtonItem.ImageOptions.LargeImage = global::AssetManagement.Properties.Resources._5359538;
             this.addNewAssetBarButtonItem.Name = "addNewAssetBarButtonItem";
             this.addNewAssetBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
@@ -257,6 +260,7 @@ namespace AssetManagement
             this.setAppDateAndTimeBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1477227;
             this.setAppDateAndTimeBarButtonItem.Name = "setAppDateAndTimeBarButtonItem";
             this.setAppDateAndTimeBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.setAppDateAndTimeBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.setAppDateAndTimeBarButtonItem_ItemClick);
             // 
             // appDateBarStaticItem
             // 
@@ -488,13 +492,14 @@ namespace AssetManagement
             this.assetsReportsRibbonPageGroup,
             this.assetsMovementsRibbonPageGroup,
             this.assetsStatsRibbonPageGroup});
-            this.assetsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._4186636;
+            this.assetsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._41866361;
             this.assetsRibbonPage.ImageOptions.ImageIndex = 41;
             this.assetsRibbonPage.Name = "assetsRibbonPage";
             this.assetsRibbonPage.Text = "الأصول - Assets";
             // 
             // newAssetRibbonPageGroup
             // 
+            this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
@@ -503,6 +508,7 @@ namespace AssetManagement
             // 
             // existedAssetsRibbonPageGroup
             // 
+            this.existedAssetsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.modifyExistedAssetBarButtonItem);
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.deleteAssetsBarButtonItem);
             this.existedAssetsRibbonPageGroup.Name = "existedAssetsRibbonPageGroup";
@@ -510,6 +516,7 @@ namespace AssetManagement
             // 
             // assetInventoriesRibbonPageGroup
             // 
+            this.assetInventoriesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.assetInventoriesRibbonPageGroup.ItemLinks.Add(this.addNewAssetInventoryBarButtonItem);
             this.assetInventoriesRibbonPageGroup.ItemLinks.Add(this.manageAssetInventoryTblBarButtonItem);
             this.assetInventoriesRibbonPageGroup.Name = "assetInventoriesRibbonPageGroup";
@@ -517,12 +524,14 @@ namespace AssetManagement
             // 
             // assetsReportsRibbonPageGroup
             // 
+            this.assetsReportsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.assetsReportsRibbonPageGroup.ItemLinks.Add(this.viewReportsBarButtonItem);
             this.assetsReportsRibbonPageGroup.Name = "assetsReportsRibbonPageGroup";
             this.assetsReportsRibbonPageGroup.Text = "تقارير الأصول - Assets reports";
             // 
             // assetsMovementsRibbonPageGroup
             // 
+            this.assetsMovementsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.assetsMovementsRibbonPageGroup.ItemLinks.Add(this.addNewAssetMovementBarButtonItem);
             this.assetsMovementsRibbonPageGroup.ItemLinks.Add(this.addNewAssetTransactionBarButtonItem);
             this.assetsMovementsRibbonPageGroup.ItemLinks.Add(this.manageAssetMovementTblBarButtonItem);
@@ -532,9 +541,23 @@ namespace AssetManagement
             // 
             // assetsStatsRibbonPageGroup
             // 
+            this.assetsStatsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.assetsStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
             this.assetsStatsRibbonPageGroup.Name = "assetsStatsRibbonPageGroup";
             this.assetsStatsRibbonPageGroup.Text = "تقارير إحصائية";
+            // 
+            // financeRibbonPage
+            // 
+            this.financeRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.financeRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2407198;
+            this.financeRibbonPage.Name = "financeRibbonPage";
+            this.financeRibbonPage.Text = "المالية - Finance";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
             // manageAuxTablesRibbonPage
             // 
@@ -544,12 +567,13 @@ namespace AssetManagement
             this.manageAuxTablesRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.manageAuxTablesRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.auxTablesRibbonPageGroup});
-            this.manageAuxTablesRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2912643;
+            this.manageAuxTablesRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2762550;
             this.manageAuxTablesRibbonPage.Name = "manageAuxTablesRibbonPage";
             this.manageAuxTablesRibbonPage.Text = "إدارة الجداول المساعدة - Manage aux tables";
             // 
             // auxTablesRibbonPageGroup
             // 
+            this.auxTablesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCategoriesBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCurrencyTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageDepartmentTblBarButtonItem);
@@ -576,6 +600,7 @@ namespace AssetManagement
             // 
             // exportDataRibbonPageGroup
             // 
+            this.exportDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.exportDataRibbonPageGroup.ItemLinks.Add(this.encryptExportedFileBarCheckItem);
             this.exportDataRibbonPageGroup.ItemLinks.Add(this.exportDataBarButtonItem);
             this.exportDataRibbonPageGroup.Name = "exportDataRibbonPageGroup";
@@ -583,6 +608,7 @@ namespace AssetManagement
             // 
             // backupAndRestoreRibbonPageGroup
             // 
+            this.backupAndRestoreRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.backupDbBarButtonItem);
             this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.restoreDbBarButtonItem);
             this.backupAndRestoreRibbonPageGroup.Name = "backupAndRestoreRibbonPageGroup";
@@ -590,6 +616,7 @@ namespace AssetManagement
             // 
             // importDataRibbonPageGroup
             // 
+            this.importDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.importDataRibbonPageGroup.ItemLinks.Add(this.decryptImportedFileBarCheckItem);
             this.importDataRibbonPageGroup.ItemLinks.Add(this.importDataBarButtonItem);
             this.importDataRibbonPageGroup.Name = "importDataRibbonPageGroup";
@@ -609,12 +636,14 @@ namespace AssetManagement
             // 
             // appDateAndTimeRibbonPageGroup
             // 
+            this.appDateAndTimeRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.appDateAndTimeRibbonPageGroup.ItemLinks.Add(this.setAppDateAndTimeBarButtonItem);
             this.appDateAndTimeRibbonPageGroup.Name = "appDateAndTimeRibbonPageGroup";
             this.appDateAndTimeRibbonPageGroup.Text = "الوقت والتاريخ";
             // 
             // usersAccountsRibbonPageGroup
             // 
+            this.usersAccountsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.usersAccountsRibbonPageGroup.ItemLinks.Add(this.addNewUserBarButtonItem);
             this.usersAccountsRibbonPageGroup.ItemLinks.Add(this.manageUserTblBarButtonItem);
             this.usersAccountsRibbonPageGroup.ItemLinks.Add(this.manageUserRoleTblBarButtonItem);
@@ -624,6 +653,7 @@ namespace AssetManagement
             // 
             // additionalOptionsRibbonPageGroup
             // 
+            this.additionalOptionsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.additionalOptionsRibbonPageGroup.ItemLinks.Add(this.optionsBarButtonItem);
             this.additionalOptionsRibbonPageGroup.Name = "additionalOptionsRibbonPageGroup";
             this.additionalOptionsRibbonPageGroup.Text = "إعدادات إضافية";
@@ -640,7 +670,7 @@ namespace AssetManagement
             this.ribbonStatusBar1.ItemLinks.Add(this.appDateBarStaticItem);
             this.ribbonStatusBar1.ItemLinks.Add(this.appTimeBarStaticItem);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 831);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(8);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.mainRibbonControl;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1439, 33);
@@ -840,6 +870,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup importDataRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsStatsRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPage financeRibbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
     }
 }
 
