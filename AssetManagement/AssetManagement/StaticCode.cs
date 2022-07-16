@@ -270,10 +270,23 @@ namespace AssetManagement
             Aes Aes_1 = Aes.Create();
             byte[] AesKey = Aes_1.Key;
             byte[] AesIV = Aes_1.IV;
-            FileStream key_IVPathWr = File.Open(AesKeyAndIVPath, FileMode.OpenOrCreate, FileAccess.Write);
-            key_IVPathWr.Write(AesKey, 0, AesKey.Length);
-            key_IVPathWr.Write(AesIV, 0, AesIV.Length);
-            key_IVPathWr.Close();
+            List<byte> ddd = new List<byte>();
+            ddd.AddRange(AesKey);
+            ddd.AddRange(AesIV);
+            byte[] AesKey_IV = ddd.ToArray();
+            //FileStream key_IVPathWr = File.Open(AesKeyAndIVPath, FileMode.OpenOrCreate, FileAccess.Write);
+            //key_IVPathWr.Write(AesKey, 0, AesKey.Length);
+            //key_IVPathWr.Write(AesIV, 0, AesIV.Length);
+            //key_IVPathWr.Close();
+
+            if (!File.Exists(RSAPublicKeyPath) || !File.Exists(RSAPublicKeyPath))
+            {
+                GenerateNewRSAPublicAndPrivateKeys();
+            }
+            string AesKey_IV_Enc = RSAEncryption(AesKey_IV);
+            StreamWriter AesKey_IV_Wr = new StreamWriter(AesKeyAndIVPath);
+            AesKey_IV_Wr.WriteLine(AesKey_IV_Enc);
+            AesKey_IV_Wr.Close();
         }
 
         public static bool AesEncryption(string inName, string outName, byte[] aesKey, byte[] aesIV)

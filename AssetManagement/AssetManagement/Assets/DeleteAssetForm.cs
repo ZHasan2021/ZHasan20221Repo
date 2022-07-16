@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,10 +47,12 @@ namespace AssetManagement.Assets
                 AssetTbl assetToDelete = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == srchRes.ID);
                 var assetToDelete_Movement = StaticCode.mainDbContext.AssetMovementTbls.Where(astm => astm.AssetID == srchRes.ID);
                 foreach (AssetMovementTbl oneRec1 in assetToDelete_Movement)
-                    StaticCode.mainDbContext.AssetMovementTbls.DeleteOnSubmit(oneRec1);
+                    StaticCode.mainDbContext.AssetMovementTbls.DeleteOnSubmit(StaticCode.mainDbContext.AssetMovementTbls.Single(astm => astm.ID == oneRec1.ID));
                 var assetToDelete_Transaction = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt => astt.AssetID == srchRes.ID);
                 foreach (AssetTransactionTbl oneRec2 in assetToDelete_Transaction)
-                    StaticCode.mainDbContext.AssetTransactionTbls.DeleteOnSubmit(oneRec2);
+                    StaticCode.mainDbContext.AssetTransactionTbls.DeleteOnSubmit(StaticCode.mainDbContext.AssetTransactionTbls.Single(astt => astt.ID == oneRec2.ID));
+                StaticCode.mainDbContext.SubmitChanges();
+                Thread.Sleep(500);
 
                 StaticCode.mainDbContext.AssetTbls.DeleteOnSubmit(assetToDelete);
                 StaticCode.mainDbContext.SubmitChanges();

@@ -55,6 +55,9 @@ namespace AssetManagement
             backupDbBarButtonItem.Visibility = (StaticCode.activeUserRole.BackupDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             restoreDbBarButtonItem.Visibility = (StaticCode.activeUserRole.RestoreDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             deleteAssetsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteAssetRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            exportDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ExportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -91,55 +94,11 @@ namespace AssetManagement
             }
             if (encryptExportedFileBarCheckItem.Checked)
             {
-                #region RSA encryption
-                //FileStream fs = new FileStream(outFile1, FileMode.Open, FileAccess.Read);
-                //    byte[] outBytes = new byte[fs.Length];
-                //    fs.Read(outBytes,0, outBytes.Length);
-                //    if (!File.Exists(StaticCode.RSAPublicKeyPath) || !File.Exists(StaticCode.RSAPublicKeyPath))
-                //    {
-                //        StaticCode.GenerateNewRSAPublicAndPrivateKeys();
-                //    }
-                //string encryptedStr =  StaticCode.RSAEncryption(outBytes);
-                //fs.Close();
-                //fs = File.Create(outFile1.Replace("xlsx", "assf"));
-                //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
-                //fs.Write(outBytes_enc, 0, outBytes_enc.Length);
-                //fs.Close();
-                #endregion
-
-                #region DES encryption
-                //if (!File.Exists(StaticCode.DESKeyAndIVPath))
-                //{
-                //    StaticCode.GenerateNewDESKeyAndIV();
-                //}
-                //try
-                //{
-                //    FileStream key_IVRdr = new FileStream(StaticCode.DESKeyAndIVPath, FileMode.Open);
-                //    byte[] keyArr = new byte[8];
-                //    byte[] IVArr = new byte[8];
-                //    key_IVRdr.Read(keyArr, 0, keyArr.Length);
-                //    key_IVRdr.Read(IVArr, 0, IVArr.Length);
-                //    key_IVRdr.Close();
-
-                //    string outFile_Enc = outFile1.Replace("xlsx", "assf");
-                //    if( StaticCode.DESEncryption(outFile1, outFile_Enc, keyArr,IVArr))
-                //    {
-                //        mainAlertControl.Show(this, "تم تصدير قاعدة البيانات مشفرة بنجاح", StaticCode.ApplicationTitle, true);
-                //    }
-                //    else
-                //    {
-                //        mainAlertControl.Show(this, "لم يتم تصدير قاعدة البيانات المشفرة بسبب خطأ في مفتاح التشفير، يمكنك إعادة توليده مرة ثانية", StaticCode.ApplicationTitle, true);
-                //    }
-                //}
-                //catch
-                //{
-                //    mainAlertControl.Show(this, "Error exporting encrypted file!", StaticCode.ApplicationTitle, true);
-                //}
-                #endregion
-
                 #region Aes encryption
                 if (!File.Exists(StaticCode.AesKeyAndIVPath))
                 {
+                    if (MessageBox.Show("لا يوجد مفاتيح تشفير حالياً ونحتاج إلى توليد هذه المفاتيح، هل تريد المتابعة؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        return;
                     StaticCode.GenerateNewAesKeyAndIV();
                 }
                 try
@@ -154,6 +113,7 @@ namespace AssetManagement
                     string outFile_Enc = outFile1.Replace("xlsx", "assf");
                     if (StaticCode.AesEncryption(outFile1, outFile_Enc, keyArr, IVArr))
                     {
+                        File.Delete(outFile1);
                         mainAlertControl.Show(this, "تم تصدير قاعدة البيانات مشفرة بنجاح", StaticCode.ApplicationTitle, true);
                     }
                     else
@@ -166,7 +126,6 @@ namespace AssetManagement
                     mainAlertControl.Show(this, "Error exporting encrypted file!", StaticCode.ApplicationTitle, true);
                 }
                 #endregion
-
             }
         }
 
@@ -376,6 +335,28 @@ namespace AssetManagement
         {
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
+        }
+
+        private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //StreamReader AesKey_IV_Rd = new StreamReader(StaticCode.AesKeyAndIVPath);
+            //string qqq = AesKey_IV_Rd.ReadLine();
+            //AesKey_IV_Rd.Close();
+            //byte[] aaa = Convert.FromBase64String(qqq);
+            //byte[] AesKey_IV_Enc = StaticCode.RSADecryption(aaa);
+
+            //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
+        }
+
+        private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AssetsStatsForm statFrm = new AssetsStatsForm();
+            statFrm.ShowDialog();
         }
     }
 }
