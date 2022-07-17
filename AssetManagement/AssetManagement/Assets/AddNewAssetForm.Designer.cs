@@ -33,6 +33,10 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.destructionRateLabel = new System.Windows.Forms.Label();
+            this.destructionRateNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.itemsQuantityLabel = new System.Windows.Forms.Label();
+            this.itemsQuantityNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.manageSquareTblBtn = new System.Windows.Forms.Button();
             this.assetSquareLabel = new System.Windows.Forms.Label();
             this.assetSquareLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -123,13 +127,13 @@ namespace AssetManagement.Assets
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.itemsQuantityLabel = new System.Windows.Forms.Label();
-            this.itemsQuantityNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.assetStockLabel = new System.Windows.Forms.Label();
-            this.assetStockNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lifeSpanInMonthsLabel = new System.Windows.Forms.Label();
+            this.lifeSpanInMonthsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
@@ -160,8 +164,7 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetStockNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewAssetWizardControl
@@ -217,8 +220,10 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage1
             // 
-            this.assetBasicsWizardPage1.Controls.Add(this.assetStockLabel);
-            this.assetBasicsWizardPage1.Controls.Add(this.assetStockNumericUpDown);
+            this.assetBasicsWizardPage1.Controls.Add(this.lifeSpanInMonthsLabel);
+            this.assetBasicsWizardPage1.Controls.Add(this.lifeSpanInMonthsNumericUpDown);
+            this.assetBasicsWizardPage1.Controls.Add(this.destructionRateLabel);
+            this.assetBasicsWizardPage1.Controls.Add(this.destructionRateNumericUpDown);
             this.assetBasicsWizardPage1.Controls.Add(this.itemsQuantityLabel);
             this.assetBasicsWizardPage1.Controls.Add(this.itemsQuantityNumericUpDown);
             this.assetBasicsWizardPage1.Controls.Add(this.manageSquareTblBtn);
@@ -261,6 +266,68 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Name = "assetBasicsWizardPage1";
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1311, 610);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
+            // 
+            // destructionRateLabel
+            // 
+            this.destructionRateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.destructionRateLabel.AutoSize = true;
+            this.destructionRateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destructionRateLabel.Location = new System.Drawing.Point(1096, 495);
+            this.destructionRateLabel.Name = "destructionRateLabel";
+            this.destructionRateLabel.Size = new System.Drawing.Size(168, 24);
+            this.destructionRateLabel.TabIndex = 65;
+            this.destructionRateLabel.Text = "معدل الإهلاك (بالمائة):";
+            // 
+            // destructionRateNumericUpDown
+            // 
+            this.destructionRateNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.destructionRateNumericUpDown.DecimalPlaces = 2;
+            this.destructionRateNumericUpDown.Enabled = false;
+            this.destructionRateNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(890, 491);
+            this.destructionRateNumericUpDown.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.destructionRateNumericUpDown.Name = "destructionRateNumericUpDown";
+            this.destructionRateNumericUpDown.Size = new System.Drawing.Size(165, 32);
+            this.destructionRateNumericUpDown.TabIndex = 70;
+            // 
+            // itemsQuantityLabel
+            // 
+            this.itemsQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemsQuantityLabel.AutoSize = true;
+            this.itemsQuantityLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemsQuantityLabel.Location = new System.Drawing.Point(1213, 430);
+            this.itemsQuantityLabel.Name = "itemsQuantityLabel";
+            this.itemsQuantityLabel.Size = new System.Drawing.Size(51, 24);
+            this.itemsQuantityLabel.TabIndex = 55;
+            this.itemsQuantityLabel.Text = "العدد:";
+            // 
+            // itemsQuantityNumericUpDown
+            // 
+            this.itemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(890, 426);
+            this.itemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.itemsQuantityNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.itemsQuantityNumericUpDown.Name = "itemsQuantityNumericUpDown";
+            this.itemsQuantityNumericUpDown.Size = new System.Drawing.Size(165, 32);
+            this.itemsQuantityNumericUpDown.TabIndex = 60;
+            this.itemsQuantityNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // manageSquareTblBtn
             // 
@@ -327,7 +394,7 @@ namespace AssetManagement.Assets
             // 
             this.manageCategoriesTblsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCategoriesTblsBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 312);
+            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 319);
             this.manageCategoriesTblsBtn.Name = "manageCategoriesTblsBtn";
             this.manageCategoriesTblsBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCategoriesTblsBtn.TabIndex = 51;
@@ -659,6 +726,7 @@ namespace AssetManagement.Assets
             this.minorCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.minorCategoryLookUpEdit.Size = new System.Drawing.Size(234, 30);
             this.minorCategoryLookUpEdit.TabIndex = 50;
+            this.minorCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.minorCategoryLookUpEdit_EditValueChanged);
             // 
             // minorCategoryTblBindingSource
             // 
@@ -678,6 +746,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.purchaseDateDateEdit.Size = new System.Drawing.Size(234, 30);
             this.purchaseDateDateEdit.TabIndex = 115;
+            this.purchaseDateDateEdit.EditValueChanged += new System.EventHandler(this.purchaseDateDateEdit_EditValueChanged);
             // 
             // colorColorPickEdit
             // 
@@ -1140,6 +1209,8 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
@@ -1195,65 +1266,32 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
-            // itemsQuantityLabel
+            // lifeSpanInMonthsLabel
             // 
-            this.itemsQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.itemsQuantityLabel.AutoSize = true;
-            this.itemsQuantityLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityLabel.Location = new System.Drawing.Point(1213, 430);
-            this.itemsQuantityLabel.Name = "itemsQuantityLabel";
-            this.itemsQuantityLabel.Size = new System.Drawing.Size(51, 24);
-            this.itemsQuantityLabel.TabIndex = 55;
-            this.itemsQuantityLabel.Text = "العدد:";
+            this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lifeSpanInMonthsLabel.AutoSize = true;
+            this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1098, 560);
+            this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
+            this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(166, 24);
+            this.lifeSpanInMonthsLabel.TabIndex = 75;
+            this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي:";
             // 
-            // itemsQuantityNumericUpDown
+            // lifeSpanInMonthsNumericUpDown
             // 
-            this.itemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.itemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(890, 426);
-            this.itemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
+            this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lifeSpanInMonthsNumericUpDown.DecimalPlaces = 2;
+            this.lifeSpanInMonthsNumericUpDown.Enabled = false;
+            this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 556);
+            this.lifeSpanInMonthsNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
-            this.itemsQuantityNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.itemsQuantityNumericUpDown.Name = "itemsQuantityNumericUpDown";
-            this.itemsQuantityNumericUpDown.Size = new System.Drawing.Size(234, 32);
-            this.itemsQuantityNumericUpDown.TabIndex = 60;
-            this.itemsQuantityNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // assetStockLabel
-            // 
-            this.assetStockLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetStockLabel.AutoSize = true;
-            this.assetStockLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetStockLabel.Location = new System.Drawing.Point(1200, 495);
-            this.assetStockLabel.Name = "assetStockLabel";
-            this.assetStockLabel.Size = new System.Drawing.Size(61, 24);
-            this.assetStockLabel.TabIndex = 65;
-            this.assetStockLabel.Text = "الرصيد:";
-            // 
-            // assetStockNumericUpDown
-            // 
-            this.assetStockNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetStockNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetStockNumericUpDown.Location = new System.Drawing.Point(890, 491);
-            this.assetStockNumericUpDown.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.assetStockNumericUpDown.Name = "assetStockNumericUpDown";
-            this.assetStockNumericUpDown.Size = new System.Drawing.Size(234, 32);
-            this.assetStockNumericUpDown.TabIndex = 70;
+            this.lifeSpanInMonthsNumericUpDown.Name = "lifeSpanInMonthsNumericUpDown";
+            this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(165, 32);
+            this.lifeSpanInMonthsNumericUpDown.TabIndex = 80;
             // 
             // AddNewAssetForm
             // 
@@ -1272,6 +1310,8 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl.ResumeLayout(false);
             this.assetBasicsWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
@@ -1305,8 +1345,7 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetStockNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1408,7 +1447,9 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.SquareTblTableAdapter squareTblTableAdapter;
         private System.Windows.Forms.Label itemsQuantityLabel;
         private System.Windows.Forms.NumericUpDown itemsQuantityNumericUpDown;
-        private System.Windows.Forms.Label assetStockLabel;
-        private System.Windows.Forms.NumericUpDown assetStockNumericUpDown;
+        private System.Windows.Forms.Label destructionRateLabel;
+        private System.Windows.Forms.NumericUpDown destructionRateNumericUpDown;
+        private System.Windows.Forms.Label lifeSpanInMonthsLabel;
+        private System.Windows.Forms.NumericUpDown lifeSpanInMonthsNumericUpDown;
     }
 }

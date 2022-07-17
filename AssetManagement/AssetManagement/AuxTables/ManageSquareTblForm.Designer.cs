@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSquareTblForm));
             this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.squareGridControl = new DevExpress.XtraGrid.GridControl();
@@ -74,10 +74,10 @@ namespace AssetManagement.AuxTables
             // 
             this.squareGridControl.DataSource = this.squareTblBindingSource;
             this.squareGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.minorCategoryGridView;
-            gridLevelNode2.RelationName = "squareLevel";
+            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
+            gridLevelNode1.RelationName = "squareLevel";
             this.squareGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.squareGridControl.Location = new System.Drawing.Point(0, 27);
             this.squareGridControl.MainView = this.squareGridView;
             this.squareGridControl.Name = "squareGridControl";
@@ -147,8 +147,8 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // tableAdapterManager
             // 
@@ -159,8 +159,11 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = null;

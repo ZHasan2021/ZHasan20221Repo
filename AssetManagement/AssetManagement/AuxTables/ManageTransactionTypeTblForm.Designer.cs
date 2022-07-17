@@ -37,6 +37,8 @@ namespace AssetManagement.AuxTables
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.transactionTypeGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTransactionTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
@@ -53,8 +55,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.transactionTypeTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTransactionTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
@@ -105,6 +105,24 @@ namespace AssetManagement.AuxTables
             this.transactionTypeGridView.GridControl = this.transactionTypeGridControl;
             this.transactionTypeGridView.Name = "transactionTypeGridView";
             // 
+            // colID
+            // 
+            this.colID.Caption = "معرف نمط تصريف الأصل";
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 80;
+            this.colID.Name = "colID";
+            this.colID.Width = 80;
+            // 
+            // colTransactionTypeName
+            // 
+            this.colTransactionTypeName.Caption = "اسم نمط تصريف الأصل";
+            this.colTransactionTypeName.FieldName = "TransactionTypeName";
+            this.colTransactionTypeName.MinWidth = 25;
+            this.colTransactionTypeName.Name = "colTransactionTypeName";
+            this.colTransactionTypeName.Visible = true;
+            this.colTransactionTypeName.VisibleIndex = 0;
+            this.colTransactionTypeName.Width = 150;
+            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -117,8 +135,8 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // tableAdapterManager
             // 
@@ -129,8 +147,11 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -267,24 +288,6 @@ namespace AssetManagement.AuxTables
             this.transactionTypeTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.transactionTypeTblBindingNavigatorSaveItem.Text = "Save Data";
             this.transactionTypeTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.transactionTypeTblBindingNavigatorSaveItem_Click);
-            // 
-            // colID
-            // 
-            this.colID.Caption = "معرف نمط تصريف الأصل";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
-            this.colID.Name = "colID";
-            this.colID.Width = 80;
-            // 
-            // colTransactionTypeName
-            // 
-            this.colTransactionTypeName.Caption = "اسم نمط تصريف الأصل";
-            this.colTransactionTypeName.FieldName = "TransactionTypeName";
-            this.colTransactionTypeName.MinWidth = 25;
-            this.colTransactionTypeName.Name = "colTransactionTypeName";
-            this.colTransactionTypeName.Visible = true;
-            this.colTransactionTypeName.VisibleIndex = 0;
-            this.colTransactionTypeName.Width = 150;
             // 
             // ManageTransactionTypeTblForm
             // 

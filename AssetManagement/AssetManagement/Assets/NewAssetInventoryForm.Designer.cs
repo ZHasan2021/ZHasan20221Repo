@@ -33,8 +33,6 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewAssetInventoryForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.exportToExcelBtn = new System.Windows.Forms.Button();
-            this.searchAssetBtn = new System.Windows.Forms.Button();
             this.customSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.searchAllRadioButton = new System.Windows.Forms.RadioButton();
             this.customSearchGroupBox = new System.Windows.Forms.GroupBox();
@@ -124,6 +122,20 @@ namespace AssetManagement.Assets
             this.colLastModifiedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.exportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.panel1.SuspendLayout();
             this.customSearchGroupBox.SuspendLayout();
             this.searchByInsertionDatePanel.SuspendLayout();
@@ -152,6 +164,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -171,49 +185,23 @@ namespace AssetManagement.Assets
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.exportToExcelBtn);
-            this.panel1.Controls.Add(this.searchAssetBtn);
+            this.panel1.Controls.Add(this.searchAssetDropDownButton);
+            this.panel1.Controls.Add(this.exportToExcelDropDownButton);
             this.panel1.Controls.Add(this.customSearchRadioButton);
             this.panel1.Controls.Add(this.searchAllRadioButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 20);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1441, 101);
             this.panel1.TabIndex = 0;
             // 
-            // exportToExcelBtn
-            // 
-            this.exportToExcelBtn.Enabled = false;
-            this.exportToExcelBtn.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.exportToExcelBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.exportToExcelBtn.Location = new System.Drawing.Point(36, 12);
-            this.exportToExcelBtn.Name = "exportToExcelBtn";
-            this.exportToExcelBtn.Size = new System.Drawing.Size(163, 74);
-            this.exportToExcelBtn.TabIndex = 505;
-            this.exportToExcelBtn.Text = "تصدير";
-            this.exportToExcelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exportToExcelBtn.UseVisualStyleBackColor = true;
-            this.exportToExcelBtn.Click += new System.EventHandler(this.exportToExcelBtn_Click);
-            // 
-            // searchAssetBtn
-            // 
-            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.searchAssetBtn.Location = new System.Drawing.Point(228, 12);
-            this.searchAssetBtn.Name = "searchAssetBtn";
-            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
-            this.searchAssetBtn.TabIndex = 500;
-            this.searchAssetBtn.Text = "بحث";
-            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchAssetBtn.UseVisualStyleBackColor = true;
-            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
-            // 
             // customSearchRadioButton
             // 
             this.customSearchRadioButton.AutoSize = true;
+            this.customSearchRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customSearchRadioButton.Location = new System.Drawing.Point(977, 24);
             this.customSearchRadioButton.Name = "customSearchRadioButton";
-            this.customSearchRadioButton.Size = new System.Drawing.Size(129, 28);
+            this.customSearchRadioButton.Size = new System.Drawing.Size(114, 25);
             this.customSearchRadioButton.TabIndex = 10;
             this.customSearchRadioButton.Text = "بحث مخصص";
             this.customSearchRadioButton.UseVisualStyleBackColor = true;
@@ -223,9 +211,10 @@ namespace AssetManagement.Assets
             // 
             this.searchAllRadioButton.AutoSize = true;
             this.searchAllRadioButton.Checked = true;
+            this.searchAllRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchAllRadioButton.Location = new System.Drawing.Point(1141, 24);
             this.searchAllRadioButton.Name = "searchAllRadioButton";
-            this.searchAllRadioButton.Size = new System.Drawing.Size(125, 28);
+            this.searchAllRadioButton.Size = new System.Drawing.Size(110, 25);
             this.searchAllRadioButton.TabIndex = 5;
             this.searchAllRadioButton.TabStop = true;
             this.searchAllRadioButton.Text = "بحث عن الكل";
@@ -259,7 +248,7 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Controls.Add(this.searchByDepartmentCheckBox);
             this.customSearchGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.customSearchGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 101);
+            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 121);
             this.customSearchGroupBox.Name = "customSearchGroupBox";
             this.customSearchGroupBox.Size = new System.Drawing.Size(1441, 387);
             this.customSearchGroupBox.TabIndex = 100;
@@ -720,12 +709,12 @@ namespace AssetManagement.Assets
             // 
             this.assetGridControl.DataSource = this.assetTblBindingSource;
             this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assetGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.assetGridControl.Location = new System.Drawing.Point(0, 488);
+            this.assetGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.assetGridControl.Location = new System.Drawing.Point(0, 508);
             this.assetGridControl.MainView = this.assetGridView;
-            this.assetGridControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assetGridControl.Margin = new System.Windows.Forms.Padding(4);
             this.assetGridControl.Name = "assetGridControl";
-            this.assetGridControl.Size = new System.Drawing.Size(1441, 343);
+            this.assetGridControl.Size = new System.Drawing.Size(1441, 323);
             this.assetGridControl.TabIndex = 600;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetGridView});
@@ -1170,15 +1159,139 @@ namespace AssetManagement.Assets
             // 
             this.assetTblTableAdapter.ClearBeforeFill = true;
             // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // barManager1
+            // 
+            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar3});
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonItem1,
+            this.barButtonItem2,
+            this.barButtonItem3});
+            this.barManager1.MaxItemId = 9;
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Custom 2";
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar3.Text = "Custom 2";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1441, 20);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 831);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1441, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 811);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1441, 20);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 811);
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Custom 2";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.Text = "Custom 2";
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Custom 2";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.Text = "Custom 2";
+            // 
+            // exportToExcelDropDownButton
+            // 
+            this.exportToExcelDropDownButton.DropDownControl = this.popupMenu1;
+            this.exportToExcelDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
+            this.exportToExcelDropDownButton.Location = new System.Drawing.Point(60, 11);
+            this.exportToExcelDropDownButton.MenuManager = this.barManager1;
+            this.exportToExcelDropDownButton.Name = "exportToExcelDropDownButton";
+            this.exportToExcelDropDownButton.Size = new System.Drawing.Size(163, 73);
+            this.exportToExcelDropDownButton.TabIndex = 506;
+            this.exportToExcelDropDownButton.Text = "تصدير الجرد";
+            this.exportToExcelDropDownButton.Click += new System.EventHandler(this.exportToExcelDropDownButton_Click);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "جرد كامل الأصول";
+            this.barButtonItem1.Id = 6;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "جرد عقارات";
+            this.barButtonItem2.Id = 7;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "جرد مركبات";
+            this.barButtonItem3.Id = 8;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // searchAssetDropDownButton
+            // 
+            this.searchAssetDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
+            this.searchAssetDropDownButton.Location = new System.Drawing.Point(276, 11);
+            this.searchAssetDropDownButton.Name = "searchAssetDropDownButton";
+            this.searchAssetDropDownButton.Size = new System.Drawing.Size(163, 73);
+            this.searchAssetDropDownButton.TabIndex = 507;
+            this.searchAssetDropDownButton.Text = "بحث";
+            this.searchAssetDropDownButton.Click += new System.EventHandler(this.searchAssetDropDownButton_Click);
+            // 
             // NewAssetInventoryForm
             // 
-            this.AcceptButton = this.searchAssetBtn;
+            this.AcceptButton = this.searchAssetDropDownButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1441, 831);
             this.Controls.Add(this.assetGridControl);
             this.Controls.Add(this.customSearchGroupBox);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1220,7 +1333,10 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1276,10 +1392,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.LookUpEdit searchByStatusLookUpEdit;
         private System.Windows.Forms.BindingSource statusTblBindingSource;
         private AssetMngDbDataSetTableAdapters.StatusTblTableAdapter statusTblTableAdapter;
-        private System.Windows.Forms.Button searchAssetBtn;
         private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
-        private System.Windows.Forms.Button exportToExcelBtn;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetCode;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetSection;
@@ -1319,5 +1433,19 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedOn;
         private DevExpress.XtraGrid.Columns.GridColumn colInsertedBy;
         private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedBy;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraEditors.DropDownButton exportToExcelDropDownButton;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraEditors.DropDownButton searchAssetDropDownButton;
     }
 }

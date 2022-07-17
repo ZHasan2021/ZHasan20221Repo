@@ -99,10 +99,10 @@ namespace AssetManagement.Assets
             searchByInsertionDatePanel.Visible = searchByInsertionDateCheckBox.Checked;
         }
 
-        private void searchAssetBtn_Click(object sender, EventArgs e)
+        private void searchAssetDropDownButton_Click(object sender, EventArgs e)
         {
             assetGridControl.Visible = false;
-            exportToExcelBtn.Enabled = false;
+            exportToExcelDropDownButton.Enabled = false;
             assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
             if (customSearchRadioButton.Checked)
             {
@@ -171,10 +171,10 @@ namespace AssetManagement.Assets
 
             assetGridControl.DataSource = assetsQry;
             assetGridControl.Visible = true;
-            exportToExcelBtn.Enabled = true;
+            exportToExcelDropDownButton.Enabled = true;
         }
 
-        private void exportToExcelBtn_Click(object sender, EventArgs e)
+        private void exportToExcelDropDownButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsInvPath.ShowDialog() != DialogResult.OK)
@@ -187,16 +187,21 @@ namespace AssetManagement.Assets
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
             astWs.View.RightToLeft = true;
-            List<int> columnsWidths = new List<int>() { 10, 15, 55, 10, 12, 12, 20, 15, 18, 15, 15, 20, 15, 15, 15, 15, 25 };
+            List<int> columnsWidths = new List<int>() { 10, 15, 55, 10, 25, 30, 15, 25, 12, 12, 20, 15, 18, 18, 15, 15, 20, 15, 15, 15, 15, 25 };
             List<string> columnsTitles = new List<string>()
             {
                 "التسلسل",
                 "الرمز",
                 "بيان تفصيلي للاصل ( النوع / الموديل / اللون / الرقم / الحجم / ..... )",
                 "العدد",
+                "اسم المالك",
+                "العنوان بالضبط",
+                "المستغل منه",
+                "مع من ورقة الملكية",
                 "تاريخ الشراء",
                 "قيمة الشراء",
                 "مكان وجوده",
+                "العمر الافتراضي المتبقي",
                 "حالته الآنية",
                 "مدى الاستفاده الحالية منه",
                 "قيمته الفعلية الحالية",
@@ -249,7 +254,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "الدائرة";
             }
-            using (var cells = astWs.Cells[5, 5, 5, 8])
+            using (var cells = astWs.Cells[5, 5, 5, 12])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -260,11 +265,12 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 9])
+            using (var cells = astWs.Cells[5, 13, 5, 14])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
                 cells.Style.Font.Bold = true;
+                cells.Merge = true;
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
@@ -272,7 +278,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "القسم";
             }
-            using (var cells = astWs.Cells[5, 10, 5, 12])
+            using (var cells = astWs.Cells[5, 15, 5, 17])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -283,7 +289,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 13])
+            using (var cells = astWs.Cells[5, 18])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -295,7 +301,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "التاريخ";
             }
-            using (var cells = astWs.Cells[5, 14, 5, 17])
+            using (var cells = astWs.Cells[5, 19, 5, 22])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -322,25 +328,23 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             }
             if (assetsQry.Count() == 0)
-           
-           
                 return;
-            
+
             int astCount = 1;
+            currentRow++;
             List<MainCategoryTbl> allMainCategories = StaticCode.mainDbContext.MainCategoryTbls.Select(maca => maca).ToList();
-            foreach(MainCategoryTbl oneMaCa in allMainCategories)
-                {
+            foreach (MainCategoryTbl oneMaCa in allMainCategories)
+            {
                 List<int> micaIDs = StaticCode.mainDbContext.MinorCategoryTbls.Where(mica1 => mica1.MainCategory == oneMaCa.ID).Select(mica1 => mica1.ID).ToList();
-                var assetsQryByMaCa = assetsQry.Where(ast => micaIDs.Contains(ast.AssetMinorCategory) );
-                if (assetsQryByMaCa==null ||assetsQryByMaCa.Count() == 0)
+                var assetsQryByMaCa = assetsQry.Where(ast => micaIDs.Contains(ast.AssetMinorCategory));
+                if (assetsQryByMaCa == null || assetsQryByMaCa.Count() == 0)
                     continue;
 
-                currentRow++;
                 using (var cells = astWs.Cells[currentRow, 3, currentRow, 4])
                 {
                     cells.Style.Font.Name = "Sakkal Majalla";
                     cells.Style.Font.Size = 12.0F;
-                cells.Merge = true;
+                    cells.Merge = true;
                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                     cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
@@ -354,38 +358,43 @@ namespace AssetManagement.Assets
                 {
                     Application.DoEvents();
 
-                    astWs.Cells[ currentRow, 2].Value = astCount;
-                    astWs.Cells[ currentRow, 3].Value = oneAst.AssetCode;
-                    astWs.Cells[ currentRow, 4].Value = oneAst.AssetSpecifications;
-                    astWs.Cells[ currentRow, 5].Value = "";
-                    astWs.Cells[ currentRow, 6].Value = oneAst.PurchaseDate?.ToShortDateString();
-                    astWs.Cells[ currentRow, 7].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
-                    astWs.Cells[ currentRow, 8].Value = oneAst.PlaceOfPresence;
-                    astWs.Cells[ currentRow, 9].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
-                    astWs.Cells[ currentRow, 10].Value = oneAst.BenefitPercentage;
-                    astWs.Cells[ currentRow, 11].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
-                    astWs.Cells[currentRow, 12].Value = oneAst.CustodianName;
-                    astWs.Cells[currentRow, 13].Value = oneAst.MoreDetails;
-                    astWs.Cells[currentRow, 14].Value = "";
-                    astWs.Cells[currentRow, 15].Value = "";
-                    astWs.Cells[currentRow, 16].Value = "";
-                    astWs.Cells[currentRow, 17].Value = "";
-                    astWs.Cells[currentRow, 18].Value = oneAst.AssetNotes;
+                    astWs.Cells[currentRow, 2].Value = astCount;
+                    astWs.Cells[currentRow, 3].Value = oneAst.AssetCode;
+                    astWs.Cells[currentRow, 4].Value = oneAst.AssetSpecifications;
+                    astWs.Cells[currentRow, 5].Value = oneAst.ItemsQuantity;
+                    astWs.Cells[currentRow, 6].Value = oneAst.OwnerName;
+                    astWs.Cells[currentRow, 7].Value = oneAst.EstateAddress;
+                    astWs.Cells[currentRow, 8].Value = oneAst.OfUsed;
+                    astWs.Cells[currentRow, 9].Value = oneAst.EstateOwnershipDocumentWith;
+                    astWs.Cells[currentRow, 10].Value = oneAst.PurchaseDate?.ToShortDateString();
+                    astWs.Cells[currentRow, 11].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 12].Value = oneAst.PlaceOfPresence;
+                    astWs.Cells[currentRow, 13].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";
+                    astWs.Cells[currentRow, 14].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
+                    astWs.Cells[currentRow, 15].Value = oneAst.BenefitPercentage;
+                    astWs.Cells[currentRow, 16].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 17].Value = oneAst.CustodianName;
+                    astWs.Cells[currentRow, 18].Value = oneAst.MoreDetails;
+                    astWs.Cells[currentRow, 19].Value = "";
+                    astWs.Cells[currentRow, 20].Value = "";
+                    astWs.Cells[currentRow, 21].Value = "";
+                    astWs.Cells[currentRow, 22].Value = oneAst.DestructionRate;
+                    astWs.Cells[currentRow, 23].Value = oneAst.AssetNotes;
 
-                currentRow++;
+                    currentRow++;
                     astCount++;
                 }
             }
 
-                using (var cells = astWs.Cells[startRow+1, 2, currentRow-1, columnsWidths.Count + 1])
-                {
-                    cells.Style.Font.Name = "Sakkal Majalla";
-                    cells.Style.Font.Size = 11.0F;
-                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                }
+            using (var cells = astWs.Cells[startRow + 1, 2, currentRow - 1, columnsWidths.Count + 1])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 11.0F;
+                cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            }
             astEp.Save();
 
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);

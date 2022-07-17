@@ -165,6 +165,12 @@
     <Compile Include="Assets\NewAssetInventoryForm.Designer.cs">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.Designer.cs">
+      <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Options\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageFinancialItemCategoryTblForm.resx">
+      <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>

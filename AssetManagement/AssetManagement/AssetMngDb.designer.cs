@@ -257,19 +257,19 @@ namespace AssetManagement
 			}
 		}
 		
-		public System.Data.Linq.Table<MinorCategoryVw> MinorCategoryVws
-		{
-			get
-			{
-				return this.GetTable<MinorCategoryVw>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AssetVw> AssetVws
 		{
 			get
 			{
 				return this.GetTable<AssetVw>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MinorCategoryVw> MinorCategoryVws
+		{
+			get
+			{
+				return this.GetTable<MinorCategoryVw>();
 			}
 		}
 	}
@@ -984,8 +984,6 @@ namespace AssetManagement
 		
 		private int _ItemsQuantity;
 		
-		private double _AssetStock;
-		
 		private string _Model;
 		
 		private string _Color;
@@ -1034,7 +1032,7 @@ namespace AssetManagement
 		
 		private string _CarEngineNumber;
 		
-		private System.Nullable<double> _CurrentDestructionRate;
+		private System.Nullable<double> _DestructionRate;
 		
 		private System.Nullable<double> _LifeSpanInMonths;
 		
@@ -1094,8 +1092,6 @@ namespace AssetManagement
     partial void OnAssetSpecificationsChanged();
     partial void OnItemsQuantityChanging(int value);
     partial void OnItemsQuantityChanged();
-    partial void OnAssetStockChanging(double value);
-    partial void OnAssetStockChanged();
     partial void OnModelChanging(string value);
     partial void OnModelChanged();
     partial void OnColorChanging(string value);
@@ -1144,8 +1140,8 @@ namespace AssetManagement
     partial void OnCarChassisNumberChanged();
     partial void OnCarEngineNumberChanging(string value);
     partial void OnCarEngineNumberChanged();
-    partial void OnCurrentDestructionRateChanging(System.Nullable<double> value);
-    partial void OnCurrentDestructionRateChanged();
+    partial void OnDestructionRateChanging(System.Nullable<double> value);
+    partial void OnDestructionRateChanged();
     partial void OnLifeSpanInMonthsChanging(System.Nullable<double> value);
     partial void OnLifeSpanInMonthsChanged();
     partial void OnIsSoldChanging(System.Nullable<bool> value);
@@ -1351,26 +1347,6 @@ namespace AssetManagement
 					this._ItemsQuantity = value;
 					this.SendPropertyChanged("ItemsQuantity");
 					this.OnItemsQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetStock", DbType="Float NOT NULL")]
-		public double AssetStock
-		{
-			get
-			{
-				return this._AssetStock;
-			}
-			set
-			{
-				if ((this._AssetStock != value))
-				{
-					this.OnAssetStockChanging(value);
-					this.SendPropertyChanging();
-					this._AssetStock = value;
-					this.SendPropertyChanged("AssetStock");
-					this.OnAssetStockChanged();
 				}
 			}
 		}
@@ -1871,22 +1847,22 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentDestructionRate", DbType="Float")]
-		public System.Nullable<double> CurrentDestructionRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestructionRate", DbType="Float")]
+		public System.Nullable<double> DestructionRate
 		{
 			get
 			{
-				return this._CurrentDestructionRate;
+				return this._DestructionRate;
 			}
 			set
 			{
-				if ((this._CurrentDestructionRate != value))
+				if ((this._DestructionRate != value))
 				{
-					this.OnCurrentDestructionRateChanging(value);
+					this.OnDestructionRateChanging(value);
 					this.SendPropertyChanging();
-					this._CurrentDestructionRate = value;
-					this.SendPropertyChanged("CurrentDestructionRate");
-					this.OnCurrentDestructionRateChanged();
+					this._DestructionRate = value;
+					this.SendPropertyChanged("DestructionRate");
+					this.OnDestructionRateChanged();
 				}
 			}
 		}
@@ -6212,105 +6188,6 @@ namespace AssetManagement
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
-	public partial class MinorCategoryVw
-	{
-		
-		private string _اسم_الفئة_الفرعية;
-		
-		private string _وصف_الفئة_الفرعية;
-		
-		private string _اسم_الفئة_الرئيسية;
-		
-		private System.Nullable<int> _العمر_الإنتاجي_بالسنوات;
-		
-		private System.Nullable<double> _معدل_الإهلاك;
-		
-		public MinorCategoryVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الفرعية
-		{
-			get
-			{
-				return this._اسم_الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._اسم_الفئة_الفرعية != value))
-				{
-					this._اسم_الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
-		public string وصف_الفئة_الفرعية
-		{
-			get
-			{
-				return this._وصف_الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._وصف_الفئة_الفرعية != value))
-				{
-					this._وصف_الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الرئيسية
-		{
-			get
-			{
-				return this._اسم_الفئة_الرئيسية;
-			}
-			set
-			{
-				if ((this._اسم_الفئة_الرئيسية != value))
-				{
-					this._اسم_الفئة_الرئيسية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int")]
-		public System.Nullable<int> العمر_الإنتاجي_بالسنوات
-		{
-			get
-			{
-				return this._العمر_الإنتاجي_بالسنوات;
-			}
-			set
-			{
-				if ((this._العمر_الإنتاجي_بالسنوات != value))
-				{
-					this._العمر_الإنتاجي_بالسنوات = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float")]
-		public System.Nullable<double> معدل_الإهلاك
-		{
-			get
-			{
-				return this._معدل_الإهلاك;
-			}
-			set
-			{
-				if ((this._معدل_الإهلاك != value))
-				{
-					this._معدل_الإهلاك = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetVw")]
 	public partial class AssetVw
 	{
@@ -6319,9 +6196,7 @@ namespace AssetManagement
 		
 		private string _كود_الأصل;
 		
-		private System.Nullable<int> _العدد;
-		
-		private System.Nullable<double> _الرصيد;
+		private int _العدد;
 		
 		private string _القسم;
 		
@@ -6423,8 +6298,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int")]
-		public System.Nullable<int> العدد
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
+		public int العدد
 		{
 			get
 			{
@@ -6435,22 +6310,6 @@ namespace AssetManagement
 				if ((this._العدد != value))
 				{
 					this._العدد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الرصيد", DbType="Float")]
-		public System.Nullable<double> الرصيد
-		{
-			get
-			{
-				return this._الرصيد;
-			}
-			set
-			{
-				if ((this._الرصيد != value))
-				{
-					this._الرصيد = value;
 				}
 			}
 		}
@@ -6963,6 +6822,105 @@ namespace AssetManagement
 				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
 				{
 					this._العمر_الافتراضي_المتبقي_للأصل = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
+	public partial class MinorCategoryVw
+	{
+		
+		private string _اسم_الفئة_الفرعية;
+		
+		private string _وصف_الفئة_الفرعية;
+		
+		private string _اسم_الفئة_الرئيسية;
+		
+		private System.Nullable<int> _العمر_الإنتاجي_بالسنوات;
+		
+		private System.Nullable<double> _معدل_الإهلاك;
+		
+		public MinorCategoryVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الفرعية
+		{
+			get
+			{
+				return this._اسم_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الفرعية != value))
+				{
+					this._اسم_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
+		public string وصف_الفئة_الفرعية
+		{
+			get
+			{
+				return this._وصف_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._وصف_الفئة_الفرعية != value))
+				{
+					this._وصف_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الرئيسية
+		{
+			get
+			{
+				return this._اسم_الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الرئيسية != value))
+				{
+					this._اسم_الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int")]
+		public System.Nullable<int> العمر_الإنتاجي_بالسنوات
+		{
+			get
+			{
+				return this._العمر_الإنتاجي_بالسنوات;
+			}
+			set
+			{
+				if ((this._العمر_الإنتاجي_بالسنوات != value))
+				{
+					this._العمر_الإنتاجي_بالسنوات = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float")]
+		public System.Nullable<double> معدل_الإهلاك
+		{
+			get
+			{
+				return this._معدل_الإهلاك;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك != value))
+				{
+					this._معدل_الإهلاك = value;
 				}
 			}
 		}

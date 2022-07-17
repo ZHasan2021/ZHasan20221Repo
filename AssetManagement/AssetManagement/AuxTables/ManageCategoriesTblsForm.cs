@@ -127,6 +127,12 @@ namespace AssetManagement.AuxTables
             this.Validate();
             minorCategoryTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+            mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
         }
     }
 }

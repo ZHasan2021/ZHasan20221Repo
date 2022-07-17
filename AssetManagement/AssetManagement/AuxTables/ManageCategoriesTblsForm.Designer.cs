@@ -49,6 +49,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
             this.mainCategoryGroupBox = new System.Windows.Forms.GroupBox();
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox = new System.Windows.Forms.CheckBox();
             this.findAllMinorCategoriestBtn = new System.Windows.Forms.Button();
             this.addNewMainCategoryGroupBox = new System.Windows.Forms.GroupBox();
             this.newMainCategoryDescriptionLabel = new System.Windows.Forms.Label();
@@ -76,7 +77,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.minorCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -249,6 +249,16 @@ namespace AssetManagement.AuxTables
             this.mainCategoryGroupBox.TabStop = false;
             this.mainCategoryGroupBox.Text = "الفئات الرئيسية";
             // 
+            // addTheCategoryAsAFinancialItemCategoryCheckBox
+            // 
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.AutoSize = true;
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Location = new System.Drawing.Point(1065, 204);
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Name = "addTheCategoryAsAFinancialItemCategoryCheckBox";
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Size = new System.Drawing.Size(174, 28);
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.TabIndex = 65;
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Text = "إضافة الفئة كبند مالي";
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.UseVisualStyleBackColor = true;
+            // 
             // findAllMinorCategoriestBtn
             // 
             this.findAllMinorCategoriestBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -403,8 +413,8 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // tableAdapterManager
             // 
@@ -554,16 +564,6 @@ namespace AssetManagement.AuxTables
             this.minorCategoryTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.minorCategoryTblBindingNavigatorSaveItem.Text = "Save Data";
             this.minorCategoryTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.minorCategoryTblBindingNavigatorSaveItem_Click);
-            // 
-            // addTheCategoryAsAFinancialItemCategoryCheckBox
-            // 
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.AutoSize = true;
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Location = new System.Drawing.Point(1065, 204);
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Name = "addTheCategoryAsAFinancialItemCategoryCheckBox";
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Size = new System.Drawing.Size(174, 28);
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.TabIndex = 65;
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Text = "إضافة الفئة كبند مالي";
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.UseVisualStyleBackColor = true;
             // 
             // ManageCategoriesTblsForm
             // 

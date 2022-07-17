@@ -112,7 +112,8 @@ namespace AssetManagement.Assets
                     AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
-                    AssetStock = Convert.ToDouble(assetStockNumericUpDown.Value),
+                    LifeSpanInMonths = Convert.ToDouble(lifeSpanInMonthsNumericUpDown.Value),
+                    DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
                     AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
@@ -141,6 +142,8 @@ namespace AssetManagement.Assets
                     CarChassisNumber = carChassisNumberTextBox.Text.Trim(),
                     CarManufacturingYear = Convert.ToInt32(carManufacturingYearNumericUpDown.Value),
                     CarEngineNumber = carEngineNumberTextBox.Text.Trim(),
+                    IsSold = false,
+                    IsOutOfWork = false,
                 };
                 StaticCode.mainDbContext.AssetTbls.InsertOnSubmit(newAssetRecord);
                 StaticCode.mainDbContext.SubmitChanges();
@@ -217,6 +220,34 @@ namespace AssetManagement.Assets
             squFrm.ShowDialog();
 
             this.squareTblTableAdapter.Fill(this.assetMngDbDataSet.SquareTbl);
+        }
+
+        private void purchaseDateDateEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt1 = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
+                int monthsDiff = (DateTime.Today.Year - dt1.Year) * 12 + (DateTime.Today.Month - dt1.Month);
+                lifeSpanInMonthsNumericUpDown.Value = monthsDiff;
+            }
+            catch
+            {
+                lifeSpanInMonthsNumericUpDown.Value = 0;
+            }
+        }
+
+        private void minorCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (minorCategoryLookUpEdit.EditValue == null)
+                return;
+            try
+            {
+                destructionRateNumericUpDown.Value = Convert.ToDecimal(StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == Convert.ToInt32(minorCategoryLookUpEdit.EditValue)).DestructionRate);
+            }
+            catch
+            {
+                destructionRateNumericUpDown.Value = 0;
+            }
         }
     }
 }
