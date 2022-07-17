@@ -105,7 +105,7 @@ namespace AssetManagement
             // 
             this.mainRibbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(89);
             this.mainRibbonControl.ExpandCollapseItem.Id = 0;
-            this.mainRibbonControl.Font = new System.Drawing.Font("Mudir MT", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mainRibbonControl.Font = new System.Drawing.Font("Mudir MT", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mainRibbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.mainRibbonControl.ExpandCollapseItem,
             this.mainRibbonControl.SearchEditItem,

@@ -31,10 +31,6 @@ namespace AssetManagement.AuxTables
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCategoriesTblsForm));
             this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.minorCategoryGridControl = new DevExpress.XtraGrid.GridControl();
@@ -66,13 +62,21 @@ namespace AssetManagement.AuxTables
             this.assetMinorCategoryLabel = new System.Windows.Forms.Label();
             this.mainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.minorCategoryTileNavPane = new DevExpress.XtraBars.Navigation.TileNavPane();
-            this.mainMenuNavButton = new DevExpress.XtraBars.Navigation.NavButton();
-            this.minorCategoryTileNavCategory = new DevExpress.XtraBars.Navigation.TileNavCategory();
-            this.savingChangesTileNavItem = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.saveChangesTileNavSubItem = new DevExpress.XtraBars.Navigation.TileNavSubItem();
-            this.discardChangesTileNavSubItem = new DevExpress.XtraBars.Navigation.TileNavSubItem();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.minorCategoryTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.minorCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -84,7 +88,8 @@ namespace AssetManagement.AuxTables
             this.mainCategoryGroupBox.SuspendLayout();
             this.addNewMainCategoryGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTileNavPane)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingNavigator)).BeginInit();
+            this.minorCategoryTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
             // minorCategoryGridView
@@ -98,18 +103,19 @@ namespace AssetManagement.AuxTables
             this.minorCategoryGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.minorCategoryGridControl.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tw Cen MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minorCategoryGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.minorCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
             this.minorCategoryGridControl.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.minorCategoryGridControl_EmbeddedNavigator_ButtonClick);
             gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "minorCategoryLevel";
             this.minorCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.minorCategoryGridControl.Location = new System.Drawing.Point(0, 263);
+            this.minorCategoryGridControl.Location = new System.Drawing.Point(0, 290);
             this.minorCategoryGridControl.MainView = this.mainCategoryGridView;
             this.minorCategoryGridControl.Name = "minorCategoryGridControl";
             this.minorCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.mainCategoryRepositoryItemLookUpEdit});
-            this.minorCategoryGridControl.Size = new System.Drawing.Size(1284, 451);
-            this.minorCategoryGridControl.TabIndex = 3;
+            this.minorCategoryGridControl.Size = new System.Drawing.Size(1284, 424);
+            this.minorCategoryGridControl.TabIndex = 6;
             this.minorCategoryGridControl.UseEmbeddedNavigator = true;
             this.minorCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.mainCategoryGridView,
@@ -173,7 +179,7 @@ namespace AssetManagement.AuxTables
             this.colMainCategory.MinWidth = 70;
             this.colMainCategory.Name = "colMainCategory";
             this.colMainCategory.Visible = true;
-            this.colMainCategory.VisibleIndex = 4;
+            this.colMainCategory.VisibleIndex = 2;
             this.colMainCategory.Width = 94;
             // 
             // mainCategoryRepositoryItemLookUpEdit
@@ -198,7 +204,7 @@ namespace AssetManagement.AuxTables
             this.colProductiveAgeInYears.MinWidth = 100;
             this.colProductiveAgeInYears.Name = "colProductiveAgeInYears";
             this.colProductiveAgeInYears.Visible = true;
-            this.colProductiveAgeInYears.VisibleIndex = 2;
+            this.colProductiveAgeInYears.VisibleIndex = 3;
             this.colProductiveAgeInYears.Width = 100;
             // 
             // colDestructionRate
@@ -209,7 +215,7 @@ namespace AssetManagement.AuxTables
             this.colDestructionRate.Name = "colDestructionRate";
             this.colDestructionRate.OptionsColumn.AllowEdit = false;
             this.colDestructionRate.Visible = true;
-            this.colDestructionRate.VisibleIndex = 3;
+            this.colDestructionRate.VisibleIndex = 4;
             this.colDestructionRate.Width = 100;
             // 
             // mainCategoryTblBindingSource
@@ -227,6 +233,7 @@ namespace AssetManagement.AuxTables
             // 
             // mainCategoryGroupBox
             // 
+            this.mainCategoryGroupBox.Controls.Add(this.addTheCategoryAsAFinancialItemCategoryCheckBox);
             this.mainCategoryGroupBox.Controls.Add(this.findAllMinorCategoriestBtn);
             this.mainCategoryGroupBox.Controls.Add(this.addNewMainCategoryGroupBox);
             this.mainCategoryGroupBox.Controls.Add(this.addNewMainCategoryBtn);
@@ -244,6 +251,7 @@ namespace AssetManagement.AuxTables
             // 
             // findAllMinorCategoriestBtn
             // 
+            this.findAllMinorCategoriestBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.findAllMinorCategoriestBtn.Image = global::AssetManagement.Properties.Resources._5928140;
             this.findAllMinorCategoriestBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.findAllMinorCategoriestBtn.Location = new System.Drawing.Point(201, 31);
@@ -330,9 +338,9 @@ namespace AssetManagement.AuxTables
             // 
             this.addNewMainCategoryBtn.Image = global::AssetManagement.Properties.Resources._223645;
             this.addNewMainCategoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(1008, 119);
+            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(1010, 104);
             this.addNewMainCategoryBtn.Name = "addNewMainCategoryBtn";
-            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(229, 102);
+            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(229, 83);
             this.addNewMainCategoryBtn.TabIndex = 60;
             this.addNewMainCategoryBtn.Text = "إضافة فئة رئيسية جديدة";
             this.addNewMainCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -341,6 +349,7 @@ namespace AssetManagement.AuxTables
             // 
             // findMinorCategoriesByLookupEditBtn
             // 
+            this.findMinorCategoriesByLookupEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.findMinorCategoriesByLookupEditBtn.Image = global::AssetManagement.Properties.Resources._5928140;
             this.findMinorCategoriesByLookupEditBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.findMinorCategoriesByLookupEditBtn.Location = new System.Drawing.Point(407, 31);
@@ -354,6 +363,7 @@ namespace AssetManagement.AuxTables
             // 
             // assetMinorCategoryLabel
             // 
+            this.assetMinorCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetMinorCategoryLabel.AutoSize = true;
             this.assetMinorCategoryLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetMinorCategoryLabel.Location = new System.Drawing.Point(1096, 46);
@@ -364,6 +374,7 @@ namespace AssetManagement.AuxTables
             // 
             // mainCategoryLookUpEdit
             // 
+            this.mainCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(775, 43);
             this.mainCategoryLookUpEdit.Name = "mainCategoryLookUpEdit";
             this.mainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,94 +406,6 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             // 
-            // minorCategoryTileNavPane
-            // 
-            this.minorCategoryTileNavPane.Buttons.Add(this.mainMenuNavButton);
-            this.minorCategoryTileNavPane.Categories.AddRange(new DevExpress.XtraBars.Navigation.TileNavCategory[] {
-            this.minorCategoryTileNavCategory});
-            // 
-            // tileNavCategory1
-            // 
-            this.minorCategoryTileNavPane.DefaultCategory.Name = "tileNavCategory1";
-            // 
-            // 
-            // 
-            this.minorCategoryTileNavPane.DefaultCategory.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            this.minorCategoryTileNavPane.Dock = System.Windows.Forms.DockStyle.Top;
-            this.minorCategoryTileNavPane.Location = new System.Drawing.Point(0, 263);
-            this.minorCategoryTileNavPane.Name = "minorCategoryTileNavPane";
-            this.minorCategoryTileNavPane.Size = new System.Drawing.Size(1284, 40);
-            this.minorCategoryTileNavPane.TabIndex = 4;
-            this.minorCategoryTileNavPane.Text = "tileNavPane1";
-            // 
-            // mainMenuNavButton
-            // 
-            this.mainMenuNavButton.Caption = "القائمة الرئيسية";
-            this.mainMenuNavButton.IsMain = true;
-            this.mainMenuNavButton.Name = "mainMenuNavButton";
-            // 
-            // minorCategoryTileNavCategory
-            // 
-            this.minorCategoryTileNavCategory.Caption = "جدول الفئات الفرعية";
-            this.minorCategoryTileNavCategory.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
-            this.savingChangesTileNavItem});
-            this.minorCategoryTileNavCategory.Name = "minorCategoryTileNavCategory";
-            // 
-            // 
-            // 
-            this.minorCategoryTileNavCategory.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement4.Text = "جدول الفئات الفرعية";
-            this.minorCategoryTileNavCategory.Tile.Elements.Add(tileItemElement4);
-            this.minorCategoryTileNavCategory.Tile.Name = "tileBarItem2";
-            // 
-            // savingChangesTileNavItem
-            // 
-            this.savingChangesTileNavItem.Caption = "حفظ التعديلات";
-            this.savingChangesTileNavItem.Name = "savingChangesTileNavItem";
-            this.savingChangesTileNavItem.SubItems.AddRange(new DevExpress.XtraBars.Navigation.TileNavSubItem[] {
-            this.saveChangesTileNavSubItem,
-            this.discardChangesTileNavSubItem});
-            // 
-            // 
-            // 
-            this.savingChangesTileNavItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement3.Text = "حفظ التعديلات";
-            this.savingChangesTileNavItem.Tile.Elements.Add(tileItemElement3);
-            this.savingChangesTileNavItem.Tile.Name = "tileBarItem1";
-            this.savingChangesTileNavItem.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.saveChangesTileNavItem_ElementClick);
-            // 
-            // saveChangesTileNavSubItem
-            // 
-            this.saveChangesTileNavSubItem.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.saveChangesTileNavSubItem.Appearance.Options.UseBackColor = true;
-            this.saveChangesTileNavSubItem.Caption = "حفظ التفييرات";
-            this.saveChangesTileNavSubItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._21377251;
-            this.saveChangesTileNavSubItem.Name = "saveChangesTileNavSubItem";
-            // 
-            // 
-            // 
-            this.saveChangesTileNavSubItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Text = "حفظ التفييرات";
-            this.saveChangesTileNavSubItem.Tile.Elements.Add(tileItemElement1);
-            this.saveChangesTileNavSubItem.Tile.Name = "tileBarItem1";
-            this.saveChangesTileNavSubItem.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.saveChangesTileNavSubItem_ElementClick);
-            // 
-            // discardChangesTileNavSubItem
-            // 
-            this.discardChangesTileNavSubItem.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.discardChangesTileNavSubItem.Appearance.Options.UseBackColor = true;
-            this.discardChangesTileNavSubItem.Caption = "تجاهل التفييرات";
-            this.discardChangesTileNavSubItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._21377241;
-            this.discardChangesTileNavSubItem.Name = "discardChangesTileNavSubItem";
-            // 
-            // 
-            // 
-            this.discardChangesTileNavSubItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.Text = "تجاهل التفييرات";
-            this.discardChangesTileNavSubItem.Tile.Elements.Add(tileItemElement2);
-            this.discardChangesTileNavSubItem.Tile.Name = "tileBarItem2";
-            this.discardChangesTileNavSubItem.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.discardChangesTileNavSubItem_ElementClick);
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.AssetMovementTblTableAdapter = null;
@@ -492,6 +415,8 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
@@ -503,13 +428,150 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
+            // minorCategoryTblBindingNavigator
+            // 
+            this.minorCategoryTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.minorCategoryTblBindingNavigator.BindingSource = this.minorCategoryTblBindingSource;
+            this.minorCategoryTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.minorCategoryTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.minorCategoryTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.minorCategoryTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.minorCategoryTblBindingNavigatorSaveItem});
+            this.minorCategoryTblBindingNavigator.Location = new System.Drawing.Point(0, 263);
+            this.minorCategoryTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.minorCategoryTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.minorCategoryTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.minorCategoryTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.minorCategoryTblBindingNavigator.Name = "minorCategoryTblBindingNavigator";
+            this.minorCategoryTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.minorCategoryTblBindingNavigator.Size = new System.Drawing.Size(1284, 27);
+            this.minorCategoryTblBindingNavigator.TabIndex = 5;
+            this.minorCategoryTblBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // minorCategoryTblBindingNavigatorSaveItem
+            // 
+            this.minorCategoryTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.minorCategoryTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("minorCategoryTblBindingNavigatorSaveItem.Image")));
+            this.minorCategoryTblBindingNavigatorSaveItem.Name = "minorCategoryTblBindingNavigatorSaveItem";
+            this.minorCategoryTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.minorCategoryTblBindingNavigatorSaveItem.Text = "Save Data";
+            this.minorCategoryTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.minorCategoryTblBindingNavigatorSaveItem_Click);
+            // 
+            // addTheCategoryAsAFinancialItemCategoryCheckBox
+            // 
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.AutoSize = true;
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Location = new System.Drawing.Point(1065, 204);
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Name = "addTheCategoryAsAFinancialItemCategoryCheckBox";
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Size = new System.Drawing.Size(174, 28);
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.TabIndex = 65;
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Text = "إضافة الفئة كبند مالي";
+            this.addTheCategoryAsAFinancialItemCategoryCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ManageCategoriesTblsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 714);
-            this.Controls.Add(this.minorCategoryTileNavPane);
             this.Controls.Add(this.minorCategoryGridControl);
+            this.Controls.Add(this.minorCategoryTblBindingNavigator);
             this.Controls.Add(this.mainCategoryGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManageCategoriesTblsForm";
@@ -531,8 +593,11 @@ namespace AssetManagement.AuxTables
             this.addNewMainCategoryGroupBox.ResumeLayout(false);
             this.addNewMainCategoryGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTileNavPane)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingNavigator)).EndInit();
+            this.minorCategoryTblBindingNavigator.ResumeLayout(false);
+            this.minorCategoryTblBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -545,9 +610,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.GroupBox mainCategoryGroupBox;
         private System.Windows.Forms.Label assetMinorCategoryLabel;
         private DevExpress.XtraEditors.LookUpEdit mainCategoryLookUpEdit;
-        private DevExpress.XtraGrid.GridControl minorCategoryGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
-        private DevExpress.XtraGrid.Views.Grid.GridView mainCategoryGridView;
         private System.Windows.Forms.Button addNewMainCategoryBtn;
         private System.Windows.Forms.Button findMinorCategoriesByLookupEditBtn;
         private System.Windows.Forms.GroupBox addNewMainCategoryGroupBox;
@@ -558,21 +620,32 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.Label newMainCategoryDescriptionLabel;
         private System.Windows.Forms.TextBox newMainCategoryDescriptionTextBox;
         private System.Windows.Forms.Label newMainCategoryNameLabel;
+        private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource mainCategoryTblBindingSource1;
+        private System.Windows.Forms.Button findAllMinorCategoriestBtn;
+        private System.Windows.Forms.BindingNavigator minorCategoryTblBindingNavigator;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton minorCategoryTblBindingNavigatorSaveItem;
+        private DevExpress.XtraGrid.GridControl minorCategoryGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
+        private DevExpress.XtraGrid.Views.Grid.GridView mainCategoryGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colMinorCategoryName;
         private DevExpress.XtraGrid.Columns.GridColumn colMinorCategoryDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colMainCategory;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit mainCategoryRepositoryItemLookUpEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colProductiveAgeInYears;
         private DevExpress.XtraGrid.Columns.GridColumn colDestructionRate;
-        private DevExpress.XtraBars.Navigation.TileNavPane minorCategoryTileNavPane;
-        private DevExpress.XtraBars.Navigation.NavButton mainMenuNavButton;
-        private DevExpress.XtraBars.Navigation.TileNavCategory minorCategoryTileNavCategory;
-        private DevExpress.XtraBars.Navigation.TileNavItem savingChangesTileNavItem;
-        private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraBars.Navigation.TileNavSubItem saveChangesTileNavSubItem;
-        private DevExpress.XtraBars.Navigation.TileNavSubItem discardChangesTileNavSubItem;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit mainCategoryRepositoryItemLookUpEdit;
-        private System.Windows.Forms.BindingSource mainCategoryTblBindingSource1;
-        private System.Windows.Forms.Button findAllMinorCategoriestBtn;
+        private System.Windows.Forms.CheckBox addTheCategoryAsAFinancialItemCategoryCheckBox;
     }
 }

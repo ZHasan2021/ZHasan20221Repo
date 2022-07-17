@@ -7,6 +7,101 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AssetMngDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AssetMngDbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.AssetManagement.Properties.Settings.GlobalReference.Default.AssetMngDbConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetMoveVwTableAdapter" GeneratorDataComponentClassName="AssetMoveVwTableAdapter" Name="AssetMoveVw" UserDataComponentName="AssetMoveVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetMoveVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, MainCategoryName, MinorCategoryName, AssetCode, DepartmentName, SectionName, SquareName, StatusName, CustodianName FROM dbo.AssetMoveVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="MainCategoryName" DataSetColumn="MainCategoryName" />
+              <Mapping SourceColumn="MinorCategoryName" DataSetColumn="MinorCategoryName" />
+              <Mapping SourceColumn="AssetCode" DataSetColumn="AssetCode" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="SquareName" DataSetColumn="SquareName" />
+              <Mapping SourceColumn="StatusName" DataSetColumn="StatusName" />
+              <Mapping SourceColumn="CustodianName" DataSetColumn="CustodianName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MinorCategoryVwTableAdapter" GeneratorDataComponentClassName="MinorCategoryVwTableAdapter" Name="MinorCategoryVw" UserDataComponentName="MinorCategoryVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MinorCategoryVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="اسم الفئة الفرعية" DataSetColumn="اسم الفئة الفرعية" />
+              <Mapping SourceColumn="وصف الفئة الفرعية" DataSetColumn="وصف الفئة الفرعية" />
+              <Mapping SourceColumn="اسم الفئة الرئيسية" DataSetColumn="اسم الفئة الرئيسية" />
+              <Mapping SourceColumn="العمر الإنتاجي بالسنوات" DataSetColumn="العمر الإنتاجي بالسنوات" />
+              <Mapping SourceColumn="معدل الإهلاك" DataSetColumn="معدل الإهلاك" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetVwTableAdapter" GeneratorDataComponentClassName="AssetVwTableAdapter" Name="AssetVw" UserDataComponentName="AssetVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [معرف الأصل], [كود الأصل], العدد, الرصيد, القسم, الدائرة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل] FROM dbo.AssetVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="معرف الأصل" DataSetColumn="معرف الأصل" />
+              <Mapping SourceColumn="كود الأصل" DataSetColumn="كود الأصل" />
+              <Mapping SourceColumn="العدد" DataSetColumn="العدد" />
+              <Mapping SourceColumn="الرصيد" DataSetColumn="الرصيد" />
+              <Mapping SourceColumn="القسم" DataSetColumn="القسم" />
+              <Mapping SourceColumn="الدائرة" DataSetColumn="الدائرة" />
+              <Mapping SourceColumn="الساحة" DataSetColumn="الساحة" />
+              <Mapping SourceColumn="الفئة الرئيسية" DataSetColumn="الفئة الرئيسية" />
+              <Mapping SourceColumn="الفئة الفرعية" DataSetColumn="الفئة الفرعية" />
+              <Mapping SourceColumn="مواصفات الأصل" DataSetColumn="مواصفات الأصل" />
+              <Mapping SourceColumn="الموديل" DataSetColumn="الموديل" />
+              <Mapping SourceColumn="اللون" DataSetColumn="اللون" />
+              <Mapping SourceColumn="الحجم / السعة" DataSetColumn="الحجم / السعة" />
+              <Mapping SourceColumn="تاريخ الشراء" DataSetColumn="تاريخ الشراء" />
+              <Mapping SourceColumn="سعر الشراء" DataSetColumn="سعر الشراء" />
+              <Mapping SourceColumn="عملة سعر الشراء" DataSetColumn="عملة سعر الشراء" />
+              <Mapping SourceColumn="مكان التواجد" DataSetColumn="مكان التواجد" />
+              <Mapping SourceColumn="حالة الأصل الآنية" DataSetColumn="حالة الأصل الآنية" />
+              <Mapping SourceColumn="نسبة الاستفادة منه" DataSetColumn="نسبة الاستفادة منه" />
+              <Mapping SourceColumn="السعر الفعلي الحالي" DataSetColumn="السعر الفعلي الحالي" />
+              <Mapping SourceColumn="عملة السعر الفعلي الحالي" DataSetColumn="عملة السعر الفعلي الحالي" />
+              <Mapping SourceColumn="اسم صاحب العهدة" DataSetColumn="اسم صاحب العهدة" />
+              <Mapping SourceColumn="تفاصيل إضافية" DataSetColumn="تفاصيل إضافية" />
+              <Mapping SourceColumn="ملاحظات أخرى" DataSetColumn="ملاحظات أخرى" />
+              <Mapping SourceColumn="عنوان العقار" DataSetColumn="عنوان العقار" />
+              <Mapping SourceColumn="اسم المالك" DataSetColumn="اسم المالك" />
+              <Mapping SourceColumn="المستغل منه" DataSetColumn="المستغل منه" />
+              <Mapping SourceColumn="مع من ورقة الملكية" DataSetColumn="مع من ورقة الملكية" />
+              <Mapping SourceColumn="مساحة العقار" DataSetColumn="مساحة العقار" />
+              <Mapping SourceColumn="وحدة مساحة العقار" DataSetColumn="وحدة مساحة العقار" />
+              <Mapping SourceColumn="رقم لوحة المركبة" DataSetColumn="رقم لوحة المركبة" />
+              <Mapping SourceColumn="سنة صنع المركبة" DataSetColumn="سنة صنع المركبة" />
+              <Mapping SourceColumn="رقم الهيكل (الشاصيه) للمركبة" DataSetColumn="رقم الهيكل (الشاصيه) للمركبة" />
+              <Mapping SourceColumn="رقم المحرك للمركبة" DataSetColumn="رقم المحرك للمركبة" />
+              <Mapping SourceColumn="معدل الإهلاك للأصل" DataSetColumn="معدل الإهلاك للأصل" />
+              <Mapping SourceColumn="العمر الافتراضي المتبقي للأصل" DataSetColumn="العمر الافتراضي المتبقي للأصل" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetMovementTblTableAdapter" GeneratorDataComponentClassName="AssetMovementTblTableAdapter" Name="AssetMovementTbl" UserDataComponentName="AssetMovementTblTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetMovementTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -712,6 +807,144 @@ SELECT ID, EstateAreaUnitName FROM EstateAreaUnitTbl WHERE (ID = @ID)</CommandTe
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FinancialItemCategoryTblTableAdapter" GeneratorDataComponentClassName="FinancialItemCategoryTblTableAdapter" Name="FinancialItemCategoryTbl" UserDataComponentName="FinancialItemCategoryTblTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.FinancialItemCategoryTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[FinancialItemCategoryTbl] WHERE (([ID] = @Original_ID) AND ((@IsNull_FinancialItemCategoryName = 1 AND [FinancialItemCategoryName] IS NULL) OR ([FinancialItemCategoryName] = @Original_FinancialItemCategoryName)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[FinancialItemCategoryTbl] ([FinancialItemCategoryName], [FinancialItemCategoryDetails]) VALUES (@FinancialItemCategoryName, @FinancialItemCategoryDetails);
+SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM FinancialItemCategoryTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCategoryDetails" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryDetails" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM dbo.FinancialItemCategoryTbl</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[FinancialItemCategoryTbl] SET [FinancialItemCategoryName] = @FinancialItemCategoryName, [FinancialItemCategoryDetails] = @FinancialItemCategoryDetails WHERE (([ID] = @Original_ID) AND ((@IsNull_FinancialItemCategoryName = 1 AND [FinancialItemCategoryName] IS NULL) OR ([FinancialItemCategoryName] = @Original_FinancialItemCategoryName)));
+SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM FinancialItemCategoryTbl WHERE (ID = @ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCategoryDetails" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryDetails" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="ID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="FinancialItemCategoryName" DataSetColumn="FinancialItemCategoryName" />
+              <Mapping SourceColumn="FinancialItemCategoryDetails" DataSetColumn="FinancialItemCategoryDetails" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FinancialItemTblTableAdapter" GeneratorDataComponentClassName="FinancialItemTblTableAdapter" Name="FinancialItemTbl" UserDataComponentName="FinancialItemTblTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.FinancialItemTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[FinancialItemTbl] WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemDescription" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_IncomingOrOutgoing" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IncomingOrOutgoing" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@Original_IncomingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="IncomingAmount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@Original_OutgoingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="OutgoingAmount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCurrency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCurrency" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AdditionalNotes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_AdditionalNotes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[FinancialItemTbl] ([FinancialItemCategory], [FinancialItemDescription], [FinancialItemInsertionDate], [IncomingOrOutgoing], [IncomingAmount], [OutgoingAmount], [FinancialItemCurrency], [AdditionalNotes]) VALUES (@FinancialItemCategory, @FinancialItemDescription, @FinancialItemInsertionDate, @IncomingOrOutgoing, @IncomingAmount, @OutgoingAmount, @FinancialItemCurrency, @AdditionalNotes);
+SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes FROM FinancialItemTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IncomingOrOutgoing" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IncomingOrOutgoing" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@IncomingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="IncomingAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@OutgoingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="OutgoingAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCurrency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCurrency" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@AdditionalNotes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes FROM dbo.FinancialItemTbl</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[FinancialItemTbl] SET [FinancialItemCategory] = @FinancialItemCategory, [FinancialItemDescription] = @FinancialItemDescription, [FinancialItemInsertionDate] = @FinancialItemInsertionDate, [IncomingOrOutgoing] = @IncomingOrOutgoing, [IncomingAmount] = @IncomingAmount, [OutgoingAmount] = @OutgoingAmount, [FinancialItemCurrency] = @FinancialItemCurrency, [AdditionalNotes] = @AdditionalNotes WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)));
+SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes FROM FinancialItemTbl WHERE (ID = @ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IncomingOrOutgoing" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IncomingOrOutgoing" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@IncomingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="IncomingAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@OutgoingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="OutgoingAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCurrency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCurrency" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@AdditionalNotes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemDescription" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_IncomingOrOutgoing" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IncomingOrOutgoing" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@Original_IncomingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="IncomingAmount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Double" Direction="Input" ParameterName="@Original_OutgoingAmount" Precision="0" ProviderType="Float" Scale="0" Size="0" SourceColumn="OutgoingAmount" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCurrency" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCurrency" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AdditionalNotes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_AdditionalNotes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="AdditionalNotes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="ID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="FinancialItemCategory" DataSetColumn="FinancialItemCategory" />
+              <Mapping SourceColumn="FinancialItemDescription" DataSetColumn="FinancialItemDescription" />
+              <Mapping SourceColumn="FinancialItemInsertionDate" DataSetColumn="FinancialItemInsertionDate" />
+              <Mapping SourceColumn="IncomingOrOutgoing" DataSetColumn="IncomingOrOutgoing" />
+              <Mapping SourceColumn="IncomingAmount" DataSetColumn="IncomingAmount" />
+              <Mapping SourceColumn="OutgoingAmount" DataSetColumn="OutgoingAmount" />
+              <Mapping SourceColumn="FinancialItemCurrency" DataSetColumn="FinancialItemCurrency" />
+              <Mapping SourceColumn="AdditionalNotes" DataSetColumn="AdditionalNotes" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MainCategoryTblTableAdapter" GeneratorDataComponentClassName="MainCategoryTblTableAdapter" Name="MainCategoryTbl" UserDataComponentName="MainCategoryTblTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MainCategoryTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -1099,7 +1332,7 @@ SELECT ID, TransactionTypeName FROM TransactionTypeTbl WHERE (ID = @ID)</Command
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.UserRoleTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [dbo].[UserRoleTbl] WHERE (([ID] = @Original_ID) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([UpdateExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_AddNewInventory = 1 AND [AddNewInventory] IS NULL) OR ([AddNewInventory] = @Original_AddNewInventory)) AND ((@IsNull_UpdateExistedInventory = 1 AND [UpdateExistedInventory] IS NULL) OR ([UpdateExistedInventory] = @Original_UpdateExistedInventory)) AND ((@IsNull_SearchInventories = 1 AND [SearchInventories] IS NULL) OR ([SearchInventories] = @Original_SearchInventories)) AND ((@IsNull_ViewInventories = 1 AND [ViewInventories] IS NULL) OR ([ViewInventories] = @Original_ViewInventories)) AND ((@IsNull_DeleteInventoryRecord = 1 AND [DeleteInventoryRecord] IS NULL) OR ([DeleteInventoryRecord] = @Original_DeleteInventoryRecord)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR ([ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Original_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_ImportAllData)) AND ((@IsNull_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_ManageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([ManageMainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Original_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinorCategories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategories)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSections] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([AddNewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTypes] = @Original_ManageTransactionTypes)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_ViewStats = 1 AND [ViewStats] IS NULL) OR ([ViewStats] = @Original_ViewStats)) AND ((@IsNull_CreateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsReports)))</CommandText>
+                    <CommandText>DELETE FROM [dbo].[UserRoleTbl] WHERE (([ID] = @Original_ID) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([UpdateExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_AddNewInventory = 1 AND [AddNewInventory] IS NULL) OR ([AddNewInventory] = @Original_AddNewInventory)) AND ((@IsNull_UpdateExistedInventory = 1 AND [UpdateExistedInventory] IS NULL) OR ([UpdateExistedInventory] = @Original_UpdateExistedInventory)) AND ((@IsNull_SearchInventories = 1 AND [SearchInventories] IS NULL) OR ([SearchInventories] = @Original_SearchInventories)) AND ((@IsNull_ViewInventories = 1 AND [ViewInventories] IS NULL) OR ([ViewInventories] = @Original_ViewInventories)) AND ((@IsNull_DeleteInventoryRecord = 1 AND [DeleteInventoryRecord] IS NULL) OR ([DeleteInventoryRecord] = @Original_DeleteInventoryRecord)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR ([ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Original_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_ImportAllData)) AND ((@IsNull_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_ManageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([ManageMainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Original_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinorCategories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategories)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSections] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([AddNewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTypes] = @Original_ManageTransactionTypes)) AND ((@IsNull_AddNewFinancialItem = 1 AND [AddNewFinancialItem] IS NULL) OR ([AddNewFinancialItem] = @Original_AddNewFinancialItem)) AND ((@IsNull_ManageFinancialItems = 1 AND [ManageFinancialItems] IS NULL) OR ([ManageFinancialItems] = @Original_ManageFinancialItems)) AND ((@IsNull_UpdateExistedFinancialItem = 1 AND [UpdateExistedFinancialItem] IS NULL) OR ([UpdateExistedFinancialItem] = @Original_UpdateExistedFinancialItem)) AND ((@IsNull_DeleteFinancialItemRecord = 1 AND [DeleteFinancialItemRecord] IS NULL) OR ([DeleteFinancialItemRecord] = @Original_DeleteFinancialItemRecord)) AND ((@IsNull_ViewFinancialReports = 1 AND [ViewFinancialReports] IS NULL) OR ([ViewFinancialReports] = @Original_ViewFinancialReports)) AND ((@IsNull_AddNewFinancialItemCategory = 1 AND [AddNewFinancialItemCategory] IS NULL) OR ([AddNewFinancialItemCategory] = @Original_AddNewFinancialItemCategory)) AND ((@IsNull_ManageFinancialItemCategories = 1 AND [ManageFinancialItemCategories] IS NULL) OR ([ManageFinancialItemCategories] = @Original_ManageFinancialItemCategories)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_ViewStats = 1 AND [ViewStats] IS NULL) OR ([ViewStats] = @Original_ViewStats)) AND ((@IsNull_CreateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsReports)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_RoleName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="RoleName" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -1167,6 +1400,20 @@ SELECT ID, TransactionTypeName FROM TransactionTypeTbl WHERE (ID = @ID)</Command
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewTransactionType" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewTransactionType" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageTransactionTypes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageTransactionTypes" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AddNewFinancialItem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageFinancialItems" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageFinancialItems" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UpdateExistedFinancialItem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_UpdateExistedFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DeleteFinancialItemRecord" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_DeleteFinancialItemRecord" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ViewFinancialReports" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ViewFinancialReports" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AddNewFinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewFinancialItemCategory" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageFinancialItemCategories" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageFinancialItemCategories" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SetDateAndTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_SetDateAndTime" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BackupDb" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BackupDb" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -1182,8 +1429,8 @@ SELECT ID, TransactionTypeName FROM TransactionTypeTbl WHERE (ID = @ID)</Command
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [dbo].[UserRoleTbl] ([RoleName], [AddNewAsset], [UpdateExistedAsset], [DeleteAssetRecord], [AddNewInventory], [UpdateExistedInventory], [SearchInventories], [ViewInventories], [DeleteInventoryRecord], [AddNewAssetMovement], [ManageAssetMovements], [AddNewAssetTransaction], [ManageAssetTransactions], [ExportAllData], [ImportAllData], [ManageUsers], [PromoteDb], [AddNewMainCategory], [ManageMainCategories], [AddNewMinorCategory], [ManageMinorCategories], [AddNewDepartment], [ManageDepartments], [AddNewSection], [ManageSections], [AddNewSquare], [ManageSquares], [AddNewCurrency], [ManageCurrencies], [AddNewEstateAreaUnit], [ManageEstateAreaUnits], [AddNewTransactionType], [ManageTransactionTypes], [SetDateAndTime], [BackupDb], [RestoreDb], [ViewStats], [CreateAssetsReports]) VALUES (@RoleName, @AddNewAsset, @UpdateExistedAsset, @DeleteAssetRecord, @AddNewInventory, @UpdateExistedInventory, @SearchInventories, @ViewInventories, @DeleteInventoryRecord, @AddNewAssetMovement, @ManageAssetMovements, @AddNewAssetTransaction, @ManageAssetTransactions, @ExportAllData, @ImportAllData, @ManageUsers, @PromoteDb, @AddNewMainCategory, @ManageMainCategories, @AddNewMinorCategory, @ManageMinorCategories, @AddNewDepartment, @ManageDepartments, @AddNewSection, @ManageSections, @AddNewSquare, @ManageSquares, @AddNewCurrency, @ManageCurrencies, @AddNewEstateAreaUnit, @ManageEstateAreaUnits, @AddNewTransactionType, @ManageTransactionTypes, @SetDateAndTime, @BackupDb, @RestoreDb, @ViewStats, @CreateAssetsReports);
-SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>INSERT INTO [dbo].[UserRoleTbl] ([RoleName], [AddNewAsset], [UpdateExistedAsset], [DeleteAssetRecord], [AddNewInventory], [UpdateExistedInventory], [SearchInventories], [ViewInventories], [DeleteInventoryRecord], [AddNewAssetMovement], [ManageAssetMovements], [AddNewAssetTransaction], [ManageAssetTransactions], [ExportAllData], [ImportAllData], [ManageUsers], [PromoteDb], [AddNewMainCategory], [ManageMainCategories], [AddNewMinorCategory], [ManageMinorCategories], [AddNewDepartment], [ManageDepartments], [AddNewSection], [ManageSections], [AddNewSquare], [ManageSquares], [AddNewCurrency], [ManageCurrencies], [AddNewEstateAreaUnit], [ManageEstateAreaUnits], [AddNewTransactionType], [ManageTransactionTypes], [AddNewFinancialItem], [ManageFinancialItems], [UpdateExistedFinancialItem], [DeleteFinancialItemRecord], [ViewFinancialReports], [AddNewFinancialItemCategory], [ManageFinancialItemCategories], [SetDateAndTime], [BackupDb], [RestoreDb], [ViewStats], [CreateAssetsReports]) VALUES (@RoleName, @AddNewAsset, @UpdateExistedAsset, @DeleteAssetRecord, @AddNewInventory, @UpdateExistedInventory, @SearchInventories, @ViewInventories, @DeleteInventoryRecord, @AddNewAssetMovement, @ManageAssetMovements, @AddNewAssetTransaction, @ManageAssetTransactions, @ExportAllData, @ImportAllData, @ManageUsers, @PromoteDb, @AddNewMainCategory, @ManageMainCategories, @AddNewMinorCategory, @ManageMinorCategories, @AddNewDepartment, @ManageDepartments, @AddNewSection, @ManageSections, @AddNewSquare, @ManageSquares, @AddNewCurrency, @ManageCurrencies, @AddNewEstateAreaUnit, @ManageEstateAreaUnits, @AddNewTransactionType, @ManageTransactionTypes, @AddNewFinancialItem, @ManageFinancialItems, @UpdateExistedFinancialItem, @DeleteFinancialItemRecord, @ViewFinancialReports, @AddNewFinancialItemCategory, @ManageFinancialItemCategories, @SetDateAndTime, @BackupDb, @RestoreDb, @ViewStats, @CreateAssetsReports);
+SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@RoleName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="RoleName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewAsset" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewAsset" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -1218,6 +1465,13 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageEstateAreaUnits" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageEstateAreaUnits" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewTransactionType" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewTransactionType" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageTransactionTypes" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageFinancialItems" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@UpdateExistedFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@DeleteFinancialItemRecord" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ViewFinancialReports" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewFinancialItemCategory" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageFinancialItemCategories" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@SetDateAndTime" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@BackupDb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BackupDb" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@RestoreDb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="RestoreDb" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -1228,14 +1482,14 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM dbo.UserRoleTbl</CommandText>
+                    <CommandText>SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM dbo.UserRoleTbl</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [dbo].[UserRoleTbl] SET [RoleName] = @RoleName, [AddNewAsset] = @AddNewAsset, [UpdateExistedAsset] = @UpdateExistedAsset, [DeleteAssetRecord] = @DeleteAssetRecord, [AddNewInventory] = @AddNewInventory, [UpdateExistedInventory] = @UpdateExistedInventory, [SearchInventories] = @SearchInventories, [ViewInventories] = @ViewInventories, [DeleteInventoryRecord] = @DeleteInventoryRecord, [AddNewAssetMovement] = @AddNewAssetMovement, [ManageAssetMovements] = @ManageAssetMovements, [AddNewAssetTransaction] = @AddNewAssetTransaction, [ManageAssetTransactions] = @ManageAssetTransactions, [ExportAllData] = @ExportAllData, [ImportAllData] = @ImportAllData, [ManageUsers] = @ManageUsers, [PromoteDb] = @PromoteDb, [AddNewMainCategory] = @AddNewMainCategory, [ManageMainCategories] = @ManageMainCategories, [AddNewMinorCategory] = @AddNewMinorCategory, [ManageMinorCategories] = @ManageMinorCategories, [AddNewDepartment] = @AddNewDepartment, [ManageDepartments] = @ManageDepartments, [AddNewSection] = @AddNewSection, [ManageSections] = @ManageSections, [AddNewSquare] = @AddNewSquare, [ManageSquares] = @ManageSquares, [AddNewCurrency] = @AddNewCurrency, [ManageCurrencies] = @ManageCurrencies, [AddNewEstateAreaUnit] = @AddNewEstateAreaUnit, [ManageEstateAreaUnits] = @ManageEstateAreaUnits, [AddNewTransactionType] = @AddNewTransactionType, [ManageTransactionTypes] = @ManageTransactionTypes, [SetDateAndTime] = @SetDateAndTime, [BackupDb] = @BackupDb, [RestoreDb] = @RestoreDb, [ViewStats] = @ViewStats, [CreateAssetsReports] = @CreateAssetsReports WHERE (([ID] = @Original_ID) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([UpdateExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_AddNewInventory = 1 AND [AddNewInventory] IS NULL) OR ([AddNewInventory] = @Original_AddNewInventory)) AND ((@IsNull_UpdateExistedInventory = 1 AND [UpdateExistedInventory] IS NULL) OR ([UpdateExistedInventory] = @Original_UpdateExistedInventory)) AND ((@IsNull_SearchInventories = 1 AND [SearchInventories] IS NULL) OR ([SearchInventories] = @Original_SearchInventories)) AND ((@IsNull_ViewInventories = 1 AND [ViewInventories] IS NULL) OR ([ViewInventories] = @Original_ViewInventories)) AND ((@IsNull_DeleteInventoryRecord = 1 AND [DeleteInventoryRecord] IS NULL) OR ([DeleteInventoryRecord] = @Original_DeleteInventoryRecord)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR ([ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Original_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_ImportAllData)) AND ((@IsNull_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_ManageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([ManageMainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Original_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinorCategories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategories)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSections] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([AddNewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTypes] = @Original_ManageTransactionTypes)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_ViewStats = 1 AND [ViewStats] IS NULL) OR ([ViewStats] = @Original_ViewStats)) AND ((@IsNull_CreateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsReports)));
-SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM UserRoleTbl WHERE (ID = @ID)</CommandText>
+                    <CommandText>UPDATE [dbo].[UserRoleTbl] SET [RoleName] = @RoleName, [AddNewAsset] = @AddNewAsset, [UpdateExistedAsset] = @UpdateExistedAsset, [DeleteAssetRecord] = @DeleteAssetRecord, [AddNewInventory] = @AddNewInventory, [UpdateExistedInventory] = @UpdateExistedInventory, [SearchInventories] = @SearchInventories, [ViewInventories] = @ViewInventories, [DeleteInventoryRecord] = @DeleteInventoryRecord, [AddNewAssetMovement] = @AddNewAssetMovement, [ManageAssetMovements] = @ManageAssetMovements, [AddNewAssetTransaction] = @AddNewAssetTransaction, [ManageAssetTransactions] = @ManageAssetTransactions, [ExportAllData] = @ExportAllData, [ImportAllData] = @ImportAllData, [ManageUsers] = @ManageUsers, [PromoteDb] = @PromoteDb, [AddNewMainCategory] = @AddNewMainCategory, [ManageMainCategories] = @ManageMainCategories, [AddNewMinorCategory] = @AddNewMinorCategory, [ManageMinorCategories] = @ManageMinorCategories, [AddNewDepartment] = @AddNewDepartment, [ManageDepartments] = @ManageDepartments, [AddNewSection] = @AddNewSection, [ManageSections] = @ManageSections, [AddNewSquare] = @AddNewSquare, [ManageSquares] = @ManageSquares, [AddNewCurrency] = @AddNewCurrency, [ManageCurrencies] = @ManageCurrencies, [AddNewEstateAreaUnit] = @AddNewEstateAreaUnit, [ManageEstateAreaUnits] = @ManageEstateAreaUnits, [AddNewTransactionType] = @AddNewTransactionType, [ManageTransactionTypes] = @ManageTransactionTypes, [AddNewFinancialItem] = @AddNewFinancialItem, [ManageFinancialItems] = @ManageFinancialItems, [UpdateExistedFinancialItem] = @UpdateExistedFinancialItem, [DeleteFinancialItemRecord] = @DeleteFinancialItemRecord, [ViewFinancialReports] = @ViewFinancialReports, [AddNewFinancialItemCategory] = @AddNewFinancialItemCategory, [ManageFinancialItemCategories] = @ManageFinancialItemCategories, [SetDateAndTime] = @SetDateAndTime, [BackupDb] = @BackupDb, [RestoreDb] = @RestoreDb, [ViewStats] = @ViewStats, [CreateAssetsReports] = @CreateAssetsReports WHERE (([ID] = @Original_ID) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([UpdateExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_AddNewInventory = 1 AND [AddNewInventory] IS NULL) OR ([AddNewInventory] = @Original_AddNewInventory)) AND ((@IsNull_UpdateExistedInventory = 1 AND [UpdateExistedInventory] IS NULL) OR ([UpdateExistedInventory] = @Original_UpdateExistedInventory)) AND ((@IsNull_SearchInventories = 1 AND [SearchInventories] IS NULL) OR ([SearchInventories] = @Original_SearchInventories)) AND ((@IsNull_ViewInventories = 1 AND [ViewInventories] IS NULL) OR ([ViewInventories] = @Original_ViewInventories)) AND ((@IsNull_DeleteInventoryRecord = 1 AND [DeleteInventoryRecord] IS NULL) OR ([DeleteInventoryRecord] = @Original_DeleteInventoryRecord)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR ([ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Original_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_ImportAllData)) AND ((@IsNull_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_ManageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([ManageMainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Original_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinorCategories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategories)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSections] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([AddNewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTypes] = @Original_ManageTransactionTypes)) AND ((@IsNull_AddNewFinancialItem = 1 AND [AddNewFinancialItem] IS NULL) OR ([AddNewFinancialItem] = @Original_AddNewFinancialItem)) AND ((@IsNull_ManageFinancialItems = 1 AND [ManageFinancialItems] IS NULL) OR ([ManageFinancialItems] = @Original_ManageFinancialItems)) AND ((@IsNull_UpdateExistedFinancialItem = 1 AND [UpdateExistedFinancialItem] IS NULL) OR ([UpdateExistedFinancialItem] = @Original_UpdateExistedFinancialItem)) AND ((@IsNull_DeleteFinancialItemRecord = 1 AND [DeleteFinancialItemRecord] IS NULL) OR ([DeleteFinancialItemRecord] = @Original_DeleteFinancialItemRecord)) AND ((@IsNull_ViewFinancialReports = 1 AND [ViewFinancialReports] IS NULL) OR ([ViewFinancialReports] = @Original_ViewFinancialReports)) AND ((@IsNull_AddNewFinancialItemCategory = 1 AND [AddNewFinancialItemCategory] IS NULL) OR ([AddNewFinancialItemCategory] = @Original_AddNewFinancialItemCategory)) AND ((@IsNull_ManageFinancialItemCategories = 1 AND [ManageFinancialItemCategories] IS NULL) OR ([ManageFinancialItemCategories] = @Original_ManageFinancialItemCategories)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_ViewStats = 1 AND [ViewStats] IS NULL) OR ([ViewStats] = @Original_ViewStats)) AND ((@IsNull_CreateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsReports)));
+SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewInventory, UpdateExistedInventory, SearchInventories, ViewInventories, DeleteInventoryRecord, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewDepartment, ManageDepartments, AddNewSection, ManageSections, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, ViewStats, CreateAssetsReports FROM UserRoleTbl WHERE (ID = @ID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@RoleName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="RoleName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewAsset" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewAsset" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -1270,6 +1524,13 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageEstateAreaUnits" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageEstateAreaUnits" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewTransactionType" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewTransactionType" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageTransactionTypes" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageFinancialItems" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@UpdateExistedFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@DeleteFinancialItemRecord" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ViewFinancialReports" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@AddNewFinancialItemCategory" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@ManageFinancialItemCategories" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@SetDateAndTime" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@BackupDb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="BackupDb" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@RestoreDb" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="RestoreDb" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -1341,6 +1602,20 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewTransactionType" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewTransactionType" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageTransactionTypes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageTransactionTypes" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageTransactionTypes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AddNewFinancialItem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageFinancialItems" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageFinancialItems" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItems" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UpdateExistedFinancialItem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_UpdateExistedFinancialItem" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="UpdateExistedFinancialItem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DeleteFinancialItemRecord" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_DeleteFinancialItemRecord" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="DeleteFinancialItemRecord" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ViewFinancialReports" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ViewFinancialReports" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ViewFinancialReports" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AddNewFinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_AddNewFinancialItemCategory" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="AddNewFinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ManageFinancialItemCategories" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_ManageFinancialItemCategories" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="ManageFinancialItemCategories" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SetDateAndTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Original_SetDateAndTime" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="SetDateAndTime" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BackupDb" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BackupDb" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -1392,106 +1667,18 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
               <Mapping SourceColumn="ManageEstateAreaUnits" DataSetColumn="ManageEstateAreaUnits" />
               <Mapping SourceColumn="AddNewTransactionType" DataSetColumn="AddNewTransactionType" />
               <Mapping SourceColumn="ManageTransactionTypes" DataSetColumn="ManageTransactionTypes" />
+              <Mapping SourceColumn="AddNewFinancialItem" DataSetColumn="AddNewFinancialItem" />
+              <Mapping SourceColumn="ManageFinancialItems" DataSetColumn="ManageFinancialItems" />
+              <Mapping SourceColumn="UpdateExistedFinancialItem" DataSetColumn="UpdateExistedFinancialItem" />
+              <Mapping SourceColumn="DeleteFinancialItemRecord" DataSetColumn="DeleteFinancialItemRecord" />
+              <Mapping SourceColumn="ViewFinancialReports" DataSetColumn="ViewFinancialReports" />
+              <Mapping SourceColumn="AddNewFinancialItemCategory" DataSetColumn="AddNewFinancialItemCategory" />
+              <Mapping SourceColumn="ManageFinancialItemCategories" DataSetColumn="ManageFinancialItemCategories" />
               <Mapping SourceColumn="SetDateAndTime" DataSetColumn="SetDateAndTime" />
               <Mapping SourceColumn="BackupDb" DataSetColumn="BackupDb" />
               <Mapping SourceColumn="RestoreDb" DataSetColumn="RestoreDb" />
               <Mapping SourceColumn="ViewStats" DataSetColumn="ViewStats" />
               <Mapping SourceColumn="CreateAssetsReports" DataSetColumn="CreateAssetsReports" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetMoveVwTableAdapter" GeneratorDataComponentClassName="AssetMoveVwTableAdapter" Name="AssetMoveVw" UserDataComponentName="AssetMoveVwTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetMoveVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, MainCategoryName, MinorCategoryName, AssetCode, DepartmentName, SectionName, SquareName, StatusName, CustodianName FROM dbo.AssetMoveVw</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="MainCategoryName" DataSetColumn="MainCategoryName" />
-              <Mapping SourceColumn="MinorCategoryName" DataSetColumn="MinorCategoryName" />
-              <Mapping SourceColumn="AssetCode" DataSetColumn="AssetCode" />
-              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
-              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
-              <Mapping SourceColumn="SquareName" DataSetColumn="SquareName" />
-              <Mapping SourceColumn="StatusName" DataSetColumn="StatusName" />
-              <Mapping SourceColumn="CustodianName" DataSetColumn="CustodianName" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetVwTableAdapter" GeneratorDataComponentClassName="AssetVwTableAdapter" Name="AssetVw" UserDataComponentName="AssetVwTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [معرف الأصل], [كود الأصل], العدد, الرصيد, القسم, الدائرة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل] FROM dbo.AssetVw</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="معرف الأصل" DataSetColumn="معرف الأصل" />
-              <Mapping SourceColumn="كود الأصل" DataSetColumn="كود الأصل" />
-              <Mapping SourceColumn="العدد" DataSetColumn="العدد" />
-              <Mapping SourceColumn="الرصيد" DataSetColumn="الرصيد" />
-              <Mapping SourceColumn="القسم" DataSetColumn="القسم" />
-              <Mapping SourceColumn="الدائرة" DataSetColumn="الدائرة" />
-              <Mapping SourceColumn="الساحة" DataSetColumn="الساحة" />
-              <Mapping SourceColumn="الفئة الرئيسية" DataSetColumn="الفئة الرئيسية" />
-              <Mapping SourceColumn="الفئة الفرعية" DataSetColumn="الفئة الفرعية" />
-              <Mapping SourceColumn="مواصفات الأصل" DataSetColumn="مواصفات الأصل" />
-              <Mapping SourceColumn="الموديل" DataSetColumn="الموديل" />
-              <Mapping SourceColumn="اللون" DataSetColumn="اللون" />
-              <Mapping SourceColumn="الحجم / السعة" DataSetColumn="الحجم / السعة" />
-              <Mapping SourceColumn="تاريخ الشراء" DataSetColumn="تاريخ الشراء" />
-              <Mapping SourceColumn="سعر الشراء" DataSetColumn="سعر الشراء" />
-              <Mapping SourceColumn="عملة سعر الشراء" DataSetColumn="عملة سعر الشراء" />
-              <Mapping SourceColumn="مكان التواجد" DataSetColumn="مكان التواجد" />
-              <Mapping SourceColumn="حالة الأصل الآنية" DataSetColumn="حالة الأصل الآنية" />
-              <Mapping SourceColumn="نسبة الاستفادة منه" DataSetColumn="نسبة الاستفادة منه" />
-              <Mapping SourceColumn="السعر الفعلي الحالي" DataSetColumn="السعر الفعلي الحالي" />
-              <Mapping SourceColumn="عملة السعر الفعلي الحالي" DataSetColumn="عملة السعر الفعلي الحالي" />
-              <Mapping SourceColumn="اسم صاحب العهدة" DataSetColumn="اسم صاحب العهدة" />
-              <Mapping SourceColumn="تفاصيل إضافية" DataSetColumn="تفاصيل إضافية" />
-              <Mapping SourceColumn="ملاحظات أخرى" DataSetColumn="ملاحظات أخرى" />
-              <Mapping SourceColumn="عنوان العقار" DataSetColumn="عنوان العقار" />
-              <Mapping SourceColumn="اسم المالك" DataSetColumn="اسم المالك" />
-              <Mapping SourceColumn="المستغل منه" DataSetColumn="المستغل منه" />
-              <Mapping SourceColumn="مع من ورقة الملكية" DataSetColumn="مع من ورقة الملكية" />
-              <Mapping SourceColumn="مساحة العقار" DataSetColumn="مساحة العقار" />
-              <Mapping SourceColumn="وحدة مساحة العقار" DataSetColumn="وحدة مساحة العقار" />
-              <Mapping SourceColumn="رقم لوحة المركبة" DataSetColumn="رقم لوحة المركبة" />
-              <Mapping SourceColumn="سنة صنع المركبة" DataSetColumn="سنة صنع المركبة" />
-              <Mapping SourceColumn="رقم الهيكل (الشاصيه) للمركبة" DataSetColumn="رقم الهيكل (الشاصيه) للمركبة" />
-              <Mapping SourceColumn="رقم المحرك للمركبة" DataSetColumn="رقم المحرك للمركبة" />
-              <Mapping SourceColumn="معدل الإهلاك للأصل" DataSetColumn="معدل الإهلاك للأصل" />
-              <Mapping SourceColumn="العمر الافتراضي المتبقي للأصل" DataSetColumn="العمر الافتراضي المتبقي للأصل" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MinorCategoryVwTableAdapter" GeneratorDataComponentClassName="MinorCategoryVwTableAdapter" Name="MinorCategoryVw" UserDataComponentName="MinorCategoryVwTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MinorCategoryVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="اسم الفئة الفرعية" DataSetColumn="اسم الفئة الفرعية" />
-              <Mapping SourceColumn="وصف الفئة الفرعية" DataSetColumn="وصف الفئة الفرعية" />
-              <Mapping SourceColumn="اسم الفئة الرئيسية" DataSetColumn="اسم الفئة الرئيسية" />
-              <Mapping SourceColumn="العمر الإنتاجي بالسنوات" DataSetColumn="العمر الإنتاجي بالسنوات" />
-              <Mapping SourceColumn="معدل الإهلاك" DataSetColumn="معدل الإهلاك" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1503,6 +1690,302 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
   <xs:element name="AssetMngDbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AssetMngDbDataSet" msprop:Generator_UserDSName="AssetMngDbDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AssetMoveVw" msprop:Generator_TableClassName="AssetMoveVwDataTable" msprop:Generator_TableVarName="tableAssetMoveVw" msprop:Generator_TablePropName="AssetMoveVw" msprop:Generator_RowDeletingName="AssetMoveVwRowDeleting" msprop:Generator_RowChangingName="AssetMoveVwRowChanging" msprop:Generator_RowEvHandlerName="AssetMoveVwRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetMoveVwRowDeleted" msprop:Generator_UserTableName="AssetMoveVw" msprop:Generator_RowChangedName="AssetMoveVwRowChanged" msprop:Generator_RowEvArgName="AssetMoveVwRowChangeEvent" msprop:Generator_RowClassName="AssetMoveVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="MainCategoryName" msprop:Generator_ColumnVarNameInTable="columnMainCategoryName" msprop:Generator_ColumnPropNameInRow="MainCategoryName" msprop:Generator_ColumnPropNameInTable="MainCategoryNameColumn" msprop:Generator_UserColumnName="MainCategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MinorCategoryName" msprop:Generator_ColumnVarNameInTable="columnMinorCategoryName" msprop:Generator_ColumnPropNameInRow="MinorCategoryName" msprop:Generator_ColumnPropNameInTable="MinorCategoryNameColumn" msprop:Generator_UserColumnName="MinorCategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AssetCode" msprop:Generator_ColumnVarNameInTable="columnAssetCode" msprop:Generator_ColumnPropNameInRow="AssetCode" msprop:Generator_ColumnPropNameInTable="AssetCodeColumn" msprop:Generator_UserColumnName="AssetCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SquareName" msprop:Generator_ColumnVarNameInTable="columnSquareName" msprop:Generator_ColumnPropNameInRow="SquareName" msprop:Generator_ColumnPropNameInTable="SquareNameColumn" msprop:Generator_UserColumnName="SquareName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StatusName" msprop:Generator_ColumnVarNameInTable="columnStatusName" msprop:Generator_ColumnPropNameInRow="StatusName" msprop:Generator_ColumnPropNameInTable="StatusNameColumn" msprop:Generator_UserColumnName="StatusName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustodianName" msprop:Generator_ColumnVarNameInTable="columnCustodianName" msprop:Generator_ColumnPropNameInRow="CustodianName" msprop:Generator_ColumnPropNameInTable="CustodianNameColumn" msprop:Generator_UserColumnName="CustodianName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MinorCategoryVw" msprop:Generator_TableClassName="MinorCategoryVwDataTable" msprop:Generator_TableVarName="tableMinorCategoryVw" msprop:Generator_TablePropName="MinorCategoryVw" msprop:Generator_RowDeletingName="MinorCategoryVwRowDeleting" msprop:Generator_RowChangingName="MinorCategoryVwRowChanging" msprop:Generator_RowEvHandlerName="MinorCategoryVwRowChangeEventHandler" msprop:Generator_RowDeletedName="MinorCategoryVwRowDeleted" msprop:Generator_UserTableName="MinorCategoryVw" msprop:Generator_RowChangedName="MinorCategoryVwRowChanged" msprop:Generator_RowEvArgName="MinorCategoryVwRowChangeEvent" msprop:Generator_RowClassName="MinorCategoryVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="اسم_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="اسم الفئة الفرعية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="وصف_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnوصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="وصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="وصف_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="وصف الفئة الفرعية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اسم_x0020_الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="اسم الفئة الرئيسية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="العمر_x0020_الإنتاجي_x0020_بالسنوات" msprop:Generator_ColumnVarNameInTable="columnالعمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInRow="العمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInTable="العمر_الإنتاجي_بالسنواتColumn" msprop:Generator_UserColumnName="العمر الإنتاجي بالسنوات" type="xs:int" minOccurs="0" />
+              <xs:element name="معدل_x0020_الإهلاك" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاكColumn" msprop:Generator_UserColumnName="معدل الإهلاك" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AssetVw" msprop:Generator_TableClassName="AssetVwDataTable" msprop:Generator_TableVarName="tableAssetVw" msprop:Generator_TablePropName="AssetVw" msprop:Generator_RowDeletingName="AssetVwRowDeleting" msprop:Generator_RowChangingName="AssetVwRowChanging" msprop:Generator_RowEvHandlerName="AssetVwRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetVwRowDeleted" msprop:Generator_UserTableName="AssetVw" msprop:Generator_RowChangedName="AssetVwRowChanged" msprop:Generator_RowEvArgName="AssetVwRowChangeEvent" msprop:Generator_RowClassName="AssetVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="معرف_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnمعرف_الأصل" msprop:Generator_ColumnPropNameInRow="معرف_الأصل" msprop:Generator_ColumnPropNameInTable="معرف_الأصلColumn" msprop:Generator_UserColumnName="معرف الأصل" type="xs:int" />
+              <xs:element name="كود_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnكود_الأصل" msprop:Generator_ColumnPropNameInRow="كود_الأصل" msprop:Generator_ColumnPropNameInTable="كود_الأصلColumn" msprop:Generator_UserColumnName="كود الأصل" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="العدد" msprop:Generator_ColumnVarNameInTable="columnالعدد" msprop:Generator_ColumnPropNameInRow="العدد" msprop:Generator_ColumnPropNameInTable="العددColumn" msprop:Generator_UserColumnName="العدد" type="xs:int" />
+              <xs:element name="الرصيد" msprop:Generator_ColumnVarNameInTable="columnالرصيد" msprop:Generator_ColumnPropNameInRow="الرصيد" msprop:Generator_ColumnPropNameInTable="الرصيدColumn" msprop:Generator_UserColumnName="الرصيد" type="xs:double" />
+              <xs:element name="القسم" msprop:Generator_ColumnVarNameInTable="columnالقسم" msprop:Generator_ColumnPropNameInRow="القسم" msprop:Generator_ColumnPropNameInTable="القسمColumn" msprop:Generator_UserColumnName="القسم">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الدائرة" msprop:Generator_ColumnVarNameInTable="columnالدائرة" msprop:Generator_ColumnPropNameInRow="الدائرة" msprop:Generator_ColumnPropNameInTable="الدائرةColumn" msprop:Generator_UserColumnName="الدائرة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الساحة" msprop:Generator_ColumnVarNameInTable="columnالساحة" msprop:Generator_ColumnPropNameInRow="الساحة" msprop:Generator_ColumnPropNameInTable="الساحةColumn" msprop:Generator_UserColumnName="الساحة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnالفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="الفئة الرئيسية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnالفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="الفئة الفرعية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="مواصفات_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnمواصفات_الأصل" msprop:Generator_ColumnPropNameInRow="مواصفات_الأصل" msprop:Generator_ColumnPropNameInTable="مواصفات_الأصلColumn" msprop:Generator_UserColumnName="مواصفات الأصل" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الموديل" msprop:Generator_ColumnVarNameInTable="columnالموديل" msprop:Generator_ColumnPropNameInRow="الموديل" msprop:Generator_ColumnPropNameInTable="الموديلColumn" msprop:Generator_UserColumnName="الموديل" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اللون" msprop:Generator_ColumnVarNameInTable="columnاللون" msprop:Generator_ColumnPropNameInRow="اللون" msprop:Generator_ColumnPropNameInTable="اللونColumn" msprop:Generator_UserColumnName="اللون" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الحجم_x0020__x002F__x0020_السعة" msprop:Generator_ColumnVarNameInTable="_columnالحجم___السعة" msprop:Generator_ColumnPropNameInRow="_الحجم___السعة" msprop:Generator_ColumnPropNameInTable="_الحجم___السعةColumn" msprop:Generator_UserColumnName="الحجم / السعة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="تاريخ_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnتاريخ_الشراء" msprop:Generator_ColumnPropNameInRow="تاريخ_الشراء" msprop:Generator_ColumnPropNameInTable="تاريخ_الشراءColumn" msprop:Generator_UserColumnName="تاريخ الشراء" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="سعر_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnسعر_الشراء" msprop:Generator_ColumnPropNameInRow="سعر_الشراء" msprop:Generator_ColumnPropNameInTable="سعر_الشراءColumn" msprop:Generator_UserColumnName="سعر الشراء" type="xs:double" />
+              <xs:element name="عملة_x0020_سعر_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnعملة_سعر_الشراء" msprop:Generator_ColumnPropNameInRow="عملة_سعر_الشراء" msprop:Generator_ColumnPropNameInTable="عملة_سعر_الشراءColumn" msprop:Generator_UserColumnName="عملة سعر الشراء" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="مكان_x0020_التواجد" msprop:Generator_ColumnVarNameInTable="columnمكان_التواجد" msprop:Generator_ColumnPropNameInRow="مكان_التواجد" msprop:Generator_ColumnPropNameInTable="مكان_التواجدColumn" msprop:Generator_UserColumnName="مكان التواجد" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="حالة_x0020_الأصل_x0020_الآنية" msprop:Generator_ColumnVarNameInTable="columnحالة_الأصل_الآنية" msprop:Generator_ColumnPropNameInRow="حالة_الأصل_الآنية" msprop:Generator_ColumnPropNameInTable="حالة_الأصل_الآنيةColumn" msprop:Generator_UserColumnName="حالة الأصل الآنية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="نسبة_x0020_الاستفادة_x0020_منه" msprop:Generator_ColumnVarNameInTable="columnنسبة_الاستفادة_منه" msprop:Generator_ColumnPropNameInRow="نسبة_الاستفادة_منه" msprop:Generator_ColumnPropNameInTable="نسبة_الاستفادة_منهColumn" msprop:Generator_UserColumnName="نسبة الاستفادة منه" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="السعر_x0020_الفعلي_x0020_الحالي" msprop:Generator_ColumnVarNameInTable="columnالسعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInRow="السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInTable="السعر_الفعلي_الحاليColumn" msprop:Generator_UserColumnName="السعر الفعلي الحالي" type="xs:double" />
+              <xs:element name="عملة_x0020_السعر_x0020_الفعلي_x0020_الحالي" msprop:Generator_ColumnVarNameInTable="columnعملة_السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInRow="عملة_السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInTable="عملة_السعر_الفعلي_الحاليColumn" msprop:Generator_UserColumnName="عملة السعر الفعلي الحالي" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اسم_x0020_صاحب_x0020_العهدة" msprop:Generator_ColumnVarNameInTable="columnاسم_صاحب_العهدة" msprop:Generator_ColumnPropNameInRow="اسم_صاحب_العهدة" msprop:Generator_ColumnPropNameInTable="اسم_صاحب_العهدةColumn" msprop:Generator_UserColumnName="اسم صاحب العهدة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="تفاصيل_x0020_إضافية" msprop:Generator_ColumnVarNameInTable="columnتفاصيل_إضافية" msprop:Generator_ColumnPropNameInRow="تفاصيل_إضافية" msprop:Generator_ColumnPropNameInTable="تفاصيل_إضافيةColumn" msprop:Generator_UserColumnName="تفاصيل إضافية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ملاحظات_x0020_أخرى" msprop:Generator_ColumnVarNameInTable="columnملاحظات_أخرى" msprop:Generator_ColumnPropNameInRow="ملاحظات_أخرى" msprop:Generator_ColumnPropNameInTable="ملاحظات_أخرىColumn" msprop:Generator_UserColumnName="ملاحظات أخرى" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="عنوان_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnعنوان_العقار" msprop:Generator_ColumnPropNameInRow="عنوان_العقار" msprop:Generator_ColumnPropNameInTable="عنوان_العقارColumn" msprop:Generator_UserColumnName="عنوان العقار" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اسم_x0020_المالك" msprop:Generator_ColumnVarNameInTable="columnاسم_المالك" msprop:Generator_ColumnPropNameInRow="اسم_المالك" msprop:Generator_ColumnPropNameInTable="اسم_المالكColumn" msprop:Generator_UserColumnName="اسم المالك" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="المستغل_x0020_منه" msprop:Generator_ColumnVarNameInTable="columnالمستغل_منه" msprop:Generator_ColumnPropNameInRow="المستغل_منه" msprop:Generator_ColumnPropNameInTable="المستغل_منهColumn" msprop:Generator_UserColumnName="المستغل منه" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="مع_x0020_من_x0020_ورقة_x0020_الملكية" msprop:Generator_ColumnVarNameInTable="columnمع_من_ورقة_الملكية" msprop:Generator_ColumnPropNameInRow="مع_من_ورقة_الملكية" msprop:Generator_ColumnPropNameInTable="مع_من_ورقة_الملكيةColumn" msprop:Generator_UserColumnName="مع من ورقة الملكية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="مساحة_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnمساحة_العقار" msprop:Generator_ColumnPropNameInRow="مساحة_العقار" msprop:Generator_ColumnPropNameInTable="مساحة_العقارColumn" msprop:Generator_UserColumnName="مساحة العقار" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="وحدة_x0020_مساحة_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnوحدة_مساحة_العقار" msprop:Generator_ColumnPropNameInRow="وحدة_مساحة_العقار" msprop:Generator_ColumnPropNameInTable="وحدة_مساحة_العقارColumn" msprop:Generator_UserColumnName="وحدة مساحة العقار" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="رقم_x0020_لوحة_x0020_المركبة" msprop:Generator_ColumnVarNameInTable="columnرقم_لوحة_المركبة" msprop:Generator_ColumnPropNameInRow="رقم_لوحة_المركبة" msprop:Generator_ColumnPropNameInTable="رقم_لوحة_المركبةColumn" msprop:Generator_UserColumnName="رقم لوحة المركبة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="سنة_x0020_صنع_x0020_المركبة" msprop:Generator_ColumnVarNameInTable="columnسنة_صنع_المركبة" msprop:Generator_ColumnPropNameInRow="سنة_صنع_المركبة" msprop:Generator_ColumnPropNameInTable="سنة_صنع_المركبةColumn" msprop:Generator_UserColumnName="سنة صنع المركبة" type="xs:int" minOccurs="0" />
+              <xs:element name="رقم_x0020_الهيكل_x0020__x0028_الشاصيه_x0029__x0020_للمركبة" msprop:Generator_ColumnVarNameInTable="_columnرقم_الهيكل__الشاصيه__للمركبة" msprop:Generator_ColumnPropNameInRow="_رقم_الهيكل__الشاصيه__للمركبة" msprop:Generator_ColumnPropNameInTable="_رقم_الهيكل__الشاصيه__للمركبةColumn" msprop:Generator_UserColumnName="رقم الهيكل (الشاصيه) للمركبة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="رقم_x0020_المحرك_x0020_للمركبة" msprop:Generator_ColumnVarNameInTable="columnرقم_المحرك_للمركبة" msprop:Generator_ColumnPropNameInRow="رقم_المحرك_للمركبة" msprop:Generator_ColumnPropNameInTable="رقم_المحرك_للمركبةColumn" msprop:Generator_UserColumnName="رقم المحرك للمركبة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="معدل_x0020_الإهلاك_x0020_للأصل" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك_للأصل" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك_للأصل" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاك_للأصلColumn" msprop:Generator_UserColumnName="معدل الإهلاك للأصل" type="xs:double" minOccurs="0" />
+              <xs:element name="العمر_x0020_الافتراضي_x0020_المتبقي_x0020_للأصل" msprop:Generator_ColumnVarNameInTable="columnالعمر_الافتراضي_المتبقي_للأصل" msprop:Generator_ColumnPropNameInRow="العمر_الافتراضي_المتبقي_للأصل" msprop:Generator_ColumnPropNameInTable="العمر_الافتراضي_المتبقي_للأصلColumn" msprop:Generator_UserColumnName="العمر الافتراضي المتبقي للأصل" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="AssetMovementTbl" msprop:Generator_TableClassName="AssetMovementTblDataTable" msprop:Generator_TableVarName="tableAssetMovementTbl" msprop:Generator_TablePropName="AssetMovementTbl" msprop:Generator_RowDeletingName="AssetMovementTblRowDeleting" msprop:Generator_RowChangingName="AssetMovementTblRowChanging" msprop:Generator_RowEvHandlerName="AssetMovementTblRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetMovementTblRowDeleted" msprop:Generator_UserTableName="AssetMovementTbl" msprop:Generator_RowChangedName="AssetMovementTblRowChanged" msprop:Generator_RowEvArgName="AssetMovementTblRowChangeEvent" msprop:Generator_RowClassName="AssetMovementTblRow">
           <xs:complexType>
             <xs:sequence>
@@ -1787,6 +2270,54 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="FinancialItemCategoryTbl" msprop:Generator_TableClassName="FinancialItemCategoryTblDataTable" msprop:Generator_TableVarName="tableFinancialItemCategoryTbl" msprop:Generator_TablePropName="FinancialItemCategoryTbl" msprop:Generator_RowDeletingName="FinancialItemCategoryTblRowDeleting" msprop:Generator_RowChangingName="FinancialItemCategoryTblRowChanging" msprop:Generator_RowEvHandlerName="FinancialItemCategoryTblRowChangeEventHandler" msprop:Generator_RowDeletedName="FinancialItemCategoryTblRowDeleted" msprop:Generator_UserTableName="FinancialItemCategoryTbl" msprop:Generator_RowChangedName="FinancialItemCategoryTblRowChanged" msprop:Generator_RowEvArgName="FinancialItemCategoryTblRowChangeEvent" msprop:Generator_RowClassName="FinancialItemCategoryTblRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="FinancialItemCategoryName" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCategoryName" msprop:Generator_ColumnPropNameInRow="FinancialItemCategoryName" msprop:Generator_ColumnPropNameInTable="FinancialItemCategoryNameColumn" msprop:Generator_UserColumnName="FinancialItemCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancialItemCategoryDetails" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCategoryDetails" msprop:Generator_ColumnPropNameInRow="FinancialItemCategoryDetails" msprop:Generator_ColumnPropNameInTable="FinancialItemCategoryDetailsColumn" msprop:Generator_UserColumnName="FinancialItemCategoryDetails" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FinancialItemTbl" msprop:Generator_TableClassName="FinancialItemTblDataTable" msprop:Generator_TableVarName="tableFinancialItemTbl" msprop:Generator_TablePropName="FinancialItemTbl" msprop:Generator_RowDeletingName="FinancialItemTblRowDeleting" msprop:Generator_RowChangingName="FinancialItemTblRowChanging" msprop:Generator_RowEvHandlerName="FinancialItemTblRowChangeEventHandler" msprop:Generator_RowDeletedName="FinancialItemTblRowDeleted" msprop:Generator_UserTableName="FinancialItemTbl" msprop:Generator_RowChangedName="FinancialItemTblRowChanged" msprop:Generator_RowEvArgName="FinancialItemTblRowChangeEvent" msprop:Generator_RowClassName="FinancialItemTblRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="FinancialItemCategory" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCategory" msprop:Generator_ColumnPropNameInRow="FinancialItemCategory" msprop:Generator_ColumnPropNameInTable="FinancialItemCategoryColumn" msprop:Generator_UserColumnName="FinancialItemCategory" type="xs:int" />
+              <xs:element name="FinancialItemDescription" msprop:Generator_ColumnVarNameInTable="columnFinancialItemDescription" msprop:Generator_ColumnPropNameInRow="FinancialItemDescription" msprop:Generator_ColumnPropNameInTable="FinancialItemDescriptionColumn" msprop:Generator_UserColumnName="FinancialItemDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FinancialItemInsertionDate" msprop:Generator_ColumnVarNameInTable="columnFinancialItemInsertionDate" msprop:Generator_ColumnPropNameInRow="FinancialItemInsertionDate" msprop:Generator_ColumnPropNameInTable="FinancialItemInsertionDateColumn" msprop:Generator_UserColumnName="FinancialItemInsertionDate" type="xs:dateTime" />
+              <xs:element name="IncomingOrOutgoing" msprop:Generator_ColumnVarNameInTable="columnIncomingOrOutgoing" msprop:Generator_ColumnPropNameInRow="IncomingOrOutgoing" msprop:Generator_ColumnPropNameInTable="IncomingOrOutgoingColumn" msprop:Generator_UserColumnName="IncomingOrOutgoing" type="xs:int" />
+              <xs:element name="IncomingAmount" msprop:Generator_ColumnVarNameInTable="columnIncomingAmount" msprop:Generator_ColumnPropNameInRow="IncomingAmount" msprop:Generator_ColumnPropNameInTable="IncomingAmountColumn" msprop:Generator_UserColumnName="IncomingAmount" type="xs:double" />
+              <xs:element name="OutgoingAmount" msprop:Generator_ColumnVarNameInTable="columnOutgoingAmount" msprop:Generator_ColumnPropNameInRow="OutgoingAmount" msprop:Generator_ColumnPropNameInTable="OutgoingAmountColumn" msprop:Generator_UserColumnName="OutgoingAmount" type="xs:double" />
+              <xs:element name="FinancialItemCurrency" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCurrency" msprop:Generator_ColumnPropNameInRow="FinancialItemCurrency" msprop:Generator_ColumnPropNameInTable="FinancialItemCurrencyColumn" msprop:Generator_UserColumnName="FinancialItemCurrency" type="xs:int" />
+              <xs:element name="AdditionalNotes" msprop:Generator_ColumnVarNameInTable="columnAdditionalNotes" msprop:Generator_ColumnPropNameInRow="AdditionalNotes" msprop:Generator_ColumnPropNameInTable="AdditionalNotesColumn" msprop:Generator_UserColumnName="AdditionalNotes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="MainCategoryTbl" msprop:Generator_TableClassName="MainCategoryTblDataTable" msprop:Generator_TableVarName="tableMainCategoryTbl" msprop:Generator_TablePropName="MainCategoryTbl" msprop:Generator_RowDeletingName="MainCategoryTblRowDeleting" msprop:Generator_RowChangingName="MainCategoryTblRowChanging" msprop:Generator_RowEvHandlerName="MainCategoryTblRowChangeEventHandler" msprop:Generator_RowDeletedName="MainCategoryTblRowDeleted" msprop:Generator_UserTableName="MainCategoryTbl" msprop:Generator_RowChangedName="MainCategoryTblRowChanged" msprop:Generator_RowEvArgName="MainCategoryTblRowChangeEvent" msprop:Generator_RowClassName="MainCategoryTblRow">
           <xs:complexType>
             <xs:sequence>
@@ -1953,6 +2484,13 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
               <xs:element name="ManageEstateAreaUnits" msprop:Generator_ColumnVarNameInTable="columnManageEstateAreaUnits" msprop:Generator_ColumnPropNameInRow="ManageEstateAreaUnits" msprop:Generator_ColumnPropNameInTable="ManageEstateAreaUnitsColumn" msprop:Generator_UserColumnName="ManageEstateAreaUnits" type="xs:boolean" minOccurs="0" />
               <xs:element name="AddNewTransactionType" msprop:Generator_ColumnVarNameInTable="columnAddNewTransactionType" msprop:Generator_ColumnPropNameInRow="AddNewTransactionType" msprop:Generator_ColumnPropNameInTable="AddNewTransactionTypeColumn" msprop:Generator_UserColumnName="AddNewTransactionType" type="xs:boolean" minOccurs="0" />
               <xs:element name="ManageTransactionTypes" msprop:Generator_ColumnVarNameInTable="columnManageTransactionTypes" msprop:Generator_ColumnPropNameInRow="ManageTransactionTypes" msprop:Generator_ColumnPropNameInTable="ManageTransactionTypesColumn" msprop:Generator_UserColumnName="ManageTransactionTypes" type="xs:boolean" minOccurs="0" />
+              <xs:element name="AddNewFinancialItem" msprop:Generator_ColumnVarNameInTable="columnAddNewFinancialItem" msprop:Generator_ColumnPropNameInRow="AddNewFinancialItem" msprop:Generator_ColumnPropNameInTable="AddNewFinancialItemColumn" msprop:Generator_UserColumnName="AddNewFinancialItem" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ManageFinancialItems" msprop:Generator_ColumnVarNameInTable="columnManageFinancialItems" msprop:Generator_ColumnPropNameInRow="ManageFinancialItems" msprop:Generator_ColumnPropNameInTable="ManageFinancialItemsColumn" msprop:Generator_UserColumnName="ManageFinancialItems" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UpdateExistedFinancialItem" msprop:Generator_ColumnVarNameInTable="columnUpdateExistedFinancialItem" msprop:Generator_ColumnPropNameInRow="UpdateExistedFinancialItem" msprop:Generator_ColumnPropNameInTable="UpdateExistedFinancialItemColumn" msprop:Generator_UserColumnName="UpdateExistedFinancialItem" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DeleteFinancialItemRecord" msprop:Generator_ColumnVarNameInTable="columnDeleteFinancialItemRecord" msprop:Generator_ColumnPropNameInRow="DeleteFinancialItemRecord" msprop:Generator_ColumnPropNameInTable="DeleteFinancialItemRecordColumn" msprop:Generator_UserColumnName="DeleteFinancialItemRecord" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ViewFinancialReports" msprop:Generator_ColumnVarNameInTable="columnViewFinancialReports" msprop:Generator_ColumnPropNameInRow="ViewFinancialReports" msprop:Generator_ColumnPropNameInTable="ViewFinancialReportsColumn" msprop:Generator_UserColumnName="ViewFinancialReports" type="xs:boolean" minOccurs="0" />
+              <xs:element name="AddNewFinancialItemCategory" msprop:Generator_ColumnVarNameInTable="columnAddNewFinancialItemCategory" msprop:Generator_ColumnPropNameInRow="AddNewFinancialItemCategory" msprop:Generator_ColumnPropNameInTable="AddNewFinancialItemCategoryColumn" msprop:Generator_UserColumnName="AddNewFinancialItemCategory" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ManageFinancialItemCategories" msprop:Generator_ColumnVarNameInTable="columnManageFinancialItemCategories" msprop:Generator_ColumnPropNameInRow="ManageFinancialItemCategories" msprop:Generator_ColumnPropNameInTable="ManageFinancialItemCategoriesColumn" msprop:Generator_UserColumnName="ManageFinancialItemCategories" type="xs:boolean" minOccurs="0" />
               <xs:element name="SetDateAndTime" msprop:Generator_ColumnVarNameInTable="columnSetDateAndTime" msprop:Generator_ColumnPropNameInRow="SetDateAndTime" msprop:Generator_ColumnPropNameInTable="SetDateAndTimeColumn" msprop:Generator_UserColumnName="SetDateAndTime" type="xs:boolean" minOccurs="0" />
               <xs:element name="BackupDb" msprop:Generator_ColumnVarNameInTable="columnBackupDb" msprop:Generator_ColumnPropNameInRow="BackupDb" msprop:Generator_ColumnPropNameInTable="BackupDbColumn" msprop:Generator_UserColumnName="BackupDb" type="xs:boolean" minOccurs="0" />
               <xs:element name="RestoreDb" msprop:Generator_ColumnVarNameInTable="columnRestoreDb" msprop:Generator_ColumnPropNameInRow="RestoreDb" msprop:Generator_ColumnPropNameInTable="RestoreDbColumn" msprop:Generator_UserColumnName="RestoreDb" type="xs:boolean" minOccurs="0" />
@@ -1961,305 +2499,17 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AssetMoveVw" msprop:Generator_TableClassName="AssetMoveVwDataTable" msprop:Generator_TableVarName="tableAssetMoveVw" msprop:Generator_TablePropName="AssetMoveVw" msprop:Generator_RowDeletingName="AssetMoveVwRowDeleting" msprop:Generator_RowChangingName="AssetMoveVwRowChanging" msprop:Generator_RowEvHandlerName="AssetMoveVwRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetMoveVwRowDeleted" msprop:Generator_UserTableName="AssetMoveVw" msprop:Generator_RowChangedName="AssetMoveVwRowChanged" msprop:Generator_RowEvArgName="AssetMoveVwRowChangeEvent" msprop:Generator_RowClassName="AssetMoveVwRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="MainCategoryName" msprop:Generator_ColumnVarNameInTable="columnMainCategoryName" msprop:Generator_ColumnPropNameInRow="MainCategoryName" msprop:Generator_ColumnPropNameInTable="MainCategoryNameColumn" msprop:Generator_UserColumnName="MainCategoryName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="MinorCategoryName" msprop:Generator_ColumnVarNameInTable="columnMinorCategoryName" msprop:Generator_ColumnPropNameInRow="MinorCategoryName" msprop:Generator_ColumnPropNameInTable="MinorCategoryNameColumn" msprop:Generator_UserColumnName="MinorCategoryName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="AssetCode" msprop:Generator_ColumnVarNameInTable="columnAssetCode" msprop:Generator_ColumnPropNameInRow="AssetCode" msprop:Generator_ColumnPropNameInTable="AssetCodeColumn" msprop:Generator_UserColumnName="AssetCode" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SquareName" msprop:Generator_ColumnVarNameInTable="columnSquareName" msprop:Generator_ColumnPropNameInRow="SquareName" msprop:Generator_ColumnPropNameInTable="SquareNameColumn" msprop:Generator_UserColumnName="SquareName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="StatusName" msprop:Generator_ColumnVarNameInTable="columnStatusName" msprop:Generator_ColumnPropNameInRow="StatusName" msprop:Generator_ColumnPropNameInTable="StatusNameColumn" msprop:Generator_UserColumnName="StatusName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="CustodianName" msprop:Generator_ColumnVarNameInTable="columnCustodianName" msprop:Generator_ColumnPropNameInRow="CustodianName" msprop:Generator_ColumnPropNameInTable="CustodianNameColumn" msprop:Generator_UserColumnName="CustodianName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="AssetVw" msprop:Generator_TableClassName="AssetVwDataTable" msprop:Generator_TableVarName="tableAssetVw" msprop:Generator_TablePropName="AssetVw" msprop:Generator_RowDeletingName="AssetVwRowDeleting" msprop:Generator_RowChangingName="AssetVwRowChanging" msprop:Generator_RowEvHandlerName="AssetVwRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetVwRowDeleted" msprop:Generator_UserTableName="AssetVw" msprop:Generator_RowChangedName="AssetVwRowChanged" msprop:Generator_RowEvArgName="AssetVwRowChangeEvent" msprop:Generator_RowClassName="AssetVwRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="معرف_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnمعرف_الأصل" msprop:Generator_ColumnPropNameInRow="معرف_الأصل" msprop:Generator_ColumnPropNameInTable="معرف_الأصلColumn" msprop:Generator_UserColumnName="معرف الأصل" type="xs:int" />
-              <xs:element name="كود_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnكود_الأصل" msprop:Generator_ColumnPropNameInRow="كود_الأصل" msprop:Generator_ColumnPropNameInTable="كود_الأصلColumn" msprop:Generator_UserColumnName="كود الأصل" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="العدد" msprop:Generator_ColumnVarNameInTable="columnالعدد" msprop:Generator_ColumnPropNameInRow="العدد" msprop:Generator_ColumnPropNameInTable="العددColumn" msprop:Generator_UserColumnName="العدد" type="xs:int" />
-              <xs:element name="الرصيد" msprop:Generator_ColumnVarNameInTable="columnالرصيد" msprop:Generator_ColumnPropNameInRow="الرصيد" msprop:Generator_ColumnPropNameInTable="الرصيدColumn" msprop:Generator_UserColumnName="الرصيد" type="xs:double" />
-              <xs:element name="القسم" msprop:Generator_ColumnVarNameInTable="columnالقسم" msprop:Generator_ColumnPropNameInRow="القسم" msprop:Generator_ColumnPropNameInTable="القسمColumn" msprop:Generator_UserColumnName="القسم">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الدائرة" msprop:Generator_ColumnVarNameInTable="columnالدائرة" msprop:Generator_ColumnPropNameInRow="الدائرة" msprop:Generator_ColumnPropNameInTable="الدائرةColumn" msprop:Generator_UserColumnName="الدائرة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الساحة" msprop:Generator_ColumnVarNameInTable="columnالساحة" msprop:Generator_ColumnPropNameInRow="الساحة" msprop:Generator_ColumnPropNameInTable="الساحةColumn" msprop:Generator_UserColumnName="الساحة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnالفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="الفئة الرئيسية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnالفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="الفئة الفرعية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="مواصفات_x0020_الأصل" msprop:Generator_ColumnVarNameInTable="columnمواصفات_الأصل" msprop:Generator_ColumnPropNameInRow="مواصفات_الأصل" msprop:Generator_ColumnPropNameInTable="مواصفات_الأصلColumn" msprop:Generator_UserColumnName="مواصفات الأصل" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الموديل" msprop:Generator_ColumnVarNameInTable="columnالموديل" msprop:Generator_ColumnPropNameInRow="الموديل" msprop:Generator_ColumnPropNameInTable="الموديلColumn" msprop:Generator_UserColumnName="الموديل" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="اللون" msprop:Generator_ColumnVarNameInTable="columnاللون" msprop:Generator_ColumnPropNameInRow="اللون" msprop:Generator_ColumnPropNameInTable="اللونColumn" msprop:Generator_UserColumnName="اللون" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="الحجم_x0020__x002F__x0020_السعة" msprop:Generator_ColumnVarNameInTable="_columnالحجم___السعة" msprop:Generator_ColumnPropNameInRow="_الحجم___السعة" msprop:Generator_ColumnPropNameInTable="_الحجم___السعةColumn" msprop:Generator_UserColumnName="الحجم / السعة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="تاريخ_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnتاريخ_الشراء" msprop:Generator_ColumnPropNameInRow="تاريخ_الشراء" msprop:Generator_ColumnPropNameInTable="تاريخ_الشراءColumn" msprop:Generator_UserColumnName="تاريخ الشراء" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="سعر_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnسعر_الشراء" msprop:Generator_ColumnPropNameInRow="سعر_الشراء" msprop:Generator_ColumnPropNameInTable="سعر_الشراءColumn" msprop:Generator_UserColumnName="سعر الشراء" type="xs:double" />
-              <xs:element name="عملة_x0020_سعر_x0020_الشراء" msprop:Generator_ColumnVarNameInTable="columnعملة_سعر_الشراء" msprop:Generator_ColumnPropNameInRow="عملة_سعر_الشراء" msprop:Generator_ColumnPropNameInTable="عملة_سعر_الشراءColumn" msprop:Generator_UserColumnName="عملة سعر الشراء" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="مكان_x0020_التواجد" msprop:Generator_ColumnVarNameInTable="columnمكان_التواجد" msprop:Generator_ColumnPropNameInRow="مكان_التواجد" msprop:Generator_ColumnPropNameInTable="مكان_التواجدColumn" msprop:Generator_UserColumnName="مكان التواجد" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="حالة_x0020_الأصل_x0020_الآنية" msprop:Generator_ColumnVarNameInTable="columnحالة_الأصل_الآنية" msprop:Generator_ColumnPropNameInRow="حالة_الأصل_الآنية" msprop:Generator_ColumnPropNameInTable="حالة_الأصل_الآنيةColumn" msprop:Generator_UserColumnName="حالة الأصل الآنية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="نسبة_x0020_الاستفادة_x0020_منه" msprop:Generator_ColumnVarNameInTable="columnنسبة_الاستفادة_منه" msprop:Generator_ColumnPropNameInRow="نسبة_الاستفادة_منه" msprop:Generator_ColumnPropNameInTable="نسبة_الاستفادة_منهColumn" msprop:Generator_UserColumnName="نسبة الاستفادة منه" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="السعر_x0020_الفعلي_x0020_الحالي" msprop:Generator_ColumnVarNameInTable="columnالسعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInRow="السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInTable="السعر_الفعلي_الحاليColumn" msprop:Generator_UserColumnName="السعر الفعلي الحالي" type="xs:double" />
-              <xs:element name="عملة_x0020_السعر_x0020_الفعلي_x0020_الحالي" msprop:Generator_ColumnVarNameInTable="columnعملة_السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInRow="عملة_السعر_الفعلي_الحالي" msprop:Generator_ColumnPropNameInTable="عملة_السعر_الفعلي_الحاليColumn" msprop:Generator_UserColumnName="عملة السعر الفعلي الحالي" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="اسم_x0020_صاحب_x0020_العهدة" msprop:Generator_ColumnVarNameInTable="columnاسم_صاحب_العهدة" msprop:Generator_ColumnPropNameInRow="اسم_صاحب_العهدة" msprop:Generator_ColumnPropNameInTable="اسم_صاحب_العهدةColumn" msprop:Generator_UserColumnName="اسم صاحب العهدة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="تفاصيل_x0020_إضافية" msprop:Generator_ColumnVarNameInTable="columnتفاصيل_إضافية" msprop:Generator_ColumnPropNameInRow="تفاصيل_إضافية" msprop:Generator_ColumnPropNameInTable="تفاصيل_إضافيةColumn" msprop:Generator_UserColumnName="تفاصيل إضافية" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="ملاحظات_x0020_أخرى" msprop:Generator_ColumnVarNameInTable="columnملاحظات_أخرى" msprop:Generator_ColumnPropNameInRow="ملاحظات_أخرى" msprop:Generator_ColumnPropNameInTable="ملاحظات_أخرىColumn" msprop:Generator_UserColumnName="ملاحظات أخرى" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="عنوان_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnعنوان_العقار" msprop:Generator_ColumnPropNameInRow="عنوان_العقار" msprop:Generator_ColumnPropNameInTable="عنوان_العقارColumn" msprop:Generator_UserColumnName="عنوان العقار" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="اسم_x0020_المالك" msprop:Generator_ColumnVarNameInTable="columnاسم_المالك" msprop:Generator_ColumnPropNameInRow="اسم_المالك" msprop:Generator_ColumnPropNameInTable="اسم_المالكColumn" msprop:Generator_UserColumnName="اسم المالك" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="المستغل_x0020_منه" msprop:Generator_ColumnVarNameInTable="columnالمستغل_منه" msprop:Generator_ColumnPropNameInRow="المستغل_منه" msprop:Generator_ColumnPropNameInTable="المستغل_منهColumn" msprop:Generator_UserColumnName="المستغل منه" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="مع_x0020_من_x0020_ورقة_x0020_الملكية" msprop:Generator_ColumnVarNameInTable="columnمع_من_ورقة_الملكية" msprop:Generator_ColumnPropNameInRow="مع_من_ورقة_الملكية" msprop:Generator_ColumnPropNameInTable="مع_من_ورقة_الملكيةColumn" msprop:Generator_UserColumnName="مع من ورقة الملكية" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="مساحة_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnمساحة_العقار" msprop:Generator_ColumnPropNameInRow="مساحة_العقار" msprop:Generator_ColumnPropNameInTable="مساحة_العقارColumn" msprop:Generator_UserColumnName="مساحة العقار" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="وحدة_x0020_مساحة_x0020_العقار" msprop:Generator_ColumnVarNameInTable="columnوحدة_مساحة_العقار" msprop:Generator_ColumnPropNameInRow="وحدة_مساحة_العقار" msprop:Generator_ColumnPropNameInTable="وحدة_مساحة_العقارColumn" msprop:Generator_UserColumnName="وحدة مساحة العقار" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="رقم_x0020_لوحة_x0020_المركبة" msprop:Generator_ColumnVarNameInTable="columnرقم_لوحة_المركبة" msprop:Generator_ColumnPropNameInRow="رقم_لوحة_المركبة" msprop:Generator_ColumnPropNameInTable="رقم_لوحة_المركبةColumn" msprop:Generator_UserColumnName="رقم لوحة المركبة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="سنة_x0020_صنع_x0020_المركبة" msprop:Generator_ColumnVarNameInTable="columnسنة_صنع_المركبة" msprop:Generator_ColumnPropNameInRow="سنة_صنع_المركبة" msprop:Generator_ColumnPropNameInTable="سنة_صنع_المركبةColumn" msprop:Generator_UserColumnName="سنة صنع المركبة" type="xs:int" minOccurs="0" />
-              <xs:element name="رقم_x0020_الهيكل_x0020__x0028_الشاصيه_x0029__x0020_للمركبة" msprop:Generator_ColumnVarNameInTable="_columnرقم_الهيكل__الشاصيه__للمركبة" msprop:Generator_ColumnPropNameInRow="_رقم_الهيكل__الشاصيه__للمركبة" msprop:Generator_ColumnPropNameInTable="_رقم_الهيكل__الشاصيه__للمركبةColumn" msprop:Generator_UserColumnName="رقم الهيكل (الشاصيه) للمركبة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="رقم_x0020_المحرك_x0020_للمركبة" msprop:Generator_ColumnVarNameInTable="columnرقم_المحرك_للمركبة" msprop:Generator_ColumnPropNameInRow="رقم_المحرك_للمركبة" msprop:Generator_ColumnPropNameInTable="رقم_المحرك_للمركبةColumn" msprop:Generator_UserColumnName="رقم المحرك للمركبة" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="معدل_x0020_الإهلاك_x0020_للأصل" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك_للأصل" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك_للأصل" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاك_للأصلColumn" msprop:Generator_UserColumnName="معدل الإهلاك للأصل" type="xs:double" minOccurs="0" />
-              <xs:element name="العمر_x0020_الافتراضي_x0020_المتبقي_x0020_للأصل" msprop:Generator_ColumnVarNameInTable="columnالعمر_الافتراضي_المتبقي_للأصل" msprop:Generator_ColumnPropNameInRow="العمر_الافتراضي_المتبقي_للأصل" msprop:Generator_ColumnPropNameInTable="العمر_الافتراضي_المتبقي_للأصلColumn" msprop:Generator_UserColumnName="العمر الافتراضي المتبقي للأصل" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="MinorCategoryVw" msprop:Generator_TableClassName="MinorCategoryVwDataTable" msprop:Generator_TableVarName="tableMinorCategoryVw" msprop:Generator_TablePropName="MinorCategoryVw" msprop:Generator_RowDeletingName="MinorCategoryVwRowDeleting" msprop:Generator_RowChangingName="MinorCategoryVwRowChanging" msprop:Generator_RowEvHandlerName="MinorCategoryVwRowChangeEventHandler" msprop:Generator_RowDeletedName="MinorCategoryVwRowDeleted" msprop:Generator_UserTableName="MinorCategoryVw" msprop:Generator_RowChangedName="MinorCategoryVwRowChanged" msprop:Generator_RowEvArgName="MinorCategoryVwRowChangeEvent" msprop:Generator_RowClassName="MinorCategoryVwRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="اسم_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="اسم الفئة الفرعية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="وصف_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnوصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="وصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="وصف_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="وصف الفئة الفرعية" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="300" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="اسم_x0020_الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="اسم الفئة الرئيسية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="العمر_x0020_الإنتاجي_x0020_بالسنوات" msprop:Generator_ColumnVarNameInTable="columnالعمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInRow="العمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInTable="العمر_الإنتاجي_بالسنواتColumn" msprop:Generator_UserColumnName="العمر الإنتاجي بالسنوات" type="xs:int" minOccurs="0" />
-              <xs:element name="معدل_x0020_الإهلاك" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاكColumn" msprop:Generator_UserColumnName="معدل الإهلاك" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AssetMoveVw" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="AssetVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AssetVw" />
+      <xs:field xpath="mstns:معرف_x0020_الأصل" />
+    </xs:unique>
+    <xs:unique name="AssetMovementTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetMovementTbl" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
@@ -2285,6 +2535,14 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
     </xs:unique>
     <xs:unique name="EstateAreaUnitTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:EstateAreaUnitTbl" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="FinancialItemCategoryTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FinancialItemCategoryTbl" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="FinancialItemTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FinancialItemTbl" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
     <xs:unique name="MainCategoryTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
@@ -2319,14 +2577,6 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
       <xs:selector xpath=".//mstns:UserRoleTbl" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
-    <xs:unique name="AssetMoveVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:AssetMoveVw" />
-      <xs:field xpath="mstns:ID" />
-    </xs:unique>
-    <xs:unique name="AssetVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:AssetVw" />
-      <xs:field xpath="mstns:معرف_x0020_الأصل" />
-    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -2348,6 +2598,8 @@ SELECT ID, RoleName, AddNewAsset, UpdateExistedAsset, DeleteAssetRecord, AddNewI
       <msdata:Relationship name="FK_AssetTransactionTbl_CurrencyTbl" msdata:parent="CurrencyTbl" msdata:child="AssetTransactionTbl" msdata:parentkey="ID" msdata:childkey="MoneyAmountCurrency" msprop:Generator_UserChildTable="AssetTransactionTbl" msprop:Generator_ChildPropName="GetAssetTransactionTblRows" msprop:Generator_UserRelationName="FK_AssetTransactionTbl_CurrencyTbl" msprop:Generator_RelationVarName="relationFK_AssetTransactionTbl_CurrencyTbl" msprop:Generator_UserParentTable="CurrencyTbl" msprop:Generator_ParentPropName="CurrencyTblRow" />
       <msdata:Relationship name="FK_AssetTransactionTbl_TransactionTypeTbl" msdata:parent="TransactionTypeTbl" msdata:child="AssetTransactionTbl" msdata:parentkey="ID" msdata:childkey="TransactionType" msprop:Generator_UserChildTable="AssetTransactionTbl" msprop:Generator_ChildPropName="GetAssetTransactionTblRows" msprop:Generator_UserRelationName="FK_AssetTransactionTbl_TransactionTypeTbl" msprop:Generator_RelationVarName="relationFK_AssetTransactionTbl_TransactionTypeTbl" msprop:Generator_UserParentTable="TransactionTypeTbl" msprop:Generator_ParentPropName="TransactionTypeTblRow" />
       <msdata:Relationship name="FK_AssetTransactionTbl_UserTbl" msdata:parent="UserTbl" msdata:child="AssetTransactionTbl" msdata:parentkey="ID" msdata:childkey="TransactionMadeBy" msprop:Generator_UserChildTable="AssetTransactionTbl" msprop:Generator_ChildPropName="GetAssetTransactionTblRows" msprop:Generator_UserRelationName="FK_AssetTransactionTbl_UserTbl" msprop:Generator_ParentPropName="UserTblRow" msprop:Generator_RelationVarName="relationFK_AssetTransactionTbl_UserTbl" msprop:Generator_UserParentTable="UserTbl" />
+      <msdata:Relationship name="FK_FinancialItemTbl_CurrencyTbl" msdata:parent="CurrencyTbl" msdata:child="FinancialItemTbl" msdata:parentkey="ID" msdata:childkey="FinancialItemCurrency" msprop:Generator_UserChildTable="FinancialItemTbl" msprop:Generator_ChildPropName="GetFinancialItemTblRows" msprop:Generator_UserRelationName="FK_FinancialItemTbl_CurrencyTbl" msprop:Generator_ParentPropName="CurrencyTblRow" msprop:Generator_RelationVarName="relationFK_FinancialItemTbl_CurrencyTbl" msprop:Generator_UserParentTable="CurrencyTbl" />
+      <msdata:Relationship name="FK_FinancialItemTbl_FinancialItemCategoryTbl" msdata:parent="FinancialItemCategoryTbl" msdata:child="FinancialItemTbl" msdata:parentkey="ID" msdata:childkey="FinancialItemCategory" msprop:Generator_UserChildTable="FinancialItemTbl" msprop:Generator_ChildPropName="GetFinancialItemTblRows" msprop:Generator_UserRelationName="FK_FinancialItemTbl_FinancialItemCategoryTbl" msprop:Generator_ParentPropName="FinancialItemCategoryTblRow" msprop:Generator_RelationVarName="relationFK_FinancialItemTbl_FinancialItemCategoryTbl" msprop:Generator_UserParentTable="FinancialItemCategoryTbl" />
       <msdata:Relationship name="FK_MinorCategoryTbl_MainCategoryTbl" msdata:parent="MainCategoryTbl" msdata:child="MinorCategoryTbl" msdata:parentkey="ID" msdata:childkey="MainCategory" msprop:Generator_UserChildTable="MinorCategoryTbl" msprop:Generator_ChildPropName="GetMinorCategoryTblRows" msprop:Generator_UserRelationName="FK_MinorCategoryTbl_MainCategoryTbl" msprop:Generator_ParentPropName="MainCategoryTblRow" msprop:Generator_RelationVarName="relationFK_MinorCategoryTbl_MainCategoryTbl" msprop:Generator_UserParentTable="MainCategoryTbl" />
     </xs:appinfo>
   </xs:annotation>

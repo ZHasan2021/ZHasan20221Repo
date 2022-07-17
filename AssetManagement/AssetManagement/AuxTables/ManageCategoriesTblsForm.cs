@@ -29,6 +29,7 @@ namespace AssetManagement.AuxTables
             minorCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewMinorCategory == true;
             minorCategoryGridControl.EmbeddedNavigator.Buttons.Edit.Visible =
             minorCategoryGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.ManageMinorCategories == true;
+            addTheCategoryAsAFinancialItemCategoryCheckBox.Visible = StaticCode.activeUserRole.AddNewFinancialItemCategory == true;
 
             this.MinimumSize = this.Size;
         }
@@ -59,15 +60,27 @@ namespace AssetManagement.AuxTables
                 return;
             }
 
+            bool addFinancialItem = addTheCategoryAsAFinancialItemCategoryCheckBox.Checked;
+
             StaticCode.mainDbContext.MainCategoryTbls.InsertOnSubmit(new MainCategoryTbl() { MainCategoryName = newMainCategoryNameTextBox.Text.Trim(), MainCategoryDescription = newMainCategoryDescriptionTextBox.Text.Trim() });
+            if (addFinancialItem)
+            {
+                FinancialItemCategoryTbl newFICat = new FinancialItemCategoryTbl()
+                {
+                    FinancialItemCategoryName = newMainCategoryDescriptionTextBox.Text.Trim(),
+                    FinancialItemCategoryDetails = "فئة رئيسية للأصول",
+                };
+                StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(newFICat);
+            }
             StaticCode.mainDbContext.SubmitChanges();
 
             this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
 
-            mainAlertControl.Show(this, "تم إضافة فئة رئيسية", StaticCode.ApplicationTitle);
+            mainAlertControl.Show(this, $"تم إضافة فئة رئيسية{((addFinancialItem) ? " مع بند مالي كذلك" : "")}", StaticCode.ApplicationTitle);
             addNewMainCategoryGroupBox.Visible = false;
         }
+
         private void addNewMainCategoryBtn_Cancel_Click(object sender, EventArgs e)
         {
             newMainCategoryNameTextBox.Text = "";
@@ -107,6 +120,13 @@ namespace AssetManagement.AuxTables
         private void findAllMinorCategoriestBtn_Click(object sender, EventArgs e)
         {
             minorCategoryGridControl.DataSource = minorCategoryTblBindingSource;
+        }
+
+        private void minorCategoryTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            minorCategoryTblBindingSource.EndEdit();
+            tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
         }
     }
 }

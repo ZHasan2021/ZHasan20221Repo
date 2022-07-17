@@ -152,6 +152,7 @@ namespace AssetManagement.Assets
             // 
             // assetTransactionPanel
             // 
+            this.assetTransactionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetTransactionPanel.BackColor = System.Drawing.Color.PeachPuff;
             this.assetTransactionPanel.Controls.Add(this.currentPriceWithDestroyingLabel);
             this.assetTransactionPanel.Controls.Add(this.currentPriceWithDestroyingNumericUpDown);
@@ -170,7 +171,6 @@ namespace AssetManagement.Assets
             this.assetTransactionPanel.Controls.Add(this.transactionTypeLabel);
             this.assetTransactionPanel.Controls.Add(this.assetTransactionDateLabel);
             this.assetTransactionPanel.Controls.Add(this.transactionTypeLookUpEdit);
-            this.assetTransactionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.assetTransactionPanel.Location = new System.Drawing.Point(3, 140);
             this.assetTransactionPanel.Name = "assetTransactionPanel";
             this.assetTransactionPanel.Size = new System.Drawing.Size(1270, 224);
@@ -179,6 +179,7 @@ namespace AssetManagement.Assets
             // 
             // currentPriceWithDestroyingLabel
             // 
+            this.currentPriceWithDestroyingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currentPriceWithDestroyingLabel.AutoSize = true;
             this.currentPriceWithDestroyingLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentPriceWithDestroyingLabel.Location = new System.Drawing.Point(1080, 181);
@@ -189,6 +190,7 @@ namespace AssetManagement.Assets
             // 
             // currentPriceWithDestroyingNumericUpDown
             // 
+            this.currentPriceWithDestroyingNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currentPriceWithDestroyingNumericUpDown.DecimalPlaces = 2;
             this.currentPriceWithDestroyingNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentPriceWithDestroyingNumericUpDown.Location = new System.Drawing.Point(871, 177);
@@ -203,6 +205,7 @@ namespace AssetManagement.Assets
             // 
             // withDestroyingCheckBox
             // 
+            this.withDestroyingCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.withDestroyingCheckBox.AutoSize = true;
             this.withDestroyingCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 75);
@@ -215,7 +218,6 @@ namespace AssetManagement.Assets
             // 
             // manageCurrencyTblBtn
             // 
-            this.manageCurrencyTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCurrencyTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
             this.manageCurrencyTblBtn.Location = new System.Drawing.Point(264, 110);
@@ -264,7 +266,6 @@ namespace AssetManagement.Assets
             // 
             // manageTransactionTypeTblBtn
             // 
-            this.manageTransactionTypeTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageTransactionTypeTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageTransactionTypeTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
             this.manageTransactionTypeTblBtn.Location = new System.Drawing.Point(264, 10);
@@ -276,6 +277,7 @@ namespace AssetManagement.Assets
             // 
             // moneyAmountLabel
             // 
+            this.moneyAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.moneyAmountLabel.AutoSize = true;
             this.moneyAmountLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moneyAmountLabel.Location = new System.Drawing.Point(1167, 127);
@@ -286,6 +288,7 @@ namespace AssetManagement.Assets
             // 
             // moneyAmountNumericUpDown
             // 
+            this.moneyAmountNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.moneyAmountNumericUpDown.DecimalPlaces = 2;
             this.moneyAmountNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moneyAmountNumericUpDown.Location = new System.Drawing.Point(871, 123);
@@ -318,6 +321,7 @@ namespace AssetManagement.Assets
             // 
             // getAssetOutOfWorkCheckBox
             // 
+            this.getAssetOutOfWorkCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.getAssetOutOfWorkCheckBox.AutoSize = true;
             this.getAssetOutOfWorkCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.getAssetOutOfWorkCheckBox.Location = new System.Drawing.Point(1071, 75);
@@ -344,6 +348,7 @@ namespace AssetManagement.Assets
             // 
             // assetTransactionDateDateEdit
             // 
+            this.assetTransactionDateDateEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetTransactionDateDateEdit.EditValue = null;
             this.assetTransactionDateDateEdit.Location = new System.Drawing.Point(871, 23);
             this.assetTransactionDateDateEdit.Name = "assetTransactionDateDateEdit";
@@ -368,6 +373,7 @@ namespace AssetManagement.Assets
             // 
             // assetTransactionDateLabel
             // 
+            this.assetTransactionDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetTransactionDateLabel.AutoSize = true;
             this.assetTransactionDateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetTransactionDateLabel.Location = new System.Drawing.Point(1140, 27);
@@ -735,6 +741,7 @@ namespace AssetManagement.Assets
             // 
             // fromSectionTextBox
             // 
+            this.fromSectionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSectionTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSectionTextBox.Location = new System.Drawing.Point(756, 88);
             this.fromSectionTextBox.Name = "fromSectionTextBox";
@@ -744,6 +751,7 @@ namespace AssetManagement.Assets
             // 
             // fromDepartmentTextBox
             // 
+            this.fromDepartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDepartmentTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDepartmentTextBox.Location = new System.Drawing.Point(756, 41);
             this.fromDepartmentTextBox.Name = "fromDepartmentTextBox";
@@ -782,6 +790,7 @@ namespace AssetManagement.Assets
             // 
             // fromSectionLabel
             // 
+            this.fromSectionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSectionLabel.AutoSize = true;
             this.fromSectionLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromSectionLabel.Location = new System.Drawing.Point(1093, 92);
@@ -792,6 +801,7 @@ namespace AssetManagement.Assets
             // 
             // fromDepartmentLabel
             // 
+            this.fromDepartmentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDepartmentLabel.AutoSize = true;
             this.fromDepartmentLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDepartmentLabel.Location = new System.Drawing.Point(1093, 45);
@@ -849,7 +859,6 @@ namespace AssetManagement.Assets
             // 
             // viewAssetInformationBtn
             // 
-            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.viewAssetInformationBtn.Location = new System.Drawing.Point(1058, 45);
@@ -864,7 +873,6 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchResultsListBox.DisplayMember = "AssetCode";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;

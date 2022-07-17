@@ -270,7 +270,6 @@ namespace AssetManagement.Assets
             // 
             // viewAssetInformationBtn
             // 
-            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.viewAssetInformationBtn.Location = new System.Drawing.Point(996, 60);
@@ -285,7 +284,6 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchResultsListBox.DisplayMember = "AssetCode";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;

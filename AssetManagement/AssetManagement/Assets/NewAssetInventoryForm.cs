@@ -258,7 +258,7 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
+                cells.Value = (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
             }
             using (var cells = astWs.Cells[5, 9])
             {
@@ -281,7 +281,7 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
+                cells.Value = (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
             }
             using (var cells = astWs.Cells[5, 13])
             {
@@ -308,7 +308,8 @@ namespace AssetManagement.Assets
                 cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
             }
             int startRow = 7;
-            using (var cells = astWs.Cells[startRow, 2, startRow, columnsWidths.Count + 1])
+            int currentRow = startRow;
+            using (var cells = astWs.Cells[currentRow, 2, currentRow, columnsWidths.Count + 1])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 11.0F;
@@ -320,43 +321,71 @@ namespace AssetManagement.Assets
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             }
-            if (assetsQry.Count() > 0)
-            {
-                using (var cells = astWs.Cells[8, 2, assetsQry.Count() + 7, columnsWidths.Count + 1])
+            if (assetsQry.Count() == 0)
+           
+           
+                return;
+            
+            int astCount = 1;
+            List<MainCategoryTbl> allMainCategories = StaticCode.mainDbContext.MainCategoryTbls.Select(maca => maca).ToList();
+            foreach(MainCategoryTbl oneMaCa in allMainCategories)
+                {
+                List<int> micaIDs = StaticCode.mainDbContext.MinorCategoryTbls.Where(mica1 => mica1.MainCategory == oneMaCa.ID).Select(mica1 => mica1.ID).ToList();
+                var assetsQryByMaCa = assetsQry.Where(ast => micaIDs.Contains(ast.AssetMinorCategory) );
+                if (assetsQryByMaCa==null ||assetsQryByMaCa.Count() == 0)
+                    continue;
+
+                currentRow++;
+                using (var cells = astWs.Cells[currentRow, 3, currentRow, 4])
+                {
+                    cells.Style.Font.Name = "Sakkal Majalla";
+                    cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
+                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
+                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    cells.Value = oneMaCa.MainCategoryName;
+                }
+                currentRow++;
+
+                foreach (var oneAst in assetsQryByMaCa)
+                {
+                    Application.DoEvents();
+
+                    astWs.Cells[ currentRow, 2].Value = astCount;
+                    astWs.Cells[ currentRow, 3].Value = oneAst.AssetCode;
+                    astWs.Cells[ currentRow, 4].Value = oneAst.AssetSpecifications;
+                    astWs.Cells[ currentRow, 5].Value = "";
+                    astWs.Cells[ currentRow, 6].Value = oneAst.PurchaseDate?.ToShortDateString();
+                    astWs.Cells[ currentRow, 7].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
+                    astWs.Cells[ currentRow, 8].Value = oneAst.PlaceOfPresence;
+                    astWs.Cells[ currentRow, 9].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
+                    astWs.Cells[ currentRow, 10].Value = oneAst.BenefitPercentage;
+                    astWs.Cells[ currentRow, 11].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 12].Value = oneAst.CustodianName;
+                    astWs.Cells[currentRow, 13].Value = oneAst.MoreDetails;
+                    astWs.Cells[currentRow, 14].Value = "";
+                    astWs.Cells[currentRow, 15].Value = "";
+                    astWs.Cells[currentRow, 16].Value = "";
+                    astWs.Cells[currentRow, 17].Value = "";
+                    astWs.Cells[currentRow, 18].Value = oneAst.AssetNotes;
+
+                currentRow++;
+                    astCount++;
+                }
+            }
+
+                using (var cells = astWs.Cells[startRow+1, 2, currentRow-1, columnsWidths.Count + 1])
                 {
                     cells.Style.Font.Name = "Sakkal Majalla";
                     cells.Style.Font.Size = 11.0F;
-                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
                     cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 }
-            }
-            int astCount = 1;
-            foreach (var oneAst in assetsQry)
-            {
-                Application.DoEvents();
-
-                astWs.Cells[astCount + startRow, 2].Value = astCount;
-                astWs.Cells[astCount + startRow, 3].Value = oneAst.AssetCode;
-                astWs.Cells[astCount + startRow, 4].Value = oneAst.AssetSpecifications;
-                astWs.Cells[astCount + startRow, 5].Value = "";
-                astWs.Cells[astCount + startRow, 6].Value = oneAst.PurchaseDate?.ToShortDateString();
-                astWs.Cells[astCount + startRow, 7].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
-                astWs.Cells[astCount + startRow, 8].Value = oneAst.PlaceOfPresence;
-                astWs.Cells[astCount + startRow, 9].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
-                astWs.Cells[astCount + startRow, 10].Value = oneAst.BenefitPercentage;
-                astWs.Cells[astCount + startRow, 11].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
-                astWs.Cells[astCount + startRow, 12].Value = oneAst.CustodianName;
-                astWs.Cells[astCount + startRow, 13].Value = oneAst.MoreDetails;
-                astWs.Cells[astCount + startRow, 14].Value = "";
-                astWs.Cells[astCount + startRow, 15].Value = "";
-                astWs.Cells[astCount + startRow, 16].Value = "";
-                astWs.Cells[astCount + startRow, 17].Value = "";
-                astWs.Cells[astCount + startRow, 18].Value = oneAst.AssetNotes;
-
-                astCount++;
-            }
             astEp.Save();
 
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
