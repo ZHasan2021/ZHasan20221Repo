@@ -281,7 +281,6 @@ namespace AssetManagement.Assets
             // destructionRateNumericUpDown
             // 
             this.destructionRateNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.destructionRateNumericUpDown.DecimalPlaces = 2;
             this.destructionRateNumericUpDown.Enabled = false;
             this.destructionRateNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.destructionRateNumericUpDown.Location = new System.Drawing.Point(890, 491);
@@ -291,7 +290,7 @@ namespace AssetManagement.Assets
             0,
             0});
             this.destructionRateNumericUpDown.Name = "destructionRateNumericUpDown";
-            this.destructionRateNumericUpDown.Size = new System.Drawing.Size(165, 32);
+            this.destructionRateNumericUpDown.Size = new System.Drawing.Size(122, 32);
             this.destructionRateNumericUpDown.TabIndex = 70;
             // 
             // itemsQuantityLabel
@@ -321,7 +320,7 @@ namespace AssetManagement.Assets
             0,
             0});
             this.itemsQuantityNumericUpDown.Name = "itemsQuantityNumericUpDown";
-            this.itemsQuantityNumericUpDown.Size = new System.Drawing.Size(165, 32);
+            this.itemsQuantityNumericUpDown.Size = new System.Drawing.Size(122, 32);
             this.itemsQuantityNumericUpDown.TabIndex = 60;
             this.itemsQuantityNumericUpDown.Value = new decimal(new int[] {
             1,
@@ -394,7 +393,7 @@ namespace AssetManagement.Assets
             // 
             this.manageCategoriesTblsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCategoriesTblsBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 319);
+            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 312);
             this.manageCategoriesTblsBtn.Name = "manageCategoriesTblsBtn";
             this.manageCategoriesTblsBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCategoriesTblsBtn.TabIndex = 51;
@@ -1271,16 +1270,15 @@ namespace AssetManagement.Assets
             this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lifeSpanInMonthsLabel.AutoSize = true;
             this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1098, 560);
+            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1031, 560);
             this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
-            this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(166, 24);
-            this.lifeSpanInMonthsLabel.TabIndex = 75;
-            this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي:";
+            this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(233, 24);
+            this.lifeSpanInMonthsLabel.TabIndex = 196;
+            this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي (بالأشهر):";
             // 
             // lifeSpanInMonthsNumericUpDown
             // 
             this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lifeSpanInMonthsNumericUpDown.DecimalPlaces = 2;
             this.lifeSpanInMonthsNumericUpDown.Enabled = false;
             this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 556);
@@ -1290,8 +1288,8 @@ namespace AssetManagement.Assets
             0,
             0});
             this.lifeSpanInMonthsNumericUpDown.Name = "lifeSpanInMonthsNumericUpDown";
-            this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(165, 32);
-            this.lifeSpanInMonthsNumericUpDown.TabIndex = 80;
+            this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(122, 32);
+            this.lifeSpanInMonthsNumericUpDown.TabIndex = 197;
             // 
             // AddNewAssetForm
             // 

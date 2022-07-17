@@ -171,6 +171,24 @@
     <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.Designer.cs">
       <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Blank\BlankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Blank\BlankForm.Designer.cs">
+      <DependentUpon>BlankForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\AddNewFinancialItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\AddNewFinancialItemForm.Designer.cs">
+      <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\FinancialReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\FinancialReportsForm.Designer.cs">
+      <DependentUpon>FinancialReportsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Options\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +317,15 @@
     <EmbeddedResource Include="AuxTables\ManageFinancialItemCategoryTblForm.resx">
       <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Blank\BlankForm.resx">
+      <DependentUpon>BlankForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finance\AddNewFinancialItemForm.resx">
+      <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finance\FinancialReportsForm.resx">
+      <DependentUpon>FinancialReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +415,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\3418116.png" />
+    <None Include="Resources\2834767.png" />
+    <None Include="Resources\2205595.png" />
+    <None Include="Resources\2636671.png" />
     <None Include="Resources\2762550.png" />
     <None Include="Resources\41866361.png" />
     <None Include="Resources\2407198.png" />
@@ -483,8 +514,6 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Finance\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

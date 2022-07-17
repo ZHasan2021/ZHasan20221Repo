@@ -59,5 +59,10 @@ namespace AssetManagement.AuxTables
         {
             this.Close();
         }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
+        }
     }
 }

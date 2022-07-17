@@ -112,8 +112,8 @@ namespace AssetManagement.Assets
                     AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
-                    LifeSpanInMonths = Convert.ToDouble(lifeSpanInMonthsNumericUpDown.Value),
                     DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
+                    LifeSpanInMonths = Convert.ToDouble(lifeSpanInMonthsNumericUpDown.Value),
                     AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
@@ -222,22 +222,9 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter.Fill(this.assetMngDbDataSet.SquareTbl);
         }
 
-        private void purchaseDateDateEdit_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime dt1 = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
-                int monthsDiff = (DateTime.Today.Year - dt1.Year) * 12 + (DateTime.Today.Month - dt1.Month);
-                lifeSpanInMonthsNumericUpDown.Value = monthsDiff;
-            }
-            catch
-            {
-                lifeSpanInMonthsNumericUpDown.Value = 0;
-            }
-        }
-
         private void minorCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
+            destructionRateNumericUpDown.Value = 0;
             if (minorCategoryLookUpEdit.EditValue == null)
                 return;
             try
@@ -246,7 +233,22 @@ namespace AssetManagement.Assets
             }
             catch
             {
-                destructionRateNumericUpDown.Value = 0;
+
+            }
+        }
+
+        private void purchaseDateDateEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            lifeSpanInMonthsNumericUpDown.Value = 0;
+            try
+            {
+                DateTime dt1 = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
+                int monthsDiff = (DateTime.Today.Year - dt1.Year) * 12 + (DateTime.Today.Month - dt1.Month);
+                lifeSpanInMonthsNumericUpDown.Value = monthsDiff;
+            }
+            catch
+            {
+
             }
         }
     }

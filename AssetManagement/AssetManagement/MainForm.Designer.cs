@@ -68,6 +68,10 @@ namespace AssetManagement
             this.decryptImportedFileBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.importDataBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addNewFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageFinancialItemsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageFinancialItemCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.prepareFinancialReportsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -77,7 +81,7 @@ namespace AssetManagement
             this.assetsMovementsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.financeRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.FinancialRecordsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.manageAuxTablesRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.auxTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.exportImportDataRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -144,10 +148,14 @@ namespace AssetManagement
             this.optionsBarButtonItem,
             this.decryptImportedFileBarCheckItem,
             this.importDataBarButtonItem,
-            this.viewStatsBarButtonItem});
+            this.viewStatsBarButtonItem,
+            this.addNewFinancialItemBarButtonItem,
+            this.manageFinancialItemsBarButtonItem,
+            this.manageFinancialItemCategoryTblBarButtonItem,
+            this.prepareFinancialReportsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10);
-            this.mainRibbonControl.MaxItemId = 43;
+            this.mainRibbonControl.MaxItemId = 47;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 1006;
@@ -475,6 +483,42 @@ namespace AssetManagement
             this.viewStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.viewStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewStatsBarButtonItem_ItemClick);
             // 
+            // addNewFinancialItemBarButtonItem
+            // 
+            this.addNewFinancialItemBarButtonItem.Caption = "إضافة سجل مالي جديد";
+            this.addNewFinancialItemBarButtonItem.Id = 43;
+            this.addNewFinancialItemBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2636671;
+            this.addNewFinancialItemBarButtonItem.Name = "addNewFinancialItemBarButtonItem";
+            this.addNewFinancialItemBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addNewFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
+            // 
+            // manageFinancialItemsBarButtonItem
+            // 
+            this.manageFinancialItemsBarButtonItem.Caption = "إدارة السجلات المالية";
+            this.manageFinancialItemsBarButtonItem.Id = 44;
+            this.manageFinancialItemsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2205595;
+            this.manageFinancialItemsBarButtonItem.Name = "manageFinancialItemsBarButtonItem";
+            this.manageFinancialItemsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageFinancialItemsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageFinancialItemsBarButtonItem_ItemClick);
+            // 
+            // manageFinancialItemCategoryTblBarButtonItem
+            // 
+            this.manageFinancialItemCategoryTblBarButtonItem.Caption = "إدارة البنود المالية";
+            this.manageFinancialItemCategoryTblBarButtonItem.Id = 45;
+            this.manageFinancialItemCategoryTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2834767;
+            this.manageFinancialItemCategoryTblBarButtonItem.Name = "manageFinancialItemCategoryTblBarButtonItem";
+            this.manageFinancialItemCategoryTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageFinancialItemCategoryTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageFinancialItemCategoryTblBarButtonItem_ItemClick);
+            // 
+            // prepareFinancialReportsBarButtonItem
+            // 
+            this.prepareFinancialReportsBarButtonItem.Caption = "إصدار تقارير مالية";
+            this.prepareFinancialReportsBarButtonItem.Id = 46;
+            this.prepareFinancialReportsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3418116;
+            this.prepareFinancialReportsBarButtonItem.Name = "prepareFinancialReportsBarButtonItem";
+            this.prepareFinancialReportsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.prepareFinancialReportsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.prepareFinancialReportsBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -549,15 +593,18 @@ namespace AssetManagement
             // financeRibbonPage
             // 
             this.financeRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.FinancialRecordsRibbonPageGroup});
             this.financeRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2407198;
             this.financeRibbonPage.Name = "financeRibbonPage";
             this.financeRibbonPage.Text = "المالية - Finance";
             // 
-            // ribbonPageGroup1
+            // FinancialRecordsRibbonPageGroup
             // 
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.addNewFinancialItemBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemsBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.prepareFinancialReportsBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.Name = "FinancialRecordsRibbonPageGroup";
+            this.FinancialRecordsRibbonPageGroup.Text = "السجلات المالية";
             // 
             // manageAuxTablesRibbonPage
             // 
@@ -581,6 +628,7 @@ namespace AssetManagement
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSquareTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageTransactionTypeTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemCategoryTblBarButtonItem);
             this.auxTablesRibbonPageGroup.Name = "auxTablesRibbonPageGroup";
             this.auxTablesRibbonPageGroup.Text = "الجداول المساعدة";
             // 
@@ -770,7 +818,6 @@ namespace AssetManagement
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
@@ -871,7 +918,11 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsStatsRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPage financeRibbonPage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup FinancialRecordsRibbonPageGroup;
+        private DevExpress.XtraBars.BarButtonItem addNewFinancialItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageFinancialItemsBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageFinancialItemCategoryTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem prepareFinancialReportsBarButtonItem;
     }
 }
 

@@ -371,5 +371,10 @@ namespace AssetManagement
             }
         }
         #endregion
+
+        #region Finance
+        public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
+        public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
+        #endregion
     }
 }

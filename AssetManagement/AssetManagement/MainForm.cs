@@ -1,5 +1,6 @@
 ﻿using AssetManagement.Assets;
 using AssetManagement.AuxTables;
+using AssetManagement.Finance;
 using AssetManagement.Options;
 using AssetManagement.Properties;
 using AssetManagement.Users;
@@ -58,6 +59,10 @@ namespace AssetManagement
             exportDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ExportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageFinancialItemCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItemCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -363,6 +368,29 @@ namespace AssetManagement
         {
             SetAppDateAndTimeForm appDtFrm = new SetAppDateAndTimeForm();
             appDtFrm.ShowDialog();
+        }
+
+        private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageFinancialItemCategoryTblForm ficFrm = new ManageFinancialItemCategoryTblForm();
+            ficFrm.ShowDialog();
+        }
+
+        private void addNewFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddNewFinancialItemForm newFinFrm = new AddNewFinancialItemForm();
+            newFinFrm.ShowDialog();
+        }
+
+        private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FinancialReportsForm fiRpFrm = new FinancialReportsForm();
+            fiRpFrm.ShowDialog();
         }
     }
 }
