@@ -37,10 +37,9 @@ namespace AssetManagement.Finance
             this.fromDateLabel = new System.Windows.Forms.Label();
             this.toDateLabel = new System.Windows.Forms.Label();
             this.financialItemGridControl = new DevExpress.XtraGrid.GridControl();
-            this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.financialItemTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.financialItemTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter();
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFinancialItemCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFinancialItemDescription = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,16 +49,27 @@ namespace AssetManagement.Finance
             this.colOutgoingAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFinancialItemCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdditionalNotes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.financialItemTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter();
             this.searchFinancialItemDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportFinancialReportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
+            this.financialItemCategoryRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
+            this.currencyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -129,14 +139,27 @@ namespace AssetManagement.Finance
             // 
             this.financialItemGridControl.DataSource = this.financialItemTblBindingSource;
             this.financialItemGridControl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.financialItemGridControl.Location = new System.Drawing.Point(480, 0);
+            this.financialItemGridControl.Location = new System.Drawing.Point(469, 0);
             this.financialItemGridControl.MainView = this.financialItemGridView;
             this.financialItemGridControl.Name = "financialItemGridControl";
-            this.financialItemGridControl.Size = new System.Drawing.Size(733, 512);
+            this.financialItemGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.financialItemCategoryRepositoryItemLookUpEdit,
+            this.currencyRepositoryItemLookUpEdit});
+            this.financialItemGridControl.Size = new System.Drawing.Size(733, 591);
             this.financialItemGridControl.TabIndex = 4;
             this.financialItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.financialItemGridView});
             this.financialItemGridControl.Visible = false;
+            // 
+            // financialItemTblBindingSource
+            // 
+            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
+            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // financialItemGridView
             // 
@@ -153,100 +176,99 @@ namespace AssetManagement.Finance
             this.financialItemGridView.GridControl = this.financialItemGridControl;
             this.financialItemGridView.Name = "financialItemGridView";
             // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // financialItemTblBindingSource
-            // 
-            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
-            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // financialItemTblTableAdapter
-            // 
-            this.financialItemTblTableAdapter.ClearBeforeFill = true;
-            // 
             // colID
             // 
+            this.colID.Caption = "معرف السجل المالي";
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 25;
+            this.colID.MinWidth = 80;
             this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 0;
             this.colID.Width = 94;
             // 
             // colFinancialItemCategory
             // 
+            this.colFinancialItemCategory.Caption = "البند المالي";
+            this.colFinancialItemCategory.ColumnEdit = this.financialItemCategoryRepositoryItemLookUpEdit;
             this.colFinancialItemCategory.FieldName = "FinancialItemCategory";
-            this.colFinancialItemCategory.MinWidth = 25;
+            this.colFinancialItemCategory.MinWidth = 150;
             this.colFinancialItemCategory.Name = "colFinancialItemCategory";
             this.colFinancialItemCategory.Visible = true;
-            this.colFinancialItemCategory.VisibleIndex = 1;
-            this.colFinancialItemCategory.Width = 94;
+            this.colFinancialItemCategory.VisibleIndex = 0;
+            this.colFinancialItemCategory.Width = 150;
             // 
             // colFinancialItemDescription
             // 
+            this.colFinancialItemDescription.Caption = "بيان السجل المالي";
             this.colFinancialItemDescription.FieldName = "FinancialItemDescription";
-            this.colFinancialItemDescription.MinWidth = 25;
+            this.colFinancialItemDescription.MinWidth = 150;
             this.colFinancialItemDescription.Name = "colFinancialItemDescription";
             this.colFinancialItemDescription.Visible = true;
-            this.colFinancialItemDescription.VisibleIndex = 2;
-            this.colFinancialItemDescription.Width = 94;
+            this.colFinancialItemDescription.VisibleIndex = 1;
+            this.colFinancialItemDescription.Width = 150;
             // 
             // colFinancialItemInsertionDate
             // 
+            this.colFinancialItemInsertionDate.Caption = "تاريخ السجل المالي";
             this.colFinancialItemInsertionDate.FieldName = "FinancialItemInsertionDate";
-            this.colFinancialItemInsertionDate.MinWidth = 25;
+            this.colFinancialItemInsertionDate.MinWidth = 80;
             this.colFinancialItemInsertionDate.Name = "colFinancialItemInsertionDate";
             this.colFinancialItemInsertionDate.Visible = true;
-            this.colFinancialItemInsertionDate.VisibleIndex = 3;
-            this.colFinancialItemInsertionDate.Width = 94;
+            this.colFinancialItemInsertionDate.VisibleIndex = 2;
+            this.colFinancialItemInsertionDate.Width = 1000;
             // 
             // colIncomingOrOutgoing
             // 
+            this.colIncomingOrOutgoing.Caption = "صادر أو وارد";
             this.colIncomingOrOutgoing.FieldName = "IncomingOrOutgoing";
-            this.colIncomingOrOutgoing.MinWidth = 25;
+            this.colIncomingOrOutgoing.MinWidth = 50;
             this.colIncomingOrOutgoing.Name = "colIncomingOrOutgoing";
             this.colIncomingOrOutgoing.Visible = true;
-            this.colIncomingOrOutgoing.VisibleIndex = 4;
+            this.colIncomingOrOutgoing.VisibleIndex = 3;
             this.colIncomingOrOutgoing.Width = 94;
             // 
             // colIncomingAmount
             // 
+            this.colIncomingAmount.Caption = "المبلغ الوارد";
             this.colIncomingAmount.FieldName = "IncomingAmount";
-            this.colIncomingAmount.MinWidth = 25;
+            this.colIncomingAmount.MinWidth = 80;
             this.colIncomingAmount.Name = "colIncomingAmount";
             this.colIncomingAmount.Visible = true;
-            this.colIncomingAmount.VisibleIndex = 5;
-            this.colIncomingAmount.Width = 94;
+            this.colIncomingAmount.VisibleIndex = 4;
+            this.colIncomingAmount.Width = 100;
             // 
             // colOutgoingAmount
             // 
+            this.colOutgoingAmount.Caption = "المبلغ الصادر";
             this.colOutgoingAmount.FieldName = "OutgoingAmount";
-            this.colOutgoingAmount.MinWidth = 25;
+            this.colOutgoingAmount.MinWidth = 80;
             this.colOutgoingAmount.Name = "colOutgoingAmount";
             this.colOutgoingAmount.Visible = true;
-            this.colOutgoingAmount.VisibleIndex = 6;
+            this.colOutgoingAmount.VisibleIndex = 5;
             this.colOutgoingAmount.Width = 94;
             // 
             // colFinancialItemCurrency
             // 
+            this.colFinancialItemCurrency.Caption = "العملة";
+            this.colFinancialItemCurrency.ColumnEdit = this.currencyRepositoryItemLookUpEdit;
             this.colFinancialItemCurrency.FieldName = "FinancialItemCurrency";
-            this.colFinancialItemCurrency.MinWidth = 25;
+            this.colFinancialItemCurrency.MinWidth = 100;
             this.colFinancialItemCurrency.Name = "colFinancialItemCurrency";
             this.colFinancialItemCurrency.Visible = true;
-            this.colFinancialItemCurrency.VisibleIndex = 7;
-            this.colFinancialItemCurrency.Width = 94;
+            this.colFinancialItemCurrency.VisibleIndex = 6;
+            this.colFinancialItemCurrency.Width = 100;
             // 
             // colAdditionalNotes
             // 
+            this.colAdditionalNotes.Caption = "ملاحظات إضافية";
             this.colAdditionalNotes.FieldName = "AdditionalNotes";
-            this.colAdditionalNotes.MinWidth = 25;
+            this.colAdditionalNotes.MinWidth = 150;
             this.colAdditionalNotes.Name = "colAdditionalNotes";
             this.colAdditionalNotes.Visible = true;
-            this.colAdditionalNotes.VisibleIndex = 8;
-            this.colAdditionalNotes.Width = 94;
+            this.colAdditionalNotes.VisibleIndex = 7;
+            this.colAdditionalNotes.Width = 150;
+            // 
+            // financialItemTblTableAdapter
+            // 
+            this.financialItemTblTableAdapter.ClearBeforeFill = true;
             // 
             // searchFinancialItemDropDownButton
             // 
@@ -269,11 +291,56 @@ namespace AssetManagement.Finance
             this.exportFinancialReportToExcelDropDownButton.Text = "تصدير الجرد";
             this.exportFinancialReportToExcelDropDownButton.Click += new System.EventHandler(this.exportFinancialReportToExcelDropDownButton_Click);
             // 
+            // financialItemCategoryRepositoryItemLookUpEdit
+            // 
+            this.financialItemCategoryRepositoryItemLookUpEdit.AutoHeight = false;
+            this.financialItemCategoryRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.financialItemCategoryRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف البند المالي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryName", "اسم البند المالي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryDetails", "وصف البند المالي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.financialItemCategoryRepositoryItemLookUpEdit.DataSource = this.financialItemCategoryTblBindingSource;
+            this.financialItemCategoryRepositoryItemLookUpEdit.DisplayMember = "FinancialItemCategoryName";
+            this.financialItemCategoryRepositoryItemLookUpEdit.Name = "financialItemCategoryRepositoryItemLookUpEdit";
+            this.financialItemCategoryRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // financialItemCategoryTblBindingSource
+            // 
+            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemCategoryTblTableAdapter
+            // 
+            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // currencyRepositoryItemLookUpEdit
+            // 
+            this.currencyRepositoryItemLookUpEdit.AutoHeight = false;
+            this.currencyRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.currencyRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.currencyRepositoryItemLookUpEdit.DataSource = this.currencyTblBindingSource;
+            this.currencyRepositoryItemLookUpEdit.DisplayMember = "CurrencyName";
+            this.currencyRepositoryItemLookUpEdit.Name = "currencyRepositoryItemLookUpEdit";
+            this.currencyRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 512);
+            this.ClientSize = new System.Drawing.Size(1202, 591);
             this.Controls.Add(this.searchFinancialItemDropDownButton);
             this.Controls.Add(this.exportFinancialReportToExcelDropDownButton);
             this.Controls.Add(this.financialItemGridControl);
@@ -283,7 +350,7 @@ namespace AssetManagement.Finance
             this.Controls.Add(this.toDateDateEdit);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FinancialReportsForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -296,9 +363,13 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +398,11 @@ namespace AssetManagement.Finance
         private DevExpress.XtraGrid.Columns.GridColumn colAdditionalNotes;
         private DevExpress.XtraEditors.DropDownButton searchFinancialItemDropDownButton;
         private DevExpress.XtraEditors.DropDownButton exportFinancialReportToExcelDropDownButton;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit financialItemCategoryRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource financialItemCategoryTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter financialItemCategoryTblTableAdapter;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit currencyRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource currencyTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter currencyTblTableAdapter;
     }
 }

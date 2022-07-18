@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,10 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
+            this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemCategoryTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemTbl' table. You can move, or remove it, as needed.
             this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
             this.MinimumSize = this.Size;
@@ -75,25 +80,37 @@ namespace AssetManagement.Finance
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
             int startRow = 5;
-            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1=>fic1.IncomingOrOutgoing==1))
+            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == 1))
             {
                 Application.DoEvents();
-                    fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
+                fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
                 fiRpWs.Cells[startRow, 3].Value = oneFiRp.FinancialItemDescription;
                 fiRpWs.Cells[startRow, 4].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
                 fiRpWs.Cells[startRow, 5].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
                 startRow++;
             }
+            using (var cells = fiRpWs.Cells[startRow, 1, startRow, 5])
+            {
+                cells.Merge = true;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Font.Color.SetColor(Color.FromArgb(31, 73, 125));
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(242, 220, 219));
+                cells.Value = "ثانياً : المصاريف :";
+            }
+            startRow++;
             foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == 2))
             {
                 Application.DoEvents();
-                    fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;
+                fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;
                 fiRpWs.Cells[startRow, 3].Value = oneFiRp.FinancialItemDescription;
                 fiRpWs.Cells[startRow, 4].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
                 fiRpWs.Cells[startRow, 5].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
                 startRow++;
             }
             fiRpEp.Save();
+            mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
         }
     }
 }

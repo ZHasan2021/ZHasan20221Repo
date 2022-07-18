@@ -176,6 +176,15 @@ namespace AssetManagement.Assets
 
         private void exportToExcelDropDownButton_Click(object sender, EventArgs e)
         {
+            ExportAssets(1);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="formNo">1 for normal, 2 for estates, 3 for vehicles</param>
+        private void ExportAssets(int formNo)
+        {
             SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsInvPath.ShowDialog() != DialogResult.OK)
             {
@@ -187,7 +196,7 @@ namespace AssetManagement.Assets
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
             astWs.View.RightToLeft = true;
-            List<int> columnsWidths = new List<int>() { 10, 15, 55, 10, 25, 30, 15, 25, 12, 12, 20, 15, 18, 18, 15, 15, 20, 15, 15, 15, 15, 25 };
+            List<int> columnsWidths = new List<int>() { 8, 15, 40, 8, 20, 25, 12, 15, 12, 12, 10, 10, 15, 15, 15, 12, 12, 20, 15, 12, 18, 15, 15, 20, 15, 15, 15, 10, 25 };
             List<string> columnsTitles = new List<string>()
             {
                 "التسلسل",
@@ -198,6 +207,13 @@ namespace AssetManagement.Assets
                 "العنوان بالضبط",
                 "المستغل منه",
                 "مع من ورقة الملكية",
+                "نوع السيارة",
+                "رقم اللوحة",
+                "لونها",
+                "سنة الصنع",
+                "رثم الشاصيه",
+                "رقم الماكينة",
+                "المالك",
                 "تاريخ الشراء",
                 "قيمة الشراء",
                 "مكان وجوده",
@@ -213,13 +229,20 @@ namespace AssetManagement.Assets
                 "الرصيد",
                 "ملاحظات",
             };
+            List<int> hiddenCols = new List<int>() { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            if (formNo == 2)
+                hiddenCols = new List<int>() { 10, 11, 12, 13, 14, 15, 16 };
+            if (formNo == 3)
+                hiddenCols = new List<int>() { 6, 7, 8, 9 };
             for (int col = 2; col <= columnsWidths.Count + 1; col++)
             {
                 astWs.Columns[col].Width = columnsWidths[col - 2];
                 astWs.Cells[7, col].Value = columnsTitles[col - 2];
+                if (hiddenCols.IndexOf(col) > -1)
+                    astWs.Columns[col].Hidden = true;
             }
             astWs.Rows[7].Height = 30;
-            using (var cells = astWs.Cells[1, 5, 1, 14])
+            using (var cells = astWs.Cells[1, 4, 1, 18])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 16.0F;
@@ -254,7 +277,19 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "الدائرة";
             }
-            using (var cells = astWs.Cells[5, 5, 5, 12])
+            int startCol = 5;
+            int endCol = 18;
+            if(formNo==2)
+            {
+                 startCol = 5;
+                 endCol = 7;
+            }
+            if (formNo == 3)
+            {
+                startCol = 5;
+                endCol = 12;
+            }
+            using (var cells = astWs.Cells[5, startCol, 5, endCol])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -265,7 +300,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 13, 5, 14])
+            using (var cells = astWs.Cells[5, 19, 5, 20])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -278,7 +313,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "القسم";
             }
-            using (var cells = astWs.Cells[5, 15, 5, 17])
+            using (var cells = astWs.Cells[5, 21, 5, 23])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -289,11 +324,12 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 18])
+            using (var cells = astWs.Cells[5, 24, 5, 25])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
                 cells.Style.Font.Bold = true;
+                cells.Merge = true;
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
@@ -301,7 +337,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "التاريخ";
             }
-            using (var cells = astWs.Cells[5, 19, 5, 22])
+            using (var cells = astWs.Cells[5, 26, 5, 29])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -366,20 +402,27 @@ namespace AssetManagement.Assets
                     astWs.Cells[currentRow, 7].Value = oneAst.EstateAddress;
                     astWs.Cells[currentRow, 8].Value = oneAst.OfUsed;
                     astWs.Cells[currentRow, 9].Value = oneAst.EstateOwnershipDocumentWith;
-                    astWs.Cells[currentRow, 10].Value = oneAst.PurchaseDate?.ToShortDateString();
-                    astWs.Cells[currentRow, 11].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
-                    astWs.Cells[currentRow, 12].Value = oneAst.PlaceOfPresence;
-                    astWs.Cells[currentRow, 13].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";
-                    astWs.Cells[currentRow, 14].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
-                    astWs.Cells[currentRow, 15].Value = oneAst.BenefitPercentage;
-                    astWs.Cells[currentRow, 16].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
-                    astWs.Cells[currentRow, 17].Value = oneAst.CustodianName;
-                    astWs.Cells[currentRow, 18].Value = oneAst.MoreDetails;
-                    astWs.Cells[currentRow, 19].Value = "";
-                    astWs.Cells[currentRow, 20].Value = "";
-                    astWs.Cells[currentRow, 21].Value = "";
-                    astWs.Cells[currentRow, 22].Value = oneAst.DestructionRate;
-                    astWs.Cells[currentRow, 23].Value = oneAst.AssetNotes;
+                    astWs.Cells[currentRow, 10].Value = oneAst.Model;
+                    astWs.Cells[currentRow, 11].Value = oneAst.CarPanelNumber;
+                    astWs.Cells[currentRow, 12].Value = oneAst.Color;
+                    astWs.Cells[currentRow, 13].Value = oneAst.CarManufacturingYear;
+                    astWs.Cells[currentRow, 14].Value = oneAst.CarChassisNumber;
+                    astWs.Cells[currentRow, 15].Value = oneAst.CarEngineNumber;
+                    astWs.Cells[currentRow, 16].Value = oneAst.OwnerName;
+                    astWs.Cells[currentRow, 17].Value = oneAst.PurchaseDate?.ToShortDateString();
+                    astWs.Cells[currentRow, 18].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 19].Value = oneAst.PlaceOfPresence;
+                    astWs.Cells[currentRow, 20].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";
+                    astWs.Cells[currentRow, 21].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
+                    astWs.Cells[currentRow, 22].Value = oneAst.BenefitPercentage;
+                    astWs.Cells[currentRow, 23].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 24].Value = oneAst.CustodianName;
+                    astWs.Cells[currentRow, 25].Value = oneAst.MoreDetails;
+                    astWs.Cells[currentRow, 26].Value = "";
+                    astWs.Cells[currentRow, 27].Value = "";
+                    astWs.Cells[currentRow, 28].Value = "";
+                    astWs.Cells[currentRow, 29].Value = oneAst.DestructionRate;
+                    astWs.Cells[currentRow, 30].Value = oneAst.AssetNotes;
 
                     currentRow++;
                     astCount++;
@@ -398,6 +441,26 @@ namespace AssetManagement.Assets
             astEp.Save();
 
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
+        }
+
+        private void allAssetsExportBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportAssets(1);
+        }
+
+        private void estatesExportBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportAssets(3);
+        }
+
+        private void vehiclesexportBrButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportAssets(2);
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
         }
     }
 }

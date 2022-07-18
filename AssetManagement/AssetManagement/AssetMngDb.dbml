@@ -23,8 +23,6 @@
       <Column Name="PasswordUpdatedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UserDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="UserTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetMovedBy" Type="AssetMovementTbl" />
-      <Association Name="UserTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="InsertedBy" Type="AssetTbl" />
-      <Association Name="UserTbl_AssetTbl1" Member="AssetTbls1" ThisKey="ID" OtherKey="LastModifiedBy" Type="AssetTbl" />
       <Association Name="UserTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="TransactionMadeBy" Type="AssetTransactionTbl" />
       <Association Name="DepartmentTbl_UserTbl" Member="DepartmentTbl" ThisKey="UserDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
       <Association Name="UserRoleTbl_UserTbl" Member="UserRoleTbl" ThisKey="UserRole" OtherKey="ID" Type="UserRoleTbl" IsForeignKey="true" />
@@ -64,8 +62,8 @@
       <Column Name="CarManufacturingYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CarChassisNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CarEngineNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DestructionRate" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="LifeSpanInMonths" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DestructionRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="LifeSpanInMonths" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsSold" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="IsOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -74,16 +72,6 @@
       <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="AssetTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetMovementTbl" />
       <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetTransactionTbl" />
-      <Association Name="UserTbl_AssetTbl" Member="UserTbl" ThisKey="InsertedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
-      <Association Name="UserTbl_AssetTbl1" Member="UserTbl1" ThisKey="LastModifiedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
-      <Association Name="CurrencyTbl_AssetTbl" Member="CurrencyTbl" ThisKey="ActualCurrentPriceCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
-      <Association Name="CurrencyTbl_AssetTbl1" Member="CurrencyTbl1" ThisKey="PurchasePriceCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
-      <Association Name="DepartmentTbl_AssetTbl" Member="DepartmentTbl" ThisKey="AssetDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
-      <Association Name="EstateAreaUnitTbl_AssetTbl" Member="EstateAreaUnitTbl" ThisKey="EstateAreaUnit" OtherKey="ID" Type="EstateAreaUnitTbl" IsForeignKey="true" />
-      <Association Name="MinorCategoryTbl_AssetTbl" Member="MinorCategoryTbl" ThisKey="AssetMinorCategory" OtherKey="ID" Type="MinorCategoryTbl" IsForeignKey="true" />
-      <Association Name="SectionTbl_AssetTbl" Member="SectionTbl" ThisKey="AssetSection" OtherKey="ID" Type="SectionTbl" IsForeignKey="true" />
-      <Association Name="SquareTbl_AssetTbl" Member="SquareTbl" ThisKey="AssetSquare" OtherKey="ID" Type="SquareTbl" IsForeignKey="true" />
-      <Association Name="StatusTbl_AssetTbl" Member="StatusTbl" ThisKey="CurrentStatus" OtherKey="ID" Type="StatusTbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.AssetTransactionTbl" Member="AssetTransactionTbls">
@@ -110,8 +98,6 @@
     <Type Name="CurrencyTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CurrencyName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="CurrencyTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="ActualCurrentPriceCurrency" Type="AssetTbl" />
-      <Association Name="CurrencyTbl_AssetTbl1" Member="AssetTbls1" ThisKey="ID" OtherKey="PurchasePriceCurrency" Type="AssetTbl" />
       <Association Name="CurrencyTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="MoneyAmountCurrency" Type="AssetTransactionTbl" />
       <Association Name="CurrencyTbl_FinancialItemTbl" Member="FinancialItemTbls" ThisKey="ID" OtherKey="FinancialItemCurrency" Type="FinancialItemTbl" />
     </Type>
@@ -122,14 +108,12 @@
       <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DepartmentHQ" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Association Name="DepartmentTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserDept" Type="UserTbl" />
-      <Association Name="DepartmentTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetDept" Type="AssetTbl" />
     </Type>
   </Table>
   <Table Name="dbo.EstateAreaUnitTbl" Member="EstateAreaUnitTbls">
     <Type Name="EstateAreaUnitTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="EstateAreaUnitName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="EstateAreaUnitTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="EstateAreaUnit" Type="AssetTbl" />
     </Type>
   </Table>
   <Table Name="dbo.FinancialItemCategoryTbl" Member="FinancialItemCategoryTbls">
@@ -151,6 +135,10 @@
       <Column Name="OutgoingAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="FinancialItemCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AdditionalNotes" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastModifiedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="CurrencyTbl_FinancialItemTbl" Member="CurrencyTbl" ThisKey="FinancialItemCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
       <Association Name="FinancialItemCategoryTbl_FinancialItemTbl" Member="FinancialItemCategoryTbl" ThisKey="FinancialItemCategory" OtherKey="ID" Type="FinancialItemCategoryTbl" IsForeignKey="true" />
     </Type>
@@ -160,7 +148,6 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="MainCategoryDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Association Name="MainCategoryTbl_MinorCategoryTbl" Member="MinorCategoryTbls" ThisKey="ID" OtherKey="MainCategory" Type="MinorCategoryTbl" />
     </Type>
   </Table>
   <Table Name="dbo.MinorCategoryTbl" Member="MinorCategoryTbls">
@@ -169,10 +156,8 @@
       <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="MinorCategoryDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="MainCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductiveAgeInYears" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DestructionRate" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="MinorCategoryTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetMinorCategory" Type="AssetTbl" />
-      <Association Name="MainCategoryTbl_MinorCategoryTbl" Member="MainCategoryTbl" ThisKey="MainCategory" OtherKey="ID" Type="MainCategoryTbl" IsForeignKey="true" />
+      <Column Name="ProductiveAgeInYears" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DestructionRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.OptionsTbl" Member="OptionsTbls">
@@ -186,7 +171,6 @@
     <Type Name="SectionTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SectionName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="SectionTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSection" Type="AssetTbl" />
     </Type>
   </Table>
   <Table Name="dbo.SquareTbl" Member="SquareTbls">
@@ -194,14 +178,12 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="SquareLocation" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="SquareTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSquare" Type="AssetTbl" />
     </Type>
   </Table>
   <Table Name="dbo.StatusTbl" Member="StatusTbls">
     <Type Name="StatusTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="StatusTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="CurrentStatus" Type="AssetTbl" />
     </Type>
   </Table>
   <Table Name="dbo.TransactionTypeTbl" Member="TransactionTypeTbls">
@@ -273,6 +255,17 @@
       <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsSold" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
+    <Type Name="MinorCategoryVw">
+      <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.AssetVw" Member="AssetVws">
@@ -312,15 +305,6 @@
       <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
-    <Type Name="MinorCategoryVw">
-      <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

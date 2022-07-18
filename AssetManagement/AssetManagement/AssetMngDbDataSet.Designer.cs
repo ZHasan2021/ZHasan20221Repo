@@ -26,9 +26,9 @@ namespace AssetManagement {
         
         private AssetMoveVwDataTable tableAssetMoveVw;
         
-        private AssetVwDataTable tableAssetVw;
-        
         private MinorCategoryVwDataTable tableMinorCategoryVw;
+        
+        private AssetVwDataTable tableAssetVw;
         
         private AssetMovementTblDataTable tableAssetMovementTbl;
         
@@ -72,26 +72,6 @@ namespace AssetManagement {
         
         private global::System.Data.DataRelation relationFK_UserTbl_UserRoleTbl;
         
-        private global::System.Data.DataRelation relationFK_AssetTbl_CurrencyTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_CurrencyTbl1;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_DepartmentTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_EstateAreaUnitTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_MinorCategoryTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_SectionTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_SquareTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_StatusTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_UserTbl;
-        
-        private global::System.Data.DataRelation relationFK_AssetTbl_UserTbl1;
-        
         private global::System.Data.DataRelation relationFK_AssetTransactionTbl_AssetTbl;
         
         private global::System.Data.DataRelation relationFK_AssetTransactionTbl_CurrencyTbl;
@@ -103,8 +83,6 @@ namespace AssetManagement {
         private global::System.Data.DataRelation relationFK_FinancialItemTbl_CurrencyTbl;
         
         private global::System.Data.DataRelation relationFK_FinancialItemTbl_FinancialItemCategoryTbl;
-        
-        private global::System.Data.DataRelation relationFK_MinorCategoryTbl_MainCategoryTbl;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -137,11 +115,11 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetMoveVw"] != null)) {
                     base.Tables.Add(new AssetMoveVwDataTable(ds.Tables["AssetMoveVw"]));
                 }
-                if ((ds.Tables["AssetVw"] != null)) {
-                    base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
-                }
                 if ((ds.Tables["MinorCategoryVw"] != null)) {
                     base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
+                }
+                if ((ds.Tables["AssetVw"] != null)) {
+                    base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
                 if ((ds.Tables["AssetMovementTbl"] != null)) {
                     base.Tables.Add(new AssetMovementTblDataTable(ds.Tables["AssetMovementTbl"]));
@@ -226,9 +204,9 @@ namespace AssetManagement {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public AssetVwDataTable AssetVw {
+        public MinorCategoryVwDataTable MinorCategoryVw {
             get {
-                return this.tableAssetVw;
+                return this.tableMinorCategoryVw;
             }
         }
         
@@ -236,9 +214,9 @@ namespace AssetManagement {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MinorCategoryVwDataTable MinorCategoryVw {
+        public AssetVwDataTable AssetVw {
             get {
-                return this.tableMinorCategoryVw;
+                return this.tableAssetVw;
             }
         }
         
@@ -482,11 +460,11 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetMoveVw"] != null)) {
                     base.Tables.Add(new AssetMoveVwDataTable(ds.Tables["AssetMoveVw"]));
                 }
-                if ((ds.Tables["AssetVw"] != null)) {
-                    base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
-                }
                 if ((ds.Tables["MinorCategoryVw"] != null)) {
                     base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
+                }
+                if ((ds.Tables["AssetVw"] != null)) {
+                    base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
                 if ((ds.Tables["AssetMovementTbl"] != null)) {
                     base.Tables.Add(new AssetMovementTblDataTable(ds.Tables["AssetMovementTbl"]));
@@ -578,16 +556,16 @@ namespace AssetManagement {
                     this.tableAssetMoveVw.InitVars();
                 }
             }
-            this.tableAssetVw = ((AssetVwDataTable)(base.Tables["AssetVw"]));
-            if ((initTable == true)) {
-                if ((this.tableAssetVw != null)) {
-                    this.tableAssetVw.InitVars();
-                }
-            }
             this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(base.Tables["MinorCategoryVw"]));
             if ((initTable == true)) {
                 if ((this.tableMinorCategoryVw != null)) {
                     this.tableMinorCategoryVw.InitVars();
+                }
+            }
+            this.tableAssetVw = ((AssetVwDataTable)(base.Tables["AssetVw"]));
+            if ((initTable == true)) {
+                if ((this.tableAssetVw != null)) {
+                    this.tableAssetVw.InitVars();
                 }
             }
             this.tableAssetMovementTbl = ((AssetMovementTblDataTable)(base.Tables["AssetMovementTbl"]));
@@ -696,23 +674,12 @@ namespace AssetManagement {
             this.relationFK_AssetMovementTbl_UserTbl = this.Relations["FK_AssetMovementTbl_UserTbl"];
             this.relationFK_UserTbl_DepartmentTbl = this.Relations["FK_UserTbl_DepartmentTbl"];
             this.relationFK_UserTbl_UserRoleTbl = this.Relations["FK_UserTbl_UserRoleTbl"];
-            this.relationFK_AssetTbl_CurrencyTbl = this.Relations["FK_AssetTbl_CurrencyTbl"];
-            this.relationFK_AssetTbl_CurrencyTbl1 = this.Relations["FK_AssetTbl_CurrencyTbl1"];
-            this.relationFK_AssetTbl_DepartmentTbl = this.Relations["FK_AssetTbl_DepartmentTbl"];
-            this.relationFK_AssetTbl_EstateAreaUnitTbl = this.Relations["FK_AssetTbl_EstateAreaUnitTbl"];
-            this.relationFK_AssetTbl_MinorCategoryTbl = this.Relations["FK_AssetTbl_MinorCategoryTbl"];
-            this.relationFK_AssetTbl_SectionTbl = this.Relations["FK_AssetTbl_SectionTbl"];
-            this.relationFK_AssetTbl_SquareTbl = this.Relations["FK_AssetTbl_SquareTbl"];
-            this.relationFK_AssetTbl_StatusTbl = this.Relations["FK_AssetTbl_StatusTbl"];
-            this.relationFK_AssetTbl_UserTbl = this.Relations["FK_AssetTbl_UserTbl"];
-            this.relationFK_AssetTbl_UserTbl1 = this.Relations["FK_AssetTbl_UserTbl1"];
             this.relationFK_AssetTransactionTbl_AssetTbl = this.Relations["FK_AssetTransactionTbl_AssetTbl"];
             this.relationFK_AssetTransactionTbl_CurrencyTbl = this.Relations["FK_AssetTransactionTbl_CurrencyTbl"];
             this.relationFK_AssetTransactionTbl_TransactionTypeTbl = this.Relations["FK_AssetTransactionTbl_TransactionTypeTbl"];
             this.relationFK_AssetTransactionTbl_UserTbl = this.Relations["FK_AssetTransactionTbl_UserTbl"];
             this.relationFK_FinancialItemTbl_CurrencyTbl = this.Relations["FK_FinancialItemTbl_CurrencyTbl"];
             this.relationFK_FinancialItemTbl_FinancialItemCategoryTbl = this.Relations["FK_FinancialItemTbl_FinancialItemCategoryTbl"];
-            this.relationFK_MinorCategoryTbl_MainCategoryTbl = this.Relations["FK_MinorCategoryTbl_MainCategoryTbl"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -725,10 +692,10 @@ namespace AssetManagement {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableAssetMoveVw = new AssetMoveVwDataTable();
             base.Tables.Add(this.tableAssetMoveVw);
-            this.tableAssetVw = new AssetVwDataTable();
-            base.Tables.Add(this.tableAssetVw);
             this.tableMinorCategoryVw = new MinorCategoryVwDataTable();
             base.Tables.Add(this.tableMinorCategoryVw);
+            this.tableAssetVw = new AssetVwDataTable();
+            base.Tables.Add(this.tableAssetVw);
             this.tableAssetMovementTbl = new AssetMovementTblDataTable();
             base.Tables.Add(this.tableAssetMovementTbl);
             this.tableUserTbl = new UserTblDataTable();
@@ -779,46 +746,6 @@ namespace AssetManagement {
                         this.tableUserRoleTbl.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableUserTbl.UserRoleColumn}, false);
             this.Relations.Add(this.relationFK_UserTbl_UserRoleTbl);
-            this.relationFK_AssetTbl_CurrencyTbl = new global::System.Data.DataRelation("FK_AssetTbl_CurrencyTbl", new global::System.Data.DataColumn[] {
-                        this.tableCurrencyTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.ActualCurrentPriceCurrencyColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_CurrencyTbl);
-            this.relationFK_AssetTbl_CurrencyTbl1 = new global::System.Data.DataRelation("FK_AssetTbl_CurrencyTbl1", new global::System.Data.DataColumn[] {
-                        this.tableCurrencyTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.PurchasePriceCurrencyColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_CurrencyTbl1);
-            this.relationFK_AssetTbl_DepartmentTbl = new global::System.Data.DataRelation("FK_AssetTbl_DepartmentTbl", new global::System.Data.DataColumn[] {
-                        this.tableDepartmentTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.AssetDeptColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_DepartmentTbl);
-            this.relationFK_AssetTbl_EstateAreaUnitTbl = new global::System.Data.DataRelation("FK_AssetTbl_EstateAreaUnitTbl", new global::System.Data.DataColumn[] {
-                        this.tableEstateAreaUnitTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.EstateAreaUnitColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_EstateAreaUnitTbl);
-            this.relationFK_AssetTbl_MinorCategoryTbl = new global::System.Data.DataRelation("FK_AssetTbl_MinorCategoryTbl", new global::System.Data.DataColumn[] {
-                        this.tableMinorCategoryTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.AssetMinorCategoryColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_MinorCategoryTbl);
-            this.relationFK_AssetTbl_SectionTbl = new global::System.Data.DataRelation("FK_AssetTbl_SectionTbl", new global::System.Data.DataColumn[] {
-                        this.tableSectionTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.AssetSectionColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_SectionTbl);
-            this.relationFK_AssetTbl_SquareTbl = new global::System.Data.DataRelation("FK_AssetTbl_SquareTbl", new global::System.Data.DataColumn[] {
-                        this.tableSquareTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.AssetSquareColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_SquareTbl);
-            this.relationFK_AssetTbl_StatusTbl = new global::System.Data.DataRelation("FK_AssetTbl_StatusTbl", new global::System.Data.DataColumn[] {
-                        this.tableStatusTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.CurrentStatusColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_StatusTbl);
-            this.relationFK_AssetTbl_UserTbl = new global::System.Data.DataRelation("FK_AssetTbl_UserTbl", new global::System.Data.DataColumn[] {
-                        this.tableUserTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.InsertedByColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_UserTbl);
-            this.relationFK_AssetTbl_UserTbl1 = new global::System.Data.DataRelation("FK_AssetTbl_UserTbl1", new global::System.Data.DataColumn[] {
-                        this.tableUserTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableAssetTbl.LastModifiedByColumn}, false);
-            this.Relations.Add(this.relationFK_AssetTbl_UserTbl1);
             this.relationFK_AssetTransactionTbl_AssetTbl = new global::System.Data.DataRelation("FK_AssetTransactionTbl_AssetTbl", new global::System.Data.DataColumn[] {
                         this.tableAssetTbl.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableAssetTransactionTbl.AssetIDColumn}, false);
@@ -843,10 +770,6 @@ namespace AssetManagement {
                         this.tableFinancialItemCategoryTbl.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableFinancialItemTbl.FinancialItemCategoryColumn}, false);
             this.Relations.Add(this.relationFK_FinancialItemTbl_FinancialItemCategoryTbl);
-            this.relationFK_MinorCategoryTbl_MainCategoryTbl = new global::System.Data.DataRelation("FK_MinorCategoryTbl_MainCategoryTbl", new global::System.Data.DataColumn[] {
-                        this.tableMainCategoryTbl.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableMinorCategoryTbl.MainCategoryColumn}, false);
-            this.Relations.Add(this.relationFK_MinorCategoryTbl_MainCategoryTbl);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -857,13 +780,13 @@ namespace AssetManagement {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeAssetVw() {
+        private bool ShouldSerializeMinorCategoryVw() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeMinorCategoryVw() {
+        private bool ShouldSerializeAssetVw() {
             return false;
         }
         
@@ -1028,10 +951,10 @@ namespace AssetManagement {
         public delegate void AssetMoveVwRowChangeEventHandler(object sender, AssetMoveVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void AssetVwRowChangeEventHandler(object sender, AssetVwRowChangeEvent e);
+        public delegate void MinorCategoryVwRowChangeEventHandler(object sender, MinorCategoryVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void MinorCategoryVwRowChangeEventHandler(object sender, MinorCategoryVwRowChangeEvent e);
+        public delegate void AssetVwRowChangeEventHandler(object sender, AssetVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void AssetMovementTblRowChangeEventHandler(object sender, AssetMovementTblRowChangeEvent e);
@@ -1108,6 +1031,10 @@ namespace AssetManagement {
             private global::System.Data.DataColumn columnStatusName;
             
             private global::System.Data.DataColumn columnCustodianName;
+            
+            private global::System.Data.DataColumn columnIsSold;
+            
+            private global::System.Data.DataColumn columnIsOutOfWork;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1216,6 +1143,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsSoldColumn {
+                get {
+                    return this.columnIsSold;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsOutOfWorkColumn {
+                get {
+                    return this.columnIsOutOfWork;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1251,7 +1194,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetMoveVwRow AddAssetMoveVwRow(int ID, string MainCategoryName, string MinorCategoryName, string AssetCode, string DepartmentName, string SectionName, string SquareName, string StatusName, string CustodianName) {
+            public AssetMoveVwRow AddAssetMoveVwRow(int ID, string MainCategoryName, string MinorCategoryName, string AssetCode, string DepartmentName, string SectionName, string SquareName, string StatusName, string CustodianName, bool IsSold, bool IsOutOfWork) {
                 AssetMoveVwRow rowAssetMoveVwRow = ((AssetMoveVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -1262,7 +1205,9 @@ namespace AssetManagement {
                         SectionName,
                         SquareName,
                         StatusName,
-                        CustodianName};
+                        CustodianName,
+                        IsSold,
+                        IsOutOfWork};
                 rowAssetMoveVwRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssetMoveVwRow);
                 return rowAssetMoveVwRow;
@@ -1301,6 +1246,8 @@ namespace AssetManagement {
                 this.columnSquareName = base.Columns["SquareName"];
                 this.columnStatusName = base.Columns["StatusName"];
                 this.columnCustodianName = base.Columns["CustodianName"];
+                this.columnIsSold = base.Columns["IsSold"];
+                this.columnIsOutOfWork = base.Columns["IsOutOfWork"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1324,6 +1271,10 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnStatusName);
                 this.columnCustodianName = new global::System.Data.DataColumn("CustodianName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustodianName);
+                this.columnIsSold = new global::System.Data.DataColumn("IsSold", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsSold);
+                this.columnIsOutOfWork = new global::System.Data.DataColumn("IsOutOfWork", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsOutOfWork);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -1426,6 +1377,316 @@ namespace AssetManagement {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "AssetMoveVwDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MinorCategoryVwDataTable : global::System.Data.TypedTableBase<MinorCategoryVwRow> {
+            
+            private global::System.Data.DataColumn columnاسم_الفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnوصف_الفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnاسم_الفئة_الرئيسية;
+            
+            private global::System.Data.DataColumn columnالعمر_الإنتاجي_بالسنوات;
+            
+            private global::System.Data.DataColumn columnمعدل_الإهلاك;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwDataTable() {
+                this.TableName = "MinorCategoryVw";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal MinorCategoryVwDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected MinorCategoryVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_الفئة_الفرعيةColumn {
+                get {
+                    return this.columnاسم_الفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn وصف_الفئة_الفرعيةColumn {
+                get {
+                    return this.columnوصف_الفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_الفئة_الرئيسيةColumn {
+                get {
+                    return this.columnاسم_الفئة_الرئيسية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn العمر_الإنتاجي_بالسنواتColumn {
+                get {
+                    return this.columnالعمر_الإنتاجي_بالسنوات;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معدل_الإهلاكColumn {
+                get {
+                    return this.columnمعدل_الإهلاك;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow this[int index] {
+                get {
+                    return ((MinorCategoryVwRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddMinorCategoryVwRow(MinorCategoryVwRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow AddMinorCategoryVwRow(string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
+                MinorCategoryVwRow rowMinorCategoryVwRow = ((MinorCategoryVwRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        اسم_الفئة_الفرعية,
+                        وصف_الفئة_الفرعية,
+                        اسم_الفئة_الرئيسية,
+                        العمر_الإنتاجي_بالسنوات,
+                        معدل_الإهلاك};
+                rowMinorCategoryVwRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMinorCategoryVwRow);
+                return rowMinorCategoryVwRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MinorCategoryVwDataTable cln = ((MinorCategoryVwDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MinorCategoryVwDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnاسم_الفئة_الفرعية = base.Columns["اسم الفئة الفرعية"];
+                this.columnوصف_الفئة_الفرعية = base.Columns["وصف الفئة الفرعية"];
+                this.columnاسم_الفئة_الرئيسية = base.Columns["اسم الفئة الرئيسية"];
+                this.columnالعمر_الإنتاجي_بالسنوات = base.Columns["العمر الإنتاجي بالسنوات"];
+                this.columnمعدل_الإهلاك = base.Columns["معدل الإهلاك"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnاسم_الفئة_الفرعية = new global::System.Data.DataColumn("اسم الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_الفئة_الفرعية);
+                this.columnوصف_الفئة_الفرعية = new global::System.Data.DataColumn("وصف الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnوصف_الفئة_الفرعية);
+                this.columnاسم_الفئة_الرئيسية = new global::System.Data.DataColumn("اسم الفئة الرئيسية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_الفئة_الرئيسية);
+                this.columnالعمر_الإنتاجي_بالسنوات = new global::System.Data.DataColumn("العمر الإنتاجي بالسنوات", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالعمر_الإنتاجي_بالسنوات);
+                this.columnمعدل_الإهلاك = new global::System.Data.DataColumn("معدل الإهلاك", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعدل_الإهلاك);
+                this.columnاسم_الفئة_الفرعية.AllowDBNull = false;
+                this.columnاسم_الفئة_الفرعية.MaxLength = 200;
+                this.columnوصف_الفئة_الفرعية.MaxLength = 300;
+                this.columnاسم_الفئة_الرئيسية.AllowDBNull = false;
+                this.columnاسم_الفئة_الرئيسية.MaxLength = 200;
+                this.columnالعمر_الإنتاجي_بالسنوات.AllowDBNull = false;
+                this.columnمعدل_الإهلاك.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow NewMinorCategoryVwRow() {
+                return ((MinorCategoryVwRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MinorCategoryVwRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MinorCategoryVwRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MinorCategoryVwRowChanged != null)) {
+                    this.MinorCategoryVwRowChanged(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MinorCategoryVwRowChanging != null)) {
+                    this.MinorCategoryVwRowChanging(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MinorCategoryVwRowDeleted != null)) {
+                    this.MinorCategoryVwRowDeleted(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MinorCategoryVwRowDeleting != null)) {
+                    this.MinorCategoryVwRowDeleting(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveMinorCategoryVwRow(MinorCategoryVwRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AssetMngDbDataSet ds = new AssetMngDbDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MinorCategoryVwDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1928,7 +2189,7 @@ namespace AssetManagement {
                         string _رقم_الهيكل__الشاصيه__للمركبة, 
                         string رقم_المحرك_للمركبة, 
                         double معدل_الإهلاك_للأصل, 
-                        double العمر_الافتراضي_المتبقي_للأصل) {
+                        int العمر_الافتراضي_المتبقي_للأصل) {
                 AssetVwRow rowAssetVwRow = ((AssetVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         معرف_الأصل,
@@ -2107,7 +2368,7 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnرقم_المحرك_للمركبة);
                 this.columnمعدل_الإهلاك_للأصل = new global::System.Data.DataColumn("معدل الإهلاك للأصل", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnمعدل_الإهلاك_للأصل);
-                this.columnالعمر_الافتراضي_المتبقي_للأصل = new global::System.Data.DataColumn("العمر الافتراضي المتبقي للأصل", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnالعمر_الافتراضي_المتبقي_للأصل = new global::System.Data.DataColumn("العمر الافتراضي المتبقي للأصل", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnالعمر_الافتراضي_المتبقي_للأصل);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnمعرف_الأصل}, true));
@@ -2147,6 +2408,8 @@ namespace AssetManagement {
                 this.columnرقم_لوحة_المركبة.MaxLength = 20;
                 this._columnرقم_الهيكل__الشاصيه__للمركبة.MaxLength = 50;
                 this.columnرقم_المحرك_للمركبة.MaxLength = 50;
+                this.columnمعدل_الإهلاك_للأصل.AllowDBNull = false;
+                this.columnالعمر_الافتراضي_المتبقي_للأصل.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2233,314 +2496,6 @@ namespace AssetManagement {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "AssetVwDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MinorCategoryVwDataTable : global::System.Data.TypedTableBase<MinorCategoryVwRow> {
-            
-            private global::System.Data.DataColumn columnاسم_الفئة_الفرعية;
-            
-            private global::System.Data.DataColumn columnوصف_الفئة_الفرعية;
-            
-            private global::System.Data.DataColumn columnاسم_الفئة_الرئيسية;
-            
-            private global::System.Data.DataColumn columnالعمر_الإنتاجي_بالسنوات;
-            
-            private global::System.Data.DataColumn columnمعدل_الإهلاك;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwDataTable() {
-                this.TableName = "MinorCategoryVw";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MinorCategoryVwDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected MinorCategoryVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn اسم_الفئة_الفرعيةColumn {
-                get {
-                    return this.columnاسم_الفئة_الفرعية;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn وصف_الفئة_الفرعيةColumn {
-                get {
-                    return this.columnوصف_الفئة_الفرعية;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn اسم_الفئة_الرئيسيةColumn {
-                get {
-                    return this.columnاسم_الفئة_الرئيسية;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn العمر_الإنتاجي_بالسنواتColumn {
-                get {
-                    return this.columnالعمر_الإنتاجي_بالسنوات;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn معدل_الإهلاكColumn {
-                get {
-                    return this.columnمعدل_الإهلاك;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow this[int index] {
-                get {
-                    return ((MinorCategoryVwRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddMinorCategoryVwRow(MinorCategoryVwRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow AddMinorCategoryVwRow(string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
-                MinorCategoryVwRow rowMinorCategoryVwRow = ((MinorCategoryVwRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        اسم_الفئة_الفرعية,
-                        وصف_الفئة_الفرعية,
-                        اسم_الفئة_الرئيسية,
-                        العمر_الإنتاجي_بالسنوات,
-                        معدل_الإهلاك};
-                rowMinorCategoryVwRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMinorCategoryVwRow);
-                return rowMinorCategoryVwRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                MinorCategoryVwDataTable cln = ((MinorCategoryVwDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new MinorCategoryVwDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal void InitVars() {
-                this.columnاسم_الفئة_الفرعية = base.Columns["اسم الفئة الفرعية"];
-                this.columnوصف_الفئة_الفرعية = base.Columns["وصف الفئة الفرعية"];
-                this.columnاسم_الفئة_الرئيسية = base.Columns["اسم الفئة الرئيسية"];
-                this.columnالعمر_الإنتاجي_بالسنوات = base.Columns["العمر الإنتاجي بالسنوات"];
-                this.columnمعدل_الإهلاك = base.Columns["معدل الإهلاك"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            private void InitClass() {
-                this.columnاسم_الفئة_الفرعية = new global::System.Data.DataColumn("اسم الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnاسم_الفئة_الفرعية);
-                this.columnوصف_الفئة_الفرعية = new global::System.Data.DataColumn("وصف الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnوصف_الفئة_الفرعية);
-                this.columnاسم_الفئة_الرئيسية = new global::System.Data.DataColumn("اسم الفئة الرئيسية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnاسم_الفئة_الرئيسية);
-                this.columnالعمر_الإنتاجي_بالسنوات = new global::System.Data.DataColumn("العمر الإنتاجي بالسنوات", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnالعمر_الإنتاجي_بالسنوات);
-                this.columnمعدل_الإهلاك = new global::System.Data.DataColumn("معدل الإهلاك", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnمعدل_الإهلاك);
-                this.columnاسم_الفئة_الفرعية.AllowDBNull = false;
-                this.columnاسم_الفئة_الفرعية.MaxLength = 200;
-                this.columnوصف_الفئة_الفرعية.MaxLength = 300;
-                this.columnاسم_الفئة_الرئيسية.AllowDBNull = false;
-                this.columnاسم_الفئة_الرئيسية.MaxLength = 200;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow NewMinorCategoryVwRow() {
-                return ((MinorCategoryVwRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MinorCategoryVwRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(MinorCategoryVwRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.MinorCategoryVwRowChanged != null)) {
-                    this.MinorCategoryVwRowChanged(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.MinorCategoryVwRowChanging != null)) {
-                    this.MinorCategoryVwRowChanging(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.MinorCategoryVwRowDeleted != null)) {
-                    this.MinorCategoryVwRowDeleted(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.MinorCategoryVwRowDeleting != null)) {
-                    this.MinorCategoryVwRowDeleting(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveMinorCategoryVwRow(MinorCategoryVwRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AssetMngDbDataSet ds = new AssetMngDbDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MinorCategoryVwDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3778,10 +3733,10 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetTblRow AddAssetTblRow(
                         string AssetCode, 
-                        SectionTblRow parentSectionTblRowByFK_AssetTbl_SectionTbl, 
-                        DepartmentTblRow parentDepartmentTblRowByFK_AssetTbl_DepartmentTbl, 
-                        SquareTblRow parentSquareTblRowByFK_AssetTbl_SquareTbl, 
-                        MinorCategoryTblRow parentMinorCategoryTblRowByFK_AssetTbl_MinorCategoryTbl, 
+                        int AssetSection, 
+                        int AssetDept, 
+                        int AssetSquare, 
+                        int AssetMinorCategory, 
                         string AssetSpecifications, 
                         int ItemsQuantity, 
                         string Model, 
@@ -3789,12 +3744,12 @@ namespace AssetManagement {
                         string Volume, 
                         System.DateTime PurchaseDate, 
                         double PurchasePrice, 
-                        CurrencyTblRow parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl1, 
+                        int PurchasePriceCurrency, 
                         string PlaceOfPresence, 
-                        StatusTblRow parentStatusTblRowByFK_AssetTbl_StatusTbl, 
+                        int CurrentStatus, 
                         string BenefitPercentage, 
                         double ActualCurrentPrice, 
-                        CurrencyTblRow parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl, 
+                        int ActualCurrentPriceCurrency, 
                         string CustodianName, 
                         string MoreDetails, 
                         string AssetNotes, 
@@ -3803,27 +3758,27 @@ namespace AssetManagement {
                         string OfUsed, 
                         string EstateOwnershipDocumentWith, 
                         string EstateArea, 
-                        EstateAreaUnitTblRow parentEstateAreaUnitTblRowByFK_AssetTbl_EstateAreaUnitTbl, 
+                        int EstateAreaUnit, 
                         string CarPanelNumber, 
                         int CarManufacturingYear, 
                         string CarChassisNumber, 
                         string CarEngineNumber, 
                         double DestructionRate, 
-                        double LifeSpanInMonths, 
+                        int LifeSpanInMonths, 
                         bool IsSold, 
                         bool IsOutOfWork, 
                         System.DateTime InsertedOn, 
                         System.DateTime LastModifiedOn, 
-                        UserTblRow parentUserTblRowByFK_AssetTbl_UserTbl, 
-                        UserTblRow parentUserTblRowByFK_AssetTbl_UserTbl1) {
+                        int InsertedBy, 
+                        int LastModifiedBy) {
                 AssetTblRow rowAssetTblRow = ((AssetTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         AssetCode,
-                        null,
-                        null,
-                        null,
-                        null,
+                        AssetSection,
+                        AssetDept,
+                        AssetSquare,
+                        AssetMinorCategory,
                         AssetSpecifications,
                         ItemsQuantity,
                         Model,
@@ -3831,12 +3786,12 @@ namespace AssetManagement {
                         Volume,
                         PurchaseDate,
                         PurchasePrice,
-                        null,
+                        PurchasePriceCurrency,
                         PlaceOfPresence,
-                        null,
+                        CurrentStatus,
                         BenefitPercentage,
                         ActualCurrentPrice,
-                        null,
+                        ActualCurrentPriceCurrency,
                         CustodianName,
                         MoreDetails,
                         AssetNotes,
@@ -3845,7 +3800,7 @@ namespace AssetManagement {
                         OfUsed,
                         EstateOwnershipDocumentWith,
                         EstateArea,
-                        null,
+                        EstateAreaUnit,
                         CarPanelNumber,
                         CarManufacturingYear,
                         CarChassisNumber,
@@ -3856,38 +3811,8 @@ namespace AssetManagement {
                         IsOutOfWork,
                         InsertedOn,
                         LastModifiedOn,
-                        null,
-                        null};
-                if ((parentSectionTblRowByFK_AssetTbl_SectionTbl != null)) {
-                    columnValuesArray[2] = parentSectionTblRowByFK_AssetTbl_SectionTbl[0];
-                }
-                if ((parentDepartmentTblRowByFK_AssetTbl_DepartmentTbl != null)) {
-                    columnValuesArray[3] = parentDepartmentTblRowByFK_AssetTbl_DepartmentTbl[0];
-                }
-                if ((parentSquareTblRowByFK_AssetTbl_SquareTbl != null)) {
-                    columnValuesArray[4] = parentSquareTblRowByFK_AssetTbl_SquareTbl[0];
-                }
-                if ((parentMinorCategoryTblRowByFK_AssetTbl_MinorCategoryTbl != null)) {
-                    columnValuesArray[5] = parentMinorCategoryTblRowByFK_AssetTbl_MinorCategoryTbl[0];
-                }
-                if ((parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl1 != null)) {
-                    columnValuesArray[13] = parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl1[0];
-                }
-                if ((parentStatusTblRowByFK_AssetTbl_StatusTbl != null)) {
-                    columnValuesArray[15] = parentStatusTblRowByFK_AssetTbl_StatusTbl[0];
-                }
-                if ((parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl != null)) {
-                    columnValuesArray[18] = parentCurrencyTblRowByFK_AssetTbl_CurrencyTbl[0];
-                }
-                if ((parentEstateAreaUnitTblRowByFK_AssetTbl_EstateAreaUnitTbl != null)) {
-                    columnValuesArray[27] = parentEstateAreaUnitTblRowByFK_AssetTbl_EstateAreaUnitTbl[0];
-                }
-                if ((parentUserTblRowByFK_AssetTbl_UserTbl != null)) {
-                    columnValuesArray[38] = parentUserTblRowByFK_AssetTbl_UserTbl[0];
-                }
-                if ((parentUserTblRowByFK_AssetTbl_UserTbl1 != null)) {
-                    columnValuesArray[39] = parentUserTblRowByFK_AssetTbl_UserTbl1[0];
-                }
+                        InsertedBy,
+                        LastModifiedBy};
                 rowAssetTblRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssetTblRow);
                 return rowAssetTblRow;
@@ -4028,7 +3953,7 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnCarEngineNumber);
                 this.columnDestructionRate = new global::System.Data.DataColumn("DestructionRate", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDestructionRate);
-                this.columnLifeSpanInMonths = new global::System.Data.DataColumn("LifeSpanInMonths", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnLifeSpanInMonths = new global::System.Data.DataColumn("LifeSpanInMonths", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLifeSpanInMonths);
                 this.columnIsSold = new global::System.Data.DataColumn("IsSold", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSold);
@@ -4075,6 +4000,8 @@ namespace AssetManagement {
                 this.columnCarPanelNumber.MaxLength = 20;
                 this.columnCarChassisNumber.MaxLength = 50;
                 this.columnCarEngineNumber.MaxLength = 50;
+                this.columnDestructionRate.AllowDBNull = false;
+                this.columnLifeSpanInMonths.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5799,6 +5726,14 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnAdditionalNotes;
             
+            private global::System.Data.DataColumn columnInsertedOn;
+            
+            private global::System.Data.DataColumn columnLastModifiedOn;
+            
+            private global::System.Data.DataColumn columnInsertedBy;
+            
+            private global::System.Data.DataColumn columnLastModifiedBy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public FinancialItemTblDataTable() {
@@ -5906,6 +5841,38 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn InsertedOnColumn {
+                get {
+                    return this.columnInsertedOn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LastModifiedOnColumn {
+                get {
+                    return this.columnLastModifiedOn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn InsertedByColumn {
+                get {
+                    return this.columnInsertedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LastModifiedByColumn {
+                get {
+                    return this.columnLastModifiedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5941,7 +5908,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public FinancialItemTblRow AddFinancialItemTblRow(FinancialItemCategoryTblRow parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, CurrencyTblRow parentCurrencyTblRowByFK_FinancialItemTbl_CurrencyTbl, string AdditionalNotes) {
+            public FinancialItemTblRow AddFinancialItemTblRow(FinancialItemCategoryTblRow parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, CurrencyTblRow parentCurrencyTblRowByFK_FinancialItemTbl_CurrencyTbl, string AdditionalNotes, System.DateTime InsertedOn, System.DateTime LastModifiedOn, int InsertedBy, int LastModifiedBy) {
                 FinancialItemTblRow rowFinancialItemTblRow = ((FinancialItemTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5952,7 +5919,11 @@ namespace AssetManagement {
                         IncomingAmount,
                         OutgoingAmount,
                         null,
-                        AdditionalNotes};
+                        AdditionalNotes,
+                        InsertedOn,
+                        LastModifiedOn,
+                        InsertedBy,
+                        LastModifiedBy};
                 if ((parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl != null)) {
                     columnValuesArray[1] = parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl[0];
                 }
@@ -5997,6 +5968,10 @@ namespace AssetManagement {
                 this.columnOutgoingAmount = base.Columns["OutgoingAmount"];
                 this.columnFinancialItemCurrency = base.Columns["FinancialItemCurrency"];
                 this.columnAdditionalNotes = base.Columns["AdditionalNotes"];
+                this.columnInsertedOn = base.Columns["InsertedOn"];
+                this.columnLastModifiedOn = base.Columns["LastModifiedOn"];
+                this.columnInsertedBy = base.Columns["InsertedBy"];
+                this.columnLastModifiedBy = base.Columns["LastModifiedBy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6020,6 +5995,14 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnFinancialItemCurrency);
                 this.columnAdditionalNotes = new global::System.Data.DataColumn("AdditionalNotes", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAdditionalNotes);
+                this.columnInsertedOn = new global::System.Data.DataColumn("InsertedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInsertedOn);
+                this.columnLastModifiedOn = new global::System.Data.DataColumn("LastModifiedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastModifiedOn);
+                this.columnInsertedBy = new global::System.Data.DataColumn("InsertedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInsertedBy);
+                this.columnLastModifiedBy = new global::System.Data.DataColumn("LastModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastModifiedBy);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -6592,18 +6575,15 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryTblRow AddMinorCategoryTblRow(string MinorCategoryName, string MinorCategoryDescription, MainCategoryTblRow parentMainCategoryTblRowByFK_MinorCategoryTbl_MainCategoryTbl, int ProductiveAgeInYears, double DestructionRate) {
+            public MinorCategoryTblRow AddMinorCategoryTblRow(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, int ProductiveAgeInYears, double DestructionRate) {
                 MinorCategoryTblRow rowMinorCategoryTblRow = ((MinorCategoryTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         MinorCategoryName,
                         MinorCategoryDescription,
-                        null,
+                        MainCategory,
                         ProductiveAgeInYears,
                         DestructionRate};
-                if ((parentMainCategoryTblRowByFK_MinorCategoryTbl_MainCategoryTbl != null)) {
-                    columnValuesArray[3] = parentMainCategoryTblRowByFK_MinorCategoryTbl_MainCategoryTbl[0];
-                }
                 rowMinorCategoryTblRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMinorCategoryTblRow);
                 return rowMinorCategoryTblRow;
@@ -6668,6 +6648,8 @@ namespace AssetManagement {
                 this.columnMinorCategoryName.MaxLength = 200;
                 this.columnMinorCategoryDescription.MaxLength = 300;
                 this.columnMainCategory.AllowDBNull = false;
+                this.columnProductiveAgeInYears.AllowDBNull = false;
+                this.columnDestructionRate.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9284,6 +9266,38 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSold {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAssetMoveVw.IsSoldColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsSold\' in table \'AssetMoveVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetMoveVw.IsSoldColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsOutOfWork {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAssetMoveVw.IsOutOfWorkColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsOutOfWork\' in table \'AssetMoveVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetMoveVw.IsOutOfWorkColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsAssetCodeNull() {
                 return this.IsNull(this.tableAssetMoveVw.AssetCodeColumn);
             }
@@ -9328,6 +9342,117 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCustodianNameNull() {
                 this[this.tableAssetMoveVw.CustodianNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsSoldNull() {
+                return this.IsNull(this.tableAssetMoveVw.IsSoldColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsSoldNull() {
+                this[this.tableAssetMoveVw.IsSoldColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsOutOfWorkNull() {
+                return this.IsNull(this.tableAssetMoveVw.IsOutOfWorkColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsOutOfWorkNull() {
+                this[this.tableAssetMoveVw.IsOutOfWorkColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MinorCategoryVwRow : global::System.Data.DataRow {
+            
+            private MinorCategoryVwDataTable tableMinorCategoryVw;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal MinorCategoryVwRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_الفئة_الفرعية {
+                get {
+                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string وصف_الفئة_الفرعية {
+                get {
+                    try {
+                        return ((string)(this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'وصف الفئة الفرعية\' in table \'MinorCategoryVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_الفئة_الرئيسية {
+                get {
+                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int العمر_الإنتاجي_بالسنوات {
+                get {
+                    return ((int)(this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double معدل_الإهلاك {
+                get {
+                    return ((double)(this[this.tableMinorCategoryVw.معدل_الإهلاكColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.معدل_الإهلاكColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isوصف_الفئة_الفرعيةNull() {
+                return this.IsNull(this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setوصف_الفئة_الفرعيةNull() {
+                this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9838,12 +9963,7 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public double معدل_الإهلاك_للأصل {
                 get {
-                    try {
-                        return ((double)(this[this.tableAssetVw.معدل_الإهلاك_للأصلColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'معدل الإهلاك للأصل\' in table \'AssetVw\' is DBNull.", e);
-                    }
+                    return ((double)(this[this.tableAssetVw.معدل_الإهلاك_للأصلColumn]));
                 }
                 set {
                     this[this.tableAssetVw.معدل_الإهلاك_للأصلColumn] = value;
@@ -9852,15 +9972,9 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double العمر_الافتراضي_المتبقي_للأصل {
+            public int العمر_الافتراضي_المتبقي_للأصل {
                 get {
-                    try {
-                        return ((double)(this[this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'العمر الافتراضي المتبقي للأصل\' in table \'AssetVw\' is DBNull" +
-                                ".", e);
-                    }
+                    return ((int)(this[this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn]));
                 }
                 set {
                     this[this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn] = value;
@@ -10166,152 +10280,6 @@ namespace AssetManagement {
             public void Setرقم_المحرك_للمركبةNull() {
                 this[this.tableAssetVw.رقم_المحرك_للمركبةColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isمعدل_الإهلاك_للأصلNull() {
-                return this.IsNull(this.tableAssetVw.معدل_الإهلاك_للأصلColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setمعدل_الإهلاك_للأصلNull() {
-                this[this.tableAssetVw.معدل_الإهلاك_للأصلColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isالعمر_الافتراضي_المتبقي_للأصلNull() {
-                return this.IsNull(this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setالعمر_الافتراضي_المتبقي_للأصلNull() {
-                this[this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class MinorCategoryVwRow : global::System.Data.DataRow {
-            
-            private MinorCategoryVwDataTable tableMinorCategoryVw;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MinorCategoryVwRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string اسم_الفئة_الفرعية {
-                get {
-                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn]));
-                }
-                set {
-                    this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string وصف_الفئة_الفرعية {
-                get {
-                    try {
-                        return ((string)(this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'وصف الفئة الفرعية\' in table \'MinorCategoryVw\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string اسم_الفئة_الرئيسية {
-                get {
-                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn]));
-                }
-                set {
-                    this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int العمر_الإنتاجي_بالسنوات {
-                get {
-                    try {
-                        return ((int)(this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'العمر الإنتاجي بالسنوات\' in table \'MinorCategoryVw\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double معدل_الإهلاك {
-                get {
-                    try {
-                        return ((double)(this[this.tableMinorCategoryVw.معدل_الإهلاكColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'معدل الإهلاك\' in table \'MinorCategoryVw\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMinorCategoryVw.معدل_الإهلاكColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isوصف_الفئة_الفرعيةNull() {
-                return this.IsNull(this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setوصف_الفئة_الفرعيةNull() {
-                this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isالعمر_الإنتاجي_بالسنواتNull() {
-                return this.IsNull(this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setالعمر_الإنتاجي_بالسنواتNull() {
-                this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isمعدل_الإهلاكNull() {
-                return this.IsNull(this.tableMinorCategoryVw.معدل_الإهلاكColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setمعدل_الإهلاكNull() {
-                this[this.tableMinorCategoryVw.معدل_الإهلاكColumn] = global::System.Convert.DBNull;
-            }
         }
         
         /// <summary>
@@ -10600,28 +10568,6 @@ namespace AssetManagement {
                 }
                 else {
                     return ((AssetMovementTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetMovementTbl_UserTbl"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRowsByFK_AssetTbl_UserTbl() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_UserTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_UserTbl"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRowsByFK_AssetTbl_UserTbl1() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_UserTbl1"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_UserTbl1"])));
                 }
             }
             
@@ -11128,12 +11074,7 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public double DestructionRate {
                 get {
-                    try {
-                        return ((double)(this[this.tableAssetTbl.DestructionRateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DestructionRate\' in table \'AssetTbl\' is DBNull.", e);
-                    }
+                    return ((double)(this[this.tableAssetTbl.DestructionRateColumn]));
                 }
                 set {
                     this[this.tableAssetTbl.DestructionRateColumn] = value;
@@ -11142,14 +11083,9 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double LifeSpanInMonths {
+            public int LifeSpanInMonths {
                 get {
-                    try {
-                        return ((double)(this[this.tableAssetTbl.LifeSpanInMonthsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LifeSpanInMonths\' in table \'AssetTbl\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableAssetTbl.LifeSpanInMonthsColumn]));
                 }
                 set {
                     this[this.tableAssetTbl.LifeSpanInMonthsColumn] = value;
@@ -11249,116 +11185,6 @@ namespace AssetManagement {
                 }
                 set {
                     this[this.tableAssetTbl.LastModifiedByColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CurrencyTblRow CurrencyTblRowByFK_AssetTbl_CurrencyTbl {
-                get {
-                    return ((CurrencyTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_CurrencyTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_CurrencyTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CurrencyTblRow CurrencyTblRowByFK_AssetTbl_CurrencyTbl1 {
-                get {
-                    return ((CurrencyTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_CurrencyTbl1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_CurrencyTbl1"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DepartmentTblRow DepartmentTblRow {
-                get {
-                    return ((DepartmentTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_DepartmentTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_DepartmentTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public EstateAreaUnitTblRow EstateAreaUnitTblRow {
-                get {
-                    return ((EstateAreaUnitTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_EstateAreaUnitTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_EstateAreaUnitTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryTblRow MinorCategoryTblRow {
-                get {
-                    return ((MinorCategoryTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_MinorCategoryTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_MinorCategoryTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SectionTblRow SectionTblRow {
-                get {
-                    return ((SectionTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_SectionTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_SectionTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SquareTblRow SquareTblRow {
-                get {
-                    return ((SquareTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_SquareTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_SquareTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public StatusTblRow StatusTblRow {
-                get {
-                    return ((StatusTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_StatusTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_StatusTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserTblRow UserTblRowByFK_AssetTbl_UserTbl {
-                get {
-                    return ((UserTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_UserTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_UserTbl"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserTblRow UserTblRowByFK_AssetTbl_UserTbl1 {
-                get {
-                    return ((UserTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTbl_UserTbl1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_AssetTbl_UserTbl1"]);
                 }
             }
             
@@ -11648,30 +11474,6 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCarEngineNumberNull() {
                 this[this.tableAssetTbl.CarEngineNumberColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDestructionRateNull() {
-                return this.IsNull(this.tableAssetTbl.DestructionRateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDestructionRateNull() {
-                this[this.tableAssetTbl.DestructionRateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsLifeSpanInMonthsNull() {
-                return this.IsNull(this.tableAssetTbl.LifeSpanInMonthsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetLifeSpanInMonthsNull() {
-                this[this.tableAssetTbl.LifeSpanInMonthsColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12122,28 +11924,6 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRowsByFK_AssetTbl_CurrencyTbl() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_CurrencyTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_CurrencyTbl"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRowsByFK_AssetTbl_CurrencyTbl1() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_CurrencyTbl1"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_CurrencyTbl1"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetTransactionTblRow[] GetAssetTransactionTblRows() {
                 if ((this.Table.ChildRelations["FK_AssetTransactionTbl_CurrencyTbl"] == null)) {
                     return new AssetTransactionTblRow[0];
@@ -12239,17 +12019,6 @@ namespace AssetManagement {
                     return ((UserTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserTbl_DepartmentTbl"])));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_DepartmentTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_DepartmentTbl"])));
-                }
-            }
         }
         
         /// <summary>
@@ -12304,17 +12073,6 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetEstateAreaUnitNameNull() {
                 this[this.tableEstateAreaUnitTbl.EstateAreaUnitNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_EstateAreaUnitTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_EstateAreaUnitTbl"])));
-                }
             }
         }
         
@@ -12539,6 +12297,70 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime InsertedOn {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableFinancialItemTbl.InsertedOnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InsertedOn\' in table \'FinancialItemTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFinancialItemTbl.InsertedOnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime LastModifiedOn {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableFinancialItemTbl.LastModifiedOnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LastModifiedOn\' in table \'FinancialItemTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFinancialItemTbl.LastModifiedOnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int InsertedBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableFinancialItemTbl.InsertedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InsertedBy\' in table \'FinancialItemTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFinancialItemTbl.InsertedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int LastModifiedBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableFinancialItemTbl.LastModifiedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LastModifiedBy\' in table \'FinancialItemTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFinancialItemTbl.LastModifiedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public CurrencyTblRow CurrencyTblRow {
                 get {
                     return ((CurrencyTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_FinancialItemTbl_CurrencyTbl"])));
@@ -12581,6 +12403,54 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetAdditionalNotesNull() {
                 this[this.tableFinancialItemTbl.AdditionalNotesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsInsertedOnNull() {
+                return this.IsNull(this.tableFinancialItemTbl.InsertedOnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetInsertedOnNull() {
+                this[this.tableFinancialItemTbl.InsertedOnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsLastModifiedOnNull() {
+                return this.IsNull(this.tableFinancialItemTbl.LastModifiedOnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetLastModifiedOnNull() {
+                this[this.tableFinancialItemTbl.LastModifiedOnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsInsertedByNull() {
+                return this.IsNull(this.tableFinancialItemTbl.InsertedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetInsertedByNull() {
+                this[this.tableFinancialItemTbl.InsertedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsLastModifiedByNull() {
+                return this.IsNull(this.tableFinancialItemTbl.LastModifiedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetLastModifiedByNull() {
+                this[this.tableFinancialItemTbl.LastModifiedByColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12647,17 +12517,6 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetMainCategoryDescriptionNull() {
                 this[this.tableMainCategoryTbl.MainCategoryDescriptionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryTblRow[] GetMinorCategoryTblRows() {
-                if ((this.Table.ChildRelations["FK_MinorCategoryTbl_MainCategoryTbl"] == null)) {
-                    return new MinorCategoryTblRow[0];
-                }
-                else {
-                    return ((MinorCategoryTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MinorCategoryTbl_MainCategoryTbl"])));
-                }
             }
         }
         
@@ -12729,13 +12588,7 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int ProductiveAgeInYears {
                 get {
-                    try {
-                        return ((int)(this[this.tableMinorCategoryTbl.ProductiveAgeInYearsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProductiveAgeInYears\' in table \'MinorCategoryTbl\' is DBNull" +
-                                ".", e);
-                    }
+                    return ((int)(this[this.tableMinorCategoryTbl.ProductiveAgeInYearsColumn]));
                 }
                 set {
                     this[this.tableMinorCategoryTbl.ProductiveAgeInYearsColumn] = value;
@@ -12746,26 +12599,10 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public double DestructionRate {
                 get {
-                    try {
-                        return ((double)(this[this.tableMinorCategoryTbl.DestructionRateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DestructionRate\' in table \'MinorCategoryTbl\' is DBNull.", e);
-                    }
+                    return ((double)(this[this.tableMinorCategoryTbl.DestructionRateColumn]));
                 }
                 set {
                     this[this.tableMinorCategoryTbl.DestructionRateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MainCategoryTblRow MainCategoryTblRow {
-                get {
-                    return ((MainCategoryTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_MinorCategoryTbl_MainCategoryTbl"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_MinorCategoryTbl_MainCategoryTbl"]);
                 }
             }
             
@@ -12779,41 +12616,6 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetMinorCategoryDescriptionNull() {
                 this[this.tableMinorCategoryTbl.MinorCategoryDescriptionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsProductiveAgeInYearsNull() {
-                return this.IsNull(this.tableMinorCategoryTbl.ProductiveAgeInYearsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetProductiveAgeInYearsNull() {
-                this[this.tableMinorCategoryTbl.ProductiveAgeInYearsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDestructionRateNull() {
-                return this.IsNull(this.tableMinorCategoryTbl.DestructionRateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDestructionRateNull() {
-                this[this.tableMinorCategoryTbl.DestructionRateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_MinorCategoryTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_MinorCategoryTbl"])));
-                }
             }
         }
         
@@ -12951,17 +12753,6 @@ namespace AssetManagement {
             public void SetSectionNameNull() {
                 this[this.tableSectionTbl.SectionNameColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_SectionTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_SectionTbl"])));
-                }
-            }
         }
         
         /// <summary>
@@ -13044,17 +12835,6 @@ namespace AssetManagement {
             public void SetSquareLocationNull() {
                 this[this.tableSquareTbl.SquareLocationColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_SquareTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_SquareTbl"])));
-                }
-            }
         }
         
         /// <summary>
@@ -13090,17 +12870,6 @@ namespace AssetManagement {
                 }
                 set {
                     this[this.tableStatusTbl.StatusNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTblRow[] GetAssetTblRows() {
-                if ((this.Table.ChildRelations["FK_AssetTbl_StatusTbl"] == null)) {
-                    return new AssetTblRow[0];
-                }
-                else {
-                    return ((AssetTblRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AssetTbl_StatusTbl"])));
                 }
             }
         }
@@ -14475,22 +14244,22 @@ namespace AssetManagement {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class AssetVwRowChangeEvent : global::System.EventArgs {
+        public class MinorCategoryVwRowChangeEvent : global::System.EventArgs {
             
-            private AssetVwRow eventRow;
+            private MinorCategoryVwRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetVwRowChangeEvent(AssetVwRow row, global::System.Data.DataRowAction action) {
+            public MinorCategoryVwRowChangeEvent(MinorCategoryVwRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetVwRow Row {
+            public MinorCategoryVwRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -14509,22 +14278,22 @@ namespace AssetManagement {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class MinorCategoryVwRowChangeEvent : global::System.EventArgs {
+        public class AssetVwRowChangeEvent : global::System.EventArgs {
             
-            private MinorCategoryVwRow eventRow;
+            private AssetVwRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRowChangeEvent(MinorCategoryVwRow row, global::System.Data.DataRowAction action) {
+            public AssetVwRowChangeEvent(AssetVwRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow Row {
+            public AssetVwRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -15251,6 +15020,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SquareName", "SquareName");
             tableMapping.ColumnMappings.Add("StatusName", "StatusName");
             tableMapping.ColumnMappings.Add("CustodianName", "CustodianName");
+            tableMapping.ColumnMappings.Add("IsSold", "IsSold");
+            tableMapping.ColumnMappings.Add("IsOutOfWork", "IsOutOfWork");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -15268,7 +15039,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, MainCategoryName, MinorCategoryName, AssetCode, DepartmentName, Sectio" +
-                "nName, SquareName, StatusName, CustodianName FROM dbo.AssetMoveVw";
+                "nName, SquareName, StatusName, CustodianName, IsSold, IsOutOfWork FROM dbo.Asset" +
+                "MoveVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -15292,6 +15064,178 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         public virtual AssetMngDbDataSet.AssetMoveVwDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             AssetMngDbDataSet.AssetMoveVwDataTable dataTable = new AssetMngDbDataSet.AssetMoveVwDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MinorCategoryVwTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public MinorCategoryVwTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MinorCategoryVw";
+            tableMapping.ColumnMappings.Add("اسم الفئة الفرعية", "اسم الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("وصف الفئة الفرعية", "وصف الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("اسم الفئة الرئيسية", "اسم الفئة الرئيسية");
+            tableMapping.ColumnMappings.Add("العمر الإنتاجي بالسنوات", "العمر الإنتاجي بالسنوات");
+            tableMapping.ColumnMappings.Add("معدل الإهلاك", "معدل الإهلاك");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإ" +
+                "نتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AssetMngDbDataSet.MinorCategoryVwDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AssetMngDbDataSet.MinorCategoryVwDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            AssetMngDbDataSet.MinorCategoryVwDataTable dataTable = new AssetMngDbDataSet.MinorCategoryVwDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15493,178 +15437,6 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         public virtual AssetMngDbDataSet.AssetVwDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             AssetMngDbDataSet.AssetVwDataTable dataTable = new AssetMngDbDataSet.AssetVwDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MinorCategoryVwTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public MinorCategoryVwTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MinorCategoryVw";
-            tableMapping.ColumnMappings.Add("اسم الفئة الفرعية", "اسم الفئة الفرعية");
-            tableMapping.ColumnMappings.Add("وصف الفئة الفرعية", "وصف الفئة الفرعية");
-            tableMapping.ColumnMappings.Add("اسم الفئة الرئيسية", "اسم الفئة الرئيسية");
-            tableMapping.ColumnMappings.Add("العمر الإنتاجي بالسنوات", "العمر الإنتاجي بالسنوات");
-            tableMapping.ColumnMappings.Add("معدل الإهلاك", "معدل الإهلاك");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإ" +
-                "نتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(AssetMngDbDataSet.MinorCategoryVwDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMngDbDataSet.MinorCategoryVwDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            AssetMngDbDataSet.MinorCategoryVwDataTable dataTable = new AssetMngDbDataSet.MinorCategoryVwDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -16745,18 +16517,16 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 "uringYear] = @Original_CarManufacturingYear)) AND ((@IsNull_CarChassisNumber = 1" +
                 " AND [CarChassisNumber] IS NULL) OR ([CarChassisNumber] = @Original_CarChassisNu" +
                 "mber)) AND ((@IsNull_CarEngineNumber = 1 AND [CarEngineNumber] IS NULL) OR ([Car" +
-                "EngineNumber] = @Original_CarEngineNumber)) AND ((@IsNull_DestructionRate = 1 AN" +
-                "D [DestructionRate] IS NULL) OR ([DestructionRate] = @Original_DestructionRate))" +
-                " AND ((@IsNull_LifeSpanInMonths = 1 AND [LifeSpanInMonths] IS NULL) OR ([LifeSpa" +
-                "nInMonths] = @Original_LifeSpanInMonths)) AND ((@IsNull_IsSold = 1 AND [IsSold] " +
-                "IS NULL) OR ([IsSold] = @Original_IsSold)) AND ((@IsNull_IsOutOfWork = 1 AND [Is" +
-                "OutOfWork] IS NULL) OR ([IsOutOfWork] = @Original_IsOutOfWork)) AND ((@IsNull_In" +
-                "sertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn))" +
-                " AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifie" +
-                "dOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] " +
-                "IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy " +
-                "= 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedB" +
-                "y)))";
+                "EngineNumber] = @Original_CarEngineNumber)) AND ([DestructionRate] = @Original_D" +
+                "estructionRate) AND ([LifeSpanInMonths] = @Original_LifeSpanInMonths) AND ((@IsN" +
+                "ull_IsSold = 1 AND [IsSold] IS NULL) OR ([IsSold] = @Original_IsSold)) AND ((@Is" +
+                "Null_IsOutOfWork = 1 AND [IsOutOfWork] IS NULL) OR ([IsOutOfWork] = @Original_Is" +
+                "OutOfWork)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([Inserted" +
+                "On] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedO" +
+                "n] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_Inse" +
+                "rtedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) A" +
+                "ND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedB" +
+                "y] = @Original_LastModifiedBy)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetCode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetCode", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -16808,10 +16578,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CarChassisNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarChassisNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CarEngineNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CarEngineNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DestructionRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LifeSpanInMonths", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsSold", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsSold", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsOutOfWork", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsOutOfWork", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -16884,7 +16652,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarChassisNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarChassisNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarEngineNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LifeSpanInMonths", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSold", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsOutOfWork", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsOutOfWork", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16943,25 +16711,24 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 "inal_CarManufacturingYear)) AND ((@IsNull_CarChassisNumber = 1 AND [CarChassisNu" +
                 "mber] IS NULL) OR ([CarChassisNumber] = @Original_CarChassisNumber)) AND ((@IsNu" +
                 "ll_CarEngineNumber = 1 AND [CarEngineNumber] IS NULL) OR ([CarEngineNumber] = @O" +
-                "riginal_CarEngineNumber)) AND ((@IsNull_DestructionRate = 1 AND [DestructionRate" +
-                "] IS NULL) OR ([DestructionRate] = @Original_DestructionRate)) AND ((@IsNull_Lif" +
-                "eSpanInMonths = 1 AND [LifeSpanInMonths] IS NULL) OR ([LifeSpanInMonths] = @Orig" +
-                "inal_LifeSpanInMonths)) AND ((@IsNull_IsSold = 1 AND [IsSold] IS NULL) OR ([IsSo" +
-                "ld] = @Original_IsSold)) AND ((@IsNull_IsOutOfWork = 1 AND [IsOutOfWork] IS NULL" +
-                ") OR ([IsOutOfWork] = @Original_IsOutOfWork)) AND ((@IsNull_InsertedOn = 1 AND [" +
-                "InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_Las" +
-                "tModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_L" +
-                "astModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([Inse" +
-                "rtedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModif" +
-                "iedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)));\r\nSELECT ID, " +
-                "AssetCode, AssetSection, AssetDept, AssetSquare, AssetMinorCategory, AssetSpecif" +
-                "ications, ItemsQuantity, Model, Color, Volume, PurchaseDate, PurchasePrice, Purc" +
-                "hasePriceCurrency, PlaceOfPresence, CurrentStatus, BenefitPercentage, ActualCurr" +
-                "entPrice, ActualCurrentPriceCurrency, CustodianName, MoreDetails, AssetNotes, Es" +
-                "tateAddress, OwnerName, OfUsed, EstateOwnershipDocumentWith, EstateArea, EstateA" +
-                "reaUnit, CarPanelNumber, CarManufacturingYear, CarChassisNumber, CarEngineNumber" +
-                ", DestructionRate, LifeSpanInMonths, IsSold, IsOutOfWork, InsertedOn, LastModifi" +
-                "edOn, InsertedBy, LastModifiedBy FROM AssetTbl WHERE (ID = @ID)";
+                "riginal_CarEngineNumber)) AND ([DestructionRate] = @Original_DestructionRate) AN" +
+                "D ([LifeSpanInMonths] = @Original_LifeSpanInMonths) AND ((@IsNull_IsSold = 1 AND" +
+                " [IsSold] IS NULL) OR ([IsSold] = @Original_IsSold)) AND ((@IsNull_IsOutOfWork =" +
+                " 1 AND [IsOutOfWork] IS NULL) OR ([IsOutOfWork] = @Original_IsOutOfWork)) AND ((" +
+                "@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_In" +
+                "sertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([L" +
+                "astModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [In" +
+                "sertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastM" +
+                "odifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_Las" +
+                "tModifiedBy)));\r\nSELECT ID, AssetCode, AssetSection, AssetDept, AssetSquare, Ass" +
+                "etMinorCategory, AssetSpecifications, ItemsQuantity, Model, Color, Volume, Purch" +
+                "aseDate, PurchasePrice, PurchasePriceCurrency, PlaceOfPresence, CurrentStatus, B" +
+                "enefitPercentage, ActualCurrentPrice, ActualCurrentPriceCurrency, CustodianName," +
+                " MoreDetails, AssetNotes, EstateAddress, OwnerName, OfUsed, EstateOwnershipDocum" +
+                "entWith, EstateArea, EstateAreaUnit, CarPanelNumber, CarManufacturingYear, CarCh" +
+                "assisNumber, CarEngineNumber, DestructionRate, LifeSpanInMonths, IsSold, IsOutOf" +
+                "Work, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM AssetTbl WHERE" +
+                " (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetCode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetSection", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetSection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16995,7 +16762,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarChassisNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarChassisNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarEngineNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LifeSpanInMonths", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSold", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsOutOfWork", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsOutOfWork", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -17052,10 +16819,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CarChassisNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarChassisNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CarEngineNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CarEngineNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CarEngineNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DestructionRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LifeSpanInMonths", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LifeSpanInMonths", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LifeSpanInMonths", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsSold", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsSold", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSold", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsOutOfWork", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsOutOfWork", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -17175,8 +16940,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> Original_CarManufacturingYear, 
                     string Original_CarChassisNumber, 
                     string Original_CarEngineNumber, 
-                    global::System.Nullable<double> Original_DestructionRate, 
-                    global::System.Nullable<double> Original_LifeSpanInMonths, 
+                    double Original_DestructionRate, 
+                    int Original_LifeSpanInMonths, 
                     global::System.Nullable<bool> Original_IsSold, 
                     global::System.Nullable<bool> Original_IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> Original_InsertedOn, 
@@ -17359,69 +17124,55 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 this.Adapter.DeleteCommand.Parameters[48].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[49].Value = ((string)(Original_CarEngineNumber));
             }
-            if ((Original_DestructionRate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[50].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[51].Value = ((double)(Original_DestructionRate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[50].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[51].Value = global::System.DBNull.Value;
-            }
-            if ((Original_LifeSpanInMonths.HasValue == true)) {
+            this.Adapter.DeleteCommand.Parameters[50].Value = ((double)(Original_DestructionRate));
+            this.Adapter.DeleteCommand.Parameters[51].Value = ((int)(Original_LifeSpanInMonths));
+            if ((Original_IsSold.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[52].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[53].Value = ((double)(Original_LifeSpanInMonths.Value));
+                this.Adapter.DeleteCommand.Parameters[53].Value = ((bool)(Original_IsSold.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[52].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[53].Value = global::System.DBNull.Value;
             }
-            if ((Original_IsSold.HasValue == true)) {
+            if ((Original_IsOutOfWork.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[54].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[55].Value = ((bool)(Original_IsSold.Value));
+                this.Adapter.DeleteCommand.Parameters[55].Value = ((bool)(Original_IsOutOfWork.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[54].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[55].Value = global::System.DBNull.Value;
             }
-            if ((Original_IsOutOfWork.HasValue == true)) {
+            if ((Original_InsertedOn.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[56].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[57].Value = ((bool)(Original_IsOutOfWork.Value));
+                this.Adapter.DeleteCommand.Parameters[57].Value = ((System.DateTime)(Original_InsertedOn.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[56].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[57].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertedOn.HasValue == true)) {
+            if ((Original_LastModifiedOn.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[58].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[59].Value = ((System.DateTime)(Original_InsertedOn.Value));
+                this.Adapter.DeleteCommand.Parameters[59].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[58].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[59].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastModifiedOn.HasValue == true)) {
+            if ((Original_InsertedBy.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[60].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[61].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+                this.Adapter.DeleteCommand.Parameters[61].Value = ((int)(Original_InsertedBy.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[60].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[61].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertedBy.HasValue == true)) {
+            if ((Original_LastModifiedBy.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[62].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[63].Value = ((int)(Original_InsertedBy.Value));
+                this.Adapter.DeleteCommand.Parameters[63].Value = ((int)(Original_LastModifiedBy.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[62].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[63].Value = global::System.DBNull.Value;
-            }
-            if ((Original_LastModifiedBy.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[64].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[65].Value = ((int)(Original_LastModifiedBy.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[64].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[65].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17475,8 +17226,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> CarManufacturingYear, 
                     string CarChassisNumber, 
                     string CarEngineNumber, 
-                    global::System.Nullable<double> DestructionRate, 
-                    global::System.Nullable<double> LifeSpanInMonths, 
+                    double DestructionRate, 
+                    int LifeSpanInMonths, 
                     global::System.Nullable<bool> IsSold, 
                     global::System.Nullable<bool> IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> InsertedOn, 
@@ -17634,18 +17385,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             else {
                 this.Adapter.InsertCommand.Parameters[30].Value = ((string)(CarEngineNumber));
             }
-            if ((DestructionRate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[31].Value = ((double)(DestructionRate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            if ((LifeSpanInMonths.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[32].Value = ((double)(LifeSpanInMonths.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[32].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[31].Value = ((double)(DestructionRate));
+            this.Adapter.InsertCommand.Parameters[32].Value = ((int)(LifeSpanInMonths));
             if ((IsSold.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[33].Value = ((bool)(IsSold.Value));
             }
@@ -17734,8 +17475,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> CarManufacturingYear, 
                     string CarChassisNumber, 
                     string CarEngineNumber, 
-                    global::System.Nullable<double> DestructionRate, 
-                    global::System.Nullable<double> LifeSpanInMonths, 
+                    double DestructionRate, 
+                    int LifeSpanInMonths, 
                     global::System.Nullable<bool> IsSold, 
                     global::System.Nullable<bool> IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> InsertedOn, 
@@ -17771,8 +17512,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> Original_CarManufacturingYear, 
                     string Original_CarChassisNumber, 
                     string Original_CarEngineNumber, 
-                    global::System.Nullable<double> Original_DestructionRate, 
-                    global::System.Nullable<double> Original_LifeSpanInMonths, 
+                    double Original_DestructionRate, 
+                    int Original_LifeSpanInMonths, 
                     global::System.Nullable<bool> Original_IsSold, 
                     global::System.Nullable<bool> Original_IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> Original_InsertedOn, 
@@ -17931,18 +17672,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             else {
                 this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(CarEngineNumber));
             }
-            if ((DestructionRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((double)(DestructionRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            if ((LifeSpanInMonths.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((double)(LifeSpanInMonths.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((double)(DestructionRate));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(LifeSpanInMonths));
             if ((IsSold.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[33].Value = ((bool)(IsSold.Value));
             }
@@ -18155,71 +17886,57 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[88].Value = ((string)(Original_CarEngineNumber));
             }
-            if ((Original_DestructionRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[90].Value = ((double)(Original_DestructionRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
-            }
-            if ((Original_LifeSpanInMonths.HasValue == true)) {
+            this.Adapter.UpdateCommand.Parameters[89].Value = ((double)(Original_DestructionRate));
+            this.Adapter.UpdateCommand.Parameters[90].Value = ((int)(Original_LifeSpanInMonths));
+            if ((Original_IsSold.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[92].Value = ((double)(Original_LifeSpanInMonths.Value));
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((bool)(Original_IsSold.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
             }
-            if ((Original_IsSold.HasValue == true)) {
+            if ((Original_IsOutOfWork.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[94].Value = ((bool)(Original_IsSold.Value));
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((bool)(Original_IsOutOfWork.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[94].Value = global::System.DBNull.Value;
             }
-            if ((Original_IsOutOfWork.HasValue == true)) {
+            if ((Original_InsertedOn.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((bool)(Original_IsOutOfWork.Value));
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((System.DateTime)(Original_InsertedOn.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertedOn.HasValue == true)) {
+            if ((Original_LastModifiedOn.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((System.DateTime)(Original_InsertedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastModifiedOn.HasValue == true)) {
+            if ((Original_InsertedBy.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((int)(Original_InsertedBy.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertedBy.HasValue == true)) {
+            if ((Original_LastModifiedBy.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[102].Value = ((int)(Original_InsertedBy.Value));
+                this.Adapter.UpdateCommand.Parameters[102].Value = ((int)(Original_LastModifiedBy.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[102].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastModifiedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((int)(Original_LastModifiedBy.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[104].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[105].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[103].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18272,8 +17989,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> CarManufacturingYear, 
                     string CarChassisNumber, 
                     string CarEngineNumber, 
-                    global::System.Nullable<double> DestructionRate, 
-                    global::System.Nullable<double> LifeSpanInMonths, 
+                    double DestructionRate, 
+                    int LifeSpanInMonths, 
                     global::System.Nullable<bool> IsSold, 
                     global::System.Nullable<bool> IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> InsertedOn, 
@@ -18309,8 +18026,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                     global::System.Nullable<int> Original_CarManufacturingYear, 
                     string Original_CarChassisNumber, 
                     string Original_CarEngineNumber, 
-                    global::System.Nullable<double> Original_DestructionRate, 
-                    global::System.Nullable<double> Original_LifeSpanInMonths, 
+                    double Original_DestructionRate, 
+                    int Original_LifeSpanInMonths, 
                     global::System.Nullable<bool> Original_IsSold, 
                     global::System.Nullable<bool> Original_IsOutOfWork, 
                     global::System.Nullable<global::System.DateTime> Original_InsertedOn, 
@@ -20406,10 +20123,14 @@ SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM Financia
             tableMapping.ColumnMappings.Add("OutgoingAmount", "OutgoingAmount");
             tableMapping.ColumnMappings.Add("FinancialItemCurrency", "FinancialItemCurrency");
             tableMapping.ColumnMappings.Add("AdditionalNotes", "AdditionalNotes");
+            tableMapping.ColumnMappings.Add("InsertedOn", "InsertedOn");
+            tableMapping.ColumnMappings.Add("LastModifiedOn", "LastModifiedOn");
+            tableMapping.ColumnMappings.Add("InsertedBy", "InsertedBy");
+            tableMapping.ColumnMappings.Add("LastModifiedBy", "LastModifiedBy");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[FinancialItemTbl] WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[FinancialItemTbl] WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -20422,10 +20143,18 @@ SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM Financia
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AdditionalNotes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdditionalNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_InsertedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastModifiedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastModifiedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[FinancialItemTbl] ([FinancialItemCategory], [FinancialItemDescription], [FinancialItemInsertionDate], [IncomingOrOutgoing], [IncomingAmount], [OutgoingAmount], [FinancialItemCurrency], [AdditionalNotes]) VALUES (@FinancialItemCategory, @FinancialItemDescription, @FinancialItemInsertionDate, @IncomingOrOutgoing, @IncomingAmount, @OutgoingAmount, @FinancialItemCurrency, @AdditionalNotes);
-SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes FROM FinancialItemTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[FinancialItemTbl] ([FinancialItemCategory], [FinancialItemDescription], [FinancialItemInsertionDate], [IncomingOrOutgoing], [IncomingAmount], [OutgoingAmount], [FinancialItemCurrency], [AdditionalNotes], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy]) VALUES (@FinancialItemCategory, @FinancialItemDescription, @FinancialItemInsertionDate, @IncomingOrOutgoing, @IncomingAmount, @OutgoingAmount, @FinancialItemCurrency, @AdditionalNotes, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy);
+SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM FinancialItemTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20435,10 +20164,36 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdditionalNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastModifiedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[FinancialItemTbl] SET [FinancialItemCategory] = @FinancialItemCategory, [FinancialItemDescription] = @FinancialItemDescription, [FinancialItemInsertionDate] = @FinancialItemInsertionDate, [IncomingOrOutgoing] = @IncomingOrOutgoing, [IncomingAmount] = @IncomingAmount, [OutgoingAmount] = @OutgoingAmount, [FinancialItemCurrency] = @FinancialItemCurrency, [AdditionalNotes] = @AdditionalNotes WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)));
-SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes FROM FinancialItemTbl WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[FinancialItemTbl] SET [FinancialItemCategory] = @FinancialItemCateg" +
+                "ory, [FinancialItemDescription] = @FinancialItemDescription, [FinancialItemInser" +
+                "tionDate] = @FinancialItemInsertionDate, [IncomingOrOutgoing] = @IncomingOrOutgo" +
+                "ing, [IncomingAmount] = @IncomingAmount, [OutgoingAmount] = @OutgoingAmount, [Fi" +
+                "nancialItemCurrency] = @FinancialItemCurrency, [AdditionalNotes] = @AdditionalNo" +
+                "tes, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy" +
+                "] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy WHERE (([ID] = @Original_ID)" +
+                " AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_F" +
+                "inancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([Financi" +
+                "alItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemIns" +
+                "ertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = " +
+                "@Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) " +
+                "AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] =" +
+                " @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [Additio" +
+                "nalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@Is" +
+                "Null_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_Inser" +
+                "tedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([Last" +
+                "ModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [Inser" +
+                "tedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModi" +
+                "fiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastMo" +
+                "difiedBy)));\r\nSELECT ID, FinancialItemCategory, FinancialItemDescription, Financ" +
+                "ialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, Financ" +
+                "ialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastMo" +
+                "difiedBy FROM FinancialItemTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20448,6 +20203,10 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdditionalNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastModifiedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FinancialItemDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -20459,6 +20218,14 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AdditionalNotes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdditionalNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdditionalNotes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_InsertedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InsertedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastModifiedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastModifiedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InsertedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -20475,9 +20242,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertio" +
-                "nDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency" +
-                ", AdditionalNotes FROM dbo.FinancialItemTbl";
+            this._commandCollection[0].CommandText = @"SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM dbo.FinancialItemTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -20538,7 +20303,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_FinancialItemCategory, string Original_FinancialItemDescription, System.DateTime Original_FinancialItemInsertionDate, int Original_IncomingOrOutgoing, double Original_IncomingAmount, double Original_OutgoingAmount, int Original_FinancialItemCurrency, string Original_AdditionalNotes) {
+        public virtual int Delete(int Original_ID, int Original_FinancialItemCategory, string Original_FinancialItemDescription, System.DateTime Original_FinancialItemInsertionDate, int Original_IncomingOrOutgoing, double Original_IncomingAmount, double Original_OutgoingAmount, int Original_FinancialItemCurrency, string Original_AdditionalNotes, global::System.Nullable<global::System.DateTime> Original_InsertedOn, global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, global::System.Nullable<int> Original_InsertedBy, global::System.Nullable<int> Original_LastModifiedBy) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FinancialItemCategory));
             if ((Original_FinancialItemDescription == null)) {
@@ -20562,6 +20327,38 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_AdditionalNotes));
             }
+            if ((Original_InsertedOn.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((System.DateTime)(Original_InsertedOn.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((Original_LastModifiedOn.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((Original_InsertedBy.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_InsertedBy.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Original_LastModifiedBy.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_LastModifiedBy.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20582,7 +20379,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FinancialItemCategory, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, int FinancialItemCurrency, string AdditionalNotes) {
+        public virtual int Insert(int FinancialItemCategory, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, int FinancialItemCurrency, string AdditionalNotes, global::System.Nullable<global::System.DateTime> InsertedOn, global::System.Nullable<global::System.DateTime> LastModifiedOn, global::System.Nullable<int> InsertedBy, global::System.Nullable<int> LastModifiedBy) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FinancialItemCategory));
             if ((FinancialItemDescription == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -20600,6 +20397,30 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(AdditionalNotes));
+            }
+            if ((InsertedOn.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(InsertedOn.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((LastModifiedOn.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(LastModifiedOn.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((InsertedBy.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(InsertedBy.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((LastModifiedBy.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(LastModifiedBy.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -20630,6 +20451,10 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     double OutgoingAmount, 
                     int FinancialItemCurrency, 
                     string AdditionalNotes, 
+                    global::System.Nullable<global::System.DateTime> InsertedOn, 
+                    global::System.Nullable<global::System.DateTime> LastModifiedOn, 
+                    global::System.Nullable<int> InsertedBy, 
+                    global::System.Nullable<int> LastModifiedBy, 
                     int Original_ID, 
                     int Original_FinancialItemCategory, 
                     string Original_FinancialItemDescription, 
@@ -20639,6 +20464,10 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     double Original_OutgoingAmount, 
                     int Original_FinancialItemCurrency, 
                     string Original_AdditionalNotes, 
+                    global::System.Nullable<global::System.DateTime> Original_InsertedOn, 
+                    global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, 
+                    global::System.Nullable<int> Original_InsertedBy, 
+                    global::System.Nullable<int> Original_LastModifiedBy, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FinancialItemCategory));
             if ((FinancialItemDescription == null)) {
@@ -20658,30 +20487,86 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(AdditionalNotes));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_FinancialItemCategory));
-            if ((Original_FinancialItemDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+            if ((InsertedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(InsertedOn.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((LastModifiedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(LastModifiedOn.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((InsertedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(InsertedBy.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((LastModifiedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(LastModifiedBy.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_FinancialItemDescription));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_FinancialItemCategory));
+            if ((Original_FinancialItemDescription == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_FinancialItemInsertionDate));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_IncomingOrOutgoing));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(Original_IncomingAmount));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((double)(Original_OutgoingAmount));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_FinancialItemCurrency));
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_FinancialItemDescription));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_FinancialItemInsertionDate));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_IncomingOrOutgoing));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((double)(Original_IncomingAmount));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_OutgoingAmount));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_FinancialItemCurrency));
             if ((Original_AdditionalNotes == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_AdditionalNotes));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_AdditionalNotes));
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(ID));
+            if ((Original_InsertedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((System.DateTime)(Original_InsertedOn.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((Original_LastModifiedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((Original_InsertedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(Original_InsertedBy.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((Original_LastModifiedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(Original_LastModifiedBy.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20711,6 +20596,10 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     double OutgoingAmount, 
                     int FinancialItemCurrency, 
                     string AdditionalNotes, 
+                    global::System.Nullable<global::System.DateTime> InsertedOn, 
+                    global::System.Nullable<global::System.DateTime> LastModifiedOn, 
+                    global::System.Nullable<int> InsertedBy, 
+                    global::System.Nullable<int> LastModifiedBy, 
                     int Original_ID, 
                     int Original_FinancialItemCategory, 
                     string Original_FinancialItemDescription, 
@@ -20719,8 +20608,12 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     double Original_IncomingAmount, 
                     double Original_OutgoingAmount, 
                     int Original_FinancialItemCurrency, 
-                    string Original_AdditionalNotes) {
-            return this.Update(FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, Original_ID, Original_FinancialItemCategory, Original_FinancialItemDescription, Original_FinancialItemInsertionDate, Original_IncomingOrOutgoing, Original_IncomingAmount, Original_OutgoingAmount, Original_FinancialItemCurrency, Original_AdditionalNotes, Original_ID);
+                    string Original_AdditionalNotes, 
+                    global::System.Nullable<global::System.DateTime> Original_InsertedOn, 
+                    global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, 
+                    global::System.Nullable<int> Original_InsertedBy, 
+                    global::System.Nullable<int> Original_LastModifiedBy) {
+            return this.Update(FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, Original_ID, Original_FinancialItemCategory, Original_FinancialItemDescription, Original_FinancialItemInsertionDate, Original_IncomingOrOutgoing, Original_IncomingAmount, Original_OutgoingAmount, Original_FinancialItemCurrency, Original_AdditionalNotes, Original_InsertedOn, Original_LastModifiedOn, Original_InsertedBy, Original_LastModifiedBy, Original_ID);
         }
     }
     
@@ -21207,16 +21100,14 @@ SELECT ID, MainCategoryName, MainCategoryDescription FROM MainCategoryTbl WHERE 
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[MinorCategoryTbl] WHERE (([ID] = @Original_ID) AND ([MinorCategoryName] = @Original_MinorCategoryName) AND ((@IsNull_MinorCategoryDescription = 1 AND [MinorCategoryDescription] IS NULL) OR ([MinorCategoryDescription] = @Original_MinorCategoryDescription)) AND ([MainCategory] = @Original_MainCategory) AND ((@IsNull_ProductiveAgeInYears = 1 AND [ProductiveAgeInYears] IS NULL) OR ([ProductiveAgeInYears] = @Original_ProductiveAgeInYears)) AND ((@IsNull_DestructionRate = 1 AND [DestructionRate] IS NULL) OR ([DestructionRate] = @Original_DestructionRate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[MinorCategoryTbl] WHERE (([ID] = @Original_ID) AND ([MinorCategoryName] = @Original_MinorCategoryName) AND ((@IsNull_MinorCategoryDescription = 1 AND [MinorCategoryDescription] IS NULL) OR ([MinorCategoryDescription] = @Original_MinorCategoryDescription)) AND ([MainCategory] = @Original_MainCategory) AND ([ProductiveAgeInYears] = @Original_ProductiveAgeInYears) AND ([DestructionRate] = @Original_DestructionRate))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MinorCategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MinorCategoryDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MinorCategoryDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MainCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MainCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProductiveAgeInYears", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductiveAgeInYears", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProductiveAgeInYears", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductiveAgeInYears", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DestructionRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
@@ -21230,7 +21121,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MinorCategoryTbl] SET [MinorCategoryName] = @MinorCategoryName, [MinorCategoryDescription] = @MinorCategoryDescription, [MainCategory] = @MainCategory, [ProductiveAgeInYears] = @ProductiveAgeInYears, [DestructionRate] = @DestructionRate WHERE (([ID] = @Original_ID) AND ([MinorCategoryName] = @Original_MinorCategoryName) AND ((@IsNull_MinorCategoryDescription = 1 AND [MinorCategoryDescription] IS NULL) OR ([MinorCategoryDescription] = @Original_MinorCategoryDescription)) AND ([MainCategory] = @Original_MainCategory) AND ((@IsNull_ProductiveAgeInYears = 1 AND [ProductiveAgeInYears] IS NULL) OR ([ProductiveAgeInYears] = @Original_ProductiveAgeInYears)) AND ((@IsNull_DestructionRate = 1 AND [DestructionRate] IS NULL) OR ([DestructionRate] = @Original_DestructionRate)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MinorCategoryTbl] SET [MinorCategoryName] = @MinorCategoryName, [MinorCategoryDescription] = @MinorCategoryDescription, [MainCategory] = @MainCategory, [ProductiveAgeInYears] = @ProductiveAgeInYears, [DestructionRate] = @DestructionRate WHERE (([ID] = @Original_ID) AND ([MinorCategoryName] = @Original_MinorCategoryName) AND ((@IsNull_MinorCategoryDescription = 1 AND [MinorCategoryDescription] IS NULL) OR ([MinorCategoryDescription] = @Original_MinorCategoryDescription)) AND ([MainCategory] = @Original_MainCategory) AND ([ProductiveAgeInYears] = @Original_ProductiveAgeInYears) AND ([DestructionRate] = @Original_DestructionRate));
 SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, ProductiveAgeInYears, DestructionRate FROM MinorCategoryTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MinorCategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21243,9 +21134,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MinorCategoryDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MinorCategoryDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinorCategoryDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MainCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MainCategory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProductiveAgeInYears", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductiveAgeInYears", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProductiveAgeInYears", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductiveAgeInYears", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DestructionRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DestructionRate", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DestructionRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -21325,7 +21214,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, global::System.Nullable<int> Original_ProductiveAgeInYears, global::System.Nullable<double> Original_DestructionRate) {
+        public virtual int Delete(int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, int Original_ProductiveAgeInYears, double Original_DestructionRate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_MinorCategoryName == null)) {
                 throw new global::System.ArgumentNullException("Original_MinorCategoryName");
@@ -21342,22 +21231,8 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_MinorCategoryDescription));
             }
             this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_MainCategory));
-            if ((Original_ProductiveAgeInYears.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_ProductiveAgeInYears.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DestructionRate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_DestructionRate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_ProductiveAgeInYears));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_DestructionRate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21378,7 +21253,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, global::System.Nullable<int> ProductiveAgeInYears, global::System.Nullable<double> DestructionRate) {
+        public virtual int Insert(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, int ProductiveAgeInYears, double DestructionRate) {
             if ((MinorCategoryName == null)) {
                 throw new global::System.ArgumentNullException("MinorCategoryName");
             }
@@ -21392,18 +21267,8 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(MinorCategoryDescription));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(MainCategory));
-            if ((ProductiveAgeInYears.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ProductiveAgeInYears.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((DestructionRate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(DestructionRate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ProductiveAgeInYears));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((double)(DestructionRate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21424,7 +21289,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, global::System.Nullable<int> ProductiveAgeInYears, global::System.Nullable<double> DestructionRate, int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, global::System.Nullable<int> Original_ProductiveAgeInYears, global::System.Nullable<double> Original_DestructionRate, int ID) {
+        public virtual int Update(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, int ProductiveAgeInYears, double DestructionRate, int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, int Original_ProductiveAgeInYears, double Original_DestructionRate, int ID) {
             if ((MinorCategoryName == null)) {
                 throw new global::System.ArgumentNullException("MinorCategoryName");
             }
@@ -21438,18 +21303,8 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(MinorCategoryDescription));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(MainCategory));
-            if ((ProductiveAgeInYears.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ProductiveAgeInYears.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((DestructionRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(DestructionRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ProductiveAgeInYears));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(DestructionRate));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
             if ((Original_MinorCategoryName == null)) {
                 throw new global::System.ArgumentNullException("Original_MinorCategoryName");
@@ -21466,23 +21321,9 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_MinorCategoryDescription));
             }
             this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_MainCategory));
-            if ((Original_ProductiveAgeInYears.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_ProductiveAgeInYears.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DestructionRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(Original_DestructionRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ProductiveAgeInYears));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((double)(Original_DestructionRate));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21503,7 +21344,7 @@ SELECT ID, MinorCategoryName, MinorCategoryDescription, MainCategory, Productive
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, global::System.Nullable<int> ProductiveAgeInYears, global::System.Nullable<double> DestructionRate, int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, global::System.Nullable<int> Original_ProductiveAgeInYears, global::System.Nullable<double> Original_DestructionRate) {
+        public virtual int Update(string MinorCategoryName, string MinorCategoryDescription, int MainCategory, int ProductiveAgeInYears, double DestructionRate, int Original_ID, string Original_MinorCategoryName, string Original_MinorCategoryDescription, int Original_MainCategory, int Original_ProductiveAgeInYears, double Original_DestructionRate) {
             return this.Update(MinorCategoryName, MinorCategoryDescription, MainCategory, ProductiveAgeInYears, DestructionRate, Original_ID, Original_MinorCategoryName, Original_MinorCategoryDescription, Original_MainCategory, Original_ProductiveAgeInYears, Original_DestructionRate, Original_ID);
         }
     }
@@ -25997,15 +25838,6 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._mainCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._mainCategoryTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._departmentTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.DepartmentTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -26015,57 +25847,21 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._statusTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.StatusTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._statusTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._squareTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SquareTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._squareTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sectionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SectionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sectionTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._minorCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.MinorCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._minorCategoryTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._estateAreaUnitTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._estateAreaUnitTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._userTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._userTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26096,30 +25892,30 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._statusTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.StatusTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
+                    result = (result + this._statusTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._squareTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SquareTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
+                    result = (result + this._squareTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._financialItemTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sectionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SectionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._financialItemTblTableAdapter.Update(updatedRows));
+                    result = (result + this._sectionTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26132,12 +25928,57 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._minorCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MinorCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._minorCategoryTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._estateAreaUnitTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._estateAreaUnitTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._financialItemTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._financialItemTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._assetMovementTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._assetMovementTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._mainCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._mainCategoryTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26159,14 +26000,6 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._mainCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._mainCategoryTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._departmentTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.DepartmentTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -26175,51 +26008,19 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._statusTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.StatusTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._statusTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._squareTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SquareTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._squareTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sectionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SectionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sectionTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._minorCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.MinorCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._minorCategoryTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._estateAreaUnitTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._estateAreaUnitTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._userTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._userTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26247,27 +26048,27 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._statusTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.StatusTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(addedRows));
+                    result = (result + this._statusTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._squareTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SquareTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
+                    result = (result + this._squareTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._financialItemTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sectionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SectionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._financialItemTblTableAdapter.Update(addedRows));
+                    result = (result + this._sectionTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26279,11 +26080,51 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._minorCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MinorCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._minorCategoryTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._estateAreaUnitTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._estateAreaUnitTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._financialItemTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._financialItemTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._assetMovementTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._assetMovementTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._mainCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._mainCategoryTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26297,27 +26138,19 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(AssetMngDbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._mainCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._mainCategoryTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._assetMovementTblTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._assetMovementTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._optionsTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._optionsTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._financialItemTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._financialItemTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26329,43 +26162,11 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._financialItemTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._financialItemCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.FinancialItemCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._financialItemCategoryTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._transactionTypeTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TransactionTypeTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._transactionTypeTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._currencyTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._currencyTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._userTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userTblTableAdapter.Update(deletedRows));
+                    result = (result + this._financialItemTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26382,6 +26183,14 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._minorCategoryTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._optionsTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._optionsTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26409,19 +26218,51 @@ SELECT ID, SquareName, SquareLocation FROM SquareTbl WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._financialItemCategoryTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.FinancialItemCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._financialItemCategoryTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._transactionTypeTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TransactionTypeTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._transactionTypeTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._currencyTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._currencyTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._userTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._departmentTblTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.DepartmentTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._departmentTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._mainCategoryTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.MainCategoryTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._mainCategoryTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

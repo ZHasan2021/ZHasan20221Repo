@@ -36,7 +36,6 @@ namespace AssetManagement
             this.modifyExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMainCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMinorCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.activeUserRoleBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.addNewAssetInventoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.encryptExportedFileBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
@@ -97,6 +96,8 @@ namespace AssetManagement
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.userRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.activeUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.activeUserRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
@@ -117,7 +118,6 @@ namespace AssetManagement
             this.modifyExistedAssetBarButtonItem,
             this.addNewMainCategoryBarButtonItem,
             this.addNewMinorCategoryBarButtonItem,
-            this.activeUserRoleBarStaticItem,
             this.skinDropDownButtonItem1,
             this.addNewAssetInventoryBarButtonItem,
             this.encryptExportedFileBarCheckItem,
@@ -155,7 +155,7 @@ namespace AssetManagement
             this.prepareFinancialReportsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10);
-            this.mainRibbonControl.MaxItemId = 47;
+            this.mainRibbonControl.MaxItemId = 48;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 1006;
@@ -205,11 +205,6 @@ namespace AssetManagement
             this.addNewMinorCategoryBarButtonItem.Name = "addNewMinorCategoryBarButtonItem";
             this.addNewMinorCategoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewMinorCategoryBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewMinorCategoryBarButtonItem_ItemClick);
-            // 
-            // activeUserRoleBarStaticItem
-            // 
-            this.activeUserRoleBarStaticItem.Id = 6;
-            this.activeUserRoleBarStaticItem.Name = "activeUserRoleBarStaticItem";
             // 
             // skinDropDownButtonItem1
             // 
@@ -274,7 +269,9 @@ namespace AssetManagement
             // 
             this.appDateBarStaticItem.Id = 15;
             this.appDateBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.appDateBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appDateBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.appDateBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
             this.appDateBarStaticItem.Name = "appDateBarStaticItem";
             this.appDateBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.setAppDateAndTimeBarStaticItem_ItemClick);
             // 
@@ -282,7 +279,9 @@ namespace AssetManagement
             // 
             this.appTimeBarStaticItem.Id = 16;
             this.appTimeBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.appTimeBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appTimeBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.appTimeBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
             this.appTimeBarStaticItem.Name = "appTimeBarStaticItem";
             this.appTimeBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.setAppDateAndTimeBarStaticItem_ItemClick);
             // 
@@ -713,7 +712,6 @@ namespace AssetManagement
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.ItemLinks.Add(this.activeUserRoleBarStaticItem);
             this.ribbonStatusBar1.ItemLinks.Add(this.skinDropDownButtonItem1);
             this.ribbonStatusBar1.ItemLinks.Add(this.appDateBarStaticItem);
             this.ribbonStatusBar1.ItemLinks.Add(this.appTimeBarStaticItem);
@@ -786,10 +784,12 @@ namespace AssetManagement
             // 
             // mainStatusStrip
             // 
-            this.mainStatusStrip.Font = new System.Drawing.Font("Akhbar MT", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mainStatusStrip.Font = new System.Drawing.Font("Akhbar MT", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userRoleToolStripStatusLabel});
+            this.userRoleToolStripStatusLabel,
+            this.activeUserToolStripStatusLabel,
+            this.activeUserRoleToolStripStatusLabel});
             this.mainStatusStrip.Location = new System.Drawing.Point(0, 809);
             this.mainStatusStrip.Name = "mainStatusStrip";
             this.mainStatusStrip.Size = new System.Drawing.Size(1439, 22);
@@ -800,6 +800,18 @@ namespace AssetManagement
             // 
             this.userRoleToolStripStatusLabel.Name = "userRoleToolStripStatusLabel";
             this.userRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // activeUserToolStripStatusLabel
+            // 
+            this.activeUserToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.activeUserToolStripStatusLabel.Name = "activeUserToolStripStatusLabel";
+            this.activeUserToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // activeUserRoleToolStripStatusLabel
+            // 
+            this.activeUserRoleToolStripStatusLabel.BackColor = System.Drawing.Color.Aqua;
+            this.activeUserRoleToolStripStatusLabel.Name = "activeUserRoleToolStripStatusLabel";
+            this.activeUserRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
             // ribbonPage3
             // 
@@ -866,7 +878,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel userRoleToolStripStatusLabel;
-        private DevExpress.XtraBars.BarStaticItem activeUserRoleBarStaticItem;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.BarButtonItem addNewAssetInventoryBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetInventoriesRibbonPageGroup;
@@ -923,6 +934,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageFinancialItemsBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageFinancialItemCategoryTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem prepareFinancialReportsBarButtonItem;
+        private System.Windows.Forms.ToolStripStatusLabel activeUserToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel activeUserRoleToolStripStatusLabel;
     }
 }
 

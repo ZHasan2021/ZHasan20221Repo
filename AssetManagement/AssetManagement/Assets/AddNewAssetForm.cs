@@ -13,6 +13,9 @@ namespace AssetManagement.Assets
 {
     public partial class AddNewAssetForm : Form
     {
+        double assetDesRate = 0;
+        int assetProdAge = 0;
+
         public AddNewAssetForm()
         {
             InitializeComponent();
@@ -113,7 +116,7 @@ namespace AssetManagement.Assets
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
                     DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
-                    LifeSpanInMonths = Convert.ToDouble(lifeSpanInMonthsNumericUpDown.Value),
+                    LifeSpanInMonths = Convert.ToInt32(lifeSpanInMonthsNumericUpDown.Value),
                     AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
@@ -229,7 +232,10 @@ namespace AssetManagement.Assets
                 return;
             try
             {
-                destructionRateNumericUpDown.Value = Convert.ToDecimal(StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == Convert.ToInt32(minorCategoryLookUpEdit.EditValue)).DestructionRate);
+                MinorCategoryTbl currMiCa = StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == Convert.ToInt32(minorCategoryLookUpEdit.EditValue));
+                assetDesRate = currMiCa.DestructionRate;
+                assetProdAge = currMiCa.ProductiveAgeInYears;
+                destructionRateNumericUpDown.Value = Convert.ToDecimal(assetDesRate);
             }
             catch
             {
@@ -240,10 +246,12 @@ namespace AssetManagement.Assets
         private void purchaseDateDateEdit_EditValueChanged(object sender, EventArgs e)
         {
             lifeSpanInMonthsNumericUpDown.Value = 0;
+            if (minorCategoryLookUpEdit.EditValue == null || purchaseDateDateEdit.EditValue == null)
+                return;
             try
             {
                 DateTime dt1 = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
-                int monthsDiff = (DateTime.Today.Year - dt1.Year) * 12 + (DateTime.Today.Month - dt1.Month);
+                int monthsDiff = assetProdAge * 12 - ((DateTime.Today.Year - dt1.Year) * 12 + (DateTime.Today.Month - dt1.Month));
                 lifeSpanInMonthsNumericUpDown.Value = monthsDiff;
             }
             catch

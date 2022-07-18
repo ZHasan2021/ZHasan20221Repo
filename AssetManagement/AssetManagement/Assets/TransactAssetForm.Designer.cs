@@ -54,21 +54,8 @@ namespace AssetManagement.Assets
             this.transactionTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetInfoLabel = new System.Windows.Forms.Label();
-            this.assetTransactionTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.assetTransactionTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.assetMoveVwGridControl = new DevExpress.XtraGrid.GridControl();
+            this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetMoveVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -115,10 +102,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).BeginInit();
-            this.assetTransactionTblBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).BeginInit();
@@ -131,8 +116,7 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveAssetGroupBox.Controls.Add(this.assetTransactionPanel);
             this.moveAssetGroupBox.Controls.Add(this.assetInfoLabel);
-            this.moveAssetGroupBox.Controls.Add(this.assetTransactionTblBindingNavigator);
-            this.moveAssetGroupBox.Controls.Add(this.assetMoveVwGridControl);
+            this.moveAssetGroupBox.Controls.Add(this.assetTransactionGridControl);
             this.moveAssetGroupBox.Controls.Add(this.fromSquareTextBox);
             this.moveAssetGroupBox.Controls.Add(this.fromSectionTextBox);
             this.moveAssetGroupBox.Controls.Add(this.fromDepartmentTextBox);
@@ -407,160 +391,35 @@ namespace AssetManagement.Assets
             // assetInfoLabel
             // 
             this.assetInfoLabel.AutoSize = true;
-            this.assetInfoLabel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.assetInfoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.assetInfoLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.assetInfoLabel.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.assetInfoLabel.Location = new System.Drawing.Point(3, 28);
             this.assetInfoLabel.Name = "assetInfoLabel";
             this.assetInfoLabel.Size = new System.Drawing.Size(0, 29);
             this.assetInfoLabel.TabIndex = 310;
-            // 
-            // assetTransactionTblBindingNavigator
-            // 
-            this.assetTransactionTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.assetTransactionTblBindingNavigator.BindingSource = this.assetTransactionTblBindingSource;
-            this.assetTransactionTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.assetTransactionTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.assetTransactionTblBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetTransactionTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.assetTransactionTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.assetTransactionTblBindingNavigatorSaveItem});
-            this.assetTransactionTblBindingNavigator.Location = new System.Drawing.Point(3, 364);
-            this.assetTransactionTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.assetTransactionTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.assetTransactionTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.assetTransactionTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.assetTransactionTblBindingNavigator.Name = "assetTransactionTblBindingNavigator";
-            this.assetTransactionTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.assetTransactionTblBindingNavigator.Size = new System.Drawing.Size(1270, 27);
-            this.assetTransactionTblBindingNavigator.TabIndex = 500;
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // assetTransactionTblBindingSource
             // 
             this.assetTransactionTblBindingSource.DataMember = "AssetTransactionTbl";
             this.assetTransactionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // bindingNavigatorCountItem
+            // assetTransactionGridControl
             // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // assetTransactionTblBindingNavigatorSaveItem
-            // 
-            this.assetTransactionTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.assetTransactionTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("assetTransactionTblBindingNavigatorSaveItem.Image")));
-            this.assetTransactionTblBindingNavigatorSaveItem.Name = "assetTransactionTblBindingNavigatorSaveItem";
-            this.assetTransactionTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
-            this.assetTransactionTblBindingNavigatorSaveItem.Text = "Save Data";
-            this.assetTransactionTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorSaveItem_Click);
-            // 
-            // assetMoveVwGridControl
-            // 
-            this.assetMoveVwGridControl.DataSource = this.assetTransactionTblBindingSource;
-            this.assetMoveVwGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 391);
-            this.assetMoveVwGridControl.MainView = this.assetMoveVwGridView;
-            this.assetMoveVwGridControl.Name = "assetMoveVwGridControl";
-            this.assetMoveVwGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.assetTransactionGridControl.DataSource = this.assetTransactionTblBindingSource;
+            this.assetTransactionGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.assetTransactionGridControl.Location = new System.Drawing.Point(3, 391);
+            this.assetTransactionGridControl.MainView = this.assetMoveVwGridView;
+            this.assetTransactionGridControl.Name = "assetTransactionGridControl";
+            this.assetTransactionGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.transactionTypeRepositoryItemLookUpEdit,
             this.moneyAmountCurrencyRepositoryItemLookUpEdit});
-            this.assetMoveVwGridControl.Size = new System.Drawing.Size(1270, 228);
-            this.assetMoveVwGridControl.TabIndex = 600;
-            this.assetMoveVwGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.assetTransactionGridControl.Size = new System.Drawing.Size(1270, 228);
+            this.assetTransactionGridControl.TabIndex = 600;
+            this.assetTransactionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetMoveVwGridView});
-            this.assetMoveVwGridControl.Click += new System.EventHandler(this.assetMoveVwGridControl_Click);
+            this.assetTransactionGridControl.Click += new System.EventHandler(this.assetMoveVwGridControl_Click);
             // 
             // assetMoveVwGridView
             // 
@@ -577,7 +436,7 @@ namespace AssetManagement.Assets
             this.colGetAssetOutOfWork,
             this.colWithDestroying,
             this.colCurrentPriceWithDestroying});
-            this.assetMoveVwGridView.GridControl = this.assetMoveVwGridControl;
+            this.assetMoveVwGridView.GridControl = this.assetTransactionGridControl;
             this.assetMoveVwGridView.Name = "assetMoveVwGridView";
             // 
             // colID
@@ -834,6 +693,8 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
@@ -951,11 +812,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).EndInit();
-            this.assetTransactionTblBindingNavigator.ResumeLayout(false);
-            this.assetTransactionTblBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).EndInit();
@@ -983,23 +841,10 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private AssetMngDbDataSet assetMngDbDataSet;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl assetMoveVwGridControl;
+        private DevExpress.XtraGrid.GridControl assetTransactionGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView assetMoveVwGridView;
         private System.Windows.Forms.BindingSource assetTransactionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter assetTransactionTblTableAdapter;
-        private System.Windows.Forms.BindingNavigator assetTransactionTblBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton assetTransactionTblBindingNavigatorSaveItem;
         private System.Windows.Forms.Label transactionTypeLabel;
         private System.Windows.Forms.Label assetInfoLabel;
         private System.Windows.Forms.Panel assetTransactionPanel;

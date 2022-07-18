@@ -21,14 +21,7 @@ namespace AssetManagement.Options
         {
             this.MinimumSize = this.Size;
 
-            try
-            {
-
-            }
-            catch
-            {
-                assetCodePrefixTextBox.Text = StaticCode.appOptions.AssetCodePrefix;
-            }
+            assetCodePrefixTextBox.Text = StaticCode.appOptions.AssetCodePrefix;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -48,6 +41,11 @@ namespace AssetManagement.Options
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
         }
     }
 }

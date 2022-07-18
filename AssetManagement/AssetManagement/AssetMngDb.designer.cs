@@ -257,19 +257,19 @@ namespace AssetManagement
 			}
 		}
 		
-		public System.Data.Linq.Table<AssetVw> AssetVws
-		{
-			get
-			{
-				return this.GetTable<AssetVw>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MinorCategoryVw> MinorCategoryVws
 		{
 			get
 			{
 				return this.GetTable<MinorCategoryVw>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AssetVw> AssetVws
+		{
+			get
+			{
+				return this.GetTable<AssetVw>();
 			}
 		}
 	}
@@ -606,10 +606,6 @@ namespace AssetManagement
 		
 		private EntitySet<AssetMovementTbl> _AssetMovementTbls;
 		
-		private EntitySet<AssetTbl> _AssetTbls;
-		
-		private EntitySet<AssetTbl> _AssetTbls1;
-		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
 		
 		private EntityRef<DepartmentTbl> _DepartmentTbl;
@@ -637,8 +633,6 @@ namespace AssetManagement
 		public UserTbl()
 		{
 			this._AssetMovementTbls = new EntitySet<AssetMovementTbl>(new Action<AssetMovementTbl>(this.attach_AssetMovementTbls), new Action<AssetMovementTbl>(this.detach_AssetMovementTbls));
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
-			this._AssetTbls1 = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls1), new Action<AssetTbl>(this.detach_AssetTbls1));
 			this._AssetTransactionTbls = new EntitySet<AssetTransactionTbl>(new Action<AssetTransactionTbl>(this.attach_AssetTransactionTbls), new Action<AssetTransactionTbl>(this.detach_AssetTransactionTbls));
 			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
 			this._UserRoleTbl = default(EntityRef<UserRoleTbl>);
@@ -786,32 +780,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="InsertedBy")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_AssetTbl1", Storage="_AssetTbls1", ThisKey="ID", OtherKey="LastModifiedBy")]
-		public EntitySet<AssetTbl> AssetTbls1
-		{
-			get
-			{
-				return this._AssetTbls1;
-			}
-			set
-			{
-				this._AssetTbls1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_AssetTransactionTbl", Storage="_AssetTransactionTbls", ThisKey="ID", OtherKey="TransactionMadeBy")]
 		public EntitySet<AssetTransactionTbl> AssetTransactionTbls
 		{
@@ -925,30 +893,6 @@ namespace AssetManagement
 			entity.UserTbl = null;
 		}
 		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserTbl = null;
-		}
-		
-		private void attach_AssetTbls1(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserTbl1 = this;
-		}
-		
-		private void detach_AssetTbls1(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserTbl1 = null;
-		}
-		
 		private void attach_AssetTransactionTbls(AssetTransactionTbl entity)
 		{
 			this.SendPropertyChanging();
@@ -1032,9 +976,9 @@ namespace AssetManagement
 		
 		private string _CarEngineNumber;
 		
-		private System.Nullable<double> _DestructionRate;
+		private double _DestructionRate;
 		
-		private System.Nullable<double> _LifeSpanInMonths;
+		private int _LifeSpanInMonths;
 		
 		private System.Nullable<bool> _IsSold;
 		
@@ -1051,26 +995,6 @@ namespace AssetManagement
 		private EntitySet<AssetMovementTbl> _AssetMovementTbls;
 		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
-		
-		private EntityRef<UserTbl> _UserTbl;
-		
-		private EntityRef<UserTbl> _UserTbl1;
-		
-		private EntityRef<CurrencyTbl> _CurrencyTbl;
-		
-		private EntityRef<CurrencyTbl> _CurrencyTbl1;
-		
-		private EntityRef<DepartmentTbl> _DepartmentTbl;
-		
-		private EntityRef<EstateAreaUnitTbl> _EstateAreaUnitTbl;
-		
-		private EntityRef<MinorCategoryTbl> _MinorCategoryTbl;
-		
-		private EntityRef<SectionTbl> _SectionTbl;
-		
-		private EntityRef<SquareTbl> _SquareTbl;
-		
-		private EntityRef<StatusTbl> _StatusTbl;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1140,9 +1064,9 @@ namespace AssetManagement
     partial void OnCarChassisNumberChanged();
     partial void OnCarEngineNumberChanging(string value);
     partial void OnCarEngineNumberChanged();
-    partial void OnDestructionRateChanging(System.Nullable<double> value);
+    partial void OnDestructionRateChanging(double value);
     partial void OnDestructionRateChanged();
-    partial void OnLifeSpanInMonthsChanging(System.Nullable<double> value);
+    partial void OnLifeSpanInMonthsChanging(int value);
     partial void OnLifeSpanInMonthsChanged();
     partial void OnIsSoldChanging(System.Nullable<bool> value);
     partial void OnIsSoldChanged();
@@ -1162,16 +1086,6 @@ namespace AssetManagement
 		{
 			this._AssetMovementTbls = new EntitySet<AssetMovementTbl>(new Action<AssetMovementTbl>(this.attach_AssetMovementTbls), new Action<AssetMovementTbl>(this.detach_AssetMovementTbls));
 			this._AssetTransactionTbls = new EntitySet<AssetTransactionTbl>(new Action<AssetTransactionTbl>(this.attach_AssetTransactionTbls), new Action<AssetTransactionTbl>(this.detach_AssetTransactionTbls));
-			this._UserTbl = default(EntityRef<UserTbl>);
-			this._UserTbl1 = default(EntityRef<UserTbl>);
-			this._CurrencyTbl = default(EntityRef<CurrencyTbl>);
-			this._CurrencyTbl1 = default(EntityRef<CurrencyTbl>);
-			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
-			this._EstateAreaUnitTbl = default(EntityRef<EstateAreaUnitTbl>);
-			this._MinorCategoryTbl = default(EntityRef<MinorCategoryTbl>);
-			this._SectionTbl = default(EntityRef<SectionTbl>);
-			this._SquareTbl = default(EntityRef<SquareTbl>);
-			this._StatusTbl = default(EntityRef<StatusTbl>);
 			OnCreated();
 		}
 		
@@ -1226,10 +1140,6 @@ namespace AssetManagement
 			{
 				if ((this._AssetSection != value))
 				{
-					if (this._SectionTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAssetSectionChanging(value);
 					this.SendPropertyChanging();
 					this._AssetSection = value;
@@ -1250,10 +1160,6 @@ namespace AssetManagement
 			{
 				if ((this._AssetDept != value))
 				{
-					if (this._DepartmentTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAssetDeptChanging(value);
 					this.SendPropertyChanging();
 					this._AssetDept = value;
@@ -1274,10 +1180,6 @@ namespace AssetManagement
 			{
 				if ((this._AssetSquare != value))
 				{
-					if (this._SquareTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAssetSquareChanging(value);
 					this.SendPropertyChanging();
 					this._AssetSquare = value;
@@ -1298,10 +1200,6 @@ namespace AssetManagement
 			{
 				if ((this._AssetMinorCategory != value))
 				{
-					if (this._MinorCategoryTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAssetMinorCategoryChanging(value);
 					this.SendPropertyChanging();
 					this._AssetMinorCategory = value;
@@ -1462,10 +1360,6 @@ namespace AssetManagement
 			{
 				if ((this._PurchasePriceCurrency != value))
 				{
-					if (this._CurrencyTbl1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnPurchasePriceCurrencyChanging(value);
 					this.SendPropertyChanging();
 					this._PurchasePriceCurrency = value;
@@ -1506,10 +1400,6 @@ namespace AssetManagement
 			{
 				if ((this._CurrentStatus != value))
 				{
-					if (this._StatusTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnCurrentStatusChanging(value);
 					this.SendPropertyChanging();
 					this._CurrentStatus = value;
@@ -1570,10 +1460,6 @@ namespace AssetManagement
 			{
 				if ((this._ActualCurrentPriceCurrency != value))
 				{
-					if (this._CurrencyTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnActualCurrentPriceCurrencyChanging(value);
 					this.SendPropertyChanging();
 					this._ActualCurrentPriceCurrency = value;
@@ -1754,10 +1640,6 @@ namespace AssetManagement
 			{
 				if ((this._EstateAreaUnit != value))
 				{
-					if (this._EstateAreaUnitTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnEstateAreaUnitChanging(value);
 					this.SendPropertyChanging();
 					this._EstateAreaUnit = value;
@@ -1847,8 +1729,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestructionRate", DbType="Float")]
-		public System.Nullable<double> DestructionRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestructionRate", DbType="Float NOT NULL")]
+		public double DestructionRate
 		{
 			get
 			{
@@ -1867,8 +1749,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LifeSpanInMonths", DbType="Float")]
-		public System.Nullable<double> LifeSpanInMonths
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LifeSpanInMonths", DbType="Int NOT NULL")]
+		public int LifeSpanInMonths
 		{
 			get
 			{
@@ -1978,10 +1860,6 @@ namespace AssetManagement
 			{
 				if ((this._InsertedBy != value))
 				{
-					if (this._UserTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnInsertedByChanging(value);
 					this.SendPropertyChanging();
 					this._InsertedBy = value;
@@ -2002,10 +1880,6 @@ namespace AssetManagement
 			{
 				if ((this._LastModifiedBy != value))
 				{
-					if (this._UserTbl1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnLastModifiedByChanging(value);
 					this.SendPropertyChanging();
 					this._LastModifiedBy = value;
@@ -2038,346 +1912,6 @@ namespace AssetManagement
 			set
 			{
 				this._AssetTransactionTbls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_AssetTbl", Storage="_UserTbl", ThisKey="InsertedBy", OtherKey="ID", IsForeignKey=true)]
-		public UserTbl UserTbl
-		{
-			get
-			{
-				return this._UserTbl.Entity;
-			}
-			set
-			{
-				UserTbl previousValue = this._UserTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._UserTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._UserTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._InsertedBy = value.ID;
-					}
-					else
-					{
-						this._InsertedBy = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("UserTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_AssetTbl1", Storage="_UserTbl1", ThisKey="LastModifiedBy", OtherKey="ID", IsForeignKey=true)]
-		public UserTbl UserTbl1
-		{
-			get
-			{
-				return this._UserTbl1.Entity;
-			}
-			set
-			{
-				UserTbl previousValue = this._UserTbl1.Entity;
-				if (((previousValue != value) 
-							|| (this._UserTbl1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserTbl1.Entity = null;
-						previousValue.AssetTbls1.Remove(this);
-					}
-					this._UserTbl1.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls1.Add(this);
-						this._LastModifiedBy = value.ID;
-					}
-					else
-					{
-						this._LastModifiedBy = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("UserTbl1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_AssetTbl", Storage="_CurrencyTbl", ThisKey="ActualCurrentPriceCurrency", OtherKey="ID", IsForeignKey=true)]
-		public CurrencyTbl CurrencyTbl
-		{
-			get
-			{
-				return this._CurrencyTbl.Entity;
-			}
-			set
-			{
-				CurrencyTbl previousValue = this._CurrencyTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._CurrencyTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CurrencyTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._CurrencyTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._ActualCurrentPriceCurrency = value.ID;
-					}
-					else
-					{
-						this._ActualCurrentPriceCurrency = default(int);
-					}
-					this.SendPropertyChanged("CurrencyTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_AssetTbl1", Storage="_CurrencyTbl1", ThisKey="PurchasePriceCurrency", OtherKey="ID", IsForeignKey=true)]
-		public CurrencyTbl CurrencyTbl1
-		{
-			get
-			{
-				return this._CurrencyTbl1.Entity;
-			}
-			set
-			{
-				CurrencyTbl previousValue = this._CurrencyTbl1.Entity;
-				if (((previousValue != value) 
-							|| (this._CurrencyTbl1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CurrencyTbl1.Entity = null;
-						previousValue.AssetTbls1.Remove(this);
-					}
-					this._CurrencyTbl1.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls1.Add(this);
-						this._PurchasePriceCurrency = value.ID;
-					}
-					else
-					{
-						this._PurchasePriceCurrency = default(int);
-					}
-					this.SendPropertyChanged("CurrencyTbl1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_AssetTbl", Storage="_DepartmentTbl", ThisKey="AssetDept", OtherKey="ID", IsForeignKey=true)]
-		public DepartmentTbl DepartmentTbl
-		{
-			get
-			{
-				return this._DepartmentTbl.Entity;
-			}
-			set
-			{
-				DepartmentTbl previousValue = this._DepartmentTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._DepartmentTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DepartmentTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._DepartmentTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._AssetDept = value.ID;
-					}
-					else
-					{
-						this._AssetDept = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("DepartmentTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EstateAreaUnitTbl_AssetTbl", Storage="_EstateAreaUnitTbl", ThisKey="EstateAreaUnit", OtherKey="ID", IsForeignKey=true)]
-		public EstateAreaUnitTbl EstateAreaUnitTbl
-		{
-			get
-			{
-				return this._EstateAreaUnitTbl.Entity;
-			}
-			set
-			{
-				EstateAreaUnitTbl previousValue = this._EstateAreaUnitTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._EstateAreaUnitTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EstateAreaUnitTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._EstateAreaUnitTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._EstateAreaUnit = value.ID;
-					}
-					else
-					{
-						this._EstateAreaUnit = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("EstateAreaUnitTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MinorCategoryTbl_AssetTbl", Storage="_MinorCategoryTbl", ThisKey="AssetMinorCategory", OtherKey="ID", IsForeignKey=true)]
-		public MinorCategoryTbl MinorCategoryTbl
-		{
-			get
-			{
-				return this._MinorCategoryTbl.Entity;
-			}
-			set
-			{
-				MinorCategoryTbl previousValue = this._MinorCategoryTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._MinorCategoryTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MinorCategoryTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._MinorCategoryTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._AssetMinorCategory = value.ID;
-					}
-					else
-					{
-						this._AssetMinorCategory = default(int);
-					}
-					this.SendPropertyChanged("MinorCategoryTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SectionTbl_AssetTbl", Storage="_SectionTbl", ThisKey="AssetSection", OtherKey="ID", IsForeignKey=true)]
-		public SectionTbl SectionTbl
-		{
-			get
-			{
-				return this._SectionTbl.Entity;
-			}
-			set
-			{
-				SectionTbl previousValue = this._SectionTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._SectionTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SectionTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._SectionTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._AssetSection = value.ID;
-					}
-					else
-					{
-						this._AssetSection = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SectionTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SquareTbl_AssetTbl", Storage="_SquareTbl", ThisKey="AssetSquare", OtherKey="ID", IsForeignKey=true)]
-		public SquareTbl SquareTbl
-		{
-			get
-			{
-				return this._SquareTbl.Entity;
-			}
-			set
-			{
-				SquareTbl previousValue = this._SquareTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._SquareTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SquareTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._SquareTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._AssetSquare = value.ID;
-					}
-					else
-					{
-						this._AssetSquare = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SquareTbl");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StatusTbl_AssetTbl", Storage="_StatusTbl", ThisKey="CurrentStatus", OtherKey="ID", IsForeignKey=true)]
-		public StatusTbl StatusTbl
-		{
-			get
-			{
-				return this._StatusTbl.Entity;
-			}
-			set
-			{
-				StatusTbl previousValue = this._StatusTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._StatusTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._StatusTbl.Entity = null;
-						previousValue.AssetTbls.Remove(this);
-					}
-					this._StatusTbl.Entity = value;
-					if ((value != null))
-					{
-						value.AssetTbls.Add(this);
-						this._CurrentStatus = value.ID;
-					}
-					else
-					{
-						this._CurrentStatus = default(int);
-					}
-					this.SendPropertyChanged("StatusTbl");
-				}
 			}
 		}
 		
@@ -2926,10 +2460,6 @@ namespace AssetManagement
 		
 		private string _CurrencyName;
 		
-		private EntitySet<AssetTbl> _AssetTbls;
-		
-		private EntitySet<AssetTbl> _AssetTbls1;
-		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
 		
 		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
@@ -2946,8 +2476,6 @@ namespace AssetManagement
 		
 		public CurrencyTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
-			this._AssetTbls1 = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls1), new Action<AssetTbl>(this.detach_AssetTbls1));
 			this._AssetTransactionTbls = new EntitySet<AssetTransactionTbl>(new Action<AssetTransactionTbl>(this.attach_AssetTransactionTbls), new Action<AssetTransactionTbl>(this.detach_AssetTransactionTbls));
 			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
 			OnCreated();
@@ -2990,32 +2518,6 @@ namespace AssetManagement
 					this.SendPropertyChanged("CurrencyName");
 					this.OnCurrencyNameChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="ActualCurrentPriceCurrency")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_AssetTbl1", Storage="_AssetTbls1", ThisKey="ID", OtherKey="PurchasePriceCurrency")]
-		public EntitySet<AssetTbl> AssetTbls1
-		{
-			get
-			{
-				return this._AssetTbls1;
-			}
-			set
-			{
-				this._AssetTbls1.Assign(value);
 			}
 		}
 		
@@ -3065,30 +2567,6 @@ namespace AssetManagement
 			}
 		}
 		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.CurrencyTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.CurrencyTbl = null;
-		}
-		
-		private void attach_AssetTbls1(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.CurrencyTbl1 = this;
-		}
-		
-		private void detach_AssetTbls1(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.CurrencyTbl1 = null;
-		}
-		
 		private void attach_AssetTransactionTbls(AssetTransactionTbl entity)
 		{
 			this.SendPropertyChanging();
@@ -3128,8 +2606,6 @@ namespace AssetManagement
 		
 		private EntitySet<UserTbl> _UserTbls;
 		
-		private EntitySet<AssetTbl> _AssetTbls;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3145,7 +2621,6 @@ namespace AssetManagement
 		public DepartmentTbl()
 		{
 			this._UserTbls = new EntitySet<UserTbl>(new Action<UserTbl>(this.attach_UserTbls), new Action<UserTbl>(this.detach_UserTbls));
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
 			OnCreated();
 		}
 		
@@ -3222,19 +2697,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="AssetDept")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3266,18 +2728,6 @@ namespace AssetManagement
 			this.SendPropertyChanging();
 			entity.DepartmentTbl = null;
 		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.DepartmentTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.DepartmentTbl = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EstateAreaUnitTbl")]
@@ -3289,8 +2739,6 @@ namespace AssetManagement
 		private int _ID;
 		
 		private string _EstateAreaUnitName;
-		
-		private EntitySet<AssetTbl> _AssetTbls;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3304,7 +2752,6 @@ namespace AssetManagement
 		
 		public EstateAreaUnitTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
 			OnCreated();
 		}
 		
@@ -3348,19 +2795,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EstateAreaUnitTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="EstateAreaUnit")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3379,18 +2813,6 @@ namespace AssetManagement
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.EstateAreaUnitTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.EstateAreaUnitTbl = null;
 		}
 	}
 	
@@ -3556,6 +2978,14 @@ namespace AssetManagement
 		
 		private string _AdditionalNotes;
 		
+		private System.Nullable<System.DateTime> _InsertedOn;
+		
+		private System.Nullable<System.DateTime> _LastModifiedOn;
+		
+		private System.Nullable<int> _InsertedBy;
+		
+		private System.Nullable<int> _LastModifiedBy;
+		
 		private EntityRef<CurrencyTbl> _CurrencyTbl;
 		
 		private EntityRef<FinancialItemCategoryTbl> _FinancialItemCategoryTbl;
@@ -3582,6 +3012,14 @@ namespace AssetManagement
     partial void OnFinancialItemCurrencyChanged();
     partial void OnAdditionalNotesChanging(string value);
     partial void OnAdditionalNotesChanged();
+    partial void OnInsertedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnInsertedOnChanged();
+    partial void OnLastModifiedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastModifiedOnChanged();
+    partial void OnInsertedByChanging(System.Nullable<int> value);
+    partial void OnInsertedByChanged();
+    partial void OnLastModifiedByChanging(System.Nullable<int> value);
+    partial void OnLastModifiedByChanged();
     #endregion
 		
 		public FinancialItemTbl()
@@ -3779,6 +3217,86 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> InsertedOn
+		{
+			get
+			{
+				return this._InsertedOn;
+			}
+			set
+			{
+				if ((this._InsertedOn != value))
+				{
+					this.OnInsertedOnChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedOn = value;
+					this.SendPropertyChanged("InsertedOn");
+					this.OnInsertedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> LastModifiedOn
+		{
+			get
+			{
+				return this._LastModifiedOn;
+			}
+			set
+			{
+				if ((this._LastModifiedOn != value))
+				{
+					this.OnLastModifiedOnChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedOn = value;
+					this.SendPropertyChanged("LastModifiedOn");
+					this.OnLastModifiedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedBy", DbType="Int")]
+		public System.Nullable<int> InsertedBy
+		{
+			get
+			{
+				return this._InsertedBy;
+			}
+			set
+			{
+				if ((this._InsertedBy != value))
+				{
+					this.OnInsertedByChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedBy = value;
+					this.SendPropertyChanged("InsertedBy");
+					this.OnInsertedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedBy", DbType="Int")]
+		public System.Nullable<int> LastModifiedBy
+		{
+			get
+			{
+				return this._LastModifiedBy;
+			}
+			set
+			{
+				if ((this._LastModifiedBy != value))
+				{
+					this.OnLastModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedBy = value;
+					this.SendPropertyChanged("LastModifiedBy");
+					this.OnLastModifiedByChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_FinancialItemTbl", Storage="_CurrencyTbl", ThisKey="FinancialItemCurrency", OtherKey="ID", IsForeignKey=true)]
 		public CurrencyTbl CurrencyTbl
 		{
@@ -3880,8 +3398,6 @@ namespace AssetManagement
 		
 		private string _MainCategoryDescription;
 		
-		private EntitySet<MinorCategoryTbl> _MinorCategoryTbls;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3896,7 +3412,6 @@ namespace AssetManagement
 		
 		public MainCategoryTbl()
 		{
-			this._MinorCategoryTbls = new EntitySet<MinorCategoryTbl>(new Action<MinorCategoryTbl>(this.attach_MinorCategoryTbls), new Action<MinorCategoryTbl>(this.detach_MinorCategoryTbls));
 			OnCreated();
 		}
 		
@@ -3960,19 +3475,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MainCategoryTbl_MinorCategoryTbl", Storage="_MinorCategoryTbls", ThisKey="ID", OtherKey="MainCategory")]
-		public EntitySet<MinorCategoryTbl> MinorCategoryTbls
-		{
-			get
-			{
-				return this._MinorCategoryTbls;
-			}
-			set
-			{
-				this._MinorCategoryTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3992,18 +3494,6 @@ namespace AssetManagement
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_MinorCategoryTbls(MinorCategoryTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.MainCategoryTbl = this;
-		}
-		
-		private void detach_MinorCategoryTbls(MinorCategoryTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.MainCategoryTbl = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryTbl")]
@@ -4020,13 +3510,9 @@ namespace AssetManagement
 		
 		private int _MainCategory;
 		
-		private System.Nullable<int> _ProductiveAgeInYears;
+		private int _ProductiveAgeInYears;
 		
-		private System.Nullable<double> _DestructionRate;
-		
-		private EntitySet<AssetTbl> _AssetTbls;
-		
-		private EntityRef<MainCategoryTbl> _MainCategoryTbl;
+		private double _DestructionRate;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4040,16 +3526,14 @@ namespace AssetManagement
     partial void OnMinorCategoryDescriptionChanged();
     partial void OnMainCategoryChanging(int value);
     partial void OnMainCategoryChanged();
-    partial void OnProductiveAgeInYearsChanging(System.Nullable<int> value);
+    partial void OnProductiveAgeInYearsChanging(int value);
     partial void OnProductiveAgeInYearsChanged();
-    partial void OnDestructionRateChanging(System.Nullable<double> value);
+    partial void OnDestructionRateChanging(double value);
     partial void OnDestructionRateChanged();
     #endregion
 		
 		public MinorCategoryTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
-			this._MainCategoryTbl = default(EntityRef<MainCategoryTbl>);
 			OnCreated();
 		}
 		
@@ -4124,10 +3608,6 @@ namespace AssetManagement
 			{
 				if ((this._MainCategory != value))
 				{
-					if (this._MainCategoryTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnMainCategoryChanging(value);
 					this.SendPropertyChanging();
 					this._MainCategory = value;
@@ -4137,8 +3617,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductiveAgeInYears", DbType="Int")]
-		public System.Nullable<int> ProductiveAgeInYears
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductiveAgeInYears", DbType="Int NOT NULL")]
+		public int ProductiveAgeInYears
 		{
 			get
 			{
@@ -4157,8 +3637,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestructionRate", DbType="Float")]
-		public System.Nullable<double> DestructionRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestructionRate", DbType="Float NOT NULL")]
+		public double DestructionRate
 		{
 			get
 			{
@@ -4173,53 +3653,6 @@ namespace AssetManagement
 					this._DestructionRate = value;
 					this.SendPropertyChanged("DestructionRate");
 					this.OnDestructionRateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MinorCategoryTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="AssetMinorCategory")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MainCategoryTbl_MinorCategoryTbl", Storage="_MainCategoryTbl", ThisKey="MainCategory", OtherKey="ID", IsForeignKey=true)]
-		public MainCategoryTbl MainCategoryTbl
-		{
-			get
-			{
-				return this._MainCategoryTbl.Entity;
-			}
-			set
-			{
-				MainCategoryTbl previousValue = this._MainCategoryTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._MainCategoryTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MainCategoryTbl.Entity = null;
-						previousValue.MinorCategoryTbls.Remove(this);
-					}
-					this._MainCategoryTbl.Entity = value;
-					if ((value != null))
-					{
-						value.MinorCategoryTbls.Add(this);
-						this._MainCategory = value.ID;
-					}
-					else
-					{
-						this._MainCategory = default(int);
-					}
-					this.SendPropertyChanged("MainCategoryTbl");
 				}
 			}
 		}
@@ -4242,18 +3675,6 @@ namespace AssetManagement
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.MinorCategoryTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.MinorCategoryTbl = null;
 		}
 	}
 	
@@ -4377,8 +3798,6 @@ namespace AssetManagement
 		
 		private string _SectionName;
 		
-		private EntitySet<AssetTbl> _AssetTbls;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4391,7 +3810,6 @@ namespace AssetManagement
 		
 		public SectionTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
 			OnCreated();
 		}
 		
@@ -4435,19 +3853,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SectionTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="AssetSection")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4467,18 +3872,6 @@ namespace AssetManagement
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.SectionTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.SectionTbl = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SquareTbl")]
@@ -4492,8 +3885,6 @@ namespace AssetManagement
 		private string _SquareName;
 		
 		private string _SquareLocation;
-		
-		private EntitySet<AssetTbl> _AssetTbls;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4509,7 +3900,6 @@ namespace AssetManagement
 		
 		public SquareTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
 			OnCreated();
 		}
 		
@@ -4573,19 +3963,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SquareTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="AssetSquare")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4605,18 +3982,6 @@ namespace AssetManagement
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.SquareTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.SquareTbl = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StatusTbl")]
@@ -4628,8 +3993,6 @@ namespace AssetManagement
 		private int _ID;
 		
 		private string _StatusName;
-		
-		private EntitySet<AssetTbl> _AssetTbls;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4643,7 +4006,6 @@ namespace AssetManagement
 		
 		public StatusTbl()
 		{
-			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
 			OnCreated();
 		}
 		
@@ -4687,19 +4049,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StatusTbl_AssetTbl", Storage="_AssetTbls", ThisKey="ID", OtherKey="CurrentStatus")]
-		public EntitySet<AssetTbl> AssetTbls
-		{
-			get
-			{
-				return this._AssetTbls;
-			}
-			set
-			{
-				this._AssetTbls.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4718,18 +4067,6 @@ namespace AssetManagement
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.StatusTbl = this;
-		}
-		
-		private void detach_AssetTbls(AssetTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.StatusTbl = null;
 		}
 	}
 	
@@ -6039,6 +5376,10 @@ namespace AssetManagement
 		
 		private string _CustodianName;
 		
+		private System.Nullable<bool> _IsSold;
+		
+		private System.Nullable<bool> _IsOutOfWork;
+		
 		public AssetMoveVw()
 		{
 		}
@@ -6183,6 +5524,137 @@ namespace AssetManagement
 				if ((this._CustodianName != value))
 				{
 					this._CustodianName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSold", DbType="Bit")]
+		public System.Nullable<bool> IsSold
+		{
+			get
+			{
+				return this._IsSold;
+			}
+			set
+			{
+				if ((this._IsSold != value))
+				{
+					this._IsSold = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOutOfWork", DbType="Bit")]
+		public System.Nullable<bool> IsOutOfWork
+		{
+			get
+			{
+				return this._IsOutOfWork;
+			}
+			set
+			{
+				if ((this._IsOutOfWork != value))
+				{
+					this._IsOutOfWork = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
+	public partial class MinorCategoryVw
+	{
+		
+		private string _اسم_الفئة_الفرعية;
+		
+		private string _وصف_الفئة_الفرعية;
+		
+		private string _اسم_الفئة_الرئيسية;
+		
+		private System.Nullable<int> _العمر_الإنتاجي_بالسنوات;
+		
+		private System.Nullable<double> _معدل_الإهلاك;
+		
+		public MinorCategoryVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الفرعية
+		{
+			get
+			{
+				return this._اسم_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الفرعية != value))
+				{
+					this._اسم_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
+		public string وصف_الفئة_الفرعية
+		{
+			get
+			{
+				return this._وصف_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._وصف_الفئة_الفرعية != value))
+				{
+					this._وصف_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الرئيسية
+		{
+			get
+			{
+				return this._اسم_الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الرئيسية != value))
+				{
+					this._اسم_الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int")]
+		public System.Nullable<int> العمر_الإنتاجي_بالسنوات
+		{
+			get
+			{
+				return this._العمر_الإنتاجي_بالسنوات;
+			}
+			set
+			{
+				if ((this._العمر_الإنتاجي_بالسنوات != value))
+				{
+					this._العمر_الإنتاجي_بالسنوات = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float")]
+		public System.Nullable<double> معدل_الإهلاك
+		{
+			get
+			{
+				return this._معدل_الإهلاك;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك != value))
+				{
+					this._معدل_الإهلاك = value;
 				}
 			}
 		}
@@ -6822,105 +6294,6 @@ namespace AssetManagement
 				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
 				{
 					this._العمر_الافتراضي_المتبقي_للأصل = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
-	public partial class MinorCategoryVw
-	{
-		
-		private string _اسم_الفئة_الفرعية;
-		
-		private string _وصف_الفئة_الفرعية;
-		
-		private string _اسم_الفئة_الرئيسية;
-		
-		private System.Nullable<int> _العمر_الإنتاجي_بالسنوات;
-		
-		private System.Nullable<double> _معدل_الإهلاك;
-		
-		public MinorCategoryVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الفرعية
-		{
-			get
-			{
-				return this._اسم_الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._اسم_الفئة_الفرعية != value))
-				{
-					this._اسم_الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
-		public string وصف_الفئة_الفرعية
-		{
-			get
-			{
-				return this._وصف_الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._وصف_الفئة_الفرعية != value))
-				{
-					this._وصف_الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الرئيسية
-		{
-			get
-			{
-				return this._اسم_الفئة_الرئيسية;
-			}
-			set
-			{
-				if ((this._اسم_الفئة_الرئيسية != value))
-				{
-					this._اسم_الفئة_الرئيسية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int")]
-		public System.Nullable<int> العمر_الإنتاجي_بالسنوات
-		{
-			get
-			{
-				return this._العمر_الإنتاجي_بالسنوات;
-			}
-			set
-			{
-				if ((this._العمر_الإنتاجي_بالسنوات != value))
-				{
-					this._العمر_الإنتاجي_بالسنوات = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float")]
-		public System.Nullable<double> معدل_الإهلاك
-		{
-			get
-			{
-				return this._معدل_الإهلاك;
-			}
-			set
-			{
-				if ((this._معدل_الإهلاك != value))
-				{
-					this._معدل_الإهلاك = value;
 				}
 			}
 		}

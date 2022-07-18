@@ -68,7 +68,7 @@ namespace AssetManagement.AuxTables
                 FinancialItemCategoryTbl newFICat = new FinancialItemCategoryTbl()
                 {
                     FinancialItemCategoryName = newMainCategoryDescriptionTextBox.Text.Trim(),
-                    FinancialItemCategoryDetails = "فئة رئيسية للأصول",
+                    FinancialItemCategoryDetails = "أصول ثابتة",
                 };
                 StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(newFICat);
             }

@@ -30,7 +30,8 @@ namespace AssetManagement
 
         private void ApplyUserRolesOnInterface()
         {
-            activeUserRoleBarStaticItem.Caption = $"الحساب النشط {StaticCode.activeUserRole.RoleName}";
+            activeUserToolStripStatusLabel.Text = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
+            activeUserRoleToolStripStatusLabel.Text = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
             StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
