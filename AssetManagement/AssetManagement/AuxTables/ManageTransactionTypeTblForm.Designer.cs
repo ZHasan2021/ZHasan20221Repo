@@ -32,7 +32,6 @@ namespace AssetManagement.AuxTables
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageTransactionTypeTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.transactionTypeGridControl = new DevExpress.XtraGrid.GridControl();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -55,7 +54,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.transactionTypeTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -64,16 +62,10 @@ namespace AssetManagement.AuxTables
             this.transactionTypeTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.transactionTypeGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // transactionTypeGridControl
             // 
             this.transactionTypeGridControl.DataSource = this.transactionTypeTblBindingSource;
             this.transactionTypeGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "transactionTypeLevel";
             this.transactionTypeGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
@@ -84,8 +76,7 @@ namespace AssetManagement.AuxTables
             this.transactionTypeGridControl.TabIndex = 5;
             this.transactionTypeGridControl.UseEmbeddedNavigator = true;
             this.transactionTypeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.transactionTypeGridView,
-            this.minorCategoryGridView});
+            this.transactionTypeGridView});
             // 
             // transactionTypeTblBindingSource
             // 
@@ -167,6 +158,7 @@ namespace AssetManagement.AuxTables
             // transactionTypeTblBindingNavigator
             // 
             this.transactionTypeTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.transactionTypeTblBindingNavigator.BindingSource = this.transactionTypeTblBindingSource;
             this.transactionTypeTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.transactionTypeTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
             this.transactionTypeTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -303,7 +295,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول أنماط تصريف الأصول";
             this.Load += new System.EventHandler(this.ManageTransactionTypeTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -334,7 +325,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton transactionTypeTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl transactionTypeGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView transactionTypeGridView;
         private System.Windows.Forms.BindingSource transactionTypeTblBindingSource;
         private AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter transactionTypeTblTableAdapter;

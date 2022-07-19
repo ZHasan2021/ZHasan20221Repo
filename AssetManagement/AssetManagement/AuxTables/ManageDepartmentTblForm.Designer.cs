@@ -32,7 +32,6 @@ namespace AssetManagement.AuxTables
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageDepartmentTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.departmentGridControl = new DevExpress.XtraGrid.GridControl();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -56,7 +55,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.departmentTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -65,16 +63,10 @@ namespace AssetManagement.AuxTables
             this.departmentTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.departmentGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // departmentGridControl
             // 
             this.departmentGridControl.DataSource = this.departmentTblBindingSource;
             this.departmentGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "departmentLevel";
             this.departmentGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
@@ -85,8 +77,7 @@ namespace AssetManagement.AuxTables
             this.departmentGridControl.TabIndex = 5;
             this.departmentGridControl.UseEmbeddedNavigator = true;
             this.departmentGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.departmentGridView,
-            this.minorCategoryGridView});
+            this.departmentGridView});
             // 
             // departmentTblBindingSource
             // 
@@ -316,7 +307,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول الأقسام";
             this.Load += new System.EventHandler(this.ManageDepartmentTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -349,7 +339,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton departmentTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl departmentGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView departmentGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colDepartmentName;

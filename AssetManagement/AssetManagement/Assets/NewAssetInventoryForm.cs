@@ -277,19 +277,20 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "الدائرة";
             }
-            int startCol = 5;
             int endCol = 18;
-            if(formNo==2)
+            int startCol3 = 21;
+            if (formNo == 2)
             {
-                 startCol = 5;
-                 endCol = 7;
+                endCol = 7;
+                startCol3 = 17;
             }
             if (formNo == 3)
             {
-                startCol = 5;
                 endCol = 12;
+                startCol3 = 15;
             }
-            using (var cells = astWs.Cells[5, startCol, 5, endCol])
+            int startCol2 = endCol + 1;
+            using (var cells = astWs.Cells[5, 5, 5, endCol])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -300,7 +301,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 19, 5, 20])
+            using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -313,7 +314,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "القسم";
             }
-            using (var cells = astWs.Cells[5, 21, 5, 23])
+            using (var cells = astWs.Cells[5, startCol3, 5, startCol3 + 2])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -324,7 +325,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
             }
-            using (var cells = astWs.Cells[5, 24, 5, 25])
+            using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -337,7 +338,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "التاريخ";
             }
-            using (var cells = astWs.Cells[5, 26, 5, 29])
+            using (var cells = astWs.Cells[5, startCol3 + 5, 5, startCol3 + 6])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -450,12 +451,12 @@ namespace AssetManagement.Assets
 
         private void estatesExportBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ExportAssets(3);
+            ExportAssets(2);
         }
 
         private void vehiclesexportBrButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ExportAssets(2);
+            ExportAssets(3);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

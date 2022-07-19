@@ -32,7 +32,6 @@ namespace AssetManagement.AuxTables
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageEstateAreaUnitTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.estateAreaUnitGridControl = new DevExpress.XtraGrid.GridControl();
             this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -55,7 +54,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.estateAreaUnitTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -64,16 +62,10 @@ namespace AssetManagement.AuxTables
             this.estateAreaUnitTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.estateAreaUnitGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // estateAreaUnitGridControl
             // 
             this.estateAreaUnitGridControl.DataSource = this.estateAreaUnitTblBindingSource;
             this.estateAreaUnitGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "estateAreaUnitLevel";
             this.estateAreaUnitGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
@@ -84,8 +76,7 @@ namespace AssetManagement.AuxTables
             this.estateAreaUnitGridControl.TabIndex = 5;
             this.estateAreaUnitGridControl.UseEmbeddedNavigator = true;
             this.estateAreaUnitGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.estateAreaUnitGridView,
-            this.minorCategoryGridView});
+            this.estateAreaUnitGridView});
             // 
             // estateAreaUnitTblBindingSource
             // 
@@ -304,7 +295,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول واحدات مساحة العقار";
             this.Load += new System.EventHandler(this.ManageEstateAreaUnitTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -337,7 +327,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton estateAreaUnitTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl estateAreaUnitGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView estateAreaUnitGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colEstateAreaUnitName;

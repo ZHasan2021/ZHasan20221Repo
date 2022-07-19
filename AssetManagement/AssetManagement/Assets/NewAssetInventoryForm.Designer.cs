@@ -35,7 +35,7 @@ namespace AssetManagement.Assets
             this.panel1 = new System.Windows.Forms.Panel();
             this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.exportToExcelPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.allAssetsExportBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.estatesExportBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.vehiclesexportBrButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -137,7 +137,7 @@ namespace AssetManagement.Assets
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.customSearchGroupBox.SuspendLayout();
             this.searchByInsertionDatePanel.SuspendLayout();
@@ -207,7 +207,8 @@ namespace AssetManagement.Assets
             // 
             // exportToExcelDropDownButton
             // 
-            this.exportToExcelDropDownButton.DropDownControl = this.popupMenu1;
+            this.exportToExcelDropDownButton.DropDownControl = this.exportToExcelPopupMenu;
+            this.exportToExcelDropDownButton.Enabled = false;
             this.exportToExcelDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
             this.exportToExcelDropDownButton.Location = new System.Drawing.Point(60, 11);
             this.exportToExcelDropDownButton.MenuManager = this.barManager1;
@@ -217,14 +218,14 @@ namespace AssetManagement.Assets
             this.exportToExcelDropDownButton.Text = "تصدير الجرد";
             this.exportToExcelDropDownButton.Click += new System.EventHandler(this.exportToExcelDropDownButton_Click);
             // 
-            // popupMenu1
+            // exportToExcelPopupMenu
             // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            this.exportToExcelPopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.allAssetsExportBarButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.estatesExportBarButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.vehiclesexportBrButtonItem)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
+            this.exportToExcelPopupMenu.Manager = this.barManager1;
+            this.exportToExcelPopupMenu.Name = "exportToExcelPopupMenu";
             // 
             // allAssetsExportBarButtonItem
             // 
@@ -1306,7 +1307,7 @@ namespace AssetManagement.Assets
             this.Load += new System.EventHandler(this.NewAssetInventoryForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.customSearchGroupBox.ResumeLayout(false);
             this.customSearchGroupBox.PerformLayout();
@@ -1441,7 +1442,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.PopupMenu exportToExcelPopupMenu;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.Bar bar2;

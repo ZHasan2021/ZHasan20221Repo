@@ -30,9 +30,8 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCurrencyTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.currencyGridControl = new DevExpress.XtraGrid.GridControl();
             this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -55,7 +54,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.currencyTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -64,19 +62,13 @@ namespace AssetManagement.AuxTables
             this.currencyTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.currencyGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // currencyGridControl
             // 
             this.currencyGridControl.DataSource = this.currencyTblBindingSource;
             this.currencyGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.minorCategoryGridView;
-            gridLevelNode2.RelationName = "currencyLevel";
+            gridLevelNode1.RelationName = "currencyLevel";
             this.currencyGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.currencyGridControl.Location = new System.Drawing.Point(0, 27);
             this.currencyGridControl.MainView = this.currencyGridView;
             this.currencyGridControl.Name = "currencyGridControl";
@@ -84,8 +76,7 @@ namespace AssetManagement.AuxTables
             this.currencyGridControl.TabIndex = 5;
             this.currencyGridControl.UseEmbeddedNavigator = true;
             this.currencyGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.currencyGridView,
-            this.minorCategoryGridView});
+            this.currencyGridView});
             // 
             // currencyTblBindingSource
             // 
@@ -304,7 +295,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول العملات";
             this.Load += new System.EventHandler(this.ManageCurrencyTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -336,7 +326,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton currencyTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl currencyGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView currencyGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencyName;

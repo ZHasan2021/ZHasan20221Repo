@@ -71,6 +71,7 @@ namespace AssetManagement
             this.manageFinancialItemsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageFinancialItemCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.prepareFinancialReportsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -152,10 +153,11 @@ namespace AssetManagement
             this.addNewFinancialItemBarButtonItem,
             this.manageFinancialItemsBarButtonItem,
             this.manageFinancialItemCategoryTblBarButtonItem,
-            this.prepareFinancialReportsBarButtonItem});
+            this.prepareFinancialReportsBarButtonItem,
+            this.barButtonItem1});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10);
-            this.mainRibbonControl.MaxItemId = 48;
+            this.mainRibbonControl.MaxItemId = 49;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 1006;
@@ -518,6 +520,14 @@ namespace AssetManagement
             this.prepareFinancialReportsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.prepareFinancialReportsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.prepareFinancialReportsBarButtonItem_ItemClick);
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 48;
+            this.barButtonItem1.ImageOptions.Image = global::AssetManagement.Properties.Resources._1630420;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -784,7 +794,7 @@ namespace AssetManagement
             // 
             // mainStatusStrip
             // 
-            this.mainStatusStrip.Font = new System.Drawing.Font("Akhbar MT", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mainStatusStrip.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userRoleToolStripStatusLabel,
@@ -936,6 +946,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem prepareFinancialReportsBarButtonItem;
         private System.Windows.Forms.ToolStripStatusLabel activeUserToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel activeUserRoleToolStripStatusLabel;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
 

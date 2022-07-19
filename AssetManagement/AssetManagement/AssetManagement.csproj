@@ -189,6 +189,12 @@
     <Compile Include="Finance\FinancialReportsForm.Designer.cs">
       <DependentUpon>FinancialReportsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Finance\ManageFinancialItemTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\ManageFinancialItemTblForm.Designer.cs">
+      <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Options\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,9 @@
     <EmbeddedResource Include="Finance\FinancialReportsForm.resx">
       <DependentUpon>FinancialReportsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Finance\ManageFinancialItemTblForm.resx">
+      <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -415,6 +424,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\1630420.png" />
     <None Include="Resources\3418116.png" />
     <None Include="Resources\2834767.png" />
     <None Include="Resources\2205595.png" />

@@ -32,7 +32,6 @@ namespace AssetManagement.AuxTables
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSquareTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.squareGridControl = new DevExpress.XtraGrid.GridControl();
             this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -56,7 +55,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.squareTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -65,16 +63,10 @@ namespace AssetManagement.AuxTables
             this.squareTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.squareGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // squareGridControl
             // 
             this.squareGridControl.DataSource = this.squareTblBindingSource;
             this.squareGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "squareLevel";
             this.squareGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
@@ -85,8 +77,7 @@ namespace AssetManagement.AuxTables
             this.squareGridControl.TabIndex = 5;
             this.squareGridControl.UseEmbeddedNavigator = true;
             this.squareGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.squareGridView,
-            this.minorCategoryGridView});
+            this.squareGridView});
             // 
             // squareTblBindingSource
             // 
@@ -316,7 +307,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول الساحات";
             this.Load += new System.EventHandler(this.ManageSquareTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -347,7 +337,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton squareTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl squareGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView squareGridView;
         private System.Windows.Forms.BindingSource squareTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SquareTblTableAdapter squareTblTableAdapter;

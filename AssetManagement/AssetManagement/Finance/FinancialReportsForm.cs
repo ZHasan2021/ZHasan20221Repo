@@ -109,6 +109,13 @@ namespace AssetManagement.Finance
                 fiRpWs.Cells[startRow, 5].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
                 startRow++;
             }
+            List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
+            int macaStartRow = 12;
+            foreach (string oneMaCa in mainCategoriesNames)
+            {
+                fiRpWs.Cells[macaStartRow, 7].Value = oneMaCa;
+                macaStartRow++;
+            }
             fiRpEp.Save();
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
         }

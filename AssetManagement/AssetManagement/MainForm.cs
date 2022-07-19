@@ -385,7 +385,8 @@ namespace AssetManagement
 
         private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
+            fiItFrm.ShowDialog();
         }
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

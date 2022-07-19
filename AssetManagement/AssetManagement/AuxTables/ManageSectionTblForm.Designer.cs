@@ -32,7 +32,6 @@ namespace AssetManagement.AuxTables
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSectionTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sectionGridControl = new DevExpress.XtraGrid.GridControl();
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -55,7 +54,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.sectionTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -64,16 +62,10 @@ namespace AssetManagement.AuxTables
             this.sectionTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.sectionGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // sectionGridControl
             // 
             this.sectionGridControl.DataSource = this.sectionTblBindingSource;
             this.sectionGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
             gridLevelNode1.RelationName = "sectionLevel";
             this.sectionGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
@@ -84,8 +76,7 @@ namespace AssetManagement.AuxTables
             this.sectionGridControl.TabIndex = 5;
             this.sectionGridControl.UseEmbeddedNavigator = true;
             this.sectionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.sectionGridView,
-            this.minorCategoryGridView});
+            this.sectionGridView});
             // 
             // sectionTblBindingSource
             // 
@@ -304,7 +295,6 @@ namespace AssetManagement.AuxTables
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول الدوائر";
             this.Load += new System.EventHandler(this.ManageSectionTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -337,7 +327,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton sectionTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl sectionGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView sectionGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colSectionName;
