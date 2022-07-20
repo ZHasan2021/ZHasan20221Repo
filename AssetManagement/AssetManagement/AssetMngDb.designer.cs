@@ -916,11 +916,11 @@ namespace AssetManagement
 		
 		private string _AssetCode;
 		
-		private System.Nullable<int> _AssetSection;
+		private int _AssetSection;
 		
-		private System.Nullable<int> _AssetDept;
+		private int _AssetDept;
 		
-		private System.Nullable<int> _AssetSquare;
+		private int _AssetSquare;
 		
 		private int _AssetMinorCategory;
 		
@@ -934,7 +934,7 @@ namespace AssetManagement
 		
 		private string _Volume;
 		
-		private System.Nullable<System.DateTime> _PurchaseDate;
+		private System.DateTime _PurchaseDate;
 		
 		private double _PurchasePrice;
 		
@@ -1004,11 +1004,11 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnAssetCodeChanging(string value);
     partial void OnAssetCodeChanged();
-    partial void OnAssetSectionChanging(System.Nullable<int> value);
+    partial void OnAssetSectionChanging(int value);
     partial void OnAssetSectionChanged();
-    partial void OnAssetDeptChanging(System.Nullable<int> value);
+    partial void OnAssetDeptChanging(int value);
     partial void OnAssetDeptChanged();
-    partial void OnAssetSquareChanging(System.Nullable<int> value);
+    partial void OnAssetSquareChanging(int value);
     partial void OnAssetSquareChanged();
     partial void OnAssetMinorCategoryChanging(int value);
     partial void OnAssetMinorCategoryChanged();
@@ -1022,7 +1022,7 @@ namespace AssetManagement
     partial void OnColorChanged();
     partial void OnVolumeChanging(string value);
     partial void OnVolumeChanged();
-    partial void OnPurchaseDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnPurchaseDateChanging(System.DateTime value);
     partial void OnPurchaseDateChanged();
     partial void OnPurchasePriceChanging(double value);
     partial void OnPurchasePriceChanged();
@@ -1129,8 +1129,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSection", DbType="Int")]
-		public System.Nullable<int> AssetSection
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSection", DbType="Int NOT NULL")]
+		public int AssetSection
 		{
 			get
 			{
@@ -1149,8 +1149,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetDept", DbType="Int")]
-		public System.Nullable<int> AssetDept
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetDept", DbType="Int NOT NULL")]
+		public int AssetDept
 		{
 			get
 			{
@@ -1169,8 +1169,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSquare", DbType="Int")]
-		public System.Nullable<int> AssetSquare
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSquare", DbType="Int NOT NULL")]
+		public int AssetSquare
 		{
 			get
 			{
@@ -1309,8 +1309,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="Date")]
-		public System.Nullable<System.DateTime> PurchaseDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="Date NOT NULL")]
+		public System.DateTime PurchaseDate
 		{
 			get
 			{
@@ -1369,7 +1369,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceOfPresence", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceOfPresence", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string PlaceOfPresence
 		{
 			get

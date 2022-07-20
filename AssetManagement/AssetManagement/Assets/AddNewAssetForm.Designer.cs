@@ -33,6 +33,8 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.lifeSpanInMonthsLabel = new System.Windows.Forms.Label();
+            this.lifeSpanInMonthsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.destructionRateLabel = new System.Windows.Forms.Label();
             this.destructionRateNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.itemsQuantityLabel = new System.Windows.Forms.Label();
@@ -127,11 +129,10 @@ namespace AssetManagement.Assets
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.lifeSpanInMonthsLabel = new System.Windows.Forms.Label();
-            this.lifeSpanInMonthsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).BeginInit();
@@ -164,7 +165,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewAssetWizardControl
@@ -266,6 +266,32 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Name = "assetBasicsWizardPage1";
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1311, 610);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
+            // 
+            // lifeSpanInMonthsLabel
+            // 
+            this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lifeSpanInMonthsLabel.AutoSize = true;
+            this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1031, 560);
+            this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
+            this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(233, 24);
+            this.lifeSpanInMonthsLabel.TabIndex = 196;
+            this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي (بالأشهر):";
+            // 
+            // lifeSpanInMonthsNumericUpDown
+            // 
+            this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lifeSpanInMonthsNumericUpDown.Enabled = false;
+            this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 556);
+            this.lifeSpanInMonthsNumericUpDown.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.lifeSpanInMonthsNumericUpDown.Name = "lifeSpanInMonthsNumericUpDown";
+            this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(122, 32);
+            this.lifeSpanInMonthsNumericUpDown.TabIndex = 197;
             // 
             // destructionRateLabel
             // 
@@ -1265,32 +1291,6 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
-            // lifeSpanInMonthsLabel
-            // 
-            this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lifeSpanInMonthsLabel.AutoSize = true;
-            this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1031, 560);
-            this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
-            this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(233, 24);
-            this.lifeSpanInMonthsLabel.TabIndex = 196;
-            this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي (بالأشهر):";
-            // 
-            // lifeSpanInMonthsNumericUpDown
-            // 
-            this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lifeSpanInMonthsNumericUpDown.Enabled = false;
-            this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 556);
-            this.lifeSpanInMonthsNumericUpDown.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.lifeSpanInMonthsNumericUpDown.Name = "lifeSpanInMonthsNumericUpDown";
-            this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(122, 32);
-            this.lifeSpanInMonthsNumericUpDown.TabIndex = 197;
-            // 
             // AddNewAssetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1308,6 +1308,7 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl.ResumeLayout(false);
             this.assetBasicsWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).EndInit();
@@ -1343,7 +1344,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }

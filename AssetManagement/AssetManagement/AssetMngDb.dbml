@@ -32,19 +32,19 @@
     <Type Name="AssetTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="AssetSection" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AssetDept" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AssetSquare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetSection" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AssetDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AssetSquare" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AssetMinorCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AssetSpecifications" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ItemsQuantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Model" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Volume" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PurchaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="PurchasePrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="PurchasePriceCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PlaceOfPresence" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PlaceOfPresence" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CurrentStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BenefitPercentage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ActualCurrentPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />

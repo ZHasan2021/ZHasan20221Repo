@@ -38,7 +38,7 @@ namespace AssetManagement
             addNewAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            modifyExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCategoriesBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCurrencyTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageCurrencies == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -345,13 +345,32 @@ namespace AssetManagement
 
         private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //StreamReader AesKey_IV_Rd = new StreamReader(StaticCode.AesKeyAndIVPath);
-            //string qqq = AesKey_IV_Rd.ReadLine();
-            //AesKey_IV_Rd.Close();
-            //byte[] aaa = Convert.FromBase64String(qqq);
-            //byte[] AesKey_IV_Enc = StaticCode.RSADecryption(aaa);
-
+            FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath,FileMode.OpenOrCreate);
+            byte[] AesKey_IV_Dec = new byte[48];
+            AesKey_IV_Rd.Read(AesKey_IV_Dec, 0, 48);
+            AesKey_IV_Rd.Close();
+            byte[] AesKey = new byte[32];
+            byte[] AesIV = new byte[16];
+            Array.Copy(AesKey_IV_Dec, 0, AesKey, 0, 32);
+            Array.Copy(AesKey_IV_Dec, 32, AesIV, 0, 16);
             //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
+            OpenFileDialog encFileOFD = new OpenFileDialog() { Filter = (decryptImportedFileBarCheckItem.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if(encFileOFD.ShowDialog()!= DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }    
+            string importedExcelFilePath = encFileOFD.FileName;
+            if (decryptImportedFileBarCheckItem.Checked)
+            {
+             importedExcelFilePath = encFileOFD.FileName.Replace(".assf",".xlsx");
+                bool decrypted = StaticCode.AesDecryption(encFileOFD.FileName, importedExcelFilePath, AesKey, AesIV);
+                if (!decrypted)
+                {
+                    mainAlertControl.Show(this, "الملف المستورد غير صالح أو أن مفاتيح فك التشفير تم تغييرها ولا تطابق مفاتيح التشفير", StaticCode.ApplicationTitle);
+                    return;
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -393,6 +412,12 @@ namespace AssetManagement
         {
             FinancialReportsForm fiRpFrm = new FinancialReportsForm();
             fiRpFrm.ShowDialog();
+        }
+
+        private void updateExistedAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            UpdateExistedAssetForm updFrm = new UpdateExistedAssetForm();
+            updFrm.ShowDialog();
         }
     }
 }

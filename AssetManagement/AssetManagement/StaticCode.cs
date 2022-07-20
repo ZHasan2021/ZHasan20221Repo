@@ -274,19 +274,13 @@ namespace AssetManagement
             ddd.AddRange(AesKey);
             ddd.AddRange(AesIV);
             byte[] AesKey_IV = ddd.ToArray();
-            //FileStream key_IVPathWr = File.Open(AesKeyAndIVPath, FileMode.OpenOrCreate, FileAccess.Write);
-            //key_IVPathWr.Write(AesKey, 0, AesKey.Length);
-            //key_IVPathWr.Write(AesIV, 0, AesIV.Length);
-            //key_IVPathWr.Close();
 
-            if (!File.Exists(RSAPublicKeyPath) || !File.Exists(RSAPublicKeyPath))
-            {
-                GenerateNewRSAPublicAndPrivateKeys();
-            }
-            string AesKey_IV_Enc = RSAEncryption(AesKey_IV);
-            StreamWriter AesKey_IV_Wr = new StreamWriter(AesKeyAndIVPath);
-            AesKey_IV_Wr.WriteLine(AesKey_IV_Enc);
-            AesKey_IV_Wr.Close();
+
+
+            FileStream key_IVPathWr = File.Open(AesKeyAndIVPath, FileMode.OpenOrCreate, FileAccess.Write);
+            key_IVPathWr.Write(AesKey, 0, AesKey.Length);
+            key_IVPathWr.Write(AesIV, 0, AesIV.Length);
+            key_IVPathWr.Close();
         }
 
         public static bool AesEncryption(string inName, string outName, byte[] aesKey, byte[] aesIV)
@@ -308,6 +302,7 @@ namespace AssetManagement
                 int len;                     //This is the number of bytes to be written at a time.
 
                 Aes aes = Aes.Create();
+                //aes.Padding = PaddingMode.PKCS7;
                 CryptoStream encStream = new CryptoStream(fout, aes.CreateEncryptor(aesKey, aesIV), CryptoStreamMode.Write);
 
                 //Read from the input file, then encrypt and write to the output file.
@@ -349,6 +344,7 @@ namespace AssetManagement
                 int len;                     //This is the number of bytes to be written at a time.
 
                 Aes aes = Aes.Create();
+                //aes.Padding = PaddingMode.PKCS7;
                 CryptoStream decStream = new CryptoStream(fout, aes.CreateDecryptor(aesKey, aesIV), CryptoStreamMode.Write);
 
                 //Read from the input file, then encrypt and write to the output file.
@@ -365,7 +361,7 @@ namespace AssetManagement
                 fin.Close();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }

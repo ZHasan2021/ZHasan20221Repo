@@ -33,7 +33,7 @@ namespace AssetManagement
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.modifyExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMainCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMinorCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
@@ -116,7 +116,7 @@ namespace AssetManagement
             this.mainRibbonControl.ExpandCollapseItem,
             this.mainRibbonControl.SearchEditItem,
             this.addNewAssetBarButtonItem,
-            this.modifyExistedAssetBarButtonItem,
+            this.updateExistedAssetBarButtonItem,
             this.addNewMainCategoryBarButtonItem,
             this.addNewMinorCategoryBarButtonItem,
             this.skinDropDownButtonItem1,
@@ -182,13 +182,14 @@ namespace AssetManagement
             this.addNewAssetBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
             // 
-            // modifyExistedAssetBarButtonItem
+            // updateExistedAssetBarButtonItem
             // 
-            this.modifyExistedAssetBarButtonItem.Caption = "تعديل أصل موجود";
-            this.modifyExistedAssetBarButtonItem.Id = 2;
-            this.modifyExistedAssetBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1573959;
-            this.modifyExistedAssetBarButtonItem.Name = "modifyExistedAssetBarButtonItem";
-            this.modifyExistedAssetBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.updateExistedAssetBarButtonItem.Caption = "تعديل أصل موجود";
+            this.updateExistedAssetBarButtonItem.Id = 2;
+            this.updateExistedAssetBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1573959;
+            this.updateExistedAssetBarButtonItem.Name = "updateExistedAssetBarButtonItem";
+            this.updateExistedAssetBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.updateExistedAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.updateExistedAssetBarButtonItem_ItemClick);
             // 
             // addNewMainCategoryBarButtonItem
             // 
@@ -562,7 +563,7 @@ namespace AssetManagement
             // existedAssetsRibbonPageGroup
             // 
             this.existedAssetsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.modifyExistedAssetBarButtonItem);
+            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.updateExistedAssetBarButtonItem);
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.deleteAssetsBarButtonItem);
             this.existedAssetsRibbonPageGroup.Name = "existedAssetsRibbonPageGroup";
             this.existedAssetsRibbonPageGroup.Text = "جدول الأصول - Assets table";
@@ -649,8 +650,8 @@ namespace AssetManagement
             this.exportImportDataRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.exportImportDataRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.exportDataRibbonPageGroup,
-            this.backupAndRestoreRibbonPageGroup,
-            this.importDataRibbonPageGroup});
+            this.importDataRibbonPageGroup,
+            this.backupAndRestoreRibbonPageGroup});
             this.exportImportDataRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._3034410;
             this.exportImportDataRibbonPage.Name = "exportImportDataRibbonPage";
             this.exportImportDataRibbonPage.Text = "تصدير / استيراد البيانات - Export / Import data";
@@ -881,7 +882,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup newAssetRibbonPageGroup;
         private System.Windows.Forms.ImageList ribbonImageList;
         private DevExpress.XtraBars.BarButtonItem addNewAssetBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem modifyExistedAssetBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem updateExistedAssetBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup existedAssetsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem addNewMainCategoryBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem addNewMinorCategoryBarButtonItem;
