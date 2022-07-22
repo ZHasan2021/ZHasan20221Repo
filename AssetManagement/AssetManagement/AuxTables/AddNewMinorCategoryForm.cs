@@ -53,6 +53,7 @@ namespace AssetManagement.AuxTables
             mainCategoryLookUpEdit.EditValue = null;
             productiveAgeInYearsNumericUpDown.Value = 1;
             minorCategoryNameTextBox.Focus();
+            this.Close();
         }
 
         private void addNewMinorCategoryBtn_Cancel_Click(object sender, EventArgs e)

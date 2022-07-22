@@ -36,29 +36,60 @@ namespace AssetManagement.Finance
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(200, 500);
         }
 
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
-            if (fromDateDateEdit.EditValue == null)
+            if (fromToRadioButton.Checked)
             {
-                mainAlertControl.Show(this, "اكتب تاريخ البداية", StaticCode.ApplicationTitle);
-                return;
-            }
-            if (toDateDateEdit.EditValue == null)
-            {
-                mainAlertControl.Show(this, "اكتب تاريخ النهاية", StaticCode.ApplicationTitle);
-                return;
-            }
-            if (Convert.ToDateTime(fromDateDateEdit.EditValue) > Convert.ToDateTime(toDateDateEdit.EditValue))
-            {
-                mainAlertControl.Show(this, "تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle);
-                return;
+                if (fromDateDateEdit.EditValue == null)
+                {
+                    MessageBox.Show("اكتب تاريخ البداية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mainAlertControl.Show(this, "اكتب تاريخ البداية", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (toDateDateEdit.EditValue == null)
+                {
+                    MessageBox.Show("اكتب تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mainAlertControl.Show(this, "اكتب تاريخ النهاية", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (Convert.ToDateTime(fromDateDateEdit.EditValue) > Convert.ToDateTime(toDateDateEdit.EditValue))
+                {
+                    MessageBox.Show("تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mainAlertControl.Show(this, "تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle);
+                    return;
+                }
             }
 
-            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Where(fi => fi.FinancialItemInsertionDate >= Convert.ToDateTime(fromDateDateEdit.EditValue) && fi.FinancialItemInsertionDate <= Convert.ToDateTime(toDateDateEdit.EditValue));
+            DateTime fromDate = DateTime.Today;
+            DateTime toDate = DateTime.Today;
+            if (fromToRadioButton.Checked)
+            {
+                fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
+                toDate = Convert.ToDateTime(toDateDateEdit.EditValue);
+            }
+            else if (monthlyRadioButton.Checked)
+            {
+                fromDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, 1);
+                toDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, DateTime.DaysInMonth(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month));
+            }
+            else if (annualRadioButton.Checked)
+            {
+                fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
+                toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
+            }
+            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             financialItemGridControl.DataSource = financialItemsFromToQry;
-            exportFinancialReportToExcelDropDownButton.Enabled = financialItemGridControl.Visible = financialItemsFromToQry.Count() > 0;
+            bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
+            exportFinancialReportToExcelDropDownButton.Enabled = financialItemGridControl.Visible = resultsFound;
+            if (!resultsFound)
+            {
+                mainAlertControl.Show(this, "لا يوجد سجلات مالية في الفترة الزمنية التي اخترتها", StaticCode.ApplicationTitle);
+                MessageBox.Show("لا يوجد سجلات مالية في الفترة الزمنية التي اخترتها", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         private void exportFinancialReportToExcelDropDownButton_Click(object sender, EventArgs e)
@@ -73,6 +104,7 @@ namespace AssetManagement.Finance
             if (!File.Exists(StaticCode.FinancialReportPath))
             {
                 mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
+                MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             File.Copy(StaticCode.FinancialReportPath, targetPath, true);
@@ -118,6 +150,14 @@ namespace AssetManagement.Finance
             }
             fiRpEp.Save();
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
+            MessageBox.Show("تم التصدير بنجاح", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SelectReportDuration(object sender, EventArgs e)
+        {
+            fromToPanel.Visible = fromToRadioButton.Checked;
+            monthlyDateTimePicker.Visible = monthlyRadioButton.Checked;
+            annualDateTimePicker.Visible = annualRadioButton.Checked;
         }
     }
 }

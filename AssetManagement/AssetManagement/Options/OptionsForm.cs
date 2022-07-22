@@ -22,6 +22,7 @@ namespace AssetManagement.Options
             this.MinimumSize = this.Size;
 
             assetCodePrefixTextBox.Text = StaticCode.appOptions.AssetCodePrefix;
+            assetLifeSpanThresholdToWarnNumericUpDown.Value = StaticCode.appOptions.AssetLifeSpanThresholdToWarn;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -29,8 +30,10 @@ namespace AssetManagement.Options
             try
             {
                 StaticCode.appOptions.AssetCodePrefix = assetCodePrefixTextBox.Text.Trim();
+                StaticCode.appOptions.AssetLifeSpanThresholdToWarn = Convert.ToInt32(assetLifeSpanThresholdToWarnNumericUpDown.Value);
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                this.Close();
             }
             catch
             {
@@ -46,6 +49,7 @@ namespace AssetManagement.Options
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 200);
         }
     }
 }

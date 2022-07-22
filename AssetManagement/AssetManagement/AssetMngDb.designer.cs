@@ -3690,6 +3690,8 @@ namespace AssetManagement
 		
 		private System.Nullable<int> _ActiveUser;
 		
+		private int _AssetLifeSpanThresholdToWarn;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3700,6 +3702,8 @@ namespace AssetManagement
     partial void OnAssetCodePrefixChanged();
     partial void OnActiveUserChanging(System.Nullable<int> value);
     partial void OnActiveUserChanged();
+    partial void OnAssetLifeSpanThresholdToWarnChanging(int value);
+    partial void OnAssetLifeSpanThresholdToWarnChanged();
     #endregion
 		
 		public OptionsTbl()
@@ -3763,6 +3767,26 @@ namespace AssetManagement
 					this._ActiveUser = value;
 					this.SendPropertyChanged("ActiveUser");
 					this.OnActiveUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetLifeSpanThresholdToWarn", DbType="Int NOT NULL")]
+		public int AssetLifeSpanThresholdToWarn
+		{
+			get
+			{
+				return this._AssetLifeSpanThresholdToWarn;
+			}
+			set
+			{
+				if ((this._AssetLifeSpanThresholdToWarn != value))
+				{
+					this.OnAssetLifeSpanThresholdToWarnChanging(value);
+					this.SendPropertyChanging();
+					this._AssetLifeSpanThresholdToWarn = value;
+					this.SendPropertyChanged("AssetLifeSpanThresholdToWarn");
+					this.OnAssetLifeSpanThresholdToWarnChanged();
 				}
 			}
 		}
@@ -4196,6 +4220,8 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _AddNewAsset;
 		
+		private System.Nullable<bool> _ManageAssetTbl;
+		
 		private System.Nullable<bool> _UpdateExistedAsset;
 		
 		private System.Nullable<bool> _DeleteAssetRecord;
@@ -4210,7 +4236,7 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _DeleteInventoryRecord;
 		
-		private System.Nullable<bool> _AddNewAssetMovement;
+		private bool _AddNewAssetMovement;
 		
 		private System.Nullable<bool> _ManageAssetMovements;
 		
@@ -4294,6 +4320,8 @@ namespace AssetManagement
     partial void OnRoleNameChanged();
     partial void OnAddNewAssetChanging(System.Nullable<bool> value);
     partial void OnAddNewAssetChanged();
+    partial void OnManageAssetTblChanging(System.Nullable<bool> value);
+    partial void OnManageAssetTblChanged();
     partial void OnUpdateExistedAssetChanging(System.Nullable<bool> value);
     partial void OnUpdateExistedAssetChanged();
     partial void OnDeleteAssetRecordChanging(System.Nullable<bool> value);
@@ -4308,7 +4336,7 @@ namespace AssetManagement
     partial void OnViewInventoriesChanged();
     partial void OnDeleteInventoryRecordChanging(System.Nullable<bool> value);
     partial void OnDeleteInventoryRecordChanged();
-    partial void OnAddNewAssetMovementChanging(System.Nullable<bool> value);
+    partial void OnAddNewAssetMovementChanging(bool value);
     partial void OnAddNewAssetMovementChanged();
     partial void OnManageAssetMovementsChanging(System.Nullable<bool> value);
     partial void OnManageAssetMovementsChanged();
@@ -4444,6 +4472,26 @@ namespace AssetManagement
 					this._AddNewAsset = value;
 					this.SendPropertyChanged("AddNewAsset");
 					this.OnAddNewAssetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageAssetTbl", DbType="Bit")]
+		public System.Nullable<bool> ManageAssetTbl
+		{
+			get
+			{
+				return this._ManageAssetTbl;
+			}
+			set
+			{
+				if ((this._ManageAssetTbl != value))
+				{
+					this.OnManageAssetTblChanging(value);
+					this.SendPropertyChanging();
+					this._ManageAssetTbl = value;
+					this.SendPropertyChanged("ManageAssetTbl");
+					this.OnManageAssetTblChanged();
 				}
 			}
 		}
@@ -4588,8 +4636,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewAssetMovement", DbType="Bit")]
-		public System.Nullable<bool> AddNewAssetMovement
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewAssetMovement", DbType="Bit NOT NULL")]
+		public bool AddNewAssetMovement
 		{
 			get
 			{
@@ -5688,7 +5736,7 @@ namespace AssetManagement
 		
 		private string _الحجم___السعة;
 		
-		private System.Nullable<System.DateTime> _تاريخ_الشراء;
+		private System.DateTime _تاريخ_الشراء;
 		
 		private double _سعر_الشراء;
 		
@@ -5730,9 +5778,9 @@ namespace AssetManagement
 		
 		private string _رقم_المحرك_للمركبة;
 		
-		private System.Nullable<double> _معدل_الإهلاك_للأصل;
+		private double _معدل_الإهلاك_للأصل;
 		
-		private System.Nullable<double> _العمر_الافتراضي_المتبقي_للأصل;
+		private int _العمر_الافتراضي_المتبقي_للأصل;
 		
 		public AssetVw()
 		{
@@ -5930,8 +5978,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الشراء
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_الشراء
 		{
 			get
 			{
@@ -5978,7 +6026,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string مكان_التواجد
 		{
 			get
@@ -6266,8 +6314,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float")]
-		public System.Nullable<double> معدل_الإهلاك_للأصل
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
+		public double معدل_الإهلاك_للأصل
 		{
 			get
 			{
@@ -6282,8 +6330,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="Float")]
-		public System.Nullable<double> العمر_الافتراضي_المتبقي_للأصل
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="Int NOT NULL")]
+		public int العمر_الافتراضي_المتبقي_للأصل
 		{
 			get
 			{

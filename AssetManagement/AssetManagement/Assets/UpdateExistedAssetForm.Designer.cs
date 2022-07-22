@@ -33,34 +33,16 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateExistedAssetForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.assetInformationGroupBox = new System.Windows.Forms.GroupBox();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
-            this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.searchResultsListBox = new System.Windows.Forms.ListBox();
-            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetCodeToSearchLabel = new System.Windows.Forms.Label();
-            this.assetCodeToSearchTextBox = new System.Windows.Forms.TextBox();
-            this.searchAssetBtn = new System.Windows.Forms.Button();
-            this.viewAssetInformationBtn = new System.Windows.Forms.Button();
-            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
-            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
-            this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
-            this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
-            this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
-            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
-            this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.assetInfoTabControl = new System.Windows.Forms.TabControl();
             this.assetInfoTabPage1 = new System.Windows.Forms.TabPage();
-            this.assetInfoTabPage2 = new System.Windows.Forms.TabPage();
             this.actualCurrentPriceCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.actualCurrentPriceLabel = new System.Windows.Forms.Label();
             this.actualCurrentPriceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.currentStatusLabel = new System.Windows.Forms.Label();
             this.currentStatusLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.statusTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.placeOfPresenceTextBox = new System.Windows.Forms.TextBox();
             this.placeOfPresenceLabel = new System.Windows.Forms.Label();
             this.volumeTextBox = new System.Windows.Forms.TextBox();
@@ -69,7 +51,6 @@ namespace AssetManagement.Assets
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.modelLabel = new System.Windows.Forms.Label();
             this.colorColorPickEdit = new DevExpress.XtraEditors.ColorPickEdit();
-            this.saveChangesBtn = new System.Windows.Forms.Button();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.purchasePriceCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.purchasePriceLabel = new System.Windows.Forms.Label();
@@ -87,18 +68,43 @@ namespace AssetManagement.Assets
             this.manageSquareTblBtn = new System.Windows.Forms.Button();
             this.assetSquareLabel = new System.Windows.Forms.Label();
             this.assetSquareLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.manageCategoriesTblsBtn = new System.Windows.Forms.Button();
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
             this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
             this.assetSectionLabel = new System.Windows.Forms.Label();
             this.assetSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetDeptLabel = new System.Windows.Forms.Label();
             this.assetDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMinorCategoryLabel = new System.Windows.Forms.Label();
             this.minorCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.mainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetInfoTabPage2 = new System.Windows.Forms.TabPage();
+            this.carManufacturingYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.carEngineNumberTextBox = new System.Windows.Forms.TextBox();
+            this.carEngineNumberLabel = new System.Windows.Forms.Label();
+            this.carChassisNumberTextBox = new System.Windows.Forms.TextBox();
+            this.carChassisNumberLabel = new System.Windows.Forms.Label();
+            this.carManufacturingYearLabel = new System.Windows.Forms.Label();
+            this.carPanelNumberTextBox = new System.Windows.Forms.TextBox();
+            this.carPanelNumberLabel = new System.Windows.Forms.Label();
+            this.manageEstateAreaUnitTblBtn = new System.Windows.Forms.Button();
+            this.estateAreaUnitLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estateAreaTextBox = new System.Windows.Forms.TextBox();
+            this.estateAreaLabel = new System.Windows.Forms.Label();
+            this.estateOwnershipDocumentWithTextBox = new System.Windows.Forms.TextBox();
+            this.estateOwnershipDocumentWithLabel = new System.Windows.Forms.Label();
+            this.estateAddressTextBox = new System.Windows.Forms.TextBox();
+            this.estateAddressLabel = new System.Windows.Forms.Label();
+            this.ofUsedTextBox = new System.Windows.Forms.TextBox();
+            this.ofUsedLabel = new System.Windows.Forms.Label();
             this.benefitPercentageTextBox = new System.Windows.Forms.TextBox();
             this.benefitPercentageLabel = new System.Windows.Forms.Label();
             this.ownerNameTextBox = new System.Windows.Forms.TextBox();
@@ -109,43 +115,31 @@ namespace AssetManagement.Assets
             this.assetNotesLabel = new System.Windows.Forms.Label();
             this.moreDetailsTextBox = new System.Windows.Forms.TextBox();
             this.moreDetailsLabel = new System.Windows.Forms.Label();
-            this.statusTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetCodeToSearchLabel = new System.Windows.Forms.Label();
+            this.assetCodeToSearchTextBox = new System.Windows.Forms.TextBox();
+            this.searchAssetBtn = new System.Windows.Forms.Button();
+            this.viewAssetInformationBtn = new System.Windows.Forms.Button();
+            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
+            this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
+            this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
+            this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
+            this.saveChangesBtn = new System.Windows.Forms.Button();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
-            this.manageEstateAreaUnitTblBtn = new System.Windows.Forms.Button();
-            this.estateAreaUnitLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.estateAreaTextBox = new System.Windows.Forms.TextBox();
-            this.estateAreaLabel = new System.Windows.Forms.Label();
-            this.estateOwnershipDocumentWithTextBox = new System.Windows.Forms.TextBox();
-            this.estateOwnershipDocumentWithLabel = new System.Windows.Forms.Label();
-            this.estateAddressTextBox = new System.Windows.Forms.TextBox();
-            this.estateAddressLabel = new System.Windows.Forms.Label();
-            this.ofUsedTextBox = new System.Windows.Forms.TextBox();
-            this.ofUsedLabel = new System.Windows.Forms.Label();
-            this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
-            this.carManufacturingYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.carEngineNumberTextBox = new System.Windows.Forms.TextBox();
-            this.carEngineNumberLabel = new System.Windows.Forms.Label();
-            this.carChassisNumberTextBox = new System.Windows.Forms.TextBox();
-            this.carChassisNumberLabel = new System.Windows.Forms.Label();
-            this.carManufacturingYearLabel = new System.Windows.Forms.Label();
-            this.carPanelNumberTextBox = new System.Windows.Forms.TextBox();
-            this.carPanelNumberLabel = new System.Windows.Forms.Label();
             this.assetInformationGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.assetInfoTabControl.SuspendLayout();
             this.assetInfoTabPage1.SuspendLayout();
-            this.assetInfoTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorColorPickEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceCurrencyLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -155,14 +149,20 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSectionLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDeptLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
+            this.assetInfoTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -192,134 +192,6 @@ namespace AssetManagement.Assets
             this.assetInformationGroupBox.TabStop = false;
             this.assetInformationGroupBox.Text = "معلومات الأصل";
             this.assetInformationGroupBox.Visible = false;
-            // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // squareTblBindingSource
-            // 
-            this.squareTblBindingSource.DataMember = "SquareTbl";
-            this.squareTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // sectionTblBindingSource
-            // 
-            this.sectionTblBindingSource.DataMember = "SectionTbl";
-            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // departmentTblBindingSource
-            // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // minorCategoryTblBindingSource
-            // 
-            this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
-            this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // mainCategoryTblBindingSource
-            // 
-            this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
-            this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // searchResultsListBox
-            // 
-            this.searchResultsListBox.DataSource = this.assetTblBindingSource;
-            this.searchResultsListBox.DisplayMember = "AssetCode";
-            this.searchResultsListBox.FormattingEnabled = true;
-            this.searchResultsListBox.ItemHeight = 24;
-            this.searchResultsListBox.Location = new System.Drawing.Point(576, 33);
-            this.searchResultsListBox.Name = "searchResultsListBox";
-            this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
-            this.searchResultsListBox.TabIndex = 55;
-            this.searchResultsListBox.ValueMember = "ID";
-            this.searchResultsListBox.Visible = false;
-            this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
-            // 
-            // assetTblBindingSource
-            // 
-            this.assetTblBindingSource.DataMember = "AssetTbl";
-            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetCodeToSearchLabel
-            // 
-            this.assetCodeToSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetCodeToSearchLabel.AutoSize = true;
-            this.assetCodeToSearchLabel.Location = new System.Drawing.Point(67, 37);
-            this.assetCodeToSearchLabel.Name = "assetCodeToSearchLabel";
-            this.assetCodeToSearchLabel.Size = new System.Drawing.Size(86, 24);
-            this.assetCodeToSearchLabel.TabIndex = 0;
-            this.assetCodeToSearchLabel.Text = "كود الأصل:";
-            // 
-            // assetCodeToSearchTextBox
-            // 
-            this.assetCodeToSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetCodeToSearchTextBox.Location = new System.Drawing.Point(195, 33);
-            this.assetCodeToSearchTextBox.Name = "assetCodeToSearchTextBox";
-            this.assetCodeToSearchTextBox.Size = new System.Drawing.Size(288, 32);
-            this.assetCodeToSearchTextBox.TabIndex = 5;
-            // 
-            // searchAssetBtn
-            // 
-            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.searchAssetBtn.Location = new System.Drawing.Point(243, 84);
-            this.searchAssetBtn.Name = "searchAssetBtn";
-            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
-            this.searchAssetBtn.TabIndex = 50;
-            this.searchAssetBtn.Text = "بحث";
-            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchAssetBtn.UseVisualStyleBackColor = true;
-            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
-            // 
-            // viewAssetInformationBtn
-            // 
-            this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
-            this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1072, 16);
-            this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
-            this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
-            this.viewAssetInformationBtn.TabIndex = 60;
-            this.viewAssetInformationBtn.Text = "عرض معلومات الأصل";
-            this.viewAssetInformationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.viewAssetInformationBtn.UseVisualStyleBackColor = true;
-            this.viewAssetInformationBtn.Visible = false;
-            this.viewAssetInformationBtn.Click += new System.EventHandler(this.viewAssetInformationBtn_Click);
-            // 
-            // departmentTblTableAdapter
-            // 
-            this.departmentTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // sectionTblTableAdapter
-            // 
-            this.sectionTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // squareTblTableAdapter
-            // 
-            this.squareTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // mainCategoryTblTableAdapter
-            // 
-            this.mainCategoryTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // minorCategoryTblTableAdapter
-            // 
-            this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // currencyTblTableAdapter
-            // 
-            this.currencyTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // assetTblTableAdapter
-            // 
-            this.assetTblTableAdapter.ClearBeforeFill = true;
             // 
             // assetInfoTabControl
             // 
@@ -385,44 +257,6 @@ namespace AssetManagement.Assets
             this.assetInfoTabPage1.Text = "1";
             this.assetInfoTabPage1.UseVisualStyleBackColor = true;
             // 
-            // assetInfoTabPage2
-            // 
-            this.assetInfoTabPage2.Controls.Add(this.carManufacturingYearNumericUpDown);
-            this.assetInfoTabPage2.Controls.Add(this.carEngineNumberTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.carEngineNumberLabel);
-            this.assetInfoTabPage2.Controls.Add(this.carChassisNumberTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.carChassisNumberLabel);
-            this.assetInfoTabPage2.Controls.Add(this.carManufacturingYearLabel);
-            this.assetInfoTabPage2.Controls.Add(this.carPanelNumberTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.carPanelNumberLabel);
-            this.assetInfoTabPage2.Controls.Add(this.manageEstateAreaUnitTblBtn);
-            this.assetInfoTabPage2.Controls.Add(this.estateAreaUnitLookUpEdit);
-            this.assetInfoTabPage2.Controls.Add(this.estateAreaTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.estateAreaLabel);
-            this.assetInfoTabPage2.Controls.Add(this.estateOwnershipDocumentWithTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.estateOwnershipDocumentWithLabel);
-            this.assetInfoTabPage2.Controls.Add(this.estateAddressTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.estateAddressLabel);
-            this.assetInfoTabPage2.Controls.Add(this.ofUsedTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.ofUsedLabel);
-            this.assetInfoTabPage2.Controls.Add(this.benefitPercentageTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.benefitPercentageLabel);
-            this.assetInfoTabPage2.Controls.Add(this.ownerNameTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.ownerNameLabel);
-            this.assetInfoTabPage2.Controls.Add(this.custodianNameTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.custodianNameLabel);
-            this.assetInfoTabPage2.Controls.Add(this.assetNotesTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.assetNotesLabel);
-            this.assetInfoTabPage2.Controls.Add(this.moreDetailsTextBox);
-            this.assetInfoTabPage2.Controls.Add(this.moreDetailsLabel);
-            this.assetInfoTabPage2.Location = new System.Drawing.Point(4, 33);
-            this.assetInfoTabPage2.Name = "assetInfoTabPage2";
-            this.assetInfoTabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 544);
-            this.assetInfoTabPage2.TabIndex = 1;
-            this.assetInfoTabPage2.Text = "2";
-            this.assetInfoTabPage2.UseVisualStyleBackColor = true;
-            // 
             // actualCurrentPriceCurrencyLookUpEdit
             // 
             this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(132, 320);
@@ -439,6 +273,16 @@ namespace AssetManagement.Assets
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.actualCurrentPriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 28);
             this.actualCurrentPriceCurrencyLookUpEdit.TabIndex = 260;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // actualCurrentPriceLabel
             // 
@@ -490,6 +334,11 @@ namespace AssetManagement.Assets
             this.currentStatusLookUpEdit.Properties.ValueMember = "ID";
             this.currentStatusLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.currentStatusLookUpEdit.TabIndex = 245;
+            // 
+            // statusTblBindingSource
+            // 
+            this.statusTblBindingSource.DataMember = "StatusTbl";
+            this.statusTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // placeOfPresenceTextBox
             // 
@@ -567,20 +416,6 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.colorColorPickEdit.Size = new System.Drawing.Size(234, 28);
             this.colorColorPickEdit.TabIndex = 280;
-            // 
-            // saveChangesBtn
-            // 
-            this.saveChangesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveChangesBtn.Image = global::AssetManagement.Properties.Resources._663340;
-            this.saveChangesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.saveChangesBtn.Location = new System.Drawing.Point(1072, 104);
-            this.saveChangesBtn.Name = "saveChangesBtn";
-            this.saveChangesBtn.Size = new System.Drawing.Size(163, 74);
-            this.saveChangesBtn.TabIndex = 743;
-            this.saveChangesBtn.Text = "حفظ";
-            this.saveChangesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveChangesBtn.UseVisualStyleBackColor = true;
-            this.saveChangesBtn.Click += new System.EventHandler(this.saveChangesBtn_Click);
             // 
             // manageCurrencyTblBtn
             // 
@@ -806,6 +641,11 @@ namespace AssetManagement.Assets
             this.assetSquareLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.assetSquareLookUpEdit.TabIndex = 145;
             // 
+            // squareTblBindingSource
+            // 
+            this.squareTblBindingSource.DataMember = "SquareTbl";
+            this.squareTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // manageCategoriesTblsBtn
             // 
             this.manageCategoriesTblsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -871,6 +711,11 @@ namespace AssetManagement.Assets
             this.assetSectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.assetSectionLookUpEdit.TabIndex = 135;
             // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // assetDeptLabel
             // 
             this.assetDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -900,6 +745,11 @@ namespace AssetManagement.Assets
             this.assetDeptLookUpEdit.Properties.ValueMember = "ID";
             this.assetDeptLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.assetDeptLookUpEdit.TabIndex = 125;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetMinorCategoryLabel
             // 
@@ -934,6 +784,11 @@ namespace AssetManagement.Assets
             this.minorCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.minorCategoryLookUpEdit.TabIndex = 160;
             this.minorCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.minorCategoryLookUpEdit_EditValueChanged);
+            // 
+            // minorCategoryTblBindingSource
+            // 
+            this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
+            this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetCodeTextBox
             // 
@@ -974,6 +829,236 @@ namespace AssetManagement.Assets
             this.mainCategoryLookUpEdit.Size = new System.Drawing.Size(188, 28);
             this.mainCategoryLookUpEdit.TabIndex = 155;
             this.mainCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.mainCategoryLookUpEdit_EditValueChanged);
+            // 
+            // mainCategoryTblBindingSource
+            // 
+            this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
+            this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetInfoTabPage2
+            // 
+            this.assetInfoTabPage2.Controls.Add(this.carManufacturingYearNumericUpDown);
+            this.assetInfoTabPage2.Controls.Add(this.carEngineNumberTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.carEngineNumberLabel);
+            this.assetInfoTabPage2.Controls.Add(this.carChassisNumberTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.carChassisNumberLabel);
+            this.assetInfoTabPage2.Controls.Add(this.carManufacturingYearLabel);
+            this.assetInfoTabPage2.Controls.Add(this.carPanelNumberTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.carPanelNumberLabel);
+            this.assetInfoTabPage2.Controls.Add(this.manageEstateAreaUnitTblBtn);
+            this.assetInfoTabPage2.Controls.Add(this.estateAreaUnitLookUpEdit);
+            this.assetInfoTabPage2.Controls.Add(this.estateAreaTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.estateAreaLabel);
+            this.assetInfoTabPage2.Controls.Add(this.estateOwnershipDocumentWithTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.estateOwnershipDocumentWithLabel);
+            this.assetInfoTabPage2.Controls.Add(this.estateAddressTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.estateAddressLabel);
+            this.assetInfoTabPage2.Controls.Add(this.ofUsedTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.ofUsedLabel);
+            this.assetInfoTabPage2.Controls.Add(this.benefitPercentageTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.benefitPercentageLabel);
+            this.assetInfoTabPage2.Controls.Add(this.ownerNameTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.ownerNameLabel);
+            this.assetInfoTabPage2.Controls.Add(this.custodianNameTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.custodianNameLabel);
+            this.assetInfoTabPage2.Controls.Add(this.assetNotesTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.assetNotesLabel);
+            this.assetInfoTabPage2.Controls.Add(this.moreDetailsTextBox);
+            this.assetInfoTabPage2.Controls.Add(this.moreDetailsLabel);
+            this.assetInfoTabPage2.Location = new System.Drawing.Point(4, 33);
+            this.assetInfoTabPage2.Name = "assetInfoTabPage2";
+            this.assetInfoTabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 544);
+            this.assetInfoTabPage2.TabIndex = 1;
+            this.assetInfoTabPage2.Text = "2";
+            this.assetInfoTabPage2.UseVisualStyleBackColor = true;
+            // 
+            // carManufacturingYearNumericUpDown
+            // 
+            this.carManufacturingYearNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carManufacturingYearNumericUpDown.Location = new System.Drawing.Point(319, 322);
+            this.carManufacturingYearNumericUpDown.Maximum = new decimal(new int[] {
+            2030,
+            0,
+            0,
+            0});
+            this.carManufacturingYearNumericUpDown.Name = "carManufacturingYearNumericUpDown";
+            this.carManufacturingYearNumericUpDown.Size = new System.Drawing.Size(234, 28);
+            this.carManufacturingYearNumericUpDown.TabIndex = 430;
+            this.carManufacturingYearNumericUpDown.Value = new decimal(new int[] {
+            1990,
+            0,
+            0,
+            0});
+            // 
+            // carEngineNumberTextBox
+            // 
+            this.carEngineNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carEngineNumberTextBox.Location = new System.Drawing.Point(319, 440);
+            this.carEngineNumberTextBox.Name = "carEngineNumberTextBox";
+            this.carEngineNumberTextBox.Size = new System.Drawing.Size(234, 28);
+            this.carEngineNumberTextBox.TabIndex = 450;
+            // 
+            // carEngineNumberLabel
+            // 
+            this.carEngineNumberLabel.AutoSize = true;
+            this.carEngineNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carEngineNumberLabel.Location = new System.Drawing.Point(649, 444);
+            this.carEngineNumberLabel.Name = "carEngineNumberLabel";
+            this.carEngineNumberLabel.Size = new System.Drawing.Size(82, 21);
+            this.carEngineNumberLabel.TabIndex = 445;
+            this.carEngineNumberLabel.Text = "رقم المحرك:";
+            // 
+            // carChassisNumberTextBox
+            // 
+            this.carChassisNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carChassisNumberTextBox.Location = new System.Drawing.Point(319, 382);
+            this.carChassisNumberTextBox.Name = "carChassisNumberTextBox";
+            this.carChassisNumberTextBox.Size = new System.Drawing.Size(234, 28);
+            this.carChassisNumberTextBox.TabIndex = 440;
+            // 
+            // carChassisNumberLabel
+            // 
+            this.carChassisNumberLabel.AutoSize = true;
+            this.carChassisNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carChassisNumberLabel.Location = new System.Drawing.Point(596, 386);
+            this.carChassisNumberLabel.Name = "carChassisNumberLabel";
+            this.carChassisNumberLabel.Size = new System.Drawing.Size(135, 21);
+            this.carChassisNumberLabel.TabIndex = 435;
+            this.carChassisNumberLabel.Text = "رقم الهيكل (الشاصيه):";
+            // 
+            // carManufacturingYearLabel
+            // 
+            this.carManufacturingYearLabel.AutoSize = true;
+            this.carManufacturingYearLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carManufacturingYearLabel.Location = new System.Drawing.Point(655, 326);
+            this.carManufacturingYearLabel.Name = "carManufacturingYearLabel";
+            this.carManufacturingYearLabel.Size = new System.Drawing.Size(76, 21);
+            this.carManufacturingYearLabel.TabIndex = 425;
+            this.carManufacturingYearLabel.Text = "سنة الصنع:";
+            // 
+            // carPanelNumberTextBox
+            // 
+            this.carPanelNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carPanelNumberTextBox.Location = new System.Drawing.Point(319, 262);
+            this.carPanelNumberTextBox.Name = "carPanelNumberTextBox";
+            this.carPanelNumberTextBox.Size = new System.Drawing.Size(234, 28);
+            this.carPanelNumberTextBox.TabIndex = 420;
+            // 
+            // carPanelNumberLabel
+            // 
+            this.carPanelNumberLabel.AutoSize = true;
+            this.carPanelNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carPanelNumberLabel.Location = new System.Drawing.Point(622, 266);
+            this.carPanelNumberLabel.Name = "carPanelNumberLabel";
+            this.carPanelNumberLabel.Size = new System.Drawing.Size(109, 21);
+            this.carPanelNumberLabel.TabIndex = 415;
+            this.carPanelNumberLabel.Text = "رقم لوحة السيارة:";
+            // 
+            // manageEstateAreaUnitTblBtn
+            // 
+            this.manageEstateAreaUnitTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEstateAreaUnitTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageEstateAreaUnitTblBtn.Location = new System.Drawing.Point(25, 189);
+            this.manageEstateAreaUnitTblBtn.Name = "manageEstateAreaUnitTblBtn";
+            this.manageEstateAreaUnitTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageEstateAreaUnitTblBtn.TabIndex = 411;
+            this.manageEstateAreaUnitTblBtn.UseVisualStyleBackColor = true;
+            this.manageEstateAreaUnitTblBtn.Click += new System.EventHandler(this.manageEstateAreaUnitTblBtn_Click);
+            // 
+            // estateAreaUnitLookUpEdit
+            // 
+            this.estateAreaUnitLookUpEdit.Location = new System.Drawing.Point(97, 202);
+            this.estateAreaUnitLookUpEdit.Name = "estateAreaUnitLookUpEdit";
+            this.estateAreaUnitLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateAreaUnitLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.estateAreaUnitLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.estateAreaUnitLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 23, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.estateAreaUnitLookUpEdit.Properties.DataSource = this.estateAreaUnitTblBindingSource;
+            this.estateAreaUnitLookUpEdit.Properties.DisplayMember = "EstateAreaUnitName";
+            this.estateAreaUnitLookUpEdit.Properties.ValueMember = "ID";
+            this.estateAreaUnitLookUpEdit.Size = new System.Drawing.Size(196, 28);
+            this.estateAreaUnitLookUpEdit.TabIndex = 410;
+            // 
+            // estateAreaUnitTblBindingSource
+            // 
+            this.estateAreaUnitTblBindingSource.DataMember = "EstateAreaUnitTbl";
+            this.estateAreaUnitTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // estateAreaTextBox
+            // 
+            this.estateAreaTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateAreaTextBox.Location = new System.Drawing.Point(319, 202);
+            this.estateAreaTextBox.Name = "estateAreaTextBox";
+            this.estateAreaTextBox.Size = new System.Drawing.Size(234, 28);
+            this.estateAreaTextBox.TabIndex = 405;
+            // 
+            // estateAreaLabel
+            // 
+            this.estateAreaLabel.AutoSize = true;
+            this.estateAreaLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateAreaLabel.Location = new System.Drawing.Point(641, 206);
+            this.estateAreaLabel.Name = "estateAreaLabel";
+            this.estateAreaLabel.Size = new System.Drawing.Size(90, 21);
+            this.estateAreaLabel.TabIndex = 400;
+            this.estateAreaLabel.Text = "مساحة العقار:";
+            // 
+            // estateOwnershipDocumentWithTextBox
+            // 
+            this.estateOwnershipDocumentWithTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateOwnershipDocumentWithTextBox.Location = new System.Drawing.Point(319, 142);
+            this.estateOwnershipDocumentWithTextBox.Name = "estateOwnershipDocumentWithTextBox";
+            this.estateOwnershipDocumentWithTextBox.Size = new System.Drawing.Size(234, 28);
+            this.estateOwnershipDocumentWithTextBox.TabIndex = 395;
+            // 
+            // estateOwnershipDocumentWithLabel
+            // 
+            this.estateOwnershipDocumentWithLabel.AutoSize = true;
+            this.estateOwnershipDocumentWithLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateOwnershipDocumentWithLabel.Location = new System.Drawing.Point(580, 146);
+            this.estateOwnershipDocumentWithLabel.Name = "estateOwnershipDocumentWithLabel";
+            this.estateOwnershipDocumentWithLabel.Size = new System.Drawing.Size(151, 21);
+            this.estateOwnershipDocumentWithLabel.TabIndex = 390;
+            this.estateOwnershipDocumentWithLabel.Text = "مع من ورقة ملكية العقار:";
+            // 
+            // estateAddressTextBox
+            // 
+            this.estateAddressTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateAddressTextBox.Location = new System.Drawing.Point(228, 82);
+            this.estateAddressTextBox.Name = "estateAddressTextBox";
+            this.estateAddressTextBox.Size = new System.Drawing.Size(325, 28);
+            this.estateAddressTextBox.TabIndex = 385;
+            // 
+            // estateAddressLabel
+            // 
+            this.estateAddressLabel.AutoSize = true;
+            this.estateAddressLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estateAddressLabel.Location = new System.Drawing.Point(630, 86);
+            this.estateAddressLabel.Name = "estateAddressLabel";
+            this.estateAddressLabel.Size = new System.Drawing.Size(101, 21);
+            this.estateAddressLabel.TabIndex = 380;
+            this.estateAddressLabel.Text = "العنوان بالضبط:";
+            // 
+            // ofUsedTextBox
+            // 
+            this.ofUsedTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ofUsedTextBox.Location = new System.Drawing.Point(319, 22);
+            this.ofUsedTextBox.Name = "ofUsedTextBox";
+            this.ofUsedTextBox.Size = new System.Drawing.Size(234, 28);
+            this.ofUsedTextBox.TabIndex = 375;
+            // 
+            // ofUsedLabel
+            // 
+            this.ofUsedLabel.AutoSize = true;
+            this.ofUsedLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ofUsedLabel.Location = new System.Drawing.Point(610, 26);
+            this.ofUsedLabel.Name = "ofUsedLabel";
+            this.ofUsedLabel.Size = new System.Drawing.Size(121, 21);
+            this.ofUsedLabel.TabIndex = 370;
+            this.ofUsedLabel.Text = "المستغل من العقار:";
             // 
             // benefitPercentageTextBox
             // 
@@ -1077,205 +1162,120 @@ namespace AssetManagement.Assets
             this.moreDetailsLabel.TabIndex = 330;
             this.moreDetailsLabel.Text = "تفاصيل أخرى:";
             // 
-            // statusTblBindingSource
+            // searchResultsListBox
             // 
-            this.statusTblBindingSource.DataMember = "StatusTbl";
-            this.statusTblBindingSource.DataSource = this.assetMngDbDataSet;
+            this.searchResultsListBox.DataSource = this.assetTblBindingSource;
+            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.FormattingEnabled = true;
+            this.searchResultsListBox.ItemHeight = 24;
+            this.searchResultsListBox.Location = new System.Drawing.Point(576, 33);
+            this.searchResultsListBox.Name = "searchResultsListBox";
+            this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
+            this.searchResultsListBox.TabIndex = 55;
+            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.Visible = false;
+            this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // assetTblBindingSource
+            // 
+            this.assetTblBindingSource.DataMember = "AssetTbl";
+            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetCodeToSearchLabel
+            // 
+            this.assetCodeToSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeToSearchLabel.AutoSize = true;
+            this.assetCodeToSearchLabel.Location = new System.Drawing.Point(67, 37);
+            this.assetCodeToSearchLabel.Name = "assetCodeToSearchLabel";
+            this.assetCodeToSearchLabel.Size = new System.Drawing.Size(86, 24);
+            this.assetCodeToSearchLabel.TabIndex = 0;
+            this.assetCodeToSearchLabel.Text = "كود الأصل:";
+            // 
+            // assetCodeToSearchTextBox
+            // 
+            this.assetCodeToSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeToSearchTextBox.Location = new System.Drawing.Point(195, 33);
+            this.assetCodeToSearchTextBox.Name = "assetCodeToSearchTextBox";
+            this.assetCodeToSearchTextBox.Size = new System.Drawing.Size(288, 32);
+            this.assetCodeToSearchTextBox.TabIndex = 5;
+            // 
+            // searchAssetBtn
+            // 
+            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
+            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.searchAssetBtn.Location = new System.Drawing.Point(243, 84);
+            this.searchAssetBtn.Name = "searchAssetBtn";
+            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
+            this.searchAssetBtn.TabIndex = 50;
+            this.searchAssetBtn.Text = "بحث";
+            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.searchAssetBtn.UseVisualStyleBackColor = true;
+            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
+            // 
+            // viewAssetInformationBtn
+            // 
+            this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
+            this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1072, 16);
+            this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
+            this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
+            this.viewAssetInformationBtn.TabIndex = 60;
+            this.viewAssetInformationBtn.Text = "عرض معلومات الأصل";
+            this.viewAssetInformationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.viewAssetInformationBtn.UseVisualStyleBackColor = true;
+            this.viewAssetInformationBtn.Visible = false;
+            this.viewAssetInformationBtn.Click += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // departmentTblTableAdapter
+            // 
+            this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // squareTblTableAdapter
+            // 
+            this.squareTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // mainCategoryTblTableAdapter
+            // 
+            this.mainCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // minorCategoryTblTableAdapter
+            // 
+            this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // assetTblTableAdapter
+            // 
+            this.assetTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // saveChangesBtn
+            // 
+            this.saveChangesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveChangesBtn.Image = global::AssetManagement.Properties.Resources._663340;
+            this.saveChangesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveChangesBtn.Location = new System.Drawing.Point(1072, 104);
+            this.saveChangesBtn.Name = "saveChangesBtn";
+            this.saveChangesBtn.Size = new System.Drawing.Size(163, 74);
+            this.saveChangesBtn.TabIndex = 800;
+            this.saveChangesBtn.Text = "حفظ";
+            this.saveChangesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveChangesBtn.UseVisualStyleBackColor = true;
+            this.saveChangesBtn.Click += new System.EventHandler(this.saveChangesBtn_Click);
             // 
             // statusTblTableAdapter
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
-            // manageEstateAreaUnitTblBtn
-            // 
-            this.manageEstateAreaUnitTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageEstateAreaUnitTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageEstateAreaUnitTblBtn.Location = new System.Drawing.Point(25, 189);
-            this.manageEstateAreaUnitTblBtn.Name = "manageEstateAreaUnitTblBtn";
-            this.manageEstateAreaUnitTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageEstateAreaUnitTblBtn.TabIndex = 411;
-            this.manageEstateAreaUnitTblBtn.UseVisualStyleBackColor = true;
-            this.manageEstateAreaUnitTblBtn.Click += new System.EventHandler(this.manageEstateAreaUnitTblBtn_Click);
-            // 
-            // estateAreaUnitLookUpEdit
-            // 
-            this.estateAreaUnitLookUpEdit.Location = new System.Drawing.Point(97, 202);
-            this.estateAreaUnitLookUpEdit.Name = "estateAreaUnitLookUpEdit";
-            this.estateAreaUnitLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAreaUnitLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.estateAreaUnitLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.estateAreaUnitLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 23, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.estateAreaUnitLookUpEdit.Properties.DataSource = this.estateAreaUnitTblBindingSource;
-            this.estateAreaUnitLookUpEdit.Properties.DisplayMember = "EstateAreaUnitName";
-            this.estateAreaUnitLookUpEdit.Properties.ValueMember = "ID";
-            this.estateAreaUnitLookUpEdit.Size = new System.Drawing.Size(196, 28);
-            this.estateAreaUnitLookUpEdit.TabIndex = 410;
-            // 
-            // estateAreaTextBox
-            // 
-            this.estateAreaTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAreaTextBox.Location = new System.Drawing.Point(319, 202);
-            this.estateAreaTextBox.Name = "estateAreaTextBox";
-            this.estateAreaTextBox.Size = new System.Drawing.Size(234, 28);
-            this.estateAreaTextBox.TabIndex = 405;
-            // 
-            // estateAreaLabel
-            // 
-            this.estateAreaLabel.AutoSize = true;
-            this.estateAreaLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAreaLabel.Location = new System.Drawing.Point(641, 206);
-            this.estateAreaLabel.Name = "estateAreaLabel";
-            this.estateAreaLabel.Size = new System.Drawing.Size(90, 21);
-            this.estateAreaLabel.TabIndex = 400;
-            this.estateAreaLabel.Text = "مساحة العقار:";
-            // 
-            // estateOwnershipDocumentWithTextBox
-            // 
-            this.estateOwnershipDocumentWithTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateOwnershipDocumentWithTextBox.Location = new System.Drawing.Point(319, 142);
-            this.estateOwnershipDocumentWithTextBox.Name = "estateOwnershipDocumentWithTextBox";
-            this.estateOwnershipDocumentWithTextBox.Size = new System.Drawing.Size(234, 28);
-            this.estateOwnershipDocumentWithTextBox.TabIndex = 395;
-            // 
-            // estateOwnershipDocumentWithLabel
-            // 
-            this.estateOwnershipDocumentWithLabel.AutoSize = true;
-            this.estateOwnershipDocumentWithLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateOwnershipDocumentWithLabel.Location = new System.Drawing.Point(580, 146);
-            this.estateOwnershipDocumentWithLabel.Name = "estateOwnershipDocumentWithLabel";
-            this.estateOwnershipDocumentWithLabel.Size = new System.Drawing.Size(151, 21);
-            this.estateOwnershipDocumentWithLabel.TabIndex = 390;
-            this.estateOwnershipDocumentWithLabel.Text = "مع من ورقة ملكية العقار:";
-            // 
-            // estateAddressTextBox
-            // 
-            this.estateAddressTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAddressTextBox.Location = new System.Drawing.Point(228, 82);
-            this.estateAddressTextBox.Name = "estateAddressTextBox";
-            this.estateAddressTextBox.Size = new System.Drawing.Size(325, 28);
-            this.estateAddressTextBox.TabIndex = 385;
-            // 
-            // estateAddressLabel
-            // 
-            this.estateAddressLabel.AutoSize = true;
-            this.estateAddressLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAddressLabel.Location = new System.Drawing.Point(630, 86);
-            this.estateAddressLabel.Name = "estateAddressLabel";
-            this.estateAddressLabel.Size = new System.Drawing.Size(101, 21);
-            this.estateAddressLabel.TabIndex = 380;
-            this.estateAddressLabel.Text = "العنوان بالضبط:";
-            // 
-            // ofUsedTextBox
-            // 
-            this.ofUsedTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ofUsedTextBox.Location = new System.Drawing.Point(319, 22);
-            this.ofUsedTextBox.Name = "ofUsedTextBox";
-            this.ofUsedTextBox.Size = new System.Drawing.Size(234, 28);
-            this.ofUsedTextBox.TabIndex = 375;
-            // 
-            // ofUsedLabel
-            // 
-            this.ofUsedLabel.AutoSize = true;
-            this.ofUsedLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ofUsedLabel.Location = new System.Drawing.Point(610, 26);
-            this.ofUsedLabel.Name = "ofUsedLabel";
-            this.ofUsedLabel.Size = new System.Drawing.Size(121, 21);
-            this.ofUsedLabel.TabIndex = 370;
-            this.ofUsedLabel.Text = "المستغل من العقار:";
-            // 
-            // estateAreaUnitTblBindingSource
-            // 
-            this.estateAreaUnitTblBindingSource.DataMember = "EstateAreaUnitTbl";
-            this.estateAreaUnitTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // estateAreaUnitTblTableAdapter
             // 
             this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // carManufacturingYearNumericUpDown
-            // 
-            this.carManufacturingYearNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carManufacturingYearNumericUpDown.Location = new System.Drawing.Point(319, 322);
-            this.carManufacturingYearNumericUpDown.Maximum = new decimal(new int[] {
-            2030,
-            0,
-            0,
-            0});
-            this.carManufacturingYearNumericUpDown.Name = "carManufacturingYearNumericUpDown";
-            this.carManufacturingYearNumericUpDown.Size = new System.Drawing.Size(234, 28);
-            this.carManufacturingYearNumericUpDown.TabIndex = 415;
-            this.carManufacturingYearNumericUpDown.Value = new decimal(new int[] {
-            1990,
-            0,
-            0,
-            0});
-            // 
-            // carEngineNumberTextBox
-            // 
-            this.carEngineNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carEngineNumberTextBox.Location = new System.Drawing.Point(319, 440);
-            this.carEngineNumberTextBox.Name = "carEngineNumberTextBox";
-            this.carEngineNumberTextBox.Size = new System.Drawing.Size(234, 28);
-            this.carEngineNumberTextBox.TabIndex = 419;
-            // 
-            // carEngineNumberLabel
-            // 
-            this.carEngineNumberLabel.AutoSize = true;
-            this.carEngineNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carEngineNumberLabel.Location = new System.Drawing.Point(649, 444);
-            this.carEngineNumberLabel.Name = "carEngineNumberLabel";
-            this.carEngineNumberLabel.Size = new System.Drawing.Size(82, 21);
-            this.carEngineNumberLabel.TabIndex = 418;
-            this.carEngineNumberLabel.Text = "رقم المحرك:";
-            // 
-            // carChassisNumberTextBox
-            // 
-            this.carChassisNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carChassisNumberTextBox.Location = new System.Drawing.Point(319, 382);
-            this.carChassisNumberTextBox.Name = "carChassisNumberTextBox";
-            this.carChassisNumberTextBox.Size = new System.Drawing.Size(234, 28);
-            this.carChassisNumberTextBox.TabIndex = 417;
-            // 
-            // carChassisNumberLabel
-            // 
-            this.carChassisNumberLabel.AutoSize = true;
-            this.carChassisNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carChassisNumberLabel.Location = new System.Drawing.Point(596, 386);
-            this.carChassisNumberLabel.Name = "carChassisNumberLabel";
-            this.carChassisNumberLabel.Size = new System.Drawing.Size(135, 21);
-            this.carChassisNumberLabel.TabIndex = 416;
-            this.carChassisNumberLabel.Text = "رقم الهيكل (الشاصيه):";
-            // 
-            // carManufacturingYearLabel
-            // 
-            this.carManufacturingYearLabel.AutoSize = true;
-            this.carManufacturingYearLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carManufacturingYearLabel.Location = new System.Drawing.Point(655, 326);
-            this.carManufacturingYearLabel.Name = "carManufacturingYearLabel";
-            this.carManufacturingYearLabel.Size = new System.Drawing.Size(76, 21);
-            this.carManufacturingYearLabel.TabIndex = 414;
-            this.carManufacturingYearLabel.Text = "سنة الصنع:";
-            // 
-            // carPanelNumberTextBox
-            // 
-            this.carPanelNumberTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carPanelNumberTextBox.Location = new System.Drawing.Point(319, 262);
-            this.carPanelNumberTextBox.Name = "carPanelNumberTextBox";
-            this.carPanelNumberTextBox.Size = new System.Drawing.Size(234, 28);
-            this.carPanelNumberTextBox.TabIndex = 413;
-            // 
-            // carPanelNumberLabel
-            // 
-            this.carPanelNumberLabel.AutoSize = true;
-            this.carPanelNumberLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carPanelNumberLabel.Location = new System.Drawing.Point(622, 266);
-            this.carPanelNumberLabel.Name = "carPanelNumberLabel";
-            this.carPanelNumberLabel.Size = new System.Drawing.Size(109, 21);
-            this.carPanelNumberLabel.TabIndex = 412;
-            this.carPanelNumberLabel.Text = "رقم لوحة السيارة:";
             // 
             // UpdateExistedAssetForm
             // 
@@ -1300,22 +1300,15 @@ namespace AssetManagement.Assets
             this.Text = "تعديل أصل موجود";
             this.Load += new System.EventHandler(this.UpdateExistedAssetForm_Load);
             this.assetInformationGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.assetInfoTabControl.ResumeLayout(false);
             this.assetInfoTabPage1.ResumeLayout(false);
             this.assetInfoTabPage1.PerformLayout();
-            this.assetInfoTabPage2.ResumeLayout(false);
-            this.assetInfoTabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorColorPickEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceCurrencyLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
@@ -1325,14 +1318,21 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSectionLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDeptLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
+            this.assetInfoTabPage2.ResumeLayout(false);
+            this.assetInfoTabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

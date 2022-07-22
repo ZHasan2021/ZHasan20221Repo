@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq.Mapping;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,8 +22,10 @@ using System.Windows.Forms;
 
 namespace AssetManagement
 {
-    public partial class MainForm : Form
+    public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        List<AssetTbl> assetsToDestructList =new List<AssetTbl> ();
+
         public MainForm()
         {
             InitializeComponent();
@@ -39,6 +42,7 @@ namespace AssetManagement
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageAssetTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageAssetTbl == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCategoriesBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCurrencyTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageCurrencies == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -71,6 +75,10 @@ namespace AssetManagement
             this.MinimumSize = this.Size;
 
             ApplyUserRolesOnInterface();
+
+            assetsToDestructList = StaticCode.GetAssetsToDestruct();
+            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count})";
         }
 
         private void exportDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -172,7 +180,8 @@ namespace AssetManagement
 
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            AssetsReports repFrm = new AssetsReports();
+            //repFrm.ShowDialog();
         }
 
         private void manageCurrencyTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -345,7 +354,7 @@ namespace AssetManagement
 
         private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath,FileMode.OpenOrCreate);
+            FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath, FileMode.OpenOrCreate);
             byte[] AesKey_IV_Dec = new byte[48];
             AesKey_IV_Rd.Read(AesKey_IV_Dec, 0, 48);
             AesKey_IV_Rd.Close();
@@ -355,15 +364,15 @@ namespace AssetManagement
             Array.Copy(AesKey_IV_Dec, 32, AesIV, 0, 16);
             //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
             OpenFileDialog encFileOFD = new OpenFileDialog() { Filter = (decryptImportedFileBarCheckItem.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
-            if(encFileOFD.ShowDialog()!= DialogResult.OK)
+            if (encFileOFD.ShowDialog() != DialogResult.OK)
             {
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
-            }    
+            }
             string importedExcelFilePath = encFileOFD.FileName;
             if (decryptImportedFileBarCheckItem.Checked)
             {
-             importedExcelFilePath = encFileOFD.FileName.Replace(".assf",".xlsx");
+                importedExcelFilePath = encFileOFD.FileName.Replace(".assf", ".xlsx");
                 bool decrypted = StaticCode.AesDecryption(encFileOFD.FileName, importedExcelFilePath, AesKey, AesIV);
                 if (!decrypted)
                 {
@@ -381,7 +390,7 @@ namespace AssetManagement
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AssetsStatsForm statFrm = new AssetsStatsForm();
-            statFrm.ShowDialog();
+            //statFrm.ShowDialog();
         }
 
         private void setAppDateAndTimeBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -405,7 +414,7 @@ namespace AssetManagement
         private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
-            fiItFrm.ShowDialog();
+            fiItFrm.Show();
         }
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -418,6 +427,26 @@ namespace AssetManagement
         {
             UpdateExistedAssetForm updFrm = new UpdateExistedAssetForm();
             updFrm.ShowDialog();
+        }
+
+        private void openAppFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.Start(Application.StartupPath);
+        }
+
+        private void openEencryptionKeysFolderRarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.Start(StaticCode.AesKeyAndIVFolder);
+        }
+
+        private void openBackupFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.Start(StaticCode.BackupFolder);
+        }
+
+        private void assetsToDestructBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

@@ -95,14 +95,14 @@ namespace AssetManagement.AuxTables
             gridLevelNode1.RelationName = "currencyLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(0, 31);
+            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(0, 27);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
             this.financialItemCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
             this.repositoryItemDateEdit1});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1250, 681);
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1250, 685);
             this.financialItemCategoryGridControl.TabIndex = 5;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -373,7 +373,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -382,13 +382,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -403,14 +403,14 @@ namespace AssetManagement.AuxTables
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -418,7 +418,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -427,13 +427,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -441,7 +441,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorDeleteItem
@@ -450,7 +450,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // financialItemTblBindingNavigatorSaveItem
@@ -458,7 +458,7 @@ namespace AssetManagement.AuxTables
             this.financialItemTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.financialItemTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("financialItemTblBindingNavigatorSaveItem.Image")));
             this.financialItemTblBindingNavigatorSaveItem.Name = "financialItemTblBindingNavigatorSaveItem";
-            this.financialItemTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
+            this.financialItemTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.financialItemTblBindingNavigatorSaveItem.Text = "Save Data";
             this.financialItemTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.financialItemTblBindingNavigatorSaveItem_Click);
             // 
@@ -489,7 +489,7 @@ namespace AssetManagement.AuxTables
             this.financialItemTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.financialItemTblBindingNavigator.Name = "financialItemTblBindingNavigator";
             this.financialItemTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1250, 31);
+            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1250, 27);
             this.financialItemTblBindingNavigator.TabIndex = 4;
             this.financialItemTblBindingNavigator.Text = "bindingNavigator1";
             // 

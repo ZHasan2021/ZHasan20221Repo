@@ -34,43 +34,43 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLabel = new System.Windows.Forms.Label();
             this.manageFinancialItemCategoryTblBtn = new System.Windows.Forms.Button();
             this.financialItemCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.financialItemInsertionDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.financialItemInsertionDateLabel = new System.Windows.Forms.Label();
             this.incomingOrOutgoingPanel = new System.Windows.Forms.Panel();
-            this.incomingRadioButton = new System.Windows.Forms.RadioButton();
             this.outgoingRadioButton = new System.Windows.Forms.RadioButton();
+            this.incomingRadioButton = new System.Windows.Forms.RadioButton();
             this.financialItemDescriptionLabel = new System.Windows.Forms.Label();
             this.financialItemDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.amountLabel = new System.Windows.Forms.Label();
             this.financialItemCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.amountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.addNewFinancialItemBtn_Cancel = new System.Windows.Forms.Button();
             this.addNewFinancialItemBtn_OK = new System.Windows.Forms.Button();
             this.additionalNotesTextBox = new System.Windows.Forms.TextBox();
             this.additionalNotesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties)).BeginInit();
             this.incomingOrOutgoingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemCategoryLabel
             // 
             this.financialItemCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.financialItemCategoryLabel.AutoSize = true;
-            this.financialItemCategoryLabel.Location = new System.Drawing.Point(46, 40);
+            this.financialItemCategoryLabel.Location = new System.Drawing.Point(42, 34);
             this.financialItemCategoryLabel.Name = "financialItemCategoryLabel";
             this.financialItemCategoryLabel.Size = new System.Drawing.Size(87, 24);
             this.financialItemCategoryLabel.TabIndex = 0;
@@ -80,7 +80,7 @@ namespace AssetManagement.Finance
             // 
             this.manageFinancialItemCategoryTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageFinancialItemCategoryTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageFinancialItemCategoryTblBtn.Location = new System.Drawing.Point(576, 25);
+            this.manageFinancialItemCategoryTblBtn.Location = new System.Drawing.Point(572, 19);
             this.manageFinancialItemCategoryTblBtn.Name = "manageFinancialItemCategoryTblBtn";
             this.manageFinancialItemCategoryTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageFinancialItemCategoryTblBtn.TabIndex = 6;
@@ -90,7 +90,7 @@ namespace AssetManagement.Finance
             // financialItemCategoryLookUpEdit
             // 
             this.financialItemCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialItemCategoryLookUpEdit.Location = new System.Drawing.Point(229, 37);
+            this.financialItemCategoryLookUpEdit.Location = new System.Drawing.Point(225, 31);
             this.financialItemCategoryLookUpEdit.Name = "financialItemCategoryLookUpEdit";
             this.financialItemCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.financialItemCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -105,6 +105,16 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.financialItemCategoryLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemCategoryLookUpEdit.TabIndex = 5;
+            // 
+            // financialItemCategoryTblBindingSource
+            // 
+            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // mainAlertControl
             // 
@@ -121,16 +131,6 @@ namespace AssetManagement.Finance
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // financialItemCategoryTblBindingSource
-            // 
-            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
-            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // financialItemCategoryTblTableAdapter
             // 
             this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
@@ -139,7 +139,7 @@ namespace AssetManagement.Finance
             // 
             this.financialItemInsertionDateDateEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.financialItemInsertionDateDateEdit.EditValue = null;
-            this.financialItemInsertionDateDateEdit.Location = new System.Drawing.Point(229, 247);
+            this.financialItemInsertionDateDateEdit.Location = new System.Drawing.Point(225, 193);
             this.financialItemInsertionDateDateEdit.Name = "financialItemInsertionDateDateEdit";
             this.financialItemInsertionDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.financialItemInsertionDateDateEdit.Properties.Appearance.Options.UseFont = true;
@@ -154,7 +154,7 @@ namespace AssetManagement.Finance
             // 
             this.financialItemInsertionDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.financialItemInsertionDateLabel.AutoSize = true;
-            this.financialItemInsertionDateLabel.Location = new System.Drawing.Point(46, 250);
+            this.financialItemInsertionDateLabel.Location = new System.Drawing.Point(42, 196);
             this.financialItemInsertionDateLabel.Name = "financialItemInsertionDateLabel";
             this.financialItemInsertionDateLabel.Size = new System.Drawing.Size(104, 24);
             this.financialItemInsertionDateLabel.TabIndex = 20;
@@ -165,16 +165,26 @@ namespace AssetManagement.Finance
             this.incomingOrOutgoingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.incomingOrOutgoingPanel.Controls.Add(this.outgoingRadioButton);
             this.incomingOrOutgoingPanel.Controls.Add(this.incomingRadioButton);
-            this.incomingOrOutgoingPanel.Location = new System.Drawing.Point(38, 320);
+            this.incomingOrOutgoingPanel.Location = new System.Drawing.Point(42, 244);
             this.incomingOrOutgoingPanel.Name = "incomingOrOutgoingPanel";
-            this.incomingOrOutgoingPanel.Size = new System.Drawing.Size(310, 85);
+            this.incomingOrOutgoingPanel.Size = new System.Drawing.Size(310, 62);
             this.incomingOrOutgoingPanel.TabIndex = 30;
+            // 
+            // outgoingRadioButton
+            // 
+            this.outgoingRadioButton.AutoSize = true;
+            this.outgoingRadioButton.Location = new System.Drawing.Point(51, 18);
+            this.outgoingRadioButton.Name = "outgoingRadioButton";
+            this.outgoingRadioButton.Size = new System.Drawing.Size(67, 28);
+            this.outgoingRadioButton.TabIndex = 40;
+            this.outgoingRadioButton.Text = "صادر";
+            this.outgoingRadioButton.UseVisualStyleBackColor = true;
             // 
             // incomingRadioButton
             // 
             this.incomingRadioButton.AutoSize = true;
             this.incomingRadioButton.Checked = true;
-            this.incomingRadioButton.Location = new System.Drawing.Point(220, 28);
+            this.incomingRadioButton.Location = new System.Drawing.Point(220, 18);
             this.incomingRadioButton.Name = "incomingRadioButton";
             this.incomingRadioButton.Size = new System.Drawing.Size(56, 28);
             this.incomingRadioButton.TabIndex = 35;
@@ -182,21 +192,11 @@ namespace AssetManagement.Finance
             this.incomingRadioButton.Text = "وارد";
             this.incomingRadioButton.UseVisualStyleBackColor = true;
             // 
-            // outgoingRadioButton
-            // 
-            this.outgoingRadioButton.AutoSize = true;
-            this.outgoingRadioButton.Location = new System.Drawing.Point(51, 28);
-            this.outgoingRadioButton.Name = "outgoingRadioButton";
-            this.outgoingRadioButton.Size = new System.Drawing.Size(67, 28);
-            this.outgoingRadioButton.TabIndex = 40;
-            this.outgoingRadioButton.Text = "صادر";
-            this.outgoingRadioButton.UseVisualStyleBackColor = true;
-            // 
             // financialItemDescriptionLabel
             // 
             this.financialItemDescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.financialItemDescriptionLabel.AutoSize = true;
-            this.financialItemDescriptionLabel.Location = new System.Drawing.Point(46, 110);
+            this.financialItemDescriptionLabel.Location = new System.Drawing.Point(42, 77);
             this.financialItemDescriptionLabel.Name = "financialItemDescriptionLabel";
             this.financialItemDescriptionLabel.Size = new System.Drawing.Size(95, 24);
             this.financialItemDescriptionLabel.TabIndex = 10;
@@ -205,17 +205,17 @@ namespace AssetManagement.Finance
             // financialItemDescriptionTextBox
             // 
             this.financialItemDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialItemDescriptionTextBox.Location = new System.Drawing.Point(229, 110);
+            this.financialItemDescriptionTextBox.Location = new System.Drawing.Point(225, 77);
             this.financialItemDescriptionTextBox.Multiline = true;
             this.financialItemDescriptionTextBox.Name = "financialItemDescriptionTextBox";
-            this.financialItemDescriptionTextBox.Size = new System.Drawing.Size(321, 105);
+            this.financialItemDescriptionTextBox.Size = new System.Drawing.Size(321, 94);
             this.financialItemDescriptionTextBox.TabIndex = 15;
             // 
             // amountLabel
             // 
             this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.amountLabel.AutoSize = true;
-            this.amountLabel.Location = new System.Drawing.Point(46, 440);
+            this.amountLabel.Location = new System.Drawing.Point(42, 337);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(54, 24);
             this.amountLabel.TabIndex = 45;
@@ -224,7 +224,7 @@ namespace AssetManagement.Finance
             // financialItemCurrencyLookUpEdit
             // 
             this.financialItemCurrencyLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialItemCurrencyLookUpEdit.Location = new System.Drawing.Point(333, 437);
+            this.financialItemCurrencyLookUpEdit.Location = new System.Drawing.Point(329, 334);
             this.financialItemCurrencyLookUpEdit.Name = "financialItemCurrencyLookUpEdit";
             this.financialItemCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.financialItemCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -239,11 +239,16 @@ namespace AssetManagement.Finance
             this.financialItemCurrencyLookUpEdit.Size = new System.Drawing.Size(217, 30);
             this.financialItemCurrencyLookUpEdit.TabIndex = 55;
             // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // amountNumericUpDown
             // 
             this.amountNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.amountNumericUpDown.DecimalPlaces = 2;
-            this.amountNumericUpDown.Location = new System.Drawing.Point(144, 436);
+            this.amountNumericUpDown.Location = new System.Drawing.Point(140, 333);
             this.amountNumericUpDown.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -257,17 +262,12 @@ namespace AssetManagement.Finance
             // 
             this.manageCurrencyTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(576, 425);
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(572, 322);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCurrencyTblBtn.TabIndex = 56;
             this.manageCurrencyTblBtn.UseVisualStyleBackColor = true;
             this.manageCurrencyTblBtn.Click += new System.EventHandler(this.manageCurrencyTblBtn_Click);
-            // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // currencyTblTableAdapter
             // 
@@ -278,7 +278,7 @@ namespace AssetManagement.Finance
             this.addNewFinancialItemBtn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.addNewFinancialItemBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
             this.addNewFinancialItemBtn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewFinancialItemBtn_Cancel.Location = new System.Drawing.Point(890, 433);
+            this.addNewFinancialItemBtn_Cancel.Location = new System.Drawing.Point(700, 353);
             this.addNewFinancialItemBtn_Cancel.Name = "addNewFinancialItemBtn_Cancel";
             this.addNewFinancialItemBtn_Cancel.Size = new System.Drawing.Size(182, 65);
             this.addNewFinancialItemBtn_Cancel.TabIndex = 205;
@@ -291,7 +291,7 @@ namespace AssetManagement.Finance
             // 
             this.addNewFinancialItemBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
             this.addNewFinancialItemBtn_OK.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewFinancialItemBtn_OK.Location = new System.Drawing.Point(890, 343);
+            this.addNewFinancialItemBtn_OK.Location = new System.Drawing.Point(700, 257);
             this.addNewFinancialItemBtn_OK.Name = "addNewFinancialItemBtn_OK";
             this.addNewFinancialItemBtn_OK.Size = new System.Drawing.Size(182, 65);
             this.addNewFinancialItemBtn_OK.TabIndex = 200;
@@ -302,16 +302,17 @@ namespace AssetManagement.Finance
             // 
             // additionalNotesTextBox
             // 
-            this.additionalNotesTextBox.Location = new System.Drawing.Point(751, 84);
-            this.additionalNotesTextBox.Multiline = true;
+            this.additionalNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.additionalNotesTextBox.Location = new System.Drawing.Point(226, 385);
             this.additionalNotesTextBox.Name = "additionalNotesTextBox";
-            this.additionalNotesTextBox.Size = new System.Drawing.Size(321, 105);
+            this.additionalNotesTextBox.Size = new System.Drawing.Size(411, 32);
             this.additionalNotesTextBox.TabIndex = 65;
             // 
             // additionalNotesLabel
             // 
+            this.additionalNotesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.additionalNotesLabel.AutoSize = true;
-            this.additionalNotesLabel.Location = new System.Drawing.Point(751, 40);
+            this.additionalNotesLabel.Location = new System.Drawing.Point(42, 389);
             this.additionalNotesLabel.Name = "additionalNotesLabel";
             this.additionalNotesLabel.Size = new System.Drawing.Size(129, 24);
             this.additionalNotesLabel.TabIndex = 60;
@@ -323,7 +324,7 @@ namespace AssetManagement.Finance
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addNewFinancialItemBtn_Cancel;
-            this.ClientSize = new System.Drawing.Size(1110, 535);
+            this.ClientSize = new System.Drawing.Size(924, 437);
             this.Controls.Add(this.additionalNotesTextBox);
             this.Controls.Add(this.additionalNotesLabel);
             this.Controls.Add(this.addNewFinancialItemBtn_Cancel);
@@ -351,15 +352,15 @@ namespace AssetManagement.Finance
             this.Text = "إضافة سجل مالي جديد";
             this.Load += new System.EventHandler(this.AddNewFinancialItemForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties)).EndInit();
             this.incomingOrOutgoingPanel.ResumeLayout(false);
             this.incomingOrOutgoingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

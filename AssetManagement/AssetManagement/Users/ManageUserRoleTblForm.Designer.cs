@@ -32,9 +32,8 @@ namespace AssetManagement.Users
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserRoleTblForm));
-            this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.userRoleGridControl = new DevExpress.XtraGrid.GridControl();
             this.userRoleTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -42,6 +41,7 @@ namespace AssetManagement.Users
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewAsset = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageAssetTbl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeleteAssetRecord = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewInventory = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,6 +73,13 @@ namespace AssetManagement.Users
             this.colManageEstateAreaUnits = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManageTransactionTypes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewFinancialItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageFinancialItems = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateExistedFinancialItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeleteFinancialItemRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewFinancialReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewFinancialItemCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageFinancialItemCategories = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSetDateAndTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBackupDb = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRestoreDb = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -94,7 +101,6 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -103,19 +109,13 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // minorCategoryGridView
-            // 
-            this.minorCategoryGridView.GridControl = this.userRoleGridControl;
-            this.minorCategoryGridView.Name = "minorCategoryGridView";
-            // 
             // userRoleGridControl
             // 
             this.userRoleGridControl.DataSource = this.userRoleTblBindingSource;
             this.userRoleGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
-            gridLevelNode1.RelationName = "userRoleLevel";
+            gridLevelNode2.RelationName = "userRoleLevel";
             this.userRoleGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.userRoleGridControl.Location = new System.Drawing.Point(0, 27);
             this.userRoleGridControl.MainView = this.userRoleGridView;
             this.userRoleGridControl.Name = "userRoleGridControl";
@@ -123,8 +123,7 @@ namespace AssetManagement.Users
             this.userRoleGridControl.TabIndex = 8;
             this.userRoleGridControl.UseEmbeddedNavigator = true;
             this.userRoleGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.userRoleGridView,
-            this.minorCategoryGridView});
+            this.userRoleGridView});
             // 
             // userRoleTblBindingSource
             // 
@@ -142,6 +141,7 @@ namespace AssetManagement.Users
             this.colID,
             this.colRoleName,
             this.colAddNewAsset,
+            this.colManageAssetTbl,
             this.colUpdateExistedAsset,
             this.colDeleteAssetRecord,
             this.colAddNewInventory,
@@ -173,6 +173,13 @@ namespace AssetManagement.Users
             this.colManageEstateAreaUnits,
             this.colAddNewTransactionType,
             this.colManageTransactionTypes,
+            this.colAddNewFinancialItem,
+            this.colManageFinancialItems,
+            this.colUpdateExistedFinancialItem,
+            this.colDeleteFinancialItemRecord,
+            this.colViewFinancialReports,
+            this.colAddNewFinancialItemCategory,
+            this.colManageFinancialItemCategories,
             this.colSetDateAndTime,
             this.colBackupDb,
             this.colRestoreDb,
@@ -208,6 +215,16 @@ namespace AssetManagement.Users
             this.colAddNewAsset.Visible = true;
             this.colAddNewAsset.VisibleIndex = 1;
             this.colAddNewAsset.Width = 150;
+            // 
+            // colManageAssetTbl
+            // 
+            this.colManageAssetTbl.Caption = "إدارة سجلات الأصول";
+            this.colManageAssetTbl.FieldName = "ManageAssetTbl";
+            this.colManageAssetTbl.MinWidth = 150;
+            this.colManageAssetTbl.Name = "colManageAssetTbl";
+            this.colManageAssetTbl.Visible = true;
+            this.colManageAssetTbl.VisibleIndex = 45;
+            this.colManageAssetTbl.Width = 150;
             // 
             // colUpdateExistedAsset
             // 
@@ -519,6 +536,76 @@ namespace AssetManagement.Users
             this.colManageTransactionTypes.VisibleIndex = 32;
             this.colManageTransactionTypes.Width = 150;
             // 
+            // colAddNewFinancialItem
+            // 
+            this.colAddNewFinancialItem.Caption = "إضافة سجل مالي جديد";
+            this.colAddNewFinancialItem.FieldName = "AddNewFinancialItem";
+            this.colAddNewFinancialItem.MinWidth = 150;
+            this.colAddNewFinancialItem.Name = "colAddNewFinancialItem";
+            this.colAddNewFinancialItem.Visible = true;
+            this.colAddNewFinancialItem.VisibleIndex = 38;
+            this.colAddNewFinancialItem.Width = 150;
+            // 
+            // colManageFinancialItems
+            // 
+            this.colManageFinancialItems.Caption = "إدارة جدول السجلات المالية";
+            this.colManageFinancialItems.FieldName = "ManageFinancialItems";
+            this.colManageFinancialItems.MinWidth = 150;
+            this.colManageFinancialItems.Name = "colManageFinancialItems";
+            this.colManageFinancialItems.Visible = true;
+            this.colManageFinancialItems.VisibleIndex = 44;
+            this.colManageFinancialItems.Width = 150;
+            // 
+            // colUpdateExistedFinancialItem
+            // 
+            this.colUpdateExistedFinancialItem.Caption = "تعديل سجل مالي موجود";
+            this.colUpdateExistedFinancialItem.FieldName = "UpdateExistedFinancialItem";
+            this.colUpdateExistedFinancialItem.MinWidth = 150;
+            this.colUpdateExistedFinancialItem.Name = "colUpdateExistedFinancialItem";
+            this.colUpdateExistedFinancialItem.Visible = true;
+            this.colUpdateExistedFinancialItem.VisibleIndex = 40;
+            this.colUpdateExistedFinancialItem.Width = 150;
+            // 
+            // colDeleteFinancialItemRecord
+            // 
+            this.colDeleteFinancialItemRecord.Caption = "حذف سجل مالي موجود";
+            this.colDeleteFinancialItemRecord.FieldName = "DeleteFinancialItemRecord";
+            this.colDeleteFinancialItemRecord.MinWidth = 150;
+            this.colDeleteFinancialItemRecord.Name = "colDeleteFinancialItemRecord";
+            this.colDeleteFinancialItemRecord.Visible = true;
+            this.colDeleteFinancialItemRecord.VisibleIndex = 41;
+            this.colDeleteFinancialItemRecord.Width = 150;
+            // 
+            // colViewFinancialReports
+            // 
+            this.colViewFinancialReports.Caption = "عرض وتصدير التقارير المالية";
+            this.colViewFinancialReports.FieldName = "ViewFinancialReports";
+            this.colViewFinancialReports.MinWidth = 150;
+            this.colViewFinancialReports.Name = "colViewFinancialReports";
+            this.colViewFinancialReports.Visible = true;
+            this.colViewFinancialReports.VisibleIndex = 42;
+            this.colViewFinancialReports.Width = 150;
+            // 
+            // colAddNewFinancialItemCategory
+            // 
+            this.colAddNewFinancialItemCategory.Caption = "إضافة بند مالي جديد";
+            this.colAddNewFinancialItemCategory.FieldName = "AddNewFinancialItemCategory";
+            this.colAddNewFinancialItemCategory.MinWidth = 150;
+            this.colAddNewFinancialItemCategory.Name = "colAddNewFinancialItemCategory";
+            this.colAddNewFinancialItemCategory.Visible = true;
+            this.colAddNewFinancialItemCategory.VisibleIndex = 39;
+            this.colAddNewFinancialItemCategory.Width = 150;
+            // 
+            // colManageFinancialItemCategories
+            // 
+            this.colManageFinancialItemCategories.Caption = "إدارة جدول البنود المالية";
+            this.colManageFinancialItemCategories.FieldName = "ManageFinancialItemCategories";
+            this.colManageFinancialItemCategories.MinWidth = 150;
+            this.colManageFinancialItemCategories.Name = "colManageFinancialItemCategories";
+            this.colManageFinancialItemCategories.Visible = true;
+            this.colManageFinancialItemCategories.VisibleIndex = 43;
+            this.colManageFinancialItemCategories.Width = 150;
+            // 
             // colSetDateAndTime
             // 
             this.colSetDateAndTime.Caption = "تغيير وقت وتاريخ التطبيق";
@@ -581,8 +668,8 @@ namespace AssetManagement.Users
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // tableAdapterManager
             // 
@@ -593,6 +680,8 @@ namespace AssetManagement.Users
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
@@ -748,7 +837,6 @@ namespace AssetManagement.Users
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة جدول أنواع حسابات المستخدمين";
             this.Load += new System.EventHandler(this.ManageUserRoleTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -779,7 +867,6 @@ namespace AssetManagement.Users
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton userRoleTblBindingNavigatorSaveItem;
         private DevExpress.XtraGrid.GridControl userRoleGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView minorCategoryGridView;
         private DevExpress.XtraGrid.Views.Grid.GridView userRoleGridView;
         private System.Windows.Forms.BindingSource userRoleTblBindingSource;
         private AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter userRoleTblTableAdapter;
@@ -822,5 +909,13 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colRestoreDb;
         private DevExpress.XtraGrid.Columns.GridColumn colViewStats;
         private DevExpress.XtraGrid.Columns.GridColumn colCreateAssetsReports;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewFinancialItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageFinancialItems;
+        private DevExpress.XtraGrid.Columns.GridColumn colUpdateExistedFinancialItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colDeleteFinancialItemRecord;
+        private DevExpress.XtraGrid.Columns.GridColumn colViewFinancialReports;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewFinancialItemCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageFinancialItemCategories;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageAssetTbl;
     }
 }

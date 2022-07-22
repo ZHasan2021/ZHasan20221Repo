@@ -165,6 +165,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AssetCodePrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ActiveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetLifeSpanThresholdToWarn" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.SectionTbl" Member="SectionTbls">
@@ -198,6 +199,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RoleName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="AddNewAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageAssetTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -205,7 +207,7 @@
       <Column Name="SearchInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteInventoryRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="AddNewAssetMovement" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewAssetMovement" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ManageAssetMovements" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewAssetTransaction" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageAssetTransactions" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -282,10 +284,10 @@
       <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
@@ -303,8 +305,8 @@
       <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

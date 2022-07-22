@@ -32,6 +32,7 @@ namespace AssetManagement.Finance
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 200);
         }
 
         private void manageFinancialItemCategoryTblBtn_Click(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace AssetManagement.Finance
             {
                 mainAlertControl.Show(this, "خطأ في إضافة السجل المالي، حاول لاحقاً", StaticCode.ApplicationTitle);
             }
+            this.Close();
         }
 
         private void addNewFinancialItemBtn_Cancel_Click(object sender, EventArgs e)

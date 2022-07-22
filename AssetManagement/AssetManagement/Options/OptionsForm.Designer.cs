@@ -36,29 +36,33 @@ namespace AssetManagement.Options
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.assetLifeSpanThresholdToWarnNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.assetLifeSpanThresholdToWarnLabel = new System.Windows.Forms.Label();
+            this.monthsLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.assetLifeSpanThresholdToWarnNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // assetCodePrefixLabel
             // 
             this.assetCodePrefixLabel.AutoSize = true;
-            this.assetCodePrefixLabel.Location = new System.Drawing.Point(46, 51);
+            this.assetCodePrefixLabel.Location = new System.Drawing.Point(46, 40);
             this.assetCodePrefixLabel.Name = "assetCodePrefixLabel";
-            this.assetCodePrefixLabel.Size = new System.Drawing.Size(116, 24);
+            this.assetCodePrefixLabel.Size = new System.Drawing.Size(121, 24);
             this.assetCodePrefixLabel.TabIndex = 0;
-            this.assetCodePrefixLabel.Text = "بادئة كود الأصل";
+            this.assetCodePrefixLabel.Text = "بادئة كود الأصل:";
             // 
             // assetCodePrefixTextBox
             // 
-            this.assetCodePrefixTextBox.Location = new System.Drawing.Point(200, 47);
+            this.assetCodePrefixTextBox.Location = new System.Drawing.Point(509, 36);
             this.assetCodePrefixTextBox.Name = "assetCodePrefixTextBox";
-            this.assetCodePrefixTextBox.Size = new System.Drawing.Size(285, 32);
+            this.assetCodePrefixTextBox.Size = new System.Drawing.Size(199, 32);
             this.assetCodePrefixTextBox.TabIndex = 5;
             // 
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.Image = global::AssetManagement.Properties.Resources._2137707;
-            this.cancelBtn.Location = new System.Drawing.Point(686, 157);
+            this.cancelBtn.Location = new System.Drawing.Point(686, 177);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(90, 90);
             this.cancelBtn.TabIndex = 205;
@@ -68,7 +72,7 @@ namespace AssetManagement.Options
             // okBtn
             // 
             this.okBtn.Image = global::AssetManagement.Properties.Resources._2137710;
-            this.okBtn.Location = new System.Drawing.Point(539, 157);
+            this.okBtn.Location = new System.Drawing.Point(539, 177);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(90, 90);
             this.okBtn.TabIndex = 200;
@@ -90,6 +94,31 @@ namespace AssetManagement.Options
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
+            // assetLifeSpanThresholdToWarnNumericUpDown
+            // 
+            this.assetLifeSpanThresholdToWarnNumericUpDown.Location = new System.Drawing.Point(509, 96);
+            this.assetLifeSpanThresholdToWarnNumericUpDown.Name = "assetLifeSpanThresholdToWarnNumericUpDown";
+            this.assetLifeSpanThresholdToWarnNumericUpDown.Size = new System.Drawing.Size(120, 32);
+            this.assetLifeSpanThresholdToWarnNumericUpDown.TabIndex = 15;
+            // 
+            // assetLifeSpanThresholdToWarnLabel
+            // 
+            this.assetLifeSpanThresholdToWarnLabel.AutoSize = true;
+            this.assetLifeSpanThresholdToWarnLabel.Location = new System.Drawing.Point(46, 100);
+            this.assetLifeSpanThresholdToWarnLabel.Name = "assetLifeSpanThresholdToWarnLabel";
+            this.assetLifeSpanThresholdToWarnLabel.Size = new System.Drawing.Size(440, 24);
+            this.assetLifeSpanThresholdToWarnLabel.TabIndex = 10;
+            this.assetLifeSpanThresholdToWarnLabel.Text = "إشعار عن الأصول ذات العمر الافتراضي المتبقي أقل من أو يساوي:";
+            // 
+            // monthsLabel
+            // 
+            this.monthsLabel.AutoSize = true;
+            this.monthsLabel.Location = new System.Drawing.Point(664, 100);
+            this.monthsLabel.Name = "monthsLabel";
+            this.monthsLabel.Size = new System.Drawing.Size(44, 24);
+            this.monthsLabel.TabIndex = 20;
+            this.monthsLabel.Text = "أشهر";
+            // 
             // OptionsForm
             // 
             this.AcceptButton = this.okBtn;
@@ -97,6 +126,9 @@ namespace AssetManagement.Options
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(825, 295);
+            this.Controls.Add(this.monthsLabel);
+            this.Controls.Add(this.assetLifeSpanThresholdToWarnLabel);
+            this.Controls.Add(this.assetLifeSpanThresholdToWarnNumericUpDown);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.assetCodePrefixTextBox);
@@ -111,6 +143,7 @@ namespace AssetManagement.Options
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إعدادات التطبيق";
             this.Load += new System.EventHandler(this.OptionsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.assetLifeSpanThresholdToWarnNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +156,8 @@ namespace AssetManagement.Options
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
+        private System.Windows.Forms.NumericUpDown assetLifeSpanThresholdToWarnNumericUpDown;
+        private System.Windows.Forms.Label assetLifeSpanThresholdToWarnLabel;
+        private System.Windows.Forms.Label monthsLabel;
     }
 }

@@ -32,6 +32,10 @@ namespace AssetManagement
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.userRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.activeUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.activeUserRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMainCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -71,45 +75,45 @@ namespace AssetManagement
             this.manageFinancialItemsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageFinancialItemCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.prepareFinancialReportsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.addNewAsetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addNEwFinancislItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageAssetTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.openEencryptionKeysFolderRarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.openAppFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.openBackupFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.existedAssetsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetInventoriesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.assetsReportsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsMovementsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.assetsStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.assetsReportsAndStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.financeRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.FinancialRecordsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.manageAuxTablesRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.auxTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.exportImportDataRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.exportDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.backupAndRestoreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.importDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.backupAndRestoreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.optionsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.appDateAndTimeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.usersAccountsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.additionalOptionsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.appFoldersRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.mainRibbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
-            this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.userRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.activeUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.activeUserRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainRibbonControl
             // 
-            this.mainRibbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(89);
+            this.mainRibbonControl.ApplicationButtonDropDownControl = this.mainStatusStrip;
+            this.mainRibbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(78, 89, 78, 89);
             this.mainRibbonControl.ExpandCollapseItem.Id = 0;
             this.mainRibbonControl.Font = new System.Drawing.Font("Mudir MT", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mainRibbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -154,23 +158,62 @@ namespace AssetManagement
             this.manageFinancialItemsBarButtonItem,
             this.manageFinancialItemCategoryTblBarButtonItem,
             this.prepareFinancialReportsBarButtonItem,
-            this.barButtonItem1});
+            this.addNewAsetBarButtonItem,
+            this.addNEwFinancislItemBarButtonItem,
+            this.manageAssetTblBarButtonItem,
+            this.openEencryptionKeysFolderRarButtonItem,
+            this.openAppFolderBarButtonItem,
+            this.openBackupFolderBarButtonItem,
+            this.assetsToDestructBarStaticItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(10);
-            this.mainRibbonControl.MaxItemId = 49;
+            this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.mainRibbonControl.MaxItemId = 57;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
-            this.mainRibbonControl.OptionsMenuMinWidth = 1006;
+            this.mainRibbonControl.OptionsMenuMinWidth = 880;
             this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.assetsRibbonPage,
             this.financeRibbonPage,
             this.manageAuxTablesRibbonPage,
             this.exportImportDataRibbonPage,
             this.optionsRibbonPage});
-            this.mainRibbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1});
-            this.mainRibbonControl.Size = new System.Drawing.Size(1439, 295);
-            this.mainRibbonControl.StatusBar = this.ribbonStatusBar1;
+            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewAsetBarButtonItem);
+            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNEwFinancislItemBarButtonItem);
+            this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
+            this.mainRibbonControl.Size = new System.Drawing.Size(1485, 283);
+            this.mainRibbonControl.StatusBar = this.mainRibbonStatusBar;
+            // 
+            // mainStatusStrip
+            // 
+            this.mainStatusStrip.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userRoleToolStripStatusLabel,
+            this.activeUserToolStripStatusLabel,
+            this.activeUserRoleToolStripStatusLabel});
+            this.mainStatusStrip.Location = new System.Drawing.Point(0, 929);
+            this.mainStatusStrip.Name = "mainStatusStrip";
+            this.mainStatusStrip.Padding = new System.Windows.Forms.Padding(12, 0, 1, 0);
+            this.mainStatusStrip.Size = new System.Drawing.Size(1485, 22);
+            this.mainStatusStrip.TabIndex = 2;
+            this.mainStatusStrip.Text = "statusStrip1";
+            // 
+            // userRoleToolStripStatusLabel
+            // 
+            this.userRoleToolStripStatusLabel.Name = "userRoleToolStripStatusLabel";
+            this.userRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // activeUserToolStripStatusLabel
+            // 
+            this.activeUserToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.activeUserToolStripStatusLabel.Name = "activeUserToolStripStatusLabel";
+            this.activeUserToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // activeUserRoleToolStripStatusLabel
+            // 
+            this.activeUserRoleToolStripStatusLabel.BackColor = System.Drawing.Color.Aqua;
+            this.activeUserRoleToolStripStatusLabel.Name = "activeUserRoleToolStripStatusLabel";
+            this.activeUserRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
             // addNewAssetBarButtonItem
             // 
@@ -271,21 +314,27 @@ namespace AssetManagement
             // appDateBarStaticItem
             // 
             this.appDateBarStaticItem.Id = 15;
+            this.appDateBarStaticItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("appDateBarStaticItem.ImageOptions.Image")));
+            this.appDateBarStaticItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("appDateBarStaticItem.ImageOptions.LargeImage")));
             this.appDateBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.appDateBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appDateBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Cascadia Code", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appDateBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
             this.appDateBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
             this.appDateBarStaticItem.Name = "appDateBarStaticItem";
+            this.appDateBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.appDateBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.setAppDateAndTimeBarStaticItem_ItemClick);
             // 
             // appTimeBarStaticItem
             // 
             this.appTimeBarStaticItem.Id = 16;
+            this.appTimeBarStaticItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("appTimeBarStaticItem.ImageOptions.Image")));
+            this.appTimeBarStaticItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("appTimeBarStaticItem.ImageOptions.LargeImage")));
             this.appTimeBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.appTimeBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appTimeBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Cascadia Code", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appTimeBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
             this.appTimeBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
             this.appTimeBarStaticItem.Name = "appTimeBarStaticItem";
+            this.appTimeBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.appTimeBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.setAppDateAndTimeBarStaticItem_ItemClick);
             // 
             // viewReportsBarButtonItem
@@ -521,13 +570,71 @@ namespace AssetManagement
             this.prepareFinancialReportsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.prepareFinancialReportsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.prepareFinancialReportsBarButtonItem_ItemClick);
             // 
-            // barButtonItem1
+            // addNewAsetBarButtonItem
             // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Id = 48;
-            this.barButtonItem1.ImageOptions.Image = global::AssetManagement.Properties.Resources._1630420;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addNewAsetBarButtonItem.Caption = "إضافة أصل جديد";
+            this.addNewAsetBarButtonItem.Id = 49;
+            this.addNewAsetBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.Image")));
+            this.addNewAsetBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.LargeImage")));
+            this.addNewAsetBarButtonItem.Name = "addNewAsetBarButtonItem";
+            this.addNewAsetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
+            // 
+            // addNEwFinancislItemBarButtonItem
+            // 
+            this.addNEwFinancislItemBarButtonItem.Caption = "إضافة سجل مالي جديد";
+            this.addNEwFinancislItemBarButtonItem.Id = 50;
+            this.addNEwFinancislItemBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.Image")));
+            this.addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage")));
+            this.addNEwFinancislItemBarButtonItem.Name = "addNEwFinancislItemBarButtonItem";
+            this.addNEwFinancislItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
+            // 
+            // manageAssetTblBarButtonItem
+            // 
+            this.manageAssetTblBarButtonItem.Caption = "إدارة سجلات الأصول";
+            this.manageAssetTblBarButtonItem.Id = 51;
+            this.manageAssetTblBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("manageAssetTblBarButtonItem.ImageOptions.SvgImage")));
+            this.manageAssetTblBarButtonItem.Name = "manageAssetTblBarButtonItem";
+            this.manageAssetTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageAssetTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageAssetTblBarButtonItem_ItemClick);
+            // 
+            // openEencryptionKeysFolderRarButtonItem
+            // 
+            this.openEencryptionKeysFolderRarButtonItem.Caption = "مجلد مفاتيح التشفير";
+            this.openEencryptionKeysFolderRarButtonItem.Id = 53;
+            this.openEencryptionKeysFolderRarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openEencryptionKeysFolderRarButtonItem.ImageOptions.SvgImage")));
+            this.openEencryptionKeysFolderRarButtonItem.Name = "openEencryptionKeysFolderRarButtonItem";
+            this.openEencryptionKeysFolderRarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.openEencryptionKeysFolderRarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openEencryptionKeysFolderRarButtonItem_ItemClick);
+            // 
+            // openAppFolderBarButtonItem
+            // 
+            this.openAppFolderBarButtonItem.Caption = "فتح مجلد التطبيق";
+            this.openAppFolderBarButtonItem.Id = 54;
+            this.openAppFolderBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openAppFolderBarButtonItem.ImageOptions.SvgImage")));
+            this.openAppFolderBarButtonItem.Name = "openAppFolderBarButtonItem";
+            this.openAppFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.openAppFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openAppFolderBarButtonItem_ItemClick);
+            // 
+            // openBackupFolderBarButtonItem
+            // 
+            this.openBackupFolderBarButtonItem.Caption = "مجلد النسخ الاحتياطية";
+            this.openBackupFolderBarButtonItem.Id = 55;
+            this.openBackupFolderBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openBackupFolderBarButtonItem.ImageOptions.SvgImage")));
+            this.openBackupFolderBarButtonItem.Name = "openBackupFolderBarButtonItem";
+            this.openBackupFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.openBackupFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openBackupFolderBarButtonItem_ItemClick);
+            // 
+            // assetsToDestructBarStaticItem
+            // 
+            this.assetsToDestructBarStaticItem.Id = 56;
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.assetsToDestructBarStaticItem.Name = "assetsToDestructBarStaticItem";
+            this.assetsToDestructBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.assetsToDestructBarStaticItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -535,7 +642,7 @@ namespace AssetManagement
             // 
             // assetsRibbonPage
             // 
-            this.assetsRibbonPage.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetsRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetsRibbonPage.Appearance.Options.UseFont = true;
             this.assetsRibbonPage.Appearance.Options.UseTextOptions = true;
             this.assetsRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -543,13 +650,12 @@ namespace AssetManagement
             this.newAssetRibbonPageGroup,
             this.existedAssetsRibbonPageGroup,
             this.assetInventoriesRibbonPageGroup,
-            this.assetsReportsRibbonPageGroup,
             this.assetsMovementsRibbonPageGroup,
-            this.assetsStatsRibbonPageGroup});
+            this.assetsReportsAndStatsRibbonPageGroup});
             this.assetsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._41866361;
             this.assetsRibbonPage.ImageOptions.ImageIndex = 41;
             this.assetsRibbonPage.Name = "assetsRibbonPage";
-            this.assetsRibbonPage.Text = "الأصول - Assets";
+            this.assetsRibbonPage.Text = "الأصول";
             // 
             // newAssetRibbonPageGroup
             // 
@@ -565,6 +671,7 @@ namespace AssetManagement
             this.existedAssetsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.updateExistedAssetBarButtonItem);
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.deleteAssetsBarButtonItem);
+            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.manageAssetTblBarButtonItem);
             this.existedAssetsRibbonPageGroup.Name = "existedAssetsRibbonPageGroup";
             this.existedAssetsRibbonPageGroup.Text = "جدول الأصول - Assets table";
             // 
@@ -576,13 +683,6 @@ namespace AssetManagement
             this.assetInventoriesRibbonPageGroup.Name = "assetInventoriesRibbonPageGroup";
             this.assetInventoriesRibbonPageGroup.Text = "جرد الأصول - Assets inventories";
             // 
-            // assetsReportsRibbonPageGroup
-            // 
-            this.assetsReportsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.assetsReportsRibbonPageGroup.ItemLinks.Add(this.viewReportsBarButtonItem);
-            this.assetsReportsRibbonPageGroup.Name = "assetsReportsRibbonPageGroup";
-            this.assetsReportsRibbonPageGroup.Text = "تقارير الأصول - Assets reports";
-            // 
             // assetsMovementsRibbonPageGroup
             // 
             this.assetsMovementsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
@@ -593,20 +693,23 @@ namespace AssetManagement
             this.assetsMovementsRibbonPageGroup.Name = "assetsMovementsRibbonPageGroup";
             this.assetsMovementsRibbonPageGroup.Text = "حركة الأصول - Assets movements";
             // 
-            // assetsStatsRibbonPageGroup
+            // assetsReportsAndStatsRibbonPageGroup
             // 
-            this.assetsStatsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.assetsStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
-            this.assetsStatsRibbonPageGroup.Name = "assetsStatsRibbonPageGroup";
-            this.assetsStatsRibbonPageGroup.Text = "تقارير إحصائية";
+            this.assetsReportsAndStatsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
+            this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewReportsBarButtonItem);
+            this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
+            this.assetsReportsAndStatsRibbonPageGroup.Name = "assetsReportsAndStatsRibbonPageGroup";
+            this.assetsReportsAndStatsRibbonPageGroup.Text = "تقارير وإحصائيات الأصول";
             // 
             // financeRibbonPage
             // 
+            this.financeRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.financeRibbonPage.Appearance.Options.UseFont = true;
             this.financeRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.FinancialRecordsRibbonPageGroup});
             this.financeRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2407198;
             this.financeRibbonPage.Name = "financeRibbonPage";
-            this.financeRibbonPage.Text = "المالية - Finance";
+            this.financeRibbonPage.Text = "المالية";
             // 
             // FinancialRecordsRibbonPageGroup
             // 
@@ -618,7 +721,7 @@ namespace AssetManagement
             // 
             // manageAuxTablesRibbonPage
             // 
-            this.manageAuxTablesRibbonPage.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAuxTablesRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAuxTablesRibbonPage.Appearance.Options.UseFont = true;
             this.manageAuxTablesRibbonPage.Appearance.Options.UseTextOptions = true;
             this.manageAuxTablesRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -626,7 +729,7 @@ namespace AssetManagement
             this.auxTablesRibbonPageGroup});
             this.manageAuxTablesRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2762550;
             this.manageAuxTablesRibbonPage.Name = "manageAuxTablesRibbonPage";
-            this.manageAuxTablesRibbonPage.Text = "إدارة الجداول المساعدة - Manage aux tables";
+            this.manageAuxTablesRibbonPage.Text = "الجداول المساعدة";
             // 
             // auxTablesRibbonPageGroup
             // 
@@ -644,7 +747,7 @@ namespace AssetManagement
             // 
             // exportImportDataRibbonPage
             // 
-            this.exportImportDataRibbonPage.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportImportDataRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportImportDataRibbonPage.Appearance.Options.UseFont = true;
             this.exportImportDataRibbonPage.Appearance.Options.UseTextOptions = true;
             this.exportImportDataRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -654,7 +757,7 @@ namespace AssetManagement
             this.backupAndRestoreRibbonPageGroup});
             this.exportImportDataRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._3034410;
             this.exportImportDataRibbonPage.Name = "exportImportDataRibbonPage";
-            this.exportImportDataRibbonPage.Text = "تصدير / استيراد البيانات - Export / Import data";
+            this.exportImportDataRibbonPage.Text = "تصدير / استيراد البيانات";
             // 
             // exportDataRibbonPageGroup
             // 
@@ -664,14 +767,6 @@ namespace AssetManagement
             this.exportDataRibbonPageGroup.Name = "exportDataRibbonPageGroup";
             this.exportDataRibbonPageGroup.Text = "تصدير البيانات - Export data";
             // 
-            // backupAndRestoreRibbonPageGroup
-            // 
-            this.backupAndRestoreRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.backupDbBarButtonItem);
-            this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.restoreDbBarButtonItem);
-            this.backupAndRestoreRibbonPageGroup.Name = "backupAndRestoreRibbonPageGroup";
-            this.backupAndRestoreRibbonPageGroup.Text = "نسخ احتياطي واستعادة لقاعدة البيانات";
-            // 
             // importDataRibbonPageGroup
             // 
             this.importDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
@@ -680,17 +775,26 @@ namespace AssetManagement
             this.importDataRibbonPageGroup.Name = "importDataRibbonPageGroup";
             this.importDataRibbonPageGroup.Text = "استيراد البيانات - Import data";
             // 
+            // backupAndRestoreRibbonPageGroup
+            // 
+            this.backupAndRestoreRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
+            this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.backupDbBarButtonItem);
+            this.backupAndRestoreRibbonPageGroup.ItemLinks.Add(this.restoreDbBarButtonItem);
+            this.backupAndRestoreRibbonPageGroup.Name = "backupAndRestoreRibbonPageGroup";
+            this.backupAndRestoreRibbonPageGroup.Text = "نسخ احتياطي واستعادة لقاعدة البيانات";
+            // 
             // optionsRibbonPage
             // 
-            this.optionsRibbonPage.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optionsRibbonPage.Appearance.Options.UseFont = true;
             this.optionsRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.appDateAndTimeRibbonPageGroup,
             this.usersAccountsRibbonPageGroup,
-            this.additionalOptionsRibbonPageGroup});
+            this.additionalOptionsRibbonPageGroup,
+            this.appFoldersRibbonPageGroup});
             this.optionsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2771406;
             this.optionsRibbonPage.Name = "optionsRibbonPage";
-            this.optionsRibbonPage.Text = "الإعدادات - Options";
+            this.optionsRibbonPage.Text = "الإعدادات";
             // 
             // appDateAndTimeRibbonPageGroup
             // 
@@ -716,21 +820,25 @@ namespace AssetManagement
             this.additionalOptionsRibbonPageGroup.Name = "additionalOptionsRibbonPageGroup";
             this.additionalOptionsRibbonPageGroup.Text = "إعدادات إضافية";
             // 
-            // repositoryItemTextEdit1
+            // appFoldersRibbonPageGroup
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openAppFolderBarButtonItem);
+            this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openEencryptionKeysFolderRarButtonItem);
+            this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openBackupFolderBarButtonItem);
+            this.appFoldersRibbonPageGroup.Name = "appFoldersRibbonPageGroup";
+            this.appFoldersRibbonPageGroup.Text = "مجلدات التطبيق";
             // 
-            // ribbonStatusBar1
+            // mainRibbonStatusBar
             // 
-            this.ribbonStatusBar1.ItemLinks.Add(this.skinDropDownButtonItem1);
-            this.ribbonStatusBar1.ItemLinks.Add(this.appDateBarStaticItem);
-            this.ribbonStatusBar1.ItemLinks.Add(this.appTimeBarStaticItem);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 831);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(8);
-            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = this.mainRibbonControl;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1439, 33);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.skinDropDownButtonItem1);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.appDateBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.appTimeBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
+            this.mainRibbonStatusBar.Location = new System.Drawing.Point(0, 951);
+            this.mainRibbonStatusBar.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.mainRibbonStatusBar.Name = "mainRibbonStatusBar";
+            this.mainRibbonStatusBar.Ribbon = this.mainRibbonControl;
+            this.mainRibbonStatusBar.Size = new System.Drawing.Size(1485, 30);
             // 
             // ribbonImageList
             // 
@@ -793,42 +901,6 @@ namespace AssetManagement
             this.ribbonImageList.Images.SetKeyName(54, "8689249.png");
             this.ribbonImageList.Images.SetKeyName(55, "8712876.png");
             // 
-            // mainStatusStrip
-            // 
-            this.mainStatusStrip.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userRoleToolStripStatusLabel,
-            this.activeUserToolStripStatusLabel,
-            this.activeUserRoleToolStripStatusLabel});
-            this.mainStatusStrip.Location = new System.Drawing.Point(0, 809);
-            this.mainStatusStrip.Name = "mainStatusStrip";
-            this.mainStatusStrip.Size = new System.Drawing.Size(1439, 22);
-            this.mainStatusStrip.TabIndex = 2;
-            this.mainStatusStrip.Text = "statusStrip1";
-            // 
-            // userRoleToolStripStatusLabel
-            // 
-            this.userRoleToolStripStatusLabel.Name = "userRoleToolStripStatusLabel";
-            this.userRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
-            // 
-            // activeUserToolStripStatusLabel
-            // 
-            this.activeUserToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.activeUserToolStripStatusLabel.Name = "activeUserToolStripStatusLabel";
-            this.activeUserToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
-            // 
-            // activeUserRoleToolStripStatusLabel
-            // 
-            this.activeUserRoleToolStripStatusLabel.BackColor = System.Drawing.Color.Aqua;
-            this.activeUserRoleToolStripStatusLabel.Name = "activeUserRoleToolStripStatusLabel";
-            this.activeUserRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
-            // 
-            // ribbonPage3
-            // 
-            this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "ribbonPage3";
-            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -852,22 +924,23 @@ namespace AssetManagement
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1439, 864);
+            this.ClientSize = new System.Drawing.Size(1485, 981);
             this.Controls.Add(this.mainStatusStrip);
-            this.Controls.Add(this.ribbonStatusBar1);
+            this.Controls.Add(this.mainRibbonStatusBar);
             this.Controls.Add(this.mainRibbonControl);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("MainForm.IconOptions.Icon")));
             this.Name = "MainForm";
+            this.Ribbon = this.mainRibbonControl;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StatusBar = this.mainRibbonStatusBar;
             this.Text = "Asset management - إدارة الأصول";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             this.mainStatusStrip.ResumeLayout(false);
             this.mainStatusStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -886,7 +959,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup existedAssetsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem addNewMainCategoryBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem addNewMinorCategoryBarButtonItem;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar mainRibbonStatusBar;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel userRoleToolStripStatusLabel;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
@@ -899,7 +972,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonMiniToolbar mainRibbonMiniToolbar;
         private DevExpress.XtraBars.Ribbon.RibbonPage manageAuxTablesRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup auxTablesRibbonPageGroup;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private DevExpress.XtraBars.BarButtonItem manageCategoriesBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPage optionsRibbonPage;
@@ -910,7 +982,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarStaticItem appTimeBarStaticItem;
         private System.Windows.Forms.Timer mainTimer;
         private DevExpress.XtraBars.BarButtonItem viewReportsBarButtonItem;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsReportsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem manageCurrencyTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageDepartmentTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageSectionTblBarButtonItem;
@@ -925,7 +996,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageUserTblBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup usersAccountsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem addNewUserBarButtonItem;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup additionalOptionsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem loginBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageUserRoleTblBarButtonItem;
@@ -938,7 +1008,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem importDataBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup importDataRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsStatsRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsReportsAndStatsRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPage financeRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup FinancialRecordsRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem addNewFinancialItemBarButtonItem;
@@ -947,7 +1017,14 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem prepareFinancialReportsBarButtonItem;
         private System.Windows.Forms.ToolStripStatusLabel activeUserToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel activeUserRoleToolStripStatusLabel;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem addNewAsetBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem addNEwFinancislItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageAssetTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem openEencryptionKeysFolderRarButtonItem;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup appFoldersRibbonPageGroup;
+        private DevExpress.XtraBars.BarButtonItem openAppFolderBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
+        private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
     }
 }
 

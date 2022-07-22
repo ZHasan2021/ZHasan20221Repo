@@ -93,6 +93,7 @@ namespace AssetManagement.Users
             {
                 mainAlertControl.Show(this, "حدثت مشكلة أثناء إضافة الحساب، حاول ثانية", StaticCode.ApplicationTitle);
             }
+            this.Close();
         }
 
         private void addNewUserBtn_Cancel_Click(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace AssetManagement.Users
 
         private void manageUserRoleTblBtn_Click(object sender, EventArgs e)
         {
-            AddNewUserRoleForm usrrlFrm = new AddNewUserRoleForm();
+            ManageUserRoleTblForm usrrlFrm = new ManageUserRoleTblForm();
             usrrlFrm.ShowDialog();
             this.userRoleTblTableAdapter.Fill(this.assetMngDbDataSet.UserRoleTbl);
         }

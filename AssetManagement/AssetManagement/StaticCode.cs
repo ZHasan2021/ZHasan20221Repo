@@ -62,6 +62,12 @@ namespace AssetManagement
                 return false;
             }
         }
+
+        public static List<AssetTbl> GetAssetsToDestruct()
+        {
+            List<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1).ToList();
+            return res;
+        }
         #endregion
 
         #region Login
@@ -361,7 +367,7 @@ namespace AssetManagement
                 fin.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
