@@ -21,6 +21,10 @@ namespace AssetManagement
         #endregion
 
         #region Db
+        public static string dbPath = $"{Application.StartupPath}//Db//AssetMngDb.mdf";
+        public static string db_logPath = $"{Application.StartupPath}//Db//AssetMngDb_log.ldf";
+        public static string dbPath_stat = $"{Application.StartupPath}//Db//AssetMngDb2.mdf";
+        public static string db_logPath_stat = $"{Application.StartupPath}//Db//AssetMngDb2_log.ldf";
         public static AssetMngDbDataContext mainDbContext = new AssetMngDbDataContext();
         public static OptionsTbl appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
@@ -65,8 +69,19 @@ namespace AssetManagement
 
         public static List<AssetTbl> GetAssetsToDestruct()
         {
-            List<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1).ToList();
+            ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
+            List<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths >= 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1).ToList();
             return res;
+        }
+
+        public static void ExecuteProcedure(string procName)
+        {
+            SqlConnection sqlConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
+            if (sqlConn.State != System.Data.ConnectionState.Open)
+                sqlConn.Open();
+            SqlCommand sqlComm = new SqlCommand(procName, sqlConn);
+            sqlComm.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlComm.ExecuteNonQuery();
         }
         #endregion
 

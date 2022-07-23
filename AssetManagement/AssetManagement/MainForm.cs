@@ -70,15 +70,19 @@ namespace AssetManagement
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
+        private void UpdateAssetToDestructLabel()
+        {
+            assetsToDestructList = StaticCode.GetAssetsToDestruct();
+            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count})";
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.MinimumSize = this.Size;
 
             ApplyUserRolesOnInterface();
-
-            assetsToDestructList = StaticCode.GetAssetsToDestruct();
-            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count})";
+            UpdateAssetToDestructLabel();
         }
 
         private void exportDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -155,6 +159,7 @@ namespace AssetManagement
         {
             ManageAssetTblForm mngFrm = new ManageAssetTblForm();
             mngFrm.ShowDialog();
+            UpdateAssetToDestructLabel();
         }
 
         private void categoriesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -390,7 +395,7 @@ namespace AssetManagement
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AssetsStatsForm statFrm = new AssetsStatsForm();
-            //statFrm.ShowDialog();
+            statFrm.ShowDialog();
         }
 
         private void setAppDateAndTimeBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +26,14 @@ namespace AssetManagement.Assets
         {
             this.MinimumSize = this.Size;
 
-            MsSqlConnectionParameters msSqlParams = new MsSqlConnectionParameters();
-            msSqlParams.AuthorizationType = MsSqlAuthorizationType.Windows;
-            msSqlParams.ServerName = @"(localdb)\MSSQLLocalDB";
-            msSqlParams.DatabaseName = "AssetMngDb";
+            SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
+            if (dbConn.State != ConnectionState.Closed)
+                dbConn.Close();
+            //File.Copy(StaticCode.dbPath, StaticCode.db_logPath, true);
+            //File.Copy(StaticCode.db_logPath, StaticCode.db_logPath_stat, true);
 
+            MsSqlCEConnectionParameters msSqlParams = new MsSqlCEConnectionParameters();
+            msSqlParams.FileName = StaticCode.dbPath_stat;
             DashboardSqlDataSource sqlDataSource = new DashboardSqlDataSource("Data Source 1", msSqlParams);
             SelectQuery selectQuery = SelectQueryFluentBuilder
                 .AddTable("AssetTbl")
@@ -37,6 +42,7 @@ namespace AssetManagement.Assets
             sqlDataSource.Queries.Add(selectQuery);
             sqlDataSource.Fill();
             dashboardDesigner1.Dashboard.DataSources.Add(sqlDataSource);
+                dbConn.Open();
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

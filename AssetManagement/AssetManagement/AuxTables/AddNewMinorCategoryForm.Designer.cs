@@ -200,20 +200,26 @@ namespace AssetManagement.AuxTables
             // addNewMinorCategoryBtn_Cancel
             // 
             this.addNewMinorCategoryBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
-            this.addNewMinorCategoryBtn_Cancel.Location = new System.Drawing.Point(772, 303);
+            this.addNewMinorCategoryBtn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addNewMinorCategoryBtn_Cancel.Location = new System.Drawing.Point(714, 282);
             this.addNewMinorCategoryBtn_Cancel.Name = "addNewMinorCategoryBtn_Cancel";
-            this.addNewMinorCategoryBtn_Cancel.Size = new System.Drawing.Size(69, 65);
+            this.addNewMinorCategoryBtn_Cancel.Size = new System.Drawing.Size(156, 65);
             this.addNewMinorCategoryBtn_Cancel.TabIndex = 105;
+            this.addNewMinorCategoryBtn_Cancel.Text = "إغلاق";
+            this.addNewMinorCategoryBtn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.addNewMinorCategoryBtn_Cancel.UseVisualStyleBackColor = true;
             this.addNewMinorCategoryBtn_Cancel.Click += new System.EventHandler(this.addNewMinorCategoryBtn_Cancel_Click);
             // 
             // addNewMinorCategoryBtn_OK
             // 
             this.addNewMinorCategoryBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
-            this.addNewMinorCategoryBtn_OK.Location = new System.Drawing.Point(653, 303);
+            this.addNewMinorCategoryBtn_OK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addNewMinorCategoryBtn_OK.Location = new System.Drawing.Point(714, 182);
             this.addNewMinorCategoryBtn_OK.Name = "addNewMinorCategoryBtn_OK";
-            this.addNewMinorCategoryBtn_OK.Size = new System.Drawing.Size(69, 65);
+            this.addNewMinorCategoryBtn_OK.Size = new System.Drawing.Size(156, 65);
             this.addNewMinorCategoryBtn_OK.TabIndex = 100;
+            this.addNewMinorCategoryBtn_OK.Text = "إضافة";
+            this.addNewMinorCategoryBtn_OK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.addNewMinorCategoryBtn_OK.UseVisualStyleBackColor = true;
             this.addNewMinorCategoryBtn_OK.Click += new System.EventHandler(this.addNewMinorCategoryBtn_OK_Click);
             // 

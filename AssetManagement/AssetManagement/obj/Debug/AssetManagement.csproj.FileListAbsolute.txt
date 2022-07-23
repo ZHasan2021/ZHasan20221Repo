@@ -546,7 +546,6 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debu
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Finance.FinancialReportsForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.AuxTables.ManageFinancialItemTblForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.UpdateExistedAssetForm.resources
-C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.csproj.AssemblyReference.cache
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\DevExpress.XtraScheduler.v21.2.Core.Desktop.dll
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\DevExpress.XtraScheduler.v21.2.Core.dll
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\DevExpress.XtraScheduler.v21.2.dll

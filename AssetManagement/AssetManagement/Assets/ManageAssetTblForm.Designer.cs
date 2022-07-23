@@ -121,6 +121,9 @@ namespace AssetManagement.Assets
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
+            this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -148,6 +151,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainCategoryTblBindingSource
@@ -396,7 +401,8 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit5,
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit6,
-            this.repositoryItemCalcEdit1});
+            this.repositoryItemCalcEdit1,
+            this.repositoryItemLookUpEdit7});
             this.assetGridControl.Size = new System.Drawing.Size(1316, 741);
             this.assetGridControl.TabIndex = 6;
             this.assetGridControl.UseEmbeddedNavigator = true;
@@ -816,11 +822,11 @@ namespace AssetManagement.Assets
             // 
             this.colEstateOwnershipDocumentWith.Caption = "مع من ورقة الملكية / عقار";
             this.colEstateOwnershipDocumentWith.FieldName = "EstateOwnershipDocumentWith";
-            this.colEstateOwnershipDocumentWith.MinWidth = 15;
+            this.colEstateOwnershipDocumentWith.MinWidth = 150;
             this.colEstateOwnershipDocumentWith.Name = "colEstateOwnershipDocumentWith";
             this.colEstateOwnershipDocumentWith.Visible = true;
             this.colEstateOwnershipDocumentWith.VisibleIndex = 24;
-            this.colEstateOwnershipDocumentWith.Width = 120;
+            this.colEstateOwnershipDocumentWith.Width = 150;
             // 
             // colEstateArea
             // 
@@ -835,6 +841,7 @@ namespace AssetManagement.Assets
             // colEstateAreaUnit
             // 
             this.colEstateAreaUnit.Caption = "وحدة المساحة / عقار";
+            this.colEstateAreaUnit.ColumnEdit = this.repositoryItemLookUpEdit7;
             this.colEstateAreaUnit.FieldName = "EstateAreaUnit";
             this.colEstateAreaUnit.MinWidth = 80;
             this.colEstateAreaUnit.Name = "colEstateAreaUnit";
@@ -866,11 +873,11 @@ namespace AssetManagement.Assets
             // 
             this.colCarChassisNumber.Caption = "رقم الهيكل (الشاصيه) / مركبات";
             this.colCarChassisNumber.FieldName = "CarChassisNumber";
-            this.colCarChassisNumber.MinWidth = 12;
+            this.colCarChassisNumber.MinWidth = 120;
             this.colCarChassisNumber.Name = "colCarChassisNumber";
             this.colCarChassisNumber.Visible = true;
             this.colCarChassisNumber.VisibleIndex = 29;
-            this.colCarChassisNumber.Width = 100;
+            this.colCarChassisNumber.Width = 120;
             // 
             // colCarEngineNumber
             // 
@@ -979,7 +986,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
@@ -996,6 +1003,28 @@ namespace AssetManagement.Assets
             // statusTblTableAdapter
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // repositoryItemLookUpEdit7
+            // 
+            this.repositoryItemLookUpEdit7.AutoHeight = false;
+            this.repositoryItemLookUpEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit7.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit7.DataSource = this.estateAreaUnitTblBindingSource;
+            this.repositoryItemLookUpEdit7.DisplayMember = "EstateAreaUnitName";
+            this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
+            this.repositoryItemLookUpEdit7.ValueMember = "ID";
+            // 
+            // estateAreaUnitTblBindingSource
+            // 
+            this.estateAreaUnitTblBindingSource.DataMember = "EstateAreaUnitTbl";
+            this.estateAreaUnitTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // estateAreaUnitTblTableAdapter
+            // 
+            this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
             // 
             // ManageAssetTblForm
             // 
@@ -1047,6 +1076,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1143,5 +1174,8 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.StatusTblTableAdapter statusTblTableAdapter;
         private System.Windows.Forms.BindingSource statusTblBindingSource;
         private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit7;
+        private System.Windows.Forms.BindingSource estateAreaUnitTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter estateAreaUnitTblTableAdapter;
     }
 }
