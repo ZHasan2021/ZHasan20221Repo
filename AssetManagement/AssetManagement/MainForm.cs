@@ -4,6 +4,7 @@ using AssetManagement.Finance;
 using AssetManagement.Options;
 using AssetManagement.Properties;
 using AssetManagement.Users;
+using DevExpress.XtraReports.UI;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace AssetManagement
 {
     public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        List<AssetTbl> assetsToDestructList =new List<AssetTbl> ();
+        IQueryable<AssetTbl> assetsToDestructList = null;
 
         public MainForm()
         {
@@ -73,8 +74,8 @@ namespace AssetManagement
         private void UpdateAssetToDestructLabel()
         {
             assetsToDestructList = StaticCode.GetAssetsToDestruct();
-            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count})";
+            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count()})";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -185,8 +186,8 @@ namespace AssetManagement
 
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AssetsReports repFrm = new AssetsReports();
-            //repFrm.ShowDialog();
+            AssetsXtraReport repFrm = new AssetsXtraReport();
+            repFrm.ShowPreviewDialog();
         }
 
         private void manageCurrencyTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -355,19 +356,11 @@ namespace AssetManagement
         {
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
+            UpdateAssetToDestructLabel();
         }
 
         private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath, FileMode.OpenOrCreate);
-            byte[] AesKey_IV_Dec = new byte[48];
-            AesKey_IV_Rd.Read(AesKey_IV_Dec, 0, 48);
-            AesKey_IV_Rd.Close();
-            byte[] AesKey = new byte[32];
-            byte[] AesIV = new byte[16];
-            Array.Copy(AesKey_IV_Dec, 0, AesKey, 0, 32);
-            Array.Copy(AesKey_IV_Dec, 32, AesIV, 0, 16);
-            //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
             OpenFileDialog encFileOFD = new OpenFileDialog() { Filter = (decryptImportedFileBarCheckItem.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (encFileOFD.ShowDialog() != DialogResult.OK)
             {
@@ -377,6 +370,15 @@ namespace AssetManagement
             string importedExcelFilePath = encFileOFD.FileName;
             if (decryptImportedFileBarCheckItem.Checked)
             {
+                FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath, FileMode.OpenOrCreate);
+                byte[] AesKey_IV_Dec = new byte[48];
+                AesKey_IV_Rd.Read(AesKey_IV_Dec, 0, 48);
+                AesKey_IV_Rd.Close();
+                byte[] AesKey = new byte[32];
+                byte[] AesIV = new byte[16];
+                Array.Copy(AesKey_IV_Dec, 0, AesKey, 0, 32);
+                Array.Copy(AesKey_IV_Dec, 32, AesIV, 0, 16);
+                //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
                 importedExcelFilePath = encFileOFD.FileName.Replace(".assf", ".xlsx");
                 bool decrypted = StaticCode.AesDecryption(encFileOFD.FileName, importedExcelFilePath, AesKey, AesIV);
                 if (!decrypted)
@@ -385,6 +387,7 @@ namespace AssetManagement
                     return;
                 }
             }
+            StaticCode.ImportDataFromExcel(importedExcelFilePath);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -451,7 +454,9 @@ namespace AssetManagement
 
         private void assetsToDestructBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            AssetsToDestructForm desFrm = new AssetsToDestructForm(assetsToDestructList);
+            desFrm.ShowDialog();
+            UpdateAssetToDestructLabel();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace AssetManagement.Assets
             sqlDataSource.Queries.Add(selectQuery);
             sqlDataSource.Fill();
             dashboardDesigner1.Dashboard.DataSources.Add(sqlDataSource);
-                dbConn.Open();
+            dbConn.Open();
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

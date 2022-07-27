@@ -564,3 +564,6 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debu
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\DevExpress.XtraReports.v21.2.CodeCompletion.xml
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsReports.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsToDestructForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetCardViewForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsXtraReport.resources

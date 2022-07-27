@@ -1,6 +1,9 @@
 ﻿using AssetManagement.Properties;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -67,10 +70,11 @@ namespace AssetManagement
             }
         }
 
-        public static List<AssetTbl> GetAssetsToDestruct()
+        public static IQueryable<AssetTbl> GetAssetsToDestruct()
         {
             ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
-            List<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths >= 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1).ToList();
+            mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths >= 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1);
             return res;
         }
 
@@ -93,6 +97,53 @@ namespace AssetManagement
 
         #region Export and Import
         public static string ExportFolder = $"{Application.StartupPath}//Export files//";
+
+        public static void ImportDataFromExcel(string excelFilePath)
+        {
+            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
+            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
+            foreach (ExcelWorksheet oneSh in srcExcelWb.Worksheets)
+            {
+                //declare variables - edit these based on your particular situation   
+                string ssqltable = oneSh.Name;
+                if (ssqltable != "AssetTbl")
+                    continue;
+                // make sure your sheet name is correct, here sheet name is sheet1,
+                //so you can change your sheet name if have different
+                string myexceldataquery = "select student,rollno,course from [Sheet1$]";
+                try
+                {
+                    //create our connection strings   
+                    string sexcelconnectionstring = $"provider=microsoft.jet.oledb.4.0;data source={excelFilePath};extended properties=excel 8.0;hdr = yes;";
+                    string ssqlconnectionstring = new Properties.Settings().AssetMngDbConnectionString;
+                    //execute a query to erase any previous data from our destination table   
+                    string sclearsql = "delete from " + ssqltable;
+                    SqlConnection sqlconn = new SqlConnection(ssqlconnectionstring);
+                    SqlCommand sqlcmd = new SqlCommand(sclearsql, sqlconn);
+                    if (sqlconn.State != System.Data.ConnectionState.Open)
+                        sqlconn.Open();
+                    sqlcmd.ExecuteNonQuery();
+                    //series of commands to bulk copy data from the excel file into our sql table   
+                    OleDbConnection oledbconn = new OleDbConnection(sexcelconnectionstring);
+                    OleDbCommand oledbcmd = new OleDbCommand(myexceldataquery, oledbconn);
+                    oledbconn.Open();
+                    OleDbDataReader dr = oledbcmd.ExecuteReader();
+                    SqlBulkCopy bulkcopy = new SqlBulkCopy(ssqlconnectionstring);
+                    bulkcopy.DestinationTableName = ssqltable;
+                    while (dr.Read())
+                    {
+                        bulkcopy.WriteToServer(dr);
+                    }
+                    dr.Close();
+                    oledbconn.Close();
+                }
+                catch (Exception ex)
+                {
+                    //handle exception   
+                }
+            }
+            srcExcelEp.Save();
+        }
         #endregion
 
         #region RSA

@@ -2968,7 +2968,7 @@ namespace AssetManagement
 		
 		private System.DateTime _FinancialItemInsertionDate;
 		
-		private int _IncomingOrOutgoing;
+		private string _IncomingOrOutgoing;
 		
 		private double _IncomingAmount;
 		
@@ -3002,7 +3002,7 @@ namespace AssetManagement
     partial void OnFinancialItemDescriptionChanged();
     partial void OnFinancialItemInsertionDateChanging(System.DateTime value);
     partial void OnFinancialItemInsertionDateChanged();
-    partial void OnIncomingOrOutgoingChanging(int value);
+    partial void OnIncomingOrOutgoingChanging(string value);
     partial void OnIncomingOrOutgoingChanged();
     partial void OnIncomingAmountChanging(double value);
     partial void OnIncomingAmountChanged();
@@ -3113,8 +3113,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingOrOutgoing", DbType="Int NOT NULL")]
-		public int IncomingOrOutgoing
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingOrOutgoing", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string IncomingOrOutgoing
 		{
 			get
 			{

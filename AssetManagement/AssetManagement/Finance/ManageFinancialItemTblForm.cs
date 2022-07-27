@@ -26,7 +26,9 @@ namespace AssetManagement.AuxTables
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
             this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemCategoryTbl);
 
-            financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
+            financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Remove.Visible = bindingNavigatorDeleteItem.Visible = StaticCode.activeUserRole.DeleteFinancialItemRecord == true;
+            financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Edit.Visible =
+                financialItemCategoryGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = financialItemTblBindingNavigatorSaveItem.Visible = StaticCode.activeUserRole.UpdateExistedFinancialItem == true;
 
             this.MinimumSize = this.Size;
         }

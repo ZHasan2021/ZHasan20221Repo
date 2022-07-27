@@ -92,7 +92,8 @@ namespace AssetManagement.AuxTables
             // 
             this.financialItemCategoryGridControl.DataSource = this.financialItemTblBindingSource;
             this.financialItemCategoryGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.RelationName = "currencyLevel";
+            this.financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
+            gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
             this.financialItemCategoryGridControl.Location = new System.Drawing.Point(0, 27);
@@ -102,7 +103,7 @@ namespace AssetManagement.AuxTables
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
             this.repositoryItemDateEdit1});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1250, 685);
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1381, 780);
             this.financialItemCategoryGridControl.TabIndex = 5;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -136,9 +137,10 @@ namespace AssetManagement.AuxTables
             this.colLastModifiedBy});
             this.financialItemGridView.GridControl = this.financialItemCategoryGridControl;
             this.financialItemGridView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "IncomingAmount", this.colFinancialItemCategory, "(مجموع المبالغ الواردة={0:0.##})"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Min, "OutgoingAmount", this.colFinancialItemDescription, "(مجموع المبالغ الصادرة: MIN={0})")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "IncomingAmount", this.colIncomingAmount, "(مجموع المبالغ الواردة={0:0.##})"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutgoingAmount", null, "(مجموع المبالغ الصادرة={0:0.##})")});
             this.financialItemGridView.Name = "financialItemGridView";
+            this.financialItemGridView.OptionsView.ShowFooter = true;
             // 
             // colID
             // 
@@ -157,7 +159,7 @@ namespace AssetManagement.AuxTables
             this.colFinancialItemCategory.Name = "colFinancialItemCategory";
             this.colFinancialItemCategory.Visible = true;
             this.colFinancialItemCategory.VisibleIndex = 0;
-            this.colFinancialItemCategory.Width = 120;
+            this.colFinancialItemCategory.Width = 154;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -186,7 +188,7 @@ namespace AssetManagement.AuxTables
             this.colFinancialItemDescription.Name = "colFinancialItemDescription";
             this.colFinancialItemDescription.Visible = true;
             this.colFinancialItemDescription.VisibleIndex = 1;
-            this.colFinancialItemDescription.Width = 200;
+            this.colFinancialItemDescription.Width = 257;
             // 
             // colFinancialItemInsertionDate
             // 
@@ -197,7 +199,7 @@ namespace AssetManagement.AuxTables
             this.colFinancialItemInsertionDate.Name = "colFinancialItemInsertionDate";
             this.colFinancialItemInsertionDate.Visible = true;
             this.colFinancialItemInsertionDate.VisibleIndex = 2;
-            this.colFinancialItemInsertionDate.Width = 94;
+            this.colFinancialItemInsertionDate.Width = 121;
             // 
             // repositoryItemDateEdit1
             // 
@@ -216,31 +218,31 @@ namespace AssetManagement.AuxTables
             this.colIncomingOrOutgoing.Name = "colIncomingOrOutgoing";
             this.colIncomingOrOutgoing.Visible = true;
             this.colIncomingOrOutgoing.VisibleIndex = 3;
-            this.colIncomingOrOutgoing.Width = 94;
+            this.colIncomingOrOutgoing.Width = 121;
             // 
             // colIncomingAmount
             // 
             this.colIncomingAmount.Caption = "المبلغ الوارد";
             this.colIncomingAmount.FieldName = "IncomingAmount";
-            this.colIncomingAmount.MinWidth = 80;
+            this.colIncomingAmount.MinWidth = 150;
             this.colIncomingAmount.Name = "colIncomingAmount";
             this.colIncomingAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "IncomingAmount", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "IncomingAmount", "مجموع المبالغ الواردة={0:0.##}")});
             this.colIncomingAmount.Visible = true;
             this.colIncomingAmount.VisibleIndex = 4;
-            this.colIncomingAmount.Width = 94;
+            this.colIncomingAmount.Width = 150;
             // 
             // colOutgoingAmount
             // 
             this.colOutgoingAmount.Caption = "المبلغ الصادر";
             this.colOutgoingAmount.FieldName = "OutgoingAmount";
-            this.colOutgoingAmount.MinWidth = 80;
+            this.colOutgoingAmount.MinWidth = 150;
             this.colOutgoingAmount.Name = "colOutgoingAmount";
             this.colOutgoingAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutgoingAmount", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutgoingAmount", "مجموع المبالغ الصادرة={0:0.##}")});
             this.colOutgoingAmount.Visible = true;
             this.colOutgoingAmount.VisibleIndex = 5;
-            this.colOutgoingAmount.Width = 94;
+            this.colOutgoingAmount.Width = 150;
             // 
             // colFinancialItemCurrency
             // 
@@ -251,7 +253,7 @@ namespace AssetManagement.AuxTables
             this.colFinancialItemCurrency.Name = "colFinancialItemCurrency";
             this.colFinancialItemCurrency.Visible = true;
             this.colFinancialItemCurrency.VisibleIndex = 6;
-            this.colFinancialItemCurrency.Width = 100;
+            this.colFinancialItemCurrency.Width = 104;
             // 
             // repositoryItemLookUpEdit2
             // 
@@ -279,7 +281,7 @@ namespace AssetManagement.AuxTables
             this.colAdditionalNotes.Name = "colAdditionalNotes";
             this.colAdditionalNotes.Visible = true;
             this.colAdditionalNotes.VisibleIndex = 7;
-            this.colAdditionalNotes.Width = 150;
+            this.colAdditionalNotes.Width = 163;
             // 
             // colInsertedOn
             // 
@@ -443,6 +445,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -489,7 +492,7 @@ namespace AssetManagement.AuxTables
             this.financialItemTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.financialItemTblBindingNavigator.Name = "financialItemTblBindingNavigator";
             this.financialItemTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1250, 27);
+            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1381, 27);
             this.financialItemTblBindingNavigator.TabIndex = 4;
             this.financialItemTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -497,7 +500,7 @@ namespace AssetManagement.AuxTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1250, 712);
+            this.ClientSize = new System.Drawing.Size(1381, 807);
             this.Controls.Add(this.financialItemCategoryGridControl);
             this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

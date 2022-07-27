@@ -54,8 +54,8 @@ namespace AssetManagement.Assets
             this.transactionTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetInfoLabel = new System.Windows.Forms.Label();
-            this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
+            this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -102,8 +102,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).BeginInit();
@@ -166,7 +166,7 @@ namespace AssetManagement.Assets
             this.currentPriceWithDestroyingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currentPriceWithDestroyingLabel.AutoSize = true;
             this.currentPriceWithDestroyingLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentPriceWithDestroyingLabel.Location = new System.Drawing.Point(1080, 181);
+            this.currentPriceWithDestroyingLabel.Location = new System.Drawing.Point(1080, 177);
             this.currentPriceWithDestroyingLabel.Name = "currentPriceWithDestroyingLabel";
             this.currentPriceWithDestroyingLabel.Size = new System.Drawing.Size(158, 21);
             this.currentPriceWithDestroyingLabel.TabIndex = 275;
@@ -177,7 +177,7 @@ namespace AssetManagement.Assets
             this.currentPriceWithDestroyingNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currentPriceWithDestroyingNumericUpDown.DecimalPlaces = 2;
             this.currentPriceWithDestroyingNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentPriceWithDestroyingNumericUpDown.Location = new System.Drawing.Point(871, 177);
+            this.currentPriceWithDestroyingNumericUpDown.Location = new System.Drawing.Point(871, 173);
             this.currentPriceWithDestroyingNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -192,7 +192,7 @@ namespace AssetManagement.Assets
             this.withDestroyingCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.withDestroyingCheckBox.AutoSize = true;
             this.withDestroyingCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 75);
+            this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 77);
             this.withDestroyingCheckBox.Name = "withDestroyingCheckBox";
             this.withDestroyingCheckBox.Size = new System.Drawing.Size(86, 25);
             this.withDestroyingCheckBox.TabIndex = 235;
@@ -289,7 +289,7 @@ namespace AssetManagement.Assets
             // 
             this.assetNotesLabel.AutoSize = true;
             this.assetNotesLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetNotesLabel.Location = new System.Drawing.Point(710, 77);
+            this.assetNotesLabel.Location = new System.Drawing.Point(710, 79);
             this.assetNotesLabel.Name = "assetNotesLabel";
             this.assetNotesLabel.Size = new System.Drawing.Size(70, 21);
             this.assetNotesLabel.TabIndex = 240;
@@ -298,7 +298,7 @@ namespace AssetManagement.Assets
             // assetNotesTextBox
             // 
             this.assetNotesTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetNotesTextBox.Location = new System.Drawing.Point(250, 73);
+            this.assetNotesTextBox.Location = new System.Drawing.Point(250, 75);
             this.assetNotesTextBox.Name = "assetNotesTextBox";
             this.assetNotesTextBox.Size = new System.Drawing.Size(414, 28);
             this.assetNotesTextBox.TabIndex = 245;
@@ -308,7 +308,7 @@ namespace AssetManagement.Assets
             this.getAssetOutOfWorkCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.getAssetOutOfWorkCheckBox.AutoSize = true;
             this.getAssetOutOfWorkCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.getAssetOutOfWorkCheckBox.Location = new System.Drawing.Point(1071, 75);
+            this.getAssetOutOfWorkCheckBox.Location = new System.Drawing.Point(1071, 77);
             this.getAssetOutOfWorkCheckBox.Name = "getAssetOutOfWorkCheckBox";
             this.getAssetOutOfWorkCheckBox.Size = new System.Drawing.Size(167, 25);
             this.getAssetOutOfWorkCheckBox.TabIndex = 230;
@@ -400,11 +400,6 @@ namespace AssetManagement.Assets
             this.assetInfoLabel.Size = new System.Drawing.Size(0, 29);
             this.assetInfoLabel.TabIndex = 310;
             // 
-            // assetTransactionTblBindingSource
-            // 
-            this.assetTransactionTblBindingSource.DataMember = "AssetTransactionTbl";
-            this.assetTransactionTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // assetTransactionGridControl
             // 
             this.assetTransactionGridControl.DataSource = this.assetTransactionTblBindingSource;
@@ -420,6 +415,11 @@ namespace AssetManagement.Assets
             this.assetTransactionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetMoveVwGridView});
             this.assetTransactionGridControl.Click += new System.EventHandler(this.assetMoveVwGridControl_Click);
+            // 
+            // assetTransactionTblBindingSource
+            // 
+            this.assetTransactionTblBindingSource.DataMember = "AssetTransactionTbl";
+            this.assetTransactionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetMoveVwGridView
             // 
@@ -722,7 +722,7 @@ namespace AssetManagement.Assets
             // 
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1058, 45);
+            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1085, 53);
             this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
             this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
             this.viewAssetInformationBtn.TabIndex = 105;
@@ -812,8 +812,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).EndInit();

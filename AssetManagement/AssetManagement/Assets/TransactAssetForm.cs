@@ -99,7 +99,7 @@ namespace AssetManagement.Assets
                     {
                         FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fic2 => fic2.FinancialItemCategoryName == assetMaCa.MainCategoryName).First().ID,
                         FinancialItemInsertionDate = Convert.ToDateTime(assetTransactionDateDateEdit.EditValue),
-                        IncomingOrOutgoing = 1,
+                        IncomingOrOutgoing = "وارد",
                         IncomingAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                         OutgoingAmount = 0,
                         FinancialItemCurrency = Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),

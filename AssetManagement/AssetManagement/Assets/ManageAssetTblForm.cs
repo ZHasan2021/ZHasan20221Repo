@@ -12,6 +12,7 @@ namespace AssetManagement.Assets
 {
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
+        int currRow = -1;
         public ManageAssetTblForm()
         {
             InitializeComponent();
@@ -42,7 +43,9 @@ namespace AssetManagement.Assets
 
             this.MinimumSize = this.Size;
 
-
+            assetGridControl.EmbeddedNavigator.Buttons.Edit.Visible = assetGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.UpdateExistedAsset == true;
+            saveChangesBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = StaticCode.activeUserRole.DeleteAssetRecord == true;
         }
 
         private void assetGridView_AfterPrintRow(object sender, DevExpress.XtraGrid.Views.Printing.PrintRowEventArgs e)
@@ -68,7 +71,7 @@ namespace AssetManagement.Assets
         private void saveChangesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Validate();
-            minorCategoryTblBindingSource.EndEdit();
+            assetTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
         }
@@ -86,6 +89,36 @@ namespace AssetManagement.Assets
         {
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.Location = new Point(200, 500);
+        }
+
+        private void showAssetCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetTblGridView.GetRowCellValue(currRow, colID));
+                AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
+                cardVwFrm.ShowDialog();
+                currRow = 0;
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void assetTblGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            currRow = e.RowHandle;
+        }
+
+        private void assetTblGridView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            currRow = e.RowHandle;
+        }
+
+        private void assetTblGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            currRow = e.ControllerRow;
         }
     }
 }

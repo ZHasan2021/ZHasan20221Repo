@@ -106,6 +106,7 @@ namespace AssetManagement
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -651,7 +652,8 @@ namespace AssetManagement
             this.existedAssetsRibbonPageGroup,
             this.assetInventoriesRibbonPageGroup,
             this.assetsMovementsRibbonPageGroup,
-            this.assetsReportsAndStatsRibbonPageGroup});
+            this.assetsReportsAndStatsRibbonPageGroup,
+            this.ribbonPageGroup1});
             this.assetsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._41866361;
             this.assetsRibbonPage.ImageOptions.ImageIndex = 41;
             this.assetsRibbonPage.Name = "assetsRibbonPage";
@@ -922,6 +924,11 @@ namespace AssetManagement
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1025,6 +1032,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openAppFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
     }
 }
 

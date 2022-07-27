@@ -244,6 +244,8 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;

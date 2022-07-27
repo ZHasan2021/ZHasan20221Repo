@@ -84,7 +84,7 @@ namespace AssetManagement.Finance
                     FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue),
                     FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
                     FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
-                    IncomingOrOutgoing = (incomingRadioButton.Checked) ? 1 : 2,
+                    IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : "صادر",
                     IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(amountNumericUpDown.Value) : 0,
                     OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(amountNumericUpDown.Value),
                     FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue),

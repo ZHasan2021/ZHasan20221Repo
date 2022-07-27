@@ -5915,7 +5915,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public FinancialItemTblRow AddFinancialItemTblRow(FinancialItemCategoryTblRow parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, CurrencyTblRow parentCurrencyTblRowByFK_FinancialItemTbl_CurrencyTbl, string AdditionalNotes, System.DateTime InsertedOn, System.DateTime LastModifiedOn, int InsertedBy, int LastModifiedBy) {
+            public FinancialItemTblRow AddFinancialItemTblRow(FinancialItemCategoryTblRow parentFinancialItemCategoryTblRowByFK_FinancialItemTbl_FinancialItemCategoryTbl, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, string IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, CurrencyTblRow parentCurrencyTblRowByFK_FinancialItemTbl_CurrencyTbl, string AdditionalNotes, System.DateTime InsertedOn, System.DateTime LastModifiedOn, int InsertedBy, int LastModifiedBy) {
                 FinancialItemTblRow rowFinancialItemTblRow = ((FinancialItemTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5992,7 +5992,7 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnFinancialItemDescription);
                 this.columnFinancialItemInsertionDate = new global::System.Data.DataColumn("FinancialItemInsertionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFinancialItemInsertionDate);
-                this.columnIncomingOrOutgoing = new global::System.Data.DataColumn("IncomingOrOutgoing", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnIncomingOrOutgoing = new global::System.Data.DataColumn("IncomingOrOutgoing", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIncomingOrOutgoing);
                 this.columnIncomingAmount = new global::System.Data.DataColumn("IncomingAmount", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIncomingAmount);
@@ -6022,6 +6022,7 @@ namespace AssetManagement {
                 this.columnFinancialItemDescription.MaxLength = 300;
                 this.columnFinancialItemInsertionDate.AllowDBNull = false;
                 this.columnIncomingOrOutgoing.AllowDBNull = false;
+                this.columnIncomingOrOutgoing.MaxLength = 10;
                 this.columnIncomingAmount.AllowDBNull = false;
                 this.columnOutgoingAmount.AllowDBNull = false;
                 this.columnFinancialItemCurrency.AllowDBNull = false;
@@ -12156,9 +12157,9 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int IncomingOrOutgoing {
+            public string IncomingOrOutgoing {
                 get {
-                    return ((int)(this[this.tableFinancialItemTbl.IncomingOrOutgoingColumn]));
+                    return ((string)(this[this.tableFinancialItemTbl.IncomingOrOutgoingColumn]));
                 }
                 set {
                     this[this.tableFinancialItemTbl.IncomingOrOutgoingColumn] = value;
@@ -19960,7 +19961,7 @@ SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM Financia
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FinancialItemDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemInsertionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemInsertionDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingOrOutgoing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingOrOutgoing", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -19982,7 +19983,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemInsertionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemInsertionDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingOrOutgoing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingOrOutgoing", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20021,7 +20022,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCategory", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCategory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemInsertionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemInsertionDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingOrOutgoing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingOrOutgoing", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IncomingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20035,7 +20036,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FinancialItemDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemDescription", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemInsertionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemInsertionDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingOrOutgoing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingOrOutgoing", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingOrOutgoing", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IncomingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IncomingAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OutgoingAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutgoingAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FinancialItemCurrency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FinancialItemCurrency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -20126,7 +20127,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_FinancialItemCategory, string Original_FinancialItemDescription, System.DateTime Original_FinancialItemInsertionDate, int Original_IncomingOrOutgoing, double Original_IncomingAmount, double Original_OutgoingAmount, int Original_FinancialItemCurrency, string Original_AdditionalNotes, global::System.Nullable<global::System.DateTime> Original_InsertedOn, global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, global::System.Nullable<int> Original_InsertedBy, global::System.Nullable<int> Original_LastModifiedBy) {
+        public virtual int Delete(int Original_ID, int Original_FinancialItemCategory, string Original_FinancialItemDescription, System.DateTime Original_FinancialItemInsertionDate, string Original_IncomingOrOutgoing, double Original_IncomingAmount, double Original_OutgoingAmount, int Original_FinancialItemCurrency, string Original_AdditionalNotes, global::System.Nullable<global::System.DateTime> Original_InsertedOn, global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, global::System.Nullable<int> Original_InsertedBy, global::System.Nullable<int> Original_LastModifiedBy) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FinancialItemCategory));
             if ((Original_FinancialItemDescription == null)) {
@@ -20138,7 +20139,12 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_FinancialItemDescription));
             }
             this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_FinancialItemInsertionDate));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_IncomingOrOutgoing));
+            if ((Original_IncomingOrOutgoing == null)) {
+                throw new global::System.ArgumentNullException("Original_IncomingOrOutgoing");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_IncomingOrOutgoing));
+            }
             this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_IncomingAmount));
             this.Adapter.DeleteCommand.Parameters[7].Value = ((double)(Original_OutgoingAmount));
             this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_FinancialItemCurrency));
@@ -20202,7 +20208,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FinancialItemCategory, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, int IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, int FinancialItemCurrency, string AdditionalNotes, global::System.Nullable<global::System.DateTime> InsertedOn, global::System.Nullable<global::System.DateTime> LastModifiedOn, global::System.Nullable<int> InsertedBy, global::System.Nullable<int> LastModifiedBy) {
+        public virtual int Insert(int FinancialItemCategory, string FinancialItemDescription, System.DateTime FinancialItemInsertionDate, string IncomingOrOutgoing, double IncomingAmount, double OutgoingAmount, int FinancialItemCurrency, string AdditionalNotes, global::System.Nullable<global::System.DateTime> InsertedOn, global::System.Nullable<global::System.DateTime> LastModifiedOn, global::System.Nullable<int> InsertedBy, global::System.Nullable<int> LastModifiedBy) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FinancialItemCategory));
             if ((FinancialItemDescription == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -20211,7 +20217,12 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FinancialItemDescription));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(FinancialItemInsertionDate));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(IncomingOrOutgoing));
+            if ((IncomingOrOutgoing == null)) {
+                throw new global::System.ArgumentNullException("IncomingOrOutgoing");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(IncomingOrOutgoing));
+            }
             this.Adapter.InsertCommand.Parameters[4].Value = ((double)(IncomingAmount));
             this.Adapter.InsertCommand.Parameters[5].Value = ((double)(OutgoingAmount));
             this.Adapter.InsertCommand.Parameters[6].Value = ((int)(FinancialItemCurrency));
@@ -20269,7 +20280,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     int FinancialItemCategory, 
                     string FinancialItemDescription, 
                     System.DateTime FinancialItemInsertionDate, 
-                    int IncomingOrOutgoing, 
+                    string IncomingOrOutgoing, 
                     double IncomingAmount, 
                     double OutgoingAmount, 
                     int FinancialItemCurrency, 
@@ -20282,7 +20293,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     int Original_FinancialItemCategory, 
                     string Original_FinancialItemDescription, 
                     System.DateTime Original_FinancialItemInsertionDate, 
-                    int Original_IncomingOrOutgoing, 
+                    string Original_IncomingOrOutgoing, 
                     double Original_IncomingAmount, 
                     double Original_OutgoingAmount, 
                     int Original_FinancialItemCurrency, 
@@ -20300,7 +20311,12 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FinancialItemDescription));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(FinancialItemInsertionDate));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(IncomingOrOutgoing));
+            if ((IncomingOrOutgoing == null)) {
+                throw new global::System.ArgumentNullException("IncomingOrOutgoing");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(IncomingOrOutgoing));
+            }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(IncomingAmount));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(OutgoingAmount));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(FinancialItemCurrency));
@@ -20345,7 +20361,12 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_FinancialItemDescription));
             }
             this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_FinancialItemInsertionDate));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_IncomingOrOutgoing));
+            if ((Original_IncomingOrOutgoing == null)) {
+                throw new global::System.ArgumentNullException("Original_IncomingOrOutgoing");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_IncomingOrOutgoing));
+            }
             this.Adapter.UpdateCommand.Parameters[18].Value = ((double)(Original_IncomingAmount));
             this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_OutgoingAmount));
             this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_FinancialItemCurrency));
@@ -20414,7 +20435,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     int FinancialItemCategory, 
                     string FinancialItemDescription, 
                     System.DateTime FinancialItemInsertionDate, 
-                    int IncomingOrOutgoing, 
+                    string IncomingOrOutgoing, 
                     double IncomingAmount, 
                     double OutgoingAmount, 
                     int FinancialItemCurrency, 
@@ -20427,7 +20448,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                     int Original_FinancialItemCategory, 
                     string Original_FinancialItemDescription, 
                     System.DateTime Original_FinancialItemInsertionDate, 
-                    int Original_IncomingOrOutgoing, 
+                    string Original_IncomingOrOutgoing, 
                     double Original_IncomingAmount, 
                     double Original_OutgoingAmount, 
                     int Original_FinancialItemCurrency, 

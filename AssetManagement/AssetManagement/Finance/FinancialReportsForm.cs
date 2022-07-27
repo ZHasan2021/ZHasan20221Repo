@@ -112,7 +112,7 @@ namespace AssetManagement.Finance
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
             int startRow = 5;
-            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == 1))
+            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
                 Application.DoEvents();
                 fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
@@ -132,7 +132,7 @@ namespace AssetManagement.Finance
                 cells.Value = "ثانياً : المصاريف :";
             }
             startRow++;
-            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == 2))
+            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "صادر"))
             {
                 Application.DoEvents();
                 fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;

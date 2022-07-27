@@ -163,11 +163,23 @@
     <Compile Include="Assets\AssetsReports.Designer.cs">
       <DependentUpon>AssetsReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\AssetCardViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\AssetCardViewForm.Designer.cs">
+      <DependentUpon>AssetCardViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assets\AssetsToDestructForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Assets\AssetsToDestructForm.Designer.cs">
       <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\AssetsXtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Assets\AssetsXtraReport.Designer.cs">
+      <DependentUpon>AssetsXtraReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\ManageAssetTblForm.cs">
       <SubType>Form</SubType>
@@ -339,11 +351,17 @@
     <EmbeddedResource Include="Assets\AssetsReports.resx">
       <DependentUpon>AssetsReports.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Assets\AssetsToDestructForm.resx">
-      <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
+    <EmbeddedResource Include="Assets\AssetsXtraReport.resx">
+      <DependentUpon>AssetsXtraReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\DeleteAssetForm.resx">
       <DependentUpon>DeleteAssetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\AssetCardViewForm.resx">
+      <DependentUpon>AssetCardViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\AssetsToDestructForm.resx">
+      <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>

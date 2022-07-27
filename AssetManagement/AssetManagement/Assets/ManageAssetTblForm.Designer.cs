@@ -34,7 +34,6 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
@@ -106,6 +105,8 @@ namespace AssetManagement.Assets
             this.colEstateOwnershipDocumentWith = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEstateArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEstateAreaUnit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colCarPanelNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCarManufacturingYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCarChassisNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -120,14 +121,12 @@ namespace AssetManagement.Assets
             this.colLastModifiedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
-            this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.estateAreaUnitTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
+            this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
+            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
@@ -153,6 +152,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainCategoryTblBindingSource
@@ -169,11 +169,6 @@ namespace AssetManagement.Assets
             // 
             this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
             this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetTblBindingSource
-            // 
-            this.assetTblBindingSource.DataMember = "AssetTbl";
-            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetTblTableAdapter
             // 
@@ -318,6 +313,7 @@ namespace AssetManagement.Assets
             this.showAssetCardBarButtonItem.Id = 2;
             this.showAssetCardBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("showAssetCardBarButtonItem.ImageOptions.SvgImage")));
             this.showAssetCardBarButtonItem.Name = "showAssetCardBarButtonItem";
+            this.showAssetCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showAssetCardBarButtonItem_ItemClick);
             // 
             // mainTimer
             // 
@@ -455,6 +451,9 @@ namespace AssetManagement.Assets
             this.assetTblGridView.GridControl = this.assetGridControl;
             this.assetTblGridView.Name = "assetTblGridView";
             this.assetTblGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.assetTblGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
+            this.assetTblGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
+            this.assetTblGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.assetTblGridView_SelectionChanged);
             // 
             // colID
             // 
@@ -849,6 +848,24 @@ namespace AssetManagement.Assets
             this.colEstateAreaUnit.VisibleIndex = 26;
             this.colEstateAreaUnit.Width = 94;
             // 
+            // repositoryItemLookUpEdit7
+            // 
+            this.repositoryItemLookUpEdit7.AutoHeight = false;
+            this.repositoryItemLookUpEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit7.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit7.DataSource = this.estateAreaUnitTblBindingSource;
+            this.repositoryItemLookUpEdit7.DisplayMember = "EstateAreaUnitName";
+            this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
+            this.repositoryItemLookUpEdit7.ValueMember = "ID";
+            // 
+            // estateAreaUnitTblBindingSource
+            // 
+            this.estateAreaUnitTblBindingSource.DataMember = "EstateAreaUnitTbl";
+            this.estateAreaUnitTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // colCarPanelNumber
             // 
             this.colCarPanelNumber.Caption = "رقم اللوحة / مركبات";
@@ -1000,31 +1017,18 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
+            // estateAreaUnitTblTableAdapter
+            // 
+            this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
+            // 
             // statusTblTableAdapter
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
-            // repositoryItemLookUpEdit7
+            // assetTblBindingSource
             // 
-            this.repositoryItemLookUpEdit7.AutoHeight = false;
-            this.repositoryItemLookUpEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit7.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repositoryItemLookUpEdit7.DataSource = this.estateAreaUnitTblBindingSource;
-            this.repositoryItemLookUpEdit7.DisplayMember = "EstateAreaUnitName";
-            this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
-            this.repositoryItemLookUpEdit7.ValueMember = "ID";
-            // 
-            // estateAreaUnitTblBindingSource
-            // 
-            this.estateAreaUnitTblBindingSource.DataMember = "EstateAreaUnitTbl";
-            this.estateAreaUnitTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // estateAreaUnitTblTableAdapter
-            // 
-            this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
+            this.assetTblBindingSource.DataMember = "AssetTbl";
+            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // ManageAssetTblForm
             // 
@@ -1052,7 +1056,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).EndInit();
@@ -1078,6 +1081,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1085,7 +1089,6 @@ namespace AssetManagement.Assets
 
         #endregion
         private AssetMngDbDataSet assetMngDbDataSet;
-        private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
         private System.Windows.Forms.BindingSource minorCategoryTblBindingSource;
         private AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter minorCategoryTblTableAdapter;
@@ -1177,5 +1180,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit7;
         private System.Windows.Forms.BindingSource estateAreaUnitTblBindingSource;
         private AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter estateAreaUnitTblTableAdapter;
+        private System.Windows.Forms.BindingSource assetTblBindingSource;
     }
 }
