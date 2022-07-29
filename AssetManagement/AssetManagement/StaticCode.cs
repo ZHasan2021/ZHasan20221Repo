@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Linq;
 using System.Data.OleDb;
 using System.Data.SqlClient;
@@ -100,13 +101,99 @@ namespace AssetManagement
 
         public static void ImportDataFromExcel(string excelFilePath)
         {
+            //create our connection strings
+            string ssqlconnectionstring = new Properties.Settings().AssetMngDbConnectionString;
+            //execute a query to erase any previous data from our destination table
+            SqlConnection sqlconn = new SqlConnection(ssqlconnectionstring);
+            if (sqlconn.State != ConnectionState.Open)
+                sqlconn.Open();
+
+            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "UserTbl", "AssetMovementTbl" };
+            List<string> keyFields = new List<string>() { "AssetCode", "ID", "PasswordUpdatedOn", "MovementDate" };
+
+            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
+            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
+            foreach (ExcelWorksheet oneSh in srcExcelWb.Worksheets)
+            {
+                Application.DoEvents();
+                //declare variables - edit these based on your particular situation   
+                string ssqltable = oneSh.Name;
+                if (ssqltable != "AssetTbl")
+                    continue;
+                if (tblsToImport.IndexOf(ssqltable) == -1)
+                    continue;
+                // make sure your sheet name is correct, here sheet name is sheet1,
+                //so you can change your sheet name if have different
+                try
+                {
+                    string currKeyField = keyFields[tblsToImport.IndexOf(ssqltable)];
+                    List<string> tblFields = oneSh.Cells.Where(cl1 => cl1.End.Row == 1 && cl1.Start.Row == 1 && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()).ToList();
+                    int keyIndex = tblFields.IndexOf(currKeyField) + 1;
+                    for (int iRow = 2; iRow <= oneSh.Dimension.End.Row; iRow++)
+                    {
+                        Application.DoEvents();
+                        string oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
+                        string sqlQry = $"SELECT * FROM {ssqltable} where {currKeyField} = N'{oneKeyValue}'";
+                        SqlCommand sqlcomm = new SqlCommand(sqlQry, sqlconn);
+                        sqlcomm.CommandType = CommandType.Text;
+                        SqlDataReader sqlRdr = sqlcomm.ExecuteReader();
+                        bool recordExisted = sqlRdr.HasRows;
+                        sqlRdr.Close();
+                        if (recordExisted)
+                        {
+                            string fieldsValuesPairs = "";
+                            for (int iCol = 2; iCol <= oneSh.Dimension.End.Column; iCol++)
+                            {
+                                string oneField = oneSh.Cells[1, iCol].Value?.ToString();
+                                string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
+                                if (oneField.ToUpper().Contains("DATE"))
+                                {
+                                }
+                                fieldsValuesPairs += $"{oneField} = N'{oneVal}', ";
+                            }
+                            fieldsValuesPairs = fieldsValuesPairs.Trim().Trim(',');
+                            string updateQry = $"UPDATE {ssqltable} SET {fieldsValuesPairs} WHERE {currKeyField} = N'{oneKeyValue}';";
+                            sqlcomm.CommandText = updateQry;
+                        }
+                        else
+                        {
+                            string fieldsPairs = "";
+                            string valuesPairs = "";
+                            for (int iCol = 2; iCol <= oneSh.Dimension.End.Column; iCol++)
+                            {
+                                string oneField = oneSh.Cells[1, iCol].Value?.ToString();
+                                string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
+                                if (oneField.ToUpper().Contains("DATE"))
+                                {
+                                }
+                                fieldsPairs += $"{oneField}, ";
+                                valuesPairs += $"N'{oneVal}', ";
+                            }
+                            fieldsPairs = fieldsPairs.Trim().Trim(',');
+                            valuesPairs = valuesPairs.Trim().Trim(',');
+                            string updateQry = $"INSERT INTO {ssqltable}({fieldsPairs}) VALUES ({valuesPairs});";
+                            sqlcomm.CommandText = updateQry;
+                        }
+                        sqlcomm.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
+            }
+        }
+
+        public static void ImportDataFromExcel_OleDb(string excelFilePath)
+        {
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             foreach (ExcelWorksheet oneSh in srcExcelWb.Worksheets)
             {
                 //declare variables - edit these based on your particular situation   
                 string ssqltable = oneSh.Name;
-                if (ssqltable != "AssetTbl")
+                List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl" };
+                if (tblsToImport.IndexOf(ssqltable) == -1)
                     continue;
                 // make sure your sheet name is correct, here sheet name is sheet1,
                 //so you can change your sheet name if have different
@@ -117,12 +204,11 @@ namespace AssetManagement
                     string sexcelconnectionstring = $"provider=microsoft.jet.oledb.4.0;data source={excelFilePath};extended properties=excel 8.0;hdr = yes;";
                     string ssqlconnectionstring = new Properties.Settings().AssetMngDbConnectionString;
                     //execute a query to erase any previous data from our destination table   
-                    string sclearsql = "delete from " + ssqltable;
+                    //string sclearsql = "delete from " + ssqltable;
                     SqlConnection sqlconn = new SqlConnection(ssqlconnectionstring);
-                    SqlCommand sqlcmd = new SqlCommand(sclearsql, sqlconn);
                     if (sqlconn.State != System.Data.ConnectionState.Open)
                         sqlconn.Open();
-                    sqlcmd.ExecuteNonQuery();
+                    //sqlcmd.ExecuteNonQuery();
                     //series of commands to bulk copy data from the excel file into our sql table   
                     OleDbConnection oledbconn = new OleDbConnection(sexcelconnectionstring);
                     OleDbCommand oledbcmd = new OleDbCommand(myexceldataquery, oledbconn);
@@ -144,6 +230,7 @@ namespace AssetManagement
             }
             srcExcelEp.Save();
         }
+
         #endregion
 
         #region RSA

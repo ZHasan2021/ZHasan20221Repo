@@ -12,6 +12,5 @@ namespace AssetManagement.Assets
         {
             InitializeComponent();
         }
-
     }
 }

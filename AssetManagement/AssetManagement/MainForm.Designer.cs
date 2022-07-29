@@ -106,9 +106,10 @@ namespace AssetManagement
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mainRibbonControl
@@ -168,7 +169,7 @@ namespace AssetManagement
             this.assetsToDestructBarStaticItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 57;
+            this.mainRibbonControl.MaxItemId = 58;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -652,8 +653,7 @@ namespace AssetManagement
             this.existedAssetsRibbonPageGroup,
             this.assetInventoriesRibbonPageGroup,
             this.assetsMovementsRibbonPageGroup,
-            this.assetsReportsAndStatsRibbonPageGroup,
-            this.ribbonPageGroup1});
+            this.assetsReportsAndStatsRibbonPageGroup});
             this.assetsRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._41866361;
             this.assetsRibbonPage.ImageOptions.ImageIndex = 41;
             this.assetsRibbonPage.Name = "assetsRibbonPage";
@@ -924,16 +924,23 @@ namespace AssetManagement
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
-            // ribbonPageGroup1
+            // mainMemoEdit
             // 
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.mainMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMemoEdit.Location = new System.Drawing.Point(0, 283);
+            this.mainMemoEdit.MenuManager = this.mainRibbonControl;
+            this.mainMemoEdit.Name = "mainMemoEdit";
+            this.mainMemoEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainMemoEdit.Properties.Appearance.Options.UseFont = true;
+            this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
+            this.mainMemoEdit.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 981);
+            this.Controls.Add(this.mainMemoEdit);
             this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainRibbonStatusBar);
             this.Controls.Add(this.mainRibbonControl);
@@ -950,6 +957,7 @@ namespace AssetManagement
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
             this.mainStatusStrip.ResumeLayout(false);
             this.mainStatusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1032,7 +1040,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openAppFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraEditors.MemoEdit mainMemoEdit;
     }
 }
 

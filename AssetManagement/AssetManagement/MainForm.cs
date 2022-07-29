@@ -64,7 +64,8 @@ namespace AssetManagement
             deleteAssetsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteAssetRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             exportDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ExportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            //viewReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            //viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItemCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -387,7 +388,15 @@ namespace AssetManagement
                     return;
                 }
             }
-            StaticCode.ImportDataFromExcel(importedExcelFilePath);
+            try
+            {
+                StaticCode.ImportDataFromExcel(importedExcelFilePath);
+                    mainAlertControl.Show(this, "تم استيراد البيانات بشكل سليم", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "خطأ في الوصول إلى الملف، تأكد من سلامة الملف أولاً", StaticCode.ApplicationTitle);
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

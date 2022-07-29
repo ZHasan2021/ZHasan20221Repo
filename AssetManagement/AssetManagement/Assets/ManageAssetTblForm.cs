@@ -13,6 +13,7 @@ namespace AssetManagement.Assets
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
+        int c = 0;
         public ManageAssetTblForm()
         {
             InitializeComponent();

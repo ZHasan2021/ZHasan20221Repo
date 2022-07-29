@@ -67,6 +67,7 @@ namespace AssetManagement.Assets
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.assetGridControl = new DevExpress.XtraGrid.GridControl();
+            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -123,7 +124,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
-            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -139,6 +139,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -152,7 +153,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainCategoryTblBindingSource
@@ -317,6 +317,7 @@ namespace AssetManagement.Assets
             // 
             // mainTimer
             // 
+            this.mainTimer.Enabled = true;
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
@@ -404,6 +405,11 @@ namespace AssetManagement.Assets
             this.assetGridControl.UseEmbeddedNavigator = true;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.assetTblGridView});
+            // 
+            // assetTblBindingSource
+            // 
+            this.assetTblBindingSource.DataMember = "AssetTbl";
+            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetTblGridView
             // 
@@ -609,11 +615,11 @@ namespace AssetManagement.Assets
             // 
             this.colColor.Caption = "اللون";
             this.colColor.FieldName = "Color";
-            this.colColor.MinWidth = 70;
+            this.colColor.MinWidth = 100;
             this.colColor.Name = "colColor";
             this.colColor.Visible = true;
             this.colColor.VisibleIndex = 8;
-            this.colColor.Width = 94;
+            this.colColor.Width = 100;
             // 
             // colVolume
             // 
@@ -649,12 +655,14 @@ namespace AssetManagement.Assets
             // 
             this.colPurchasePrice.Caption = "سعر الشراء";
             this.colPurchasePrice.ColumnEdit = this.repositoryItemCalcEdit1;
+            this.colPurchasePrice.DisplayFormat.FormatString = "c0";
+            this.colPurchasePrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colPurchasePrice.FieldName = "PurchasePrice";
-            this.colPurchasePrice.MinWidth = 80;
+            this.colPurchasePrice.MinWidth = 120;
             this.colPurchasePrice.Name = "colPurchasePrice";
             this.colPurchasePrice.Visible = true;
             this.colPurchasePrice.VisibleIndex = 11;
-            this.colPurchasePrice.Width = 94;
+            this.colPurchasePrice.Width = 120;
             // 
             // repositoryItemCalcEdit1
             // 
@@ -668,11 +676,11 @@ namespace AssetManagement.Assets
             this.colPurchasePriceCurrency.Caption = "عملة سعر الشراء";
             this.colPurchasePriceCurrency.ColumnEdit = this.repositoryItemLookUpEdit5;
             this.colPurchasePriceCurrency.FieldName = "PurchasePriceCurrency";
-            this.colPurchasePriceCurrency.MinWidth = 100;
+            this.colPurchasePriceCurrency.MinWidth = 120;
             this.colPurchasePriceCurrency.Name = "colPurchasePriceCurrency";
             this.colPurchasePriceCurrency.Visible = true;
             this.colPurchasePriceCurrency.VisibleIndex = 12;
-            this.colPurchasePriceCurrency.Width = 100;
+            this.colPurchasePriceCurrency.Width = 120;
             // 
             // repositoryItemLookUpEdit5
             // 
@@ -730,32 +738,34 @@ namespace AssetManagement.Assets
             // 
             this.colBenefitPercentage.Caption = "المستخدم منه";
             this.colBenefitPercentage.FieldName = "BenefitPercentage";
-            this.colBenefitPercentage.MinWidth = 120;
+            this.colBenefitPercentage.MinWidth = 150;
             this.colBenefitPercentage.Name = "colBenefitPercentage";
             this.colBenefitPercentage.Visible = true;
             this.colBenefitPercentage.VisibleIndex = 15;
-            this.colBenefitPercentage.Width = 120;
+            this.colBenefitPercentage.Width = 150;
             // 
             // colActualCurrentPrice
             // 
             this.colActualCurrentPrice.Caption = "السعر الفعلي الحالي";
+            this.colActualCurrentPrice.DisplayFormat.FormatString = "c0";
+            this.colActualCurrentPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colActualCurrentPrice.FieldName = "ActualCurrentPrice";
-            this.colActualCurrentPrice.MinWidth = 80;
+            this.colActualCurrentPrice.MinWidth = 120;
             this.colActualCurrentPrice.Name = "colActualCurrentPrice";
             this.colActualCurrentPrice.Visible = true;
             this.colActualCurrentPrice.VisibleIndex = 16;
-            this.colActualCurrentPrice.Width = 94;
+            this.colActualCurrentPrice.Width = 120;
             // 
             // colActualCurrentPriceCurrency
             // 
             this.colActualCurrentPriceCurrency.Caption = "عملة السعر الفعلي الحالي";
             this.colActualCurrentPriceCurrency.ColumnEdit = this.repositoryItemLookUpEdit5;
             this.colActualCurrentPriceCurrency.FieldName = "ActualCurrentPriceCurrency";
-            this.colActualCurrentPriceCurrency.MinWidth = 80;
+            this.colActualCurrentPriceCurrency.MinWidth = 120;
             this.colActualCurrentPriceCurrency.Name = "colActualCurrentPriceCurrency";
             this.colActualCurrentPriceCurrency.Visible = true;
             this.colActualCurrentPriceCurrency.VisibleIndex = 17;
-            this.colActualCurrentPriceCurrency.Width = 94;
+            this.colActualCurrentPriceCurrency.Width = 120;
             // 
             // colCustodianName
             // 
@@ -771,21 +781,21 @@ namespace AssetManagement.Assets
             // 
             this.colMoreDetails.Caption = "تفاصيل إضافية";
             this.colMoreDetails.FieldName = "MoreDetails";
-            this.colMoreDetails.MinWidth = 150;
+            this.colMoreDetails.MinWidth = 200;
             this.colMoreDetails.Name = "colMoreDetails";
             this.colMoreDetails.Visible = true;
             this.colMoreDetails.VisibleIndex = 19;
-            this.colMoreDetails.Width = 150;
+            this.colMoreDetails.Width = 200;
             // 
             // colAssetNotes
             // 
             this.colAssetNotes.Caption = "ملاحظات الأصل";
             this.colAssetNotes.FieldName = "AssetNotes";
-            this.colAssetNotes.MinWidth = 150;
+            this.colAssetNotes.MinWidth = 200;
             this.colAssetNotes.Name = "colAssetNotes";
             this.colAssetNotes.Visible = true;
             this.colAssetNotes.VisibleIndex = 20;
-            this.colAssetNotes.Width = 150;
+            this.colAssetNotes.Width = 200;
             // 
             // colEstateAddress
             // 
@@ -811,11 +821,11 @@ namespace AssetManagement.Assets
             // 
             this.colOfUsed.Caption = "المستغل منه / عقار";
             this.colOfUsed.FieldName = "OfUsed";
-            this.colOfUsed.MinWidth = 120;
+            this.colOfUsed.MinWidth = 150;
             this.colOfUsed.Name = "colOfUsed";
             this.colOfUsed.Visible = true;
             this.colOfUsed.VisibleIndex = 23;
-            this.colOfUsed.Width = 120;
+            this.colOfUsed.Width = 150;
             // 
             // colEstateOwnershipDocumentWith
             // 
@@ -842,11 +852,11 @@ namespace AssetManagement.Assets
             this.colEstateAreaUnit.Caption = "وحدة المساحة / عقار";
             this.colEstateAreaUnit.ColumnEdit = this.repositoryItemLookUpEdit7;
             this.colEstateAreaUnit.FieldName = "EstateAreaUnit";
-            this.colEstateAreaUnit.MinWidth = 80;
+            this.colEstateAreaUnit.MinWidth = 100;
             this.colEstateAreaUnit.Name = "colEstateAreaUnit";
             this.colEstateAreaUnit.Visible = true;
             this.colEstateAreaUnit.VisibleIndex = 26;
-            this.colEstateAreaUnit.Width = 94;
+            this.colEstateAreaUnit.Width = 100;
             // 
             // repositoryItemLookUpEdit7
             // 
@@ -884,7 +894,7 @@ namespace AssetManagement.Assets
             this.colCarManufacturingYear.Name = "colCarManufacturingYear";
             this.colCarManufacturingYear.Visible = true;
             this.colCarManufacturingYear.VisibleIndex = 28;
-            this.colCarManufacturingYear.Width = 94;
+            this.colCarManufacturingYear.Width = 100;
             // 
             // colCarChassisNumber
             // 
@@ -910,18 +920,18 @@ namespace AssetManagement.Assets
             // 
             this.colDestructionRate.Caption = "معدل الإهلاك";
             this.colDestructionRate.FieldName = "DestructionRate";
-            this.colDestructionRate.MinWidth = 80;
+            this.colDestructionRate.MinWidth = 100;
             this.colDestructionRate.Name = "colDestructionRate";
             this.colDestructionRate.OptionsColumn.AllowEdit = false;
             this.colDestructionRate.Visible = true;
             this.colDestructionRate.VisibleIndex = 31;
-            this.colDestructionRate.Width = 94;
+            this.colDestructionRate.Width = 100;
             // 
             // colLifeSpanInMonths
             // 
             this.colLifeSpanInMonths.Caption = "العمر الافتراضي المتبقي بالأشهر";
             this.colLifeSpanInMonths.FieldName = "LifeSpanInMonths";
-            this.colLifeSpanInMonths.MinWidth = 70;
+            this.colLifeSpanInMonths.MinWidth = 80;
             this.colLifeSpanInMonths.Name = "colLifeSpanInMonths";
             this.colLifeSpanInMonths.OptionsColumn.AllowEdit = false;
             this.colLifeSpanInMonths.Visible = true;
@@ -1025,11 +1035,6 @@ namespace AssetManagement.Assets
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
-            // assetTblBindingSource
-            // 
-            this.assetTblBindingSource.DataMember = "AssetTbl";
-            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // ManageAssetTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1068,6 +1073,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
@@ -1081,7 +1087,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
