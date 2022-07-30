@@ -206,15 +206,15 @@ namespace AssetManagement.Assets
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 39);
             this.barDockControlTop.Manager = this.toolbarFormManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1316, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1470, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 780);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 995);
             this.barDockControlBottom.Manager = this.toolbarFormManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1316, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1470, 0);
             // 
             // barDockControlLeft
             // 
@@ -222,22 +222,22 @@ namespace AssetManagement.Assets
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 39);
             this.barDockControlLeft.Manager = this.toolbarFormManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 741);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 956);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1316, 39);
+            this.barDockControlRight.Location = new System.Drawing.Point(1470, 39);
             this.barDockControlRight.Manager = this.toolbarFormManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 741);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 956);
             // 
             // toolbarFormControl1
             // 
             this.toolbarFormControl1.Location = new System.Drawing.Point(0, 0);
             this.toolbarFormControl1.Manager = this.toolbarFormManager2;
             this.toolbarFormControl1.Name = "toolbarFormControl1";
-            this.toolbarFormControl1.Size = new System.Drawing.Size(1316, 39);
+            this.toolbarFormControl1.Size = new System.Drawing.Size(1470, 39);
             this.toolbarFormControl1.TabIndex = 11;
             this.toolbarFormControl1.TabStop = false;
             this.toolbarFormControl1.TitleItemLinks.Add(this.saveChangesBarButtonItem);
@@ -264,15 +264,15 @@ namespace AssetManagement.Assets
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 39);
             this.barDockControl1.Manager = this.toolbarFormManager2;
-            this.barDockControl1.Size = new System.Drawing.Size(1316, 0);
+            this.barDockControl1.Size = new System.Drawing.Size(1470, 0);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 780);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 995);
             this.barDockControl2.Manager = this.toolbarFormManager2;
-            this.barDockControl2.Size = new System.Drawing.Size(1316, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1470, 0);
             // 
             // barDockControl3
             // 
@@ -280,15 +280,15 @@ namespace AssetManagement.Assets
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControl3.Location = new System.Drawing.Point(0, 39);
             this.barDockControl3.Manager = this.toolbarFormManager2;
-            this.barDockControl3.Size = new System.Drawing.Size(0, 741);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 956);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1316, 39);
+            this.barDockControl4.Location = new System.Drawing.Point(1470, 39);
             this.barDockControl4.Manager = this.toolbarFormManager2;
-            this.barDockControl4.Size = new System.Drawing.Size(0, 741);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 956);
             // 
             // saveChangesBarButtonItem
             // 
@@ -376,7 +376,7 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fluentDesignFormContainer1.Location = new System.Drawing.Point(0, 39);
             this.fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(1316, 741);
+            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(1470, 956);
             this.fluentDesignFormContainer1.TabIndex = 5;
             // 
             // assetGridControl
@@ -400,7 +400,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6,
             this.repositoryItemCalcEdit1,
             this.repositoryItemLookUpEdit7});
-            this.assetGridControl.Size = new System.Drawing.Size(1316, 741);
+            this.assetGridControl.Size = new System.Drawing.Size(1470, 956);
             this.assetGridControl.TabIndex = 6;
             this.assetGridControl.UseEmbeddedNavigator = true;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -919,6 +919,8 @@ namespace AssetManagement.Assets
             // colDestructionRate
             // 
             this.colDestructionRate.Caption = "معدل الإهلاك";
+            this.colDestructionRate.DisplayFormat.FormatString = "P";
+            this.colDestructionRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colDestructionRate.FieldName = "DestructionRate";
             this.colDestructionRate.MinWidth = 100;
             this.colDestructionRate.Name = "colDestructionRate";
@@ -1039,7 +1041,7 @@ namespace AssetManagement.Assets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 780);
+            this.ClientSize = new System.Drawing.Size(1470, 995);
             this.Controls.Add(this.fluentDesignFormContainer1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

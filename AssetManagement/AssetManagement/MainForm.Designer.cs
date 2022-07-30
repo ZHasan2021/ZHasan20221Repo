@@ -75,8 +75,8 @@ namespace AssetManagement
             this.manageFinancialItemsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageFinancialItemCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.prepareFinancialReportsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.addNewAsetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.addNEwFinancislItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addNewAssetBarButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.addNewFinancialItemBarButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.manageAssetTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openEencryptionKeysFolderRarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openAppFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -107,6 +107,7 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -160,16 +161,17 @@ namespace AssetManagement
             this.manageFinancialItemsBarButtonItem,
             this.manageFinancialItemCategoryTblBarButtonItem,
             this.prepareFinancialReportsBarButtonItem,
-            this.addNewAsetBarButtonItem,
-            this.addNEwFinancislItemBarButtonItem,
+            this.addNewAssetBarButtonItem2,
+            this.addNewFinancialItemBarButtonItem2,
             this.manageAssetTblBarButtonItem,
             this.openEencryptionKeysFolderRarButtonItem,
             this.openAppFolderBarButtonItem,
             this.openBackupFolderBarButtonItem,
-            this.assetsToDestructBarStaticItem});
+            this.assetsToDestructBarStaticItem,
+            this.openExportFolderBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 58;
+            this.mainRibbonControl.MaxItemId = 60;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -179,8 +181,8 @@ namespace AssetManagement
             this.manageAuxTablesRibbonPage,
             this.exportImportDataRibbonPage,
             this.optionsRibbonPage});
-            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewAsetBarButtonItem);
-            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNEwFinancislItemBarButtonItem);
+            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewAssetBarButtonItem2);
+            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewFinancialItemBarButtonItem2);
             this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
             this.mainRibbonControl.Size = new System.Drawing.Size(1485, 283);
             this.mainRibbonControl.StatusBar = this.mainRibbonStatusBar;
@@ -572,23 +574,23 @@ namespace AssetManagement
             this.prepareFinancialReportsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.prepareFinancialReportsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.prepareFinancialReportsBarButtonItem_ItemClick);
             // 
-            // addNewAsetBarButtonItem
+            // addNewAssetBarButtonItem2
             // 
-            this.addNewAsetBarButtonItem.Caption = "إضافة أصل جديد";
-            this.addNewAsetBarButtonItem.Id = 49;
-            this.addNewAsetBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.Image")));
-            this.addNewAsetBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.LargeImage")));
-            this.addNewAsetBarButtonItem.Name = "addNewAsetBarButtonItem";
-            this.addNewAsetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
+            this.addNewAssetBarButtonItem2.Caption = "إضافة أصل جديد";
+            this.addNewAssetBarButtonItem2.Id = 49;
+            this.addNewAssetBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.Image")));
+            this.addNewAssetBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.LargeImage")));
+            this.addNewAssetBarButtonItem2.Name = "addNewAssetBarButtonItem2";
+            this.addNewAssetBarButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
             // 
-            // addNEwFinancislItemBarButtonItem
+            // addNewFinancialItemBarButtonItem2
             // 
-            this.addNEwFinancislItemBarButtonItem.Caption = "إضافة سجل مالي جديد";
-            this.addNEwFinancislItemBarButtonItem.Id = 50;
-            this.addNEwFinancislItemBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.Image")));
-            this.addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage")));
-            this.addNEwFinancislItemBarButtonItem.Name = "addNEwFinancislItemBarButtonItem";
-            this.addNEwFinancislItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
+            this.addNewFinancialItemBarButtonItem2.Caption = "إضافة سجل مالي جديد";
+            this.addNewFinancialItemBarButtonItem2.Id = 50;
+            this.addNewFinancialItemBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.Image")));
+            this.addNewFinancialItemBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage")));
+            this.addNewFinancialItemBarButtonItem2.Name = "addNewFinancialItemBarButtonItem2";
+            this.addNewFinancialItemBarButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
             // 
             // manageAssetTblBarButtonItem
             // 
@@ -827,6 +829,7 @@ namespace AssetManagement
             this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openAppFolderBarButtonItem);
             this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openEencryptionKeysFolderRarButtonItem);
             this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openBackupFolderBarButtonItem);
+            this.appFoldersRibbonPageGroup.ItemLinks.Add(this.openExportFolderBarButtonItem);
             this.appFoldersRibbonPageGroup.Name = "appFoldersRibbonPageGroup";
             this.appFoldersRibbonPageGroup.Text = "مجلدات التطبيق";
             // 
@@ -935,6 +938,15 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
+            // openExportFolderBarButtonItem
+            // 
+            this.openExportFolderBarButtonItem.Caption = "مجلد الملفات المصدرة";
+            this.openExportFolderBarButtonItem.Id = 58;
+            this.openExportFolderBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openExportFolderBarButtonItem.ImageOptions.SvgImage")));
+            this.openExportFolderBarButtonItem.Name = "openExportFolderBarButtonItem";
+            this.openExportFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.openExportFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openExportFolderBarButtonItem_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1032,8 +1044,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem prepareFinancialReportsBarButtonItem;
         private System.Windows.Forms.ToolStripStatusLabel activeUserToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel activeUserRoleToolStripStatusLabel;
-        private DevExpress.XtraBars.BarButtonItem addNewAsetBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem addNEwFinancislItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem addNewAssetBarButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem addNewFinancialItemBarButtonItem2;
         private DevExpress.XtraBars.BarButtonItem manageAssetTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem openEencryptionKeysFolderRarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup appFoldersRibbonPageGroup;
@@ -1041,6 +1053,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
         private DevExpress.XtraEditors.MemoEdit mainMemoEdit;
+        private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
     }
 }
 

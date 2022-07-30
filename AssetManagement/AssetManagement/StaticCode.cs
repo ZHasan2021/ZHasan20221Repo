@@ -107,6 +107,9 @@ namespace AssetManagement
             SqlConnection sqlconn = new SqlConnection(ssqlconnectionstring);
             if (sqlconn.State != ConnectionState.Open)
                 sqlconn.Open();
+            string qryBefore = "DISABLE TRIGGER SetDateAndUser_Asset on AssetTbl; DISABLE TRIGGER UpdateAssetLifeSpanandDestructionRate on AssetTbl;";
+            SqlCommand sqlcomm = new SqlCommand(qryBefore, sqlconn);
+            sqlcomm.ExecuteNonQuery();
 
             List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "UserTbl", "AssetMovementTbl" };
             List<string> keyFields = new List<string>() { "AssetCode", "ID", "PasswordUpdatedOn", "MovementDate" };
@@ -134,7 +137,6 @@ namespace AssetManagement
                         Application.DoEvents();
                         string oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
                         string sqlQry = $"SELECT * FROM {ssqltable} where {currKeyField} = N'{oneKeyValue}'";
-                        SqlCommand sqlcomm = new SqlCommand(sqlQry, sqlconn);
                         sqlcomm.CommandType = CommandType.Text;
                         SqlDataReader sqlRdr = sqlcomm.ExecuteReader();
                         bool recordExisted = sqlRdr.HasRows;
@@ -146,10 +148,14 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
-                                if (oneField.ToUpper().Contains("DATE"))
+                                if (oneField.ToUpper().Contains("DATE") || oneField.ToUpper().Contains("MODIFIEDON") || oneField.ToUpper().Contains("CREATEDON") || oneField.ToUpper().Contains("INSERTEDON"))
                                 {
+                                    fieldsValuesPairs += $"{oneField} = N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
                                 }
-                                fieldsValuesPairs += $"{oneField} = N'{oneVal}', ";
+                                else
+                                {
+                                    fieldsValuesPairs += $"{oneField} = N'{oneVal}', ";
+                                }
                             }
                             fieldsValuesPairs = fieldsValuesPairs.Trim().Trim(',');
                             string updateQry = $"UPDATE {ssqltable} SET {fieldsValuesPairs} WHERE {currKeyField} = N'{oneKeyValue}';";
@@ -159,15 +165,23 @@ namespace AssetManagement
                         {
                             string fieldsPairs = "";
                             string valuesPairs = "";
+
+                            //fieldsPairs = tblFields.Select(fp1 => fp1 + ", ").ToString().Trim().Trim(',');
+
+                            // valuesPairs = oneSh.Cells.Where(cl1 => cl1.End.Row == iRow && cl1.Start.Row == iRow && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()+",").ToString().Trim().Trim(',');
                             for (int iCol = 2; iCol <= oneSh.Dimension.End.Column; iCol++)
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
-                                if (oneField.ToUpper().Contains("DATE"))
-                                {
-                                }
                                 fieldsPairs += $"{oneField}, ";
-                                valuesPairs += $"N'{oneVal}', ";
+                                if (oneField.ToUpper().Contains("DATE") || oneField.ToUpper().Contains("MODIFIEDON") || oneField.ToUpper().Contains("CREATEDON") || oneField.ToUpper().Contains("INSERTEDON"))
+                                {
+                                    valuesPairs += $"N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
+                                }
+                                else
+                                {
+                                    valuesPairs += $"N'{oneVal}', ";
+                                }
                             }
                             fieldsPairs = fieldsPairs.Trim().Trim(',');
                             valuesPairs = valuesPairs.Trim().Trim(',');
@@ -182,55 +196,11 @@ namespace AssetManagement
                     continue;
                 }
             }
-        }
 
-        public static void ImportDataFromExcel_OleDb(string excelFilePath)
-        {
-            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
-            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
-            foreach (ExcelWorksheet oneSh in srcExcelWb.Worksheets)
-            {
-                //declare variables - edit these based on your particular situation   
-                string ssqltable = oneSh.Name;
-                List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl" };
-                if (tblsToImport.IndexOf(ssqltable) == -1)
-                    continue;
-                // make sure your sheet name is correct, here sheet name is sheet1,
-                //so you can change your sheet name if have different
-                string myexceldataquery = "select student,rollno,course from [Sheet1$]";
-                try
-                {
-                    //create our connection strings   
-                    string sexcelconnectionstring = $"provider=microsoft.jet.oledb.4.0;data source={excelFilePath};extended properties=excel 8.0;hdr = yes;";
-                    string ssqlconnectionstring = new Properties.Settings().AssetMngDbConnectionString;
-                    //execute a query to erase any previous data from our destination table   
-                    //string sclearsql = "delete from " + ssqltable;
-                    SqlConnection sqlconn = new SqlConnection(ssqlconnectionstring);
-                    if (sqlconn.State != System.Data.ConnectionState.Open)
-                        sqlconn.Open();
-                    //sqlcmd.ExecuteNonQuery();
-                    //series of commands to bulk copy data from the excel file into our sql table   
-                    OleDbConnection oledbconn = new OleDbConnection(sexcelconnectionstring);
-                    OleDbCommand oledbcmd = new OleDbCommand(myexceldataquery, oledbconn);
-                    oledbconn.Open();
-                    OleDbDataReader dr = oledbcmd.ExecuteReader();
-                    SqlBulkCopy bulkcopy = new SqlBulkCopy(ssqlconnectionstring);
-                    bulkcopy.DestinationTableName = ssqltable;
-                    while (dr.Read())
-                    {
-                        bulkcopy.WriteToServer(dr);
-                    }
-                    dr.Close();
-                    oledbconn.Close();
-                }
-                catch (Exception ex)
-                {
-                    //handle exception   
-                }
-            }
-            srcExcelEp.Save();
+            string qryAfter = "ENABLE TRIGGER SetDateAndUser_Asset on AssetTbl; ENABLE TRIGGER UpdateAssetLifeSpanandDestructionRate on AssetTbl;";
+            sqlcomm.CommandText = qryAfter;
+            sqlcomm.ExecuteNonQuery();
         }
-
         #endregion
 
         #region RSA

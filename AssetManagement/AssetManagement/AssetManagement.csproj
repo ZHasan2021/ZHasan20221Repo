@@ -313,10 +313,10 @@
     <Compile Include="AuxTables\ManageCategoriesTblsForm.Designer.cs">
       <DependentUpon>ManageCategoriesTblsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Users\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Users\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -435,7 +435,7 @@
     <EmbeddedResource Include="AuxTables\ManageCategoriesTblsForm.resx">
       <DependentUpon>ManageCategoriesTblsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Users\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">

@@ -105,10 +105,12 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssetsXtraReport));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.reportTitleLabel = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -197,8 +199,6 @@ namespace AssetManagement.Assets
             this.GrandTotalData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GrandTotalBackground1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
@@ -227,6 +227,14 @@ namespace AssetManagement.Assets
             this.reportTitleLabel.StylePriority.UseTextAlignment = false;
             this.reportTitleLabel.Text = "تقرير جرد الأصول";
             this.reportTitleLabel.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::AssetManagement.Properties.Resources.reportHeader, true);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2.5F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(1142.333F, 86.66666F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
             // 
             // BottomMargin
             // 
@@ -269,6 +277,13 @@ namespace AssetManagement.Assets
             this.ReportHeader.HeightF = 17.5F;
             this.ReportHeader.Name = "ReportHeader";
             // 
+            // xrLine1
+            // 
+            this.xrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(9.999962F, 6.666667F);
+            this.xrLine1.Name = "xrLine1";
+            this.xrLine1.SizeF = new System.Drawing.SizeF(1085F, 2.5F);
+            // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -276,13 +291,13 @@ namespace AssetManagement.Assets
             this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("الساحة", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
-            this.GroupHeader1.HeightF = 27F;
+            this.GroupHeader1.HeightF = 27.00002F;
             this.GroupHeader1.Level = 2;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // table1
             // 
-            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2F);
+            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(299.192F, 2.00002F);
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
@@ -307,7 +322,7 @@ namespace AssetManagement.Assets
             this.tableCell1.StylePriority.UseFont = false;
             this.tableCell1.StylePriority.UseForeColor = false;
             this.tableCell1.Text = "الساحة";
-            this.tableCell1.Weight = 0.041935545096033706D;
+            this.tableCell1.Weight = 0.062983196063810434D;
             // 
             // tableCell2
             // 
@@ -321,7 +336,7 @@ namespace AssetManagement.Assets
             this.tableCell2.StylePriority.UseBackColor = false;
             this.tableCell2.StylePriority.UseFont = false;
             this.tableCell2.StylePriority.UseForeColor = false;
-            this.tableCell2.Weight = 0.29545143874371316D;
+            this.tableCell2.Weight = 0.27440378777593644D;
             // 
             // GroupHeader2
             // 
@@ -330,13 +345,13 @@ namespace AssetManagement.Assets
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("الدائرة", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader2.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
-            this.GroupHeader2.HeightF = 27F;
+            this.GroupHeader2.HeightF = 27.00002F;
             this.GroupHeader2.Level = 3;
             this.GroupHeader2.Name = "GroupHeader2";
             // 
             // table2
             // 
-            this.table2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2F);
+            this.table2.LocationFloat = new DevExpress.Utils.PointFloat(225.8333F, 2.00002F);
             this.table2.Name = "table2";
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
@@ -361,7 +376,7 @@ namespace AssetManagement.Assets
             this.tableCell3.StylePriority.UseFont = false;
             this.tableCell3.StylePriority.UseForeColor = false;
             this.tableCell3.Text = "الدائرة";
-            this.tableCell3.Weight = 0.066285164862207313D;
+            this.tableCell3.Weight = 0.086553217989875753D;
             // 
             // tableCell4
             // 
@@ -375,7 +390,9 @@ namespace AssetManagement.Assets
             this.tableCell4.StylePriority.UseBackColor = false;
             this.tableCell4.StylePriority.UseFont = false;
             this.tableCell4.StylePriority.UseForeColor = false;
-            this.tableCell4.Weight = 0.27110180633599934D;
+            this.tableCell4.StylePriority.UseTextAlignment = false;
+            this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.tableCell4.Weight = 0.2508337532083309D;
             // 
             // GroupHeader3
             // 
@@ -390,7 +407,7 @@ namespace AssetManagement.Assets
             // 
             // table3
             // 
-            this.table3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2F);
+            this.table3.LocationFloat = new DevExpress.Utils.PointFloat(139.8757F, 1.999995F);
             this.table3.Name = "table3";
             this.table3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow3});
@@ -429,6 +446,8 @@ namespace AssetManagement.Assets
             this.tableCell6.StylePriority.UseBackColor = false;
             this.tableCell6.StylePriority.UseFont = false;
             this.tableCell6.StylePriority.UseForeColor = false;
+            this.tableCell6.StylePriority.UseTextAlignment = false;
+            this.tableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell6.Weight = 0.23723254893679036D;
             // 
             // GroupHeader4
@@ -444,7 +463,7 @@ namespace AssetManagement.Assets
             // 
             // table4
             // 
-            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(70.85876F, 0F);
             this.table4.Name = "table4";
             this.table4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow4});
@@ -481,6 +500,8 @@ namespace AssetManagement.Assets
             this.tableCell8.StyleName = "GroupData1";
             this.tableCell8.StylePriority.UseFont = false;
             this.tableCell8.StylePriority.UseForeColor = false;
+            this.tableCell8.StylePriority.UseTextAlignment = false;
+            this.tableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell8.Weight = 0.20324063711158513D;
             // 
             // GroupHeader5
@@ -496,7 +517,7 @@ namespace AssetManagement.Assets
             // 
             // table5
             // 
-            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
             this.table5.Name = "table5";
             this.table5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow5});
@@ -1379,21 +1400,6 @@ namespace AssetManagement.Assets
             this.PageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
-            // 
-            // xrLine1
-            // 
-            this.xrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(9.999962F, 6.666667F);
-            this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(1085F, 2.5F);
-            // 
-            // xrPictureBox1
-            // 
-            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource(global::AssetManagement.Properties.Resources.reportHeader, true);
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 2.5F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(1142.333F, 86.66666F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
             // 
             // AssetsXtraReport
             // 
