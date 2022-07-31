@@ -73,6 +73,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.colFinancialItemCode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -123,6 +124,7 @@ namespace AssetManagement.AuxTables
             // 
             this.financialItemGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
+            this.colFinancialItemCode,
             this.colFinancialItemCategory,
             this.colFinancialItemDescription,
             this.colFinancialItemInsertionDate,
@@ -496,6 +498,14 @@ namespace AssetManagement.AuxTables
             this.financialItemTblBindingNavigator.TabIndex = 4;
             this.financialItemTblBindingNavigator.Text = "bindingNavigator1";
             // 
+            // colFinancialItemCode
+            // 
+            this.colFinancialItemCode.Caption = "كود السجل المالي";
+            this.colFinancialItemCode.FieldName = "FinancialItemCode";
+            this.colFinancialItemCode.MinWidth = 150;
+            this.colFinancialItemCode.Name = "colFinancialItemCode";
+            this.colFinancialItemCode.Width = 150;
+            // 
             // ManageFinancialItemTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -571,5 +581,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.BindingSource currencyTblBindingSource;
         private AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter currencyTblTableAdapter;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemCode;
     }
 }

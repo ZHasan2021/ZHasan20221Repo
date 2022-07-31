@@ -111,8 +111,8 @@ namespace AssetManagement
             SqlCommand sqlcomm = new SqlCommand(qryBefore, sqlconn);
             sqlcomm.ExecuteNonQuery();
 
-            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "UserTbl", "AssetMovementTbl" };
-            List<string> keyFields = new List<string>() { "AssetCode", "ID", "PasswordUpdatedOn", "MovementDate" };
+            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", };
+            List<string> keyFields = new List<string>() { "AssetCode", "AssetCode", };
 
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;

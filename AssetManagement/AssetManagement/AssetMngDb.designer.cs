@@ -272,6 +272,14 @@ namespace AssetManagement
 				return this.GetTable<AssetVw>();
 			}
 		}
+		
+		public System.Data.Linq.Table<FinancialItemVw> FinancialItemVws
+		{
+			get
+			{
+				return this.GetTable<FinancialItemVw>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetMovementTbl")]
@@ -3251,6 +3259,8 @@ namespace AssetManagement
 		
 		private int _ID;
 		
+		private string _FinancialItemCode;
+		
 		private int _FinancialItemCategory;
 		
 		private string _FinancialItemDescription;
@@ -3287,6 +3297,8 @@ namespace AssetManagement
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
+    partial void OnFinancialItemCodeChanging(string value);
+    partial void OnFinancialItemCodeChanged();
     partial void OnFinancialItemCategoryChanging(int value);
     partial void OnFinancialItemCategoryChanged();
     partial void OnFinancialItemDescriptionChanging(string value);
@@ -3337,6 +3349,26 @@ namespace AssetManagement
 					this._ID = value;
 					this.SendPropertyChanged("ID");
 					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCode", DbType="NVarChar(50)")]
+		public string FinancialItemCode
+		{
+			get
+			{
+				return this._FinancialItemCode;
+			}
+			set
+			{
+				if ((this._FinancialItemCode != value))
+				{
+					this.OnFinancialItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemCode = value;
+					this.SendPropertyChanged("FinancialItemCode");
+					this.OnFinancialItemCodeChanged();
 				}
 			}
 		}
@@ -6845,6 +6877,195 @@ namespace AssetManagement
 				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
 				{
 					this._العمر_الافتراضي_المتبقي_للأصل = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemVw")]
+	public partial class FinancialItemVw
+	{
+		
+		private int _معرف_السجل_المالي;
+		
+		private string _كود_السجل_المالي;
+		
+		private string _اسم_البند_المالي;
+		
+		private string _بيان_السجل_المالي;
+		
+		private System.DateTime _تاريخ_تحرير_السجل;
+		
+		private string _وارد_أم_صادر;
+		
+		private double _المبلغ_الوارد;
+		
+		private double _المبلغ_الصادر;
+		
+		private string _العملة;
+		
+		private string _ملاحظات_إضافية;
+		
+		public FinancialItemVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف السجل المالي]", Storage="_معرف_السجل_المالي", DbType="Int NOT NULL")]
+		public int معرف_السجل_المالي
+		{
+			get
+			{
+				return this._معرف_السجل_المالي;
+			}
+			set
+			{
+				if ((this._معرف_السجل_المالي != value))
+				{
+					this._معرف_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود السجل المالي]", Storage="_كود_السجل_المالي", DbType="NVarChar(50)")]
+		public string كود_السجل_المالي
+		{
+			get
+			{
+				return this._كود_السجل_المالي;
+			}
+			set
+			{
+				if ((this._كود_السجل_المالي != value))
+				{
+					this._كود_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200)")]
+		public string اسم_البند_المالي
+		{
+			get
+			{
+				return this._اسم_البند_المالي;
+			}
+			set
+			{
+				if ((this._اسم_البند_المالي != value))
+				{
+					this._اسم_البند_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[بيان السجل المالي]", Storage="_بيان_السجل_المالي", DbType="NVarChar(300)")]
+		public string بيان_السجل_المالي
+		{
+			get
+			{
+				return this._بيان_السجل_المالي;
+			}
+			set
+			{
+				if ((this._بيان_السجل_المالي != value))
+				{
+					this._بيان_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ تحرير السجل]", Storage="_تاريخ_تحرير_السجل", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_تحرير_السجل
+		{
+			get
+			{
+				return this._تاريخ_تحرير_السجل;
+			}
+			set
+			{
+				if ((this._تاريخ_تحرير_السجل != value))
+				{
+					this._تاريخ_تحرير_السجل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وارد أم صادر]", Storage="_وارد_أم_صادر", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string وارد_أم_صادر
+		{
+			get
+			{
+				return this._وارد_أم_صادر;
+			}
+			set
+			{
+				if ((this._وارد_أم_صادر != value))
+				{
+					this._وارد_أم_صادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الوارد]", Storage="_المبلغ_الوارد", DbType="Float NOT NULL")]
+		public double المبلغ_الوارد
+		{
+			get
+			{
+				return this._المبلغ_الوارد;
+			}
+			set
+			{
+				if ((this._المبلغ_الوارد != value))
+				{
+					this._المبلغ_الوارد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الصادر]", Storage="_المبلغ_الصادر", DbType="Float NOT NULL")]
+		public double المبلغ_الصادر
+		{
+			get
+			{
+				return this._المبلغ_الصادر;
+			}
+			set
+			{
+				if ((this._المبلغ_الصادر != value))
+				{
+					this._المبلغ_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العملة", DbType="NVarChar(100)")]
+		public string العملة
+		{
+			get
+			{
+				return this._العملة;
+			}
+			set
+			{
+				if ((this._العملة != value))
+				{
+					this._العملة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات إضافية]", Storage="_ملاحظات_إضافية", DbType="NVarChar(300)")]
+		public string ملاحظات_إضافية
+		{
+			get
+			{
+				return this._ملاحظات_إضافية;
+			}
+			set
+			{
+				if ((this._ملاحظات_إضافية != value))
+				{
+					this._ملاحظات_إضافية = value;
 				}
 			}
 		}

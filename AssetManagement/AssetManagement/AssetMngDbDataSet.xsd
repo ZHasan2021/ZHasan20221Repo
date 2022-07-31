@@ -103,6 +103,31 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FinancialItemVwTableAdapter" GeneratorDataComponentClassName="FinancialItemVwTableAdapter" Name="FinancialItemVw" UserDataComponentName="FinancialItemVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.FinancialItemVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [معرف السجل المالي], [كود السجل المالي], [اسم البند المالي], [بيان السجل المالي], [تاريخ تحرير السجل], [وارد أم صادر], [المبلغ الوارد], [المبلغ الصادر], العملة, [ملاحظات إضافية] FROM dbo.FinancialItemVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="معرف السجل المالي" DataSetColumn="معرف السجل المالي" />
+              <Mapping SourceColumn="كود السجل المالي" DataSetColumn="كود السجل المالي" />
+              <Mapping SourceColumn="اسم البند المالي" DataSetColumn="اسم البند المالي" />
+              <Mapping SourceColumn="بيان السجل المالي" DataSetColumn="بيان السجل المالي" />
+              <Mapping SourceColumn="تاريخ تحرير السجل" DataSetColumn="تاريخ تحرير السجل" />
+              <Mapping SourceColumn="وارد أم صادر" DataSetColumn="وارد أم صادر" />
+              <Mapping SourceColumn="المبلغ الوارد" DataSetColumn="المبلغ الوارد" />
+              <Mapping SourceColumn="المبلغ الصادر" DataSetColumn="المبلغ الصادر" />
+              <Mapping SourceColumn="العملة" DataSetColumn="العملة" />
+              <Mapping SourceColumn="ملاحظات إضافية" DataSetColumn="ملاحظات إضافية" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssetMovementTblTableAdapter" GeneratorDataComponentClassName="AssetMovementTblTableAdapter" Name="AssetMovementTbl" UserDataComponentName="AssetMovementTblTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetMovementTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -846,9 +871,11 @@ SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM Financia
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.FinancialItemTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [dbo].[FinancialItemTbl] WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))</CommandText>
+                    <CommandText>DELETE FROM [dbo].[FinancialItemTbl] WHERE (([ID] = @Original_ID) AND ((@IsNull_FinancialItemCode = 1 AND [FinancialItemCode] IS NULL) OR ([FinancialItemCode] = @Original_FinancialItemCode)) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemDescription" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -872,9 +899,10 @@ SELECT ID, FinancialItemCategoryName, FinancialItemCategoryDetails FROM Financia
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [dbo].[FinancialItemTbl] ([FinancialItemCategory], [FinancialItemDescription], [FinancialItemInsertionDate], [IncomingOrOutgoing], [IncomingAmount], [OutgoingAmount], [FinancialItemCurrency], [AdditionalNotes], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy]) VALUES (@FinancialItemCategory, @FinancialItemDescription, @FinancialItemInsertionDate, @IncomingOrOutgoing, @IncomingAmount, @OutgoingAmount, @FinancialItemCurrency, @AdditionalNotes, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy);
-SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM FinancialItemTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>INSERT INTO [dbo].[FinancialItemTbl] ([FinancialItemCode], [FinancialItemCategory], [FinancialItemDescription], [FinancialItemInsertionDate], [IncomingOrOutgoing], [IncomingAmount], [OutgoingAmount], [FinancialItemCurrency], [AdditionalNotes], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy]) VALUES (@FinancialItemCode, @FinancialItemCategory, @FinancialItemDescription, @FinancialItemInsertionDate, @IncomingOrOutgoing, @IncomingAmount, @OutgoingAmount, @FinancialItemCurrency, @AdditionalNotes, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy);
+SELECT ID, FinancialItemCode, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM FinancialItemTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -892,15 +920,16 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM dbo.FinancialItemTbl</CommandText>
+                    <CommandText>SELECT ID, FinancialItemCode, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM dbo.FinancialItemTbl</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [dbo].[FinancialItemTbl] SET [FinancialItemCategory] = @FinancialItemCategory, [FinancialItemDescription] = @FinancialItemDescription, [FinancialItemInsertionDate] = @FinancialItemInsertionDate, [IncomingOrOutgoing] = @IncomingOrOutgoing, [IncomingAmount] = @IncomingAmount, [OutgoingAmount] = @OutgoingAmount, [FinancialItemCurrency] = @FinancialItemCurrency, [AdditionalNotes] = @AdditionalNotes, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy WHERE (([ID] = @Original_ID) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)));
-SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM FinancialItemTbl WHERE (ID = @ID)</CommandText>
+                    <CommandText>UPDATE [dbo].[FinancialItemTbl] SET [FinancialItemCode] = @FinancialItemCode, [FinancialItemCategory] = @FinancialItemCategory, [FinancialItemDescription] = @FinancialItemDescription, [FinancialItemInsertionDate] = @FinancialItemInsertionDate, [IncomingOrOutgoing] = @IncomingOrOutgoing, [IncomingAmount] = @IncomingAmount, [OutgoingAmount] = @OutgoingAmount, [FinancialItemCurrency] = @FinancialItemCurrency, [AdditionalNotes] = @AdditionalNotes, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy WHERE (([ID] = @Original_ID) AND ((@IsNull_FinancialItemCode = 1 AND [FinancialItemCode] IS NULL) OR ([FinancialItemCode] = @Original_FinancialItemCode)) AND ([FinancialItemCategory] = @Original_FinancialItemCategory) AND ((@IsNull_FinancialItemDescription = 1 AND [FinancialItemDescription] IS NULL) OR ([FinancialItemDescription] = @Original_FinancialItemDescription)) AND ([FinancialItemInsertionDate] = @Original_FinancialItemInsertionDate) AND ([IncomingOrOutgoing] = @Original_IncomingOrOutgoing) AND ([IncomingAmount] = @Original_IncomingAmount) AND ([OutgoingAmount] = @Original_OutgoingAmount) AND ([FinancialItemCurrency] = @Original_FinancialItemCurrency) AND ((@IsNull_AdditionalNotes = 1 AND [AdditionalNotes] IS NULL) OR ([AdditionalNotes] = @Original_AdditionalNotes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)));
+SELECT ID, FinancialItemCode, FinancialItemCategory, FinancialItemDescription, FinancialItemInsertionDate, IncomingOrOutgoing, IncomingAmount, OutgoingAmount, FinancialItemCurrency, AdditionalNotes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM FinancialItemTbl WHERE (ID = @ID)</CommandText>
                     <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@FinancialItemInsertionDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="FinancialItemInsertionDate" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -914,6 +943,8 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@InsertedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InsertedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LastModifiedBy" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LastModifiedBy" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemCode" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_FinancialItemCategory" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemCategory" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FinancialItemDescription" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FinancialItemDescription" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FinancialItemDescription" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -940,6 +971,7 @@ SELECT ID, FinancialItemCategory, FinancialItemDescription, FinancialItemInserti
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="FinancialItemCode" DataSetColumn="FinancialItemCode" />
               <Mapping SourceColumn="FinancialItemCategory" DataSetColumn="FinancialItemCategory" />
               <Mapping SourceColumn="FinancialItemDescription" DataSetColumn="FinancialItemDescription" />
               <Mapping SourceColumn="FinancialItemInsertionDate" DataSetColumn="FinancialItemInsertionDate" />
@@ -2012,6 +2044,58 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="FinancialItemVw" msprop:Generator_TableClassName="FinancialItemVwDataTable" msprop:Generator_TableVarName="tableFinancialItemVw" msprop:Generator_TablePropName="FinancialItemVw" msprop:Generator_RowDeletingName="FinancialItemVwRowDeleting" msprop:Generator_RowChangingName="FinancialItemVwRowChanging" msprop:Generator_RowEvHandlerName="FinancialItemVwRowChangeEventHandler" msprop:Generator_RowDeletedName="FinancialItemVwRowDeleted" msprop:Generator_UserTableName="FinancialItemVw" msprop:Generator_RowChangedName="FinancialItemVwRowChanged" msprop:Generator_RowEvArgName="FinancialItemVwRowChangeEvent" msprop:Generator_RowClassName="FinancialItemVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="معرف_x0020_السجل_x0020_المالي" msprop:Generator_ColumnVarNameInTable="columnمعرف_السجل_المالي" msprop:Generator_ColumnPropNameInRow="معرف_السجل_المالي" msprop:Generator_ColumnPropNameInTable="معرف_السجل_الماليColumn" msprop:Generator_UserColumnName="معرف السجل المالي" type="xs:int" />
+              <xs:element name="كود_x0020_السجل_x0020_المالي" msprop:Generator_ColumnVarNameInTable="columnكود_السجل_المالي" msprop:Generator_ColumnPropNameInRow="كود_السجل_المالي" msprop:Generator_ColumnPropNameInTable="كود_السجل_الماليColumn" msprop:Generator_UserColumnName="كود السجل المالي" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اسم_x0020_البند_x0020_المالي" msprop:Generator_ColumnVarNameInTable="columnاسم_البند_المالي" msprop:Generator_ColumnPropNameInRow="اسم_البند_المالي" msprop:Generator_ColumnPropNameInTable="اسم_البند_الماليColumn" msprop:Generator_UserColumnName="اسم البند المالي" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="بيان_x0020_السجل_x0020_المالي" msprop:Generator_ColumnVarNameInTable="columnبيان_السجل_المالي" msprop:Generator_ColumnPropNameInRow="بيان_السجل_المالي" msprop:Generator_ColumnPropNameInTable="بيان_السجل_الماليColumn" msprop:Generator_UserColumnName="بيان السجل المالي" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="تاريخ_x0020_تحرير_x0020_السجل" msprop:Generator_ColumnVarNameInTable="columnتاريخ_تحرير_السجل" msprop:Generator_ColumnPropNameInRow="تاريخ_تحرير_السجل" msprop:Generator_ColumnPropNameInTable="تاريخ_تحرير_السجلColumn" msprop:Generator_UserColumnName="تاريخ تحرير السجل" type="xs:dateTime" />
+              <xs:element name="وارد_x0020_أم_x0020_صادر" msprop:Generator_ColumnVarNameInTable="columnوارد_أم_صادر" msprop:Generator_ColumnPropNameInRow="وارد_أم_صادر" msprop:Generator_ColumnPropNameInTable="وارد_أم_صادرColumn" msprop:Generator_UserColumnName="وارد أم صادر">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="المبلغ_x0020_الوارد" msprop:Generator_ColumnVarNameInTable="columnالمبلغ_الوارد" msprop:Generator_ColumnPropNameInRow="المبلغ_الوارد" msprop:Generator_ColumnPropNameInTable="المبلغ_الواردColumn" msprop:Generator_UserColumnName="المبلغ الوارد" type="xs:double" />
+              <xs:element name="المبلغ_x0020_الصادر" msprop:Generator_ColumnVarNameInTable="columnالمبلغ_الصادر" msprop:Generator_ColumnPropNameInRow="المبلغ_الصادر" msprop:Generator_ColumnPropNameInTable="المبلغ_الصادرColumn" msprop:Generator_UserColumnName="المبلغ الصادر" type="xs:double" />
+              <xs:element name="العملة" msprop:Generator_ColumnVarNameInTable="columnالعملة" msprop:Generator_ColumnPropNameInRow="العملة" msprop:Generator_ColumnPropNameInTable="العملةColumn" msprop:Generator_UserColumnName="العملة" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ملاحظات_x0020_إضافية" msprop:Generator_ColumnVarNameInTable="columnملاحظات_إضافية" msprop:Generator_ColumnPropNameInRow="ملاحظات_إضافية" msprop:Generator_ColumnPropNameInTable="ملاحظات_إضافيةColumn" msprop:Generator_UserColumnName="ملاحظات إضافية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="AssetMovementTbl" msprop:Generator_TableClassName="AssetMovementTblDataTable" msprop:Generator_TableVarName="tableAssetMovementTbl" msprop:Generator_TablePropName="AssetMovementTbl" msprop:Generator_RowDeletingName="AssetMovementTblRowDeleting" msprop:Generator_RowChangingName="AssetMovementTblRowChanging" msprop:Generator_RowEvHandlerName="AssetMovementTblRowChangeEventHandler" msprop:Generator_RowDeletedName="AssetMovementTblRowDeleted" msprop:Generator_UserTableName="AssetMovementTbl" msprop:Generator_RowChangedName="AssetMovementTblRowChanged" msprop:Generator_RowEvArgName="AssetMovementTblRowChangeEvent" msprop:Generator_RowClassName="AssetMovementTblRow">
           <xs:complexType>
             <xs:sequence>
@@ -2320,6 +2404,13 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="FinancialItemCode" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCode" msprop:Generator_ColumnPropNameInRow="FinancialItemCode" msprop:Generator_ColumnPropNameInTable="FinancialItemCodeColumn" msprop:Generator_UserColumnName="FinancialItemCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="FinancialItemCategory" msprop:Generator_ColumnVarNameInTable="columnFinancialItemCategory" msprop:Generator_ColumnPropNameInRow="FinancialItemCategory" msprop:Generator_ColumnPropNameInTable="FinancialItemCategoryColumn" msprop:Generator_UserColumnName="FinancialItemCategory" type="xs:int" />
               <xs:element name="FinancialItemDescription" msprop:Generator_ColumnVarNameInTable="columnFinancialItemDescription" msprop:Generator_ColumnPropNameInRow="FinancialItemDescription" msprop:Generator_ColumnPropNameInTable="FinancialItemDescriptionColumn" msprop:Generator_UserColumnName="FinancialItemDescription" minOccurs="0">
                 <xs:simpleType>
@@ -2546,6 +2637,10 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
     <xs:unique name="AssetVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetVw" />
       <xs:field xpath="mstns:معرف_x0020_الأصل" />
+    </xs:unique>
+    <xs:unique name="FinancialItemVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FinancialItemVw" />
+      <xs:field xpath="mstns:معرف_x0020_السجل_x0020_المالي" />
     </xs:unique>
     <xs:unique name="AssetMovementTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetMovementTbl" />
