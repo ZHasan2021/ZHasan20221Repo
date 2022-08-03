@@ -304,6 +304,8 @@ namespace AssetManagement
 		
 		private System.Nullable<int> _AssetMovedBy;
 		
+		private string _AssetMovementUniqueKey;
+		
 		private EntityRef<UserTbl> _UserTbl;
 		
 		private EntityRef<AssetTbl> _AssetTbl;
@@ -328,6 +330,8 @@ namespace AssetManagement
     partial void OnAssetMovedOnChanged();
     partial void OnAssetMovedByChanging(System.Nullable<int> value);
     partial void OnAssetMovedByChanged();
+    partial void OnAssetMovementUniqueKeyChanging(string value);
+    partial void OnAssetMovementUniqueKeyChanged();
     #endregion
 		
 		public AssetMovementTbl()
@@ -501,6 +505,26 @@ namespace AssetManagement
 					this._AssetMovedBy = value;
 					this.SendPropertyChanged("AssetMovedBy");
 					this.OnAssetMovedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetMovementUniqueKey", DbType="NVarChar(100)")]
+		public string AssetMovementUniqueKey
+		{
+			get
+			{
+				return this._AssetMovementUniqueKey;
+			}
+			set
+			{
+				if ((this._AssetMovementUniqueKey != value))
+				{
+					this.OnAssetMovementUniqueKeyChanging(value);
+					this.SendPropertyChanging();
+					this._AssetMovementUniqueKey = value;
+					this.SendPropertyChanged("AssetMovementUniqueKey");
+					this.OnAssetMovementUniqueKeyChanged();
 				}
 			}
 		}
@@ -2203,6 +2227,8 @@ namespace AssetManagement
 		
 		private System.Nullable<double> _CurrentPriceWithDestroying;
 		
+		private string _AssetTransactionUniqueKey;
+		
 		private EntityRef<AssetTbl> _AssetTbl;
 		
 		private EntityRef<UserTbl> _UserTbl;
@@ -2239,6 +2265,8 @@ namespace AssetManagement
     partial void OnWithDestroyingChanged();
     partial void OnCurrentPriceWithDestroyingChanging(System.Nullable<double> value);
     partial void OnCurrentPriceWithDestroyingChanged();
+    partial void OnAssetTransactionUniqueKeyChanging(string value);
+    partial void OnAssetTransactionUniqueKeyChanged();
     #endregion
 		
 		public AssetTransactionTbl()
@@ -2502,6 +2530,26 @@ namespace AssetManagement
 					this._CurrentPriceWithDestroying = value;
 					this.SendPropertyChanged("CurrentPriceWithDestroying");
 					this.OnCurrentPriceWithDestroyingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetTransactionUniqueKey", DbType="NVarChar(100)")]
+		public string AssetTransactionUniqueKey
+		{
+			get
+			{
+				return this._AssetTransactionUniqueKey;
+			}
+			set
+			{
+				if ((this._AssetTransactionUniqueKey != value))
+				{
+					this.OnAssetTransactionUniqueKeyChanging(value);
+					this.SendPropertyChanging();
+					this._AssetTransactionUniqueKey = value;
+					this.SendPropertyChanged("AssetTransactionUniqueKey");
+					this.OnAssetTransactionUniqueKeyChanged();
 				}
 			}
 		}

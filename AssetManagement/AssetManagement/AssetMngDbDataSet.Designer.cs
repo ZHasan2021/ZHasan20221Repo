@@ -3032,6 +3032,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnAssetMovedBy;
             
+            private global::System.Data.DataColumn columnAssetMovementUniqueKey;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetMovementTblDataTable() {
@@ -3131,6 +3133,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn AssetMovementUniqueKeyColumn {
+                get {
+                    return this.columnAssetMovementUniqueKey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3166,7 +3176,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetMovementTblRow AddAssetMovementTblRow(AssetTblRow parentAssetTblRowByFK_AssetMovementTbl_AssetTbl, string FieldChanged, string OldValue, string NewValue, System.DateTime MovementDate, System.DateTime AssetMovedOn, UserTblRow parentUserTblRowByFK_AssetMovementTbl_UserTbl) {
+            public AssetMovementTblRow AddAssetMovementTblRow(AssetTblRow parentAssetTblRowByFK_AssetMovementTbl_AssetTbl, string FieldChanged, string OldValue, string NewValue, System.DateTime MovementDate, System.DateTime AssetMovedOn, UserTblRow parentUserTblRowByFK_AssetMovementTbl_UserTbl, string AssetMovementUniqueKey) {
                 AssetMovementTblRow rowAssetMovementTblRow = ((AssetMovementTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3176,7 +3186,8 @@ namespace AssetManagement {
                         NewValue,
                         MovementDate,
                         AssetMovedOn,
-                        null};
+                        null,
+                        AssetMovementUniqueKey};
                 if ((parentAssetTblRowByFK_AssetMovementTbl_AssetTbl != null)) {
                     columnValuesArray[1] = parentAssetTblRowByFK_AssetMovementTbl_AssetTbl[0];
                 }
@@ -3220,6 +3231,7 @@ namespace AssetManagement {
                 this.columnMovementDate = base.Columns["MovementDate"];
                 this.columnAssetMovedOn = base.Columns["AssetMovedOn"];
                 this.columnAssetMovedBy = base.Columns["AssetMovedBy"];
+                this.columnAssetMovementUniqueKey = base.Columns["AssetMovementUniqueKey"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3241,6 +3253,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnAssetMovedOn);
                 this.columnAssetMovedBy = new global::System.Data.DataColumn("AssetMovedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAssetMovedBy);
+                this.columnAssetMovementUniqueKey = new global::System.Data.DataColumn("AssetMovementUniqueKey", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAssetMovementUniqueKey);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -3257,6 +3271,7 @@ namespace AssetManagement {
                 this.columnNewValue.AllowDBNull = false;
                 this.columnNewValue.MaxLength = 200;
                 this.columnMovementDate.AllowDBNull = false;
+                this.columnAssetMovementUniqueKey.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4652,6 +4667,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnCurrentPriceWithDestroying;
             
+            private global::System.Data.DataColumn columnAssetTransactionUniqueKey;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetTransactionTblDataTable() {
@@ -4783,6 +4800,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn AssetTransactionUniqueKeyColumn {
+                get {
+                    return this.columnAssetTransactionUniqueKey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4818,7 +4843,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetTransactionTblRow AddAssetTransactionTblRow(AssetTblRow parentAssetTblRowByFK_AssetTransactionTbl_AssetTbl, TransactionTypeTblRow parentTransactionTypeTblRowByFK_AssetTransactionTbl_TransactionTypeTbl, System.DateTime TransactionDate, string TransactionNotes, System.DateTime TransactionMadeOn, UserTblRow parentUserTblRowByFK_AssetTransactionTbl_UserTbl, double MoneyAmount, CurrencyTblRow parentCurrencyTblRowByFK_AssetTransactionTbl_CurrencyTbl, bool GetAssetOutOfWork, bool WithDestroying, double CurrentPriceWithDestroying) {
+            public AssetTransactionTblRow AddAssetTransactionTblRow(AssetTblRow parentAssetTblRowByFK_AssetTransactionTbl_AssetTbl, TransactionTypeTblRow parentTransactionTypeTblRowByFK_AssetTransactionTbl_TransactionTypeTbl, System.DateTime TransactionDate, string TransactionNotes, System.DateTime TransactionMadeOn, UserTblRow parentUserTblRowByFK_AssetTransactionTbl_UserTbl, double MoneyAmount, CurrencyTblRow parentCurrencyTblRowByFK_AssetTransactionTbl_CurrencyTbl, bool GetAssetOutOfWork, bool WithDestroying, double CurrentPriceWithDestroying, string AssetTransactionUniqueKey) {
                 AssetTransactionTblRow rowAssetTransactionTblRow = ((AssetTransactionTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4832,7 +4857,8 @@ namespace AssetManagement {
                         null,
                         GetAssetOutOfWork,
                         WithDestroying,
-                        CurrentPriceWithDestroying};
+                        CurrentPriceWithDestroying,
+                        AssetTransactionUniqueKey};
                 if ((parentAssetTblRowByFK_AssetTransactionTbl_AssetTbl != null)) {
                     columnValuesArray[1] = parentAssetTblRowByFK_AssetTransactionTbl_AssetTbl[0];
                 }
@@ -4886,6 +4912,7 @@ namespace AssetManagement {
                 this.columnGetAssetOutOfWork = base.Columns["GetAssetOutOfWork"];
                 this.columnWithDestroying = base.Columns["WithDestroying"];
                 this.columnCurrentPriceWithDestroying = base.Columns["CurrentPriceWithDestroying"];
+                this.columnAssetTransactionUniqueKey = base.Columns["AssetTransactionUniqueKey"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4915,6 +4942,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnWithDestroying);
                 this.columnCurrentPriceWithDestroying = new global::System.Data.DataColumn("CurrentPriceWithDestroying", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrentPriceWithDestroying);
+                this.columnAssetTransactionUniqueKey = new global::System.Data.DataColumn("AssetTransactionUniqueKey", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAssetTransactionUniqueKey);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4929,6 +4958,7 @@ namespace AssetManagement {
                 this.columnTransactionNotes.MaxLength = 200;
                 this.columnMoneyAmount.AllowDBNull = false;
                 this.columnMoneyAmountCurrency.AllowDBNull = false;
+                this.columnAssetTransactionUniqueKey.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11129,6 +11159,23 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string AssetMovementUniqueKey {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetMovementTbl.AssetMovementUniqueKeyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AssetMovementUniqueKey\' in table \'AssetMovementTbl\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetMovementTbl.AssetMovementUniqueKeyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetTblRow AssetTblRow {
                 get {
                     return ((AssetTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetMovementTbl_AssetTbl"])));
@@ -11171,6 +11218,18 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetAssetMovedByNull() {
                 this[this.tableAssetMovementTbl.AssetMovedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsAssetMovementUniqueKeyNull() {
+                return this.IsNull(this.tableAssetMovementTbl.AssetMovementUniqueKeyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetAssetMovementUniqueKeyNull() {
+                this[this.tableAssetMovementTbl.AssetMovementUniqueKeyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12457,6 +12516,23 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string AssetTransactionUniqueKey {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetTransactionTbl.AssetTransactionUniqueKeyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AssetTransactionUniqueKey\' in table \'AssetTransactionTbl\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetTransactionTbl.AssetTransactionUniqueKeyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetTblRow AssetTblRow {
                 get {
                     return ((AssetTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_AssetTransactionTbl_AssetTbl"])));
@@ -12569,6 +12645,18 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCurrentPriceWithDestroyingNull() {
                 this[this.tableAssetTransactionTbl.CurrentPriceWithDestroyingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsAssetTransactionUniqueKeyNull() {
+                return this.IsNull(this.tableAssetTransactionTbl.AssetTransactionUniqueKeyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetAssetTransactionUniqueKeyNull() {
+                this[this.tableAssetTransactionTbl.AssetTransactionUniqueKeyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16658,10 +16746,11 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MovementDate", "MovementDate");
             tableMapping.ColumnMappings.Add("AssetMovedOn", "AssetMovedOn");
             tableMapping.ColumnMappings.Add("AssetMovedBy", "AssetMovedBy");
+            tableMapping.ColumnMappings.Add("AssetMovementUniqueKey", "AssetMovementUniqueKey");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[AssetMovementTbl] WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([FieldChanged] = @Original_FieldChanged) AND ([OldValue] = @Original_OldValue) AND ([NewValue] = @Original_NewValue) AND ([MovementDate] = @Original_MovementDate) AND ((@IsNull_AssetMovedOn = 1 AND [AssetMovedOn] IS NULL) OR ([AssetMovedOn] = @Original_AssetMovedOn)) AND ((@IsNull_AssetMovedBy = 1 AND [AssetMovedBy] IS NULL) OR ([AssetMovedBy] = @Original_AssetMovedBy)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[AssetMovementTbl] WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([FieldChanged] = @Original_FieldChanged) AND ([OldValue] = @Original_OldValue) AND ([NewValue] = @Original_NewValue) AND ([MovementDate] = @Original_MovementDate) AND ((@IsNull_AssetMovedOn = 1 AND [AssetMovedOn] IS NULL) OR ([AssetMovedOn] = @Original_AssetMovedOn)) AND ((@IsNull_AssetMovedBy = 1 AND [AssetMovedBy] IS NULL) OR ([AssetMovedBy] = @Original_AssetMovedBy)) AND ((@IsNull_AssetMovementUniqueKey = 1 AND [AssetMovementUniqueKey] IS NULL) OR ([AssetMovementUniqueKey] = @Original_AssetMovementUniqueKey)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -16673,10 +16762,12 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetMovementUniqueKey", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovementUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[AssetMovementTbl] ([AssetID], [FieldChanged], [OldValue], [NewValue], [MovementDate], [AssetMovedOn], [AssetMovedBy]) VALUES (@AssetID, @FieldChanged, @OldValue, @NewValue, @MovementDate, @AssetMovedOn, @AssetMovedBy);
-SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy FROM AssetMovementTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[AssetMovementTbl] ([AssetID], [FieldChanged], [OldValue], [NewValue], [MovementDate], [AssetMovedOn], [AssetMovedBy], [AssetMovementUniqueKey]) VALUES (@AssetID, @FieldChanged, @OldValue, @NewValue, @MovementDate, @AssetMovedOn, @AssetMovedBy, @AssetMovementUniqueKey);
+SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy, AssetMovementUniqueKey FROM AssetMovementTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FieldChanged", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FieldChanged", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16685,10 +16776,11 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovementDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovementDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovementUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssetMovementTbl] SET [AssetID] = @AssetID, [FieldChanged] = @FieldChanged, [OldValue] = @OldValue, [NewValue] = @NewValue, [MovementDate] = @MovementDate, [AssetMovedOn] = @AssetMovedOn, [AssetMovedBy] = @AssetMovedBy WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([FieldChanged] = @Original_FieldChanged) AND ([OldValue] = @Original_OldValue) AND ([NewValue] = @Original_NewValue) AND ([MovementDate] = @Original_MovementDate) AND ((@IsNull_AssetMovedOn = 1 AND [AssetMovedOn] IS NULL) OR ([AssetMovedOn] = @Original_AssetMovedOn)) AND ((@IsNull_AssetMovedBy = 1 AND [AssetMovedBy] IS NULL) OR ([AssetMovedBy] = @Original_AssetMovedBy)));
-SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy FROM AssetMovementTbl WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[AssetMovementTbl] SET [AssetID] = @AssetID, [FieldChanged] = @FieldChanged, [OldValue] = @OldValue, [NewValue] = @NewValue, [MovementDate] = @MovementDate, [AssetMovedOn] = @AssetMovedOn, [AssetMovedBy] = @AssetMovedBy, [AssetMovementUniqueKey] = @AssetMovementUniqueKey WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([FieldChanged] = @Original_FieldChanged) AND ([OldValue] = @Original_OldValue) AND ([NewValue] = @Original_NewValue) AND ([MovementDate] = @Original_MovementDate) AND ((@IsNull_AssetMovedOn = 1 AND [AssetMovedOn] IS NULL) OR ([AssetMovedOn] = @Original_AssetMovedOn)) AND ((@IsNull_AssetMovedBy = 1 AND [AssetMovedBy] IS NULL) OR ([AssetMovedBy] = @Original_AssetMovedBy)) AND ((@IsNull_AssetMovementUniqueKey = 1 AND [AssetMovementUniqueKey] IS NULL) OR ([AssetMovementUniqueKey] = @Original_AssetMovementUniqueKey)));
+SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy, AssetMovementUniqueKey FROM AssetMovementTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FieldChanged", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FieldChanged", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16697,6 +16789,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovementDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovementDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetMovementUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FieldChanged", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FieldChanged", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -16707,6 +16800,8 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetMovementUniqueKey", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetMovementUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetMovementUniqueKey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -16724,7 +16819,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn," +
-                " AssetMovedBy FROM dbo.AssetMovementTbl";
+                " AssetMovedBy, AssetMovementUniqueKey FROM dbo.AssetMovementTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -16785,7 +16880,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_AssetID, string Original_FieldChanged, string Original_OldValue, string Original_NewValue, System.DateTime Original_MovementDate, global::System.Nullable<global::System.DateTime> Original_AssetMovedOn, global::System.Nullable<int> Original_AssetMovedBy) {
+        public virtual int Delete(int Original_ID, int Original_AssetID, string Original_FieldChanged, string Original_OldValue, string Original_NewValue, System.DateTime Original_MovementDate, global::System.Nullable<global::System.DateTime> Original_AssetMovedOn, global::System.Nullable<int> Original_AssetMovedBy, string Original_AssetMovementUniqueKey) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_AssetID));
             if ((Original_FieldChanged == null)) {
@@ -16823,6 +16918,14 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
+            if ((Original_AssetMovementUniqueKey == null)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_AssetMovementUniqueKey));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16843,7 +16946,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int AssetID, string FieldChanged, string OldValue, string NewValue, System.DateTime MovementDate, global::System.Nullable<global::System.DateTime> AssetMovedOn, global::System.Nullable<int> AssetMovedBy) {
+        public virtual int Insert(int AssetID, string FieldChanged, string OldValue, string NewValue, System.DateTime MovementDate, global::System.Nullable<global::System.DateTime> AssetMovedOn, global::System.Nullable<int> AssetMovedBy, string AssetMovementUniqueKey) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(AssetID));
             if ((FieldChanged == null)) {
                 throw new global::System.ArgumentNullException("FieldChanged");
@@ -16876,6 +16979,12 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
+            if ((AssetMovementUniqueKey == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(AssetMovementUniqueKey));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16904,6 +17013,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
                     System.DateTime MovementDate, 
                     global::System.Nullable<global::System.DateTime> AssetMovedOn, 
                     global::System.Nullable<int> AssetMovedBy, 
+                    string AssetMovementUniqueKey, 
                     int Original_ID, 
                     int Original_AssetID, 
                     string Original_FieldChanged, 
@@ -16912,6 +17022,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
                     System.DateTime Original_MovementDate, 
                     global::System.Nullable<global::System.DateTime> Original_AssetMovedOn, 
                     global::System.Nullable<int> Original_AssetMovedBy, 
+                    string Original_AssetMovementUniqueKey, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(AssetID));
             if ((FieldChanged == null)) {
@@ -16945,44 +17056,58 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_AssetID));
+            if ((AssetMovementUniqueKey == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(AssetMovementUniqueKey));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_AssetID));
             if ((Original_FieldChanged == null)) {
                 throw new global::System.ArgumentNullException("Original_FieldChanged");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_FieldChanged));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_FieldChanged));
             }
             if ((Original_OldValue == null)) {
                 throw new global::System.ArgumentNullException("Original_OldValue");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_OldValue));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_OldValue));
             }
             if ((Original_NewValue == null)) {
                 throw new global::System.ArgumentNullException("Original_NewValue");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_NewValue));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_NewValue));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_MovementDate));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_MovementDate));
             if ((Original_AssetMovedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_AssetMovedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_AssetMovedOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             if ((Original_AssetMovedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_AssetMovedBy.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_AssetMovedBy.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(ID));
+            if ((Original_AssetMovementUniqueKey == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_AssetMovementUniqueKey));
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17003,8 +17128,25 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int AssetID, string FieldChanged, string OldValue, string NewValue, System.DateTime MovementDate, global::System.Nullable<global::System.DateTime> AssetMovedOn, global::System.Nullable<int> AssetMovedBy, int Original_ID, int Original_AssetID, string Original_FieldChanged, string Original_OldValue, string Original_NewValue, System.DateTime Original_MovementDate, global::System.Nullable<global::System.DateTime> Original_AssetMovedOn, global::System.Nullable<int> Original_AssetMovedBy) {
-            return this.Update(AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy, Original_ID, Original_AssetID, Original_FieldChanged, Original_OldValue, Original_NewValue, Original_MovementDate, Original_AssetMovedOn, Original_AssetMovedBy, Original_ID);
+        public virtual int Update(
+                    int AssetID, 
+                    string FieldChanged, 
+                    string OldValue, 
+                    string NewValue, 
+                    System.DateTime MovementDate, 
+                    global::System.Nullable<global::System.DateTime> AssetMovedOn, 
+                    global::System.Nullable<int> AssetMovedBy, 
+                    string AssetMovementUniqueKey, 
+                    int Original_ID, 
+                    int Original_AssetID, 
+                    string Original_FieldChanged, 
+                    string Original_OldValue, 
+                    string Original_NewValue, 
+                    System.DateTime Original_MovementDate, 
+                    global::System.Nullable<global::System.DateTime> Original_AssetMovedOn, 
+                    global::System.Nullable<int> Original_AssetMovedBy, 
+                    string Original_AssetMovementUniqueKey) {
+            return this.Update(AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn, AssetMovedBy, AssetMovementUniqueKey, Original_ID, Original_AssetID, Original_FieldChanged, Original_OldValue, Original_NewValue, Original_MovementDate, Original_AssetMovedOn, Original_AssetMovedBy, Original_AssetMovementUniqueKey, Original_ID);
         }
     }
     
@@ -19140,10 +19282,11 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             tableMapping.ColumnMappings.Add("GetAssetOutOfWork", "GetAssetOutOfWork");
             tableMapping.ColumnMappings.Add("WithDestroying", "WithDestroying");
             tableMapping.ColumnMappings.Add("CurrentPriceWithDestroying", "CurrentPriceWithDestroying");
+            tableMapping.ColumnMappings.Add("AssetTransactionUniqueKey", "AssetTransactionUniqueKey");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[AssetTransactionTbl] WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([TransactionType] = @Original_TransactionType) AND ([TransactionDate] = @Original_TransactionDate) AND ((@IsNull_TransactionNotes = 1 AND [TransactionNotes] IS NULL) OR ([TransactionNotes] = @Original_TransactionNotes)) AND ((@IsNull_TransactionMadeOn = 1 AND [TransactionMadeOn] IS NULL) OR ([TransactionMadeOn] = @Original_TransactionMadeOn)) AND ((@IsNull_TransactionMadeBy = 1 AND [TransactionMadeBy] IS NULL) OR ([TransactionMadeBy] = @Original_TransactionMadeBy)) AND ([MoneyAmount] = @Original_MoneyAmount) AND ([MoneyAmountCurrency] = @Original_MoneyAmountCurrency) AND ((@IsNull_GetAssetOutOfWork = 1 AND [GetAssetOutOfWork] IS NULL) OR ([GetAssetOutOfWork] = @Original_GetAssetOutOfWork)) AND ((@IsNull_WithDestroying = 1 AND [WithDestroying] IS NULL) OR ([WithDestroying] = @Original_WithDestroying)) AND ((@IsNull_CurrentPriceWithDestroying = 1 AND [CurrentPriceWithDestroying] IS NULL) OR ([CurrentPriceWithDestroying] = @Original_CurrentPriceWithDestroying)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[AssetTransactionTbl] WHERE (([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([TransactionType] = @Original_TransactionType) AND ([TransactionDate] = @Original_TransactionDate) AND ((@IsNull_TransactionNotes = 1 AND [TransactionNotes] IS NULL) OR ([TransactionNotes] = @Original_TransactionNotes)) AND ((@IsNull_TransactionMadeOn = 1 AND [TransactionMadeOn] IS NULL) OR ([TransactionMadeOn] = @Original_TransactionMadeOn)) AND ((@IsNull_TransactionMadeBy = 1 AND [TransactionMadeBy] IS NULL) OR ([TransactionMadeBy] = @Original_TransactionMadeBy)) AND ([MoneyAmount] = @Original_MoneyAmount) AND ([MoneyAmountCurrency] = @Original_MoneyAmountCurrency) AND ((@IsNull_GetAssetOutOfWork = 1 AND [GetAssetOutOfWork] IS NULL) OR ([GetAssetOutOfWork] = @Original_GetAssetOutOfWork)) AND ((@IsNull_WithDestroying = 1 AND [WithDestroying] IS NULL) OR ([WithDestroying] = @Original_WithDestroying)) AND ((@IsNull_CurrentPriceWithDestroying = 1 AND [CurrentPriceWithDestroying] IS NULL) OR ([CurrentPriceWithDestroying] = @Original_CurrentPriceWithDestroying)) AND ((@IsNull_AssetTransactionUniqueKey = 1 AND [AssetTransactionUniqueKey] IS NULL) OR ([AssetTransactionUniqueKey] = @Original_AssetTransactionUniqueKey)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -19163,10 +19306,12 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WithDestroying", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WithDestroying", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CurrentPriceWithDestroying", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CurrentPriceWithDestroying", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetTransactionUniqueKey", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetTransactionUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[AssetTransactionTbl] ([AssetID], [TransactionType], [TransactionDate], [TransactionNotes], [TransactionMadeOn], [TransactionMadeBy], [MoneyAmount], [MoneyAmountCurrency], [GetAssetOutOfWork], [WithDestroying], [CurrentPriceWithDestroying]) VALUES (@AssetID, @TransactionType, @TransactionDate, @TransactionNotes, @TransactionMadeOn, @TransactionMadeBy, @MoneyAmount, @MoneyAmountCurrency, @GetAssetOutOfWork, @WithDestroying, @CurrentPriceWithDestroying);
-SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, CurrentPriceWithDestroying FROM AssetTransactionTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[AssetTransactionTbl] ([AssetID], [TransactionType], [TransactionDate], [TransactionNotes], [TransactionMadeOn], [TransactionMadeBy], [MoneyAmount], [MoneyAmountCurrency], [GetAssetOutOfWork], [WithDestroying], [CurrentPriceWithDestroying], [AssetTransactionUniqueKey]) VALUES (@AssetID, @TransactionType, @TransactionDate, @TransactionNotes, @TransactionMadeOn, @TransactionMadeBy, @MoneyAmount, @MoneyAmountCurrency, @GetAssetOutOfWork, @WithDestroying, @CurrentPriceWithDestroying, @AssetTransactionUniqueKey);
+SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, CurrentPriceWithDestroying, AssetTransactionUniqueKey FROM AssetTransactionTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19179,6 +19324,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GetAssetOutOfWork", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GetAssetOutOfWork", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WithDestroying", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WithDestroying", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CurrentPriceWithDestroying", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetTransactionUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[AssetTransactionTbl] SET [AssetID] = @AssetID, [TransactionType] = " +
@@ -19186,24 +19332,27 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                 "ansactionNotes, [TransactionMadeOn] = @TransactionMadeOn, [TransactionMadeBy] = " +
                 "@TransactionMadeBy, [MoneyAmount] = @MoneyAmount, [MoneyAmountCurrency] = @Money" +
                 "AmountCurrency, [GetAssetOutOfWork] = @GetAssetOutOfWork, [WithDestroying] = @Wi" +
-                "thDestroying, [CurrentPriceWithDestroying] = @CurrentPriceWithDestroying WHERE (" +
-                "([ID] = @Original_ID) AND ([AssetID] = @Original_AssetID) AND ([TransactionType]" +
-                " = @Original_TransactionType) AND ([TransactionDate] = @Original_TransactionDate" +
-                ") AND ((@IsNull_TransactionNotes = 1 AND [TransactionNotes] IS NULL) OR ([Transa" +
-                "ctionNotes] = @Original_TransactionNotes)) AND ((@IsNull_TransactionMadeOn = 1 A" +
-                "ND [TransactionMadeOn] IS NULL) OR ([TransactionMadeOn] = @Original_TransactionM" +
-                "adeOn)) AND ((@IsNull_TransactionMadeBy = 1 AND [TransactionMadeBy] IS NULL) OR " +
-                "([TransactionMadeBy] = @Original_TransactionMadeBy)) AND ([MoneyAmount] = @Origi" +
-                "nal_MoneyAmount) AND ([MoneyAmountCurrency] = @Original_MoneyAmountCurrency) AND" +
-                " ((@IsNull_GetAssetOutOfWork = 1 AND [GetAssetOutOfWork] IS NULL) OR ([GetAssetO" +
-                "utOfWork] = @Original_GetAssetOutOfWork)) AND ((@IsNull_WithDestroying = 1 AND [" +
-                "WithDestroying] IS NULL) OR ([WithDestroying] = @Original_WithDestroying)) AND (" +
-                "(@IsNull_CurrentPriceWithDestroying = 1 AND [CurrentPriceWithDestroying] IS NULL" +
-                ") OR ([CurrentPriceWithDestroying] = @Original_CurrentPriceWithDestroying)));\r\nS" +
-                "ELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transacti" +
-                "onMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork" +
-                ", WithDestroying, CurrentPriceWithDestroying FROM AssetTransactionTbl WHERE (ID " +
-                "= @ID)";
+                "thDestroying, [CurrentPriceWithDestroying] = @CurrentPriceWithDestroying, [Asset" +
+                "TransactionUniqueKey] = @AssetTransactionUniqueKey WHERE (([ID] = @Original_ID) " +
+                "AND ([AssetID] = @Original_AssetID) AND ([TransactionType] = @Original_Transacti" +
+                "onType) AND ([TransactionDate] = @Original_TransactionDate) AND ((@IsNull_Transa" +
+                "ctionNotes = 1 AND [TransactionNotes] IS NULL) OR ([TransactionNotes] = @Origina" +
+                "l_TransactionNotes)) AND ((@IsNull_TransactionMadeOn = 1 AND [TransactionMadeOn]" +
+                " IS NULL) OR ([TransactionMadeOn] = @Original_TransactionMadeOn)) AND ((@IsNull_" +
+                "TransactionMadeBy = 1 AND [TransactionMadeBy] IS NULL) OR ([TransactionMadeBy] =" +
+                " @Original_TransactionMadeBy)) AND ([MoneyAmount] = @Original_MoneyAmount) AND (" +
+                "[MoneyAmountCurrency] = @Original_MoneyAmountCurrency) AND ((@IsNull_GetAssetOut" +
+                "OfWork = 1 AND [GetAssetOutOfWork] IS NULL) OR ([GetAssetOutOfWork] = @Original_" +
+                "GetAssetOutOfWork)) AND ((@IsNull_WithDestroying = 1 AND [WithDestroying] IS NUL" +
+                "L) OR ([WithDestroying] = @Original_WithDestroying)) AND ((@IsNull_CurrentPriceW" +
+                "ithDestroying = 1 AND [CurrentPriceWithDestroying] IS NULL) OR ([CurrentPriceWit" +
+                "hDestroying] = @Original_CurrentPriceWithDestroying)) AND ((@IsNull_AssetTransac" +
+                "tionUniqueKey = 1 AND [AssetTransactionUniqueKey] IS NULL) OR ([AssetTransaction" +
+                "UniqueKey] = @Original_AssetTransactionUniqueKey)));\r\nSELECT ID, AssetID, Transa" +
+                "ctionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMade" +
+                "By, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, Current" +
+                "PriceWithDestroying, AssetTransactionUniqueKey FROM AssetTransactionTbl WHERE (I" +
+                "D = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19216,6 +19365,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GetAssetOutOfWork", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GetAssetOutOfWork", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WithDestroying", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WithDestroying", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CurrentPriceWithDestroying", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetTransactionUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransactionType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -19234,6 +19384,8 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WithDestroying", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WithDestroying", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CurrentPriceWithDestroying", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CurrentPriceWithDestroying", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentPriceWithDestroying", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AssetTransactionUniqueKey", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetTransactionUniqueKey", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetTransactionUniqueKey", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -19250,9 +19402,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transacti" +
-                "onMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork" +
-                ", WithDestroying, CurrentPriceWithDestroying FROM dbo.AssetTransactionTbl";
+            this._commandCollection[0].CommandText = @"SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, CurrentPriceWithDestroying, AssetTransactionUniqueKey FROM dbo.AssetTransactionTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19313,7 +19463,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_AssetID, int Original_TransactionType, System.DateTime Original_TransactionDate, string Original_TransactionNotes, global::System.Nullable<global::System.DateTime> Original_TransactionMadeOn, global::System.Nullable<int> Original_TransactionMadeBy, double Original_MoneyAmount, int Original_MoneyAmountCurrency, global::System.Nullable<bool> Original_GetAssetOutOfWork, global::System.Nullable<bool> Original_WithDestroying, global::System.Nullable<double> Original_CurrentPriceWithDestroying) {
+        public virtual int Delete(int Original_ID, int Original_AssetID, int Original_TransactionType, System.DateTime Original_TransactionDate, string Original_TransactionNotes, global::System.Nullable<global::System.DateTime> Original_TransactionMadeOn, global::System.Nullable<int> Original_TransactionMadeBy, double Original_MoneyAmount, int Original_MoneyAmountCurrency, global::System.Nullable<bool> Original_GetAssetOutOfWork, global::System.Nullable<bool> Original_WithDestroying, global::System.Nullable<double> Original_CurrentPriceWithDestroying, string Original_AssetTransactionUniqueKey) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_AssetID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_TransactionType));
@@ -19368,6 +19518,14 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                 this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
+            if ((Original_AssetTransactionUniqueKey == null)) {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_AssetTransactionUniqueKey));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19388,7 +19546,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int AssetID, int TransactionType, System.DateTime TransactionDate, string TransactionNotes, global::System.Nullable<global::System.DateTime> TransactionMadeOn, global::System.Nullable<int> TransactionMadeBy, double MoneyAmount, int MoneyAmountCurrency, global::System.Nullable<bool> GetAssetOutOfWork, global::System.Nullable<bool> WithDestroying, global::System.Nullable<double> CurrentPriceWithDestroying) {
+        public virtual int Insert(int AssetID, int TransactionType, System.DateTime TransactionDate, string TransactionNotes, global::System.Nullable<global::System.DateTime> TransactionMadeOn, global::System.Nullable<int> TransactionMadeBy, double MoneyAmount, int MoneyAmountCurrency, global::System.Nullable<bool> GetAssetOutOfWork, global::System.Nullable<bool> WithDestroying, global::System.Nullable<double> CurrentPriceWithDestroying, string AssetTransactionUniqueKey) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(AssetID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(TransactionType));
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(TransactionDate));
@@ -19430,6 +19588,12 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
+            if ((AssetTransactionUniqueKey == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(AssetTransactionUniqueKey));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19462,6 +19626,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                     global::System.Nullable<bool> GetAssetOutOfWork, 
                     global::System.Nullable<bool> WithDestroying, 
                     global::System.Nullable<double> CurrentPriceWithDestroying, 
+                    string AssetTransactionUniqueKey, 
                     int Original_ID, 
                     int Original_AssetID, 
                     int Original_TransactionType, 
@@ -19474,6 +19639,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                     global::System.Nullable<bool> Original_GetAssetOutOfWork, 
                     global::System.Nullable<bool> Original_WithDestroying, 
                     global::System.Nullable<double> Original_CurrentPriceWithDestroying, 
+                    string Original_AssetTransactionUniqueKey, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(AssetID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(TransactionType));
@@ -19516,61 +19682,75 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_AssetID));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_TransactionType));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_TransactionDate));
-            if ((Original_TransactionNotes == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            if ((AssetTransactionUniqueKey == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_TransactionNotes));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(AssetTransactionUniqueKey));
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_AssetID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_TransactionType));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_TransactionDate));
+            if ((Original_TransactionNotes == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_TransactionNotes));
             }
             if ((Original_TransactionMadeOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_TransactionMadeOn.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_TransactionMadeOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             if ((Original_TransactionMadeBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_TransactionMadeBy.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_TransactionMadeBy.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((double)(Original_MoneyAmount));
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_MoneyAmountCurrency));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((double)(Original_MoneyAmount));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_MoneyAmountCurrency));
             if ((Original_GetAssetOutOfWork.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_GetAssetOutOfWork.Value));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((bool)(Original_GetAssetOutOfWork.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             if ((Original_WithDestroying.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_WithDestroying.Value));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((bool)(Original_WithDestroying.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
             if ((Original_CurrentPriceWithDestroying.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((double)(Original_CurrentPriceWithDestroying.Value));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((double)(Original_CurrentPriceWithDestroying.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(ID));
+            if ((Original_AssetTransactionUniqueKey == null)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_AssetTransactionUniqueKey));
+            }
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19603,6 +19783,7 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                     global::System.Nullable<bool> GetAssetOutOfWork, 
                     global::System.Nullable<bool> WithDestroying, 
                     global::System.Nullable<double> CurrentPriceWithDestroying, 
+                    string AssetTransactionUniqueKey, 
                     int Original_ID, 
                     int Original_AssetID, 
                     int Original_TransactionType, 
@@ -19614,8 +19795,9 @@ SELECT ID, AssetID, TransactionType, TransactionDate, TransactionNotes, Transact
                     int Original_MoneyAmountCurrency, 
                     global::System.Nullable<bool> Original_GetAssetOutOfWork, 
                     global::System.Nullable<bool> Original_WithDestroying, 
-                    global::System.Nullable<double> Original_CurrentPriceWithDestroying) {
-            return this.Update(AssetID, TransactionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, CurrentPriceWithDestroying, Original_ID, Original_AssetID, Original_TransactionType, Original_TransactionDate, Original_TransactionNotes, Original_TransactionMadeOn, Original_TransactionMadeBy, Original_MoneyAmount, Original_MoneyAmountCurrency, Original_GetAssetOutOfWork, Original_WithDestroying, Original_CurrentPriceWithDestroying, Original_ID);
+                    global::System.Nullable<double> Original_CurrentPriceWithDestroying, 
+                    string Original_AssetTransactionUniqueKey) {
+            return this.Update(AssetID, TransactionType, TransactionDate, TransactionNotes, TransactionMadeOn, TransactionMadeBy, MoneyAmount, MoneyAmountCurrency, GetAssetOutOfWork, WithDestroying, CurrentPriceWithDestroying, AssetTransactionUniqueKey, Original_ID, Original_AssetID, Original_TransactionType, Original_TransactionDate, Original_TransactionNotes, Original_TransactionMadeOn, Original_TransactionMadeBy, Original_MoneyAmount, Original_MoneyAmountCurrency, Original_GetAssetOutOfWork, Original_WithDestroying, Original_CurrentPriceWithDestroying, Original_AssetTransactionUniqueKey, Original_ID);
         }
     }
     

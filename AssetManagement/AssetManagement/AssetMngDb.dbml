@@ -10,6 +10,7 @@
       <Column Name="MovementDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="AssetMovedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="AssetMovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetMovementUniqueKey" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="UserTbl_AssetMovementTbl" Member="UserTbl" ThisKey="AssetMovedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
       <Association Name="AssetTbl_AssetMovementTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
     </Type>
@@ -93,6 +94,7 @@
       <Column Name="GetAssetOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="WithDestroying" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CurrentPriceWithDestroying" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AssetTransactionUniqueKey" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
       <Association Name="UserTbl_AssetTransactionTbl" Member="UserTbl" ThisKey="TransactionMadeBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
       <Association Name="CurrencyTbl_AssetTransactionTbl" Member="CurrencyTbl" ThisKey="MoneyAmountCurrency" OtherKey="ID" Type="CurrencyTbl" IsForeignKey="true" />
