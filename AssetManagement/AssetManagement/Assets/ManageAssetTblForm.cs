@@ -93,6 +93,11 @@ namespace AssetManagement.Assets
 
         private void showAssetCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                return;
+            }
             try
             {
                 int currAssetID = Convert.ToInt32(assetTblGridView.GetRowCellValue(currRow, colID));

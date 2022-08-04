@@ -77,6 +77,8 @@ namespace AssetManagement.Finance
                 return;
             }
 
+            if (MessageBox.Show("هل أنت متأكد من إدخالاتك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             try
             {
                 FinancialItemTbl newFiIt = new FinancialItemTbl()

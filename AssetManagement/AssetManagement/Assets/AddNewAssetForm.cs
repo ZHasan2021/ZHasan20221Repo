@@ -106,6 +106,9 @@ namespace AssetManagement.Assets
         /// <param name="e"></param>
         private void addNewAssetWizardControl_FinishClick(object sender, CancelEventArgs e)
         {
+            if (MessageBox.Show("هل أنت متأكد من إدخالاتك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
             progressPanel1.Visible = true;
 
             try
@@ -122,7 +125,7 @@ namespace AssetManagement.Assets
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
                     AssetSpecifications = assetSpecificationsTextBox.Text.Trim(),
                     Model = modelTextBox.Text.Trim(),
-                    Color = colorColorPickEdit.EditValue.ToString(),
+                    Color = colorComboBox.Text,
                     Volume = volumeTextBox.Text.Trim(),
                     PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
                     PurchasePrice = Convert.ToInt32(actualCurrentPriceNumericUpDown.Value),

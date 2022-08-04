@@ -111,8 +111,8 @@ namespace AssetManagement
             SqlCommand sqlcomm = new SqlCommand(qryBefore, sqlconn);
             sqlcomm.ExecuteNonQuery();
 
-            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", };
-            List<string> keyFields = new List<string>() { "AssetCode", "AssetCode", };
+            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "AssetMovementTbl", "AssetTransactionTbl", };
+            List<string> keyFields = new List<string>() { "AssetCode", "AssetCode", "AssetMovementUniqueKey", "AssetTransactionUniqueKey", };
 
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
@@ -121,8 +121,6 @@ namespace AssetManagement
                 Application.DoEvents();
                 //declare variables - edit these based on your particular situation   
                 string ssqltable = oneSh.Name;
-                if (ssqltable != "AssetTbl")
-                    continue;
                 if (tblsToImport.IndexOf(ssqltable) == -1)
                     continue;
                 // make sure your sheet name is correct, here sheet name is sheet1,
@@ -138,6 +136,7 @@ namespace AssetManagement
                         string oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
                         string sqlQry = $"SELECT * FROM {ssqltable} where {currKeyField} = N'{oneKeyValue}'";
                         sqlcomm.CommandType = CommandType.Text;
+                        sqlcomm.CommandText = sqlQry;
                         SqlDataReader sqlRdr = sqlcomm.ExecuteReader();
                         bool recordExisted = sqlRdr.HasRows;
                         sqlRdr.Close();
@@ -148,7 +147,7 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
-                                if (oneField.ToUpper().Contains("DATE") || oneField.ToUpper().Contains("MODIFIEDON") || oneField.ToUpper().Contains("CREATEDON") || oneField.ToUpper().Contains("INSERTEDON"))
+                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length>4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
                                 {
                                     fieldsValuesPairs += $"{oneField} = N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
                                 }
@@ -174,7 +173,7 @@ namespace AssetManagement
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
                                 fieldsPairs += $"{oneField}, ";
-                                if (oneField.ToUpper().Contains("DATE") || oneField.ToUpper().Contains("MODIFIEDON") || oneField.ToUpper().Contains("CREATEDON") || oneField.ToUpper().Contains("INSERTEDON"))
+                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
                                 {
                                     valuesPairs += $"N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
                                 }

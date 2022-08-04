@@ -91,6 +91,7 @@ namespace AssetManagement.Assets
             this.searchAssetBtn = new System.Windows.Forms.Button();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
+            this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.moveAssetGroupBox.SuspendLayout();
             this.assetTransactionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).BeginInit();
@@ -435,7 +436,8 @@ namespace AssetManagement.Assets
             this.colMoneyAmountCurrency,
             this.colGetAssetOutOfWork,
             this.colWithDestroying,
-            this.colCurrentPriceWithDestroying});
+            this.colCurrentPriceWithDestroying,
+            this.colAssetTransactionUniqueKey});
             this.assetMoveVwGridView.GridControl = this.assetTransactionGridControl;
             this.assetMoveVwGridView.Name = "assetMoveVwGridView";
             // 
@@ -777,6 +779,14 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
             this.assetCodeTextBox.TabIndex = 102;
             // 
+            // colAssetTransactionUniqueKey
+            // 
+            this.colAssetTransactionUniqueKey.Caption = "رقم فريد للسجل";
+            this.colAssetTransactionUniqueKey.FieldName = "AssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.MinWidth = 150;
+            this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.Width = 94;
+            // 
             // TransacteAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -885,5 +895,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Button searchAssetBtn;
         private System.Windows.Forms.Label assetCodeLabel;
         private System.Windows.Forms.TextBox assetCodeTextBox;
+        private DevExpress.XtraGrid.Columns.GridColumn colAssetTransactionUniqueKey;
     }
 }

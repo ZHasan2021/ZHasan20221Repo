@@ -411,12 +411,6 @@ namespace AssetManagement
                 StaticCode.ImportDataFromExcel(importedExcelFilePath);
                 mainAlertControl.Show(this, "تم استيراد البيانات بشكل سليم", StaticCode.ApplicationTitle);
                 UpdateAssetToDestructLabel();
-
-                var aaa = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.InsertedOn);
-                var bbb = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.LastModifiedOn);
-                var ccc = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.InsertedBy);
-                var ddd = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.LastModifiedBy);
-                var eee = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.ID);
             }
             catch
             {

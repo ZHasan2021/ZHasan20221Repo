@@ -78,7 +78,6 @@ namespace AssetManagement.Assets
             this.minorCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.purchaseDateDateEdit = new DevExpress.XtraEditors.DateEdit();
-            this.colorColorPickEdit = new DevExpress.XtraEditors.ColorPickEdit();
             this.purchasePriceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetCodeLabel = new System.Windows.Forms.Label();
@@ -129,6 +128,7 @@ namespace AssetManagement.Assets
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.colorComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
@@ -153,7 +153,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorColorPickEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
@@ -220,6 +219,7 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage1
             // 
+            this.assetBasicsWizardPage1.Controls.Add(this.colorComboBox);
             this.assetBasicsWizardPage1.Controls.Add(this.lifeSpanInMonthsLabel);
             this.assetBasicsWizardPage1.Controls.Add(this.lifeSpanInMonthsNumericUpDown);
             this.assetBasicsWizardPage1.Controls.Add(this.destructionRateLabel);
@@ -257,7 +257,6 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Controls.Add(this.assetMinorCategoryLabel);
             this.assetBasicsWizardPage1.Controls.Add(this.minorCategoryLookUpEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.purchaseDateDateEdit);
-            this.assetBasicsWizardPage1.Controls.Add(this.colorColorPickEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.purchasePriceNumericUpDown);
             this.assetBasicsWizardPage1.Controls.Add(this.assetCodeTextBox);
             this.assetBasicsWizardPage1.Controls.Add(this.assetCodeLabel);
@@ -773,19 +772,6 @@ namespace AssetManagement.Assets
             this.purchaseDateDateEdit.TabIndex = 115;
             this.purchaseDateDateEdit.EditValueChanged += new System.EventHandler(this.purchaseDateDateEdit_EditValueChanged);
             // 
-            // colorColorPickEdit
-            // 
-            this.colorColorPickEdit.EditValue = System.Drawing.Color.Empty;
-            this.colorColorPickEdit.Location = new System.Drawing.Point(272, 492);
-            this.colorColorPickEdit.Name = "colorColorPickEdit";
-            this.colorColorPickEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorColorPickEdit.Properties.Appearance.Options.UseFont = true;
-            this.colorColorPickEdit.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorColorPickEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorColorPickEdit.Size = new System.Drawing.Size(234, 30);
-            this.colorColorPickEdit.TabIndex = 185;
-            // 
             // purchasePriceNumericUpDown
             // 
             this.purchasePriceNumericUpDown.DecimalPlaces = 2;
@@ -1291,6 +1277,35 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
+            // colorComboBox
+            // 
+            this.colorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.colorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.colorComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colorComboBox.FormattingEnabled = true;
+            this.colorComboBox.Items.AddRange(new object[] {
+            "أبيض",
+            "أسود",
+            "أحمر",
+            "أزرق",
+            "أصفر",
+            "أخضر",
+            "بني",
+            "فضي",
+            "رمادي",
+            "ذهبي",
+            "أزرق غامق",
+            "أحمر غامق",
+            "أحمر فاتح",
+            "أزرق فاتح",
+            "كحلي",
+            "عسلي",
+            "بيج"});
+            this.colorComboBox.Location = new System.Drawing.Point(272, 491);
+            this.colorComboBox.Name = "colorComboBox";
+            this.colorComboBox.Size = new System.Drawing.Size(234, 32);
+            this.colorComboBox.TabIndex = 185;
+            // 
             // AddNewAssetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1329,7 +1344,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorColorPickEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
@@ -1360,7 +1374,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.BindingSource minorCategoryTblBindingSource;
         private AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter minorCategoryTblTableAdapter;
         private DevExpress.XtraEditors.DateEdit purchaseDateDateEdit;
-        private DevExpress.XtraEditors.ColorPickEdit colorColorPickEdit;
         private System.Windows.Forms.NumericUpDown purchasePriceNumericUpDown;
         private System.Windows.Forms.Label assetMinorCategoryLabel;
         private DevExpress.XtraEditors.LookUpEdit minorCategoryLookUpEdit;
@@ -1449,5 +1462,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.NumericUpDown destructionRateNumericUpDown;
         private System.Windows.Forms.Label lifeSpanInMonthsLabel;
         private System.Windows.Forms.NumericUpDown lifeSpanInMonthsNumericUpDown;
+        private System.Windows.Forms.ComboBox colorComboBox;
     }
 }

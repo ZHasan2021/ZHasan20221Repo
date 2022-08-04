@@ -59,6 +59,7 @@ namespace AssetManagement.Assets
             this.colMovementDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetMovedOn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetMovedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAssetMovementUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetInfoLabel = new System.Windows.Forms.Label();
             this.toCustodianNameCheckBox = new System.Windows.Forms.CheckBox();
             this.toSquareCheckBox = new System.Windows.Forms.CheckBox();
@@ -329,7 +330,8 @@ namespace AssetManagement.Assets
             this.colNewValue,
             this.colMovementDate,
             this.colAssetMovedOn,
-            this.colAssetMovedBy});
+            this.colAssetMovedBy,
+            this.colAssetMovementUniqueKey});
             this.assetMoveVwGridView.GridControl = this.assetMoveVwGridControl;
             this.assetMoveVwGridView.Name = "assetMoveVwGridView";
             // 
@@ -402,6 +404,14 @@ namespace AssetManagement.Assets
             this.colAssetMovedBy.MinWidth = 25;
             this.colAssetMovedBy.Name = "colAssetMovedBy";
             this.colAssetMovedBy.Width = 192;
+            // 
+            // colAssetMovementUniqueKey
+            // 
+            this.colAssetMovementUniqueKey.Caption = "رقم فريد للسجل";
+            this.colAssetMovementUniqueKey.FieldName = "AssetMovementUniqueKey";
+            this.colAssetMovementUniqueKey.MinWidth = 150;
+            this.colAssetMovementUniqueKey.Name = "colAssetMovementUniqueKey";
+            this.colAssetMovementUniqueKey.Width = 94;
             // 
             // assetInfoLabel
             // 
@@ -880,5 +890,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Button viewAssetInformationBtn;
         private System.Windows.Forms.BindingSource assetMoveVwBindingSource1;
         private System.Windows.Forms.BindingSource assetTblBindingSource1;
+        private DevExpress.XtraGrid.Columns.GridColumn colAssetMovementUniqueKey;
     }
 }
