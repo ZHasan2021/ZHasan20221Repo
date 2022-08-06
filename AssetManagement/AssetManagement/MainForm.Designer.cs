@@ -82,6 +82,8 @@ namespace AssetManagement
             this.openAppFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openBackupFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -107,7 +109,6 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -168,10 +169,11 @@ namespace AssetManagement
             this.openAppFolderBarButtonItem,
             this.openBackupFolderBarButtonItem,
             this.assetsToDestructBarStaticItem,
-            this.openExportFolderBarButtonItem});
+            this.openExportFolderBarButtonItem,
+            this.manageModelTblBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 60;
+            this.mainRibbonControl.MaxItemId = 61;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -578,8 +580,8 @@ namespace AssetManagement
             // 
             this.addNewAssetBarButtonItem2.Caption = "إضافة أصل جديد";
             this.addNewAssetBarButtonItem2.Id = 49;
-            this.addNewAssetBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.Image")));
-            this.addNewAssetBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewAsetBarButtonItem.ImageOptions.LargeImage")));
+            this.addNewAssetBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewAssetBarButtonItem2.ImageOptions.Image")));
+            this.addNewAssetBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewAssetBarButtonItem2.ImageOptions.LargeImage")));
             this.addNewAssetBarButtonItem2.Name = "addNewAssetBarButtonItem2";
             this.addNewAssetBarButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
             // 
@@ -587,8 +589,8 @@ namespace AssetManagement
             // 
             this.addNewFinancialItemBarButtonItem2.Caption = "إضافة سجل مالي جديد";
             this.addNewFinancialItemBarButtonItem2.Id = 50;
-            this.addNewFinancialItemBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.Image")));
-            this.addNewFinancialItemBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNEwFinancislItemBarButtonItem.ImageOptions.LargeImage")));
+            this.addNewFinancialItemBarButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addNewFinancialItemBarButtonItem2.ImageOptions.Image")));
+            this.addNewFinancialItemBarButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addNewFinancialItemBarButtonItem2.ImageOptions.LargeImage")));
             this.addNewFinancialItemBarButtonItem2.Name = "addNewFinancialItemBarButtonItem2";
             this.addNewFinancialItemBarButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
             // 
@@ -639,6 +641,24 @@ namespace AssetManagement
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
             this.assetsToDestructBarStaticItem.Name = "assetsToDestructBarStaticItem";
             this.assetsToDestructBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.assetsToDestructBarStaticItem_ItemClick);
+            // 
+            // openExportFolderBarButtonItem
+            // 
+            this.openExportFolderBarButtonItem.Caption = "مجلد الملفات المصدرة";
+            this.openExportFolderBarButtonItem.Id = 58;
+            this.openExportFolderBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openExportFolderBarButtonItem.ImageOptions.SvgImage")));
+            this.openExportFolderBarButtonItem.Name = "openExportFolderBarButtonItem";
+            this.openExportFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.openExportFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openExportFolderBarButtonItem_ItemClick);
+            // 
+            // manageModelTblBarButtonItem
+            // 
+            this.manageModelTblBarButtonItem.Caption = "إدارة جدول الموديلات";
+            this.manageModelTblBarButtonItem.Id = 60;
+            this.manageModelTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu___Copy;
+            this.manageModelTblBarButtonItem.Name = "manageModelTblBarButtonItem";
+            this.manageModelTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageModelTblBarButtonItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -746,6 +766,7 @@ namespace AssetManagement
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageTransactionTypeTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemCategoryTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageModelTblBarButtonItem);
             this.auxTablesRibbonPageGroup.Name = "auxTablesRibbonPageGroup";
             this.auxTablesRibbonPageGroup.Text = "الجداول المساعدة";
             // 
@@ -938,15 +959,6 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
-            // openExportFolderBarButtonItem
-            // 
-            this.openExportFolderBarButtonItem.Caption = "مجلد الملفات المصدرة";
-            this.openExportFolderBarButtonItem.Id = 58;
-            this.openExportFolderBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("openExportFolderBarButtonItem.ImageOptions.SvgImage")));
-            this.openExportFolderBarButtonItem.Name = "openExportFolderBarButtonItem";
-            this.openExportFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.openExportFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openExportFolderBarButtonItem_ItemClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1054,6 +1066,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
         private DevExpress.XtraEditors.MemoEdit mainMemoEdit;
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
     }
 }
 

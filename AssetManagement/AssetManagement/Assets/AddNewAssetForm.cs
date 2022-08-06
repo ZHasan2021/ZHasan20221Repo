@@ -23,6 +23,8 @@ namespace AssetManagement.Assets
 
         private void AddNewAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet1.ModelTbl' table. You can move, or remove it, as needed.
+            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet1.ModelTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.SquareTbl' table. You can move, or remove it, as needed.
             this.squareTblTableAdapter.Fill(this.assetMngDbDataSet1.SquareTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.SectionTbl' table. You can move, or remove it, as needed.
@@ -45,6 +47,7 @@ namespace AssetManagement.Assets
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
+            manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
         }
 
@@ -85,6 +88,8 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تقدير السعر الفعلي الحالي\r\n";
                     if (actualCurrentPriceCurrencyLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد عملة السعر الفعلي الحالي\r\n";
+                    if (modelLookUpEdit.EditValue == null)
+                        errorMsg += "لم يتم تحديد الموديل\r\n";
                     if (errorMsg != "")
                     {
                         mainAlertControl.Show(this, $"هناك بعض الإدخالات الناقصة\r\n{errorMsg}", StaticCode.ApplicationTitle);
@@ -124,7 +129,7 @@ namespace AssetManagement.Assets
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
                     AssetSpecifications = assetSpecificationsTextBox.Text.Trim(),
-                    Model = modelTextBox.Text.Trim(),
+                    Model = modelLookUpEdit.Text,
                     Color = colorComboBox.Text,
                     Volume = volumeTextBox.Text.Trim(),
                     PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
@@ -261,6 +266,14 @@ namespace AssetManagement.Assets
             {
 
             }
+        }
+
+        private void manageModelTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageModelTblForm squFrm = new ManageModelTblForm();
+            squFrm.ShowDialog();
+
+            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
         }
     }
 }

@@ -567,3 +567,4 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debu
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsXtraReport.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Users.LoginForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.AuxTables.ManageModelTblForm.resources

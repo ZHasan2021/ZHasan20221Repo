@@ -111,30 +111,27 @@ namespace AssetManagement
             SqlCommand sqlcomm = new SqlCommand(qryBefore, sqlconn);
             sqlcomm.ExecuteNonQuery();
 
-            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "AssetMovementTbl", "AssetTransactionTbl", };
-            List<string> keyFields = new List<string>() { "AssetCode", "AssetCode", "AssetMovementUniqueKey", "AssetTransactionUniqueKey", };
+            List<string> tblsToImport = new List<string>() { "AssetTbl", "FinancialItemTbl", "AssetMovementTbl", "AssetTransactionTbl" };
+            List<string> keyFields = new List<string>() { "AssetCode", "FinancialItemCode", "AssetMovementUniqueKey", "AssetTransactionUniqueKey" };
 
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(excelFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
-            foreach (ExcelWorksheet oneSh in srcExcelWb.Worksheets)
+            foreach (string oneTable in tblsToImport)
             {
                 Application.DoEvents();
-                //declare variables - edit these based on your particular situation   
-                string ssqltable = oneSh.Name;
-                if (tblsToImport.IndexOf(ssqltable) == -1)
+                if (srcExcelWb.Worksheets.Count(sh1 => sh1.Name == oneTable) == 0)
                     continue;
-                // make sure your sheet name is correct, here sheet name is sheet1,
-                //so you can change your sheet name if have different
+                ExcelWorksheet oneSh = srcExcelWb.Worksheets.Where(sh1 => sh1.Name == oneTable).First();
                 try
                 {
-                    string currKeyField = keyFields[tblsToImport.IndexOf(ssqltable)];
+                    string currKeyField = keyFields[tblsToImport.IndexOf(oneTable)];
                     List<string> tblFields = oneSh.Cells.Where(cl1 => cl1.End.Row == 1 && cl1.Start.Row == 1 && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()).ToList();
                     int keyIndex = tblFields.IndexOf(currKeyField) + 1;
                     for (int iRow = 2; iRow <= oneSh.Dimension.End.Row; iRow++)
                     {
                         Application.DoEvents();
                         string oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
-                        string sqlQry = $"SELECT * FROM {ssqltable} where {currKeyField} = N'{oneKeyValue}'";
+                        string sqlQry = $"SELECT * FROM {oneTable} where {currKeyField} = N'{oneKeyValue}'";
                         sqlcomm.CommandType = CommandType.Text;
                         sqlcomm.CommandText = sqlQry;
                         SqlDataReader sqlRdr = sqlcomm.ExecuteReader();
@@ -147,9 +144,10 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
-                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length>4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
+                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
                                 {
-                                    fieldsValuesPairs += $"{oneField} = N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
+                                    DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
+                                    fieldsValuesPairs += $"{oneField} = N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
                                 }
                                 else
                                 {
@@ -157,7 +155,7 @@ namespace AssetManagement
                                 }
                             }
                             fieldsValuesPairs = fieldsValuesPairs.Trim().Trim(',');
-                            string updateQry = $"UPDATE {ssqltable} SET {fieldsValuesPairs} WHERE {currKeyField} = N'{oneKeyValue}';";
+                            string updateQry = $"UPDATE {oneTable} SET {fieldsValuesPairs} WHERE {currKeyField} = N'{oneKeyValue}';";
                             sqlcomm.CommandText = updateQry;
                         }
                         else
@@ -165,9 +163,6 @@ namespace AssetManagement
                             string fieldsPairs = "";
                             string valuesPairs = "";
 
-                            //fieldsPairs = tblFields.Select(fp1 => fp1 + ", ").ToString().Trim().Trim(',');
-
-                            // valuesPairs = oneSh.Cells.Where(cl1 => cl1.End.Row == iRow && cl1.Start.Row == iRow && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()+",").ToString().Trim().Trim(',');
                             for (int iCol = 2; iCol <= oneSh.Dimension.End.Column; iCol++)
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
@@ -175,7 +170,8 @@ namespace AssetManagement
                                 fieldsPairs += $"{oneField}, ";
                                 if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
                                 {
-                                    valuesPairs += $"N'{Convert.ToDateTime(oneVal).ToString("yyyy-MM-dd")}', ";
+                                    DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
+                                    valuesPairs += $"N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
                                 }
                                 else
                                 {
@@ -184,7 +180,7 @@ namespace AssetManagement
                             }
                             fieldsPairs = fieldsPairs.Trim().Trim(',');
                             valuesPairs = valuesPairs.Trim().Trim(',');
-                            string updateQry = $"INSERT INTO {ssqltable}({fieldsPairs}) VALUES ({valuesPairs});";
+                            string updateQry = $"INSERT INTO {oneTable}({fieldsPairs}) VALUES ({valuesPairs});";
                             sqlcomm.CommandText = updateQry;
                         }
                         sqlcomm.ExecuteNonQuery();

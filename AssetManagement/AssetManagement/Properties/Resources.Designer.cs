@@ -63,6 +63,16 @@ namespace AssetManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu___Copy {
+            get {
+                object obj = ResourceManager.GetObject("1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu - Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _10096362 {
             get {
                 object obj = ResourceManager.GetObject("10096362", resourceCulture);

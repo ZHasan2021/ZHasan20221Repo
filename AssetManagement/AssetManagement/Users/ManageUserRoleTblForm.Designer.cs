@@ -44,6 +44,8 @@ namespace AssetManagement.Users
             this.colManageAssetTbl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeleteAssetRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewAssetsStats = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewInventory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateExistedInventory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSearchInventories = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -100,8 +102,8 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.colViewAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colViewAssetsStats = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewModel = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageModels = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -117,10 +119,10 @@ namespace AssetManagement.Users
             gridLevelNode1.RelationName = "userRoleLevel";
             this.userRoleGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.userRoleGridControl.Location = new System.Drawing.Point(0, 27);
+            this.userRoleGridControl.Location = new System.Drawing.Point(0, 31);
             this.userRoleGridControl.MainView = this.userRoleGridView;
             this.userRoleGridControl.Name = "userRoleGridControl";
-            this.userRoleGridControl.Size = new System.Drawing.Size(1213, 634);
+            this.userRoleGridControl.Size = new System.Drawing.Size(1213, 630);
             this.userRoleGridControl.TabIndex = 8;
             this.userRoleGridControl.UseEmbeddedNavigator = true;
             this.userRoleGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -172,6 +174,8 @@ namespace AssetManagement.Users
             this.colManageSquares,
             this.colAddNewCurrency,
             this.colManageCurrencies,
+            this.colAddNewModel,
+            this.colManageModels,
             this.colAddNewEstateAreaUnit,
             this.colManageEstateAreaUnits,
             this.colAddNewTransactionType,
@@ -247,6 +251,26 @@ namespace AssetManagement.Users
             this.colDeleteAssetRecord.Visible = true;
             this.colDeleteAssetRecord.VisibleIndex = 3;
             this.colDeleteAssetRecord.Width = 150;
+            // 
+            // colViewAssetsReports
+            // 
+            this.colViewAssetsReports.Caption = "عرض تقارير الأصول";
+            this.colViewAssetsReports.FieldName = "ViewAssetsReports";
+            this.colViewAssetsReports.MinWidth = 150;
+            this.colViewAssetsReports.Name = "colViewAssetsReports";
+            this.colViewAssetsReports.Visible = true;
+            this.colViewAssetsReports.VisibleIndex = 45;
+            this.colViewAssetsReports.Width = 150;
+            // 
+            // colViewAssetsStats
+            // 
+            this.colViewAssetsStats.Caption = "عرض إحصائيات الأصول";
+            this.colViewAssetsStats.FieldName = "ViewAssetsStats";
+            this.colViewAssetsStats.MinWidth = 150;
+            this.colViewAssetsStats.Name = "colViewAssetsStats";
+            this.colViewAssetsStats.Visible = true;
+            this.colViewAssetsStats.VisibleIndex = 46;
+            this.colViewAssetsStats.Width = 150;
             // 
             // colAddNewInventory
             // 
@@ -676,6 +700,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
@@ -716,7 +741,7 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userRoleTblBindingNavigator.Name = "userRoleTblBindingNavigator";
             this.userRoleTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1213, 27);
+            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1213, 31);
             this.userRoleTblBindingNavigator.TabIndex = 6;
             this.userRoleTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -726,13 +751,13 @@ namespace AssetManagement.Users
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -742,7 +767,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -751,7 +776,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -760,13 +785,13 @@ namespace AssetManagement.Users
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -781,7 +806,7 @@ namespace AssetManagement.Users
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -789,7 +814,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -798,42 +823,42 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // userRoleTblBindingNavigatorSaveItem
             // 
             this.userRoleTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.userRoleTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("userRoleTblBindingNavigatorSaveItem.Image")));
             this.userRoleTblBindingNavigatorSaveItem.Name = "userRoleTblBindingNavigatorSaveItem";
-            this.userRoleTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.userRoleTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
             this.userRoleTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userRoleTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userRoleTblBindingNavigatorSaveItem_Click);
             // 
-            // colViewAssetsReports
+            // colAddNewModel
             // 
-            this.colViewAssetsReports.Caption = "عرض تقارير الأصول";
-            this.colViewAssetsReports.FieldName = "ViewAssetsReports";
-            this.colViewAssetsReports.MinWidth = 150;
-            this.colViewAssetsReports.Name = "colViewAssetsReports";
-            this.colViewAssetsReports.Visible = true;
-            this.colViewAssetsReports.VisibleIndex = 45;
-            this.colViewAssetsReports.Width = 150;
+            this.colAddNewModel.Caption = "إضافة موديل جديد";
+            this.colAddNewModel.FieldName = "AddNewModel";
+            this.colAddNewModel.MinWidth = 150;
+            this.colAddNewModel.Name = "colAddNewModel";
+            this.colAddNewModel.Visible = true;
+            this.colAddNewModel.VisibleIndex = 47;
+            this.colAddNewModel.Width = 150;
             // 
-            // colViewAssetsStats
+            // colManageModels
             // 
-            this.colViewAssetsStats.Caption = "عرض إحصائيات الأصول";
-            this.colViewAssetsStats.FieldName = "ViewAssetsStats";
-            this.colViewAssetsStats.MinWidth = 150;
-            this.colViewAssetsStats.Name = "colViewAssetsStats";
-            this.colViewAssetsStats.Visible = true;
-            this.colViewAssetsStats.VisibleIndex = 46;
-            this.colViewAssetsStats.Width = 150;
+            this.colManageModels.Caption = "إدارة جدول الموديلات";
+            this.colManageModels.FieldName = "ManageModels";
+            this.colManageModels.MinWidth = 150;
+            this.colManageModels.Name = "colManageModels";
+            this.colManageModels.Visible = true;
+            this.colManageModels.VisibleIndex = 48;
+            this.colManageModels.Width = 150;
             // 
             // ManageUserRoleTblForm
             // 
@@ -930,5 +955,7 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colManageAssetTbl;
         private DevExpress.XtraGrid.Columns.GridColumn colViewAssetsReports;
         private DevExpress.XtraGrid.Columns.GridColumn colViewAssetsStats;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewModel;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageModels;
     }
 }

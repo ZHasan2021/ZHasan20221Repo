@@ -49,6 +49,7 @@ namespace AssetManagement
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSectionTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSections == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSquareTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSquares == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageModelTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageModels == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageEstateAreaUnitTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageEstateAreaUnits == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageTransactionTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageTransactionTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewAssetInventoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewInventory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -421,6 +422,9 @@ namespace AssetManagement
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.BackColor = Color.DarkGreen;
+            e.AlertForm.ForeColor = Color.Black;
+            e.AlertForm.Location = new Point(500, 400);
         }
 
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -490,6 +494,12 @@ namespace AssetManagement
         private void openExportFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Process.Start(StaticCode.ExportFolder);
+        }
+
+        private void manageModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageModelTblForm mdlFrm = new ManageModelTblForm();
+            mdlFrm.ShowDialog();
         }
     }
 }

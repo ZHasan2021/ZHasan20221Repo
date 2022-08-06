@@ -63,6 +63,9 @@ namespace AssetManagement
     partial void InsertMinorCategoryTbl(MinorCategoryTbl instance);
     partial void UpdateMinorCategoryTbl(MinorCategoryTbl instance);
     partial void DeleteMinorCategoryTbl(MinorCategoryTbl instance);
+    partial void InsertModelTbl(ModelTbl instance);
+    partial void UpdateModelTbl(ModelTbl instance);
+    partial void DeleteModelTbl(ModelTbl instance);
     partial void InsertOptionsTbl(OptionsTbl instance);
     partial void UpdateOptionsTbl(OptionsTbl instance);
     partial void DeleteOptionsTbl(OptionsTbl instance);
@@ -198,6 +201,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<MinorCategoryTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ModelTbl> ModelTbls
+		{
+			get
+			{
+				return this.GetTable<ModelTbl>();
 			}
 		}
 		
@@ -4181,6 +4192,140 @@ namespace AssetManagement
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModelTbl")]
+	public partial class ModelTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _ModelNameEn;
+		
+		private string _ModelNameAr;
+		
+		private System.Data.Linq.Binary _ModelImg;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnModelNameEnChanging(string value);
+    partial void OnModelNameEnChanged();
+    partial void OnModelNameArChanging(string value);
+    partial void OnModelNameArChanged();
+    partial void OnModelImgChanging(System.Data.Linq.Binary value);
+    partial void OnModelImgChanged();
+    #endregion
+		
+		public ModelTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModelNameEn", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ModelNameEn
+		{
+			get
+			{
+				return this._ModelNameEn;
+			}
+			set
+			{
+				if ((this._ModelNameEn != value))
+				{
+					this.OnModelNameEnChanging(value);
+					this.SendPropertyChanging();
+					this._ModelNameEn = value;
+					this.SendPropertyChanged("ModelNameEn");
+					this.OnModelNameEnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModelNameAr", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ModelNameAr
+		{
+			get
+			{
+				return this._ModelNameAr;
+			}
+			set
+			{
+				if ((this._ModelNameAr != value))
+				{
+					this.OnModelNameArChanging(value);
+					this.SendPropertyChanging();
+					this._ModelNameAr = value;
+					this.SendPropertyChanged("ModelNameAr");
+					this.OnModelNameArChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModelImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ModelImg
+		{
+			get
+			{
+				return this._ModelImg;
+			}
+			set
+			{
+				if ((this._ModelImg != value))
+				{
+					this.OnModelImgChanging(value);
+					this.SendPropertyChanging();
+					this._ModelImg = value;
+					this.SendPropertyChanged("ModelImg");
+					this.OnModelImgChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OptionsTbl")]
 	public partial class OptionsTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4839,6 +4984,10 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ManageCurrencies;
 		
+		private System.Nullable<bool> _AddNewModel;
+		
+		private System.Nullable<bool> _ManageModels;
+		
 		private System.Nullable<bool> _AddNewEstateAreaUnit;
 		
 		private System.Nullable<bool> _ManageEstateAreaUnits;
@@ -4941,6 +5090,10 @@ namespace AssetManagement
     partial void OnAddNewCurrencyChanged();
     partial void OnManageCurrenciesChanging(System.Nullable<bool> value);
     partial void OnManageCurrenciesChanged();
+    partial void OnAddNewModelChanging(System.Nullable<bool> value);
+    partial void OnAddNewModelChanged();
+    partial void OnManageModelsChanging(System.Nullable<bool> value);
+    partial void OnManageModelsChanged();
     partial void OnAddNewEstateAreaUnitChanging(System.Nullable<bool> value);
     partial void OnAddNewEstateAreaUnitChanged();
     partial void OnManageEstateAreaUnitsChanging(System.Nullable<bool> value);
@@ -5635,6 +5788,46 @@ namespace AssetManagement
 					this._ManageCurrencies = value;
 					this.SendPropertyChanged("ManageCurrencies");
 					this.OnManageCurrenciesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewModel", DbType="Bit")]
+		public System.Nullable<bool> AddNewModel
+		{
+			get
+			{
+				return this._AddNewModel;
+			}
+			set
+			{
+				if ((this._AddNewModel != value))
+				{
+					this.OnAddNewModelChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewModel = value;
+					this.SendPropertyChanged("AddNewModel");
+					this.OnAddNewModelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageModels", DbType="Bit")]
+		public System.Nullable<bool> ManageModels
+		{
+			get
+			{
+				return this._ManageModels;
+			}
+			set
+			{
+				if ((this._ManageModels != value))
+				{
+					this.OnManageModelsChanging(value);
+					this.SendPropertyChanging();
+					this._ManageModels = value;
+					this.SendPropertyChanged("ManageModels");
+					this.OnManageModelsChanged();
 				}
 			}
 		}

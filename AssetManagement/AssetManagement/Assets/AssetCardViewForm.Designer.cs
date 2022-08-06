@@ -47,84 +47,88 @@ namespace AssetManagement.Assets
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.assetVwGridControl = new DevExpress.XtraGrid.GridControl();
-            this.assetVwLayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
-            this.colمعرفالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colكودالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالعدد = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالقسم = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالدائرة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالساحة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالفئةالرئيسية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالفئةالفرعية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colمواصفاتالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالموديل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colاللون = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colتاريخالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colسعرالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colعملةسعرالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colمكانالتواجد = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colحالةالأصلالآنية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colاسمصاحبالعهدة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colتفاصيلإضافية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colملاحظاتأخرى = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colعنوانالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colاسمالمالك = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالمستغلمنه = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colمعمنورقةالملكية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colمساحةالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colوحدةمساحةالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colرقملوحةالمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.layoutViewField_colكودالأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالعدد = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالقسم = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالدائرة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالساحة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالفئةالرئيسية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالفئةالفرعية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colمواصفاتالأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colتاريخالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colسعرالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colعملةسعرالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colمكانالتواجد = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colحالةالأصلالآنية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالسعرالفعليالحالي = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colاسمصاحبالعهدة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colاسمالمالك = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colعنوانالعقار = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colتفاصيلإضافية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colملاحظاتأخرى = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colالموديل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colاللون = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.assetLayoutView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
+            this.colمعرفالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colمعرفالأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colكودالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colكودالأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالعدد = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالعدد = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالقسم = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالقسم = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالدائرة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالدائرة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالساحة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالساحة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالفئةالرئيسية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالفئةالرئيسية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالفئةالفرعية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالفئةالفرعية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colمواصفاتالأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colمواصفاتالأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالموديل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالموديل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colاللون = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colاللون = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewColumn1 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colتاريخالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colتاريخالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colسعرالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colسعرالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colعملةسعرالشراء = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colعملةسعرالشراء = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colمكانالتواجد = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colمكانالتواجد = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colحالةالأصلالآنية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colحالةالأصلالآنية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالسعرالفعليالحالي = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colاسمصاحبالعهدة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colاسمصاحبالعهدة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colتفاصيلإضافية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colتفاصيلإضافية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colملاحظاتأخرى = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colملاحظاتأخرى = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colعنوانالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colعنوانالعقار = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colاسمالمالك = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colاسمالمالك = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالمستغلمنه = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colالمستغلمنه = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colمعمنورقةالملكية = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colمعمنورقةالملكية = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colمساحةالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colمساحةالعقار = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colوحدةمساحةالعقار = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colوحدةمساحةالعقار = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colرقملوحةالمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colرقملوحةالمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colسنةصنعالمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewColumn2 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_layoutViewColumn2 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colرقمالمحركللمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
+            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwLayoutView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetLayoutView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعرفالأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colكودالأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعدد)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالقسم)).BeginInit();
@@ -133,6 +137,9 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالفئةالرئيسية)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالفئةالفرعية)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمواصفاتالأصل)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالموديل)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاللون)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colتاريخالشراء)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colسعرالشراء)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعملةسعرالشراء)).BeginInit();
@@ -142,22 +149,21 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالسعرالفعليالحالي)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعملةالسعرالفعليالحالي)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمصاحبالعهدة)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمالمالك)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعنوانالعقار)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colتفاصيلإضافية)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colملاحظاتأخرى)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالموديل)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاللون)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعرفالأصل)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعنوانالعقار)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمالمالك)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالمستغلمنه)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعمنورقةالملكية)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمساحةالعقار)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colوحدةمساحةالعقار)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colرقملوحةالمركبة)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colسنةصنعالمركبة)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colرقمالمحركللمركبة)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
             this.SuspendLayout();
             // 
             // assetMngDbDataSet
@@ -304,35 +310,38 @@ namespace AssetManagement.Assets
             this.assetVwGridControl.DataSource = this.assetVwBindingSource;
             this.assetVwGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assetVwGridControl.Location = new System.Drawing.Point(0, 39);
-            this.assetVwGridControl.MainView = this.assetVwLayoutView;
+            this.assetVwGridControl.MainView = this.assetLayoutView;
             this.assetVwGridControl.MenuManager = this.toolbarFormManager1;
             this.assetVwGridControl.Name = "assetVwGridControl";
             this.assetVwGridControl.Size = new System.Drawing.Size(1316, 741);
             this.assetVwGridControl.TabIndex = 14;
             this.assetVwGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.assetVwLayoutView});
+            this.assetLayoutView});
             // 
-            // assetVwLayoutView
+            // assetVwBindingSource
             // 
-            this.assetVwLayoutView.Appearance.Card.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F);
-            this.assetVwLayoutView.Appearance.Card.Options.UseFont = true;
-            this.assetVwLayoutView.Appearance.CardCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.assetVwLayoutView.Appearance.CardCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.assetVwLayoutView.Appearance.CardCaption.Font = new System.Drawing.Font("Sakkal Majalla", 13.8F);
-            this.assetVwLayoutView.Appearance.CardCaption.Options.UseBackColor = true;
-            this.assetVwLayoutView.Appearance.CardCaption.Options.UseFont = true;
-            this.assetVwLayoutView.Appearance.FieldCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.assetVwLayoutView.Appearance.FieldCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.assetVwLayoutView.Appearance.FieldCaption.Options.UseBackColor = true;
-            this.assetVwLayoutView.Appearance.FieldCaption.Options.UseFont = true;
-            this.assetVwLayoutView.Appearance.FieldEditingValue.Font = new System.Drawing.Font("Calibri", 10.2F);
-            this.assetVwLayoutView.Appearance.FieldEditingValue.Options.UseFont = true;
-            this.assetVwLayoutView.Appearance.FieldValue.BackColor = System.Drawing.Color.Silver;
-            this.assetVwLayoutView.Appearance.FieldValue.Font = new System.Drawing.Font("Calibri", 10.2F);
-            this.assetVwLayoutView.Appearance.FieldValue.Options.UseBackColor = true;
-            this.assetVwLayoutView.Appearance.FieldValue.Options.UseFont = true;
-            this.assetVwLayoutView.CardMinSize = new System.Drawing.Size(450, 956);
-            this.assetVwLayoutView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetLayoutView
+            // 
+            this.assetLayoutView.Appearance.Card.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F);
+            this.assetLayoutView.Appearance.Card.Options.UseFont = true;
+            this.assetLayoutView.Appearance.CardCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.assetLayoutView.Appearance.CardCaption.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.assetLayoutView.Appearance.CardCaption.Font = new System.Drawing.Font("Sakkal Majalla", 13.8F);
+            this.assetLayoutView.Appearance.CardCaption.Options.UseBackColor = true;
+            this.assetLayoutView.Appearance.CardCaption.Options.UseFont = true;
+            this.assetLayoutView.Appearance.FieldCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.assetLayoutView.Appearance.FieldCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.assetLayoutView.Appearance.FieldCaption.Options.UseBackColor = true;
+            this.assetLayoutView.Appearance.FieldCaption.Options.UseFont = true;
+            this.assetLayoutView.Appearance.FieldValue.BackColor = System.Drawing.Color.Silver;
+            this.assetLayoutView.Appearance.FieldValue.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.assetLayoutView.Appearance.FieldValue.Options.UseBackColor = true;
+            this.assetLayoutView.Appearance.FieldValue.Options.UseFont = true;
+            this.assetLayoutView.CardMinSize = new System.Drawing.Size(500, 300);
+            this.assetLayoutView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.colمعرفالأصل,
             this.colكودالأصل,
             this.colالعدد,
@@ -344,6 +353,7 @@ namespace AssetManagement.Assets
             this.colمواصفاتالأصل,
             this.colالموديل,
             this.colاللون,
+            this.layoutViewColumn1,
             this.colتاريخالشراء,
             this.colسعرالشراء,
             this.colعملةسعرالشراء,
@@ -363,31 +373,14 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار,
             this.colرقملوحةالمركبة,
             this.colسنةصنعالمركبة,
+            this.layoutViewColumn2,
             this.colرقمالمحركللمركبة,
             this.colمعدلالإهلاكللأصل,
             this.colالعمرالافتراضيالمتبقيللأصل});
-            this.assetVwLayoutView.DetailAutoHeight = false;
-            this.assetVwLayoutView.DetailHeight = 500;
-            this.assetVwLayoutView.GridControl = this.assetVwGridControl;
-            this.assetVwLayoutView.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutViewField_colتفاصيلإضافية,
-            this.layoutViewField_colملاحظاتأخرى,
-            this.layoutViewField_colمعدلالإهلاكللأصل,
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل,
-            this.layoutViewField_colالموديل,
-            this.layoutViewField_colاللون,
-            this.layoutViewField_colمعرفالأصل,
-            this.layoutViewField_colالمستغلمنه,
-            this.layoutViewField_colمعمنورقةالملكية,
-            this.layoutViewField_colمساحةالعقار,
-            this.layoutViewField_colوحدةمساحةالعقار,
-            this.layoutViewField_colرقملوحةالمركبة,
-            this.layoutViewField_colسنةصنعالمركبة,
-            this.layoutViewField_colرقمالمحركللمركبة});
-            this.assetVwLayoutView.Name = "assetVwLayoutView";
-            this.assetVwLayoutView.OptionsItemText.AlignMode = DevExpress.XtraGrid.Views.Layout.FieldTextAlignMode.AlignGlobal;
-            this.assetVwLayoutView.OptionsItemText.TextToControlDistance = 8;
-            this.assetVwLayoutView.TemplateCard = this.layoutViewCard1;
+            this.assetLayoutView.DetailHeight = 300;
+            this.assetLayoutView.GridControl = this.assetVwGridControl;
+            this.assetLayoutView.Name = "assetLayoutView";
+            this.assetLayoutView.TemplateCard = this.layoutViewCard1;
             // 
             // colمعرفالأصل
             // 
@@ -397,6 +390,14 @@ namespace AssetManagement.Assets
             this.colمعرفالأصل.Name = "colمعرفالأصل";
             this.colمعرفالأصل.Width = 94;
             // 
+            // layoutViewField_colمعرفالأصل
+            // 
+            this.layoutViewField_colمعرفالأصل.EditorPreferredWidth = -6;
+            this.layoutViewField_colمعرفالأصل.Location = new System.Drawing.Point(0, 0);
+            this.layoutViewField_colمعرفالأصل.Name = "layoutViewField_colمعرفالأصل";
+            this.layoutViewField_colمعرفالأصل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمعرفالأصل.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colكودالأصل
             // 
             this.colكودالأصل.FieldName = "كود الأصل";
@@ -404,6 +405,14 @@ namespace AssetManagement.Assets
             this.colكودالأصل.MinWidth = 25;
             this.colكودالأصل.Name = "colكودالأصل";
             this.colكودالأصل.Width = 94;
+            // 
+            // layoutViewField_colكودالأصل
+            // 
+            this.layoutViewField_colكودالأصل.EditorPreferredWidth = -6;
+            this.layoutViewField_colكودالأصل.Location = new System.Drawing.Point(0, 26);
+            this.layoutViewField_colكودالأصل.Name = "layoutViewField_colكودالأصل";
+            this.layoutViewField_colكودالأصل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colكودالأصل.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colالعدد
             // 
@@ -413,6 +422,14 @@ namespace AssetManagement.Assets
             this.colالعدد.Name = "colالعدد";
             this.colالعدد.Width = 94;
             // 
+            // layoutViewField_colالعدد
+            // 
+            this.layoutViewField_colالعدد.EditorPreferredWidth = -6;
+            this.layoutViewField_colالعدد.Location = new System.Drawing.Point(0, 52);
+            this.layoutViewField_colالعدد.Name = "layoutViewField_colالعدد";
+            this.layoutViewField_colالعدد.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالعدد.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colالقسم
             // 
             this.colالقسم.FieldName = "القسم";
@@ -420,6 +437,14 @@ namespace AssetManagement.Assets
             this.colالقسم.MinWidth = 25;
             this.colالقسم.Name = "colالقسم";
             this.colالقسم.Width = 94;
+            // 
+            // layoutViewField_colالقسم
+            // 
+            this.layoutViewField_colالقسم.EditorPreferredWidth = -6;
+            this.layoutViewField_colالقسم.Location = new System.Drawing.Point(0, 78);
+            this.layoutViewField_colالقسم.Name = "layoutViewField_colالقسم";
+            this.layoutViewField_colالقسم.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالقسم.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colالدائرة
             // 
@@ -429,6 +454,14 @@ namespace AssetManagement.Assets
             this.colالدائرة.Name = "colالدائرة";
             this.colالدائرة.Width = 94;
             // 
+            // layoutViewField_colالدائرة
+            // 
+            this.layoutViewField_colالدائرة.EditorPreferredWidth = -6;
+            this.layoutViewField_colالدائرة.Location = new System.Drawing.Point(0, 104);
+            this.layoutViewField_colالدائرة.Name = "layoutViewField_colالدائرة";
+            this.layoutViewField_colالدائرة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالدائرة.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colالساحة
             // 
             this.colالساحة.FieldName = "الساحة";
@@ -436,6 +469,14 @@ namespace AssetManagement.Assets
             this.colالساحة.MinWidth = 25;
             this.colالساحة.Name = "colالساحة";
             this.colالساحة.Width = 94;
+            // 
+            // layoutViewField_colالساحة
+            // 
+            this.layoutViewField_colالساحة.EditorPreferredWidth = -6;
+            this.layoutViewField_colالساحة.Location = new System.Drawing.Point(0, 130);
+            this.layoutViewField_colالساحة.Name = "layoutViewField_colالساحة";
+            this.layoutViewField_colالساحة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالساحة.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colالفئةالرئيسية
             // 
@@ -445,6 +486,14 @@ namespace AssetManagement.Assets
             this.colالفئةالرئيسية.Name = "colالفئةالرئيسية";
             this.colالفئةالرئيسية.Width = 94;
             // 
+            // layoutViewField_colالفئةالرئيسية
+            // 
+            this.layoutViewField_colالفئةالرئيسية.EditorPreferredWidth = -6;
+            this.layoutViewField_colالفئةالرئيسية.Location = new System.Drawing.Point(0, 156);
+            this.layoutViewField_colالفئةالرئيسية.Name = "layoutViewField_colالفئةالرئيسية";
+            this.layoutViewField_colالفئةالرئيسية.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالفئةالرئيسية.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colالفئةالفرعية
             // 
             this.colالفئةالفرعية.FieldName = "الفئة الفرعية";
@@ -452,6 +501,14 @@ namespace AssetManagement.Assets
             this.colالفئةالفرعية.MinWidth = 25;
             this.colالفئةالفرعية.Name = "colالفئةالفرعية";
             this.colالفئةالفرعية.Width = 94;
+            // 
+            // layoutViewField_colالفئةالفرعية
+            // 
+            this.layoutViewField_colالفئةالفرعية.EditorPreferredWidth = -6;
+            this.layoutViewField_colالفئةالفرعية.Location = new System.Drawing.Point(0, 182);
+            this.layoutViewField_colالفئةالفرعية.Name = "layoutViewField_colالفئةالفرعية";
+            this.layoutViewField_colالفئةالفرعية.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالفئةالفرعية.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colمواصفاتالأصل
             // 
@@ -461,6 +518,14 @@ namespace AssetManagement.Assets
             this.colمواصفاتالأصل.Name = "colمواصفاتالأصل";
             this.colمواصفاتالأصل.Width = 94;
             // 
+            // layoutViewField_colمواصفاتالأصل
+            // 
+            this.layoutViewField_colمواصفاتالأصل.EditorPreferredWidth = -6;
+            this.layoutViewField_colمواصفاتالأصل.Location = new System.Drawing.Point(0, 208);
+            this.layoutViewField_colمواصفاتالأصل.Name = "layoutViewField_colمواصفاتالأصل";
+            this.layoutViewField_colمواصفاتالأصل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمواصفاتالأصل.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colالموديل
             // 
             this.colالموديل.FieldName = "الموديل";
@@ -468,6 +533,14 @@ namespace AssetManagement.Assets
             this.colالموديل.MinWidth = 25;
             this.colالموديل.Name = "colالموديل";
             this.colالموديل.Width = 94;
+            // 
+            // layoutViewField_colالموديل
+            // 
+            this.layoutViewField_colالموديل.EditorPreferredWidth = -6;
+            this.layoutViewField_colالموديل.Location = new System.Drawing.Point(0, 234);
+            this.layoutViewField_colالموديل.Name = "layoutViewField_colالموديل";
+            this.layoutViewField_colالموديل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالموديل.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colاللون
             // 
@@ -477,6 +550,30 @@ namespace AssetManagement.Assets
             this.colاللون.Name = "colاللون";
             this.colاللون.Width = 94;
             // 
+            // layoutViewField_colاللون
+            // 
+            this.layoutViewField_colاللون.EditorPreferredWidth = -6;
+            this.layoutViewField_colاللون.Location = new System.Drawing.Point(0, 260);
+            this.layoutViewField_colاللون.Name = "layoutViewField_colاللون";
+            this.layoutViewField_colاللون.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colاللون.TextSize = new System.Drawing.Size(185, 17);
+            // 
+            // layoutViewColumn1
+            // 
+            this.layoutViewColumn1.FieldName = "الحجم / السعة";
+            this.layoutViewColumn1.LayoutViewField = this.layoutViewField_layoutViewColumn1;
+            this.layoutViewColumn1.MinWidth = 25;
+            this.layoutViewColumn1.Name = "layoutViewColumn1";
+            this.layoutViewColumn1.Width = 94;
+            // 
+            // layoutViewField_layoutViewColumn1
+            // 
+            this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = -6;
+            this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 286);
+            this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
+            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colتاريخالشراء
             // 
             this.colتاريخالشراء.FieldName = "تاريخ الشراء";
@@ -484,6 +581,14 @@ namespace AssetManagement.Assets
             this.colتاريخالشراء.MinWidth = 25;
             this.colتاريخالشراء.Name = "colتاريخالشراء";
             this.colتاريخالشراء.Width = 94;
+            // 
+            // layoutViewField_colتاريخالشراء
+            // 
+            this.layoutViewField_colتاريخالشراء.EditorPreferredWidth = -6;
+            this.layoutViewField_colتاريخالشراء.Location = new System.Drawing.Point(0, 312);
+            this.layoutViewField_colتاريخالشراء.Name = "layoutViewField_colتاريخالشراء";
+            this.layoutViewField_colتاريخالشراء.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colتاريخالشراء.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colسعرالشراء
             // 
@@ -493,6 +598,14 @@ namespace AssetManagement.Assets
             this.colسعرالشراء.Name = "colسعرالشراء";
             this.colسعرالشراء.Width = 94;
             // 
+            // layoutViewField_colسعرالشراء
+            // 
+            this.layoutViewField_colسعرالشراء.EditorPreferredWidth = -6;
+            this.layoutViewField_colسعرالشراء.Location = new System.Drawing.Point(0, 338);
+            this.layoutViewField_colسعرالشراء.Name = "layoutViewField_colسعرالشراء";
+            this.layoutViewField_colسعرالشراء.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colسعرالشراء.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colعملةسعرالشراء
             // 
             this.colعملةسعرالشراء.FieldName = "عملة سعر الشراء";
@@ -500,6 +613,14 @@ namespace AssetManagement.Assets
             this.colعملةسعرالشراء.MinWidth = 25;
             this.colعملةسعرالشراء.Name = "colعملةسعرالشراء";
             this.colعملةسعرالشراء.Width = 94;
+            // 
+            // layoutViewField_colعملةسعرالشراء
+            // 
+            this.layoutViewField_colعملةسعرالشراء.EditorPreferredWidth = -6;
+            this.layoutViewField_colعملةسعرالشراء.Location = new System.Drawing.Point(0, 364);
+            this.layoutViewField_colعملةسعرالشراء.Name = "layoutViewField_colعملةسعرالشراء";
+            this.layoutViewField_colعملةسعرالشراء.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colعملةسعرالشراء.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colمكانالتواجد
             // 
@@ -509,6 +630,14 @@ namespace AssetManagement.Assets
             this.colمكانالتواجد.Name = "colمكانالتواجد";
             this.colمكانالتواجد.Width = 94;
             // 
+            // layoutViewField_colمكانالتواجد
+            // 
+            this.layoutViewField_colمكانالتواجد.EditorPreferredWidth = -6;
+            this.layoutViewField_colمكانالتواجد.Location = new System.Drawing.Point(0, 390);
+            this.layoutViewField_colمكانالتواجد.Name = "layoutViewField_colمكانالتواجد";
+            this.layoutViewField_colمكانالتواجد.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمكانالتواجد.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colحالةالأصلالآنية
             // 
             this.colحالةالأصلالآنية.FieldName = "حالة الأصل الآنية";
@@ -516,6 +645,14 @@ namespace AssetManagement.Assets
             this.colحالةالأصلالآنية.MinWidth = 25;
             this.colحالةالأصلالآنية.Name = "colحالةالأصلالآنية";
             this.colحالةالأصلالآنية.Width = 94;
+            // 
+            // layoutViewField_colحالةالأصلالآنية
+            // 
+            this.layoutViewField_colحالةالأصلالآنية.EditorPreferredWidth = -6;
+            this.layoutViewField_colحالةالأصلالآنية.Location = new System.Drawing.Point(0, 416);
+            this.layoutViewField_colحالةالأصلالآنية.Name = "layoutViewField_colحالةالأصلالآنية";
+            this.layoutViewField_colحالةالأصلالآنية.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colحالةالأصلالآنية.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colنسبةالاستفادةمنه
             // 
@@ -525,6 +662,14 @@ namespace AssetManagement.Assets
             this.colنسبةالاستفادةمنه.Name = "colنسبةالاستفادةمنه";
             this.colنسبةالاستفادةمنه.Width = 94;
             // 
+            // layoutViewField_colنسبةالاستفادةمنه
+            // 
+            this.layoutViewField_colنسبةالاستفادةمنه.EditorPreferredWidth = -6;
+            this.layoutViewField_colنسبةالاستفادةمنه.Location = new System.Drawing.Point(0, 442);
+            this.layoutViewField_colنسبةالاستفادةمنه.Name = "layoutViewField_colنسبةالاستفادةمنه";
+            this.layoutViewField_colنسبةالاستفادةمنه.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colنسبةالاستفادةمنه.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colالسعرالفعليالحالي
             // 
             this.colالسعرالفعليالحالي.FieldName = "السعر الفعلي الحالي";
@@ -532,6 +677,14 @@ namespace AssetManagement.Assets
             this.colالسعرالفعليالحالي.MinWidth = 25;
             this.colالسعرالفعليالحالي.Name = "colالسعرالفعليالحالي";
             this.colالسعرالفعليالحالي.Width = 94;
+            // 
+            // layoutViewField_colالسعرالفعليالحالي
+            // 
+            this.layoutViewField_colالسعرالفعليالحالي.EditorPreferredWidth = -6;
+            this.layoutViewField_colالسعرالفعليالحالي.Location = new System.Drawing.Point(0, 468);
+            this.layoutViewField_colالسعرالفعليالحالي.Name = "layoutViewField_colالسعرالفعليالحالي";
+            this.layoutViewField_colالسعرالفعليالحالي.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالسعرالفعليالحالي.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colعملةالسعرالفعليالحالي
             // 
@@ -541,6 +694,14 @@ namespace AssetManagement.Assets
             this.colعملةالسعرالفعليالحالي.Name = "colعملةالسعرالفعليالحالي";
             this.colعملةالسعرالفعليالحالي.Width = 94;
             // 
+            // layoutViewField_colعملةالسعرالفعليالحالي
+            // 
+            this.layoutViewField_colعملةالسعرالفعليالحالي.EditorPreferredWidth = -6;
+            this.layoutViewField_colعملةالسعرالفعليالحالي.Location = new System.Drawing.Point(0, 494);
+            this.layoutViewField_colعملةالسعرالفعليالحالي.Name = "layoutViewField_colعملةالسعرالفعليالحالي";
+            this.layoutViewField_colعملةالسعرالفعليالحالي.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colعملةالسعرالفعليالحالي.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colاسمصاحبالعهدة
             // 
             this.colاسمصاحبالعهدة.FieldName = "اسم صاحب العهدة";
@@ -548,6 +709,14 @@ namespace AssetManagement.Assets
             this.colاسمصاحبالعهدة.MinWidth = 25;
             this.colاسمصاحبالعهدة.Name = "colاسمصاحبالعهدة";
             this.colاسمصاحبالعهدة.Width = 94;
+            // 
+            // layoutViewField_colاسمصاحبالعهدة
+            // 
+            this.layoutViewField_colاسمصاحبالعهدة.EditorPreferredWidth = -6;
+            this.layoutViewField_colاسمصاحبالعهدة.Location = new System.Drawing.Point(0, 520);
+            this.layoutViewField_colاسمصاحبالعهدة.Name = "layoutViewField_colاسمصاحبالعهدة";
+            this.layoutViewField_colاسمصاحبالعهدة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colاسمصاحبالعهدة.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colتفاصيلإضافية
             // 
@@ -557,6 +726,14 @@ namespace AssetManagement.Assets
             this.colتفاصيلإضافية.Name = "colتفاصيلإضافية";
             this.colتفاصيلإضافية.Width = 94;
             // 
+            // layoutViewField_colتفاصيلإضافية
+            // 
+            this.layoutViewField_colتفاصيلإضافية.EditorPreferredWidth = -6;
+            this.layoutViewField_colتفاصيلإضافية.Location = new System.Drawing.Point(0, 546);
+            this.layoutViewField_colتفاصيلإضافية.Name = "layoutViewField_colتفاصيلإضافية";
+            this.layoutViewField_colتفاصيلإضافية.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colتفاصيلإضافية.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colملاحظاتأخرى
             // 
             this.colملاحظاتأخرى.FieldName = "ملاحظات أخرى";
@@ -564,6 +741,14 @@ namespace AssetManagement.Assets
             this.colملاحظاتأخرى.MinWidth = 25;
             this.colملاحظاتأخرى.Name = "colملاحظاتأخرى";
             this.colملاحظاتأخرى.Width = 94;
+            // 
+            // layoutViewField_colملاحظاتأخرى
+            // 
+            this.layoutViewField_colملاحظاتأخرى.EditorPreferredWidth = -6;
+            this.layoutViewField_colملاحظاتأخرى.Location = new System.Drawing.Point(0, 572);
+            this.layoutViewField_colملاحظاتأخرى.Name = "layoutViewField_colملاحظاتأخرى";
+            this.layoutViewField_colملاحظاتأخرى.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colملاحظاتأخرى.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colعنوانالعقار
             // 
@@ -573,6 +758,14 @@ namespace AssetManagement.Assets
             this.colعنوانالعقار.Name = "colعنوانالعقار";
             this.colعنوانالعقار.Width = 94;
             // 
+            // layoutViewField_colعنوانالعقار
+            // 
+            this.layoutViewField_colعنوانالعقار.EditorPreferredWidth = -6;
+            this.layoutViewField_colعنوانالعقار.Location = new System.Drawing.Point(0, 598);
+            this.layoutViewField_colعنوانالعقار.Name = "layoutViewField_colعنوانالعقار";
+            this.layoutViewField_colعنوانالعقار.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colعنوانالعقار.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colاسمالمالك
             // 
             this.colاسمالمالك.FieldName = "اسم المالك";
@@ -580,6 +773,14 @@ namespace AssetManagement.Assets
             this.colاسمالمالك.MinWidth = 25;
             this.colاسمالمالك.Name = "colاسمالمالك";
             this.colاسمالمالك.Width = 94;
+            // 
+            // layoutViewField_colاسمالمالك
+            // 
+            this.layoutViewField_colاسمالمالك.EditorPreferredWidth = -6;
+            this.layoutViewField_colاسمالمالك.Location = new System.Drawing.Point(0, 624);
+            this.layoutViewField_colاسمالمالك.Name = "layoutViewField_colاسمالمالك";
+            this.layoutViewField_colاسمالمالك.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colاسمالمالك.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colالمستغلمنه
             // 
@@ -589,6 +790,14 @@ namespace AssetManagement.Assets
             this.colالمستغلمنه.Name = "colالمستغلمنه";
             this.colالمستغلمنه.Width = 94;
             // 
+            // layoutViewField_colالمستغلمنه
+            // 
+            this.layoutViewField_colالمستغلمنه.EditorPreferredWidth = -6;
+            this.layoutViewField_colالمستغلمنه.Location = new System.Drawing.Point(0, 650);
+            this.layoutViewField_colالمستغلمنه.Name = "layoutViewField_colالمستغلمنه";
+            this.layoutViewField_colالمستغلمنه.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالمستغلمنه.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colمعمنورقةالملكية
             // 
             this.colمعمنورقةالملكية.FieldName = "مع من ورقة الملكية";
@@ -596,6 +805,14 @@ namespace AssetManagement.Assets
             this.colمعمنورقةالملكية.MinWidth = 25;
             this.colمعمنورقةالملكية.Name = "colمعمنورقةالملكية";
             this.colمعمنورقةالملكية.Width = 94;
+            // 
+            // layoutViewField_colمعمنورقةالملكية
+            // 
+            this.layoutViewField_colمعمنورقةالملكية.EditorPreferredWidth = -6;
+            this.layoutViewField_colمعمنورقةالملكية.Location = new System.Drawing.Point(0, 676);
+            this.layoutViewField_colمعمنورقةالملكية.Name = "layoutViewField_colمعمنورقةالملكية";
+            this.layoutViewField_colمعمنورقةالملكية.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمعمنورقةالملكية.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colمساحةالعقار
             // 
@@ -605,6 +822,14 @@ namespace AssetManagement.Assets
             this.colمساحةالعقار.Name = "colمساحةالعقار";
             this.colمساحةالعقار.Width = 94;
             // 
+            // layoutViewField_colمساحةالعقار
+            // 
+            this.layoutViewField_colمساحةالعقار.EditorPreferredWidth = -6;
+            this.layoutViewField_colمساحةالعقار.Location = new System.Drawing.Point(0, 702);
+            this.layoutViewField_colمساحةالعقار.Name = "layoutViewField_colمساحةالعقار";
+            this.layoutViewField_colمساحةالعقار.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمساحةالعقار.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colوحدةمساحةالعقار
             // 
             this.colوحدةمساحةالعقار.FieldName = "وحدة مساحة العقار";
@@ -612,6 +837,14 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار.MinWidth = 25;
             this.colوحدةمساحةالعقار.Name = "colوحدةمساحةالعقار";
             this.colوحدةمساحةالعقار.Width = 94;
+            // 
+            // layoutViewField_colوحدةمساحةالعقار
+            // 
+            this.layoutViewField_colوحدةمساحةالعقار.EditorPreferredWidth = -6;
+            this.layoutViewField_colوحدةمساحةالعقار.Location = new System.Drawing.Point(0, 728);
+            this.layoutViewField_colوحدةمساحةالعقار.Name = "layoutViewField_colوحدةمساحةالعقار";
+            this.layoutViewField_colوحدةمساحةالعقار.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colوحدةمساحةالعقار.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colرقملوحةالمركبة
             // 
@@ -621,6 +854,14 @@ namespace AssetManagement.Assets
             this.colرقملوحةالمركبة.Name = "colرقملوحةالمركبة";
             this.colرقملوحةالمركبة.Width = 94;
             // 
+            // layoutViewField_colرقملوحةالمركبة
+            // 
+            this.layoutViewField_colرقملوحةالمركبة.EditorPreferredWidth = -6;
+            this.layoutViewField_colرقملوحةالمركبة.Location = new System.Drawing.Point(0, 754);
+            this.layoutViewField_colرقملوحةالمركبة.Name = "layoutViewField_colرقملوحةالمركبة";
+            this.layoutViewField_colرقملوحةالمركبة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colرقملوحةالمركبة.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colسنةصنعالمركبة
             // 
             this.colسنةصنعالمركبة.FieldName = "سنة صنع المركبة";
@@ -628,6 +869,30 @@ namespace AssetManagement.Assets
             this.colسنةصنعالمركبة.MinWidth = 25;
             this.colسنةصنعالمركبة.Name = "colسنةصنعالمركبة";
             this.colسنةصنعالمركبة.Width = 94;
+            // 
+            // layoutViewField_colسنةصنعالمركبة
+            // 
+            this.layoutViewField_colسنةصنعالمركبة.EditorPreferredWidth = -6;
+            this.layoutViewField_colسنةصنعالمركبة.Location = new System.Drawing.Point(0, 780);
+            this.layoutViewField_colسنةصنعالمركبة.Name = "layoutViewField_colسنةصنعالمركبة";
+            this.layoutViewField_colسنةصنعالمركبة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colسنةصنعالمركبة.TextSize = new System.Drawing.Size(185, 17);
+            // 
+            // layoutViewColumn2
+            // 
+            this.layoutViewColumn2.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
+            this.layoutViewColumn2.LayoutViewField = this.layoutViewField_layoutViewColumn2;
+            this.layoutViewColumn2.MinWidth = 25;
+            this.layoutViewColumn2.Name = "layoutViewColumn2";
+            this.layoutViewColumn2.Width = 94;
+            // 
+            // layoutViewField_layoutViewColumn2
+            // 
+            this.layoutViewField_layoutViewColumn2.EditorPreferredWidth = -6;
+            this.layoutViewField_layoutViewColumn2.Location = new System.Drawing.Point(0, 806);
+            this.layoutViewField_layoutViewColumn2.Name = "layoutViewField_layoutViewColumn2";
+            this.layoutViewField_layoutViewColumn2.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_layoutViewColumn2.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colرقمالمحركللمركبة
             // 
@@ -637,6 +902,14 @@ namespace AssetManagement.Assets
             this.colرقمالمحركللمركبة.Name = "colرقمالمحركللمركبة";
             this.colرقمالمحركللمركبة.Width = 94;
             // 
+            // layoutViewField_colرقمالمحركللمركبة
+            // 
+            this.layoutViewField_colرقمالمحركللمركبة.EditorPreferredWidth = -6;
+            this.layoutViewField_colرقمالمحركللمركبة.Location = new System.Drawing.Point(0, 832);
+            this.layoutViewField_colرقمالمحركللمركبة.Name = "layoutViewField_colرقمالمحركللمركبة";
+            this.layoutViewField_colرقمالمحركللمركبة.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colرقمالمحركللمركبة.TextSize = new System.Drawing.Size(185, 17);
+            // 
             // colمعدلالإهلاكللأصل
             // 
             this.colمعدلالإهلاكللأصل.FieldName = "معدل الإهلاك للأصل";
@@ -644,6 +917,14 @@ namespace AssetManagement.Assets
             this.colمعدلالإهلاكللأصل.MinWidth = 25;
             this.colمعدلالإهلاكللأصل.Name = "colمعدلالإهلاكللأصل";
             this.colمعدلالإهلاكللأصل.Width = 94;
+            // 
+            // layoutViewField_colمعدلالإهلاكللأصل
+            // 
+            this.layoutViewField_colمعدلالإهلاكللأصل.EditorPreferredWidth = -6;
+            this.layoutViewField_colمعدلالإهلاكللأصل.Location = new System.Drawing.Point(0, 858);
+            this.layoutViewField_colمعدلالإهلاكللأصل.Name = "layoutViewField_colمعدلالإهلاكللأصل";
+            this.layoutViewField_colمعدلالإهلاكللأصل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colمعدلالإهلاكللأصل.TextSize = new System.Drawing.Size(185, 17);
             // 
             // colالعمرالافتراضيالمتبقيللأصل
             // 
@@ -653,20 +934,19 @@ namespace AssetManagement.Assets
             this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
             this.colالعمرالافتراضيالمتبقيللأصل.Width = 94;
             // 
-            // assetVwBindingSource
+            // layoutViewField_colالعمرالافتراضيالمتبقيللأصل
             // 
-            this.assetVwBindingSource.DataMember = "AssetVw";
-            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetVwTableAdapter
-            // 
-            this.assetVwTableAdapter.ClearBeforeFill = true;
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.EditorPreferredWidth = -6;
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Location = new System.Drawing.Point(0, 884);
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Name = "layoutViewField_colالعمرالافتراضيالمتبقيللأصل";
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Size = new System.Drawing.Size(221, 26);
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.TextSize = new System.Drawing.Size(185, 17);
             // 
             // layoutViewCard1
             // 
-            this.layoutViewCard1.CustomizationFormText = "TemplateCard";
             this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutViewField_colمعرفالأصل,
             this.layoutViewField_colكودالأصل,
             this.layoutViewField_colالعدد,
             this.layoutViewField_colالقسم,
@@ -675,6 +955,9 @@ namespace AssetManagement.Assets
             this.layoutViewField_colالفئةالرئيسية,
             this.layoutViewField_colالفئةالفرعية,
             this.layoutViewField_colمواصفاتالأصل,
+            this.layoutViewField_colالموديل,
+            this.layoutViewField_colاللون,
+            this.layoutViewField_layoutViewColumn1,
             this.layoutViewField_colتاريخالشراء,
             this.layoutViewField_colسعرالشراء,
             this.layoutViewField_colعملةسعرالشراء,
@@ -684,342 +967,25 @@ namespace AssetManagement.Assets
             this.layoutViewField_colالسعرالفعليالحالي,
             this.layoutViewField_colعملةالسعرالفعليالحالي,
             this.layoutViewField_colاسمصاحبالعهدة,
+            this.layoutViewField_colتفاصيلإضافية,
+            this.layoutViewField_colملاحظاتأخرى,
+            this.layoutViewField_colعنوانالعقار,
             this.layoutViewField_colاسمالمالك,
-            this.layoutViewField_colعنوانالعقار});
+            this.layoutViewField_colالمستغلمنه,
+            this.layoutViewField_colمعمنورقةالملكية,
+            this.layoutViewField_colمساحةالعقار,
+            this.layoutViewField_colوحدةمساحةالعقار,
+            this.layoutViewField_colرقملوحةالمركبة,
+            this.layoutViewField_colسنةصنعالمركبة,
+            this.layoutViewField_layoutViewColumn2,
+            this.layoutViewField_colرقمالمحركللمركبة,
+            this.layoutViewField_colمعدلالإهلاكللأصل,
+            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل});
             this.layoutViewCard1.Name = "layoutViewCard1";
-            this.layoutViewCard1.OptionsItemText.TextToControlDistance = 8;
-            this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewCard1.Text = "TemplateCard";
             // 
-            // layoutViewField_colكودالأصل
+            // assetVwTableAdapter
             // 
-            this.layoutViewField_colكودالأصل.EditorPreferredWidth = 263;
-            this.layoutViewField_colكودالأصل.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colكودالأصل.Name = "layoutViewField_colكودالأصل";
-            this.layoutViewField_colكودالأصل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colكودالأصل.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colكودالأصل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colكودالأصل.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالعدد
-            // 
-            this.layoutViewField_colالعدد.EditorPreferredWidth = 263;
-            this.layoutViewField_colالعدد.Location = new System.Drawing.Point(0, 32);
-            this.layoutViewField_colالعدد.Name = "layoutViewField_colالعدد";
-            this.layoutViewField_colالعدد.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالعدد.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالعدد.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالعدد.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالقسم
-            // 
-            this.layoutViewField_colالقسم.EditorPreferredWidth = 263;
-            this.layoutViewField_colالقسم.Location = new System.Drawing.Point(0, 64);
-            this.layoutViewField_colالقسم.Name = "layoutViewField_colالقسم";
-            this.layoutViewField_colالقسم.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالقسم.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالقسم.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالقسم.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالدائرة
-            // 
-            this.layoutViewField_colالدائرة.EditorPreferredWidth = 263;
-            this.layoutViewField_colالدائرة.Location = new System.Drawing.Point(0, 96);
-            this.layoutViewField_colالدائرة.Name = "layoutViewField_colالدائرة";
-            this.layoutViewField_colالدائرة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالدائرة.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالدائرة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالدائرة.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالساحة
-            // 
-            this.layoutViewField_colالساحة.EditorPreferredWidth = 263;
-            this.layoutViewField_colالساحة.Location = new System.Drawing.Point(0, 128);
-            this.layoutViewField_colالساحة.Name = "layoutViewField_colالساحة";
-            this.layoutViewField_colالساحة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالساحة.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالساحة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالساحة.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالفئةالرئيسية
-            // 
-            this.layoutViewField_colالفئةالرئيسية.EditorPreferredWidth = 263;
-            this.layoutViewField_colالفئةالرئيسية.Location = new System.Drawing.Point(0, 160);
-            this.layoutViewField_colالفئةالرئيسية.Name = "layoutViewField_colالفئةالرئيسية";
-            this.layoutViewField_colالفئةالرئيسية.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالفئةالرئيسية.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالفئةالرئيسية.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالفئةالرئيسية.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالفئةالفرعية
-            // 
-            this.layoutViewField_colالفئةالفرعية.EditorPreferredWidth = 263;
-            this.layoutViewField_colالفئةالفرعية.Location = new System.Drawing.Point(0, 192);
-            this.layoutViewField_colالفئةالفرعية.Name = "layoutViewField_colالفئةالفرعية";
-            this.layoutViewField_colالفئةالفرعية.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالفئةالفرعية.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالفئةالفرعية.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالفئةالفرعية.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colمواصفاتالأصل
-            // 
-            this.layoutViewField_colمواصفاتالأصل.EditorPreferredWidth = 263;
-            this.layoutViewField_colمواصفاتالأصل.Location = new System.Drawing.Point(0, 224);
-            this.layoutViewField_colمواصفاتالأصل.Name = "layoutViewField_colمواصفاتالأصل";
-            this.layoutViewField_colمواصفاتالأصل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمواصفاتالأصل.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colمواصفاتالأصل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمواصفاتالأصل.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colتاريخالشراء
-            // 
-            this.layoutViewField_colتاريخالشراء.EditorPreferredWidth = 263;
-            this.layoutViewField_colتاريخالشراء.Location = new System.Drawing.Point(0, 256);
-            this.layoutViewField_colتاريخالشراء.Name = "layoutViewField_colتاريخالشراء";
-            this.layoutViewField_colتاريخالشراء.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colتاريخالشراء.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colتاريخالشراء.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colتاريخالشراء.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colسعرالشراء
-            // 
-            this.layoutViewField_colسعرالشراء.EditorPreferredWidth = 263;
-            this.layoutViewField_colسعرالشراء.Location = new System.Drawing.Point(0, 288);
-            this.layoutViewField_colسعرالشراء.Name = "layoutViewField_colسعرالشراء";
-            this.layoutViewField_colسعرالشراء.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colسعرالشراء.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colسعرالشراء.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colسعرالشراء.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colعملةسعرالشراء
-            // 
-            this.layoutViewField_colعملةسعرالشراء.EditorPreferredWidth = 263;
-            this.layoutViewField_colعملةسعرالشراء.Location = new System.Drawing.Point(0, 320);
-            this.layoutViewField_colعملةسعرالشراء.Name = "layoutViewField_colعملةسعرالشراء";
-            this.layoutViewField_colعملةسعرالشراء.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colعملةسعرالشراء.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colعملةسعرالشراء.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colعملةسعرالشراء.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colمكانالتواجد
-            // 
-            this.layoutViewField_colمكانالتواجد.EditorPreferredWidth = 263;
-            this.layoutViewField_colمكانالتواجد.Location = new System.Drawing.Point(0, 352);
-            this.layoutViewField_colمكانالتواجد.Name = "layoutViewField_colمكانالتواجد";
-            this.layoutViewField_colمكانالتواجد.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمكانالتواجد.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colمكانالتواجد.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمكانالتواجد.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colحالةالأصلالآنية
-            // 
-            this.layoutViewField_colحالةالأصلالآنية.EditorPreferredWidth = 263;
-            this.layoutViewField_colحالةالأصلالآنية.Location = new System.Drawing.Point(0, 384);
-            this.layoutViewField_colحالةالأصلالآنية.Name = "layoutViewField_colحالةالأصلالآنية";
-            this.layoutViewField_colحالةالأصلالآنية.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colحالةالأصلالآنية.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colحالةالأصلالآنية.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colحالةالأصلالآنية.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colنسبةالاستفادةمنه
-            // 
-            this.layoutViewField_colنسبةالاستفادةمنه.EditorPreferredWidth = 263;
-            this.layoutViewField_colنسبةالاستفادةمنه.Location = new System.Drawing.Point(0, 416);
-            this.layoutViewField_colنسبةالاستفادةمنه.Name = "layoutViewField_colنسبةالاستفادةمنه";
-            this.layoutViewField_colنسبةالاستفادةمنه.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colنسبةالاستفادةمنه.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colنسبةالاستفادةمنه.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colنسبةالاستفادةمنه.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالسعرالفعليالحالي
-            // 
-            this.layoutViewField_colالسعرالفعليالحالي.EditorPreferredWidth = 263;
-            this.layoutViewField_colالسعرالفعليالحالي.Location = new System.Drawing.Point(0, 448);
-            this.layoutViewField_colالسعرالفعليالحالي.Name = "layoutViewField_colالسعرالفعليالحالي";
-            this.layoutViewField_colالسعرالفعليالحالي.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالسعرالفعليالحالي.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colالسعرالفعليالحالي.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالسعرالفعليالحالي.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colعملةالسعرالفعليالحالي
-            // 
-            this.layoutViewField_colعملةالسعرالفعليالحالي.EditorPreferredWidth = 263;
-            this.layoutViewField_colعملةالسعرالفعليالحالي.Location = new System.Drawing.Point(0, 480);
-            this.layoutViewField_colعملةالسعرالفعليالحالي.Name = "layoutViewField_colعملةالسعرالفعليالحالي";
-            this.layoutViewField_colعملةالسعرالفعليالحالي.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colعملةالسعرالفعليالحالي.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colعملةالسعرالفعليالحالي.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colعملةالسعرالفعليالحالي.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colاسمصاحبالعهدة
-            // 
-            this.layoutViewField_colاسمصاحبالعهدة.EditorPreferredWidth = 263;
-            this.layoutViewField_colاسمصاحبالعهدة.Location = new System.Drawing.Point(0, 512);
-            this.layoutViewField_colاسمصاحبالعهدة.Name = "layoutViewField_colاسمصاحبالعهدة";
-            this.layoutViewField_colاسمصاحبالعهدة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colاسمصاحبالعهدة.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colاسمصاحبالعهدة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colاسمصاحبالعهدة.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colاسمالمالك
-            // 
-            this.layoutViewField_colاسمالمالك.EditorPreferredWidth = 263;
-            this.layoutViewField_colاسمالمالك.Location = new System.Drawing.Point(0, 544);
-            this.layoutViewField_colاسمالمالك.Name = "layoutViewField_colاسمالمالك";
-            this.layoutViewField_colاسمالمالك.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colاسمالمالك.Size = new System.Drawing.Size(444, 32);
-            this.layoutViewField_colاسمالمالك.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colاسمالمالك.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colعنوانالعقار
-            // 
-            this.layoutViewField_colعنوانالعقار.EditorPreferredWidth = 263;
-            this.layoutViewField_colعنوانالعقار.Location = new System.Drawing.Point(0, 576);
-            this.layoutViewField_colعنوانالعقار.Name = "layoutViewField_colعنوانالعقار";
-            this.layoutViewField_colعنوانالعقار.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colعنوانالعقار.Size = new System.Drawing.Size(444, 333);
-            this.layoutViewField_colعنوانالعقار.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colعنوانالعقار.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colتفاصيلإضافية
-            // 
-            this.layoutViewField_colتفاصيلإضافية.EditorPreferredWidth = 20;
-            this.layoutViewField_colتفاصيلإضافية.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colتفاصيلإضافية.Name = "layoutViewField_colتفاصيلإضافية";
-            this.layoutViewField_colتفاصيلإضافية.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colتفاصيلإضافية.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colتفاصيلإضافية.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colتفاصيلإضافية.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colملاحظاتأخرى
-            // 
-            this.layoutViewField_colملاحظاتأخرى.EditorPreferredWidth = 20;
-            this.layoutViewField_colملاحظاتأخرى.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colملاحظاتأخرى.Name = "layoutViewField_colملاحظاتأخرى";
-            this.layoutViewField_colملاحظاتأخرى.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colملاحظاتأخرى.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colملاحظاتأخرى.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colملاحظاتأخرى.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colمعدلالإهلاكللأصل
-            // 
-            this.layoutViewField_colمعدلالإهلاكللأصل.EditorPreferredWidth = 20;
-            this.layoutViewField_colمعدلالإهلاكللأصل.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colمعدلالإهلاكللأصل.Name = "layoutViewField_colمعدلالإهلاكللأصل";
-            this.layoutViewField_colمعدلالإهلاكللأصل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمعدلالإهلاكللأصل.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colمعدلالإهلاكللأصل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمعدلالإهلاكللأصل.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colالعمرالافتراضيالمتبقيللأصل
-            // 
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.EditorPreferredWidth = 20;
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Name = "layoutViewField_colالعمرالافتراضيالمتبقيللأصل";
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colالموديل
-            // 
-            this.layoutViewField_colالموديل.EditorPreferredWidth = 20;
-            this.layoutViewField_colالموديل.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colالموديل.Name = "layoutViewField_colالموديل";
-            this.layoutViewField_colالموديل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالموديل.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colالموديل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالموديل.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colاللون
-            // 
-            this.layoutViewField_colاللون.EditorPreferredWidth = 20;
-            this.layoutViewField_colاللون.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colاللون.Name = "layoutViewField_colاللون";
-            this.layoutViewField_colاللون.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colاللون.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colاللون.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colاللون.TextSize = new System.Drawing.Size(185, 17);
-            // 
-            // layoutViewField_colمعرفالأصل
-            // 
-            this.layoutViewField_colمعرفالأصل.EditorPreferredWidth = 20;
-            this.layoutViewField_colمعرفالأصل.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colمعرفالأصل.Name = "layoutViewField_colمعرفالأصل";
-            this.layoutViewField_colمعرفالأصل.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمعرفالأصل.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colمعرفالأصل.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمعرفالأصل.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colالمستغلمنه
-            // 
-            this.layoutViewField_colالمستغلمنه.EditorPreferredWidth = 20;
-            this.layoutViewField_colالمستغلمنه.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colالمستغلمنه.Name = "layoutViewField_colالمستغلمنه";
-            this.layoutViewField_colالمستغلمنه.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colالمستغلمنه.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colالمستغلمنه.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colالمستغلمنه.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colمعمنورقةالملكية
-            // 
-            this.layoutViewField_colمعمنورقةالملكية.EditorPreferredWidth = 20;
-            this.layoutViewField_colمعمنورقةالملكية.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colمعمنورقةالملكية.Name = "layoutViewField_colمعمنورقةالملكية";
-            this.layoutViewField_colمعمنورقةالملكية.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمعمنورقةالملكية.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colمعمنورقةالملكية.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمعمنورقةالملكية.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colمساحةالعقار
-            // 
-            this.layoutViewField_colمساحةالعقار.EditorPreferredWidth = 20;
-            this.layoutViewField_colمساحةالعقار.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colمساحةالعقار.Name = "layoutViewField_colمساحةالعقار";
-            this.layoutViewField_colمساحةالعقار.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colمساحةالعقار.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colمساحةالعقار.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colمساحةالعقار.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colوحدةمساحةالعقار
-            // 
-            this.layoutViewField_colوحدةمساحةالعقار.EditorPreferredWidth = 20;
-            this.layoutViewField_colوحدةمساحةالعقار.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colوحدةمساحةالعقار.Name = "layoutViewField_colوحدةمساحةالعقار";
-            this.layoutViewField_colوحدةمساحةالعقار.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colوحدةمساحةالعقار.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colوحدةمساحةالعقار.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colوحدةمساحةالعقار.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colرقملوحةالمركبة
-            // 
-            this.layoutViewField_colرقملوحةالمركبة.EditorPreferredWidth = 20;
-            this.layoutViewField_colرقملوحةالمركبة.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colرقملوحةالمركبة.Name = "layoutViewField_colرقملوحةالمركبة";
-            this.layoutViewField_colرقملوحةالمركبة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colرقملوحةالمركبة.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colرقملوحةالمركبة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colرقملوحةالمركبة.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colسنةصنعالمركبة
-            // 
-            this.layoutViewField_colسنةصنعالمركبة.EditorPreferredWidth = 20;
-            this.layoutViewField_colسنةصنعالمركبة.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colسنةصنعالمركبة.Name = "layoutViewField_colسنةصنعالمركبة";
-            this.layoutViewField_colسنةصنعالمركبة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colسنةصنعالمركبة.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colسنةصنعالمركبة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colسنةصنعالمركبة.TextSize = new System.Drawing.Size(161, 17);
-            // 
-            // layoutViewField_colرقمالمحركللمركبة
-            // 
-            this.layoutViewField_colرقمالمحركللمركبة.EditorPreferredWidth = 20;
-            this.layoutViewField_colرقمالمحركللمركبة.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colرقمالمحركللمركبة.Name = "layoutViewField_colرقمالمحركللمركبة";
-            this.layoutViewField_colرقمالمحركللمركبة.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutViewField_colرقمالمحركللمركبة.Size = new System.Drawing.Size(432, 897);
-            this.layoutViewField_colرقمالمحركللمركبة.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutViewField_colرقمالمحركللمركبة.TextSize = new System.Drawing.Size(161, 17);
+            this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
             // AssetCardViewForm
             // 
@@ -1049,9 +1015,9 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwLayoutView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetLayoutView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعرفالأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colكودالأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعدد)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالقسم)).EndInit();
@@ -1060,6 +1026,9 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالفئةالرئيسية)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالفئةالفرعية)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمواصفاتالأصل)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالموديل)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاللون)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colتاريخالشراء)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colسعرالشراء)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعملةسعرالشراء)).EndInit();
@@ -1069,22 +1038,21 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالسعرالفعليالحالي)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعملةالسعرالفعليالحالي)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمصاحبالعهدة)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمالمالك)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعنوانالعقار)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colتفاصيلإضافية)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colملاحظاتأخرى)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالموديل)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاللون)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعرفالأصل)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colعنوانالعقار)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colاسمالمالك)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالمستغلمنه)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعمنورقةالملكية)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمساحةالعقار)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colوحدةمساحةالعقار)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colرقملوحةالمركبة)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colسنةصنعالمركبة)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colرقمالمحركللمركبة)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1107,74 +1075,78 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.GridControl assetVwGridControl;
-        private DevExpress.XtraGrid.Views.Layout.LayoutView assetVwLayoutView;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعرفالأصل;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colكودالأصل;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالعدد;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالقسم;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالدائرة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالساحة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالفئةالرئيسية;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالفئةالفرعية;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمواصفاتالأصل;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالموديل;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاللون;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colتاريخالشراء;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colسعرالشراء;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعملةسعرالشراء;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمكانالتواجد;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colحالةالأصلالآنية;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colنسبةالاستفادةمنه;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالسعرالفعليالحالي;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعملةالسعرالفعليالحالي;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاسمصاحبالعهدة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colتفاصيلإضافية;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colملاحظاتأخرى;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعنوانالعقار;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاسمالمالك;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالمستغلمنه;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعمنورقةالملكية;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمساحةالعقار;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colوحدةمساحةالعقار;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقملوحةالمركبة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colسنةصنعالمركبة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقمالمحركللمركبة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعدلالإهلاكللأصل;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالعمرالافتراضيالمتبقيللأصل;
         private System.Windows.Forms.BindingSource assetVwBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
+        private DevExpress.XtraGrid.Views.Layout.LayoutView assetLayoutView;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعرفالأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمعرفالأصل;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colكودالأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colكودالأصل;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالعدد;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالعدد;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالقسم;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالقسم;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالدائرة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالدائرة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالساحة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالساحة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالفئةالرئيسية;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالفئةالرئيسية;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالفئةالفرعية;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالفئةالفرعية;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمواصفاتالأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمواصفاتالأصل;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالموديل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالموديل;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاللون;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colاللون;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn1;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colتاريخالشراء;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colتاريخالشراء;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colسعرالشراء;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colسعرالشراء;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعملةسعرالشراء;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colعملةسعرالشراء;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمكانالتواجد;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمكانالتواجد;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colحالةالأصلالآنية;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colحالةالأصلالآنية;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colنسبةالاستفادةمنه;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colنسبةالاستفادةمنه;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالسعرالفعليالحالي;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالسعرالفعليالحالي;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعملةالسعرالفعليالحالي;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colعملةالسعرالفعليالحالي;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاسمصاحبالعهدة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colاسمصاحبالعهدة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colتفاصيلإضافية;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colتفاصيلإضافية;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colملاحظاتأخرى;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colملاحظاتأخرى;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colعنوانالعقار;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colعنوانالعقار;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colاسمالمالك;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colاسمالمالك;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالمستغلمنه;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالمستغلمنه;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعمنورقةالملكية;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمعمنورقةالملكية;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمساحةالعقار;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمساحةالعقار;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colوحدةمساحةالعقار;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colوحدةمساحةالعقار;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقملوحةالمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colرقملوحةالمركبة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colسنةصنعالمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colسنةصنعالمركبة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn2;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn2;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقمالمحركللمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colرقمالمحركللمركبة;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colمعدلالإهلاكللأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colمعدلالإهلاكللأصل;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colالعمرالافتراضيالمتبقيللأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالعمرالافتراضيالمتبقيللأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
     }

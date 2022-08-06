@@ -211,7 +211,7 @@ namespace AssetManagement.Assets
                 "رقم اللوحة",
                 "لونها",
                 "سنة الصنع",
-                "رثم الشاصيه",
+                "رقم الشاصيه",
                 "رقم الماكينة",
                 "المالك",
                 "تاريخ الشراء",
@@ -419,9 +419,9 @@ namespace AssetManagement.Assets
                     astWs.Cells[currentRow, 23].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
                     astWs.Cells[currentRow, 24].Value = oneAst.CustodianName;
                     astWs.Cells[currentRow, 25].Value = oneAst.MoreDetails;
-                    astWs.Cells[currentRow, 26].Value = "";
-                    astWs.Cells[currentRow, 27].Value = "";
-                    astWs.Cells[currentRow, 28].Value = "";
+                    astWs.Cells[currentRow, 26].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && astt1.GetAssetOutOfWork == true);
+                    astWs.Cells[currentRow, 27].Value = StaticCode.mainDbContext.AssetMovementTbls.Count(astm1 => astm1.AssetID == oneAst.ID);
+                    astWs.Cells[currentRow, 28].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).ToList().Contains(astt1.TransactionType));
                     astWs.Cells[currentRow, 29].Value = oneAst.DestructionRate;
                     astWs.Cells[currentRow, 30].Value = oneAst.AssetNotes;
 
@@ -438,6 +438,12 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            }
+
+            for (int iCol = astWs.Dimension.End.Column; iCol >= astWs.Dimension.Start.Column; iCol--)
+            {
+                if (astWs.Column(iCol).Hidden)
+                    astWs.DeleteColumn(iCol);
             }
             astEp.Save();
 
