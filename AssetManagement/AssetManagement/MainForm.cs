@@ -424,12 +424,13 @@ namespace AssetManagement
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Black;
+            e.AlertForm.StartPosition = FormStartPosition.Manual;
             e.AlertForm.Location = new Point(500, 400);
         }
 
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AssetsStatsForm statFrm = new AssetsStatsForm();
+            AssetsStatsForm2 statFrm = new AssetsStatsForm2();
             statFrm.ShowDialog();
         }
 

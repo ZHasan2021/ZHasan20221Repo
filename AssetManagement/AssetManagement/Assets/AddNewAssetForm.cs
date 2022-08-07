@@ -129,7 +129,7 @@ namespace AssetManagement.Assets
                     AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
                     AssetSpecifications = assetSpecificationsTextBox.Text.Trim(),
-                    Model = modelLookUpEdit.Text,
+                    Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text,
                     Color = colorComboBox.Text,
                     Volume = volumeTextBox.Text.Trim(),
                     PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
@@ -233,6 +233,14 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter.Fill(this.assetMngDbDataSet.SquareTbl);
         }
 
+        private void manageModelTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageModelTblForm mdlFrm = new ManageModelTblForm();
+            mdlFrm.ShowDialog();
+
+            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
+        }
+
         private void minorCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             destructionRateNumericUpDown.Value = 0;
@@ -266,14 +274,6 @@ namespace AssetManagement.Assets
             {
 
             }
-        }
-
-        private void manageModelTblBtn_Click(object sender, EventArgs e)
-        {
-            ManageModelTblForm squFrm = new ManageModelTblForm();
-            squFrm.ShowDialog();
-
-            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
         }
     }
 }
