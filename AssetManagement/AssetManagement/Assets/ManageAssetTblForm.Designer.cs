@@ -68,7 +68,7 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.assetGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetTblGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.assetGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetSection = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -140,7 +140,7 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -388,7 +388,7 @@ namespace AssetManagement.Assets
             this.assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
             this.assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = false;
             this.assetGridControl.Location = new System.Drawing.Point(0, 0);
-            this.assetGridControl.MainView = this.assetTblGridView;
+            this.assetGridControl.MainView = this.assetGridView;
             this.assetGridControl.Name = "assetGridControl";
             this.assetGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
@@ -404,16 +404,16 @@ namespace AssetManagement.Assets
             this.assetGridControl.TabIndex = 6;
             this.assetGridControl.UseEmbeddedNavigator = true;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.assetTblGridView});
+            this.assetGridView});
             // 
             // assetTblBindingSource
             // 
             this.assetTblBindingSource.DataMember = "AssetTbl";
             this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // assetTblGridView
+            // assetGridView
             // 
-            this.assetTblGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.assetGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
             this.colAssetCode,
             this.colAssetSection,
@@ -454,12 +454,12 @@ namespace AssetManagement.Assets
             this.colLastModifiedOn,
             this.colInsertedBy,
             this.colLastModifiedBy});
-            this.assetTblGridView.GridControl = this.assetGridControl;
-            this.assetTblGridView.Name = "assetTblGridView";
-            this.assetTblGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            this.assetTblGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
-            this.assetTblGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
-            this.assetTblGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.assetTblGridView_SelectionChanged);
+            this.assetGridView.GridControl = this.assetGridControl;
+            this.assetGridView.Name = "assetGridView";
+            this.assetGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.assetGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
+            this.assetGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
+            this.assetGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.assetTblGridView_SelectionChanged);
             // 
             // colID
             // 
@@ -1020,6 +1020,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
@@ -1076,7 +1077,7 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
@@ -1130,7 +1131,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarButtonItem exportToExcelBarButtonItem;
         private DevExpress.XtraGrid.GridControl assetGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView assetTblGridView;
+        private DevExpress.XtraGrid.Views.Grid.GridView assetGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetCode;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetSection;

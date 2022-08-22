@@ -24,10 +24,6 @@ namespace AssetManagement.Users
             this.userRoleTblTableAdapter.Fill(this.assetMngDbDataSet.UserRoleTbl);
 
             this.MinimumSize = this.Size;
-
-            bindingNavigatorAddNewItem.Visible = userRoleGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewFinancialItem == true;
-            bindingNavigatorDeleteItem.Visible = userRoleGridControl.EmbeddedNavigator.Buttons.Remove.Visible = StaticCode.activeUserRole.DeleteFinancialItemRecord == true;
-            userRoleTblBindingNavigatorSaveItem.Visible = userRoleGridControl.EmbeddedNavigator.Buttons.Edit.Visible = userRoleGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.UpdateExistedFinancialItem == true;
         }
 
         private void userRoleTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

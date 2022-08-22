@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="KindergartenDb" Class="KindergartenDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\KindergartenDb.mdf;Integrated Security=True" SettingsObjectName="Kindergarten.Properties.Settings" SettingsPropertyName="KindergartenDbConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.EducationalLevelTbl" Member="EducationalLevelTbls">
+    <Type Name="EducationalLevelTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EducationalLevelName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EducationalLevelMonthlyFee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EducationalLevelSemesterFee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EducationalLevelAnnualFee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="EducationalLevelTbl_StudentTbl" Member="StudentTbls" ThisKey="ID" OtherKey="EducationalLevel" Type="StudentTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTbl" Member="UserTbls">
+    <Type Name="UserTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordUpdatedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeePeriodTbl" Member="FeePeriodTbls">
+    <Type Name="FeePeriodTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeePeriodName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="FeePeriodTbl_StudentFeeTbl" Member="StudentFeeTbls" ThisKey="ID" OtherKey="FeePeriod" Type="StudentFeeTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OptionsTbl" Member="OptionsTbls">
+    <Type Name="OptionsTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ActiveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ScholasticYearTbl" Member="ScholasticYearTbls">
+    <Type Name="ScholasticYearTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ScholasticYearName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ScholasticYearTbl_StudentFeeTbl" Member="StudentFeeTbls" ThisKey="ID" OtherKey="FeeScholasticYear" Type="StudentFeeTbl" />
+      <Association Name="ScholasticYearTbl_StudentTbl" Member="StudentTbls" ThisKey="ID" OtherKey="ScholasticYear" Type="StudentTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentFeeTbl" Member="StudentFeeTbls">
+    <Type Name="StudentFeeTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePeriod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePayingDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FeeScholasticYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeeAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VoucherNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VoucherPreparedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastModifiedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="FeePeriodTbl_StudentFeeTbl" Member="FeePeriodTbl" ThisKey="FeePeriod" OtherKey="ID" Type="FeePeriodTbl" IsForeignKey="true" />
+      <Association Name="ScholasticYearTbl_StudentFeeTbl" Member="ScholasticYearTbl" ThisKey="FeeScholasticYear" OtherKey="ID" Type="ScholasticYearTbl" IsForeignKey="true" />
+      <Association Name="StudentTbl_StudentFeeTbl" Member="StudentTbl" ThisKey="StudentID" OtherKey="ID" Type="StudentTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentTbl" Member="StudentTbls">
+    <Type Name="StudentTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Father" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Mother" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="NationalCardID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="StudentGrade" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EducationalLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RegisteringDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ScholasticYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastModifiedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="StudentTbl_StudentFeeTbl" Member="StudentFeeTbls" ThisKey="ID" OtherKey="StudentID" Type="StudentFeeTbl" />
+      <Association Name="EducationalLevelTbl_StudentTbl" Member="EducationalLevelTbl" ThisKey="EducationalLevel" OtherKey="ID" Type="EducationalLevelTbl" IsForeignKey="true" />
+      <Association Name="ScholasticYearTbl_StudentTbl" Member="ScholasticYearTbl" ThisKey="ScholasticYear" OtherKey="ID" Type="ScholasticYearTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRoleTbl" Member="UserRoleTbls">
+    <Type Name="UserRoleTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AddNewStudent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageStudentTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdateExistedStudent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteStudentRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewStudentsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewStudentsStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewStudentFee" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageStudentFeeTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdateExistedStudentFee" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteStudentFeeRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewEducationalLevel" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageEducationalLevels" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewScholasticYear" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageScholasticYears" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewFeePeriod" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageFeePeriods" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageUsers" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PromoteDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BackupDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RestoreDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewFinancialReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

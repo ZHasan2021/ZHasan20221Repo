@@ -13,6 +13,7 @@ namespace AssetManagement.Assets
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
+
         public ManageAssetTblForm()
         {
             InitializeComponent();
@@ -100,7 +101,7 @@ namespace AssetManagement.Assets
             }
             try
             {
-                int currAssetID = Convert.ToInt32(assetTblGridView.GetRowCellValue(currRow, colID));
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colID));
                 AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
