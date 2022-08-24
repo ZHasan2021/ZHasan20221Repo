@@ -223,12 +223,6 @@
     <Compile Include="Blank\BlankForm.Designer.cs">
       <DependentUpon>BlankForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Blank\ManageTblBlankForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Blank\ManageTblBlankForm.Designer.cs">
-      <DependentUpon>ManageTblBlankForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Finance\AddNewFinancialItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,9 +383,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Blank\BlankForm.resx">
       <DependentUpon>BlankForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Blank\ManageTblBlankForm.resx">
-      <DependentUpon>ManageTblBlankForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Finance\AddNewFinancialItemForm.resx">
       <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>

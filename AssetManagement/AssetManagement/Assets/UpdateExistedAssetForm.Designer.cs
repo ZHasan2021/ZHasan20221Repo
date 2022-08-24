@@ -131,6 +131,9 @@ namespace AssetManagement.Assets
             this.saveChangesBtn = new System.Windows.Forms.Button();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
+            this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
+            this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
+            this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.assetInformationGroupBox.SuspendLayout();
             this.assetInfoTabControl.SuspendLayout();
             this.assetInfoTabPage1.SuspendLayout();
@@ -163,6 +166,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
+            this.isNewOrOldAssetPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -207,6 +211,7 @@ namespace AssetManagement.Assets
             // 
             // assetInfoTabPage1
             // 
+            this.assetInfoTabPage1.Controls.Add(this.isNewOrOldAssetPanel);
             this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceCurrencyLookUpEdit);
             this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceLabel);
             this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceNumericUpDown);
@@ -259,7 +264,7 @@ namespace AssetManagement.Assets
             // 
             // actualCurrentPriceCurrencyLookUpEdit
             // 
-            this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(132, 320);
+            this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(132, 266);
             this.actualCurrentPriceCurrencyLookUpEdit.Name = "actualCurrentPriceCurrencyLookUpEdit";
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -288,7 +293,7 @@ namespace AssetManagement.Assets
             // 
             this.actualCurrentPriceLabel.AutoSize = true;
             this.actualCurrentPriceLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualCurrentPriceLabel.Location = new System.Drawing.Point(604, 320);
+            this.actualCurrentPriceLabel.Location = new System.Drawing.Point(604, 270);
             this.actualCurrentPriceLabel.Name = "actualCurrentPriceLabel";
             this.actualCurrentPriceLabel.Size = new System.Drawing.Size(124, 21);
             this.actualCurrentPriceLabel.TabIndex = 250;
@@ -298,7 +303,7 @@ namespace AssetManagement.Assets
             // 
             this.actualCurrentPriceNumericUpDown.DecimalPlaces = 2;
             this.actualCurrentPriceNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualCurrentPriceNumericUpDown.Location = new System.Drawing.Point(336, 316);
+            this.actualCurrentPriceNumericUpDown.Location = new System.Drawing.Point(336, 266);
             this.actualCurrentPriceNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -312,7 +317,7 @@ namespace AssetManagement.Assets
             // 
             this.currentStatusLabel.AutoSize = true;
             this.currentStatusLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentStatusLabel.Location = new System.Drawing.Point(648, 260);
+            this.currentStatusLabel.Location = new System.Drawing.Point(648, 220);
             this.currentStatusLabel.Name = "currentStatusLabel";
             this.currentStatusLabel.Size = new System.Drawing.Size(80, 21);
             this.currentStatusLabel.TabIndex = 240;
@@ -320,7 +325,7 @@ namespace AssetManagement.Assets
             // 
             // currentStatusLookUpEdit
             // 
-            this.currentStatusLookUpEdit.Location = new System.Drawing.Point(336, 256);
+            this.currentStatusLookUpEdit.Location = new System.Drawing.Point(336, 216);
             this.currentStatusLookUpEdit.Name = "currentStatusLookUpEdit";
             this.currentStatusLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentStatusLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -343,7 +348,7 @@ namespace AssetManagement.Assets
             // placeOfPresenceTextBox
             // 
             this.placeOfPresenceTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeOfPresenceTextBox.Location = new System.Drawing.Point(336, 196);
+            this.placeOfPresenceTextBox.Location = new System.Drawing.Point(336, 166);
             this.placeOfPresenceTextBox.Name = "placeOfPresenceTextBox";
             this.placeOfPresenceTextBox.Size = new System.Drawing.Size(234, 28);
             this.placeOfPresenceTextBox.TabIndex = 235;
@@ -352,7 +357,7 @@ namespace AssetManagement.Assets
             // 
             this.placeOfPresenceLabel.AutoSize = true;
             this.placeOfPresenceLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeOfPresenceLabel.Location = new System.Drawing.Point(643, 200);
+            this.placeOfPresenceLabel.Location = new System.Drawing.Point(643, 170);
             this.placeOfPresenceLabel.Name = "placeOfPresenceLabel";
             this.placeOfPresenceLabel.Size = new System.Drawing.Size(85, 21);
             this.placeOfPresenceLabel.TabIndex = 230;
@@ -361,7 +366,7 @@ namespace AssetManagement.Assets
             // volumeTextBox
             // 
             this.volumeTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volumeTextBox.Location = new System.Drawing.Point(336, 496);
+            this.volumeTextBox.Location = new System.Drawing.Point(336, 416);
             this.volumeTextBox.Name = "volumeTextBox";
             this.volumeTextBox.Size = new System.Drawing.Size(234, 28);
             this.volumeTextBox.TabIndex = 290;
@@ -370,7 +375,7 @@ namespace AssetManagement.Assets
             // 
             this.volumeLabel.AutoSize = true;
             this.volumeLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volumeLabel.Location = new System.Drawing.Point(628, 500);
+            this.volumeLabel.Location = new System.Drawing.Point(628, 420);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(100, 21);
             this.volumeLabel.TabIndex = 285;
@@ -380,7 +385,7 @@ namespace AssetManagement.Assets
             // 
             this.colorLabel.AutoSize = true;
             this.colorLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorLabel.Location = new System.Drawing.Point(686, 440);
+            this.colorLabel.Location = new System.Drawing.Point(686, 370);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(42, 21);
             this.colorLabel.TabIndex = 275;
@@ -389,7 +394,7 @@ namespace AssetManagement.Assets
             // modelTextBox
             // 
             this.modelTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelTextBox.Location = new System.Drawing.Point(336, 376);
+            this.modelTextBox.Location = new System.Drawing.Point(336, 316);
             this.modelTextBox.Name = "modelTextBox";
             this.modelTextBox.Size = new System.Drawing.Size(234, 28);
             this.modelTextBox.TabIndex = 270;
@@ -398,7 +403,7 @@ namespace AssetManagement.Assets
             // 
             this.modelLabel.AutoSize = true;
             this.modelLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelLabel.Location = new System.Drawing.Point(670, 380);
+            this.modelLabel.Location = new System.Drawing.Point(670, 320);
             this.modelLabel.Name = "modelLabel";
             this.modelLabel.Size = new System.Drawing.Size(58, 21);
             this.modelLabel.TabIndex = 265;
@@ -407,7 +412,7 @@ namespace AssetManagement.Assets
             // colorColorPickEdit
             // 
             this.colorColorPickEdit.EditValue = System.Drawing.Color.Empty;
-            this.colorColorPickEdit.Location = new System.Drawing.Point(336, 436);
+            this.colorColorPickEdit.Location = new System.Drawing.Point(336, 366);
             this.colorColorPickEdit.Name = "colorColorPickEdit";
             this.colorColorPickEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colorColorPickEdit.Properties.Appearance.Options.UseFont = true;
@@ -421,7 +426,7 @@ namespace AssetManagement.Assets
             // 
             this.manageCurrencyTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(24, 127);
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(24, 107);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCurrencyTblBtn.TabIndex = 231;
@@ -430,7 +435,7 @@ namespace AssetManagement.Assets
             // 
             // purchasePriceCurrencyLookUpEdit
             // 
-            this.purchasePriceCurrencyLookUpEdit.Location = new System.Drawing.Point(85, 140);
+            this.purchasePriceCurrencyLookUpEdit.Location = new System.Drawing.Point(85, 120);
             this.purchasePriceCurrencyLookUpEdit.Name = "purchasePriceCurrencyLookUpEdit";
             this.purchasePriceCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchasePriceCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -449,7 +454,7 @@ namespace AssetManagement.Assets
             // 
             this.purchasePriceLabel.AutoSize = true;
             this.purchasePriceLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchasePriceLabel.Location = new System.Drawing.Point(652, 140);
+            this.purchasePriceLabel.Location = new System.Drawing.Point(652, 120);
             this.purchasePriceLabel.Name = "purchasePriceLabel";
             this.purchasePriceLabel.Size = new System.Drawing.Size(76, 21);
             this.purchasePriceLabel.TabIndex = 220;
@@ -459,7 +464,7 @@ namespace AssetManagement.Assets
             // 
             this.purchaseDateLabel.AutoSize = true;
             this.purchaseDateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchaseDateLabel.Location = new System.Drawing.Point(647, 80);
+            this.purchaseDateLabel.Location = new System.Drawing.Point(647, 70);
             this.purchaseDateLabel.Name = "purchaseDateLabel";
             this.purchaseDateLabel.Size = new System.Drawing.Size(81, 21);
             this.purchaseDateLabel.TabIndex = 210;
@@ -468,7 +473,7 @@ namespace AssetManagement.Assets
             // purchaseDateDateEdit
             // 
             this.purchaseDateDateEdit.EditValue = null;
-            this.purchaseDateDateEdit.Location = new System.Drawing.Point(336, 76);
+            this.purchaseDateDateEdit.Location = new System.Drawing.Point(336, 66);
             this.purchaseDateDateEdit.Name = "purchaseDateDateEdit";
             this.purchaseDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchaseDateDateEdit.Properties.Appearance.Options.UseFont = true;
@@ -484,7 +489,7 @@ namespace AssetManagement.Assets
             // 
             this.purchasePriceNumericUpDown.DecimalPlaces = 2;
             this.purchasePriceNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchasePriceNumericUpDown.Location = new System.Drawing.Point(336, 136);
+            this.purchasePriceNumericUpDown.Location = new System.Drawing.Point(336, 116);
             this.purchasePriceNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -517,7 +522,7 @@ namespace AssetManagement.Assets
             this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lifeSpanInMonthsLabel.AutoSize = true;
             this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1038, 500);
+            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1041, 470);
             this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
             this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(200, 21);
             this.lifeSpanInMonthsLabel.TabIndex = 185;
@@ -528,7 +533,7 @@ namespace AssetManagement.Assets
             this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lifeSpanInMonthsNumericUpDown.Enabled = false;
             this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(879, 496);
+            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(882, 466);
             this.lifeSpanInMonthsNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -543,7 +548,7 @@ namespace AssetManagement.Assets
             this.destructionRateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.destructionRateLabel.AutoSize = true;
             this.destructionRateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destructionRateLabel.Location = new System.Drawing.Point(1095, 440);
+            this.destructionRateLabel.Location = new System.Drawing.Point(1098, 420);
             this.destructionRateLabel.Name = "destructionRateLabel";
             this.destructionRateLabel.Size = new System.Drawing.Size(143, 21);
             this.destructionRateLabel.TabIndex = 175;
@@ -554,7 +559,7 @@ namespace AssetManagement.Assets
             this.destructionRateNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.destructionRateNumericUpDown.Enabled = false;
             this.destructionRateNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(879, 436);
+            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(882, 416);
             this.destructionRateNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -569,7 +574,7 @@ namespace AssetManagement.Assets
             this.itemsQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsQuantityLabel.AutoSize = true;
             this.itemsQuantityLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityLabel.Location = new System.Drawing.Point(1193, 380);
+            this.itemsQuantityLabel.Location = new System.Drawing.Point(1196, 370);
             this.itemsQuantityLabel.Name = "itemsQuantityLabel";
             this.itemsQuantityLabel.Size = new System.Drawing.Size(45, 21);
             this.itemsQuantityLabel.TabIndex = 165;
@@ -579,7 +584,7 @@ namespace AssetManagement.Assets
             // 
             this.itemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(879, 376);
+            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(882, 366);
             this.itemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -604,7 +609,7 @@ namespace AssetManagement.Assets
             this.manageSquareTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSquareTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSquareTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSquareTblBtn.Location = new System.Drawing.Point(812, 183);
+            this.manageSquareTblBtn.Location = new System.Drawing.Point(815, 203);
             this.manageSquareTblBtn.Name = "manageSquareTblBtn";
             this.manageSquareTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSquareTblBtn.TabIndex = 146;
@@ -616,7 +621,7 @@ namespace AssetManagement.Assets
             this.assetSquareLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetSquareLabel.AutoSize = true;
             this.assetSquareLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSquareLabel.Location = new System.Drawing.Point(1184, 200);
+            this.assetSquareLabel.Location = new System.Drawing.Point(1187, 220);
             this.assetSquareLabel.Name = "assetSquareLabel";
             this.assetSquareLabel.Size = new System.Drawing.Size(54, 21);
             this.assetSquareLabel.TabIndex = 140;
@@ -625,7 +630,7 @@ namespace AssetManagement.Assets
             // assetSquareLookUpEdit
             // 
             this.assetSquareLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSquareLookUpEdit.Location = new System.Drawing.Point(879, 196);
+            this.assetSquareLookUpEdit.Location = new System.Drawing.Point(882, 216);
             this.assetSquareLookUpEdit.Name = "assetSquareLookUpEdit";
             this.assetSquareLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetSquareLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -651,7 +656,7 @@ namespace AssetManagement.Assets
             this.manageCategoriesTblsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCategoriesTblsBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCategoriesTblsBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(812, 272);
+            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(815, 272);
             this.manageCategoriesTblsBtn.Name = "manageCategoriesTblsBtn";
             this.manageCategoriesTblsBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCategoriesTblsBtn.TabIndex = 161;
@@ -663,7 +668,7 @@ namespace AssetManagement.Assets
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(812, 123);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(815, 153);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSectionTblBtn.TabIndex = 136;
@@ -675,7 +680,7 @@ namespace AssetManagement.Assets
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(812, 63);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(815, 103);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 126;
@@ -687,7 +692,7 @@ namespace AssetManagement.Assets
             this.assetSectionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetSectionLabel.AutoSize = true;
             this.assetSectionLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSectionLabel.Location = new System.Drawing.Point(1189, 140);
+            this.assetSectionLabel.Location = new System.Drawing.Point(1192, 170);
             this.assetSectionLabel.Name = "assetSectionLabel";
             this.assetSectionLabel.Size = new System.Drawing.Size(49, 21);
             this.assetSectionLabel.TabIndex = 130;
@@ -696,7 +701,7 @@ namespace AssetManagement.Assets
             // assetSectionLookUpEdit
             // 
             this.assetSectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSectionLookUpEdit.Location = new System.Drawing.Point(879, 136);
+            this.assetSectionLookUpEdit.Location = new System.Drawing.Point(882, 166);
             this.assetSectionLookUpEdit.Name = "assetSectionLookUpEdit";
             this.assetSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -721,7 +726,7 @@ namespace AssetManagement.Assets
             this.assetDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetDeptLabel.AutoSize = true;
             this.assetDeptLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetDeptLabel.Location = new System.Drawing.Point(1189, 80);
+            this.assetDeptLabel.Location = new System.Drawing.Point(1192, 120);
             this.assetDeptLabel.Name = "assetDeptLabel";
             this.assetDeptLabel.Size = new System.Drawing.Size(49, 21);
             this.assetDeptLabel.TabIndex = 120;
@@ -730,7 +735,7 @@ namespace AssetManagement.Assets
             // assetDeptLookUpEdit
             // 
             this.assetDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetDeptLookUpEdit.Location = new System.Drawing.Point(879, 76);
+            this.assetDeptLookUpEdit.Location = new System.Drawing.Point(882, 116);
             this.assetDeptLookUpEdit.Name = "assetDeptLookUpEdit";
             this.assetDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -756,7 +761,7 @@ namespace AssetManagement.Assets
             this.assetMinorCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetMinorCategoryLabel.AutoSize = true;
             this.assetMinorCategoryLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetMinorCategoryLabel.Location = new System.Drawing.Point(1088, 260);
+            this.assetMinorCategoryLabel.Location = new System.Drawing.Point(1091, 270);
             this.assetMinorCategoryLabel.Name = "assetMinorCategoryLabel";
             this.assetMinorCategoryLabel.Size = new System.Drawing.Size(150, 21);
             this.assetMinorCategoryLabel.TabIndex = 150;
@@ -765,7 +770,7 @@ namespace AssetManagement.Assets
             // minorCategoryLookUpEdit
             // 
             this.minorCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minorCategoryLookUpEdit.Location = new System.Drawing.Point(879, 317);
+            this.minorCategoryLookUpEdit.Location = new System.Drawing.Point(882, 317);
             this.minorCategoryLookUpEdit.Name = "minorCategoryLookUpEdit";
             this.minorCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minorCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -794,7 +799,7 @@ namespace AssetManagement.Assets
             // 
             this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetCodeTextBox.Location = new System.Drawing.Point(879, 16);
+            this.assetCodeTextBox.Location = new System.Drawing.Point(882, 66);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
             this.assetCodeTextBox.Size = new System.Drawing.Size(234, 28);
             this.assetCodeTextBox.TabIndex = 115;
@@ -804,7 +809,7 @@ namespace AssetManagement.Assets
             this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeLabel.AutoSize = true;
             this.assetCodeLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetCodeLabel.Location = new System.Drawing.Point(1162, 20);
+            this.assetCodeLabel.Location = new System.Drawing.Point(1165, 70);
             this.assetCodeLabel.Name = "assetCodeLabel";
             this.assetCodeLabel.Size = new System.Drawing.Size(76, 21);
             this.assetCodeLabel.TabIndex = 110;
@@ -813,7 +818,7 @@ namespace AssetManagement.Assets
             // mainCategoryLookUpEdit
             // 
             this.mainCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(879, 256);
+            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(882, 266);
             this.mainCategoryLookUpEdit.Name = "mainCategoryLookUpEdit";
             this.mainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -868,7 +873,7 @@ namespace AssetManagement.Assets
             this.assetInfoTabPage2.Location = new System.Drawing.Point(4, 33);
             this.assetInfoTabPage2.Name = "assetInfoTabPage2";
             this.assetInfoTabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 544);
+            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 554);
             this.assetInfoTabPage2.TabIndex = 1;
             this.assetInfoTabPage2.Text = "2";
             this.assetInfoTabPage2.UseVisualStyleBackColor = true;
@@ -1277,6 +1282,39 @@ namespace AssetManagement.Assets
             // 
             this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
             // 
+            // isNewOrOldAssetPanel
+            // 
+            this.isNewOrOldAssetPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.isNewOrOldAssetPanel.Controls.Add(this.isNewAssetRadioButton);
+            this.isNewOrOldAssetPanel.Controls.Add(this.isOldAssetRadioButton);
+            this.isNewOrOldAssetPanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isNewOrOldAssetPanel.Location = new System.Drawing.Point(890, 10);
+            this.isNewOrOldAssetPanel.Name = "isNewOrOldAssetPanel";
+            this.isNewOrOldAssetPanel.Size = new System.Drawing.Size(347, 40);
+            this.isNewOrOldAssetPanel.TabIndex = 80;
+            // 
+            // isNewAssetRadioButton
+            // 
+            this.isNewAssetRadioButton.AutoSize = true;
+            this.isNewAssetRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isNewAssetRadioButton.Location = new System.Drawing.Point(112, 8);
+            this.isNewAssetRadioButton.Name = "isNewAssetRadioButton";
+            this.isNewAssetRadioButton.Size = new System.Drawing.Size(61, 25);
+            this.isNewAssetRadioButton.TabIndex = 90;
+            this.isNewAssetRadioButton.Text = "جديد";
+            this.isNewAssetRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // isOldAssetRadioButton
+            // 
+            this.isOldAssetRadioButton.AutoSize = true;
+            this.isOldAssetRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isOldAssetRadioButton.Location = new System.Drawing.Point(273, 8);
+            this.isOldAssetRadioButton.Name = "isOldAssetRadioButton";
+            this.isOldAssetRadioButton.Size = new System.Drawing.Size(58, 25);
+            this.isOldAssetRadioButton.TabIndex = 85;
+            this.isOldAssetRadioButton.Text = "قديم";
+            this.isOldAssetRadioButton.UseVisualStyleBackColor = true;
+            // 
             // UpdateExistedAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -1333,6 +1371,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
+            this.isNewOrOldAssetPanel.ResumeLayout(false);
+            this.isNewOrOldAssetPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1440,5 +1480,8 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Label carManufacturingYearLabel;
         private System.Windows.Forms.TextBox carPanelNumberTextBox;
         private System.Windows.Forms.Label carPanelNumberLabel;
+        private System.Windows.Forms.Panel isNewOrOldAssetPanel;
+        private System.Windows.Forms.RadioButton isNewAssetRadioButton;
+        private System.Windows.Forms.RadioButton isOldAssetRadioButton;
     }
 }

@@ -36,6 +36,11 @@ namespace Kindergarten.AuxTables
             this.educationalLevelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kindergartenDbDataSet = new Kindergarten.KindergartenDbDataSet();
             this.educationalLevelGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEducationalLevelName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEducationalLevelMonthlyFee = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEducationalLevelSemesterFee = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEducationalLevelAnnualFee = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.educationalLevelTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -52,11 +57,6 @@ namespace Kindergarten.AuxTables
             this.educationalLevelTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.educationalLevelTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.EducationalLevelTblTableAdapter();
             this.tableAdapterManager = new Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEducationalLevelName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEducationalLevelMonthlyFee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEducationalLevelSemesterFee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEducationalLevelAnnualFee = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSet)).BeginInit();
@@ -102,6 +102,54 @@ namespace Kindergarten.AuxTables
             this.educationalLevelGridView.GridControl = this.educationalLevelGridControl;
             this.educationalLevelGridView.Name = "educationalLevelGridView";
             // 
+            // colID
+            // 
+            this.colID.Caption = "معرف المرحلة الدراسية";
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 80;
+            this.colID.Name = "colID";
+            this.colID.Width = 94;
+            // 
+            // colEducationalLevelName
+            // 
+            this.colEducationalLevelName.Caption = "اسم المرحلة الدراسية";
+            this.colEducationalLevelName.FieldName = "EducationalLevelName";
+            this.colEducationalLevelName.MinWidth = 120;
+            this.colEducationalLevelName.Name = "colEducationalLevelName";
+            this.colEducationalLevelName.Visible = true;
+            this.colEducationalLevelName.VisibleIndex = 0;
+            this.colEducationalLevelName.Width = 148;
+            // 
+            // colEducationalLevelMonthlyFee
+            // 
+            this.colEducationalLevelMonthlyFee.Caption = "الرسم الشهري";
+            this.colEducationalLevelMonthlyFee.FieldName = "EducationalLevelMonthlyFee";
+            this.colEducationalLevelMonthlyFee.MinWidth = 100;
+            this.colEducationalLevelMonthlyFee.Name = "colEducationalLevelMonthlyFee";
+            this.colEducationalLevelMonthlyFee.Visible = true;
+            this.colEducationalLevelMonthlyFee.VisibleIndex = 1;
+            this.colEducationalLevelMonthlyFee.Width = 100;
+            // 
+            // colEducationalLevelSemesterFee
+            // 
+            this.colEducationalLevelSemesterFee.Caption = "الرسم الفصلي";
+            this.colEducationalLevelSemesterFee.FieldName = "EducationalLevelSemesterFee";
+            this.colEducationalLevelSemesterFee.MinWidth = 100;
+            this.colEducationalLevelSemesterFee.Name = "colEducationalLevelSemesterFee";
+            this.colEducationalLevelSemesterFee.Visible = true;
+            this.colEducationalLevelSemesterFee.VisibleIndex = 2;
+            this.colEducationalLevelSemesterFee.Width = 100;
+            // 
+            // colEducationalLevelAnnualFee
+            // 
+            this.colEducationalLevelAnnualFee.Caption = "الرسم السنوي";
+            this.colEducationalLevelAnnualFee.FieldName = "EducationalLevelAnnualFee";
+            this.colEducationalLevelAnnualFee.MinWidth = 100;
+            this.colEducationalLevelAnnualFee.Name = "colEducationalLevelAnnualFee";
+            this.colEducationalLevelAnnualFee.Visible = true;
+            this.colEducationalLevelAnnualFee.VisibleIndex = 3;
+            this.colEducationalLevelAnnualFee.Width = 100;
+            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,6 +168,7 @@ namespace Kindergarten.AuxTables
             // educationalLevelTblBindingNavigator
             // 
             this.educationalLevelTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.educationalLevelTblBindingNavigator.BindingSource = this.educationalLevelTblBindingSource;
             this.educationalLevelTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.educationalLevelTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
             this.educationalLevelTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -258,54 +307,6 @@ namespace Kindergarten.AuxTables
             this.tableAdapterManager.UpdateOrder = Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
-            // 
-            // colID
-            // 
-            this.colID.Caption = "معرف المرحلة الدراسية";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
-            this.colID.Name = "colID";
-            this.colID.Width = 94;
-            // 
-            // colEducationalLevelName
-            // 
-            this.colEducationalLevelName.Caption = "اسم المرحلة الدراسية";
-            this.colEducationalLevelName.FieldName = "EducationalLevelName";
-            this.colEducationalLevelName.MinWidth = 120;
-            this.colEducationalLevelName.Name = "colEducationalLevelName";
-            this.colEducationalLevelName.Visible = true;
-            this.colEducationalLevelName.VisibleIndex = 0;
-            this.colEducationalLevelName.Width = 148;
-            // 
-            // colEducationalLevelMonthlyFee
-            // 
-            this.colEducationalLevelMonthlyFee.Caption = "الرسم الشهري";
-            this.colEducationalLevelMonthlyFee.FieldName = "EducationalLevelMonthlyFee";
-            this.colEducationalLevelMonthlyFee.MinWidth = 100;
-            this.colEducationalLevelMonthlyFee.Name = "colEducationalLevelMonthlyFee";
-            this.colEducationalLevelMonthlyFee.Visible = true;
-            this.colEducationalLevelMonthlyFee.VisibleIndex = 1;
-            this.colEducationalLevelMonthlyFee.Width = 100;
-            // 
-            // colEducationalLevelSemesterFee
-            // 
-            this.colEducationalLevelSemesterFee.Caption = "الرسم الفصلي";
-            this.colEducationalLevelSemesterFee.FieldName = "EducationalLevelSemesterFee";
-            this.colEducationalLevelSemesterFee.MinWidth = 100;
-            this.colEducationalLevelSemesterFee.Name = "colEducationalLevelSemesterFee";
-            this.colEducationalLevelSemesterFee.Visible = true;
-            this.colEducationalLevelSemesterFee.VisibleIndex = 2;
-            this.colEducationalLevelSemesterFee.Width = 100;
-            // 
-            // colEducationalLevelAnnualFee
-            // 
-            this.colEducationalLevelAnnualFee.Caption = "الرسم السنوي";
-            this.colEducationalLevelAnnualFee.FieldName = "EducationalLevelAnnualFee";
-            this.colEducationalLevelAnnualFee.MinWidth = 100;
-            this.colEducationalLevelAnnualFee.Name = "colEducationalLevelAnnualFee";
-            this.colEducationalLevelAnnualFee.Visible = true;
-            this.colEducationalLevelAnnualFee.VisibleIndex = 3;
-            this.colEducationalLevelAnnualFee.Width = 100;
             // 
             // ManageEducationalLevelTblForm
             // 

@@ -39,6 +39,8 @@ namespace Kindergarten
 
             addNewStudentBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewStudent == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageStudentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageStudentTbl == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            deleteStudentsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteStudentRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageEducationalLevelTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageEducationalLevels == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFeePeriodTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFeePeriods == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageScholasticYearTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageScholasticYears == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewUserBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -46,7 +48,6 @@ namespace Kindergarten
             manageUserRoleTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             backupDbBarButtonItem.Visibility = (StaticCode.activeUserRole.BackupDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             restoreDbBarButtonItem.Visibility = (StaticCode.activeUserRole.RestoreDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            deleteStudentsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteStudentRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             exportDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ExportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewStudentsReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -324,7 +325,8 @@ namespace Kindergarten
 
         private void manageScholasticYearTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            ManageScholasticYearTblForm schfrm = new ManageScholasticYearTblForm();
+            schfrm.ShowDialog();
         }
 
         private void manageEducationalLevelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -334,6 +336,12 @@ namespace Kindergarten
         }
 
         private void manageFeePeriodTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageFeePeriodTblForm feefrm = new ManageFeePeriodTblForm();
+            feefrm.ShowDialog();
+        }
+
+        private void deleteStudentsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
         }

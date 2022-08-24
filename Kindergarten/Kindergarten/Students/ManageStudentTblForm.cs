@@ -21,6 +21,10 @@ namespace Kindergarten.Students
 
         private void ManageStudentTblForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kindergartenDbDataSet.EducationalLevelTbl' table. You can move, or remove it, as needed.
+            this.educationalLevelTblTableAdapter.Fill(this.kindergartenDbDataSet.EducationalLevelTbl);
+            // TODO: This line of code loads data into the 'kindergartenDbDataSet.ScholasticYearTbl' table. You can move, or remove it, as needed.
+            this.scholasticYearTblTableAdapter.Fill(this.kindergartenDbDataSet.ScholasticYearTbl);
             // TODO: This line of code loads data into the 'kindergartenDbDataSet.StudentTbl' table. You can move, or remove it, as needed.
             this.studentTblTableAdapter.Fill(this.kindergartenDbDataSet.StudentTbl);
 
@@ -80,6 +84,11 @@ namespace Kindergarten.Students
         private void studentGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             currRow = e.RowHandle;
+        }
+
+        private void mainTabFormControl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -33,6 +33,13 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
+            this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
+            this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
+            this.modelLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.modelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet1 = new AssetManagement.AssetMngDbDataSet();
+            this.manageModelTblBtn = new System.Windows.Forms.Button();
             this.colorComboBox = new System.Windows.Forms.ComboBox();
             this.lifeSpanInMonthsLabel = new System.Windows.Forms.Label();
             this.lifeSpanInMonthsNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -44,7 +51,6 @@ namespace AssetManagement.Assets
             this.assetSquareLabel = new System.Windows.Forms.Label();
             this.assetSquareLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet1 = new AssetManagement.AssetMngDbDataSet();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.manageCategoriesTblsBtn = new System.Windows.Forms.Button();
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
@@ -123,24 +129,24 @@ namespace AssetManagement.Assets
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
+            this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.manageModelTblBtn = new System.Windows.Forms.Button();
-            this.modelLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.modelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
+            this.isNewOrOldAssetPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDeptLookUpEdit.Properties)).BeginInit();
@@ -167,8 +173,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewAssetWizardControl
@@ -224,6 +228,7 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage1
             // 
+            this.assetBasicsWizardPage1.Controls.Add(this.isNewOrOldAssetPanel);
             this.assetBasicsWizardPage1.Controls.Add(this.modelLookUpEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.manageModelTblBtn);
             this.assetBasicsWizardPage1.Controls.Add(this.colorComboBox);
@@ -272,6 +277,80 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1311, 610);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
             // 
+            // isNewOrOldAssetPanel
+            // 
+            this.isNewOrOldAssetPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.isNewOrOldAssetPanel.Controls.Add(this.isNewAssetRadioButton);
+            this.isNewOrOldAssetPanel.Controls.Add(this.isOldAssetRadioButton);
+            this.isNewOrOldAssetPanel.Location = new System.Drawing.Point(874, 23);
+            this.isNewOrOldAssetPanel.Name = "isNewOrOldAssetPanel";
+            this.isNewOrOldAssetPanel.Size = new System.Drawing.Size(385, 59);
+            this.isNewOrOldAssetPanel.TabIndex = 0;
+            // 
+            // isNewAssetRadioButton
+            // 
+            this.isNewAssetRadioButton.AutoSize = true;
+            this.isNewAssetRadioButton.Checked = true;
+            this.isNewAssetRadioButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isNewAssetRadioButton.Location = new System.Drawing.Point(112, 20);
+            this.isNewAssetRadioButton.Name = "isNewAssetRadioButton";
+            this.isNewAssetRadioButton.Size = new System.Drawing.Size(68, 28);
+            this.isNewAssetRadioButton.TabIndex = 10;
+            this.isNewAssetRadioButton.TabStop = true;
+            this.isNewAssetRadioButton.Text = "جديد";
+            this.isNewAssetRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // isOldAssetRadioButton
+            // 
+            this.isOldAssetRadioButton.AutoSize = true;
+            this.isOldAssetRadioButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isOldAssetRadioButton.Location = new System.Drawing.Point(273, 20);
+            this.isOldAssetRadioButton.Name = "isOldAssetRadioButton";
+            this.isOldAssetRadioButton.Size = new System.Drawing.Size(63, 28);
+            this.isOldAssetRadioButton.TabIndex = 5;
+            this.isOldAssetRadioButton.Text = "قديم";
+            this.isOldAssetRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // modelLookUpEdit
+            // 
+            this.modelLookUpEdit.Location = new System.Drawing.Point(272, 367);
+            this.modelLookUpEdit.Name = "modelLookUpEdit";
+            this.modelLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.modelLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.modelLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموديل", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameEn", "اسم الموديل إنكليزي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameAr", "اسم الموديل عربي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelImg", "شعار الموديل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.modelLookUpEdit.Properties.DataSource = this.modelTblBindingSource;
+            this.modelLookUpEdit.Properties.DisplayMember = "ModelNameEn";
+            this.modelLookUpEdit.Properties.PopupWidth = 500;
+            this.modelLookUpEdit.Properties.ValueMember = "ID";
+            this.modelLookUpEdit.Size = new System.Drawing.Size(234, 30);
+            this.modelLookUpEdit.TabIndex = 175;
+            // 
+            // modelTblBindingSource
+            // 
+            this.modelTblBindingSource.DataMember = "ModelTbl";
+            this.modelTblBindingSource.DataSource = this.assetMngDbDataSet1;
+            // 
+            // assetMngDbDataSet1
+            // 
+            this.assetMngDbDataSet1.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // manageModelTblBtn
+            // 
+            this.manageModelTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageModelTblBtn.Location = new System.Drawing.Point(205, 355);
+            this.manageModelTblBtn.Name = "manageModelTblBtn";
+            this.manageModelTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageModelTblBtn.TabIndex = 176;
+            this.manageModelTblBtn.UseVisualStyleBackColor = true;
+            this.manageModelTblBtn.Click += new System.EventHandler(this.manageModelTblBtn_Click);
+            // 
             // colorComboBox
             // 
             this.colorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -296,7 +375,7 @@ namespace AssetManagement.Assets
             "كحلي",
             "عسلي",
             "بيج"});
-            this.colorComboBox.Location = new System.Drawing.Point(272, 491);
+            this.colorComboBox.Location = new System.Drawing.Point(272, 421);
             this.colorComboBox.Name = "colorComboBox";
             this.colorComboBox.Size = new System.Drawing.Size(234, 32);
             this.colorComboBox.TabIndex = 185;
@@ -306,10 +385,10 @@ namespace AssetManagement.Assets
             this.lifeSpanInMonthsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lifeSpanInMonthsLabel.AutoSize = true;
             this.lifeSpanInMonthsLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1031, 560);
+            this.lifeSpanInMonthsLabel.Location = new System.Drawing.Point(1031, 535);
             this.lifeSpanInMonthsLabel.Name = "lifeSpanInMonthsLabel";
             this.lifeSpanInMonthsLabel.Size = new System.Drawing.Size(233, 24);
-            this.lifeSpanInMonthsLabel.TabIndex = 196;
+            this.lifeSpanInMonthsLabel.TabIndex = 90;
             this.lifeSpanInMonthsLabel.Text = "العمر الافتراضي المتبقي (بالأشهر):";
             // 
             // lifeSpanInMonthsNumericUpDown
@@ -317,7 +396,7 @@ namespace AssetManagement.Assets
             this.lifeSpanInMonthsNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lifeSpanInMonthsNumericUpDown.Enabled = false;
             this.lifeSpanInMonthsNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 556);
+            this.lifeSpanInMonthsNumericUpDown.Location = new System.Drawing.Point(890, 531);
             this.lifeSpanInMonthsNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -325,17 +404,17 @@ namespace AssetManagement.Assets
             0});
             this.lifeSpanInMonthsNumericUpDown.Name = "lifeSpanInMonthsNumericUpDown";
             this.lifeSpanInMonthsNumericUpDown.Size = new System.Drawing.Size(122, 32);
-            this.lifeSpanInMonthsNumericUpDown.TabIndex = 197;
+            this.lifeSpanInMonthsNumericUpDown.TabIndex = 95;
             // 
             // destructionRateLabel
             // 
             this.destructionRateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.destructionRateLabel.AutoSize = true;
             this.destructionRateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destructionRateLabel.Location = new System.Drawing.Point(1096, 495);
+            this.destructionRateLabel.Location = new System.Drawing.Point(1096, 480);
             this.destructionRateLabel.Name = "destructionRateLabel";
             this.destructionRateLabel.Size = new System.Drawing.Size(168, 24);
-            this.destructionRateLabel.TabIndex = 65;
+            this.destructionRateLabel.TabIndex = 80;
             this.destructionRateLabel.Text = "معدل الإهلاك (بالمائة):";
             // 
             // destructionRateNumericUpDown
@@ -343,7 +422,7 @@ namespace AssetManagement.Assets
             this.destructionRateNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.destructionRateNumericUpDown.Enabled = false;
             this.destructionRateNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(890, 491);
+            this.destructionRateNumericUpDown.Location = new System.Drawing.Point(890, 476);
             this.destructionRateNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -351,24 +430,24 @@ namespace AssetManagement.Assets
             0});
             this.destructionRateNumericUpDown.Name = "destructionRateNumericUpDown";
             this.destructionRateNumericUpDown.Size = new System.Drawing.Size(122, 32);
-            this.destructionRateNumericUpDown.TabIndex = 70;
+            this.destructionRateNumericUpDown.TabIndex = 85;
             // 
             // itemsQuantityLabel
             // 
             this.itemsQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsQuantityLabel.AutoSize = true;
             this.itemsQuantityLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityLabel.Location = new System.Drawing.Point(1213, 430);
+            this.itemsQuantityLabel.Location = new System.Drawing.Point(1213, 425);
             this.itemsQuantityLabel.Name = "itemsQuantityLabel";
             this.itemsQuantityLabel.Size = new System.Drawing.Size(51, 24);
-            this.itemsQuantityLabel.TabIndex = 55;
+            this.itemsQuantityLabel.TabIndex = 70;
             this.itemsQuantityLabel.Text = "العدد:";
             // 
             // itemsQuantityNumericUpDown
             // 
             this.itemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(890, 426);
+            this.itemsQuantityNumericUpDown.Location = new System.Drawing.Point(890, 421);
             this.itemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -381,7 +460,7 @@ namespace AssetManagement.Assets
             0});
             this.itemsQuantityNumericUpDown.Name = "itemsQuantityNumericUpDown";
             this.itemsQuantityNumericUpDown.Size = new System.Drawing.Size(122, 32);
-            this.itemsQuantityNumericUpDown.TabIndex = 60;
+            this.itemsQuantityNumericUpDown.TabIndex = 75;
             this.itemsQuantityNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -392,7 +471,7 @@ namespace AssetManagement.Assets
             // 
             this.manageSquareTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSquareTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSquareTblBtn.Location = new System.Drawing.Point(823, 220);
+            this.manageSquareTblBtn.Location = new System.Drawing.Point(823, 245);
             this.manageSquareTblBtn.Name = "manageSquareTblBtn";
             this.manageSquareTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSquareTblBtn.TabIndex = 36;
@@ -404,16 +483,16 @@ namespace AssetManagement.Assets
             this.assetSquareLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetSquareLabel.AutoSize = true;
             this.assetSquareLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSquareLabel.Location = new System.Drawing.Point(1200, 235);
+            this.assetSquareLabel.Location = new System.Drawing.Point(1200, 260);
             this.assetSquareLabel.Name = "assetSquareLabel";
             this.assetSquareLabel.Size = new System.Drawing.Size(64, 24);
-            this.assetSquareLabel.TabIndex = 30;
+            this.assetSquareLabel.TabIndex = 45;
             this.assetSquareLabel.Text = "الساحة:";
             // 
             // assetSquareLookUpEdit
             // 
             this.assetSquareLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSquareLookUpEdit.Location = new System.Drawing.Point(890, 232);
+            this.assetSquareLookUpEdit.Location = new System.Drawing.Point(890, 257);
             this.assetSquareLookUpEdit.Name = "assetSquareLookUpEdit";
             this.assetSquareLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetSquareLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -425,24 +504,20 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SquareLocation", "موقع الساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.assetSquareLookUpEdit.Properties.DataSource = this.squareTblBindingSource;
             this.assetSquareLookUpEdit.Properties.DisplayMember = "SquareName";
+            this.assetSquareLookUpEdit.Properties.PopupWidth = 500;
             this.assetSquareLookUpEdit.Properties.ValueMember = "ID";
             this.assetSquareLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.assetSquareLookUpEdit.TabIndex = 35;
+            this.assetSquareLookUpEdit.TabIndex = 50;
             // 
             // squareTblBindingSource
             // 
             this.squareTblBindingSource.DataMember = "SquareTbl";
             this.squareTblBindingSource.DataSource = this.assetMngDbDataSet1;
             // 
-            // assetMngDbDataSet1
-            // 
-            this.assetMngDbDataSet1.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // manageCurrencyTblBtn
             // 
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(7, 155);
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(7, 135);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCurrencyTblBtn.TabIndex = 131;
@@ -453,7 +528,7 @@ namespace AssetManagement.Assets
             // 
             this.manageCategoriesTblsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCategoriesTblsBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 312);
+            this.manageCategoriesTblsBtn.Location = new System.Drawing.Point(823, 317);
             this.manageCategoriesTblsBtn.Name = "manageCategoriesTblsBtn";
             this.manageCategoriesTblsBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCategoriesTblsBtn.TabIndex = 51;
@@ -464,7 +539,7 @@ namespace AssetManagement.Assets
             // 
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(823, 155);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(823, 190);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSectionTblBtn.TabIndex = 26;
@@ -475,7 +550,7 @@ namespace AssetManagement.Assets
             // 
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(823, 90);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(823, 135);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 16;
@@ -487,16 +562,16 @@ namespace AssetManagement.Assets
             this.assetSectionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetSectionLabel.AutoSize = true;
             this.assetSectionLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSectionLabel.Location = new System.Drawing.Point(1208, 170);
+            this.assetSectionLabel.Location = new System.Drawing.Point(1208, 205);
             this.assetSectionLabel.Name = "assetSectionLabel";
             this.assetSectionLabel.Size = new System.Drawing.Size(56, 24);
-            this.assetSectionLabel.TabIndex = 20;
+            this.assetSectionLabel.TabIndex = 35;
             this.assetSectionLabel.Text = "الدائرة:";
             // 
             // assetSectionLookUpEdit
             // 
             this.assetSectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSectionLookUpEdit.Location = new System.Drawing.Point(890, 167);
+            this.assetSectionLookUpEdit.Location = new System.Drawing.Point(890, 202);
             this.assetSectionLookUpEdit.Name = "assetSectionLookUpEdit";
             this.assetSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -507,9 +582,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.assetSectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource;
             this.assetSectionLookUpEdit.Properties.DisplayMember = "SectionName";
+            this.assetSectionLookUpEdit.Properties.PopupWidth = 500;
             this.assetSectionLookUpEdit.Properties.ValueMember = "ID";
             this.assetSectionLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.assetSectionLookUpEdit.TabIndex = 25;
+            this.assetSectionLookUpEdit.TabIndex = 40;
             // 
             // sectionTblBindingSource
             // 
@@ -521,16 +597,16 @@ namespace AssetManagement.Assets
             this.assetDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetDeptLabel.AutoSize = true;
             this.assetDeptLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetDeptLabel.Location = new System.Drawing.Point(1208, 105);
+            this.assetDeptLabel.Location = new System.Drawing.Point(1208, 150);
             this.assetDeptLabel.Name = "assetDeptLabel";
             this.assetDeptLabel.Size = new System.Drawing.Size(56, 24);
-            this.assetDeptLabel.TabIndex = 10;
+            this.assetDeptLabel.TabIndex = 25;
             this.assetDeptLabel.Text = "القسم:";
             // 
             // assetDeptLookUpEdit
             // 
             this.assetDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetDeptLookUpEdit.Location = new System.Drawing.Point(890, 102);
+            this.assetDeptLookUpEdit.Location = new System.Drawing.Point(890, 147);
             this.assetDeptLookUpEdit.Name = "assetDeptLookUpEdit";
             this.assetDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -542,9 +618,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.assetDeptLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
             this.assetDeptLookUpEdit.Properties.DisplayMember = "DepartmentName";
+            this.assetDeptLookUpEdit.Properties.PopupWidth = 500;
             this.assetDeptLookUpEdit.Properties.ValueMember = "ID";
             this.assetDeptLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.assetDeptLookUpEdit.TabIndex = 15;
+            this.assetDeptLookUpEdit.TabIndex = 30;
             // 
             // departmentTblBindingSource
             // 
@@ -553,7 +630,7 @@ namespace AssetManagement.Assets
             // 
             // actualCurrentPriceCurrencyLookUpEdit
             // 
-            this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(68, 357);
+            this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(68, 307);
             this.actualCurrentPriceCurrencyLookUpEdit.Name = "actualCurrentPriceCurrencyLookUpEdit";
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -564,6 +641,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
+            this.actualCurrentPriceCurrencyLookUpEdit.Properties.PopupWidth = 500;
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.actualCurrentPriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 30);
             this.actualCurrentPriceCurrencyLookUpEdit.TabIndex = 165;
@@ -580,7 +658,7 @@ namespace AssetManagement.Assets
             // 
             // purchasePriceCurrencyLookUpEdit
             // 
-            this.purchasePriceCurrencyLookUpEdit.Location = new System.Drawing.Point(68, 167);
+            this.purchasePriceCurrencyLookUpEdit.Location = new System.Drawing.Point(68, 147);
             this.purchasePriceCurrencyLookUpEdit.Name = "purchasePriceCurrencyLookUpEdit";
             this.purchasePriceCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchasePriceCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -591,6 +669,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.purchasePriceCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
             this.purchasePriceCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
+            this.purchasePriceCurrencyLookUpEdit.Properties.PopupWidth = 500;
             this.purchasePriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.purchasePriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 30);
             this.purchasePriceCurrencyLookUpEdit.TabIndex = 130;
@@ -599,7 +678,7 @@ namespace AssetManagement.Assets
             // 
             this.actualCurrentPriceLabel.AutoSize = true;
             this.actualCurrentPriceLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualCurrentPriceLabel.Location = new System.Drawing.Point(540, 360);
+            this.actualCurrentPriceLabel.Location = new System.Drawing.Point(540, 310);
             this.actualCurrentPriceLabel.Name = "actualCurrentPriceLabel";
             this.actualCurrentPriceLabel.Size = new System.Drawing.Size(146, 24);
             this.actualCurrentPriceLabel.TabIndex = 155;
@@ -609,7 +688,7 @@ namespace AssetManagement.Assets
             // 
             this.actualCurrentPriceNumericUpDown.DecimalPlaces = 2;
             this.actualCurrentPriceNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualCurrentPriceNumericUpDown.Location = new System.Drawing.Point(272, 356);
+            this.actualCurrentPriceNumericUpDown.Location = new System.Drawing.Point(272, 306);
             this.actualCurrentPriceNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -623,7 +702,7 @@ namespace AssetManagement.Assets
             // 
             this.currentStatusLabel.AutoSize = true;
             this.currentStatusLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentStatusLabel.Location = new System.Drawing.Point(591, 300);
+            this.currentStatusLabel.Location = new System.Drawing.Point(591, 260);
             this.currentStatusLabel.Name = "currentStatusLabel";
             this.currentStatusLabel.Size = new System.Drawing.Size(95, 24);
             this.currentStatusLabel.TabIndex = 145;
@@ -631,7 +710,7 @@ namespace AssetManagement.Assets
             // 
             // currentStatusLookUpEdit
             // 
-            this.currentStatusLookUpEdit.Location = new System.Drawing.Point(272, 297);
+            this.currentStatusLookUpEdit.Location = new System.Drawing.Point(272, 257);
             this.currentStatusLookUpEdit.Name = "currentStatusLookUpEdit";
             this.currentStatusLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentStatusLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -642,6 +721,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusName", "اسم الحالة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.currentStatusLookUpEdit.Properties.DataSource = this.statusTblBindingSource;
             this.currentStatusLookUpEdit.Properties.DisplayMember = "StatusName";
+            this.currentStatusLookUpEdit.Properties.PopupWidth = 500;
             this.currentStatusLookUpEdit.Properties.ValueMember = "ID";
             this.currentStatusLookUpEdit.Size = new System.Drawing.Size(234, 30);
             this.currentStatusLookUpEdit.TabIndex = 150;
@@ -654,7 +734,7 @@ namespace AssetManagement.Assets
             // placeOfPresenceTextBox
             // 
             this.placeOfPresenceTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeOfPresenceTextBox.Location = new System.Drawing.Point(272, 231);
+            this.placeOfPresenceTextBox.Location = new System.Drawing.Point(272, 201);
             this.placeOfPresenceTextBox.Name = "placeOfPresenceTextBox";
             this.placeOfPresenceTextBox.Size = new System.Drawing.Size(234, 32);
             this.placeOfPresenceTextBox.TabIndex = 140;
@@ -663,7 +743,7 @@ namespace AssetManagement.Assets
             // 
             this.placeOfPresenceLabel.AutoSize = true;
             this.placeOfPresenceLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeOfPresenceLabel.Location = new System.Drawing.Point(586, 235);
+            this.placeOfPresenceLabel.Location = new System.Drawing.Point(586, 205);
             this.placeOfPresenceLabel.Name = "placeOfPresenceLabel";
             this.placeOfPresenceLabel.Size = new System.Drawing.Size(100, 24);
             this.placeOfPresenceLabel.TabIndex = 135;
@@ -673,7 +753,7 @@ namespace AssetManagement.Assets
             // 
             this.purchasePriceLabel.AutoSize = true;
             this.purchasePriceLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchasePriceLabel.Location = new System.Drawing.Point(597, 170);
+            this.purchasePriceLabel.Location = new System.Drawing.Point(597, 150);
             this.purchasePriceLabel.Name = "purchasePriceLabel";
             this.purchasePriceLabel.Size = new System.Drawing.Size(89, 24);
             this.purchasePriceLabel.TabIndex = 120;
@@ -683,7 +763,7 @@ namespace AssetManagement.Assets
             // 
             this.purchaseDateLabel.AutoSize = true;
             this.purchaseDateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchaseDateLabel.Location = new System.Drawing.Point(591, 105);
+            this.purchaseDateLabel.Location = new System.Drawing.Point(591, 95);
             this.purchaseDateLabel.Name = "purchaseDateLabel";
             this.purchaseDateLabel.Size = new System.Drawing.Size(95, 24);
             this.purchaseDateLabel.TabIndex = 110;
@@ -692,7 +772,7 @@ namespace AssetManagement.Assets
             // volumeTextBox
             // 
             this.volumeTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volumeTextBox.Location = new System.Drawing.Point(272, 556);
+            this.volumeTextBox.Location = new System.Drawing.Point(272, 476);
             this.volumeTextBox.Name = "volumeTextBox";
             this.volumeTextBox.Size = new System.Drawing.Size(234, 32);
             this.volumeTextBox.TabIndex = 195;
@@ -701,7 +781,7 @@ namespace AssetManagement.Assets
             // 
             this.volumeLabel.AutoSize = true;
             this.volumeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volumeLabel.Location = new System.Drawing.Point(568, 560);
+            this.volumeLabel.Location = new System.Drawing.Point(568, 480);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(118, 24);
             this.volumeLabel.TabIndex = 190;
@@ -711,7 +791,7 @@ namespace AssetManagement.Assets
             // 
             this.colorLabel.AutoSize = true;
             this.colorLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorLabel.Location = new System.Drawing.Point(638, 495);
+            this.colorLabel.Location = new System.Drawing.Point(638, 425);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(48, 24);
             this.colorLabel.TabIndex = 180;
@@ -721,7 +801,7 @@ namespace AssetManagement.Assets
             // 
             this.modelLabel.AutoSize = true;
             this.modelLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelLabel.Location = new System.Drawing.Point(620, 430);
+            this.modelLabel.Location = new System.Drawing.Point(620, 370);
             this.modelLabel.Name = "modelLabel";
             this.modelLabel.Size = new System.Drawing.Size(66, 24);
             this.modelLabel.TabIndex = 170;
@@ -750,16 +830,16 @@ namespace AssetManagement.Assets
             this.assetMinorCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetMinorCategoryLabel.AutoSize = true;
             this.assetMinorCategoryLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetMinorCategoryLabel.Location = new System.Drawing.Point(1084, 300);
+            this.assetMinorCategoryLabel.Location = new System.Drawing.Point(1084, 315);
             this.assetMinorCategoryLabel.Name = "assetMinorCategoryLabel";
             this.assetMinorCategoryLabel.Size = new System.Drawing.Size(180, 24);
-            this.assetMinorCategoryLabel.TabIndex = 40;
+            this.assetMinorCategoryLabel.TabIndex = 55;
             this.assetMinorCategoryLabel.Text = "الفئة (الرئيسية والفرعية):";
             // 
             // minorCategoryLookUpEdit
             // 
             this.minorCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minorCategoryLookUpEdit.Location = new System.Drawing.Point(890, 357);
+            this.minorCategoryLookUpEdit.Location = new System.Drawing.Point(890, 362);
             this.minorCategoryLookUpEdit.Name = "minorCategoryLookUpEdit";
             this.minorCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minorCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -774,9 +854,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DestructionRate", "معدل الإهلاك", 120, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.minorCategoryLookUpEdit.Properties.DataSource = this.minorCategoryTblBindingSource;
             this.minorCategoryLookUpEdit.Properties.DisplayMember = "MinorCategoryName";
+            this.minorCategoryLookUpEdit.Properties.PopupWidth = 500;
             this.minorCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.minorCategoryLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.minorCategoryLookUpEdit.TabIndex = 50;
+            this.minorCategoryLookUpEdit.TabIndex = 65;
             this.minorCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.minorCategoryLookUpEdit_EditValueChanged);
             // 
             // minorCategoryTblBindingSource
@@ -787,7 +868,7 @@ namespace AssetManagement.Assets
             // purchaseDateDateEdit
             // 
             this.purchaseDateDateEdit.EditValue = null;
-            this.purchaseDateDateEdit.Location = new System.Drawing.Point(272, 102);
+            this.purchaseDateDateEdit.Location = new System.Drawing.Point(272, 92);
             this.purchaseDateDateEdit.Name = "purchaseDateDateEdit";
             this.purchaseDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchaseDateDateEdit.Properties.Appearance.Options.UseFont = true;
@@ -803,7 +884,7 @@ namespace AssetManagement.Assets
             // 
             this.purchasePriceNumericUpDown.DecimalPlaces = 2;
             this.purchasePriceNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.purchasePriceNumericUpDown.Location = new System.Drawing.Point(272, 166);
+            this.purchasePriceNumericUpDown.Location = new System.Drawing.Point(272, 146);
             this.purchasePriceNumericUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -817,26 +898,26 @@ namespace AssetManagement.Assets
             // 
             this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetCodeTextBox.Location = new System.Drawing.Point(890, 36);
+            this.assetCodeTextBox.Location = new System.Drawing.Point(890, 91);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
             this.assetCodeTextBox.Size = new System.Drawing.Size(234, 32);
-            this.assetCodeTextBox.TabIndex = 5;
+            this.assetCodeTextBox.TabIndex = 20;
             // 
             // assetCodeLabel
             // 
             this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeLabel.AutoSize = true;
             this.assetCodeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetCodeLabel.Location = new System.Drawing.Point(1178, 40);
+            this.assetCodeLabel.Location = new System.Drawing.Point(1178, 95);
             this.assetCodeLabel.Name = "assetCodeLabel";
             this.assetCodeLabel.Size = new System.Drawing.Size(86, 24);
-            this.assetCodeLabel.TabIndex = 0;
+            this.assetCodeLabel.TabIndex = 15;
             this.assetCodeLabel.Text = "كود الأصل:";
             // 
             // mainCategoryLookUpEdit
             // 
             this.mainCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(890, 297);
+            this.mainCategoryLookUpEdit.Location = new System.Drawing.Point(890, 312);
             this.mainCategoryLookUpEdit.Name = "mainCategoryLookUpEdit";
             this.mainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -848,9 +929,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategoryDescription", "وصف الفئة الرئيسية", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.mainCategoryLookUpEdit.Properties.DataSource = this.mainCategoryTblBindingSource;
             this.mainCategoryLookUpEdit.Properties.DisplayMember = "MainCategoryName";
+            this.mainCategoryLookUpEdit.Properties.PopupWidth = 500;
             this.mainCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.mainCategoryLookUpEdit.Size = new System.Drawing.Size(188, 30);
-            this.mainCategoryLookUpEdit.TabIndex = 45;
+            this.mainCategoryLookUpEdit.TabIndex = 60;
             this.mainCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.mainCategoryLookUpEdit_EditValueChanged);
             // 
             // mainCategoryTblBindingSource
@@ -1044,6 +1126,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.estateAreaUnitLookUpEdit.Properties.DataSource = this.estateAreaUnitTblBindingSource;
             this.estateAreaUnitLookUpEdit.Properties.DisplayMember = "EstateAreaUnitName";
+            this.estateAreaUnitLookUpEdit.Properties.PopupWidth = 500;
             this.estateAreaUnitLookUpEdit.Properties.ValueMember = "ID";
             this.estateAreaUnitLookUpEdit.Size = new System.Drawing.Size(196, 30);
             this.estateAreaUnitLookUpEdit.TabIndex = 40;
@@ -1273,6 +1356,10 @@ namespace AssetManagement.Assets
             // 
             this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
             // 
+            // modelTblTableAdapter
+            // 
+            this.modelTblTableAdapter.ClearBeforeFill = true;
+            // 
             // sectionTblTableAdapter
             // 
             this.sectionTblTableAdapter.ClearBeforeFill = true;
@@ -1305,44 +1392,6 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
-            // manageModelTblBtn
-            // 
-            this.manageModelTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageModelTblBtn.Location = new System.Drawing.Point(205, 415);
-            this.manageModelTblBtn.Name = "manageModelTblBtn";
-            this.manageModelTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageModelTblBtn.TabIndex = 176;
-            this.manageModelTblBtn.UseVisualStyleBackColor = true;
-            this.manageModelTblBtn.Click += new System.EventHandler(this.manageModelTblBtn_Click);
-            // 
-            // modelLookUpEdit
-            // 
-            this.modelLookUpEdit.Location = new System.Drawing.Point(272, 427);
-            this.modelLookUpEdit.Name = "modelLookUpEdit";
-            this.modelLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.modelLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.modelLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموديل", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameEn", "اسم الموديل إنكليزي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameAr", "اسم الموديل عربي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelImg", "شعار الموديل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.modelLookUpEdit.Properties.DataSource = this.modelTblBindingSource;
-            this.modelLookUpEdit.Properties.DisplayMember = "ModelNameEn";
-            this.modelLookUpEdit.Properties.ValueMember = "ID";
-            this.modelLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.modelLookUpEdit.TabIndex = 175;
-            // 
-            // modelTblBindingSource
-            // 
-            this.modelTblBindingSource.DataMember = "ModelTbl";
-            this.modelTblBindingSource.DataSource = this.assetMngDbDataSet1;
-            // 
-            // modelTblTableAdapter
-            // 
-            this.modelTblTableAdapter.ClearBeforeFill = true;
-            // 
             // AddNewAssetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1360,12 +1409,16 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl.ResumeLayout(false);
             this.assetBasicsWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage1.PerformLayout();
+            this.isNewOrOldAssetPanel.ResumeLayout(false);
+            this.isNewOrOldAssetPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeSpanInMonthsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.destructionRateNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsQuantityNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSquareLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDeptLookUpEdit.Properties)).EndInit();
@@ -1395,8 +1448,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1505,5 +1556,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.LookUpEdit modelLookUpEdit;
         private System.Windows.Forms.BindingSource modelTblBindingSource;
         private AssetMngDbDataSetTableAdapters.ModelTblTableAdapter modelTblTableAdapter;
+        private System.Windows.Forms.Panel isNewOrOldAssetPanel;
+        private System.Windows.Forms.RadioButton isNewAssetRadioButton;
+        private System.Windows.Forms.RadioButton isOldAssetRadioButton;
     }
 }

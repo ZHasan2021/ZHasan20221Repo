@@ -410,7 +410,7 @@ namespace AssetManagement.Assets
                     astWs.Cells[currentRow, 14].Value = oneAst.CarChassisNumber;
                     astWs.Cells[currentRow, 15].Value = oneAst.CarEngineNumber;
                     astWs.Cells[currentRow, 16].Value = oneAst.OwnerName;
-                    astWs.Cells[currentRow, 17].Value = oneAst.PurchaseDate.ToShortDateString();
+                    astWs.Cells[currentRow, 17].Value = oneAst.PurchaseDate?.ToShortDateString();
                     astWs.Cells[currentRow, 18].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
                     astWs.Cells[currentRow, 19].Value = oneAst.PlaceOfPresence;
                     astWs.Cells[currentRow, 20].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";

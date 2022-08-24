@@ -959,9 +959,11 @@ namespace AssetManagement
 		
 		private string _AssetCode;
 		
-		private int _AssetSection;
+		private string _IsOldOrNewAsset;
 		
 		private int _AssetDept;
+		
+		private int _AssetSection;
 		
 		private int _AssetSquare;
 		
@@ -977,9 +979,9 @@ namespace AssetManagement
 		
 		private string _Volume;
 		
-		private System.DateTime _PurchaseDate;
+		private System.Nullable<System.DateTime> _PurchaseDate;
 		
-		private double _PurchasePrice;
+		private System.Nullable<double> _PurchasePrice;
 		
 		private int _PurchasePriceCurrency;
 		
@@ -1057,10 +1059,12 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnAssetCodeChanging(string value);
     partial void OnAssetCodeChanged();
-    partial void OnAssetSectionChanging(int value);
-    partial void OnAssetSectionChanged();
+    partial void OnIsOldOrNewAssetChanging(string value);
+    partial void OnIsOldOrNewAssetChanged();
     partial void OnAssetDeptChanging(int value);
     partial void OnAssetDeptChanged();
+    partial void OnAssetSectionChanging(int value);
+    partial void OnAssetSectionChanged();
     partial void OnAssetSquareChanging(int value);
     partial void OnAssetSquareChanged();
     partial void OnAssetMinorCategoryChanging(int value);
@@ -1075,9 +1079,9 @@ namespace AssetManagement
     partial void OnColorChanged();
     partial void OnVolumeChanging(string value);
     partial void OnVolumeChanged();
-    partial void OnPurchaseDateChanging(System.DateTime value);
+    partial void OnPurchaseDateChanging(System.Nullable<System.DateTime> value);
     partial void OnPurchaseDateChanged();
-    partial void OnPurchasePriceChanging(double value);
+    partial void OnPurchasePriceChanging(System.Nullable<double> value);
     partial void OnPurchasePriceChanged();
     partial void OnPurchasePriceCurrencyChanging(int value);
     partial void OnPurchasePriceCurrencyChanged();
@@ -1187,26 +1191,22 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSection", DbType="Int NOT NULL")]
-		public int AssetSection
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOldOrNewAsset", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string IsOldOrNewAsset
 		{
 			get
 			{
-				return this._AssetSection;
+				return this._IsOldOrNewAsset;
 			}
 			set
 			{
-				if ((this._AssetSection != value))
+				if ((this._IsOldOrNewAsset != value))
 				{
-					if (this._SectionTbl.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAssetSectionChanging(value);
+					this.OnIsOldOrNewAssetChanging(value);
 					this.SendPropertyChanging();
-					this._AssetSection = value;
-					this.SendPropertyChanged("AssetSection");
-					this.OnAssetSectionChanged();
+					this._IsOldOrNewAsset = value;
+					this.SendPropertyChanged("IsOldOrNewAsset");
+					this.OnIsOldOrNewAssetChanged();
 				}
 			}
 		}
@@ -1231,6 +1231,30 @@ namespace AssetManagement
 					this._AssetDept = value;
 					this.SendPropertyChanged("AssetDept");
 					this.OnAssetDeptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSection", DbType="Int NOT NULL")]
+		public int AssetSection
+		{
+			get
+			{
+				return this._AssetSection;
+			}
+			set
+			{
+				if ((this._AssetSection != value))
+				{
+					if (this._SectionTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAssetSectionChanging(value);
+					this.SendPropertyChanging();
+					this._AssetSection = value;
+					this.SendPropertyChanged("AssetSection");
+					this.OnAssetSectionChanged();
 				}
 			}
 		}
@@ -1383,8 +1407,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="Date NOT NULL")]
-		public System.DateTime PurchaseDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="Date")]
+		public System.Nullable<System.DateTime> PurchaseDate
 		{
 			get
 			{
@@ -1403,8 +1427,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchasePrice", DbType="Float NOT NULL")]
-		public double PurchasePrice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchasePrice", DbType="Float")]
+		public System.Nullable<double> PurchasePrice
 		{
 			get
 			{
@@ -2908,6 +2932,8 @@ namespace AssetManagement
 		
 		private EntitySet<AssetTbl> _AssetTbls;
 		
+		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2924,6 +2950,7 @@ namespace AssetManagement
 		{
 			this._UserTbls = new EntitySet<UserTbl>(new Action<UserTbl>(this.attach_UserTbls), new Action<UserTbl>(this.detach_UserTbls));
 			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
+			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
 			OnCreated();
 		}
 		
@@ -3013,6 +3040,19 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_FinancialItemTbl", Storage="_FinancialItemTbls", ThisKey="ID", OtherKey="FinancialItemDept")]
+		public EntitySet<FinancialItemTbl> FinancialItemTbls
+		{
+			get
+			{
+				return this._FinancialItemTbls;
+			}
+			set
+			{
+				this._FinancialItemTbls.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3052,6 +3092,18 @@ namespace AssetManagement
 		}
 		
 		private void detach_AssetTbls(AssetTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.DepartmentTbl = null;
+		}
+		
+		private void attach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.DepartmentTbl = this;
+		}
+		
+		private void detach_FinancialItemTbls(FinancialItemTbl entity)
 		{
 			this.SendPropertyChanging();
 			entity.DepartmentTbl = null;
@@ -3320,6 +3372,8 @@ namespace AssetManagement
 		
 		private string _FinancialItemCode;
 		
+		private int _FinancialItemDept;
+		
 		private int _FinancialItemCategory;
 		
 		private string _FinancialItemDescription;
@@ -3348,6 +3402,8 @@ namespace AssetManagement
 		
 		private EntityRef<CurrencyTbl> _CurrencyTbl1;
 		
+		private EntityRef<DepartmentTbl> _DepartmentTbl;
+		
 		private EntityRef<FinancialItemCategoryTbl> _FinancialItemCategoryTbl;
 		
     #region Extensibility Method Definitions
@@ -3358,6 +3414,8 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnFinancialItemCodeChanging(string value);
     partial void OnFinancialItemCodeChanged();
+    partial void OnFinancialItemDeptChanging(int value);
+    partial void OnFinancialItemDeptChanged();
     partial void OnFinancialItemCategoryChanging(int value);
     partial void OnFinancialItemCategoryChanged();
     partial void OnFinancialItemDescriptionChanging(string value);
@@ -3388,6 +3446,7 @@ namespace AssetManagement
 		{
 			this._CurrencyTbl = default(EntityRef<CurrencyTbl>);
 			this._CurrencyTbl1 = default(EntityRef<CurrencyTbl>);
+			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
 			this._FinancialItemCategoryTbl = default(EntityRef<FinancialItemCategoryTbl>);
 			OnCreated();
 		}
@@ -3428,6 +3487,30 @@ namespace AssetManagement
 					this._FinancialItemCode = value;
 					this.SendPropertyChanged("FinancialItemCode");
 					this.OnFinancialItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemDept", DbType="Int NOT NULL")]
+		public int FinancialItemDept
+		{
+			get
+			{
+				return this._FinancialItemDept;
+			}
+			set
+			{
+				if ((this._FinancialItemDept != value))
+				{
+					if (this._DepartmentTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFinancialItemDeptChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemDept = value;
+					this.SendPropertyChanged("FinancialItemDept");
+					this.OnFinancialItemDeptChanged();
 				}
 			}
 		}
@@ -3744,6 +3827,40 @@ namespace AssetManagement
 						this._FinancialItemCurrency = default(int);
 					}
 					this.SendPropertyChanged("CurrencyTbl1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_FinancialItemTbl", Storage="_DepartmentTbl", ThisKey="FinancialItemDept", OtherKey="ID", IsForeignKey=true)]
+		public DepartmentTbl DepartmentTbl
+		{
+			get
+			{
+				return this._DepartmentTbl.Entity;
+			}
+			set
+			{
+				DepartmentTbl previousValue = this._DepartmentTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._DepartmentTbl.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DepartmentTbl.Entity = null;
+						previousValue.FinancialItemTbls.Remove(this);
+					}
+					this._DepartmentTbl.Entity = value;
+					if ((value != null))
+					{
+						value.FinancialItemTbls.Add(this);
+						this._FinancialItemDept = value.ID;
+					}
+					else
+					{
+						this._FinancialItemDept = default(int);
+					}
+					this.SendPropertyChanged("DepartmentTbl");
 				}
 			}
 		}
@@ -7131,6 +7248,8 @@ namespace AssetManagement
 		
 		private string _كود_السجل_المالي;
 		
+		private string _القسم;
+		
 		private string _اسم_البند_المالي;
 		
 		private string _بيان_السجل_المالي;
@@ -7179,6 +7298,22 @@ namespace AssetManagement
 				if ((this._كود_السجل_المالي != value))
 				{
 					this._كود_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
 				}
 			}
 		}

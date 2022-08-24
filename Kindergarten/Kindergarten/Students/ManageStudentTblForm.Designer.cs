@@ -34,6 +34,7 @@ namespace Kindergarten.Students
             this.mainTabFormControl = new DevExpress.XtraBars.TabFormControl();
             this.saveChangesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewCardBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.exportToExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.studentGridControl = new DevExpress.XtraGrid.GridControl();
             this.studentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kindergartenDbDataSet = new Kindergarten.KindergartenDbDataSet();
@@ -55,15 +56,27 @@ namespace Kindergarten.Students
             this.colInsertedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLastModifiedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.studentTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.StudentTblTableAdapter();
-            this.exportToExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager();
+            this.shYeRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.scholasticYearTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.scholasticYearTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.ScholasticYearTblTableAdapter();
+            this.edLeRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.educationalLevelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.educationalLevelTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.EducationalLevelTblTableAdapter();
+            this.dateEditRepositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shYeRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edLeRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationalLevelTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditRepositoryItemDateEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditRepositoryItemDateEdit.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabFormControl
@@ -81,6 +94,7 @@ namespace Kindergarten.Students
             this.mainTabFormControl.TitleItemLinks.Add(this.saveChangesBarButtonItem);
             this.mainTabFormControl.TitleItemLinks.Add(this.viewCardBarButtonItem);
             this.mainTabFormControl.TitleItemLinks.Add(this.exportToExcelBarButtonItem);
+            this.mainTabFormControl.Click += new System.EventHandler(this.mainTabFormControl_Click);
             // 
             // saveChangesBarButtonItem
             // 
@@ -98,6 +112,14 @@ namespace Kindergarten.Students
             this.viewCardBarButtonItem.Name = "viewCardBarButtonItem";
             this.viewCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewCardBarButtonItem_ItemClick);
             // 
+            // exportToExcelBarButtonItem
+            // 
+            this.exportToExcelBarButtonItem.Caption = "تصدير إلى اكسل";
+            this.exportToExcelBarButtonItem.Id = 0;
+            this.exportToExcelBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("exportToExcelBarButtonItem.ImageOptions.SvgImage")));
+            this.exportToExcelBarButtonItem.Name = "exportToExcelBarButtonItem";
+            this.exportToExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportToExcelBarButtonItem_ItemClick);
+            // 
             // studentGridControl
             // 
             this.studentGridControl.DataSource = this.studentTblBindingSource;
@@ -105,6 +127,10 @@ namespace Kindergarten.Students
             this.studentGridControl.Location = new System.Drawing.Point(0, 88);
             this.studentGridControl.MainView = this.studentGridView;
             this.studentGridControl.Name = "studentGridControl";
+            this.studentGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.shYeRepositoryItemLookUpEdit,
+            this.edLeRepositoryItemLookUpEdit,
+            this.dateEditRepositoryItemDateEdit});
             this.studentGridControl.Size = new System.Drawing.Size(1299, 660);
             this.studentGridControl.TabIndex = 1;
             this.studentGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -146,159 +172,161 @@ namespace Kindergarten.Students
             // 
             // colID
             // 
+            this.colID.Caption = "معرف الطالب";
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 25;
+            this.colID.MinWidth = 80;
             this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 0;
-            this.colID.Width = 94;
+            this.colID.Width = 108;
             // 
             // colFirstName
             // 
+            this.colFirstName.Caption = "الاسم";
             this.colFirstName.FieldName = "FirstName";
-            this.colFirstName.MinWidth = 25;
+            this.colFirstName.MinWidth = 100;
             this.colFirstName.Name = "colFirstName";
             this.colFirstName.Visible = true;
-            this.colFirstName.VisibleIndex = 1;
-            this.colFirstName.Width = 94;
+            this.colFirstName.VisibleIndex = 0;
+            this.colFirstName.Width = 1028;
             // 
             // colLastName
             // 
+            this.colLastName.Caption = "الكنية";
             this.colLastName.FieldName = "LastName";
-            this.colLastName.MinWidth = 25;
+            this.colLastName.MinWidth = 100;
             this.colLastName.Name = "colLastName";
             this.colLastName.Visible = true;
-            this.colLastName.VisibleIndex = 2;
-            this.colLastName.Width = 94;
+            this.colLastName.VisibleIndex = 1;
+            this.colLastName.Width = 100;
             // 
             // colFather
             // 
+            this.colFather.Caption = "الأب";
             this.colFather.FieldName = "Father";
-            this.colFather.MinWidth = 25;
+            this.colFather.MinWidth = 100;
             this.colFather.Name = "colFather";
             this.colFather.Visible = true;
-            this.colFather.VisibleIndex = 3;
-            this.colFather.Width = 94;
+            this.colFather.VisibleIndex = 2;
+            this.colFather.Width = 100;
             // 
             // colMother
             // 
+            this.colMother.Caption = "الأم";
             this.colMother.FieldName = "Mother";
-            this.colMother.MinWidth = 25;
+            this.colMother.MinWidth = 100;
             this.colMother.Name = "colMother";
             this.colMother.Visible = true;
-            this.colMother.VisibleIndex = 4;
-            this.colMother.Width = 94;
+            this.colMother.VisibleIndex = 3;
+            this.colMother.Width = 100;
             // 
             // colNationalCardID
             // 
+            this.colNationalCardID.Caption = "رقم الهوية";
             this.colNationalCardID.FieldName = "NationalCardID";
-            this.colNationalCardID.MinWidth = 25;
+            this.colNationalCardID.MinWidth = 120;
             this.colNationalCardID.Name = "colNationalCardID";
             this.colNationalCardID.Visible = true;
-            this.colNationalCardID.VisibleIndex = 5;
-            this.colNationalCardID.Width = 94;
+            this.colNationalCardID.VisibleIndex = 4;
+            this.colNationalCardID.Width = 120;
             // 
             // colDateOfBirth
             // 
+            this.colDateOfBirth.Caption = "تاريخ الميلاد";
+            this.colDateOfBirth.ColumnEdit = this.dateEditRepositoryItemDateEdit;
             this.colDateOfBirth.FieldName = "DateOfBirth";
-            this.colDateOfBirth.MinWidth = 25;
+            this.colDateOfBirth.MinWidth = 100;
             this.colDateOfBirth.Name = "colDateOfBirth";
             this.colDateOfBirth.Visible = true;
-            this.colDateOfBirth.VisibleIndex = 6;
-            this.colDateOfBirth.Width = 94;
+            this.colDateOfBirth.VisibleIndex = 5;
+            this.colDateOfBirth.Width = 100;
             // 
             // colStudentGrade
             // 
+            this.colStudentGrade.Caption = "الصف (احتر 0 للتحضيري)";
             this.colStudentGrade.FieldName = "StudentGrade";
-            this.colStudentGrade.MinWidth = 25;
+            this.colStudentGrade.MinWidth = 100;
             this.colStudentGrade.Name = "colStudentGrade";
             this.colStudentGrade.Visible = true;
-            this.colStudentGrade.VisibleIndex = 7;
-            this.colStudentGrade.Width = 94;
+            this.colStudentGrade.VisibleIndex = 6;
+            this.colStudentGrade.Width = 100;
             // 
             // colEducationalLevel
             // 
+            this.colEducationalLevel.Caption = "المرحلة الدراسية";
+            this.colEducationalLevel.ColumnEdit = this.edLeRepositoryItemLookUpEdit;
             this.colEducationalLevel.FieldName = "EducationalLevel";
-            this.colEducationalLevel.MinWidth = 25;
+            this.colEducationalLevel.MinWidth = 100;
             this.colEducationalLevel.Name = "colEducationalLevel";
             this.colEducationalLevel.Visible = true;
-            this.colEducationalLevel.VisibleIndex = 8;
-            this.colEducationalLevel.Width = 94;
+            this.colEducationalLevel.VisibleIndex = 7;
+            this.colEducationalLevel.Width = 100;
             // 
             // colRegisteringDate
             // 
+            this.colRegisteringDate.Caption = "تاريخ التسجيل";
+            this.colRegisteringDate.ColumnEdit = this.dateEditRepositoryItemDateEdit;
             this.colRegisteringDate.FieldName = "RegisteringDate";
-            this.colRegisteringDate.MinWidth = 25;
+            this.colRegisteringDate.MinWidth = 100;
             this.colRegisteringDate.Name = "colRegisteringDate";
             this.colRegisteringDate.Visible = true;
-            this.colRegisteringDate.VisibleIndex = 9;
-            this.colRegisteringDate.Width = 94;
+            this.colRegisteringDate.VisibleIndex = 8;
+            this.colRegisteringDate.Width = 100;
             // 
             // colScholasticYear
             // 
+            this.colScholasticYear.Caption = "الموسم الدراسي";
+            this.colScholasticYear.ColumnEdit = this.shYeRepositoryItemLookUpEdit;
             this.colScholasticYear.FieldName = "ScholasticYear";
-            this.colScholasticYear.MinWidth = 25;
+            this.colScholasticYear.MinWidth = 100;
             this.colScholasticYear.Name = "colScholasticYear";
             this.colScholasticYear.Visible = true;
-            this.colScholasticYear.VisibleIndex = 10;
-            this.colScholasticYear.Width = 94;
+            this.colScholasticYear.VisibleIndex = 9;
+            this.colScholasticYear.Width = 100;
             // 
             // colNotes
             // 
+            this.colNotes.Caption = "ملاحظات";
             this.colNotes.FieldName = "Notes";
-            this.colNotes.MinWidth = 25;
+            this.colNotes.MinWidth = 150;
             this.colNotes.Name = "colNotes";
             this.colNotes.Visible = true;
-            this.colNotes.VisibleIndex = 11;
-            this.colNotes.Width = 94;
+            this.colNotes.VisibleIndex = 10;
+            this.colNotes.Width = 150;
             // 
             // colInsertedOn
             // 
+            this.colInsertedOn.Caption = "تاريخ إنشاء السجل";
             this.colInsertedOn.FieldName = "InsertedOn";
-            this.colInsertedOn.MinWidth = 25;
+            this.colInsertedOn.MinWidth = 100;
             this.colInsertedOn.Name = "colInsertedOn";
-            this.colInsertedOn.Visible = true;
-            this.colInsertedOn.VisibleIndex = 12;
             this.colInsertedOn.Width = 94;
             // 
             // colLastModifiedOn
             // 
+            this.colLastModifiedOn.Caption = "تاريخ آخر تعديل";
             this.colLastModifiedOn.FieldName = "LastModifiedOn";
-            this.colLastModifiedOn.MinWidth = 25;
+            this.colLastModifiedOn.MinWidth = 100;
             this.colLastModifiedOn.Name = "colLastModifiedOn";
-            this.colLastModifiedOn.Visible = true;
-            this.colLastModifiedOn.VisibleIndex = 13;
             this.colLastModifiedOn.Width = 94;
             // 
             // colInsertedBy
             // 
+            this.colInsertedBy.Caption = "المستخدم الذي قام بالإضافة";
             this.colInsertedBy.FieldName = "InsertedBy";
-            this.colInsertedBy.MinWidth = 25;
+            this.colInsertedBy.MinWidth = 100;
             this.colInsertedBy.Name = "colInsertedBy";
-            this.colInsertedBy.Visible = true;
-            this.colInsertedBy.VisibleIndex = 14;
             this.colInsertedBy.Width = 94;
             // 
             // colLastModifiedBy
             // 
+            this.colLastModifiedBy.Caption = "المستخدم الذي قام بالتعديل";
             this.colLastModifiedBy.FieldName = "LastModifiedBy";
-            this.colLastModifiedBy.MinWidth = 25;
+            this.colLastModifiedBy.MinWidth = 100;
             this.colLastModifiedBy.Name = "colLastModifiedBy";
-            this.colLastModifiedBy.Visible = true;
-            this.colLastModifiedBy.VisibleIndex = 15;
             this.colLastModifiedBy.Width = 94;
             // 
             // studentTblTableAdapter
             // 
             this.studentTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // exportToExcelBarButtonItem
-            // 
-            this.exportToExcelBarButtonItem.Caption = "تصدير إلى اكسل";
-            this.exportToExcelBarButtonItem.Id = 0;
-            this.exportToExcelBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.exportToExcelBarButtonItem.Name = "exportToExcelBarButtonItem";
-            this.exportToExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportToExcelBarButtonItem_ItemClick);
             // 
             // mainTimer
             // 
@@ -333,6 +361,64 @@ namespace Kindergarten.Students
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
+            // shYeRepositoryItemLookUpEdit
+            // 
+            this.shYeRepositoryItemLookUpEdit.AutoHeight = false;
+            this.shYeRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.shYeRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموسم الدراسي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ScholasticYearName", "اسم الموسم الدراسي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.shYeRepositoryItemLookUpEdit.DataSource = this.scholasticYearTblBindingSource;
+            this.shYeRepositoryItemLookUpEdit.DisplayMember = "ScholasticYearName";
+            this.shYeRepositoryItemLookUpEdit.Name = "shYeRepositoryItemLookUpEdit";
+            this.shYeRepositoryItemLookUpEdit.PopupWidth = 500;
+            this.shYeRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // scholasticYearTblBindingSource
+            // 
+            this.scholasticYearTblBindingSource.DataMember = "ScholasticYearTbl";
+            this.scholasticYearTblBindingSource.DataSource = this.kindergartenDbDataSet;
+            // 
+            // scholasticYearTblTableAdapter
+            // 
+            this.scholasticYearTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // edLeRepositoryItemLookUpEdit
+            // 
+            this.edLeRepositoryItemLookUpEdit.AutoHeight = false;
+            this.edLeRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.edLeRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف المرجلة الدراسية", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EducationalLevelName", "اسم المرحلة الدراسية", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EducationalLevelMonthlyFee", "الرسم الشهري", 100, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EducationalLevelSemesterFee", "الرسم الفصلي", 100, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EducationalLevelAnnualFee", "الرسم السنوي", 100, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.edLeRepositoryItemLookUpEdit.DataSource = this.educationalLevelTblBindingSource;
+            this.edLeRepositoryItemLookUpEdit.DisplayMember = "EducationalLevelName";
+            this.edLeRepositoryItemLookUpEdit.Name = "edLeRepositoryItemLookUpEdit";
+            this.edLeRepositoryItemLookUpEdit.PopupWidth = 500;
+            this.edLeRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // educationalLevelTblBindingSource
+            // 
+            this.educationalLevelTblBindingSource.DataMember = "EducationalLevelTbl";
+            this.educationalLevelTblBindingSource.DataSource = this.kindergartenDbDataSet;
+            // 
+            // educationalLevelTblTableAdapter
+            // 
+            this.educationalLevelTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // dateEditRepositoryItemDateEdit
+            // 
+            this.dateEditRepositoryItemDateEdit.AutoHeight = false;
+            this.dateEditRepositoryItemDateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditRepositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditRepositoryItemDateEdit.Name = "dateEditRepositoryItemDateEdit";
+            // 
             // ManageStudentTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -352,6 +438,12 @@ namespace Kindergarten.Students
             ((System.ComponentModel.ISupportInitialize)(this.studentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shYeRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edLeRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationalLevelTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditRepositoryItemDateEdit.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditRepositoryItemDateEdit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,6 +456,12 @@ namespace Kindergarten.Students
         private KindergartenDbDataSet kindergartenDbDataSet;
         private System.Windows.Forms.BindingSource studentTblBindingSource;
         private KindergartenDbDataSetTableAdapters.StudentTblTableAdapter studentTblTableAdapter;
+        private DevExpress.XtraBars.BarButtonItem saveChangesBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem viewCardBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem exportToExcelBarButtonItem;
+        private System.Windows.Forms.Timer mainTimer;
+        private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
+        private KindergartenDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colFirstName;
         private DevExpress.XtraGrid.Columns.GridColumn colLastName;
@@ -380,11 +478,12 @@ namespace Kindergarten.Students
         private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedOn;
         private DevExpress.XtraGrid.Columns.GridColumn colInsertedBy;
         private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedBy;
-        private DevExpress.XtraBars.BarButtonItem saveChangesBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem viewCardBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem exportToExcelBarButtonItem;
-        private System.Windows.Forms.Timer mainTimer;
-        private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
-        private KindergartenDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit shYeRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource scholasticYearTblBindingSource;
+        private KindergartenDbDataSetTableAdapters.ScholasticYearTblTableAdapter scholasticYearTblTableAdapter;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit edLeRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource educationalLevelTblBindingSource;
+        private KindergartenDbDataSetTableAdapters.EducationalLevelTblTableAdapter educationalLevelTblTableAdapter;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dateEditRepositoryItemDateEdit;
     }
 }

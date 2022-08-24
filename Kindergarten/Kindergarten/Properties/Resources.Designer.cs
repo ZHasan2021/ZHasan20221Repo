@@ -93,6 +93,16 @@ namespace Kindergarten.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1156919 {
+            get {
+                object obj = ResourceManager.GetObject("1156919", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _1192551 {
             get {
                 object obj = ResourceManager.GetObject("1192551", resourceCulture);
@@ -163,6 +173,16 @@ namespace Kindergarten.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _181697 {
+            get {
+                object obj = ResourceManager.GetObject("181697", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _1827779 {
             get {
                 object obj = ResourceManager.GetObject("1827779", resourceCulture);
@@ -176,6 +196,16 @@ namespace Kindergarten.Properties {
         internal static System.Drawing.Bitmap _2027306 {
             get {
                 object obj = ResourceManager.GetObject("2027306", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _2037695 {
+            get {
+                object obj = ResourceManager.GetObject("2037695", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,6 +443,16 @@ namespace Kindergarten.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3076276 {
+            get {
+                object obj = ResourceManager.GetObject("3076276", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3208660 {
             get {
                 object obj = ResourceManager.GetObject("3208660", resourceCulture);
@@ -506,6 +546,16 @@ namespace Kindergarten.Properties {
         internal static System.Drawing.Bitmap _3753098 {
             get {
                 object obj = ResourceManager.GetObject("3753098", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3888280 {
+            get {
+                object obj = ResourceManager.GetObject("3888280", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -623,6 +673,16 @@ namespace Kindergarten.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _652873 {
+            get {
+                object obj = ResourceManager.GetObject("652873", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _663340 {
             get {
                 object obj = ResourceManager.GetObject("663340", resourceCulture);
@@ -636,6 +696,16 @@ namespace Kindergarten.Properties {
         internal static System.Drawing.Bitmap _6847722 {
             get {
                 object obj = ResourceManager.GetObject("6847722", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _6944290 {
+            get {
+                object obj = ResourceManager.GetObject("6944290", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -746,6 +816,26 @@ namespace Kindergarten.Properties {
         internal static System.Drawing.Bitmap _8586322 {
             get {
                 object obj = ResourceManager.GetObject("8586322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8744885 {
+            get {
+                object obj = ResourceManager.GetObject("8744885", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _921226 {
+            get {
+                object obj = ResourceManager.GetObject("921226", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

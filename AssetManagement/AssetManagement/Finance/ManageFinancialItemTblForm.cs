@@ -19,6 +19,8 @@ namespace AssetManagement.AuxTables
 
         private void ManageFinancialItemTblForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemTbl' table. You can move, or remove it, as needed.

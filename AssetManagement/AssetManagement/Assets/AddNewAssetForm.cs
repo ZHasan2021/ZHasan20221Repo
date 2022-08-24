@@ -74,9 +74,9 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد الفئة الرئيسية للأصل\r\n";
                     if (minorCategoryLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الفئة الفرعية للأصل\r\n";
-                    if (purchaseDateDateEdit.EditValue == null)
+                    if (purchaseDateDateEdit.EditValue == null && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تحديد تاريخ الشراء\r\n";
-                    if (purchasePriceNumericUpDown.Value == 0)
+                    if (purchasePriceNumericUpDown.Value == 0 && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تقدير سعر الشراء\r\n";
                     if (purchasePriceCurrencyLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد عملة سعر الشراء\r\n";
@@ -121,6 +121,7 @@ namespace AssetManagement.Assets
                 AssetTbl newAssetRecord = new AssetTbl()
                 {
                     AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
+                    IsOldOrNewAsset = (isNewAssetRadioButton.Checked) ? "جديد" : "قديم",
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
                     DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
@@ -132,7 +133,6 @@ namespace AssetManagement.Assets
                     Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text,
                     Color = colorComboBox.Text,
                     Volume = volumeTextBox.Text.Trim(),
-                    PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
                     PurchasePrice = Convert.ToInt32(actualCurrentPriceNumericUpDown.Value),
                     PurchasePriceCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue),
                     PlaceOfPresence = placeOfPresenceTextBox.Text.Trim(),
@@ -156,6 +156,8 @@ namespace AssetManagement.Assets
                     IsSold = false,
                     IsOutOfWork = false,
                 };
+                if (purchaseDateDateEdit.EditValue != null)
+                    newAssetRecord.PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
                 StaticCode.mainDbContext.AssetTbls.InsertOnSubmit(newAssetRecord);
                 StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;

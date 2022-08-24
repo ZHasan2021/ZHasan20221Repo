@@ -20,6 +20,8 @@ namespace AssetManagement.Finance
 
         private void AddNewFinancialItemForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
@@ -27,6 +29,7 @@ namespace AssetManagement.Finance
             this.MinimumSize = this.Size;
             manageFinancialItemCategoryTblBtn.Visible = StaticCode.activeUserRole.ManageFinancialItemCategories == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
+            manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -54,6 +57,11 @@ namespace AssetManagement.Finance
             if (financialItemCategoryLookUpEdit.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر البند المالي أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (financialItemDeptLookUpEdit.EditValue == null)
+            {
+                mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
                 return;
             }
             if (financialItemDescriptionTextBox.Text.Trim() == "")
@@ -84,6 +92,7 @@ namespace AssetManagement.Finance
                 FinancialItemTbl newFiIt = new FinancialItemTbl()
                 {
                     FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue),
+                    FinancialItemDept = Convert.ToInt32(financialItemDeptLookUpEdit.EditValue),
                     FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
                     FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
                     IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : "صادر",
@@ -107,6 +116,13 @@ namespace AssetManagement.Finance
         private void addNewFinancialItemBtn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void manageDepartmentTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageDepartmentTblForm dptFrm = new ManageDepartmentTblForm();
+            dptFrm.ShowDialog();
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
         }
     }
 }

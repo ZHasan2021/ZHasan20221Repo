@@ -64,6 +64,19 @@ namespace AssetManagement.Finance
             this.annualRadioButton = new System.Windows.Forms.RadioButton();
             this.monthlyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.annualDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.searchWithinPeriodPanel = new System.Windows.Forms.Panel();
+            this.searchInDeptRadioButton = new System.Windows.Forms.RadioButton();
+            this.searchAllDeptsRadioButton = new System.Windows.Forms.RadioButton();
+            this.searchWithinPeriodCheckBox = new System.Windows.Forms.CheckBox();
+            this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
+            this.financialItemDeptToSearchLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.colFinancialItemCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFinancialItemDept = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.departmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -77,6 +90,11 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.currencyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             this.fromToPanel.SuspendLayout();
+            this.searchWithinPeriodPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemDeptToSearchLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -97,48 +115,48 @@ namespace AssetManagement.Finance
             // toDateDateEdit
             // 
             this.toDateDateEdit.EditValue = null;
-            this.toDateDateEdit.Location = new System.Drawing.Point(19, 97);
+            this.toDateDateEdit.Location = new System.Drawing.Point(19, 73);
             this.toDateDateEdit.Name = "toDateDateEdit";
-            this.toDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toDateDateEdit.Properties.Appearance.Options.UseFont = true;
             this.toDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.toDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.toDateDateEdit.Size = new System.Drawing.Size(243, 30);
+            this.toDateDateEdit.Size = new System.Drawing.Size(243, 28);
             this.toDateDateEdit.TabIndex = 30;
             // 
             // fromDateDateEdit
             // 
             this.fromDateDateEdit.EditValue = null;
-            this.fromDateDateEdit.Location = new System.Drawing.Point(19, 26);
+            this.fromDateDateEdit.Location = new System.Drawing.Point(19, 18);
             this.fromDateDateEdit.Name = "fromDateDateEdit";
-            this.fromDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDateDateEdit.Properties.Appearance.Options.UseFont = true;
             this.fromDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.fromDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fromDateDateEdit.Size = new System.Drawing.Size(243, 30);
+            this.fromDateDateEdit.Size = new System.Drawing.Size(243, 28);
             this.fromDateDateEdit.TabIndex = 20;
             // 
             // fromDateLabel
             // 
             this.fromDateLabel.AutoSize = true;
-            this.fromDateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromDateLabel.Location = new System.Drawing.Point(296, 29);
+            this.fromDateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromDateLabel.Location = new System.Drawing.Point(296, 22);
             this.fromDateLabel.Name = "fromDateLabel";
-            this.fromDateLabel.Size = new System.Drawing.Size(75, 24);
+            this.fromDateLabel.Size = new System.Drawing.Size(67, 21);
             this.fromDateLabel.TabIndex = 15;
             this.fromDateLabel.Text = "من تاريخ:";
             // 
             // toDateLabel
             // 
             this.toDateLabel.AutoSize = true;
-            this.toDateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toDateLabel.Location = new System.Drawing.Point(282, 100);
+            this.toDateLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toDateLabel.Location = new System.Drawing.Point(282, 77);
             this.toDateLabel.Name = "toDateLabel";
-            this.toDateLabel.Size = new System.Drawing.Size(89, 24);
+            this.toDateLabel.Size = new System.Drawing.Size(77, 21);
             this.toDateLabel.TabIndex = 25;
             this.toDateLabel.Text = "لغاية تاريخ:";
             // 
@@ -146,13 +164,14 @@ namespace AssetManagement.Finance
             // 
             this.financialItemGridControl.DataSource = this.financialItemTblBindingSource;
             this.financialItemGridControl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.financialItemGridControl.Location = new System.Drawing.Point(560, 0);
+            this.financialItemGridControl.Location = new System.Drawing.Point(495, 0);
             this.financialItemGridControl.MainView = this.financialItemGridView;
             this.financialItemGridControl.Name = "financialItemGridControl";
             this.financialItemGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.financialItemCategoryRepositoryItemLookUpEdit,
-            this.currencyRepositoryItemLookUpEdit});
-            this.financialItemGridControl.Size = new System.Drawing.Size(733, 641);
+            this.currencyRepositoryItemLookUpEdit,
+            this.repositoryItemLookUpEdit1});
+            this.financialItemGridControl.Size = new System.Drawing.Size(879, 655);
             this.financialItemGridControl.TabIndex = 200;
             this.financialItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.financialItemGridView});
@@ -172,7 +191,9 @@ namespace AssetManagement.Finance
             // 
             this.financialItemGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
+            this.colFinancialItemCode,
             this.colFinancialItemCategory,
+            this.colFinancialItemDept,
             this.colFinancialItemDescription,
             this.colFinancialItemInsertionDate,
             this.colIncomingOrOutgoing,
@@ -228,7 +249,7 @@ namespace AssetManagement.Finance
             this.colFinancialItemDescription.MinWidth = 150;
             this.colFinancialItemDescription.Name = "colFinancialItemDescription";
             this.colFinancialItemDescription.Visible = true;
-            this.colFinancialItemDescription.VisibleIndex = 1;
+            this.colFinancialItemDescription.VisibleIndex = 2;
             this.colFinancialItemDescription.Width = 150;
             // 
             // colFinancialItemInsertionDate
@@ -238,7 +259,7 @@ namespace AssetManagement.Finance
             this.colFinancialItemInsertionDate.MinWidth = 80;
             this.colFinancialItemInsertionDate.Name = "colFinancialItemInsertionDate";
             this.colFinancialItemInsertionDate.Visible = true;
-            this.colFinancialItemInsertionDate.VisibleIndex = 2;
+            this.colFinancialItemInsertionDate.VisibleIndex = 3;
             this.colFinancialItemInsertionDate.Width = 1000;
             // 
             // colIncomingOrOutgoing
@@ -248,7 +269,7 @@ namespace AssetManagement.Finance
             this.colIncomingOrOutgoing.MinWidth = 50;
             this.colIncomingOrOutgoing.Name = "colIncomingOrOutgoing";
             this.colIncomingOrOutgoing.Visible = true;
-            this.colIncomingOrOutgoing.VisibleIndex = 3;
+            this.colIncomingOrOutgoing.VisibleIndex = 4;
             this.colIncomingOrOutgoing.Width = 94;
             // 
             // colIncomingAmount
@@ -258,7 +279,7 @@ namespace AssetManagement.Finance
             this.colIncomingAmount.MinWidth = 80;
             this.colIncomingAmount.Name = "colIncomingAmount";
             this.colIncomingAmount.Visible = true;
-            this.colIncomingAmount.VisibleIndex = 4;
+            this.colIncomingAmount.VisibleIndex = 5;
             this.colIncomingAmount.Width = 100;
             // 
             // colOutgoingAmount
@@ -268,7 +289,7 @@ namespace AssetManagement.Finance
             this.colOutgoingAmount.MinWidth = 80;
             this.colOutgoingAmount.Name = "colOutgoingAmount";
             this.colOutgoingAmount.Visible = true;
-            this.colOutgoingAmount.VisibleIndex = 5;
+            this.colOutgoingAmount.VisibleIndex = 6;
             this.colOutgoingAmount.Width = 94;
             // 
             // colFinancialItemCurrency
@@ -279,7 +300,7 @@ namespace AssetManagement.Finance
             this.colFinancialItemCurrency.MinWidth = 100;
             this.colFinancialItemCurrency.Name = "colFinancialItemCurrency";
             this.colFinancialItemCurrency.Visible = true;
-            this.colFinancialItemCurrency.VisibleIndex = 6;
+            this.colFinancialItemCurrency.VisibleIndex = 7;
             this.colFinancialItemCurrency.Width = 100;
             // 
             // currencyRepositoryItemLookUpEdit
@@ -307,7 +328,7 @@ namespace AssetManagement.Finance
             this.colAdditionalNotes.MinWidth = 150;
             this.colAdditionalNotes.Name = "colAdditionalNotes";
             this.colAdditionalNotes.Visible = true;
-            this.colAdditionalNotes.VisibleIndex = 7;
+            this.colAdditionalNotes.VisibleIndex = 8;
             this.colAdditionalNotes.Width = 150;
             // 
             // financialItemTblTableAdapter
@@ -317,7 +338,7 @@ namespace AssetManagement.Finance
             // searchFinancialItemDropDownButton
             // 
             this.searchFinancialItemDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchFinancialItemDropDownButton.Location = new System.Drawing.Point(63, 470);
+            this.searchFinancialItemDropDownButton.Location = new System.Drawing.Point(74, 533);
             this.searchFinancialItemDropDownButton.Name = "searchFinancialItemDropDownButton";
             this.searchFinancialItemDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.searchFinancialItemDropDownButton.TabIndex = 100;
@@ -328,7 +349,7 @@ namespace AssetManagement.Finance
             // 
             this.exportFinancialReportToExcelDropDownButton.Enabled = false;
             this.exportFinancialReportToExcelDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.exportFinancialReportToExcelDropDownButton.Location = new System.Drawing.Point(268, 470);
+            this.exportFinancialReportToExcelDropDownButton.Location = new System.Drawing.Point(279, 533);
             this.exportFinancialReportToExcelDropDownButton.Name = "exportFinancialReportToExcelDropDownButton";
             this.exportFinancialReportToExcelDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.exportFinancialReportToExcelDropDownButton.TabIndex = 105;
@@ -349,19 +370,20 @@ namespace AssetManagement.Finance
             this.fromToPanel.Controls.Add(this.fromDateDateEdit);
             this.fromToPanel.Controls.Add(this.toDateLabel);
             this.fromToPanel.Controls.Add(this.toDateDateEdit);
-            this.fromToPanel.Location = new System.Drawing.Point(46, 86);
+            this.fromToPanel.Location = new System.Drawing.Point(29, 50);
             this.fromToPanel.Name = "fromToPanel";
-            this.fromToPanel.Size = new System.Drawing.Size(398, 153);
+            this.fromToPanel.Size = new System.Drawing.Size(398, 129);
             this.fromToPanel.TabIndex = 10;
             // 
             // fromToRadioButton
             // 
             this.fromToRadioButton.AutoSize = true;
             this.fromToRadioButton.Checked = true;
-            this.fromToRadioButton.Location = new System.Drawing.Point(46, 33);
+            this.fromToRadioButton.Location = new System.Drawing.Point(334, 19);
             this.fromToRadioButton.Name = "fromToRadioButton";
-            this.fromToRadioButton.Size = new System.Drawing.Size(106, 28);
+            this.fromToRadioButton.Size = new System.Drawing.Size(93, 25);
             this.fromToRadioButton.TabIndex = 5;
+            this.fromToRadioButton.TabStop = true;
             this.fromToRadioButton.Text = "بين تاريخين";
             this.fromToRadioButton.UseVisualStyleBackColor = true;
             this.fromToRadioButton.CheckedChanged += new System.EventHandler(this.SelectReportDuration);
@@ -369,9 +391,9 @@ namespace AssetManagement.Finance
             // monthlyRadioButton
             // 
             this.monthlyRadioButton.AutoSize = true;
-            this.monthlyRadioButton.Location = new System.Drawing.Point(42, 274);
+            this.monthlyRadioButton.Location = new System.Drawing.Point(369, 199);
             this.monthlyRadioButton.Name = "monthlyRadioButton";
-            this.monthlyRadioButton.Size = new System.Drawing.Size(71, 28);
+            this.monthlyRadioButton.Size = new System.Drawing.Size(66, 25);
             this.monthlyRadioButton.TabIndex = 35;
             this.monthlyRadioButton.Text = "شهري";
             this.monthlyRadioButton.UseVisualStyleBackColor = true;
@@ -380,9 +402,9 @@ namespace AssetManagement.Finance
             // annualRadioButton
             // 
             this.annualRadioButton.AutoSize = true;
-            this.annualRadioButton.Location = new System.Drawing.Point(46, 340);
+            this.annualRadioButton.Location = new System.Drawing.Point(369, 248);
             this.annualRadioButton.Name = "annualRadioButton";
-            this.annualRadioButton.Size = new System.Drawing.Size(71, 28);
+            this.annualRadioButton.Size = new System.Drawing.Size(65, 25);
             this.annualRadioButton.TabIndex = 45;
             this.annualRadioButton.Text = "سنوي";
             this.annualRadioButton.UseVisualStyleBackColor = true;
@@ -392,9 +414,9 @@ namespace AssetManagement.Finance
             // 
             this.monthlyDateTimePicker.CustomFormat = "yyyy. MMMM";
             this.monthlyDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.monthlyDateTimePicker.Location = new System.Drawing.Point(182, 272);
+            this.monthlyDateTimePicker.Location = new System.Drawing.Point(76, 197);
             this.monthlyDateTimePicker.Name = "monthlyDateTimePicker";
-            this.monthlyDateTimePicker.Size = new System.Drawing.Size(243, 32);
+            this.monthlyDateTimePicker.Size = new System.Drawing.Size(243, 28);
             this.monthlyDateTimePicker.TabIndex = 40;
             this.monthlyDateTimePicker.Visible = false;
             // 
@@ -402,23 +424,179 @@ namespace AssetManagement.Finance
             // 
             this.annualDateTimePicker.CustomFormat = "yyyy";
             this.annualDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.annualDateTimePicker.Location = new System.Drawing.Point(182, 338);
+            this.annualDateTimePicker.Location = new System.Drawing.Point(76, 246);
             this.annualDateTimePicker.Name = "annualDateTimePicker";
-            this.annualDateTimePicker.Size = new System.Drawing.Size(243, 32);
+            this.annualDateTimePicker.Size = new System.Drawing.Size(243, 28);
             this.annualDateTimePicker.TabIndex = 50;
             this.annualDateTimePicker.Visible = false;
+            // 
+            // searchWithinPeriodPanel
+            // 
+            this.searchWithinPeriodPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.searchWithinPeriodPanel.Controls.Add(this.fromToRadioButton);
+            this.searchWithinPeriodPanel.Controls.Add(this.annualDateTimePicker);
+            this.searchWithinPeriodPanel.Controls.Add(this.fromToPanel);
+            this.searchWithinPeriodPanel.Controls.Add(this.monthlyDateTimePicker);
+            this.searchWithinPeriodPanel.Controls.Add(this.monthlyRadioButton);
+            this.searchWithinPeriodPanel.Controls.Add(this.annualRadioButton);
+            this.searchWithinPeriodPanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchWithinPeriodPanel.Location = new System.Drawing.Point(22, 209);
+            this.searchWithinPeriodPanel.Name = "searchWithinPeriodPanel";
+            this.searchWithinPeriodPanel.Size = new System.Drawing.Size(459, 294);
+            this.searchWithinPeriodPanel.TabIndex = 201;
+            this.searchWithinPeriodPanel.Visible = false;
+            // 
+            // searchInDeptRadioButton
+            // 
+            this.searchInDeptRadioButton.AutoSize = true;
+            this.searchInDeptRadioButton.Checked = true;
+            this.searchInDeptRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchInDeptRadioButton.Location = new System.Drawing.Point(22, 34);
+            this.searchInDeptRadioButton.Name = "searchInDeptRadioButton";
+            this.searchInDeptRadioButton.Size = new System.Drawing.Size(92, 25);
+            this.searchInDeptRadioButton.TabIndex = 202;
+            this.searchInDeptRadioButton.Text = "اختر القسم";
+            this.searchInDeptRadioButton.UseVisualStyleBackColor = true;
+            this.searchInDeptRadioButton.CheckedChanged += new System.EventHandler(this.searchInDeptRadioButton_CheckedChanged);
+            // 
+            // searchAllDeptsRadioButton
+            // 
+            this.searchAllDeptsRadioButton.AutoSize = true;
+            this.searchAllDeptsRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchAllDeptsRadioButton.Location = new System.Drawing.Point(22, 91);
+            this.searchAllDeptsRadioButton.Name = "searchAllDeptsRadioButton";
+            this.searchAllDeptsRadioButton.Size = new System.Drawing.Size(91, 25);
+            this.searchAllDeptsRadioButton.TabIndex = 203;
+            this.searchAllDeptsRadioButton.Text = "كل الأقسام";
+            this.searchAllDeptsRadioButton.UseVisualStyleBackColor = true;
+            this.searchAllDeptsRadioButton.CheckedChanged += new System.EventHandler(this.searchInDeptRadioButton_CheckedChanged);
+            // 
+            // searchWithinPeriodCheckBox
+            // 
+            this.searchWithinPeriodCheckBox.AutoSize = true;
+            this.searchWithinPeriodCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchWithinPeriodCheckBox.Location = new System.Drawing.Point(22, 168);
+            this.searchWithinPeriodCheckBox.Name = "searchWithinPeriodCheckBox";
+            this.searchWithinPeriodCheckBox.Size = new System.Drawing.Size(165, 25);
+            this.searchWithinPeriodCheckBox.TabIndex = 204;
+            this.searchWithinPeriodCheckBox.Text = "بحث ضمن فترة محددة";
+            this.searchWithinPeriodCheckBox.UseVisualStyleBackColor = true;
+            this.searchWithinPeriodCheckBox.CheckedChanged += new System.EventHandler(this.searchWithinPeriodCheckBox_CheckedChanged);
+            // 
+            // manageDepartmentTblBtn
+            // 
+            this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(416, 21);
+            this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
+            this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageDepartmentTblBtn.TabIndex = 206;
+            this.manageDepartmentTblBtn.UseVisualStyleBackColor = true;
+            this.manageDepartmentTblBtn.Click += new System.EventHandler(this.manageDepartmentTblBtn_Click);
+            // 
+            // financialItemDeptToSearchLookUpEdit
+            // 
+            this.financialItemDeptToSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.financialItemDeptToSearchLookUpEdit.Location = new System.Drawing.Point(152, 34);
+            this.financialItemDeptToSearchLookUpEdit.Name = "financialItemDeptToSearchLookUpEdit";
+            this.financialItemDeptToSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.financialItemDeptToSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.financialItemDeptToSearchLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.financialItemDeptToSearchLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.financialItemDeptToSearchLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
+            this.financialItemDeptToSearchLookUpEdit.Properties.DisplayMember = "DepartmentName";
+            this.financialItemDeptToSearchLookUpEdit.Properties.PopupWidth = 500;
+            this.financialItemDeptToSearchLookUpEdit.Properties.ValueMember = "ID";
+            this.financialItemDeptToSearchLookUpEdit.Size = new System.Drawing.Size(243, 28);
+            this.financialItemDeptToSearchLookUpEdit.TabIndex = 205;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentTblTableAdapter
+            // 
+            this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = null;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
+            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = this.financialItemTblTableAdapter;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = null;
+            this.tableAdapterManager.SquareTblTableAdapter = null;
+            this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = null;
+            this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // colFinancialItemCode
+            // 
+            this.colFinancialItemCode.Caption = "كود السجل المالي";
+            this.colFinancialItemCode.FieldName = "FinancialItemCode";
+            this.colFinancialItemCode.MinWidth = 150;
+            this.colFinancialItemCode.Name = "colFinancialItemCode";
+            this.colFinancialItemCode.Width = 150;
+            // 
+            // colFinancialItemDept
+            // 
+            this.colFinancialItemDept.Caption = "القسم";
+            this.colFinancialItemDept.ColumnEdit = this.repositoryItemLookUpEdit1;
+            this.colFinancialItemDept.FieldName = "FinancialItemDept";
+            this.colFinancialItemDept.MinWidth = 150;
+            this.colFinancialItemDept.Name = "colFinancialItemDept";
+            this.colFinancialItemDept.Visible = true;
+            this.colFinancialItemDept.VisibleIndex = 1;
+            this.colFinancialItemDept.Width = 150;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit1.DataSource = this.departmentTblBindingSource1;
+            this.repositoryItemLookUpEdit1.DisplayMember = "DepartmentName";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.PopupWidth = 500;
+            this.repositoryItemLookUpEdit1.ValueMember = "ID";
+            // 
+            // departmentTblBindingSource1
+            // 
+            this.departmentTblBindingSource1.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1293, 641);
-            this.Controls.Add(this.annualDateTimePicker);
-            this.Controls.Add(this.monthlyDateTimePicker);
-            this.Controls.Add(this.annualRadioButton);
-            this.Controls.Add(this.monthlyRadioButton);
-            this.Controls.Add(this.fromToRadioButton);
-            this.Controls.Add(this.fromToPanel);
+            this.ClientSize = new System.Drawing.Size(1374, 655);
+            this.Controls.Add(this.manageDepartmentTblBtn);
+            this.Controls.Add(this.financialItemDeptToSearchLookUpEdit);
+            this.Controls.Add(this.searchWithinPeriodCheckBox);
+            this.Controls.Add(this.searchAllDeptsRadioButton);
+            this.Controls.Add(this.searchInDeptRadioButton);
+            this.Controls.Add(this.searchWithinPeriodPanel);
             this.Controls.Add(this.searchFinancialItemDropDownButton);
             this.Controls.Add(this.exportFinancialReportToExcelDropDownButton);
             this.Controls.Add(this.financialItemGridControl);
@@ -446,6 +624,12 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             this.fromToPanel.ResumeLayout(false);
             this.fromToPanel.PerformLayout();
+            this.searchWithinPeriodPanel.ResumeLayout(false);
+            this.searchWithinPeriodPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemDeptToSearchLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +670,18 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.RadioButton annualRadioButton;
         private System.Windows.Forms.DateTimePicker monthlyDateTimePicker;
         private System.Windows.Forms.DateTimePicker annualDateTimePicker;
+        private System.Windows.Forms.Panel searchWithinPeriodPanel;
+        private System.Windows.Forms.RadioButton searchInDeptRadioButton;
+        private System.Windows.Forms.RadioButton searchAllDeptsRadioButton;
+        private System.Windows.Forms.CheckBox searchWithinPeriodCheckBox;
+        private System.Windows.Forms.Button manageDepartmentTblBtn;
+        private DevExpress.XtraEditors.LookUpEdit financialItemDeptToSearchLookUpEdit;
+        private System.Windows.Forms.BindingSource departmentTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemDept;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private System.Windows.Forms.BindingSource departmentTblBindingSource1;
+        private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

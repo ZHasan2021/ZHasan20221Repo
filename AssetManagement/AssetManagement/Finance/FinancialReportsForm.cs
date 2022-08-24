@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using AssetManagement.AuxTables;
+using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
@@ -41,53 +44,68 @@ namespace AssetManagement.Finance
 
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
-            if (fromToRadioButton.Checked)
+            if(searchInDeptRadioButton.Checked && financialItemDeptToSearchLookUpEdit.EditValue==null)
             {
-                if (fromDateDateEdit.EditValue == null)
+                MessageBox.Show("اختر القسم", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر القسم", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (searchWithinPeriodCheckBox.Checked)
+            {
+                if (fromToRadioButton.Checked)
                 {
-                    MessageBox.Show("اكتب تاريخ البداية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mainAlertControl.Show(this, "اكتب تاريخ البداية", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (toDateDateEdit.EditValue == null)
-                {
-                    MessageBox.Show("اكتب تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mainAlertControl.Show(this, "اكتب تاريخ النهاية", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (Convert.ToDateTime(fromDateDateEdit.EditValue) > Convert.ToDateTime(toDateDateEdit.EditValue))
-                {
-                    MessageBox.Show("تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mainAlertControl.Show(this, "تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle);
-                    return;
+                    if (fromDateDateEdit.EditValue == null)
+                    {
+                        MessageBox.Show("اكتب تاريخ البداية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mainAlertControl.Show(this, "اكتب تاريخ البداية", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (toDateDateEdit.EditValue == null)
+                    {
+                        MessageBox.Show("اكتب تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mainAlertControl.Show(this, "اكتب تاريخ النهاية", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (Convert.ToDateTime(fromDateDateEdit.EditValue) > Convert.ToDateTime(toDateDateEdit.EditValue))
+                    {
+                        MessageBox.Show("تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mainAlertControl.Show(this, "تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle);
+                        return;
+                    }
                 }
             }
 
-            DateTime fromDate = DateTime.Today;
-            DateTime toDate = DateTime.Today;
-            if (fromToRadioButton.Checked)
+            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
+            if(searchInDeptRadioButton.Checked)
+            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Where(fi1 => fi1.FinancialItemDept==Convert.ToInt32(financialItemDeptToSearchLookUpEdit.EditValue));
+            if (searchWithinPeriodCheckBox.Checked)
             {
-                fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
-                toDate = Convert.ToDateTime(toDateDateEdit.EditValue);
+                    DateTime fromDate = DateTime.Today;
+                    DateTime toDate = DateTime.Today;
+                    if (fromToRadioButton.Checked)
+                    {
+                        fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
+                        toDate = Convert.ToDateTime(toDateDateEdit.EditValue);
+                    }
+                    else if (monthlyRadioButton.Checked)
+                    {
+                        fromDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, 1);
+                        toDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, DateTime.DaysInMonth(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month));
+                    }
+                    else if (annualRadioButton.Checked)
+                    {
+                        fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
+                        toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
+                    }
+                    financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
-            else if (monthlyRadioButton.Checked)
-            {
-                fromDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, 1);
-                toDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, DateTime.DaysInMonth(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month));
-            }
-            else if (annualRadioButton.Checked)
-            {
-                fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
-                toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
-            }
-            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             financialItemGridControl.DataSource = financialItemsFromToQry;
             bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
             exportFinancialReportToExcelDropDownButton.Enabled = financialItemGridControl.Visible = resultsFound;
             if (!resultsFound)
             {
-                mainAlertControl.Show(this, "لا يوجد سجلات مالية في الفترة الزمنية التي اخترتها", StaticCode.ApplicationTitle);
-                MessageBox.Show("لا يوجد سجلات مالية في الفترة الزمنية التي اخترتها", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
+                MessageBox.Show("لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -158,6 +176,23 @@ namespace AssetManagement.Finance
             fromToPanel.Visible = fromToRadioButton.Checked;
             monthlyDateTimePicker.Visible = monthlyRadioButton.Checked;
             annualDateTimePicker.Visible = annualRadioButton.Checked;
+        }
+
+        private void searchInDeptRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            financialItemDeptToSearchLookUpEdit.Visible = manageDepartmentTblBtn.Visible = searchInDeptRadioButton.Checked;
+        }
+
+        private void manageDepartmentTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageDepartmentTblForm dptFrm = new ManageDepartmentTblForm();
+            dptFrm.ShowDialog();
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
+        }
+
+        private void searchWithinPeriodCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchWithinPeriodPanel.Visible = searchWithinPeriodCheckBox.Checked;
         }
     }
 }

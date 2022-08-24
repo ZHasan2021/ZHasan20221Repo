@@ -71,6 +71,7 @@ namespace AssetManagement.Assets
             this.assetGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsOldOrNewAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetSection = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAssetDept = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -416,8 +417,9 @@ namespace AssetManagement.Assets
             this.assetGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
             this.colAssetCode,
-            this.colAssetSection,
+            this.colIsOldOrNewAsset,
             this.colAssetDept,
+            this.colAssetSection,
             this.colAssetSquare,
             this.colAssetMinorCategory,
             this.colAssetSpecifications,
@@ -479,6 +481,16 @@ namespace AssetManagement.Assets
             this.colAssetCode.VisibleIndex = 0;
             this.colAssetCode.Width = 178;
             // 
+            // colIsOldOrNewAsset
+            // 
+            this.colIsOldOrNewAsset.Caption = "أصل قديم أم جديد";
+            this.colIsOldOrNewAsset.FieldName = "IsOldOrNewAsset";
+            this.colIsOldOrNewAsset.MinWidth = 100;
+            this.colIsOldOrNewAsset.Name = "colIsOldOrNewAsset";
+            this.colIsOldOrNewAsset.Visible = true;
+            this.colIsOldOrNewAsset.VisibleIndex = 1;
+            this.colIsOldOrNewAsset.Width = 100;
+            // 
             // colAssetSection
             // 
             this.colAssetSection.Caption = "الدائرة";
@@ -487,7 +499,7 @@ namespace AssetManagement.Assets
             this.colAssetSection.MinWidth = 150;
             this.colAssetSection.Name = "colAssetSection";
             this.colAssetSection.Visible = true;
-            this.colAssetSection.VisibleIndex = 1;
+            this.colAssetSection.VisibleIndex = 3;
             this.colAssetSection.Width = 150;
             // 
             // repositoryItemLookUpEdit1
@@ -501,6 +513,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit1.DataSource = this.sectionTblBindingSource;
             this.repositoryItemLookUpEdit1.DisplayMember = "SectionName";
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.PopupWidth = 500;
             this.repositoryItemLookUpEdit1.ValueMember = "ID";
             // 
             // colAssetDept
@@ -526,6 +539,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit2.DataSource = this.departmentTblBindingSource;
             this.repositoryItemLookUpEdit2.DisplayMember = "DepartmentName";
             this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            this.repositoryItemLookUpEdit2.PopupWidth = 500;
             this.repositoryItemLookUpEdit2.ValueMember = "ID";
             // 
             // colAssetSquare
@@ -536,7 +550,7 @@ namespace AssetManagement.Assets
             this.colAssetSquare.MinWidth = 150;
             this.colAssetSquare.Name = "colAssetSquare";
             this.colAssetSquare.Visible = true;
-            this.colAssetSquare.VisibleIndex = 3;
+            this.colAssetSquare.VisibleIndex = 4;
             this.colAssetSquare.Width = 150;
             // 
             // repositoryItemLookUpEdit3
@@ -551,6 +565,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit3.DataSource = this.squareTblBindingSource;
             this.repositoryItemLookUpEdit3.DisplayMember = "SquareName";
             this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
+            this.repositoryItemLookUpEdit3.PopupWidth = 500;
             this.repositoryItemLookUpEdit3.ValueMember = "ID";
             // 
             // colAssetMinorCategory
@@ -561,7 +576,7 @@ namespace AssetManagement.Assets
             this.colAssetMinorCategory.MinWidth = 150;
             this.colAssetMinorCategory.Name = "colAssetMinorCategory";
             this.colAssetMinorCategory.Visible = true;
-            this.colAssetMinorCategory.VisibleIndex = 4;
+            this.colAssetMinorCategory.VisibleIndex = 5;
             this.colAssetMinorCategory.Width = 150;
             // 
             // repositoryItemLookUpEdit4
@@ -579,6 +594,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit4.DataSource = this.minorCategoryTblBindingSource1;
             this.repositoryItemLookUpEdit4.DisplayMember = "MinorCategoryName";
             this.repositoryItemLookUpEdit4.Name = "repositoryItemLookUpEdit4";
+            this.repositoryItemLookUpEdit4.PopupWidth = 500;
             this.repositoryItemLookUpEdit4.ValueMember = "ID";
             // 
             // colAssetSpecifications
@@ -588,7 +604,7 @@ namespace AssetManagement.Assets
             this.colAssetSpecifications.MinWidth = 150;
             this.colAssetSpecifications.Name = "colAssetSpecifications";
             this.colAssetSpecifications.Visible = true;
-            this.colAssetSpecifications.VisibleIndex = 5;
+            this.colAssetSpecifications.VisibleIndex = 6;
             this.colAssetSpecifications.Width = 150;
             // 
             // colItemsQuantity
@@ -598,7 +614,7 @@ namespace AssetManagement.Assets
             this.colItemsQuantity.MinWidth = 80;
             this.colItemsQuantity.Name = "colItemsQuantity";
             this.colItemsQuantity.Visible = true;
-            this.colItemsQuantity.VisibleIndex = 6;
+            this.colItemsQuantity.VisibleIndex = 7;
             this.colItemsQuantity.Width = 94;
             // 
             // colModel
@@ -608,7 +624,7 @@ namespace AssetManagement.Assets
             this.colModel.MinWidth = 100;
             this.colModel.Name = "colModel";
             this.colModel.Visible = true;
-            this.colModel.VisibleIndex = 7;
+            this.colModel.VisibleIndex = 8;
             this.colModel.Width = 100;
             // 
             // colColor
@@ -618,7 +634,7 @@ namespace AssetManagement.Assets
             this.colColor.MinWidth = 100;
             this.colColor.Name = "colColor";
             this.colColor.Visible = true;
-            this.colColor.VisibleIndex = 8;
+            this.colColor.VisibleIndex = 9;
             this.colColor.Width = 100;
             // 
             // colVolume
@@ -628,7 +644,7 @@ namespace AssetManagement.Assets
             this.colVolume.MinWidth = 120;
             this.colVolume.Name = "colVolume";
             this.colVolume.Visible = true;
-            this.colVolume.VisibleIndex = 9;
+            this.colVolume.VisibleIndex = 10;
             this.colVolume.Width = 120;
             // 
             // colPurchaseDate
@@ -639,7 +655,7 @@ namespace AssetManagement.Assets
             this.colPurchaseDate.MinWidth = 100;
             this.colPurchaseDate.Name = "colPurchaseDate";
             this.colPurchaseDate.Visible = true;
-            this.colPurchaseDate.VisibleIndex = 10;
+            this.colPurchaseDate.VisibleIndex = 11;
             this.colPurchaseDate.Width = 100;
             // 
             // repositoryItemDateEdit1
@@ -661,7 +677,7 @@ namespace AssetManagement.Assets
             this.colPurchasePrice.MinWidth = 120;
             this.colPurchasePrice.Name = "colPurchasePrice";
             this.colPurchasePrice.Visible = true;
-            this.colPurchasePrice.VisibleIndex = 11;
+            this.colPurchasePrice.VisibleIndex = 12;
             this.colPurchasePrice.Width = 120;
             // 
             // repositoryItemCalcEdit1
@@ -679,7 +695,7 @@ namespace AssetManagement.Assets
             this.colPurchasePriceCurrency.MinWidth = 120;
             this.colPurchasePriceCurrency.Name = "colPurchasePriceCurrency";
             this.colPurchasePriceCurrency.Visible = true;
-            this.colPurchasePriceCurrency.VisibleIndex = 12;
+            this.colPurchasePriceCurrency.VisibleIndex = 13;
             this.colPurchasePriceCurrency.Width = 120;
             // 
             // repositoryItemLookUpEdit5
@@ -693,6 +709,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit5.DataSource = this.currencyTblBindingSource;
             this.repositoryItemLookUpEdit5.DisplayMember = "CurrencyName";
             this.repositoryItemLookUpEdit5.Name = "repositoryItemLookUpEdit5";
+            this.repositoryItemLookUpEdit5.PopupWidth = 500;
             this.repositoryItemLookUpEdit5.ValueMember = "ID";
             // 
             // colPlaceOfPresence
@@ -702,7 +719,7 @@ namespace AssetManagement.Assets
             this.colPlaceOfPresence.MinWidth = 150;
             this.colPlaceOfPresence.Name = "colPlaceOfPresence";
             this.colPlaceOfPresence.Visible = true;
-            this.colPlaceOfPresence.VisibleIndex = 13;
+            this.colPlaceOfPresence.VisibleIndex = 14;
             this.colPlaceOfPresence.Width = 150;
             // 
             // colCurrentStatus
@@ -713,7 +730,7 @@ namespace AssetManagement.Assets
             this.colCurrentStatus.MinWidth = 100;
             this.colCurrentStatus.Name = "colCurrentStatus";
             this.colCurrentStatus.Visible = true;
-            this.colCurrentStatus.VisibleIndex = 14;
+            this.colCurrentStatus.VisibleIndex = 15;
             this.colCurrentStatus.Width = 100;
             // 
             // repositoryItemLookUpEdit6
@@ -727,6 +744,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6.DataSource = this.statusTblBindingSource;
             this.repositoryItemLookUpEdit6.DisplayMember = "StatusName";
             this.repositoryItemLookUpEdit6.Name = "repositoryItemLookUpEdit6";
+            this.repositoryItemLookUpEdit6.PopupWidth = 500;
             this.repositoryItemLookUpEdit6.ValueMember = "ID";
             // 
             // statusTblBindingSource
@@ -741,7 +759,7 @@ namespace AssetManagement.Assets
             this.colBenefitPercentage.MinWidth = 150;
             this.colBenefitPercentage.Name = "colBenefitPercentage";
             this.colBenefitPercentage.Visible = true;
-            this.colBenefitPercentage.VisibleIndex = 15;
+            this.colBenefitPercentage.VisibleIndex = 16;
             this.colBenefitPercentage.Width = 150;
             // 
             // colActualCurrentPrice
@@ -753,7 +771,7 @@ namespace AssetManagement.Assets
             this.colActualCurrentPrice.MinWidth = 120;
             this.colActualCurrentPrice.Name = "colActualCurrentPrice";
             this.colActualCurrentPrice.Visible = true;
-            this.colActualCurrentPrice.VisibleIndex = 16;
+            this.colActualCurrentPrice.VisibleIndex = 17;
             this.colActualCurrentPrice.Width = 120;
             // 
             // colActualCurrentPriceCurrency
@@ -764,7 +782,7 @@ namespace AssetManagement.Assets
             this.colActualCurrentPriceCurrency.MinWidth = 120;
             this.colActualCurrentPriceCurrency.Name = "colActualCurrentPriceCurrency";
             this.colActualCurrentPriceCurrency.Visible = true;
-            this.colActualCurrentPriceCurrency.VisibleIndex = 17;
+            this.colActualCurrentPriceCurrency.VisibleIndex = 18;
             this.colActualCurrentPriceCurrency.Width = 120;
             // 
             // colCustodianName
@@ -774,7 +792,7 @@ namespace AssetManagement.Assets
             this.colCustodianName.MinWidth = 150;
             this.colCustodianName.Name = "colCustodianName";
             this.colCustodianName.Visible = true;
-            this.colCustodianName.VisibleIndex = 18;
+            this.colCustodianName.VisibleIndex = 19;
             this.colCustodianName.Width = 150;
             // 
             // colMoreDetails
@@ -784,7 +802,7 @@ namespace AssetManagement.Assets
             this.colMoreDetails.MinWidth = 200;
             this.colMoreDetails.Name = "colMoreDetails";
             this.colMoreDetails.Visible = true;
-            this.colMoreDetails.VisibleIndex = 19;
+            this.colMoreDetails.VisibleIndex = 20;
             this.colMoreDetails.Width = 200;
             // 
             // colAssetNotes
@@ -794,7 +812,7 @@ namespace AssetManagement.Assets
             this.colAssetNotes.MinWidth = 200;
             this.colAssetNotes.Name = "colAssetNotes";
             this.colAssetNotes.Visible = true;
-            this.colAssetNotes.VisibleIndex = 20;
+            this.colAssetNotes.VisibleIndex = 21;
             this.colAssetNotes.Width = 200;
             // 
             // colEstateAddress
@@ -804,7 +822,7 @@ namespace AssetManagement.Assets
             this.colEstateAddress.MinWidth = 200;
             this.colEstateAddress.Name = "colEstateAddress";
             this.colEstateAddress.Visible = true;
-            this.colEstateAddress.VisibleIndex = 21;
+            this.colEstateAddress.VisibleIndex = 22;
             this.colEstateAddress.Width = 200;
             // 
             // colOwnerName
@@ -814,7 +832,7 @@ namespace AssetManagement.Assets
             this.colOwnerName.MinWidth = 150;
             this.colOwnerName.Name = "colOwnerName";
             this.colOwnerName.Visible = true;
-            this.colOwnerName.VisibleIndex = 22;
+            this.colOwnerName.VisibleIndex = 23;
             this.colOwnerName.Width = 150;
             // 
             // colOfUsed
@@ -824,7 +842,7 @@ namespace AssetManagement.Assets
             this.colOfUsed.MinWidth = 150;
             this.colOfUsed.Name = "colOfUsed";
             this.colOfUsed.Visible = true;
-            this.colOfUsed.VisibleIndex = 23;
+            this.colOfUsed.VisibleIndex = 24;
             this.colOfUsed.Width = 150;
             // 
             // colEstateOwnershipDocumentWith
@@ -834,7 +852,7 @@ namespace AssetManagement.Assets
             this.colEstateOwnershipDocumentWith.MinWidth = 150;
             this.colEstateOwnershipDocumentWith.Name = "colEstateOwnershipDocumentWith";
             this.colEstateOwnershipDocumentWith.Visible = true;
-            this.colEstateOwnershipDocumentWith.VisibleIndex = 24;
+            this.colEstateOwnershipDocumentWith.VisibleIndex = 25;
             this.colEstateOwnershipDocumentWith.Width = 150;
             // 
             // colEstateArea
@@ -844,7 +862,7 @@ namespace AssetManagement.Assets
             this.colEstateArea.MinWidth = 100;
             this.colEstateArea.Name = "colEstateArea";
             this.colEstateArea.Visible = true;
-            this.colEstateArea.VisibleIndex = 25;
+            this.colEstateArea.VisibleIndex = 26;
             this.colEstateArea.Width = 100;
             // 
             // colEstateAreaUnit
@@ -855,7 +873,7 @@ namespace AssetManagement.Assets
             this.colEstateAreaUnit.MinWidth = 100;
             this.colEstateAreaUnit.Name = "colEstateAreaUnit";
             this.colEstateAreaUnit.Visible = true;
-            this.colEstateAreaUnit.VisibleIndex = 26;
+            this.colEstateAreaUnit.VisibleIndex = 27;
             this.colEstateAreaUnit.Width = 100;
             // 
             // repositoryItemLookUpEdit7
@@ -869,6 +887,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7.DataSource = this.estateAreaUnitTblBindingSource;
             this.repositoryItemLookUpEdit7.DisplayMember = "EstateAreaUnitName";
             this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
+            this.repositoryItemLookUpEdit7.PopupWidth = 500;
             this.repositoryItemLookUpEdit7.ValueMember = "ID";
             // 
             // estateAreaUnitTblBindingSource
@@ -883,7 +902,7 @@ namespace AssetManagement.Assets
             this.colCarPanelNumber.MinWidth = 120;
             this.colCarPanelNumber.Name = "colCarPanelNumber";
             this.colCarPanelNumber.Visible = true;
-            this.colCarPanelNumber.VisibleIndex = 27;
+            this.colCarPanelNumber.VisibleIndex = 28;
             this.colCarPanelNumber.Width = 120;
             // 
             // colCarManufacturingYear
@@ -893,7 +912,7 @@ namespace AssetManagement.Assets
             this.colCarManufacturingYear.MinWidth = 80;
             this.colCarManufacturingYear.Name = "colCarManufacturingYear";
             this.colCarManufacturingYear.Visible = true;
-            this.colCarManufacturingYear.VisibleIndex = 28;
+            this.colCarManufacturingYear.VisibleIndex = 29;
             this.colCarManufacturingYear.Width = 100;
             // 
             // colCarChassisNumber
@@ -903,7 +922,7 @@ namespace AssetManagement.Assets
             this.colCarChassisNumber.MinWidth = 120;
             this.colCarChassisNumber.Name = "colCarChassisNumber";
             this.colCarChassisNumber.Visible = true;
-            this.colCarChassisNumber.VisibleIndex = 29;
+            this.colCarChassisNumber.VisibleIndex = 30;
             this.colCarChassisNumber.Width = 120;
             // 
             // colCarEngineNumber
@@ -913,7 +932,7 @@ namespace AssetManagement.Assets
             this.colCarEngineNumber.MinWidth = 120;
             this.colCarEngineNumber.Name = "colCarEngineNumber";
             this.colCarEngineNumber.Visible = true;
-            this.colCarEngineNumber.VisibleIndex = 30;
+            this.colCarEngineNumber.VisibleIndex = 31;
             this.colCarEngineNumber.Width = 1000;
             // 
             // colDestructionRate
@@ -926,7 +945,7 @@ namespace AssetManagement.Assets
             this.colDestructionRate.Name = "colDestructionRate";
             this.colDestructionRate.OptionsColumn.AllowEdit = false;
             this.colDestructionRate.Visible = true;
-            this.colDestructionRate.VisibleIndex = 31;
+            this.colDestructionRate.VisibleIndex = 32;
             this.colDestructionRate.Width = 100;
             // 
             // colLifeSpanInMonths
@@ -937,7 +956,7 @@ namespace AssetManagement.Assets
             this.colLifeSpanInMonths.Name = "colLifeSpanInMonths";
             this.colLifeSpanInMonths.OptionsColumn.AllowEdit = false;
             this.colLifeSpanInMonths.Visible = true;
-            this.colLifeSpanInMonths.VisibleIndex = 32;
+            this.colLifeSpanInMonths.VisibleIndex = 33;
             this.colLifeSpanInMonths.Width = 94;
             // 
             // colIsSold
@@ -947,7 +966,7 @@ namespace AssetManagement.Assets
             this.colIsSold.MinWidth = 50;
             this.colIsSold.Name = "colIsSold";
             this.colIsSold.Visible = true;
-            this.colIsSold.VisibleIndex = 33;
+            this.colIsSold.VisibleIndex = 34;
             this.colIsSold.Width = 94;
             // 
             // colIsOutOfWork
@@ -957,7 +976,7 @@ namespace AssetManagement.Assets
             this.colIsOutOfWork.MinWidth = 50;
             this.colIsOutOfWork.Name = "colIsOutOfWork";
             this.colIsOutOfWork.Visible = true;
-            this.colIsOutOfWork.VisibleIndex = 34;
+            this.colIsOutOfWork.VisibleIndex = 35;
             this.colIsOutOfWork.Width = 94;
             // 
             // colInsertedOn
@@ -1189,5 +1208,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.BindingSource estateAreaUnitTblBindingSource;
         private AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter estateAreaUnitTblTableAdapter;
         private System.Windows.Forms.BindingSource assetTblBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsOldOrNewAsset;
     }
 }

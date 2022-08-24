@@ -64,7 +64,7 @@ namespace Kindergarten
             this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
-            this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.الطلاب = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.existedAssetsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsReportsAndStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -131,7 +131,7 @@ namespace Kindergarten
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
             this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.assetsRibbonPage,
+            this.الطلاب,
             this.financeRibbonPage,
             this.manageAuxTablesRibbonPage,
             this.exportImportDataRibbonPage,
@@ -176,8 +176,8 @@ namespace Kindergarten
             // 
             this.addNewStudentBarButtonItem.Caption = "تسجيل طالب جديد";
             this.addNewStudentBarButtonItem.Id = 1;
+            this.addNewStudentBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._1156919;
             this.addNewStudentBarButtonItem.ImageOptions.ImageIndex = 41;
-            this.addNewStudentBarButtonItem.ImageOptions.LargeImage = global::Kindergarten.Properties.Resources._5359538;
             this.addNewStudentBarButtonItem.Name = "addNewStudentBarButtonItem";
             this.addNewStudentBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewStudentBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetBarButtonItem_ItemClick);
@@ -233,7 +233,7 @@ namespace Kindergarten
             // 
             this.viewReportsBarButtonItem.Caption = "استعراض التقارير";
             this.viewReportsBarButtonItem.Id = 17;
-            this.viewReportsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._3753098;
+            this.viewReportsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._2205595;
             this.viewReportsBarButtonItem.Name = "viewReportsBarButtonItem";
             this.viewReportsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.viewReportsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewReportsBarButtonItem_ItemClick);
@@ -242,7 +242,7 @@ namespace Kindergarten
             // 
             this.manageEducationalLevelTblBarButtonItem.Caption = "إدارة جدول المراحل الدراسية";
             this.manageEducationalLevelTblBarButtonItem.Id = 18;
-            this.manageEducationalLevelTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._1570810;
+            this.manageEducationalLevelTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._3076276;
             this.manageEducationalLevelTblBarButtonItem.Name = "manageEducationalLevelTblBarButtonItem";
             this.manageEducationalLevelTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageEducationalLevelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageEducationalLevelTblBarButtonItem_ItemClick);
@@ -251,16 +251,16 @@ namespace Kindergarten
             // 
             this.manageFeePeriodTblBarButtonItem.Caption = "إدارة جدول فترات الرسوم الدراسية";
             this.manageFeePeriodTblBarButtonItem.Id = 19;
-            this.manageFeePeriodTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._5596774;
+            this.manageFeePeriodTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._2037695;
             this.manageFeePeriodTblBarButtonItem.Name = "manageFeePeriodTblBarButtonItem";
             this.manageFeePeriodTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageFeePeriodTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageFeePeriodTblBarButtonItem_ItemClick);
             // 
             // manageScholasticYearTblBarButtonItem
             // 
-            this.manageScholasticYearTblBarButtonItem.Caption = "إدارة جدول السنوات الدراسية";
+            this.manageScholasticYearTblBarButtonItem.Caption = "إدارة جدول المواسم الدراسية";
             this.manageScholasticYearTblBarButtonItem.Id = 20;
-            this.manageScholasticYearTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._8586322;
+            this.manageScholasticYearTblBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._8744885;
             this.manageScholasticYearTblBarButtonItem.Name = "manageScholasticYearTblBarButtonItem";
             this.manageScholasticYearTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageScholasticYearTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageScholasticYearTblBarButtonItem_ItemClick);
@@ -326,6 +326,7 @@ namespace Kindergarten
             this.deleteStudentsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._4110306;
             this.deleteStudentsBarButtonItem.Name = "deleteStudentsBarButtonItem";
             this.deleteStudentsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.deleteStudentsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteStudentsBarButtonItem_ItemClick);
             // 
             // optionsBarButtonItem
             // 
@@ -357,7 +358,7 @@ namespace Kindergarten
             // 
             this.viewStatsBarButtonItem.Caption = "عرض الإحصائيات";
             this.viewStatsBarButtonItem.Id = 42;
-            this.viewStatsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._753930;
+            this.viewStatsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._2922838;
             this.viewStatsBarButtonItem.Name = "viewStatsBarButtonItem";
             this.viewStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.viewStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewStatsBarButtonItem_ItemClick);
@@ -422,20 +423,20 @@ namespace Kindergarten
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
             // 
-            // assetsRibbonPage
+            // الطلاب
             // 
-            this.assetsRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetsRibbonPage.Appearance.Options.UseFont = true;
-            this.assetsRibbonPage.Appearance.Options.UseTextOptions = true;
-            this.assetsRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.assetsRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.الطلاب.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.الطلاب.Appearance.Options.UseFont = true;
+            this.الطلاب.Appearance.Options.UseTextOptions = true;
+            this.الطلاب.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.الطلاب.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.newAssetRibbonPageGroup,
             this.existedAssetsRibbonPageGroup,
             this.assetsReportsAndStatsRibbonPageGroup});
-            this.assetsRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._41866361;
-            this.assetsRibbonPage.ImageOptions.ImageIndex = 41;
-            this.assetsRibbonPage.Name = "assetsRibbonPage";
-            this.assetsRibbonPage.Text = "الأصول";
+            this.الطلاب.ImageOptions.Image = global::Kindergarten.Properties.Resources._6944290;
+            this.الطلاب.ImageOptions.ImageIndex = 41;
+            this.الطلاب.Name = "الطلاب";
+            this.الطلاب.Text = "الأصول";
             // 
             // newAssetRibbonPageGroup
             // 
@@ -458,7 +459,7 @@ namespace Kindergarten
             this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewReportsBarButtonItem);
             this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
             this.assetsReportsAndStatsRibbonPageGroup.Name = "assetsReportsAndStatsRibbonPageGroup";
-            this.assetsReportsAndStatsRibbonPageGroup.Text = "تقارير وإحصائيات الطلاب";
+            this.assetsReportsAndStatsRibbonPageGroup.Text = "تقارير وإحصائيات الطلاب - Students reports and stats";
             // 
             // financeRibbonPage
             // 
@@ -484,7 +485,7 @@ namespace Kindergarten
             this.manageAuxTablesRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.manageAuxTablesRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.auxTablesRibbonPageGroup});
-            this.manageAuxTablesRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._2762550;
+            this.manageAuxTablesRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._181697;
             this.manageAuxTablesRibbonPage.Name = "manageAuxTablesRibbonPage";
             this.manageAuxTablesRibbonPage.Text = "الجداول المساعدة";
             // 
@@ -543,7 +544,7 @@ namespace Kindergarten
             this.usersAccountsRibbonPageGroup,
             this.additionalOptionsRibbonPageGroup,
             this.appFoldersRibbonPageGroup});
-            this.optionsRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._2771406;
+            this.optionsRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._3888280;
             this.optionsRibbonPage.Name = "optionsRibbonPage";
             this.optionsRibbonPage.Text = "الإعدادات";
             // 
@@ -675,6 +676,7 @@ namespace Kindergarten
             this.Controls.Add(this.mainRibbonStatusBar);
             this.Controls.Add(this.mainRibbonControl);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("MainForm.IconOptions.Icon")));
+            this.IconOptions.Image = global::Kindergarten.Properties.Resources._921226;
             this.Name = "MainForm";
             this.Ribbon = this.mainRibbonControl;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -695,7 +697,7 @@ namespace Kindergarten
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl mainRibbonControl;
-        private DevExpress.XtraBars.Ribbon.RibbonPage assetsRibbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPage الطلاب;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup newAssetRibbonPageGroup;
         private System.Windows.Forms.ImageList ribbonImageList;
         private DevExpress.XtraBars.BarButtonItem addNewStudentBarButtonItem;

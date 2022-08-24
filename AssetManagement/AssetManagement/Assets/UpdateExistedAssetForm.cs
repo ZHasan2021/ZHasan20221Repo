@@ -84,6 +84,10 @@ namespace AssetManagement.Assets
             {
                 currSrchRes = StaticCode.mainDbContext.AssetTbls.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
                 assetCodeTextBox.Text = currSrchRes.AssetCode;
+                if (currSrchRes.IsOldOrNewAsset == "جديد")
+                    isNewAssetRadioButton.Checked = true;
+                if (currSrchRes.IsOldOrNewAsset == "قديم")
+                    isOldAssetRadioButton.Checked = true;
                 assetDeptLookUpEdit.EditValue = currSrchRes.AssetDept;
                 assetSectionLookUpEdit.EditValue = currSrchRes.AssetSection;
                 assetSquareLookUpEdit.EditValue = currSrchRes.AssetSquare;
@@ -201,6 +205,7 @@ namespace AssetManagement.Assets
             try
             {
                 currSrchRes.AssetCode = assetCodeTextBox.Text.Trim();
+                currSrchRes.IsOldOrNewAsset = (isNewAssetRadioButton.Checked) ? "جديد" : "قديم";
                 currSrchRes.AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue);
                 currSrchRes.AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue);
                 currSrchRes.AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue);
