@@ -84,8 +84,10 @@ namespace Kindergarten
             this.ribbonImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainRibbonControl
@@ -667,16 +669,28 @@ namespace Kindergarten
             this.mainTimer.Interval = 1000;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoPictureBox.Image = global::Kindergarten.Properties.Resources.logo;
+            this.logoPictureBox.Location = new System.Drawing.Point(0, 283);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(1485, 646);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 5;
+            this.logoPictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 981);
+            this.Controls.Add(this.logoPictureBox);
             this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainRibbonStatusBar);
             this.Controls.Add(this.mainRibbonControl);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("MainForm.IconOptions.Icon")));
-            this.IconOptions.Image = global::Kindergarten.Properties.Resources._921226;
+            this.IconOptions.Image = global::Kindergarten.Properties.Resources.logo1;
             this.Name = "MainForm";
             this.Ribbon = this.mainRibbonControl;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -689,6 +703,7 @@ namespace Kindergarten
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
             this.mainStatusStrip.ResumeLayout(false);
             this.mainStatusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -749,6 +764,7 @@ namespace Kindergarten
         private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
+        private System.Windows.Forms.PictureBox logoPictureBox;
     }
 }
 

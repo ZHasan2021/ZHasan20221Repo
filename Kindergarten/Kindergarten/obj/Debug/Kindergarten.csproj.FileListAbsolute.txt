@@ -559,3 +559,5 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kind
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.AuxTables.ManageFeePeriodTblForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.AuxTables.ManageScholasticYearTblForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.Students.ManageStudentFeeTblForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.Students.StudentsXtraReport.resources

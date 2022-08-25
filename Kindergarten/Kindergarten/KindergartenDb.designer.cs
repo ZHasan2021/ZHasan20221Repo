@@ -149,6 +149,14 @@ namespace Kindergarten
 				return this.GetTable<UserRoleTbl>();
 			}
 		}
+		
+		public System.Data.Linq.Table<VwStudent> VwStudents
+		{
+			get
+			{
+				return this.GetTable<VwStudent>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EducationalLevelTbl")]
@@ -1302,6 +1310,8 @@ namespace Kindergarten
 		
 		private string _Mother;
 		
+		private string _FullName;
+		
 		private string _NationalCardID;
 		
 		private System.DateTime _DateOfBirth;
@@ -1344,6 +1354,8 @@ namespace Kindergarten
     partial void OnFatherChanged();
     partial void OnMotherChanging(string value);
     partial void OnMotherChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
     partial void OnNationalCardIDChanging(string value);
     partial void OnNationalCardIDChanged();
     partial void OnDateOfBirthChanging(System.DateTime value);
@@ -1472,6 +1484,26 @@ namespace Kindergarten
 					this._Mother = value;
 					this.SendPropertyChanged("Mother");
 					this.OnMotherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(100)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
 				}
 			}
 		}
@@ -2452,6 +2484,249 @@ namespace Kindergarten
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VwStudent")]
+	public partial class VwStudent
+	{
+		
+		private int _ID;
+		
+		private string _الاسم;
+		
+		private string _الكنية;
+		
+		private string _الأب;
+		
+		private string _الأم;
+		
+		private string _الاسم_بالكامل;
+		
+		private string _رقم_البطاقة_الشخصية;
+		
+		private System.DateTime _تاريخ_الميلاد;
+		
+		private string _المرحلة_الدراسية;
+		
+		private int _الصف_الدراسي;
+		
+		private string _الموسم_الدراسي;
+		
+		private System.DateTime _تاريخ_التسجيل;
+		
+		private string _ملاحظات;
+		
+		public VwStudent()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الاسم", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الاسم
+		{
+			get
+			{
+				return this._الاسم;
+			}
+			set
+			{
+				if ((this._الاسم != value))
+				{
+					this._الاسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الكنية", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الكنية
+		{
+			get
+			{
+				return this._الكنية;
+			}
+			set
+			{
+				if ((this._الكنية != value))
+				{
+					this._الكنية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الأب", DbType="NVarChar(20)")]
+		public string الأب
+		{
+			get
+			{
+				return this._الأب;
+			}
+			set
+			{
+				if ((this._الأب != value))
+				{
+					this._الأب = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الأم", DbType="NVarChar(20)")]
+		public string الأم
+		{
+			get
+			{
+				return this._الأم;
+			}
+			set
+			{
+				if ((this._الأم != value))
+				{
+					this._الأم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الاسم بالكامل]", Storage="_الاسم_بالكامل", DbType="NVarChar(100)")]
+		public string الاسم_بالكامل
+		{
+			get
+			{
+				return this._الاسم_بالكامل;
+			}
+			set
+			{
+				if ((this._الاسم_بالكامل != value))
+				{
+					this._الاسم_بالكامل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم البطاقة الشخصية]", Storage="_رقم_البطاقة_الشخصية", DbType="NVarChar(20)")]
+		public string رقم_البطاقة_الشخصية
+		{
+			get
+			{
+				return this._رقم_البطاقة_الشخصية;
+			}
+			set
+			{
+				if ((this._رقم_البطاقة_الشخصية != value))
+				{
+					this._رقم_البطاقة_الشخصية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الميلاد]", Storage="_تاريخ_الميلاد", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_الميلاد
+		{
+			get
+			{
+				return this._تاريخ_الميلاد;
+			}
+			set
+			{
+				if ((this._تاريخ_الميلاد != value))
+				{
+					this._تاريخ_الميلاد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المرحلة الدراسية]", Storage="_المرحلة_الدراسية", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string المرحلة_الدراسية
+		{
+			get
+			{
+				return this._المرحلة_الدراسية;
+			}
+			set
+			{
+				if ((this._المرحلة_الدراسية != value))
+				{
+					this._المرحلة_الدراسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الصف الدراسي]", Storage="_الصف_الدراسي", DbType="Int NOT NULL")]
+		public int الصف_الدراسي
+		{
+			get
+			{
+				return this._الصف_الدراسي;
+			}
+			set
+			{
+				if ((this._الصف_الدراسي != value))
+				{
+					this._الصف_الدراسي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الموسم الدراسي]", Storage="_الموسم_الدراسي", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الموسم_الدراسي
+		{
+			get
+			{
+				return this._الموسم_الدراسي;
+			}
+			set
+			{
+				if ((this._الموسم_الدراسي != value))
+				{
+					this._الموسم_الدراسي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ التسجيل]", Storage="_تاريخ_التسجيل", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_التسجيل
+		{
+			get
+			{
+				return this._تاريخ_التسجيل;
+			}
+			set
+			{
+				if ((this._تاريخ_التسجيل != value))
+				{
+					this._تاريخ_التسجيل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ملاحظات", DbType="NVarChar(200)")]
+		public string ملاحظات
+		{
+			get
+			{
+				return this._ملاحظات;
+			}
+			set
+			{
+				if ((this._ملاحظات != value))
+				{
+					this._ملاحظات = value;
+				}
 			}
 		}
 	}

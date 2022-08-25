@@ -7,6 +7,34 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KindergartenDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="KindergartenDbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Kindergarten.Properties.Settings.GlobalReference.Default.KindergartenDbConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VwStudentTableAdapter" GeneratorDataComponentClassName="VwStudentTableAdapter" Name="VwStudent" UserDataComponentName="VwStudentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="KindergartenDbConnectionString (Settings)" DbObjectName="dbo.VwStudent" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, الاسم, الكنية, الأب, الأم, [الاسم بالكامل], [رقم البطاقة الشخصية], [تاريخ الميلاد], [المرحلة الدراسية], [الصف الدراسي], [الموسم الدراسي], [تاريخ التسجيل], ملاحظات FROM dbo.VwStudent</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="الاسم" DataSetColumn="الاسم" />
+              <Mapping SourceColumn="الكنية" DataSetColumn="الكنية" />
+              <Mapping SourceColumn="الأب" DataSetColumn="الأب" />
+              <Mapping SourceColumn="الأم" DataSetColumn="الأم" />
+              <Mapping SourceColumn="الاسم بالكامل" DataSetColumn="الاسم بالكامل" />
+              <Mapping SourceColumn="رقم البطاقة الشخصية" DataSetColumn="رقم البطاقة الشخصية" />
+              <Mapping SourceColumn="تاريخ الميلاد" DataSetColumn="تاريخ الميلاد" />
+              <Mapping SourceColumn="المرحلة الدراسية" DataSetColumn="المرحلة الدراسية" />
+              <Mapping SourceColumn="الصف الدراسي" DataSetColumn="الصف الدراسي" />
+              <Mapping SourceColumn="الموسم الدراسي" DataSetColumn="الموسم الدراسي" />
+              <Mapping SourceColumn="تاريخ التسجيل" DataSetColumn="تاريخ التسجيل" />
+              <Mapping SourceColumn="ملاحظات" DataSetColumn="ملاحظات" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EducationalLevelTblTableAdapter" GeneratorDataComponentClassName="EducationalLevelTblTableAdapter" Name="EducationalLevelTbl" UserDataComponentName="EducationalLevelTblTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="KindergartenDbConnectionString (Settings)" DbObjectName="dbo.EducationalLevelTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -392,7 +420,7 @@ SELECT ID, StudentID, FeePeriod, FeePayingDate, FeeScholasticYear, FeeAmount, Vo
               <DbSource ConnectionRef="KindergartenDbConnectionString (Settings)" DbObjectName="dbo.StudentTbl" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [dbo].[StudentTbl] WHERE (([ID] = @Original_ID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName) AND ((@IsNull_Father = 1 AND [Father] IS NULL) OR ([Father] = @Original_Father)) AND ((@IsNull_Mother = 1 AND [Mother] IS NULL) OR ([Mother] = @Original_Mother)) AND ((@IsNull_NationalCardID = 1 AND [NationalCardID] IS NULL) OR ([NationalCardID] = @Original_NationalCardID)) AND ([DateOfBirth] = @Original_DateOfBirth) AND ([StudentGrade] = @Original_StudentGrade) AND ([EducationalLevel] = @Original_EducationalLevel) AND ([RegisteringDate] = @Original_RegisteringDate) AND ([ScholasticYear] = @Original_ScholasticYear) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))</CommandText>
+                    <CommandText>DELETE FROM [dbo].[StudentTbl] WHERE (([ID] = @Original_ID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName) AND ((@IsNull_Father = 1 AND [Father] IS NULL) OR ([Father] = @Original_Father)) AND ((@IsNull_Mother = 1 AND [Mother] IS NULL) OR ([Mother] = @Original_Mother)) AND ((@IsNull_FullName = 1 AND [FullName] IS NULL) OR ([FullName] = @Original_FullName)) AND ((@IsNull_NationalCardID = 1 AND [NationalCardID] IS NULL) OR ([NationalCardID] = @Original_NationalCardID)) AND ([DateOfBirth] = @Original_DateOfBirth) AND ([StudentGrade] = @Original_StudentGrade) AND ([EducationalLevel] = @Original_EducationalLevel) AND ([RegisteringDate] = @Original_RegisteringDate) AND ([ScholasticYear] = @Original_ScholasticYear) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FirstName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FirstName" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -401,6 +429,8 @@ SELECT ID, StudentID, FeePeriod, FeePayingDate, FeeScholasticYear, FeeAmount, Vo
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Father" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Father" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Mother" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Mother" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NationalCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_NationalCardID" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DateOfBirth" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfBirth" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -423,13 +453,14 @@ SELECT ID, StudentID, FeePeriod, FeePayingDate, FeeScholasticYear, FeeAmount, Vo
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [dbo].[StudentTbl] ([FirstName], [LastName], [Father], [Mother], [NationalCardID], [DateOfBirth], [StudentGrade], [EducationalLevel], [RegisteringDate], [ScholasticYear], [Notes], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy]) VALUES (@FirstName, @LastName, @Father, @Mother, @NationalCardID, @DateOfBirth, @StudentGrade, @EducationalLevel, @RegisteringDate, @ScholasticYear, @Notes, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy);
-SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM StudentTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>INSERT INTO [dbo].[StudentTbl] ([FirstName], [LastName], [Father], [Mother], [FullName], [NationalCardID], [DateOfBirth], [StudentGrade], [EducationalLevel], [RegisteringDate], [ScholasticYear], [Notes], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy]) VALUES (@FirstName, @LastName, @Father, @Mother, @FullName, @NationalCardID, @DateOfBirth, @StudentGrade, @EducationalLevel, @RegisteringDate, @ScholasticYear, @Notes, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy);
+SELECT ID, FirstName, LastName, Father, Mother, FullName, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM StudentTbl WHERE (ID = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FirstName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FirstName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LastName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LastName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Father" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Father" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Mother" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@NationalCardID" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DateOfBirth" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfBirth" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@StudentGrade" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="StudentGrade" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -446,19 +477,20 @@ SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, Stu
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM dbo.StudentTbl</CommandText>
+                    <CommandText>SELECT ID, FirstName, LastName, Father, Mother, FullName, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM dbo.StudentTbl</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [dbo].[StudentTbl] SET [FirstName] = @FirstName, [LastName] = @LastName, [Father] = @Father, [Mother] = @Mother, [NationalCardID] = @NationalCardID, [DateOfBirth] = @DateOfBirth, [StudentGrade] = @StudentGrade, [EducationalLevel] = @EducationalLevel, [RegisteringDate] = @RegisteringDate, [ScholasticYear] = @ScholasticYear, [Notes] = @Notes, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy WHERE (([ID] = @Original_ID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName) AND ((@IsNull_Father = 1 AND [Father] IS NULL) OR ([Father] = @Original_Father)) AND ((@IsNull_Mother = 1 AND [Mother] IS NULL) OR ([Mother] = @Original_Mother)) AND ((@IsNull_NationalCardID = 1 AND [NationalCardID] IS NULL) OR ([NationalCardID] = @Original_NationalCardID)) AND ([DateOfBirth] = @Original_DateOfBirth) AND ([StudentGrade] = @Original_StudentGrade) AND ([EducationalLevel] = @Original_EducationalLevel) AND ([RegisteringDate] = @Original_RegisteringDate) AND ([ScholasticYear] = @Original_ScholasticYear) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)));
-SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM StudentTbl WHERE (ID = @ID)</CommandText>
+                    <CommandText>UPDATE [dbo].[StudentTbl] SET [FirstName] = @FirstName, [LastName] = @LastName, [Father] = @Father, [Mother] = @Mother, [FullName] = @FullName, [NationalCardID] = @NationalCardID, [DateOfBirth] = @DateOfBirth, [StudentGrade] = @StudentGrade, [EducationalLevel] = @EducationalLevel, [RegisteringDate] = @RegisteringDate, [ScholasticYear] = @ScholasticYear, [Notes] = @Notes, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy WHERE (([ID] = @Original_ID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName) AND ((@IsNull_Father = 1 AND [Father] IS NULL) OR ([Father] = @Original_Father)) AND ((@IsNull_Mother = 1 AND [Mother] IS NULL) OR ([Mother] = @Original_Mother)) AND ((@IsNull_FullName = 1 AND [FullName] IS NULL) OR ([FullName] = @Original_FullName)) AND ((@IsNull_NationalCardID = 1 AND [NationalCardID] IS NULL) OR ([NationalCardID] = @Original_NationalCardID)) AND ([DateOfBirth] = @Original_DateOfBirth) AND ([StudentGrade] = @Original_StudentGrade) AND ([EducationalLevel] = @Original_EducationalLevel) AND ([RegisteringDate] = @Original_RegisteringDate) AND ([ScholasticYear] = @Original_ScholasticYear) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)));
+SELECT ID, FirstName, LastName, Father, Mother, FullName, NationalCardID, DateOfBirth, StudentGrade, EducationalLevel, RegisteringDate, ScholasticYear, Notes, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy FROM StudentTbl WHERE (ID = @ID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FirstName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FirstName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LastName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LastName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Father" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Father" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Mother" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@NationalCardID" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DateOfBirth" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfBirth" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@StudentGrade" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="StudentGrade" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -477,6 +509,8 @@ SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, Stu
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Father" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Father" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Mother" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Mother" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Mother" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NationalCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_NationalCardID" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NationalCardID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DateOfBirth" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfBirth" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -506,6 +540,7 @@ SELECT ID, FirstName, LastName, Father, Mother, NationalCardID, DateOfBirth, Stu
               <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
               <Mapping SourceColumn="Father" DataSetColumn="Father" />
               <Mapping SourceColumn="Mother" DataSetColumn="Mother" />
+              <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
               <Mapping SourceColumn="NationalCardID" DataSetColumn="NationalCardID" />
               <Mapping SourceColumn="DateOfBirth" DataSetColumn="DateOfBirth" />
               <Mapping SourceColumn="StudentGrade" DataSetColumn="StudentGrade" />
@@ -736,6 +771,79 @@ SELECT ID, RoleName, AddNewStudent, ManageStudentTbl, UpdateExistedStudent, Dele
   <xs:element name="KindergartenDbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="KindergartenDbDataSet" msprop:Generator_UserDSName="KindergartenDbDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VwStudent" msprop:Generator_TableClassName="VwStudentDataTable" msprop:Generator_TableVarName="tableVwStudent" msprop:Generator_TablePropName="VwStudent" msprop:Generator_RowDeletingName="VwStudentRowDeleting" msprop:Generator_RowChangingName="VwStudentRowChanging" msprop:Generator_RowEvHandlerName="VwStudentRowChangeEventHandler" msprop:Generator_RowDeletedName="VwStudentRowDeleted" msprop:Generator_UserTableName="VwStudent" msprop:Generator_RowChangedName="VwStudentRowChanged" msprop:Generator_RowEvArgName="VwStudentRowChangeEvent" msprop:Generator_RowClassName="VwStudentRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="الاسم" msprop:Generator_ColumnVarNameInTable="columnالاسم" msprop:Generator_ColumnPropNameInRow="الاسم" msprop:Generator_ColumnPropNameInTable="الاسمColumn" msprop:Generator_UserColumnName="الاسم">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الكنية" msprop:Generator_ColumnVarNameInTable="columnالكنية" msprop:Generator_ColumnPropNameInRow="الكنية" msprop:Generator_ColumnPropNameInTable="الكنيةColumn" msprop:Generator_UserColumnName="الكنية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الأب" msprop:Generator_ColumnVarNameInTable="columnالأب" msprop:Generator_ColumnPropNameInRow="الأب" msprop:Generator_ColumnPropNameInTable="الأبColumn" msprop:Generator_UserColumnName="الأب" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الأم" msprop:Generator_ColumnVarNameInTable="columnالأم" msprop:Generator_ColumnPropNameInRow="الأم" msprop:Generator_ColumnPropNameInTable="الأمColumn" msprop:Generator_UserColumnName="الأم" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الاسم_x0020_بالكامل" msprop:Generator_ColumnVarNameInTable="columnالاسم_بالكامل" msprop:Generator_ColumnPropNameInRow="الاسم_بالكامل" msprop:Generator_ColumnPropNameInTable="الاسم_بالكاملColumn" msprop:Generator_UserColumnName="الاسم بالكامل" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="رقم_x0020_البطاقة_x0020_الشخصية" msprop:Generator_ColumnVarNameInTable="columnرقم_البطاقة_الشخصية" msprop:Generator_ColumnPropNameInRow="رقم_البطاقة_الشخصية" msprop:Generator_ColumnPropNameInTable="رقم_البطاقة_الشخصيةColumn" msprop:Generator_UserColumnName="رقم البطاقة الشخصية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="تاريخ_x0020_الميلاد" msprop:Generator_ColumnVarNameInTable="columnتاريخ_الميلاد" msprop:Generator_ColumnPropNameInRow="تاريخ_الميلاد" msprop:Generator_ColumnPropNameInTable="تاريخ_الميلادColumn" msprop:Generator_UserColumnName="تاريخ الميلاد" type="xs:dateTime" />
+              <xs:element name="المرحلة_x0020_الدراسية" msprop:Generator_ColumnVarNameInTable="columnالمرحلة_الدراسية" msprop:Generator_ColumnPropNameInRow="المرحلة_الدراسية" msprop:Generator_ColumnPropNameInTable="المرحلة_الدراسيةColumn" msprop:Generator_UserColumnName="المرحلة الدراسية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الصف_x0020_الدراسي" msprop:Generator_ColumnVarNameInTable="columnالصف_الدراسي" msprop:Generator_ColumnPropNameInRow="الصف_الدراسي" msprop:Generator_ColumnPropNameInTable="الصف_الدراسيColumn" msprop:Generator_UserColumnName="الصف الدراسي" type="xs:int" />
+              <xs:element name="الموسم_x0020_الدراسي" msprop:Generator_ColumnVarNameInTable="columnالموسم_الدراسي" msprop:Generator_ColumnPropNameInRow="الموسم_الدراسي" msprop:Generator_ColumnPropNameInTable="الموسم_الدراسيColumn" msprop:Generator_UserColumnName="الموسم الدراسي">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="تاريخ_x0020_التسجيل" msprop:Generator_ColumnVarNameInTable="columnتاريخ_التسجيل" msprop:Generator_ColumnPropNameInRow="تاريخ_التسجيل" msprop:Generator_ColumnPropNameInTable="تاريخ_التسجيلColumn" msprop:Generator_UserColumnName="تاريخ التسجيل" type="xs:dateTime" />
+              <xs:element name="ملاحظات" msprop:Generator_ColumnVarNameInTable="columnملاحظات" msprop:Generator_ColumnPropNameInRow="ملاحظات" msprop:Generator_ColumnPropNameInTable="ملاحظاتColumn" msprop:Generator_UserColumnName="ملاحظات" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="EducationalLevelTbl" msprop:Generator_TableClassName="EducationalLevelTblDataTable" msprop:Generator_TableVarName="tableEducationalLevelTbl" msprop:Generator_TablePropName="EducationalLevelTbl" msprop:Generator_RowDeletingName="EducationalLevelTblRowDeleting" msprop:Generator_RowChangingName="EducationalLevelTblRowChanging" msprop:Generator_RowEvHandlerName="EducationalLevelTblRowChangeEventHandler" msprop:Generator_RowDeletedName="EducationalLevelTblRowDeleted" msprop:Generator_UserTableName="EducationalLevelTbl" msprop:Generator_RowChangedName="EducationalLevelTblRowChanged" msprop:Generator_RowEvArgName="EducationalLevelTblRowChangeEvent" msprop:Generator_RowClassName="EducationalLevelTblRow">
           <xs:complexType>
             <xs:sequence>
@@ -874,6 +982,13 @@ SELECT ID, RoleName, AddNewStudent, ManageStudentTbl, UpdateExistedStudent, Dele
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="NationalCardID" msprop:Generator_ColumnVarNameInTable="columnNationalCardID" msprop:Generator_ColumnPropNameInRow="NationalCardID" msprop:Generator_ColumnPropNameInTable="NationalCardIDColumn" msprop:Generator_UserColumnName="NationalCardID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -940,6 +1055,10 @@ SELECT ID, RoleName, AddNewStudent, ManageStudentTbl, UpdateExistedStudent, Dele
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:VwStudent" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="EducationalLevelTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:EducationalLevelTbl" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>

@@ -153,6 +153,12 @@
     <Compile Include="Blank\BlankForm.Designer.cs">
       <DependentUpon>BlankForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Finance\ManageStudentFeeTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\ManageStudentFeeTblForm.Designer.cs">
+      <DependentUpon>ManageStudentFeeTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KindergartenDb.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,6 +189,12 @@
     </Compile>
     <Compile Include="Students\ManageStudentTblForm.Designer.cs">
       <DependentUpon>ManageStudentTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Students\StudentsXtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Students\StudentsXtraReport.Designer.cs">
+      <DependentUpon>StudentsXtraReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\ManageUserRoleTblForm.cs">
       <SubType>Form</SubType>
@@ -240,6 +252,9 @@
     <None Include="KindergartenDb.dbml.layout">
       <DependentUpon>KindergartenDb.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Finance\ManageStudentFeeTblForm.resx">
+      <DependentUpon>ManageStudentFeeTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Students\ManageStudentTblForm.resx">
       <DependentUpon>ManageStudentTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Students\StudentsXtraReport.resx">
+      <DependentUpon>StudentsXtraReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\ManageUserRoleTblForm.resx">
       <DependentUpon>ManageUserRoleTblForm.cs</DependentUpon>
@@ -284,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="7030130_0Bp_icon.ico" />
+    <None Include="bin\Debug\logo.png" />
     <Content Include="Db\KindergartenDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -292,6 +311,7 @@
       <DependentUpon>KindergartenDb.mdf</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
+    <None Include="Resources\logo.png" />
     <None Include="Resources\652873.png" />
     <None Include="Resources\8744885.png" />
     <None Include="Resources\2037695.png" />
@@ -412,8 +432,6 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Finance\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

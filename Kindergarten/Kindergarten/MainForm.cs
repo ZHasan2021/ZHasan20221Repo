@@ -162,8 +162,8 @@ namespace Kindergarten
 
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //StudentsXtraReport repFrm = new StudentsXtraReport();
-            //repFrm.ShowPreviewDialog();
+            StudentsXtraReport repFrm = new StudentsXtraReport();
+            repFrm.ShowPreviewDialog();
         }
 
         private void addNewUserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -301,6 +301,8 @@ namespace Kindergarten
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            ManageStudentFeeTblForm stfeFrm = new ManageStudentFeeTblForm();
+            stfeFrm.ShowDialog();
         }
 
         private void openAppFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
