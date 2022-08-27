@@ -84,6 +84,7 @@ namespace AssetManagement
             this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -170,10 +171,11 @@ namespace AssetManagement
             this.openBackupFolderBarButtonItem,
             this.assetsToDestructBarStaticItem,
             this.openExportFolderBarButtonItem,
-            this.manageModelTblBarButtonItem});
+            this.manageModelTblBarButtonItem,
+            this.manageSubDepartmentTblBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 61;
+            this.mainRibbonControl.MaxItemId = 62;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -390,7 +392,7 @@ namespace AssetManagement
             // 
             // manageEstateAreaUnitTblBarButtonItem
             // 
-            this.manageEstateAreaUnitTblBarButtonItem.Caption = "إدارة جدول واحدات مساحة العقارات";
+            this.manageEstateAreaUnitTblBarButtonItem.Caption = "إدارة جدول وحدات مساحة العقارات";
             this.manageEstateAreaUnitTblBarButtonItem.Id = 22;
             this.manageEstateAreaUnitTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._10096362;
             this.manageEstateAreaUnitTblBarButtonItem.Name = "manageEstateAreaUnitTblBarButtonItem";
@@ -660,6 +662,15 @@ namespace AssetManagement
             this.manageModelTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageModelTblBarButtonItem_ItemClick);
             // 
+            // manageSubDepartmentTblBarButtonItem
+            // 
+            this.manageSubDepartmentTblBarButtonItem.Caption = "إدارة جدول الوحدات";
+            this.manageSubDepartmentTblBarButtonItem.Id = 61;
+            this.manageSubDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3466467;
+            this.manageSubDepartmentTblBarButtonItem.Name = "manageSubDepartmentTblBarButtonItem";
+            this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSubDepartmentTblBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -760,8 +771,9 @@ namespace AssetManagement
             this.auxTablesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCategoriesBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCurrencyTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageDepartmentTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSectionTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageDepartmentTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSubDepartmentTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSquareTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageTransactionTypeTblBarButtonItem);
@@ -1067,6 +1079,7 @@ namespace AssetManagement
         private DevExpress.XtraEditors.MemoEdit mainMemoEdit;
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
     }
 }
 

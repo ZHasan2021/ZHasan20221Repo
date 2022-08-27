@@ -23,6 +23,8 @@ namespace AssetManagement.Assets
 
         private void AddNewAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet1.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet1.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.ModelTbl' table. You can move, or remove it, as needed.
             this.modelTblTableAdapter.Fill(this.assetMngDbDataSet1.ModelTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.SquareTbl' table. You can move, or remove it, as needed.
@@ -44,8 +46,9 @@ namespace AssetManagement.Assets
 
             manageCategoriesTblsBtn.Visible = StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
-            manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
+            manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
+            manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
             manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
@@ -56,6 +59,11 @@ namespace AssetManagement.Assets
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewAssetWizardControl_SelectedPageChanging(object sender, DevExpress.XtraWizard.WizardPageChangingEventArgs e)
         {
             string errorMsg = "";
@@ -64,12 +72,14 @@ namespace AssetManagement.Assets
                 case 1:
                     if (assetCodeTextBox.Text.Trim() == "")
                         errorMsg += "كود الأصل فارغ\r\n";
-                    if (assetDeptLookUpEdit.EditValue == null)
-                        errorMsg += "لم يتم تحديد قسم الأصل\r\n";
                     if (assetSectionLookUpEdit.EditValue == null)
-                        errorMsg += "لم يتم تحديد دائرة الأصل\r\n";
+                        errorMsg += "لم يتم تحديد الدائرة\r\n";
+                    if (assetDeptLookUpEdit.EditValue == null)
+                        errorMsg += "لم يتم تحديد القسم\r\n";
+                    if (assetSubDeptLookUpEdit.EditValue == null)
+                        errorMsg += "لم يتم تحديد الوحدة\r\n";
                     if (assetSquareLookUpEdit.EditValue == null)
-                        errorMsg += "لم يتم تحديد ساحة الأصل\r\n";
+                        errorMsg += "لم يتم تحديد الساحة\r\n";
                     if (mainCategoryLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الفئة الرئيسية للأصل\r\n";
                     if (minorCategoryLookUpEdit.EditValue == null)
@@ -126,8 +136,7 @@ namespace AssetManagement.Assets
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
                     DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
                     LifeSpanInMonths = Convert.ToInt32(lifeSpanInMonthsNumericUpDown.Value),
-                    AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue),
-                    AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue),
+                    AssetSubDepartment = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue),
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
                     AssetSpecifications = assetSpecificationsTextBox.Text.Trim(),
                     Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text,
@@ -276,6 +285,32 @@ namespace AssetManagement.Assets
             {
 
             }
+        }
+
+        private void assetDeptLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (assetDeptLookUpEdit.EditValue == null)
+                return;
+            var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(assetDeptLookUpEdit.EditValue));
+            assetSubDeptLookUpEdit.Properties.DataSource = subDeptItems;
+        }
+
+        private void assetSectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (assetSectionLookUpEdit.EditValue == null)
+                return;
+            var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(assetSectionLookUpEdit.EditValue));
+            assetDeptLookUpEdit.Properties.DataSource = deptItems;
+            assetDeptLookUpEdit_EditValueChanged(sender, e);
+            assetSubDeptLookUpEdit.EditValue = null;
+        }
+
+        private void manageSubDepartmentTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
+            sdptFrm.ShowDialog();
+
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
         }
     }
 }

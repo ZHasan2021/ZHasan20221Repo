@@ -22,6 +22,8 @@ namespace AssetManagement.Assets
 
         private void MoveAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
             this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMovementTbl' table. You can move, or remove it, as needed.
@@ -41,6 +43,7 @@ namespace AssetManagement.Assets
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 400);
         }
 
         private void assetMoveBtn_Click(object sender, EventArgs e)
@@ -49,15 +52,23 @@ namespace AssetManagement.Assets
             {
                 return;
             }
-            if (toDepartmentCheckBox.Checked && toDepartmentLookUpEdit.EditValue == null)
+            if (toSectionDepartmentSubDepartmentCheckBox.Checked)
             {
-                mainAlertControl.Show(this, "اختر القسم المنقول إليه أولاً", StaticCode.ApplicationTitle);
-                return;
-            }
-            if (toSectionCheckBox.Checked && toSectionLookUpEdit.EditValue == null)
-            {
-                mainAlertControl.Show(this, "اختر الدائرة المنقول إليها أولاً", StaticCode.ApplicationTitle);
-                return;
+                if (toSectionLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اختر الدائرة المنقول إليها أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (toDepartmentLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اختر القسم المنقول إليها أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (toSubDepartmentLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اختر الوحدة المنقول إليها أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
             }
             if (toSquareCheckBox.Checked && toSquareLookUpEdit.EditValue == null)
             {
@@ -78,18 +89,25 @@ namespace AssetManagement.Assets
             try
             {
                 AssetTbl assetToMove = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
-                if (toDepartmentCheckBox.Checked)
-                    assetToMove.AssetDept = Convert.ToInt32(toDepartmentLookUpEdit.EditValue);
-                if (toSectionCheckBox.Checked)
-                    assetToMove.AssetSection = Convert.ToInt32(toSectionLookUpEdit.EditValue);
+                if (toSectionDepartmentSubDepartmentCheckBox.Checked)
+                    assetToMove.AssetSubDepartment = Convert.ToInt32(toSubDepartmentLookUpEdit.EditValue);
                 if (toSquareCheckBox.Checked)
                     assetToMove.AssetSquare = Convert.ToInt32(toSquareLookUpEdit.EditValue);
                 if (toCustodianNameCheckBox.Checked)
                     assetToMove.CustodianName = toCustodianNameTextBox.Text.Trim();
 
-                if (toDepartmentCheckBox.Checked)
+                if (toSectionDepartmentSubDepartmentCheckBox.Checked)
                 {
                     AssetMovementTbl newAstMv = new AssetMovementTbl()
+                    {
+                        AssetID = assetToMove.ID,
+                        FieldChanged = "الدائرة",
+                        OldValue = fromSectionTextBox.Text.Trim(),
+                        NewValue = toSectionLookUpEdit.Text,
+                        MovementDate = Convert.ToDateTime(assetMovementDateDateEdit.EditValue),
+                    };
+                    StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(newAstMv);
+                    newAstMv = new AssetMovementTbl()
                     {
                         AssetID = assetToMove.ID,
                         FieldChanged = "القسم",
@@ -98,15 +116,12 @@ namespace AssetManagement.Assets
                         MovementDate = Convert.ToDateTime(assetMovementDateDateEdit.EditValue),
                     };
                     StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(newAstMv);
-                }
-                if (toSectionCheckBox.Checked)
-                {
-                    AssetMovementTbl newAstMv = new AssetMovementTbl()
+                    newAstMv = new AssetMovementTbl()
                     {
                         AssetID = assetToMove.ID,
-                        FieldChanged = "الدائرة",
-                        OldValue = fromSectionTextBox.Text.Trim(),
-                        NewValue = toSectionLookUpEdit.Text,
+                        FieldChanged = "الوحدة",
+                        OldValue = fromSubDepartmentTextBox.Text.Trim(),
+                        NewValue = toSubDepartmentLookUpEdit.Text,
                         MovementDate = Convert.ToDateTime(assetMovementDateDateEdit.EditValue),
                     };
                     StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(newAstMv);
@@ -171,23 +186,19 @@ namespace AssetManagement.Assets
             }
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
             assetInfoLabel.Text = $"فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName}";
-            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
             fromSectionTextBox.Text = currSrchRes.SectionName;
+            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
+            fromSubDepartmentTextBox.Text = currSrchRes.SubDepartmentName;
             fromSquareTextBox.Text = currSrchRes.SquareName;
             fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
             assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = true;
-            toDepartmentCheckBox.Checked = toSectionCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = false;
+            toSectionDepartmentSubDepartmentCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = false;
         }
 
         private void toDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            toDepartmentLookUpEdit.Visible = toDepartmentCheckBox.Checked;
-        }
-
-        private void toSectionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            toSectionLookUpEdit.Visible = toSectionCheckBox.Checked;
+            toSectionLookUpEdit.Visible = toDepartmentLookUpEdit.Visible = toSubDepartmentLookUpEdit.Visible = toSectionDepartmentSubDepartmentCheckBox.Checked;
         }
 
         private void toSquareCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -205,6 +216,24 @@ namespace AssetManagement.Assets
             this.Validate();
             assetMovementTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+        }
+
+        private void toDepartmentLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (toDepartmentLookUpEdit.EditValue == null)
+                return;
+            var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(toDepartmentLookUpEdit.EditValue));
+            toSubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+        }
+
+        private void toSectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (toSectionLookUpEdit.EditValue == null)
+                return;
+            var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(toSectionLookUpEdit.EditValue));
+            toDepartmentLookUpEdit.Properties.DataSource = deptItems;
+            toDepartmentLookUpEdit_EditValueChanged(sender, e);
+            toSubDepartmentLookUpEdit.EditValue = null;
         }
     }
 }

@@ -18,14 +18,23 @@ namespace AssetManagement.Assets
         AssetTbl currSrchRes = null;
         double assetDesRate = 0;
         int assetProdAge = 0;
+        int preLoadedAssetID = 0;
 
         public UpdateExistedAssetForm()
         {
             InitializeComponent();
         }
 
+        public UpdateExistedAssetForm(int assetID)
+        {
+            InitializeComponent();
+            preLoadedAssetID = assetID;
+        }
+
         private void UpdateExistedAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.EstateAreaUnitTbl' table. You can move, or remove it, as needed.
             this.estateAreaUnitTblTableAdapter.Fill(this.assetMngDbDataSet.EstateAreaUnitTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.StatusTbl' table. You can move, or remove it, as needed.
@@ -48,10 +57,28 @@ namespace AssetManagement.Assets
 
             manageCategoriesTblsBtn.Visible = StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
-            manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
+            manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
+            manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
+
+            if (preLoadedAssetID > 0)
+            {
+                try
+                {
+                    srchRes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.ID == preLoadedAssetID);
+                    currSrchRes = srchRes.First();
+                    assetCodeToSearchTextBox.Text = currSrchRes.AssetCode;
+                    searchAssetBtn_Click(sender, e);
+                    searchResultsListBox.SelectedIndex = 0;
+                    viewAssetInformationBtn_Click(sender, e);
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -88,8 +115,9 @@ namespace AssetManagement.Assets
                     isNewAssetRadioButton.Checked = true;
                 if (currSrchRes.IsOldOrNewAsset == "قديم")
                     isOldAssetRadioButton.Checked = true;
-                assetDeptLookUpEdit.EditValue = currSrchRes.AssetDept;
-                assetSectionLookUpEdit.EditValue = currSrchRes.AssetSection;
+                assetSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt => dpt.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt => sdpt.ID == currSrchRes.AssetSubDepartment).MainDepartment).SectionOfDepartment;
+                assetDeptLookUpEdit.EditValue = StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt => sdpt.ID == currSrchRes.AssetSubDepartment).MainDepartment;
+                assetSubDeptLookUpEdit.EditValue = currSrchRes.AssetSubDepartment;
                 assetSquareLookUpEdit.EditValue = currSrchRes.AssetSquare;
                 minorCategoryLookUpEdit.EditValue = currSrchRes.AssetMinorCategory;
                 mainCategoryLookUpEdit.EditValue = StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == currSrchRes.AssetMinorCategory).MainCategory;
@@ -195,6 +223,11 @@ namespace AssetManagement.Assets
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveChangesBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من إدخالاتك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -206,8 +239,7 @@ namespace AssetManagement.Assets
             {
                 currSrchRes.AssetCode = assetCodeTextBox.Text.Trim();
                 currSrchRes.IsOldOrNewAsset = (isNewAssetRadioButton.Checked) ? "جديد" : "قديم";
-                currSrchRes.AssetDept = Convert.ToInt32(assetDeptLookUpEdit.EditValue);
-                currSrchRes.AssetSection = Convert.ToInt32(assetSectionLookUpEdit.EditValue);
+                currSrchRes.AssetSubDepartment = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue);
                 currSrchRes.AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue);
                 currSrchRes.AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue);
                 currSrchRes.ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value);
@@ -220,7 +252,7 @@ namespace AssetManagement.Assets
                 currSrchRes.ActualCurrentPrice = Convert.ToDouble(actualCurrentPriceNumericUpDown.Value);
                 currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(actualCurrentPriceCurrencyLookUpEdit.EditValue);
                 currSrchRes.Model = modelTextBox.Text.Trim();
-                currSrchRes.Color = colorColorPickEdit.EditValue.ToString();
+                currSrchRes.Color = colorColorPickEdit.Text;
                 currSrchRes.Volume = volumeTextBox.Text.Trim();
                 currSrchRes.CustodianName = custodianNameTextBox.Text.Trim();
                 currSrchRes.OwnerName = ownerNameTextBox.Text.Trim();
@@ -270,6 +302,32 @@ namespace AssetManagement.Assets
             eauFrm.ShowDialog();
 
             this.estateAreaUnitTblTableAdapter.Fill(this.assetMngDbDataSet.EstateAreaUnitTbl);
+        }
+
+        private void assetDeptLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (assetDeptLookUpEdit.EditValue == null)
+                return;
+            var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(assetDeptLookUpEdit.EditValue));
+            assetSubDeptLookUpEdit.Properties.DataSource = subDeptItems;
+        }
+
+        private void manageSubDepartmentTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
+            sdptFrm.ShowDialog();
+
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+        }
+
+        private void assetSectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (assetSectionLookUpEdit.EditValue == null)
+                return;
+            var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(assetSectionLookUpEdit.EditValue));
+            assetDeptLookUpEdit.Properties.DataSource = deptItems;
+            assetDeptLookUpEdit_EditValueChanged(sender, e);
+            assetSubDeptLookUpEdit.EditValue = null;
         }
     }
 }

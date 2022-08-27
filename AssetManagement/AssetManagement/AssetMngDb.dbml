@@ -34,8 +34,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="IsOldOrNewAsset" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="AssetDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AssetSection" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AssetSubDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AssetSquare" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AssetMinorCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AssetSpecifications" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -74,11 +73,11 @@
       <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="AssetTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetMovementTbl" />
       <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="AssetID" Type="AssetTransactionTbl" />
-      <Association Name="DepartmentTbl_AssetTbl" Member="DepartmentTbl" ThisKey="AssetDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
       <Association Name="EstateAreaUnitTbl_AssetTbl" Member="EstateAreaUnitTbl" ThisKey="EstateAreaUnit" OtherKey="ID" Type="EstateAreaUnitTbl" IsForeignKey="true" />
       <Association Name="MinorCategoryTbl_AssetTbl" Member="MinorCategoryTbl" ThisKey="AssetMinorCategory" OtherKey="ID" Type="MinorCategoryTbl" IsForeignKey="true" />
-      <Association Name="SectionTbl_AssetTbl" Member="SectionTbl" ThisKey="AssetSection" OtherKey="ID" Type="SectionTbl" IsForeignKey="true" />
       <Association Name="SquareTbl_AssetTbl" Member="SquareTbl" ThisKey="AssetSquare" OtherKey="ID" Type="SquareTbl" IsForeignKey="true" />
+      <Association Name="StatusTbl_AssetTbl" Member="StatusTbl" ThisKey="CurrentStatus" OtherKey="ID" Type="StatusTbl" IsForeignKey="true" />
+      <Association Name="SubDepartmentTbl_AssetTbl" Member="SubDepartmentTbl" ThisKey="AssetSubDepartment" OtherKey="ID" Type="SubDepartmentTbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.AssetTransactionTbl" Member="AssetTransactionTbls">
@@ -116,9 +115,11 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DepartmentHQ" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SectionOfDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="DepartmentTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserDept" Type="UserTbl" />
-      <Association Name="DepartmentTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetDept" Type="AssetTbl" />
       <Association Name="DepartmentTbl_FinancialItemTbl" Member="FinancialItemTbls" ThisKey="ID" OtherKey="FinancialItemDept" Type="FinancialItemTbl" />
+      <Association Name="DepartmentTbl_SubDepartmentTbl" Member="SubDepartmentTbls" ThisKey="ID" OtherKey="MainDepartment" Type="SubDepartmentTbl" />
+      <Association Name="SectionTbl_DepartmentTbl" Member="SectionTbl" ThisKey="SectionOfDepartment" OtherKey="ID" Type="SectionTbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EstateAreaUnitTbl" Member="EstateAreaUnitTbls">
@@ -198,8 +199,8 @@
   <Table Name="dbo.SectionTbl" Member="SectionTbls">
     <Type Name="SectionTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="SectionTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSection" Type="AssetTbl" />
+      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="SectionTbl_DepartmentTbl" Member="DepartmentTbls" ThisKey="ID" OtherKey="SectionOfDepartment" Type="DepartmentTbl" />
     </Type>
   </Table>
   <Table Name="dbo.SquareTbl" Member="SquareTbls">
@@ -214,6 +215,16 @@
     <Type Name="StatusTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="StatusTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="CurrentStatus" Type="AssetTbl" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubDepartmentTbl" Member="SubDepartmentTbls">
+    <Type Name="SubDepartmentTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubDepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MainDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="SubDepartmentTbl_AssetTbl" Member="AssetTbls" ThisKey="ID" OtherKey="AssetSubDepartment" Type="AssetTbl" />
+      <Association Name="DepartmentTbl_SubDepartmentTbl" Member="DepartmentTbl" ThisKey="MainDepartment" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TransactionTypeTbl" Member="TransactionTypeTbls">
@@ -250,10 +261,12 @@
       <Column Name="ManageMainCategories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewMinorCategory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageMinorCategories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="AddNewDepartment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ManageDepartments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewSection" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageSections" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewDepartment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageDepartments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddNewSubDepartment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageSubDepartments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewSquare" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageSquares" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewCurrency" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -284,8 +297,9 @@
       <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SubDepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -307,8 +321,9 @@
       <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="القسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
@@ -316,8 +331,8 @@
       <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />

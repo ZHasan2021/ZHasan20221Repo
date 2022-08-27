@@ -205,6 +205,12 @@
     <Compile Include="Assets\UpdateExistedAssetForm.Designer.cs">
       <DependentUpon>UpdateExistedAssetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuxTables\ManageSubDepartmentTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageSubDepartmentTblForm.Designer.cs">
+      <DependentUpon>ManageSubDepartmentTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     <EmbeddedResource Include="Assets\UpdateExistedAssetForm.resx">
       <DependentUpon>UpdateExistedAssetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageSubDepartmentTblForm.resx">
+      <DependentUpon>ManageSubDepartmentTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageFinancialItemCategoryTblForm.resx">
       <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +491,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\3466467.png" />
     <None Include="Resources\1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu - Copy.png" />
     <None Include="Resources\968872.png" />
     <None Include="Resources\1827779.png" />

@@ -22,6 +22,10 @@ namespace AssetManagement.Assets
 
         private void NewAssetInventoryForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
+            this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
             this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.StatusTbl' table. You can move, or remove it, as needed.
@@ -99,6 +103,11 @@ namespace AssetManagement.Assets
             searchByInsertionDatePanel.Visible = searchByInsertionDateCheckBox.Checked;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchAssetDropDownButton_Click(object sender, EventArgs e)
         {
             assetGridControl.Visible = false;
@@ -106,18 +115,6 @@ namespace AssetManagement.Assets
             assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
             if (customSearchRadioButton.Checked)
             {
-                if (searchByDepartmentCheckBox.Checked)
-                {
-                    if (searchByDepartmentLookUpEdit.EditValue == null)
-                    {
-                        mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
-                        return;
-                    }
-                    else
-                    {
-                        assetsQry = assetsQry.Where(ast => ast.AssetDept == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
-                    }
-                }
                 if (searchBySectionCheckBox.Checked)
                 {
                     if (searchBySectionLookUpEdit.EditValue == null)
@@ -127,7 +124,34 @@ namespace AssetManagement.Assets
                     }
                     else
                     {
-                        assetsQry = assetsQry.Where(ast => ast.AssetSection == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                        List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
+                        List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
+                        assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
+                    }
+                }
+                if (searchByDepartmentCheckBox.Checked)
+                {
+                    if (searchByDepartmentLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
+                        assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
+                    }
+                }
+                if (searchBySubDepartmentCheckBox.Checked)
+                {
+                    if (searchBySubDepartmentLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "حدد الوحدة أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        assetsQry = assetsQry.Where(ast => ast.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
                     }
                 }
                 if (searchBySquareCheckBox.Checked)
@@ -152,7 +176,7 @@ namespace AssetManagement.Assets
                     else
                     {
                         List<int> minorQry = (from minorCat in StaticCode.mainDbContext.MinorCategoryTbls where minorCat.MainCategory == Convert.ToInt32(searchByMainCategoryLookUpEdit.EditValue) select minorCat.ID).ToList();
-                        assetsQry = from qry in assetsQry where minorQry.IndexOf(qry.AssetMinorCategory) > -1 select qry;
+                        assetsQry = from qry in assetsQry where minorQry.Contains(qry.AssetMinorCategory) select qry;
                     }
                 }
                 if (searchByMinorCategoryCheckBox.Checked)
@@ -169,9 +193,15 @@ namespace AssetManagement.Assets
                 }
             }
 
-            assetGridControl.DataSource = assetsQry;
-            assetGridControl.Visible = true;
-            exportToExcelDropDownButton.Enabled = true;
+            List<int> assetQryIDs = assetsQry.Select(ast1 => ast1.ID).ToList();
+            var assetsVwQry = StaticCode.mainDbContext.AssetVws.Where(ast2 => assetQryIDs.Contains(ast2.معرف_الأصل));
+            assetGridControl.DataSource = assetsVwQry;
+            assetGridControl.Visible =
+            exportToExcelDropDownButton.Enabled = assetsQry.Count() > 0;
+            if (assetsQry.Count() == 0)
+            {
+                mainAlertControl.Show(this, "لا توجد نتائج", StaticCode.ApplicationTitle);
+            }
         }
 
         private void exportToExcelDropDownButton_Click(object sender, EventArgs e)
@@ -468,6 +498,35 @@ namespace AssetManagement.Assets
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+        }
+
+        private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
+        }
+
+        private void searchBySectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                    return;
+                var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
+                searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
+                searchBySubDepartmentLookUpEdit.EditValue = null;
+            }
+        }
+
+        private void searchByDepartmentLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (searchByDepartmentCheckBox.Checked)
+            {
+                if (searchByDepartmentLookUpEdit.EditValue == null)
+                    return;
+                var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+                searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+            }
         }
     }
 }

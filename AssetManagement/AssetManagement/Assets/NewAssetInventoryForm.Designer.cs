@@ -48,6 +48,10 @@ namespace AssetManagement.Assets
             this.customSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.searchAllRadioButton = new System.Windows.Forms.RadioButton();
             this.customSearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
             this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
             this.searchByInsertionDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
@@ -56,7 +60,6 @@ namespace AssetManagement.Assets
             this.searchByInsertionDateCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByStatusLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.statusTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.searchByStatusCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByPurchaseDatePanel = new System.Windows.Forms.Panel();
             this.searchByPurchaseDateLabel_To = new System.Windows.Forms.Label();
@@ -90,56 +93,69 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
-            this.assetGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetSection = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetDept = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetSquare = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetMinorCategory = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetSpecifications = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVolume = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurchaseDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurchasePrice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurchasePriceCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPlaceOfPresence = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCurrentStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBenefitPercentage = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colActualCurrentPrice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colActualCurrentPriceCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCustodianName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMoreDetails = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetNotes = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEstateAddress = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOwnerName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOfUsed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEstateOwnershipDocumentWith = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEstateArea = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEstateAreaUnit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarPanelNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarManufacturingYear = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarChassisNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarEngineNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCurrentDestructionRate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLifeSpanInMonths = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsSold = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIsOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colInsertedOn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLastModifiedOn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colInsertedBy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLastModifiedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
+            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.assetGridControl = new DevExpress.XtraGrid.GridControl();
+            this.assetGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colمعرفالأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colكودالأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالعدد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالساحة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالفئةالرئيسية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالفئةالفرعية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمواصفاتالأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالموديل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاللون = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colتاريخالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colعملةسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمكانالتواجد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colحالةالأصلالآنية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمصاحبالعهدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colتفاصيلإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colملاحظاتأخرى = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colعنوانالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالمالك = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالمستغلمنه = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمعمنورقةالملكية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمساحةالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colوحدةمساحةالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colرقملوحةالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemLookUpEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
+            this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.customSearchGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             this.searchByInsertionDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
@@ -147,7 +163,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByStatusLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             this.searchByPurchaseDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties)).BeginInit();
@@ -163,9 +178,20 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -192,7 +218,7 @@ namespace AssetManagement.Assets
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1441, 101);
+            this.panel1.Size = new System.Drawing.Size(1097, 101);
             this.panel1.TabIndex = 0;
             // 
             // searchAssetDropDownButton
@@ -277,15 +303,15 @@ namespace AssetManagement.Assets
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1441, 20);
+            this.barDockControlTop.Size = new System.Drawing.Size(1097, 20);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 831);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 749);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1441, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1097, 0);
             // 
             // barDockControlLeft
             // 
@@ -293,21 +319,21 @@ namespace AssetManagement.Assets
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 811);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 729);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1441, 20);
+            this.barDockControlRight.Location = new System.Drawing.Point(1097, 20);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 811);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 729);
             // 
             // customSearchRadioButton
             // 
             this.customSearchRadioButton.AutoSize = true;
             this.customSearchRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSearchRadioButton.Location = new System.Drawing.Point(977, 24);
+            this.customSearchRadioButton.Location = new System.Drawing.Point(661, 20);
             this.customSearchRadioButton.Name = "customSearchRadioButton";
             this.customSearchRadioButton.Size = new System.Drawing.Size(114, 25);
             this.customSearchRadioButton.TabIndex = 10;
@@ -320,7 +346,7 @@ namespace AssetManagement.Assets
             this.searchAllRadioButton.AutoSize = true;
             this.searchAllRadioButton.Checked = true;
             this.searchAllRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchAllRadioButton.Location = new System.Drawing.Point(1141, 24);
+            this.searchAllRadioButton.Location = new System.Drawing.Point(825, 20);
             this.searchAllRadioButton.Name = "searchAllRadioButton";
             this.searchAllRadioButton.Size = new System.Drawing.Size(110, 25);
             this.searchAllRadioButton.TabIndex = 5;
@@ -332,6 +358,8 @@ namespace AssetManagement.Assets
             // customSearchGroupBox
             // 
             this.customSearchGroupBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentCheckBox);
+            this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchByInsertionDatePanel);
             this.customSearchGroupBox.Controls.Add(this.searchByInsertionDateCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchByStatusLookUpEdit);
@@ -358,11 +386,54 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customSearchGroupBox.Location = new System.Drawing.Point(0, 121);
             this.customSearchGroupBox.Name = "customSearchGroupBox";
-            this.customSearchGroupBox.Size = new System.Drawing.Size(1441, 387);
+            this.customSearchGroupBox.Size = new System.Drawing.Size(1097, 418);
             this.customSearchGroupBox.TabIndex = 100;
             this.customSearchGroupBox.TabStop = false;
             this.customSearchGroupBox.Text = "بحث مخصص";
             this.customSearchGroupBox.Visible = false;
+            // 
+            // searchBySubDepartmentCheckBox
+            // 
+            this.searchBySubDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySubDepartmentCheckBox.AutoSize = true;
+            this.searchBySubDepartmentCheckBox.Location = new System.Drawing.Point(965, 135);
+            this.searchBySubDepartmentCheckBox.Name = "searchBySubDepartmentCheckBox";
+            this.searchBySubDepartmentCheckBox.Size = new System.Drawing.Size(115, 25);
+            this.searchBySubDepartmentCheckBox.TabIndex = 125;
+            this.searchBySubDepartmentCheckBox.Text = "حسب الوحدة:";
+            this.searchBySubDepartmentCheckBox.UseVisualStyleBackColor = true;
+            this.searchBySubDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchBySubDepartmentCheckBox_CheckedChanged);
+            // 
+            // searchBySubDepartmentLookUpEdit
+            // 
+            this.searchBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(675, 133);
+            this.searchBySubDepartmentLookUpEdit.Name = "searchBySubDepartmentLookUpEdit";
+            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchBySubDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchBySubDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchBySubDepartmentLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
+            this.searchBySubDepartmentLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
+            this.searchBySubDepartmentLookUpEdit.Properties.PopupWidth = 500;
+            this.searchBySubDepartmentLookUpEdit.Properties.ValueMember = "ID";
+            this.searchBySubDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchBySubDepartmentLookUpEdit.TabIndex = 130;
+            this.searchBySubDepartmentLookUpEdit.Visible = false;
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // searchByInsertionDatePanel
             // 
@@ -370,10 +441,10 @@ namespace AssetManagement.Assets
             this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateDateEdit_To);
             this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateLabel_From);
             this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateDateEdit_From);
-            this.searchByInsertionDatePanel.Location = new System.Drawing.Point(60, 179);
+            this.searchByInsertionDatePanel.Location = new System.Drawing.Point(78, 297);
             this.searchByInsertionDatePanel.Name = "searchByInsertionDatePanel";
             this.searchByInsertionDatePanel.Size = new System.Drawing.Size(234, 101);
-            this.searchByInsertionDatePanel.TabIndex = 335;
+            this.searchByInsertionDatePanel.TabIndex = 265;
             this.searchByInsertionDatePanel.Visible = false;
             // 
             // searchByInsertionDateLabel_To
@@ -382,7 +453,7 @@ namespace AssetManagement.Assets
             this.searchByInsertionDateLabel_To.Location = new System.Drawing.Point(189, 61);
             this.searchByInsertionDateLabel_To.Name = "searchByInsertionDateLabel_To";
             this.searchByInsertionDateLabel_To.Size = new System.Drawing.Size(29, 21);
-            this.searchByInsertionDateLabel_To.TabIndex = 350;
+            this.searchByInsertionDateLabel_To.TabIndex = 280;
             this.searchByInsertionDateLabel_To.Text = "إلى:";
             // 
             // searchByInsertionDateDateEdit_To
@@ -397,7 +468,7 @@ namespace AssetManagement.Assets
             this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchByInsertionDateDateEdit_To.Size = new System.Drawing.Size(156, 28);
-            this.searchByInsertionDateDateEdit_To.TabIndex = 355;
+            this.searchByInsertionDateDateEdit_To.TabIndex = 285;
             // 
             // searchByInsertionDateLabel_From
             // 
@@ -405,7 +476,7 @@ namespace AssetManagement.Assets
             this.searchByInsertionDateLabel_From.Location = new System.Drawing.Point(189, 16);
             this.searchByInsertionDateLabel_From.Name = "searchByInsertionDateLabel_From";
             this.searchByInsertionDateLabel_From.Size = new System.Drawing.Size(32, 21);
-            this.searchByInsertionDateLabel_From.TabIndex = 340;
+            this.searchByInsertionDateLabel_From.TabIndex = 270;
             this.searchByInsertionDateLabel_From.Text = "من:";
             // 
             // searchByInsertionDateDateEdit_From
@@ -420,22 +491,23 @@ namespace AssetManagement.Assets
             this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchByInsertionDateDateEdit_From.Size = new System.Drawing.Size(156, 28);
-            this.searchByInsertionDateDateEdit_From.TabIndex = 345;
+            this.searchByInsertionDateDateEdit_From.TabIndex = 275;
             // 
             // searchByInsertionDateCheckBox
             // 
             this.searchByInsertionDateCheckBox.AutoSize = true;
-            this.searchByInsertionDateCheckBox.Location = new System.Drawing.Point(312, 185);
+            this.searchByInsertionDateCheckBox.Location = new System.Drawing.Point(330, 303);
             this.searchByInsertionDateCheckBox.Name = "searchByInsertionDateCheckBox";
             this.searchByInsertionDateCheckBox.Size = new System.Drawing.Size(153, 25);
-            this.searchByInsertionDateCheckBox.TabIndex = 330;
+            this.searchByInsertionDateCheckBox.TabIndex = 260;
             this.searchByInsertionDateCheckBox.Text = "حسب تاريخ الإدخال:";
             this.searchByInsertionDateCheckBox.UseVisualStyleBackColor = true;
             this.searchByInsertionDateCheckBox.CheckedChanged += new System.EventHandler(this.searchByInsertionDateCheckBox_CheckedChanged);
             // 
             // searchByStatusLookUpEdit
             // 
-            this.searchByStatusLookUpEdit.Location = new System.Drawing.Point(60, 33);
+            this.searchByStatusLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByStatusLookUpEdit.Location = new System.Drawing.Point(675, 335);
             this.searchByStatusLookUpEdit.Name = "searchByStatusLookUpEdit";
             this.searchByStatusLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByStatusLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -446,9 +518,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusName", "اسم الحالة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchByStatusLookUpEdit.Properties.DataSource = this.statusTblBindingSource;
             this.searchByStatusLookUpEdit.Properties.DisplayMember = "StatusName";
+            this.searchByStatusLookUpEdit.Properties.PopupWidth = 500;
             this.searchByStatusLookUpEdit.Properties.ValueMember = "ID";
             this.searchByStatusLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchByStatusLookUpEdit.TabIndex = 305;
+            this.searchByStatusLookUpEdit.TabIndex = 170;
             this.searchByStatusLookUpEdit.Visible = false;
             // 
             // statusTblBindingSource
@@ -456,30 +529,25 @@ namespace AssetManagement.Assets
             this.statusTblBindingSource.DataMember = "StatusTbl";
             this.statusTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // searchByStatusCheckBox
             // 
+            this.searchByStatusCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByStatusCheckBox.AutoSize = true;
-            this.searchByStatusCheckBox.Location = new System.Drawing.Point(355, 35);
+            this.searchByStatusCheckBox.Location = new System.Drawing.Point(970, 337);
             this.searchByStatusCheckBox.Name = "searchByStatusCheckBox";
             this.searchByStatusCheckBox.Size = new System.Drawing.Size(110, 25);
-            this.searchByStatusCheckBox.TabIndex = 300;
+            this.searchByStatusCheckBox.TabIndex = 165;
             this.searchByStatusCheckBox.Text = "حسب الحالة:";
             this.searchByStatusCheckBox.UseVisualStyleBackColor = true;
             this.searchByStatusCheckBox.CheckedChanged += new System.EventHandler(this.searchByStatusCheckBox_CheckedChanged);
             // 
             // searchByPurchaseDatePanel
             // 
-            this.searchByPurchaseDatePanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateLabel_To);
             this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateDateEdit_To);
             this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateLabel_From);
             this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateDateEdit_From);
-            this.searchByPurchaseDatePanel.Location = new System.Drawing.Point(526, 179);
+            this.searchByPurchaseDatePanel.Location = new System.Drawing.Point(78, 178);
             this.searchByPurchaseDatePanel.Name = "searchByPurchaseDatePanel";
             this.searchByPurchaseDatePanel.Size = new System.Drawing.Size(234, 101);
             this.searchByPurchaseDatePanel.TabIndex = 235;
@@ -533,9 +601,8 @@ namespace AssetManagement.Assets
             // 
             // searchByPurchaseDateCheckBox
             // 
-            this.searchByPurchaseDateCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchByPurchaseDateCheckBox.AutoSize = true;
-            this.searchByPurchaseDateCheckBox.Location = new System.Drawing.Point(788, 186);
+            this.searchByPurchaseDateCheckBox.Location = new System.Drawing.Point(340, 185);
             this.searchByPurchaseDateCheckBox.Name = "searchByPurchaseDateCheckBox";
             this.searchByPurchaseDateCheckBox.Size = new System.Drawing.Size(143, 25);
             this.searchByPurchaseDateCheckBox.TabIndex = 230;
@@ -545,9 +612,8 @@ namespace AssetManagement.Assets
             // 
             // searchByAssetDescriptionCheckBox
             // 
-            this.searchByAssetDescriptionCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchByAssetDescriptionCheckBox.AutoSize = true;
-            this.searchByAssetDescriptionCheckBox.Location = new System.Drawing.Point(781, 135);
+            this.searchByAssetDescriptionCheckBox.Location = new System.Drawing.Point(333, 135);
             this.searchByAssetDescriptionCheckBox.Name = "searchByAssetDescriptionCheckBox";
             this.searchByAssetDescriptionCheckBox.Size = new System.Drawing.Size(150, 25);
             this.searchByAssetDescriptionCheckBox.TabIndex = 220;
@@ -557,8 +623,7 @@ namespace AssetManagement.Assets
             // 
             // searchByAssetDescriptionTextBox
             // 
-            this.searchByAssetDescriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchByAssetDescriptionTextBox.Location = new System.Drawing.Point(526, 133);
+            this.searchByAssetDescriptionTextBox.Location = new System.Drawing.Point(78, 133);
             this.searchByAssetDescriptionTextBox.Name = "searchByAssetDescriptionTextBox";
             this.searchByAssetDescriptionTextBox.Size = new System.Drawing.Size(234, 28);
             this.searchByAssetDescriptionTextBox.TabIndex = 225;
@@ -566,9 +631,8 @@ namespace AssetManagement.Assets
             // 
             // searchByCustodianNameCheckBox
             // 
-            this.searchByCustodianNameCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchByCustodianNameCheckBox.AutoSize = true;
-            this.searchByCustodianNameCheckBox.Location = new System.Drawing.Point(772, 85);
+            this.searchByCustodianNameCheckBox.Location = new System.Drawing.Point(324, 85);
             this.searchByCustodianNameCheckBox.Name = "searchByCustodianNameCheckBox";
             this.searchByCustodianNameCheckBox.Size = new System.Drawing.Size(159, 25);
             this.searchByCustodianNameCheckBox.TabIndex = 210;
@@ -578,8 +642,7 @@ namespace AssetManagement.Assets
             // 
             // searchByCustodianNameTextBox
             // 
-            this.searchByCustodianNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchByCustodianNameTextBox.Location = new System.Drawing.Point(526, 83);
+            this.searchByCustodianNameTextBox.Location = new System.Drawing.Point(78, 83);
             this.searchByCustodianNameTextBox.Name = "searchByCustodianNameTextBox";
             this.searchByCustodianNameTextBox.Size = new System.Drawing.Size(234, 28);
             this.searchByCustodianNameTextBox.TabIndex = 215;
@@ -587,9 +650,8 @@ namespace AssetManagement.Assets
             // 
             // searchByAssetCodeCheckBox
             // 
-            this.searchByAssetCodeCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.searchByAssetCodeCheckBox.AutoSize = true;
-            this.searchByAssetCodeCheckBox.Location = new System.Drawing.Point(795, 35);
+            this.searchByAssetCodeCheckBox.Location = new System.Drawing.Point(347, 35);
             this.searchByAssetCodeCheckBox.Name = "searchByAssetCodeCheckBox";
             this.searchByAssetCodeCheckBox.Size = new System.Drawing.Size(136, 25);
             this.searchByAssetCodeCheckBox.TabIndex = 200;
@@ -599,8 +661,7 @@ namespace AssetManagement.Assets
             // 
             // searchByAssetCodeTextBox
             // 
-            this.searchByAssetCodeTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchByAssetCodeTextBox.Location = new System.Drawing.Point(526, 33);
+            this.searchByAssetCodeTextBox.Location = new System.Drawing.Point(78, 33);
             this.searchByAssetCodeTextBox.Name = "searchByAssetCodeTextBox";
             this.searchByAssetCodeTextBox.Size = new System.Drawing.Size(234, 28);
             this.searchByAssetCodeTextBox.TabIndex = 205;
@@ -610,10 +671,10 @@ namespace AssetManagement.Assets
             // 
             this.searchByMinorCategoryCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByMinorCategoryCheckBox.AutoSize = true;
-            this.searchByMinorCategoryCheckBox.Location = new System.Drawing.Point(1277, 235);
+            this.searchByMinorCategoryCheckBox.Location = new System.Drawing.Point(933, 285);
             this.searchByMinorCategoryCheckBox.Name = "searchByMinorCategoryCheckBox";
             this.searchByMinorCategoryCheckBox.Size = new System.Drawing.Size(147, 25);
-            this.searchByMinorCategoryCheckBox.TabIndex = 145;
+            this.searchByMinorCategoryCheckBox.TabIndex = 155;
             this.searchByMinorCategoryCheckBox.Text = "حسب الفئة الفرعية:";
             this.searchByMinorCategoryCheckBox.UseVisualStyleBackColor = true;
             this.searchByMinorCategoryCheckBox.CheckedChanged += new System.EventHandler(this.searchByMinorCategoryCheckBox_CheckedChanged);
@@ -622,10 +683,10 @@ namespace AssetManagement.Assets
             // 
             this.searchByMainCategoryCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByMainCategoryCheckBox.AutoSize = true;
-            this.searchByMainCategoryCheckBox.Location = new System.Drawing.Point(1272, 185);
+            this.searchByMainCategoryCheckBox.Location = new System.Drawing.Point(928, 235);
             this.searchByMainCategoryCheckBox.Name = "searchByMainCategoryCheckBox";
             this.searchByMainCategoryCheckBox.Size = new System.Drawing.Size(152, 25);
-            this.searchByMainCategoryCheckBox.TabIndex = 135;
+            this.searchByMainCategoryCheckBox.TabIndex = 145;
             this.searchByMainCategoryCheckBox.Text = "حسب الفئة الرئيسية:";
             this.searchByMainCategoryCheckBox.UseVisualStyleBackColor = true;
             this.searchByMainCategoryCheckBox.CheckedChanged += new System.EventHandler(this.searchByMainCategoryCheckBox_CheckedChanged);
@@ -634,10 +695,10 @@ namespace AssetManagement.Assets
             // 
             this.searchBySquareCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBySquareCheckBox.AutoSize = true;
-            this.searchBySquareCheckBox.Location = new System.Drawing.Point(1308, 135);
+            this.searchBySquareCheckBox.Location = new System.Drawing.Point(964, 185);
             this.searchBySquareCheckBox.Name = "searchBySquareCheckBox";
             this.searchBySquareCheckBox.Size = new System.Drawing.Size(116, 25);
-            this.searchBySquareCheckBox.TabIndex = 125;
+            this.searchBySquareCheckBox.TabIndex = 135;
             this.searchBySquareCheckBox.Text = "حسب الساحة:";
             this.searchBySquareCheckBox.UseVisualStyleBackColor = true;
             this.searchBySquareCheckBox.CheckedChanged += new System.EventHandler(this.searchBySquareCheckBox_CheckedChanged);
@@ -646,10 +707,10 @@ namespace AssetManagement.Assets
             // 
             this.searchBySectionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBySectionCheckBox.AutoSize = true;
-            this.searchBySectionCheckBox.Location = new System.Drawing.Point(1313, 85);
+            this.searchBySectionCheckBox.Location = new System.Drawing.Point(969, 35);
             this.searchBySectionCheckBox.Name = "searchBySectionCheckBox";
             this.searchBySectionCheckBox.Size = new System.Drawing.Size(111, 25);
-            this.searchBySectionCheckBox.TabIndex = 115;
+            this.searchBySectionCheckBox.TabIndex = 105;
             this.searchBySectionCheckBox.Text = "حسب الدائرة:";
             this.searchBySectionCheckBox.UseVisualStyleBackColor = true;
             this.searchBySectionCheckBox.CheckedChanged += new System.EventHandler(this.searchBySectionCheckBox_CheckedChanged);
@@ -657,7 +718,7 @@ namespace AssetManagement.Assets
             // searchBySquareLookUpEdit
             // 
             this.searchBySquareLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySquareLookUpEdit.Location = new System.Drawing.Point(1019, 133);
+            this.searchBySquareLookUpEdit.Location = new System.Drawing.Point(675, 183);
             this.searchBySquareLookUpEdit.Name = "searchBySquareLookUpEdit";
             this.searchBySquareLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySquareLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -669,9 +730,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SquareLocation", "موقع الساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchBySquareLookUpEdit.Properties.DataSource = this.squareTblBindingSource;
             this.searchBySquareLookUpEdit.Properties.DisplayMember = "SquareName";
+            this.searchBySquareLookUpEdit.Properties.PopupWidth = 500;
             this.searchBySquareLookUpEdit.Properties.ValueMember = "ID";
             this.searchBySquareLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchBySquareLookUpEdit.TabIndex = 130;
+            this.searchBySquareLookUpEdit.TabIndex = 140;
             this.searchBySquareLookUpEdit.Visible = false;
             // 
             // squareTblBindingSource
@@ -682,7 +744,7 @@ namespace AssetManagement.Assets
             // searchBySectionLookUpEdit
             // 
             this.searchBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(1019, 83);
+            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(675, 33);
             this.searchBySectionLookUpEdit.Name = "searchBySectionLookUpEdit";
             this.searchBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -693,10 +755,12 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchBySectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource;
             this.searchBySectionLookUpEdit.Properties.DisplayMember = "SectionName";
+            this.searchBySectionLookUpEdit.Properties.PopupWidth = 500;
             this.searchBySectionLookUpEdit.Properties.ValueMember = "ID";
             this.searchBySectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchBySectionLookUpEdit.TabIndex = 120;
+            this.searchBySectionLookUpEdit.TabIndex = 110;
             this.searchBySectionLookUpEdit.Visible = false;
+            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionLookUpEdit_EditValueChanged);
             // 
             // sectionTblBindingSource
             // 
@@ -706,22 +770,24 @@ namespace AssetManagement.Assets
             // searchByDepartmentLookUpEdit
             // 
             this.searchByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(1019, 33);
+            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(675, 83);
             this.searchByDepartmentLookUpEdit.Name = "searchByDepartmentLookUpEdit";
             this.searchByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
             this.searchByDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchByDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionOfDepartment", "معرف الدائرة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchByDepartmentLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
             this.searchByDepartmentLookUpEdit.Properties.DisplayMember = "DepartmentName";
+            this.searchByDepartmentLookUpEdit.Properties.PopupWidth = 500;
             this.searchByDepartmentLookUpEdit.Properties.ValueMember = "ID";
             this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchByDepartmentLookUpEdit.TabIndex = 110;
+            this.searchByDepartmentLookUpEdit.TabIndex = 120;
             this.searchByDepartmentLookUpEdit.Visible = false;
+            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentLookUpEdit_EditValueChanged);
             // 
             // departmentTblBindingSource
             // 
@@ -731,7 +797,7 @@ namespace AssetManagement.Assets
             // searchByMinorCategoryLookUpEdit
             // 
             this.searchByMinorCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByMinorCategoryLookUpEdit.Location = new System.Drawing.Point(1019, 233);
+            this.searchByMinorCategoryLookUpEdit.Location = new System.Drawing.Point(675, 283);
             this.searchByMinorCategoryLookUpEdit.Name = "searchByMinorCategoryLookUpEdit";
             this.searchByMinorCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByMinorCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -746,9 +812,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DestructionRate", "معدل الإهلاك", 120, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchByMinorCategoryLookUpEdit.Properties.DataSource = this.minorCategoryTblBindingSource;
             this.searchByMinorCategoryLookUpEdit.Properties.DisplayMember = "MinorCategoryName";
+            this.searchByMinorCategoryLookUpEdit.Properties.PopupWidth = 500;
             this.searchByMinorCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.searchByMinorCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchByMinorCategoryLookUpEdit.TabIndex = 150;
+            this.searchByMinorCategoryLookUpEdit.TabIndex = 160;
             this.searchByMinorCategoryLookUpEdit.Visible = false;
             // 
             // minorCategoryTblBindingSource
@@ -759,7 +826,7 @@ namespace AssetManagement.Assets
             // searchByMainCategoryLookUpEdit
             // 
             this.searchByMainCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByMainCategoryLookUpEdit.Location = new System.Drawing.Point(1019, 183);
+            this.searchByMainCategoryLookUpEdit.Location = new System.Drawing.Point(675, 233);
             this.searchByMainCategoryLookUpEdit.Name = "searchByMainCategoryLookUpEdit";
             this.searchByMainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByMainCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -771,9 +838,10 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategoryDescription", "وصف الفئة الرئيسية", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.searchByMainCategoryLookUpEdit.Properties.DataSource = this.mainCategoryTblBindingSource;
             this.searchByMainCategoryLookUpEdit.Properties.DisplayMember = "MainCategoryName";
+            this.searchByMainCategoryLookUpEdit.Properties.PopupWidth = 500;
             this.searchByMainCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.searchByMainCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchByMainCategoryLookUpEdit.TabIndex = 140;
+            this.searchByMainCategoryLookUpEdit.TabIndex = 150;
             this.searchByMainCategoryLookUpEdit.Visible = false;
             // 
             // mainCategoryTblBindingSource
@@ -785,10 +853,10 @@ namespace AssetManagement.Assets
             // 
             this.searchByDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByDepartmentCheckBox.AutoSize = true;
-            this.searchByDepartmentCheckBox.Location = new System.Drawing.Point(1313, 35);
+            this.searchByDepartmentCheckBox.Location = new System.Drawing.Point(969, 85);
             this.searchByDepartmentCheckBox.Name = "searchByDepartmentCheckBox";
             this.searchByDepartmentCheckBox.Size = new System.Drawing.Size(111, 25);
-            this.searchByDepartmentCheckBox.TabIndex = 105;
+            this.searchByDepartmentCheckBox.TabIndex = 115;
             this.searchByDepartmentCheckBox.Text = "حسب القسم:";
             this.searchByDepartmentCheckBox.UseVisualStyleBackColor = true;
             this.searchByDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
@@ -813,451 +881,10 @@ namespace AssetManagement.Assets
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
-            // assetGridControl
-            // 
-            this.assetGridControl.DataSource = this.assetTblBindingSource;
-            this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assetGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.assetGridControl.Location = new System.Drawing.Point(0, 508);
-            this.assetGridControl.MainView = this.assetGridView;
-            this.assetGridControl.Margin = new System.Windows.Forms.Padding(4);
-            this.assetGridControl.Name = "assetGridControl";
-            this.assetGridControl.Size = new System.Drawing.Size(1441, 323);
-            this.assetGridControl.TabIndex = 600;
-            this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.assetGridView});
-            this.assetGridControl.Visible = false;
-            // 
             // assetTblBindingSource
             // 
             this.assetTblBindingSource.DataMember = "AssetTbl";
             this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetGridView
-            // 
-            this.assetGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colID,
-            this.colAssetCode,
-            this.colAssetSection,
-            this.colAssetDept,
-            this.colAssetSquare,
-            this.colAssetMinorCategory,
-            this.colAssetSpecifications,
-            this.colModel,
-            this.colColor,
-            this.colVolume,
-            this.colPurchaseDate,
-            this.colPurchasePrice,
-            this.colPurchasePriceCurrency,
-            this.colPlaceOfPresence,
-            this.colCurrentStatus,
-            this.colBenefitPercentage,
-            this.colActualCurrentPrice,
-            this.colActualCurrentPriceCurrency,
-            this.colCustodianName,
-            this.colMoreDetails,
-            this.colAssetNotes,
-            this.colEstateAddress,
-            this.colOwnerName,
-            this.colOfUsed,
-            this.colEstateOwnershipDocumentWith,
-            this.colEstateArea,
-            this.colEstateAreaUnit,
-            this.colCarPanelNumber,
-            this.colCarManufacturingYear,
-            this.colCarChassisNumber,
-            this.colCarEngineNumber,
-            this.colCurrentDestructionRate,
-            this.colLifeSpanInMonths,
-            this.colIsSold,
-            this.colIsOutOfWork,
-            this.colInsertedOn,
-            this.colLastModifiedOn,
-            this.colInsertedBy,
-            this.colLastModifiedBy});
-            this.assetGridView.DetailHeight = 437;
-            this.assetGridView.GridControl = this.assetGridControl;
-            this.assetGridView.Name = "assetGridView";
-            // 
-            // colID
-            // 
-            this.colID.Caption = "معرف الأصل";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 100;
-            this.colID.Name = "colID";
-            this.colID.Width = 117;
-            // 
-            // colAssetCode
-            // 
-            this.colAssetCode.Caption = "كود الأصل";
-            this.colAssetCode.FieldName = "AssetCode";
-            this.colAssetCode.MinWidth = 100;
-            this.colAssetCode.Name = "colAssetCode";
-            this.colAssetCode.Visible = true;
-            this.colAssetCode.VisibleIndex = 0;
-            this.colAssetCode.Width = 135;
-            // 
-            // colAssetSection
-            // 
-            this.colAssetSection.Caption = "الدائرة";
-            this.colAssetSection.FieldName = "AssetSection";
-            this.colAssetSection.MinWidth = 150;
-            this.colAssetSection.Name = "colAssetSection";
-            this.colAssetSection.Visible = true;
-            this.colAssetSection.VisibleIndex = 1;
-            this.colAssetSection.Width = 150;
-            // 
-            // colAssetDept
-            // 
-            this.colAssetDept.Caption = "القسم";
-            this.colAssetDept.FieldName = "AssetDept";
-            this.colAssetDept.MinWidth = 150;
-            this.colAssetDept.Name = "colAssetDept";
-            this.colAssetDept.Visible = true;
-            this.colAssetDept.VisibleIndex = 2;
-            this.colAssetDept.Width = 150;
-            // 
-            // colAssetSquare
-            // 
-            this.colAssetSquare.Caption = "الساحة";
-            this.colAssetSquare.FieldName = "AssetSquare";
-            this.colAssetSquare.MinWidth = 150;
-            this.colAssetSquare.Name = "colAssetSquare";
-            this.colAssetSquare.Visible = true;
-            this.colAssetSquare.VisibleIndex = 3;
-            this.colAssetSquare.Width = 150;
-            // 
-            // colAssetMinorCategory
-            // 
-            this.colAssetMinorCategory.Caption = "الفئة الفرعية";
-            this.colAssetMinorCategory.FieldName = "AssetMinorCategory";
-            this.colAssetMinorCategory.MinWidth = 150;
-            this.colAssetMinorCategory.Name = "colAssetMinorCategory";
-            this.colAssetMinorCategory.Visible = true;
-            this.colAssetMinorCategory.VisibleIndex = 4;
-            this.colAssetMinorCategory.Width = 150;
-            // 
-            // colAssetSpecifications
-            // 
-            this.colAssetSpecifications.Caption = "مواصفات الأصل";
-            this.colAssetSpecifications.FieldName = "AssetSpecifications";
-            this.colAssetSpecifications.MinWidth = 187;
-            this.colAssetSpecifications.Name = "colAssetSpecifications";
-            this.colAssetSpecifications.Visible = true;
-            this.colAssetSpecifications.VisibleIndex = 5;
-            this.colAssetSpecifications.Width = 187;
-            // 
-            // colModel
-            // 
-            this.colModel.Caption = "الموديل";
-            this.colModel.FieldName = "Model";
-            this.colModel.MinWidth = 125;
-            this.colModel.Name = "colModel";
-            this.colModel.Visible = true;
-            this.colModel.VisibleIndex = 6;
-            this.colModel.Width = 125;
-            // 
-            // colColor
-            // 
-            this.colColor.Caption = "اللون";
-            this.colColor.FieldName = "Color";
-            this.colColor.MinWidth = 100;
-            this.colColor.Name = "colColor";
-            this.colColor.Visible = true;
-            this.colColor.VisibleIndex = 7;
-            this.colColor.Width = 117;
-            // 
-            // colVolume
-            // 
-            this.colVolume.Caption = "السعة أو الحجم";
-            this.colVolume.FieldName = "Volume";
-            this.colVolume.MinWidth = 125;
-            this.colVolume.Name = "colVolume";
-            this.colVolume.Visible = true;
-            this.colVolume.VisibleIndex = 8;
-            this.colVolume.Width = 125;
-            // 
-            // colPurchaseDate
-            // 
-            this.colPurchaseDate.Caption = "تاريخ الشراء";
-            this.colPurchaseDate.FieldName = "PurchaseDate";
-            this.colPurchaseDate.MinWidth = 100;
-            this.colPurchaseDate.Name = "colPurchaseDate";
-            this.colPurchaseDate.Visible = true;
-            this.colPurchaseDate.VisibleIndex = 9;
-            this.colPurchaseDate.Width = 117;
-            // 
-            // colPurchasePrice
-            // 
-            this.colPurchasePrice.Caption = "سعر الشراء";
-            this.colPurchasePrice.FieldName = "PurchasePrice";
-            this.colPurchasePrice.MinWidth = 100;
-            this.colPurchasePrice.Name = "colPurchasePrice";
-            this.colPurchasePrice.Visible = true;
-            this.colPurchasePrice.VisibleIndex = 10;
-            this.colPurchasePrice.Width = 117;
-            // 
-            // colPurchasePriceCurrency
-            // 
-            this.colPurchasePriceCurrency.Caption = "عملة سعر الشراء";
-            this.colPurchasePriceCurrency.FieldName = "PurchasePriceCurrency";
-            this.colPurchasePriceCurrency.MinWidth = 100;
-            this.colPurchasePriceCurrency.Name = "colPurchasePriceCurrency";
-            this.colPurchasePriceCurrency.Visible = true;
-            this.colPurchasePriceCurrency.VisibleIndex = 11;
-            this.colPurchasePriceCurrency.Width = 117;
-            // 
-            // colPlaceOfPresence
-            // 
-            this.colPlaceOfPresence.Caption = "مكان التواجد";
-            this.colPlaceOfPresence.FieldName = "PlaceOfPresence";
-            this.colPlaceOfPresence.MinWidth = 150;
-            this.colPlaceOfPresence.Name = "colPlaceOfPresence";
-            this.colPlaceOfPresence.Visible = true;
-            this.colPlaceOfPresence.VisibleIndex = 12;
-            this.colPlaceOfPresence.Width = 150;
-            // 
-            // colCurrentStatus
-            // 
-            this.colCurrentStatus.Caption = "الحالة الآنية";
-            this.colCurrentStatus.FieldName = "CurrentStatus";
-            this.colCurrentStatus.MinWidth = 100;
-            this.colCurrentStatus.Name = "colCurrentStatus";
-            this.colCurrentStatus.Visible = true;
-            this.colCurrentStatus.VisibleIndex = 13;
-            this.colCurrentStatus.Width = 117;
-            // 
-            // colBenefitPercentage
-            // 
-            this.colBenefitPercentage.Caption = "نسبة الاستفادة منه";
-            this.colBenefitPercentage.FieldName = "BenefitPercentage";
-            this.colBenefitPercentage.MinWidth = 150;
-            this.colBenefitPercentage.Name = "colBenefitPercentage";
-            this.colBenefitPercentage.Visible = true;
-            this.colBenefitPercentage.VisibleIndex = 14;
-            this.colBenefitPercentage.Width = 150;
-            // 
-            // colActualCurrentPrice
-            // 
-            this.colActualCurrentPrice.Caption = "السعر الفعلي الحالي";
-            this.colActualCurrentPrice.FieldName = "ActualCurrentPrice";
-            this.colActualCurrentPrice.MinWidth = 100;
-            this.colActualCurrentPrice.Name = "colActualCurrentPrice";
-            this.colActualCurrentPrice.Visible = true;
-            this.colActualCurrentPrice.VisibleIndex = 15;
-            this.colActualCurrentPrice.Width = 117;
-            // 
-            // colActualCurrentPriceCurrency
-            // 
-            this.colActualCurrentPriceCurrency.Caption = "عملة السعر الفعلي الحالي";
-            this.colActualCurrentPriceCurrency.FieldName = "ActualCurrentPriceCurrency";
-            this.colActualCurrentPriceCurrency.MinWidth = 100;
-            this.colActualCurrentPriceCurrency.Name = "colActualCurrentPriceCurrency";
-            this.colActualCurrentPriceCurrency.Visible = true;
-            this.colActualCurrentPriceCurrency.VisibleIndex = 16;
-            this.colActualCurrentPriceCurrency.Width = 117;
-            // 
-            // colCustodianName
-            // 
-            this.colCustodianName.Caption = "صاحب العهدة";
-            this.colCustodianName.FieldName = "CustodianName";
-            this.colCustodianName.MinWidth = 150;
-            this.colCustodianName.Name = "colCustodianName";
-            this.colCustodianName.Visible = true;
-            this.colCustodianName.VisibleIndex = 17;
-            this.colCustodianName.Width = 150;
-            // 
-            // colMoreDetails
-            // 
-            this.colMoreDetails.Caption = "تفاصيل إضافية";
-            this.colMoreDetails.FieldName = "MoreDetails";
-            this.colMoreDetails.MinWidth = 187;
-            this.colMoreDetails.Name = "colMoreDetails";
-            this.colMoreDetails.Visible = true;
-            this.colMoreDetails.VisibleIndex = 18;
-            this.colMoreDetails.Width = 187;
-            // 
-            // colAssetNotes
-            // 
-            this.colAssetNotes.Caption = "ملاحظات أخرى";
-            this.colAssetNotes.FieldName = "AssetNotes";
-            this.colAssetNotes.MinWidth = 187;
-            this.colAssetNotes.Name = "colAssetNotes";
-            this.colAssetNotes.Visible = true;
-            this.colAssetNotes.VisibleIndex = 19;
-            this.colAssetNotes.Width = 314;
-            // 
-            // colEstateAddress
-            // 
-            this.colEstateAddress.Caption = "العنوان الحالي";
-            this.colEstateAddress.FieldName = "EstateAddress";
-            this.colEstateAddress.MinWidth = 187;
-            this.colEstateAddress.Name = "colEstateAddress";
-            this.colEstateAddress.Visible = true;
-            this.colEstateAddress.VisibleIndex = 20;
-            this.colEstateAddress.Width = 187;
-            // 
-            // colOwnerName
-            // 
-            this.colOwnerName.Caption = "اسم المالك";
-            this.colOwnerName.FieldName = "OwnerName";
-            this.colOwnerName.MinWidth = 150;
-            this.colOwnerName.Name = "colOwnerName";
-            this.colOwnerName.Visible = true;
-            this.colOwnerName.VisibleIndex = 21;
-            this.colOwnerName.Width = 150;
-            // 
-            // colOfUsed
-            // 
-            this.colOfUsed.Caption = "المستغل منه";
-            this.colOfUsed.FieldName = "OfUsed";
-            this.colOfUsed.MinWidth = 150;
-            this.colOfUsed.Name = "colOfUsed";
-            this.colOfUsed.Visible = true;
-            this.colOfUsed.VisibleIndex = 22;
-            this.colOfUsed.Width = 150;
-            // 
-            // colEstateOwnershipDocumentWith
-            // 
-            this.colEstateOwnershipDocumentWith.Caption = "مع من ورقة الملكية";
-            this.colEstateOwnershipDocumentWith.FieldName = "EstateOwnershipDocumentWith";
-            this.colEstateOwnershipDocumentWith.MinWidth = 150;
-            this.colEstateOwnershipDocumentWith.Name = "colEstateOwnershipDocumentWith";
-            this.colEstateOwnershipDocumentWith.Visible = true;
-            this.colEstateOwnershipDocumentWith.VisibleIndex = 23;
-            this.colEstateOwnershipDocumentWith.Width = 1250;
-            // 
-            // colEstateArea
-            // 
-            this.colEstateArea.Caption = "مساحة العقار";
-            this.colEstateArea.FieldName = "EstateArea";
-            this.colEstateArea.MinWidth = 100;
-            this.colEstateArea.Name = "colEstateArea";
-            this.colEstateArea.Visible = true;
-            this.colEstateArea.VisibleIndex = 24;
-            this.colEstateArea.Width = 117;
-            // 
-            // colEstateAreaUnit
-            // 
-            this.colEstateAreaUnit.Caption = "واحدة مساحة العقار";
-            this.colEstateAreaUnit.FieldName = "EstateAreaUnit";
-            this.colEstateAreaUnit.MinWidth = 100;
-            this.colEstateAreaUnit.Name = "colEstateAreaUnit";
-            this.colEstateAreaUnit.Visible = true;
-            this.colEstateAreaUnit.VisibleIndex = 25;
-            this.colEstateAreaUnit.Width = 1250;
-            // 
-            // colCarPanelNumber
-            // 
-            this.colCarPanelNumber.Caption = "رقم لوحة المركبة";
-            this.colCarPanelNumber.FieldName = "CarPanelNumber";
-            this.colCarPanelNumber.MinWidth = 125;
-            this.colCarPanelNumber.Name = "colCarPanelNumber";
-            this.colCarPanelNumber.Visible = true;
-            this.colCarPanelNumber.VisibleIndex = 26;
-            this.colCarPanelNumber.Width = 125;
-            // 
-            // colCarManufacturingYear
-            // 
-            this.colCarManufacturingYear.Caption = "سنة صنع المركبة";
-            this.colCarManufacturingYear.FieldName = "CarManufacturingYear";
-            this.colCarManufacturingYear.MinWidth = 100;
-            this.colCarManufacturingYear.Name = "colCarManufacturingYear";
-            this.colCarManufacturingYear.Visible = true;
-            this.colCarManufacturingYear.VisibleIndex = 27;
-            this.colCarManufacturingYear.Width = 117;
-            // 
-            // colCarChassisNumber
-            // 
-            this.colCarChassisNumber.Caption = "رقم هيكل (شاصيه) المركبة";
-            this.colCarChassisNumber.FieldName = "CarChassisNumber";
-            this.colCarChassisNumber.MinWidth = 125;
-            this.colCarChassisNumber.Name = "colCarChassisNumber";
-            this.colCarChassisNumber.Visible = true;
-            this.colCarChassisNumber.VisibleIndex = 28;
-            this.colCarChassisNumber.Width = 125;
-            // 
-            // colCarEngineNumber
-            // 
-            this.colCarEngineNumber.Caption = "رقم محرك المركبة";
-            this.colCarEngineNumber.FieldName = "CarEngineNumber";
-            this.colCarEngineNumber.MinWidth = 125;
-            this.colCarEngineNumber.Name = "colCarEngineNumber";
-            this.colCarEngineNumber.Visible = true;
-            this.colCarEngineNumber.VisibleIndex = 29;
-            this.colCarEngineNumber.Width = 125;
-            // 
-            // colCurrentDestructionRate
-            // 
-            this.colCurrentDestructionRate.Caption = "معدل الإهلاك";
-            this.colCurrentDestructionRate.FieldName = "CurrentDestructionRate";
-            this.colCurrentDestructionRate.MinWidth = 100;
-            this.colCurrentDestructionRate.Name = "colCurrentDestructionRate";
-            this.colCurrentDestructionRate.Visible = true;
-            this.colCurrentDestructionRate.VisibleIndex = 30;
-            this.colCurrentDestructionRate.Width = 117;
-            // 
-            // colLifeSpanInMonths
-            // 
-            this.colLifeSpanInMonths.Caption = "العمر الافتراضي المتبقي";
-            this.colLifeSpanInMonths.FieldName = "LifeSpanInMonths";
-            this.colLifeSpanInMonths.MinWidth = 100;
-            this.colLifeSpanInMonths.Name = "colLifeSpanInMonths";
-            this.colLifeSpanInMonths.Visible = true;
-            this.colLifeSpanInMonths.VisibleIndex = 31;
-            this.colLifeSpanInMonths.Width = 117;
-            // 
-            // colIsSold
-            // 
-            this.colIsSold.Caption = "مباع";
-            this.colIsSold.FieldName = "IsSold";
-            this.colIsSold.MinWidth = 62;
-            this.colIsSold.Name = "colIsSold";
-            this.colIsSold.Visible = true;
-            this.colIsSold.VisibleIndex = 32;
-            this.colIsSold.Width = 117;
-            // 
-            // colIsOutOfWork
-            // 
-            this.colIsOutOfWork.Caption = "خارج الحدمة";
-            this.colIsOutOfWork.FieldName = "IsOutOfWork";
-            this.colIsOutOfWork.MinWidth = 62;
-            this.colIsOutOfWork.Name = "colIsOutOfWork";
-            this.colIsOutOfWork.Visible = true;
-            this.colIsOutOfWork.VisibleIndex = 33;
-            this.colIsOutOfWork.Width = 117;
-            // 
-            // colInsertedOn
-            // 
-            this.colInsertedOn.Caption = "تاريخ الإضافة";
-            this.colInsertedOn.FieldName = "InsertedOn";
-            this.colInsertedOn.MinWidth = 100;
-            this.colInsertedOn.Name = "colInsertedOn";
-            this.colInsertedOn.Width = 117;
-            // 
-            // colLastModifiedOn
-            // 
-            this.colLastModifiedOn.Caption = "تاريخ آخر تعديل";
-            this.colLastModifiedOn.FieldName = "LastModifiedOn";
-            this.colLastModifiedOn.MinWidth = 100;
-            this.colLastModifiedOn.Name = "colLastModifiedOn";
-            this.colLastModifiedOn.Width = 117;
-            // 
-            // colInsertedBy
-            // 
-            this.colInsertedBy.Caption = "الحساب الذي قام بالإضافة";
-            this.colInsertedBy.FieldName = "InsertedBy";
-            this.colInsertedBy.MinWidth = 100;
-            this.colInsertedBy.Name = "colInsertedBy";
-            this.colInsertedBy.Width = 117;
-            // 
-            // colLastModifiedBy
-            // 
-            this.colLastModifiedBy.Caption = "الحساب الذي قام بآخر تعديل";
-            this.colLastModifiedBy.FieldName = "LastModifiedBy";
-            this.colLastModifiedBy.MinWidth = 100;
-            this.colLastModifiedBy.Name = "colLastModifiedBy";
-            this.colLastModifiedBy.Width = 117;
             // 
             // statusTblTableAdapter
             // 
@@ -1283,12 +910,561 @@ namespace AssetManagement.Assets
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.Text = "Custom 2";
             // 
+            // subDepartmentTblTableAdapter
+            // 
+            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = this.assetTblTableAdapter;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = null;
+            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
+            this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
+            this.tableAdapterManager.StatusTblTableAdapter = this.statusTblTableAdapter;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = null;
+            this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetVwTableAdapter
+            // 
+            this.assetVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // assetGridControl
+            // 
+            this.assetGridControl.DataSource = this.assetVwBindingSource;
+            this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.assetGridControl.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
+            this.assetGridControl.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            this.assetGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            this.assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = false;
+            this.assetGridControl.Location = new System.Drawing.Point(0, 536);
+            this.assetGridControl.MainView = this.assetGridView;
+            this.assetGridControl.Name = "assetGridControl";
+            this.assetGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemLookUpEdit2,
+            this.repositoryItemLookUpEdit3,
+            this.repositoryItemLookUpEdit4,
+            this.repositoryItemLookUpEdit5,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemLookUpEdit6,
+            this.repositoryItemCalcEdit1,
+            this.repositoryItemLookUpEdit7});
+            this.assetGridControl.Size = new System.Drawing.Size(1097, 213);
+            this.assetGridControl.TabIndex = 605;
+            this.assetGridControl.UseEmbeddedNavigator = true;
+            this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.assetGridView});
+            this.assetGridControl.Visible = false;
+            // 
+            // assetGridView
+            // 
+            this.assetGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colمعرفالأصل,
+            this.colكودالأصل,
+            this.colالعدد,
+            this.colالدائرة,
+            this.colالقسم,
+            this.colالوحدة,
+            this.colالساحة,
+            this.colالفئةالرئيسية,
+            this.colالفئةالفرعية,
+            this.colمواصفاتالأصل,
+            this.colالموديل,
+            this.colاللون,
+            this.gridColumn1,
+            this.colتاريخالشراء,
+            this.colسعرالشراء,
+            this.colعملةسعرالشراء,
+            this.colمكانالتواجد,
+            this.colحالةالأصلالآنية,
+            this.colنسبةالاستفادةمنه,
+            this.colالسعرالفعليالحالي,
+            this.colعملةالسعرالفعليالحالي,
+            this.colاسمصاحبالعهدة,
+            this.colتفاصيلإضافية,
+            this.colملاحظاتأخرى,
+            this.colعنوانالعقار,
+            this.colاسمالمالك,
+            this.colالمستغلمنه,
+            this.colمعمنورقةالملكية,
+            this.colمساحةالعقار,
+            this.colوحدةمساحةالعقار,
+            this.colرقملوحةالمركبة,
+            this.colسنةصنعالمركبة,
+            this.gridColumn2,
+            this.colرقمالمحركللمركبة,
+            this.colمعدلالإهلاكللأصل,
+            this.colالعمرالافتراضيالمتبقيللأصل});
+            this.assetGridView.GridControl = this.assetGridControl;
+            this.assetGridView.Name = "assetGridView";
+            this.assetGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            // 
+            // colمعرفالأصل
+            // 
+            this.colمعرفالأصل.FieldName = "معرف الأصل";
+            this.colمعرفالأصل.MinWidth = 80;
+            this.colمعرفالأصل.Name = "colمعرفالأصل";
+            this.colمعرفالأصل.Width = 94;
+            // 
+            // colكودالأصل
+            // 
+            this.colكودالأصل.FieldName = "كود الأصل";
+            this.colكودالأصل.MinWidth = 120;
+            this.colكودالأصل.Name = "colكودالأصل";
+            this.colكودالأصل.Visible = true;
+            this.colكودالأصل.VisibleIndex = 0;
+            this.colكودالأصل.Width = 120;
+            // 
+            // colالعدد
+            // 
+            this.colالعدد.FieldName = "العدد";
+            this.colالعدد.MinWidth = 80;
+            this.colالعدد.Name = "colالعدد";
+            this.colالعدد.Visible = true;
+            this.colالعدد.VisibleIndex = 1;
+            this.colالعدد.Width = 94;
+            // 
+            // colالدائرة
+            // 
+            this.colالدائرة.FieldName = "الدائرة";
+            this.colالدائرة.MinWidth = 120;
+            this.colالدائرة.Name = "colالدائرة";
+            this.colالدائرة.Visible = true;
+            this.colالدائرة.VisibleIndex = 2;
+            this.colالدائرة.Width = 120;
+            // 
+            // colالقسم
+            // 
+            this.colالقسم.FieldName = "القسم";
+            this.colالقسم.MinWidth = 120;
+            this.colالقسم.Name = "colالقسم";
+            this.colالقسم.Visible = true;
+            this.colالقسم.VisibleIndex = 3;
+            this.colالقسم.Width = 120;
+            // 
+            // colالوحدة
+            // 
+            this.colالوحدة.FieldName = "الوحدة";
+            this.colالوحدة.MinWidth = 120;
+            this.colالوحدة.Name = "colالوحدة";
+            this.colالوحدة.Visible = true;
+            this.colالوحدة.VisibleIndex = 4;
+            this.colالوحدة.Width = 120;
+            // 
+            // colالساحة
+            // 
+            this.colالساحة.FieldName = "الساحة";
+            this.colالساحة.MinWidth = 120;
+            this.colالساحة.Name = "colالساحة";
+            this.colالساحة.Visible = true;
+            this.colالساحة.VisibleIndex = 5;
+            this.colالساحة.Width = 120;
+            // 
+            // colالفئةالرئيسية
+            // 
+            this.colالفئةالرئيسية.FieldName = "الفئة الرئيسية";
+            this.colالفئةالرئيسية.MinWidth = 120;
+            this.colالفئةالرئيسية.Name = "colالفئةالرئيسية";
+            this.colالفئةالرئيسية.Visible = true;
+            this.colالفئةالرئيسية.VisibleIndex = 6;
+            this.colالفئةالرئيسية.Width = 120;
+            // 
+            // colالفئةالفرعية
+            // 
+            this.colالفئةالفرعية.FieldName = "الفئة الفرعية";
+            this.colالفئةالفرعية.MinWidth = 120;
+            this.colالفئةالفرعية.Name = "colالفئةالفرعية";
+            this.colالفئةالفرعية.Visible = true;
+            this.colالفئةالفرعية.VisibleIndex = 7;
+            this.colالفئةالفرعية.Width = 120;
+            // 
+            // colمواصفاتالأصل
+            // 
+            this.colمواصفاتالأصل.FieldName = "مواصفات الأصل";
+            this.colمواصفاتالأصل.MinWidth = 200;
+            this.colمواصفاتالأصل.Name = "colمواصفاتالأصل";
+            this.colمواصفاتالأصل.Visible = true;
+            this.colمواصفاتالأصل.VisibleIndex = 8;
+            this.colمواصفاتالأصل.Width = 200;
+            // 
+            // colالموديل
+            // 
+            this.colالموديل.FieldName = "الموديل";
+            this.colالموديل.MinWidth = 100;
+            this.colالموديل.Name = "colالموديل";
+            this.colالموديل.Visible = true;
+            this.colالموديل.VisibleIndex = 9;
+            this.colالموديل.Width = 100;
+            // 
+            // colاللون
+            // 
+            this.colاللون.FieldName = "اللون";
+            this.colاللون.MinWidth = 80;
+            this.colاللون.Name = "colاللون";
+            this.colاللون.Visible = true;
+            this.colاللون.VisibleIndex = 10;
+            this.colاللون.Width = 94;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "الحجم / السعة";
+            this.gridColumn1.MinWidth = 80;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 11;
+            this.gridColumn1.Width = 94;
+            // 
+            // colتاريخالشراء
+            // 
+            this.colتاريخالشراء.FieldName = "تاريخ الشراء";
+            this.colتاريخالشراء.MinWidth = 80;
+            this.colتاريخالشراء.Name = "colتاريخالشراء";
+            this.colتاريخالشراء.Visible = true;
+            this.colتاريخالشراء.VisibleIndex = 12;
+            this.colتاريخالشراء.Width = 94;
+            // 
+            // colسعرالشراء
+            // 
+            this.colسعرالشراء.FieldName = "سعر الشراء";
+            this.colسعرالشراء.MinWidth = 80;
+            this.colسعرالشراء.Name = "colسعرالشراء";
+            this.colسعرالشراء.Visible = true;
+            this.colسعرالشراء.VisibleIndex = 13;
+            this.colسعرالشراء.Width = 94;
+            // 
+            // colعملةسعرالشراء
+            // 
+            this.colعملةسعرالشراء.FieldName = "عملة سعر الشراء";
+            this.colعملةسعرالشراء.MinWidth = 80;
+            this.colعملةسعرالشراء.Name = "colعملةسعرالشراء";
+            this.colعملةسعرالشراء.Visible = true;
+            this.colعملةسعرالشراء.VisibleIndex = 14;
+            this.colعملةسعرالشراء.Width = 94;
+            // 
+            // colمكانالتواجد
+            // 
+            this.colمكانالتواجد.FieldName = "مكان التواجد";
+            this.colمكانالتواجد.MinWidth = 150;
+            this.colمكانالتواجد.Name = "colمكانالتواجد";
+            this.colمكانالتواجد.Visible = true;
+            this.colمكانالتواجد.VisibleIndex = 15;
+            this.colمكانالتواجد.Width = 150;
+            // 
+            // colحالةالأصلالآنية
+            // 
+            this.colحالةالأصلالآنية.FieldName = "حالة الأصل الآنية";
+            this.colحالةالأصلالآنية.MinWidth = 80;
+            this.colحالةالأصلالآنية.Name = "colحالةالأصلالآنية";
+            this.colحالةالأصلالآنية.Visible = true;
+            this.colحالةالأصلالآنية.VisibleIndex = 16;
+            this.colحالةالأصلالآنية.Width = 94;
+            // 
+            // colنسبةالاستفادةمنه
+            // 
+            this.colنسبةالاستفادةمنه.FieldName = "نسبة الاستفادة منه";
+            this.colنسبةالاستفادةمنه.MinWidth = 120;
+            this.colنسبةالاستفادةمنه.Name = "colنسبةالاستفادةمنه";
+            this.colنسبةالاستفادةمنه.Visible = true;
+            this.colنسبةالاستفادةمنه.VisibleIndex = 17;
+            this.colنسبةالاستفادةمنه.Width = 120;
+            // 
+            // colالسعرالفعليالحالي
+            // 
+            this.colالسعرالفعليالحالي.FieldName = "السعر الفعلي الحالي";
+            this.colالسعرالفعليالحالي.MinWidth = 80;
+            this.colالسعرالفعليالحالي.Name = "colالسعرالفعليالحالي";
+            this.colالسعرالفعليالحالي.Visible = true;
+            this.colالسعرالفعليالحالي.VisibleIndex = 18;
+            this.colالسعرالفعليالحالي.Width = 94;
+            // 
+            // colعملةالسعرالفعليالحالي
+            // 
+            this.colعملةالسعرالفعليالحالي.FieldName = "عملة السعر الفعلي الحالي";
+            this.colعملةالسعرالفعليالحالي.MinWidth = 80;
+            this.colعملةالسعرالفعليالحالي.Name = "colعملةالسعرالفعليالحالي";
+            this.colعملةالسعرالفعليالحالي.Visible = true;
+            this.colعملةالسعرالفعليالحالي.VisibleIndex = 19;
+            this.colعملةالسعرالفعليالحالي.Width = 94;
+            // 
+            // colاسمصاحبالعهدة
+            // 
+            this.colاسمصاحبالعهدة.FieldName = "اسم صاحب العهدة";
+            this.colاسمصاحبالعهدة.MinWidth = 120;
+            this.colاسمصاحبالعهدة.Name = "colاسمصاحبالعهدة";
+            this.colاسمصاحبالعهدة.Visible = true;
+            this.colاسمصاحبالعهدة.VisibleIndex = 20;
+            this.colاسمصاحبالعهدة.Width = 120;
+            // 
+            // colتفاصيلإضافية
+            // 
+            this.colتفاصيلإضافية.FieldName = "تفاصيل إضافية";
+            this.colتفاصيلإضافية.MinWidth = 150;
+            this.colتفاصيلإضافية.Name = "colتفاصيلإضافية";
+            this.colتفاصيلإضافية.Visible = true;
+            this.colتفاصيلإضافية.VisibleIndex = 21;
+            this.colتفاصيلإضافية.Width = 150;
+            // 
+            // colملاحظاتأخرى
+            // 
+            this.colملاحظاتأخرى.FieldName = "ملاحظات أخرى";
+            this.colملاحظاتأخرى.MinWidth = 150;
+            this.colملاحظاتأخرى.Name = "colملاحظاتأخرى";
+            this.colملاحظاتأخرى.Visible = true;
+            this.colملاحظاتأخرى.VisibleIndex = 22;
+            this.colملاحظاتأخرى.Width = 150;
+            // 
+            // colعنوانالعقار
+            // 
+            this.colعنوانالعقار.FieldName = "عنوان العقار";
+            this.colعنوانالعقار.MinWidth = 150;
+            this.colعنوانالعقار.Name = "colعنوانالعقار";
+            this.colعنوانالعقار.Visible = true;
+            this.colعنوانالعقار.VisibleIndex = 23;
+            this.colعنوانالعقار.Width = 150;
+            // 
+            // colاسمالمالك
+            // 
+            this.colاسمالمالك.FieldName = "اسم المالك";
+            this.colاسمالمالك.MinWidth = 120;
+            this.colاسمالمالك.Name = "colاسمالمالك";
+            this.colاسمالمالك.Visible = true;
+            this.colاسمالمالك.VisibleIndex = 24;
+            this.colاسمالمالك.Width = 120;
+            // 
+            // colالمستغلمنه
+            // 
+            this.colالمستغلمنه.FieldName = "المستغل منه";
+            this.colالمستغلمنه.MinWidth = 100;
+            this.colالمستغلمنه.Name = "colالمستغلمنه";
+            this.colالمستغلمنه.Visible = true;
+            this.colالمستغلمنه.VisibleIndex = 25;
+            this.colالمستغلمنه.Width = 100;
+            // 
+            // colمعمنورقةالملكية
+            // 
+            this.colمعمنورقةالملكية.FieldName = "مع من ورقة الملكية";
+            this.colمعمنورقةالملكية.MinWidth = 120;
+            this.colمعمنورقةالملكية.Name = "colمعمنورقةالملكية";
+            this.colمعمنورقةالملكية.Visible = true;
+            this.colمعمنورقةالملكية.VisibleIndex = 26;
+            this.colمعمنورقةالملكية.Width = 120;
+            // 
+            // colمساحةالعقار
+            // 
+            this.colمساحةالعقار.FieldName = "مساحة العقار";
+            this.colمساحةالعقار.MinWidth = 80;
+            this.colمساحةالعقار.Name = "colمساحةالعقار";
+            this.colمساحةالعقار.Visible = true;
+            this.colمساحةالعقار.VisibleIndex = 27;
+            this.colمساحةالعقار.Width = 94;
+            // 
+            // colوحدةمساحةالعقار
+            // 
+            this.colوحدةمساحةالعقار.FieldName = "وحدة مساحة العقار";
+            this.colوحدةمساحةالعقار.MinWidth = 80;
+            this.colوحدةمساحةالعقار.Name = "colوحدةمساحةالعقار";
+            this.colوحدةمساحةالعقار.Visible = true;
+            this.colوحدةمساحةالعقار.VisibleIndex = 28;
+            this.colوحدةمساحةالعقار.Width = 94;
+            // 
+            // colرقملوحةالمركبة
+            // 
+            this.colرقملوحةالمركبة.FieldName = "رقم لوحة المركبة";
+            this.colرقملوحةالمركبة.MinWidth = 100;
+            this.colرقملوحةالمركبة.Name = "colرقملوحةالمركبة";
+            this.colرقملوحةالمركبة.Visible = true;
+            this.colرقملوحةالمركبة.VisibleIndex = 29;
+            this.colرقملوحةالمركبة.Width = 100;
+            // 
+            // colسنةصنعالمركبة
+            // 
+            this.colسنةصنعالمركبة.FieldName = "سنة صنع المركبة";
+            this.colسنةصنعالمركبة.MinWidth = 80;
+            this.colسنةصنعالمركبة.Name = "colسنةصنعالمركبة";
+            this.colسنةصنعالمركبة.Visible = true;
+            this.colسنةصنعالمركبة.VisibleIndex = 30;
+            this.colسنةصنعالمركبة.Width = 94;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
+            this.gridColumn2.MinWidth = 120;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 31;
+            this.gridColumn2.Width = 120;
+            // 
+            // colرقمالمحركللمركبة
+            // 
+            this.colرقمالمحركللمركبة.FieldName = "رقم المحرك للمركبة";
+            this.colرقمالمحركللمركبة.MinWidth = 120;
+            this.colرقمالمحركللمركبة.Name = "colرقمالمحركللمركبة";
+            this.colرقمالمحركللمركبة.Visible = true;
+            this.colرقمالمحركللمركبة.VisibleIndex = 32;
+            this.colرقمالمحركللمركبة.Width = 1000;
+            // 
+            // colمعدلالإهلاكللأصل
+            // 
+            this.colمعدلالإهلاكللأصل.FieldName = "معدل الإهلاك للأصل";
+            this.colمعدلالإهلاكللأصل.MinWidth = 80;
+            this.colمعدلالإهلاكللأصل.Name = "colمعدلالإهلاكللأصل";
+            this.colمعدلالإهلاكللأصل.Visible = true;
+            this.colمعدلالإهلاكللأصل.VisibleIndex = 33;
+            this.colمعدلالإهلاكللأصل.Width = 94;
+            // 
+            // colالعمرالافتراضيالمتبقيللأصل
+            // 
+            this.colالعمرالافتراضيالمتبقيللأصل.FieldName = "العمر الافتراضي المتبقي للأصل";
+            this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 80;
+            this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
+            this.colالعمرالافتراضيالمتبقيللأصل.Visible = true;
+            this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 34;
+            this.colالعمرالافتراضيالمتبقيللأصل.Width = 94;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit1.DataSource = this.sectionTblBindingSource;
+            this.repositoryItemLookUpEdit1.DisplayMember = "SectionName";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.PopupWidth = 500;
+            this.repositoryItemLookUpEdit1.ValueMember = "ID";
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            this.repositoryItemLookUpEdit2.AutoHeight = false;
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit2.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر الثسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit2.DataSource = this.departmentTblBindingSource;
+            this.repositoryItemLookUpEdit2.DisplayMember = "DepartmentName";
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            this.repositoryItemLookUpEdit2.PopupWidth = 500;
+            this.repositoryItemLookUpEdit2.ValueMember = "ID";
+            // 
+            // repositoryItemLookUpEdit3
+            // 
+            this.repositoryItemLookUpEdit3.AutoHeight = false;
+            this.repositoryItemLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit3.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الساحة", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SquareName", "اسم الساحة", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SquareLocation", "مقر الساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit3.DataSource = this.squareTblBindingSource;
+            this.repositoryItemLookUpEdit3.DisplayMember = "SquareName";
+            this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
+            this.repositoryItemLookUpEdit3.PopupWidth = 500;
+            this.repositoryItemLookUpEdit3.ValueMember = "ID";
+            // 
+            // repositoryItemLookUpEdit4
+            // 
+            this.repositoryItemLookUpEdit4.AutoHeight = false;
+            this.repositoryItemLookUpEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit4.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الفئة الفرعية", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MinorCategoryName", "اسم الفئة الفرعية", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MinorCategoryDescription", "وصف الفئة الفرعية", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategory", "معرف الفئة الرئسية", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductiveAgeInYears", "العمر الإنتاجي بالسنوات", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DestructionRate", "معدل الإهلاك", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit4.DisplayMember = "MinorCategoryName";
+            this.repositoryItemLookUpEdit4.Name = "repositoryItemLookUpEdit4";
+            this.repositoryItemLookUpEdit4.PopupWidth = 500;
+            this.repositoryItemLookUpEdit4.ValueMember = "ID";
+            // 
+            // repositoryItemLookUpEdit5
+            // 
+            this.repositoryItemLookUpEdit5.AutoHeight = false;
+            this.repositoryItemLookUpEdit5.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit5.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit5.DisplayMember = "CurrencyName";
+            this.repositoryItemLookUpEdit5.Name = "repositoryItemLookUpEdit5";
+            this.repositoryItemLookUpEdit5.PopupWidth = 500;
+            this.repositoryItemLookUpEdit5.ValueMember = "ID";
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // repositoryItemLookUpEdit6
+            // 
+            this.repositoryItemLookUpEdit6.AutoHeight = false;
+            this.repositoryItemLookUpEdit6.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit6.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الحالة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusName", "اسم الحالة", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit6.DataSource = this.statusTblBindingSource;
+            this.repositoryItemLookUpEdit6.DisplayMember = "StatusName";
+            this.repositoryItemLookUpEdit6.Name = "repositoryItemLookUpEdit6";
+            this.repositoryItemLookUpEdit6.PopupWidth = 500;
+            this.repositoryItemLookUpEdit6.ValueMember = "ID";
+            // 
+            // repositoryItemCalcEdit1
+            // 
+            this.repositoryItemCalcEdit1.AutoHeight = false;
+            this.repositoryItemCalcEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCalcEdit1.Name = "repositoryItemCalcEdit1";
+            // 
+            // repositoryItemLookUpEdit7
+            // 
+            this.repositoryItemLookUpEdit7.AutoHeight = false;
+            this.repositoryItemLookUpEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit7.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف واحدة المساحة", 80, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EstateAreaUnitName", "اسم واحدة المساحة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repositoryItemLookUpEdit7.DisplayMember = "EstateAreaUnitName";
+            this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
+            this.repositoryItemLookUpEdit7.PopupWidth = 500;
+            this.repositoryItemLookUpEdit7.ValueMember = "ID";
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1441, 831);
+            this.ClientSize = new System.Drawing.Size(1097, 749);
             this.Controls.Add(this.assetGridControl);
             this.Controls.Add(this.customSearchGroupBox);
             this.Controls.Add(this.panel1);
@@ -1311,6 +1487,9 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.customSearchGroupBox.ResumeLayout(false);
             this.customSearchGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             this.searchByInsertionDatePanel.ResumeLayout(false);
             this.searchByInsertionDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1319,7 +1498,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByStatusLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             this.searchByPurchaseDatePanel.ResumeLayout(false);
             this.searchByPurchaseDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1336,9 +1514,20 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1372,8 +1561,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter mainCategoryTblTableAdapter;
         private System.Windows.Forms.BindingSource minorCategoryTblBindingSource;
         private AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter minorCategoryTblTableAdapter;
-        private DevExpress.XtraGrid.GridControl assetGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView assetGridView;
         private System.Windows.Forms.CheckBox searchByAssetCodeCheckBox;
         private System.Windows.Forms.TextBox searchByAssetCodeTextBox;
         private System.Windows.Forms.CheckBox searchByAssetDescriptionCheckBox;
@@ -1398,45 +1585,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.StatusTblTableAdapter statusTblTableAdapter;
         private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetCode;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetSection;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetDept;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetSquare;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetMinorCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetSpecifications;
-        private DevExpress.XtraGrid.Columns.GridColumn colModel;
-        private DevExpress.XtraGrid.Columns.GridColumn colColor;
-        private DevExpress.XtraGrid.Columns.GridColumn colVolume;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurchasePrice;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurchasePriceCurrency;
-        private DevExpress.XtraGrid.Columns.GridColumn colPlaceOfPresence;
-        private DevExpress.XtraGrid.Columns.GridColumn colCurrentStatus;
-        private DevExpress.XtraGrid.Columns.GridColumn colBenefitPercentage;
-        private DevExpress.XtraGrid.Columns.GridColumn colActualCurrentPrice;
-        private DevExpress.XtraGrid.Columns.GridColumn colActualCurrentPriceCurrency;
-        private DevExpress.XtraGrid.Columns.GridColumn colCustodianName;
-        private DevExpress.XtraGrid.Columns.GridColumn colMoreDetails;
-        private DevExpress.XtraGrid.Columns.GridColumn colAssetNotes;
-        private DevExpress.XtraGrid.Columns.GridColumn colEstateAddress;
-        private DevExpress.XtraGrid.Columns.GridColumn colOwnerName;
-        private DevExpress.XtraGrid.Columns.GridColumn colOfUsed;
-        private DevExpress.XtraGrid.Columns.GridColumn colEstateOwnershipDocumentWith;
-        private DevExpress.XtraGrid.Columns.GridColumn colEstateArea;
-        private DevExpress.XtraGrid.Columns.GridColumn colEstateAreaUnit;
-        private DevExpress.XtraGrid.Columns.GridColumn colCarPanelNumber;
-        private DevExpress.XtraGrid.Columns.GridColumn colCarManufacturingYear;
-        private DevExpress.XtraGrid.Columns.GridColumn colCarChassisNumber;
-        private DevExpress.XtraGrid.Columns.GridColumn colCarEngineNumber;
-        private DevExpress.XtraGrid.Columns.GridColumn colCurrentDestructionRate;
-        private DevExpress.XtraGrid.Columns.GridColumn colLifeSpanInMonths;
-        private DevExpress.XtraGrid.Columns.GridColumn colIsSold;
-        private DevExpress.XtraGrid.Columns.GridColumn colIsOutOfWork;
-        private DevExpress.XtraGrid.Columns.GridColumn colInsertedOn;
-        private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedOn;
-        private DevExpress.XtraGrid.Columns.GridColumn colInsertedBy;
-        private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedBy;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
@@ -1451,5 +1599,59 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarButtonItem estatesExportBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem vehiclesexportBrButtonItem;
         private DevExpress.XtraEditors.DropDownButton searchAssetDropDownButton;
+        private System.Windows.Forms.CheckBox searchBySubDepartmentCheckBox;
+        private DevExpress.XtraEditors.LookUpEdit searchBySubDepartmentLookUpEdit;
+        private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
+        private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource assetVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
+        private DevExpress.XtraGrid.GridControl assetGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView assetGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالأصل;
+        private DevExpress.XtraGrid.Columns.GridColumn colكودالأصل;
+        private DevExpress.XtraGrid.Columns.GridColumn colالعدد;
+        private DevExpress.XtraGrid.Columns.GridColumn colالدائرة;
+        private DevExpress.XtraGrid.Columns.GridColumn colالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colالوحدة;
+        private DevExpress.XtraGrid.Columns.GridColumn colالساحة;
+        private DevExpress.XtraGrid.Columns.GridColumn colالفئةالرئيسية;
+        private DevExpress.XtraGrid.Columns.GridColumn colالفئةالفرعية;
+        private DevExpress.XtraGrid.Columns.GridColumn colمواصفاتالأصل;
+        private DevExpress.XtraGrid.Columns.GridColumn colالموديل;
+        private DevExpress.XtraGrid.Columns.GridColumn colاللون;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn colتاريخالشراء;
+        private DevExpress.XtraGrid.Columns.GridColumn colسعرالشراء;
+        private DevExpress.XtraGrid.Columns.GridColumn colعملةسعرالشراء;
+        private DevExpress.XtraGrid.Columns.GridColumn colمكانالتواجد;
+        private DevExpress.XtraGrid.Columns.GridColumn colحالةالأصلالآنية;
+        private DevExpress.XtraGrid.Columns.GridColumn colنسبةالاستفادةمنه;
+        private DevExpress.XtraGrid.Columns.GridColumn colالسعرالفعليالحالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colعملةالسعرالفعليالحالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمصاحبالعهدة;
+        private DevExpress.XtraGrid.Columns.GridColumn colتفاصيلإضافية;
+        private DevExpress.XtraGrid.Columns.GridColumn colملاحظاتأخرى;
+        private DevExpress.XtraGrid.Columns.GridColumn colعنوانالعقار;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمالمالك;
+        private DevExpress.XtraGrid.Columns.GridColumn colالمستغلمنه;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعمنورقةالملكية;
+        private DevExpress.XtraGrid.Columns.GridColumn colمساحةالعقار;
+        private DevExpress.XtraGrid.Columns.GridColumn colوحدةمساحةالعقار;
+        private DevExpress.XtraGrid.Columns.GridColumn colرقملوحةالمركبة;
+        private DevExpress.XtraGrid.Columns.GridColumn colسنةصنعالمركبة;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn colرقمالمحركللمركبة;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعدلالإهلاكللأصل;
+        private DevExpress.XtraGrid.Columns.GridColumn colالعمرالافتراضيالمتبقيللأصل;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit7;
     }
 }

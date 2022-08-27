@@ -101,7 +101,7 @@ namespace AssetManagement.Assets
             }
             try
             {
-                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colID));
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
                 AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
@@ -125,6 +125,28 @@ namespace AssetManagement.Assets
         private void assetTblGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             currRow = e.ControllerRow;
+        }
+
+        private void editDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                UpdateExistedAssetForm cardVwFrm = new UpdateExistedAssetForm(currAssetID);
+                cardVwFrm.ShowDialog();
+                currRow = 0;
+                this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
+                this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+            }
         }
     }
 }
