@@ -192,8 +192,8 @@ namespace AssetManagement
 
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            appDateBarStaticItem.Caption = DateTime.Today.AddDays(StaticCode.ShiftDays).ToString("dddd, MMMM dd, yyyy");
-            appTimeBarStaticItem.Caption = DateTime.Now.AddSeconds(StaticCode.ShiftSeconds).ToLongTimeString();
+            appDateBarStaticItem.Caption = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays).ToString("dddd, MMMM dd, yyyy");
+            appTimeBarStaticItem.Caption = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds).ToLongTimeString();
         }
 
         private void setAppDateAndTimeBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

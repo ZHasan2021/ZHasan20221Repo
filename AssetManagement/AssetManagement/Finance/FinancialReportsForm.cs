@@ -25,6 +25,10 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
+            this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
@@ -33,6 +37,9 @@ namespace AssetManagement.Finance
             this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemCategoryTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemTbl' table. You can move, or remove it, as needed.
             this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
+            //manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
+            //manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
+            //manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             this.MinimumSize = this.Size;
         }
 
@@ -44,10 +51,22 @@ namespace AssetManagement.Finance
 
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
-            if(searchInDeptRadioButton.Checked && financialItemDeptToSearchLookUpEdit.EditValue==null)
+            if (searchBySectionRadioButton.Checked && searchBySectionLookUpEdit.EditValue == null)
             {
-                MessageBox.Show("اختر القسم", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mainAlertControl.Show(this, "اختر القسم", StaticCode.ApplicationTitle);
+                MessageBox.Show("اختر الدائرة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر الدائرة أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (searchByDepartmentRadioButton.Checked && searchByDepartmentLookUpEdit.EditValue == null)
+            {
+                MessageBox.Show("اختر القسم أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (searchBySubDepartmentRadioButton.Checked && searchBySubDepartmentLookUpEdit.EditValue == null)
+            {
+                MessageBox.Show("اختر الوحدة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر الوحدة أولاً", StaticCode.ApplicationTitle);
                 return;
             }
             if (searchWithinPeriodCheckBox.Checked)
@@ -76,28 +95,41 @@ namespace AssetManagement.Finance
             }
 
             financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
-            if(searchInDeptRadioButton.Checked)
-            financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Where(fi1 => fi1.FinancialItemDept==Convert.ToInt32(financialItemDeptToSearchLookUpEdit.EditValue));
+            if (searchBySectionRadioButton.Checked)
+            {
+                    List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
+                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
+                    financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+            }
+            if (searchByDepartmentRadioButton.Checked)
+            {
+                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
+                    financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+            }
+            if (searchBySubDepartmentRadioButton.Checked)
+            {
+                    financialItemsFromToQry = financialItemsFromToQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
+            }
             if (searchWithinPeriodCheckBox.Checked)
             {
-                    DateTime fromDate = DateTime.Today;
-                    DateTime toDate = DateTime.Today;
-                    if (fromToRadioButton.Checked)
-                    {
-                        fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
-                        toDate = Convert.ToDateTime(toDateDateEdit.EditValue);
-                    }
-                    else if (monthlyRadioButton.Checked)
-                    {
-                        fromDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, 1);
-                        toDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, DateTime.DaysInMonth(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month));
-                    }
-                    else if (annualRadioButton.Checked)
-                    {
-                        fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
-                        toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
-                    }
-                    financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
+                DateTime fromDate = DateTime.Today;
+                DateTime toDate = DateTime.Today;
+                if (fromToRadioButton.Checked)
+                {
+                    fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
+                    toDate = Convert.ToDateTime(toDateDateEdit.EditValue);
+                }
+                else if (monthlyRadioButton.Checked)
+                {
+                    fromDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, 1);
+                    toDate = new DateTime(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month, DateTime.DaysInMonth(monthlyDateTimePicker.Value.Year, monthlyDateTimePicker.Value.Month));
+                }
+                else if (annualRadioButton.Checked)
+                {
+                    fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
+                    toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
+                }
+                financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
             financialItemGridControl.DataSource = financialItemsFromToQry;
             bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
@@ -180,7 +212,12 @@ namespace AssetManagement.Finance
 
         private void searchInDeptRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            financialItemDeptToSearchLookUpEdit.Visible = manageDepartmentTblBtn.Visible = searchInDeptRadioButton.Checked;
+            searchBySectionLookUpEdit.Visible = searchBySectionRadioButton.Checked;
+            searchByDepartmentLookUpEdit.Visible = searchByDepartmentRadioButton.Checked;
+            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentRadioButton.Checked;
+            manageSectionTblBtn.Visible = searchBySectionRadioButton.Checked && StaticCode.activeUserRole.ManageSections == true;
+            manageDepartmentTblBtn.Visible = searchByDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageDepartments == true;
+            manageSubDepartmentTblBtn.Visible = searchBySubDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
         }
 
         private void manageDepartmentTblBtn_Click(object sender, EventArgs e)
@@ -193,6 +230,21 @@ namespace AssetManagement.Finance
         private void searchWithinPeriodCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             searchWithinPeriodPanel.Visible = searchWithinPeriodCheckBox.Checked;
+        }
+
+        private void manageSectionTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageSectionTblForm sctFrm = new ManageSectionTblForm();
+            sctFrm.ShowDialog();
+            this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
+        }
+
+        private void manageSubDepartmentTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
+            sdptFrm.ShowDialog();
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+
         }
     }
 }

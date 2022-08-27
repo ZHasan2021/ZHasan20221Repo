@@ -367,7 +367,7 @@ namespace AssetManagement
             // 
             this.manageDepartmentTblBarButtonItem.Caption = "إدارة جدول الأقسام";
             this.manageDepartmentTblBarButtonItem.Id = 19;
-            this.manageDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._5596774;
+            this.manageDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._55967741;
             this.manageDepartmentTblBarButtonItem.Name = "manageDepartmentTblBarButtonItem";
             this.manageDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageDepartmentTblBarButtonItem_ItemClick);

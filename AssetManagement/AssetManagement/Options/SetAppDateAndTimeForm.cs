@@ -21,8 +21,8 @@ namespace AssetManagement.Options
         {
             this.MinimumSize = this.Size;
 
-            appDateDateEdit.EditValue = DateTime.Today.AddDays(StaticCode.ShiftDays);
-            appTimeTimeEdit.EditValue = DateTime.Now.AddSeconds(StaticCode.ShiftSeconds);
+            appDateDateEdit.EditValue = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
+            appTimeTimeEdit.EditValue = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds);
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -31,8 +31,9 @@ namespace AssetManagement.Options
             {
                 DateTime appDate1 = Convert.ToDateTime(appDateDateEdit.EditValue);
                 DateTime appTime1 = Convert.ToDateTime(appTimeTimeEdit.EditValue);
-                StaticCode.ShiftDays = appDate1.Subtract(DateTime.Today).Days;
-                StaticCode.ShiftSeconds = appTime1.Subtract(DateTime.Now).Hours * 3600 + appTime1.Subtract(DateTime.Now).Minutes * 60;
+                StaticCode.appOptions.ShiftDays = appDate1.Subtract(DateTime.Today).Days;
+                StaticCode.appOptions.ShiftSeconds = appTime1.Subtract(DateTime.Now).Hours * 3600 + appTime1.Subtract(DateTime.Now).Minutes * 60;
+                StaticCode.mainDbContext.SubmitChanges();
                 this.Close();
             }
             catch

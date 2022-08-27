@@ -2913,13 +2913,9 @@ namespace AssetManagement
 		
 		private string _DepartmentName;
 		
-		private string _DepartmentHQ;
-		
 		private int _SectionOfDepartment;
 		
 		private EntitySet<UserTbl> _UserTbls;
-		
-		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
 		
 		private EntitySet<SubDepartmentTbl> _SubDepartmentTbls;
 		
@@ -2933,8 +2929,6 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnDepartmentNameChanging(string value);
     partial void OnDepartmentNameChanged();
-    partial void OnDepartmentHQChanging(string value);
-    partial void OnDepartmentHQChanged();
     partial void OnSectionOfDepartmentChanging(int value);
     partial void OnSectionOfDepartmentChanged();
     #endregion
@@ -2942,7 +2936,6 @@ namespace AssetManagement
 		public DepartmentTbl()
 		{
 			this._UserTbls = new EntitySet<UserTbl>(new Action<UserTbl>(this.attach_UserTbls), new Action<UserTbl>(this.detach_UserTbls));
-			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
 			this._SubDepartmentTbls = new EntitySet<SubDepartmentTbl>(new Action<SubDepartmentTbl>(this.attach_SubDepartmentTbls), new Action<SubDepartmentTbl>(this.detach_SubDepartmentTbls));
 			this._SectionTbl = default(EntityRef<SectionTbl>);
 			OnCreated();
@@ -2988,26 +2981,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentHQ", DbType="NVarChar(200)")]
-		public string DepartmentHQ
-		{
-			get
-			{
-				return this._DepartmentHQ;
-			}
-			set
-			{
-				if ((this._DepartmentHQ != value))
-				{
-					this.OnDepartmentHQChanging(value);
-					this.SendPropertyChanging();
-					this._DepartmentHQ = value;
-					this.SendPropertyChanged("DepartmentHQ");
-					this.OnDepartmentHQChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionOfDepartment", DbType="Int NOT NULL")]
 		public int SectionOfDepartment
 		{
@@ -3042,19 +3015,6 @@ namespace AssetManagement
 			set
 			{
 				this._UserTbls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_FinancialItemTbl", Storage="_FinancialItemTbls", ThisKey="ID", OtherKey="FinancialItemDept")]
-		public EntitySet<FinancialItemTbl> FinancialItemTbls
-		{
-			get
-			{
-				return this._FinancialItemTbls;
-			}
-			set
-			{
-				this._FinancialItemTbls.Assign(value);
 			}
 		}
 		
@@ -3132,18 +3092,6 @@ namespace AssetManagement
 		}
 		
 		private void detach_UserTbls(UserTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.DepartmentTbl = null;
-		}
-		
-		private void attach_FinancialItemTbls(FinancialItemTbl entity)
-		{
-			this.SendPropertyChanging();
-			entity.DepartmentTbl = this;
-		}
-		
-		private void detach_FinancialItemTbls(FinancialItemTbl entity)
 		{
 			this.SendPropertyChanging();
 			entity.DepartmentTbl = null;
@@ -3424,7 +3372,7 @@ namespace AssetManagement
 		
 		private string _FinancialItemCode;
 		
-		private int _FinancialItemDept;
+		private int _FinancialItemSubDept;
 		
 		private int _FinancialItemCategory;
 		
@@ -3454,9 +3402,9 @@ namespace AssetManagement
 		
 		private EntityRef<CurrencyTbl> _CurrencyTbl1;
 		
-		private EntityRef<DepartmentTbl> _DepartmentTbl;
-		
 		private EntityRef<FinancialItemCategoryTbl> _FinancialItemCategoryTbl;
+		
+		private EntityRef<SubDepartmentTbl> _SubDepartmentTbl;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3466,8 +3414,8 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnFinancialItemCodeChanging(string value);
     partial void OnFinancialItemCodeChanged();
-    partial void OnFinancialItemDeptChanging(int value);
-    partial void OnFinancialItemDeptChanged();
+    partial void OnFinancialItemSubDeptChanging(int value);
+    partial void OnFinancialItemSubDeptChanged();
     partial void OnFinancialItemCategoryChanging(int value);
     partial void OnFinancialItemCategoryChanged();
     partial void OnFinancialItemDescriptionChanging(string value);
@@ -3498,8 +3446,8 @@ namespace AssetManagement
 		{
 			this._CurrencyTbl = default(EntityRef<CurrencyTbl>);
 			this._CurrencyTbl1 = default(EntityRef<CurrencyTbl>);
-			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
 			this._FinancialItemCategoryTbl = default(EntityRef<FinancialItemCategoryTbl>);
+			this._SubDepartmentTbl = default(EntityRef<SubDepartmentTbl>);
 			OnCreated();
 		}
 		
@@ -3543,26 +3491,26 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemDept", DbType="Int NOT NULL")]
-		public int FinancialItemDept
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemSubDept", DbType="Int NOT NULL")]
+		public int FinancialItemSubDept
 		{
 			get
 			{
-				return this._FinancialItemDept;
+				return this._FinancialItemSubDept;
 			}
 			set
 			{
-				if ((this._FinancialItemDept != value))
+				if ((this._FinancialItemSubDept != value))
 				{
-					if (this._DepartmentTbl.HasLoadedOrAssignedValue)
+					if (this._SubDepartmentTbl.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnFinancialItemDeptChanging(value);
+					this.OnFinancialItemSubDeptChanging(value);
 					this.SendPropertyChanging();
-					this._FinancialItemDept = value;
-					this.SendPropertyChanged("FinancialItemDept");
-					this.OnFinancialItemDeptChanged();
+					this._FinancialItemSubDept = value;
+					this.SendPropertyChanged("FinancialItemSubDept");
+					this.OnFinancialItemSubDeptChanged();
 				}
 			}
 		}
@@ -3883,40 +3831,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_FinancialItemTbl", Storage="_DepartmentTbl", ThisKey="FinancialItemDept", OtherKey="ID", IsForeignKey=true)]
-		public DepartmentTbl DepartmentTbl
-		{
-			get
-			{
-				return this._DepartmentTbl.Entity;
-			}
-			set
-			{
-				DepartmentTbl previousValue = this._DepartmentTbl.Entity;
-				if (((previousValue != value) 
-							|| (this._DepartmentTbl.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DepartmentTbl.Entity = null;
-						previousValue.FinancialItemTbls.Remove(this);
-					}
-					this._DepartmentTbl.Entity = value;
-					if ((value != null))
-					{
-						value.FinancialItemTbls.Add(this);
-						this._FinancialItemDept = value.ID;
-					}
-					else
-					{
-						this._FinancialItemDept = default(int);
-					}
-					this.SendPropertyChanged("DepartmentTbl");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FinancialItemCategoryTbl_FinancialItemTbl", Storage="_FinancialItemCategoryTbl", ThisKey="FinancialItemCategory", OtherKey="ID", IsForeignKey=true)]
 		public FinancialItemCategoryTbl FinancialItemCategoryTbl
 		{
@@ -3947,6 +3861,40 @@ namespace AssetManagement
 						this._FinancialItemCategory = default(int);
 					}
 					this.SendPropertyChanged("FinancialItemCategoryTbl");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubDepartmentTbl_FinancialItemTbl", Storage="_SubDepartmentTbl", ThisKey="FinancialItemSubDept", OtherKey="ID", IsForeignKey=true)]
+		public SubDepartmentTbl SubDepartmentTbl
+		{
+			get
+			{
+				return this._SubDepartmentTbl.Entity;
+			}
+			set
+			{
+				SubDepartmentTbl previousValue = this._SubDepartmentTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._SubDepartmentTbl.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SubDepartmentTbl.Entity = null;
+						previousValue.FinancialItemTbls.Remove(this);
+					}
+					this._SubDepartmentTbl.Entity = value;
+					if ((value != null))
+					{
+						value.FinancialItemTbls.Add(this);
+						this._FinancialItemSubDept = value.ID;
+					}
+					else
+					{
+						this._FinancialItemSubDept = default(int);
+					}
+					this.SendPropertyChanged("SubDepartmentTbl");
 				}
 			}
 		}
@@ -4509,6 +4457,10 @@ namespace AssetManagement
 		
 		private int _AssetLifeSpanThresholdToWarn;
 		
+		private int _ShiftDays;
+		
+		private int _ShiftSeconds;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4521,6 +4473,10 @@ namespace AssetManagement
     partial void OnActiveUserChanged();
     partial void OnAssetLifeSpanThresholdToWarnChanging(int value);
     partial void OnAssetLifeSpanThresholdToWarnChanged();
+    partial void OnShiftDaysChanging(int value);
+    partial void OnShiftDaysChanged();
+    partial void OnShiftSecondsChanging(int value);
+    partial void OnShiftSecondsChanged();
     #endregion
 		
 		public OptionsTbl()
@@ -4604,6 +4560,46 @@ namespace AssetManagement
 					this._AssetLifeSpanThresholdToWarn = value;
 					this.SendPropertyChanged("AssetLifeSpanThresholdToWarn");
 					this.OnAssetLifeSpanThresholdToWarnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShiftDays", DbType="Int NOT NULL")]
+		public int ShiftDays
+		{
+			get
+			{
+				return this._ShiftDays;
+			}
+			set
+			{
+				if ((this._ShiftDays != value))
+				{
+					this.OnShiftDaysChanging(value);
+					this.SendPropertyChanging();
+					this._ShiftDays = value;
+					this.SendPropertyChanged("ShiftDays");
+					this.OnShiftDaysChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShiftSeconds", DbType="Int NOT NULL")]
+		public int ShiftSeconds
+		{
+			get
+			{
+				return this._ShiftSeconds;
+			}
+			set
+			{
+				if ((this._ShiftSeconds != value))
+				{
+					this.OnShiftSecondsChanging(value);
+					this.SendPropertyChanging();
+					this._ShiftSeconds = value;
+					this.SendPropertyChanged("ShiftSeconds");
+					this.OnShiftSecondsChanged();
 				}
 			}
 		}
@@ -5009,6 +5005,8 @@ namespace AssetManagement
 		
 		private EntitySet<AssetTbl> _AssetTbls;
 		
+		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
+		
 		private EntityRef<DepartmentTbl> _DepartmentTbl;
 		
     #region Extensibility Method Definitions
@@ -5026,6 +5024,7 @@ namespace AssetManagement
 		public SubDepartmentTbl()
 		{
 			this._AssetTbls = new EntitySet<AssetTbl>(new Action<AssetTbl>(this.attach_AssetTbls), new Action<AssetTbl>(this.detach_AssetTbls));
+			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
 			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
 			OnCreated();
 		}
@@ -5107,6 +5106,19 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubDepartmentTbl_FinancialItemTbl", Storage="_FinancialItemTbls", ThisKey="ID", OtherKey="FinancialItemSubDept")]
+		public EntitySet<FinancialItemTbl> FinancialItemTbls
+		{
+			get
+			{
+				return this._FinancialItemTbls;
+			}
+			set
+			{
+				this._FinancialItemTbls.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_SubDepartmentTbl", Storage="_DepartmentTbl", ThisKey="MainDepartment", OtherKey="ID", IsForeignKey=true)]
 		public DepartmentTbl DepartmentTbl
 		{
@@ -5168,6 +5180,18 @@ namespace AssetManagement
 		}
 		
 		private void detach_AssetTbls(AssetTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.SubDepartmentTbl = null;
+		}
+		
+		private void attach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.SubDepartmentTbl = this;
+		}
+		
+		private void detach_FinancialItemTbls(FinancialItemTbl entity)
 		{
 			this.SendPropertyChanging();
 			entity.SubDepartmentTbl = null;
@@ -7591,11 +7615,15 @@ namespace AssetManagement
 		
 		private string _كود_السجل_المالي;
 		
-		private string _القسم;
-		
 		private string _اسم_البند_المالي;
 		
 		private string _بيان_السجل_المالي;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
 		
 		private System.DateTime _تاريخ_تحرير_السجل;
 		
@@ -7645,22 +7673,6 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200)")]
 		public string اسم_البند_المالي
 		{
@@ -7689,6 +7701,54 @@ namespace AssetManagement
 				if ((this._بيان_السجل_المالي != value))
 				{
 					this._بيان_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
 				}
 			}
 		}
