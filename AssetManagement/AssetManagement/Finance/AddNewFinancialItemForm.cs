@@ -1,4 +1,5 @@
-﻿using AssetManagement.AuxTables;
+﻿using AssetManagement.Assets;
+using AssetManagement.AuxTables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -171,6 +172,12 @@ namespace AssetManagement.Finance
                 return;
             var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
             financialItemSubDeptLookUpEdit.Properties.DataSource = subDeptItems;
+        }
+
+        private void addNewAssetBtn_Click(object sender, EventArgs e)
+        {
+            AddNewAssetForm newast = new AddNewAssetForm();
+            newast.ShowDialog();
         }
     }
 }

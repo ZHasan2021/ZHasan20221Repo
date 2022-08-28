@@ -34,23 +34,22 @@
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MinorCategoryVwTableAdapter" GeneratorDataComponentClassName="MinorCategoryVwTableAdapter" Name="MinorCategoryVw" UserDataComponentName="MinorCategoryVwTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SubDepartmentVwTableAdapter" GeneratorDataComponentClassName="SubDepartmentVwTableAdapter" Name="SubDepartmentVw" UserDataComponentName="SubDepartmentVwTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MinorCategoryVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.SubDepartmentVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
+                    <CommandText>SELECT [معرف الوحدة], [اسم الوحدة], [القسم التابعة له], [الدائرة التي يتبع لها القسم] FROM dbo.SubDepartmentVw</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="اسم الفئة الفرعية" DataSetColumn="اسم الفئة الفرعية" />
-              <Mapping SourceColumn="وصف الفئة الفرعية" DataSetColumn="وصف الفئة الفرعية" />
-              <Mapping SourceColumn="اسم الفئة الرئيسية" DataSetColumn="اسم الفئة الرئيسية" />
-              <Mapping SourceColumn="العمر الإنتاجي بالسنوات" DataSetColumn="العمر الإنتاجي بالسنوات" />
-              <Mapping SourceColumn="معدل الإهلاك" DataSetColumn="معدل الإهلاك" />
+              <Mapping SourceColumn="معرف الوحدة" DataSetColumn="معرف الوحدة" />
+              <Mapping SourceColumn="اسم الوحدة" DataSetColumn="اسم الوحدة" />
+              <Mapping SourceColumn="القسم التابعة له" DataSetColumn="القسم التابعة له" />
+              <Mapping SourceColumn="الدائرة التي يتبع لها القسم" DataSetColumn="الدائرة التي يتبع لها القسم" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -130,6 +129,26 @@
               <Mapping SourceColumn="المبلغ الصادر" DataSetColumn="المبلغ الصادر" />
               <Mapping SourceColumn="العملة" DataSetColumn="العملة" />
               <Mapping SourceColumn="ملاحظات إضافية" DataSetColumn="ملاحظات إضافية" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MinorCategoryVwTableAdapter" GeneratorDataComponentClassName="MinorCategoryVwTableAdapter" Name="MinorCategoryVw" UserDataComponentName="MinorCategoryVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MinorCategoryVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="اسم الفئة الفرعية" DataSetColumn="اسم الفئة الفرعية" />
+              <Mapping SourceColumn="وصف الفئة الفرعية" DataSetColumn="وصف الفئة الفرعية" />
+              <Mapping SourceColumn="اسم الفئة الرئيسية" DataSetColumn="اسم الفئة الرئيسية" />
+              <Mapping SourceColumn="العمر الإنتاجي بالسنوات" DataSetColumn="العمر الإنتاجي بالسنوات" />
+              <Mapping SourceColumn="معدل الإهلاك" DataSetColumn="معدل الإهلاك" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1988,32 +2007,31 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="MinorCategoryVw" msprop:Generator_TableClassName="MinorCategoryVwDataTable" msprop:Generator_TableVarName="tableMinorCategoryVw" msprop:Generator_TablePropName="MinorCategoryVw" msprop:Generator_RowDeletingName="MinorCategoryVwRowDeleting" msprop:Generator_RowChangingName="MinorCategoryVwRowChanging" msprop:Generator_RowEvHandlerName="MinorCategoryVwRowChangeEventHandler" msprop:Generator_RowDeletedName="MinorCategoryVwRowDeleted" msprop:Generator_UserTableName="MinorCategoryVw" msprop:Generator_RowChangedName="MinorCategoryVwRowChanged" msprop:Generator_RowEvArgName="MinorCategoryVwRowChangeEvent" msprop:Generator_RowClassName="MinorCategoryVwRow">
+        <xs:element name="SubDepartmentVw" msprop:Generator_TableClassName="SubDepartmentVwDataTable" msprop:Generator_TableVarName="tableSubDepartmentVw" msprop:Generator_TablePropName="SubDepartmentVw" msprop:Generator_RowDeletingName="SubDepartmentVwRowDeleting" msprop:Generator_RowChangingName="SubDepartmentVwRowChanging" msprop:Generator_RowEvHandlerName="SubDepartmentVwRowChangeEventHandler" msprop:Generator_RowDeletedName="SubDepartmentVwRowDeleted" msprop:Generator_UserTableName="SubDepartmentVw" msprop:Generator_RowChangedName="SubDepartmentVwRowChanged" msprop:Generator_RowEvArgName="SubDepartmentVwRowChangeEvent" msprop:Generator_RowClassName="SubDepartmentVwRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="اسم_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="اسم الفئة الفرعية">
+              <xs:element name="معرف_x0020_الوحدة" msprop:Generator_ColumnVarNameInTable="columnمعرف_الوحدة" msprop:Generator_ColumnPropNameInRow="معرف_الوحدة" msprop:Generator_ColumnPropNameInTable="معرف_الوحدةColumn" msprop:Generator_UserColumnName="معرف الوحدة" type="xs:int" />
+              <xs:element name="اسم_x0020_الوحدة" msprop:Generator_ColumnVarNameInTable="columnاسم_الوحدة" msprop:Generator_ColumnPropNameInRow="اسم_الوحدة" msprop:Generator_ColumnPropNameInTable="اسم_الوحدةColumn" msprop:Generator_UserColumnName="اسم الوحدة">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="القسم_x0020_التابعة_x0020_له" msprop:Generator_ColumnVarNameInTable="columnالقسم_التابعة_له" msprop:Generator_ColumnPropNameInRow="القسم_التابعة_له" msprop:Generator_ColumnPropNameInTable="القسم_التابعة_لهColumn" msprop:Generator_UserColumnName="القسم التابعة له">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الدائرة_x0020_التي_x0020_يتبع_x0020_لها_x0020_القسم" msprop:Generator_ColumnVarNameInTable="columnالدائرة_التي_يتبع_لها_القسم" msprop:Generator_ColumnPropNameInRow="الدائرة_التي_يتبع_لها_القسم" msprop:Generator_ColumnPropNameInTable="الدائرة_التي_يتبع_لها_القسمColumn" msprop:Generator_UserColumnName="الدائرة التي يتبع لها القسم">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="وصف_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnوصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="وصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="وصف_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="وصف الفئة الفرعية" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="300" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="اسم_x0020_الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="اسم الفئة الرئيسية">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="العمر_x0020_الإنتاجي_x0020_بالسنوات" msprop:Generator_ColumnVarNameInTable="columnالعمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInRow="العمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInTable="العمر_الإنتاجي_بالسنواتColumn" msprop:Generator_UserColumnName="العمر الإنتاجي بالسنوات" type="xs:int" />
-              <xs:element name="معدل_x0020_الإهلاك" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاكColumn" msprop:Generator_UserColumnName="معدل الإهلاك" type="xs:double" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2297,6 +2315,35 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MinorCategoryVw" msprop:Generator_TableClassName="MinorCategoryVwDataTable" msprop:Generator_TableVarName="tableMinorCategoryVw" msprop:Generator_TablePropName="MinorCategoryVw" msprop:Generator_RowDeletingName="MinorCategoryVwRowDeleting" msprop:Generator_RowChangingName="MinorCategoryVwRowChanging" msprop:Generator_RowEvHandlerName="MinorCategoryVwRowChangeEventHandler" msprop:Generator_RowDeletedName="MinorCategoryVwRowDeleted" msprop:Generator_UserTableName="MinorCategoryVw" msprop:Generator_RowChangedName="MinorCategoryVwRowChanged" msprop:Generator_RowEvArgName="MinorCategoryVwRowChangeEvent" msprop:Generator_RowClassName="MinorCategoryVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="اسم_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="اسم الفئة الفرعية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="وصف_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnوصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="وصف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="وصف_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="وصف الفئة الفرعية" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="اسم_x0020_الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="اسم الفئة الرئيسية">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="العمر_x0020_الإنتاجي_x0020_بالسنوات" msprop:Generator_ColumnVarNameInTable="columnالعمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInRow="العمر_الإنتاجي_بالسنوات" msprop:Generator_ColumnPropNameInTable="العمر_الإنتاجي_بالسنواتColumn" msprop:Generator_UserColumnName="العمر الإنتاجي بالسنوات" type="xs:int" />
+              <xs:element name="معدل_x0020_الإهلاك" msprop:Generator_ColumnVarNameInTable="columnمعدل_الإهلاك" msprop:Generator_ColumnPropNameInRow="معدل_الإهلاك" msprop:Generator_ColumnPropNameInTable="معدل_الإهلاكColumn" msprop:Generator_UserColumnName="معدل الإهلاك" type="xs:double" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2895,6 +2942,10 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, DeleteAsse
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetMoveVw" />
       <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="SubDepartmentVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SubDepartmentVw" />
+      <xs:field xpath="mstns:معرف_x0020_الوحدة" />
     </xs:unique>
     <xs:unique name="AssetVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetVw" />

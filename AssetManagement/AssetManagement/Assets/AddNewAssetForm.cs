@@ -168,6 +168,21 @@ namespace AssetManagement.Assets
                 if (purchaseDateDateEdit.EditValue != null)
                     newAssetRecord.PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
                 StaticCode.mainDbContext.AssetTbls.InsertOnSubmit(newAssetRecord);
+                if (isNewAssetRadioButton.Checked)
+                {
+                    StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(new FinancialItemTbl()
+                    {
+                        FinancialItemSubDept = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue),
+                        FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica => fica.FinancialItemCategoryName == mainCategoryLookUpEdit.Text).First().ID,
+                        FinancialItemInsertionDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
+                        IncomingOrOutgoing = "صادر",
+                        IncomingAmount = Convert.ToDouble(purchasePriceNumericUpDown.Value),
+                        OutgoingAmount = 0,
+                        FinancialItemCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue),
+                        FinancialItemDescription = "شراء أصل",
+                        AdditionalNotes = $"شراء أصل من فئة {mainCategoryLookUpEdit.Text}-{minorCategoryLookUpEdit.Text} الذي يحمل الكود {newAssetRecord.AssetCode}",
+                    });
+                }
                 StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;
             }

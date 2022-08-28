@@ -110,6 +110,7 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.importAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -172,10 +173,11 @@ namespace AssetManagement
             this.assetsToDestructBarStaticItem,
             this.openExportFolderBarButtonItem,
             this.manageModelTblBarButtonItem,
-            this.manageSubDepartmentTblBarButtonItem});
+            this.manageSubDepartmentTblBarButtonItem,
+            this.importAssetsFromExcelBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 62;
+            this.mainRibbonControl.MaxItemId = 64;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -698,6 +700,7 @@ namespace AssetManagement
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
+            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarButtonItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
             this.newAssetRibbonPageGroup.Text = "أصل جديد - New asset";
             // 
@@ -971,6 +974,15 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
+            // importAssetsFromExcelBarButtonItem
+            // 
+            this.importAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول";
+            this.importAssetsFromExcelBarButtonItem.Id = 63;
+            this.importAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importAssetsFromExcelBarButtonItem.Name = "importAssetsFromExcelBarButtonItem";
+            this.importAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importAssetsFromExcelBarButtonItem_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1080,6 +1092,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem importAssetsFromExcelBarButtonItem;
     }
 }
 

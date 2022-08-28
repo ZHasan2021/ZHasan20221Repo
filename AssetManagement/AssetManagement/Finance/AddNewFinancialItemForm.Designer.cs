@@ -71,6 +71,7 @@ namespace AssetManagement.Finance
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemDeptLabel = new System.Windows.Forms.Label();
             this.financialItemDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.addNewAssetBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -520,6 +521,19 @@ namespace AssetManagement.Finance
             this.financialItemDeptLookUpEdit.TabIndex = 25;
             this.financialItemDeptLookUpEdit.EditValueChanged += new System.EventHandler(this.financialItemDeptLookUpEdit_EditValueChanged);
             // 
+            // addNewAssetBtn
+            // 
+            this.addNewAssetBtn.Image = global::AssetManagement.Properties.Resources._223645;
+            this.addNewAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addNewAssetBtn.Location = new System.Drawing.Point(662, 10);
+            this.addNewAssetBtn.Name = "addNewAssetBtn";
+            this.addNewAssetBtn.Size = new System.Drawing.Size(182, 65);
+            this.addNewAssetBtn.TabIndex = 7;
+            this.addNewAssetBtn.Text = "إضافة أصل جديد";
+            this.addNewAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addNewAssetBtn.UseVisualStyleBackColor = true;
+            this.addNewAssetBtn.Click += new System.EventHandler(this.addNewAssetBtn_Click);
+            // 
             // AddNewFinancialItemForm
             // 
             this.AcceptButton = this.addNewFinancialItemBtn_OK;
@@ -527,6 +541,7 @@ namespace AssetManagement.Finance
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addNewFinancialItemBtn_Cancel;
             this.ClientSize = new System.Drawing.Size(1136, 640);
+            this.Controls.Add(this.addNewAssetBtn);
             this.Controls.Add(this.manageSubDepartmentTblBtn);
             this.Controls.Add(this.financialItemSubDeptLabel);
             this.Controls.Add(this.financialItemSubDeptLookUpEdit);
@@ -625,5 +640,6 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
+        private System.Windows.Forms.Button addNewAssetBtn;
     }
 }

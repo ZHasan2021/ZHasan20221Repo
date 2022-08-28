@@ -26,11 +26,13 @@ namespace AssetManagement {
         
         private AssetMoveVwDataTable tableAssetMoveVw;
         
-        private MinorCategoryVwDataTable tableMinorCategoryVw;
+        private SubDepartmentVwDataTable tableSubDepartmentVw;
         
         private AssetVwDataTable tableAssetVw;
         
         private FinancialItemVwDataTable tableFinancialItemVw;
+        
+        private MinorCategoryVwDataTable tableMinorCategoryVw;
         
         private AssetMovementTblDataTable tableAssetMovementTbl;
         
@@ -139,14 +141,17 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetMoveVw"] != null)) {
                     base.Tables.Add(new AssetMoveVwDataTable(ds.Tables["AssetMoveVw"]));
                 }
-                if ((ds.Tables["MinorCategoryVw"] != null)) {
-                    base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
+                if ((ds.Tables["SubDepartmentVw"] != null)) {
+                    base.Tables.Add(new SubDepartmentVwDataTable(ds.Tables["SubDepartmentVw"]));
                 }
                 if ((ds.Tables["AssetVw"] != null)) {
                     base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
                 if ((ds.Tables["FinancialItemVw"] != null)) {
                     base.Tables.Add(new FinancialItemVwDataTable(ds.Tables["FinancialItemVw"]));
+                }
+                if ((ds.Tables["MinorCategoryVw"] != null)) {
+                    base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
                 }
                 if ((ds.Tables["AssetMovementTbl"] != null)) {
                     base.Tables.Add(new AssetMovementTblDataTable(ds.Tables["AssetMovementTbl"]));
@@ -237,9 +242,9 @@ namespace AssetManagement {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MinorCategoryVwDataTable MinorCategoryVw {
+        public SubDepartmentVwDataTable SubDepartmentVw {
             get {
-                return this.tableMinorCategoryVw;
+                return this.tableSubDepartmentVw;
             }
         }
         
@@ -260,6 +265,16 @@ namespace AssetManagement {
         public FinancialItemVwDataTable FinancialItemVw {
             get {
                 return this.tableFinancialItemVw;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MinorCategoryVwDataTable MinorCategoryVw {
+            get {
+                return this.tableMinorCategoryVw;
             }
         }
         
@@ -523,14 +538,17 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetMoveVw"] != null)) {
                     base.Tables.Add(new AssetMoveVwDataTable(ds.Tables["AssetMoveVw"]));
                 }
-                if ((ds.Tables["MinorCategoryVw"] != null)) {
-                    base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
+                if ((ds.Tables["SubDepartmentVw"] != null)) {
+                    base.Tables.Add(new SubDepartmentVwDataTable(ds.Tables["SubDepartmentVw"]));
                 }
                 if ((ds.Tables["AssetVw"] != null)) {
                     base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
                 if ((ds.Tables["FinancialItemVw"] != null)) {
                     base.Tables.Add(new FinancialItemVwDataTable(ds.Tables["FinancialItemVw"]));
+                }
+                if ((ds.Tables["MinorCategoryVw"] != null)) {
+                    base.Tables.Add(new MinorCategoryVwDataTable(ds.Tables["MinorCategoryVw"]));
                 }
                 if ((ds.Tables["AssetMovementTbl"] != null)) {
                     base.Tables.Add(new AssetMovementTblDataTable(ds.Tables["AssetMovementTbl"]));
@@ -628,10 +646,10 @@ namespace AssetManagement {
                     this.tableAssetMoveVw.InitVars();
                 }
             }
-            this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(base.Tables["MinorCategoryVw"]));
+            this.tableSubDepartmentVw = ((SubDepartmentVwDataTable)(base.Tables["SubDepartmentVw"]));
             if ((initTable == true)) {
-                if ((this.tableMinorCategoryVw != null)) {
-                    this.tableMinorCategoryVw.InitVars();
+                if ((this.tableSubDepartmentVw != null)) {
+                    this.tableSubDepartmentVw.InitVars();
                 }
             }
             this.tableAssetVw = ((AssetVwDataTable)(base.Tables["AssetVw"]));
@@ -644,6 +662,12 @@ namespace AssetManagement {
             if ((initTable == true)) {
                 if ((this.tableFinancialItemVw != null)) {
                     this.tableFinancialItemVw.InitVars();
+                }
+            }
+            this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(base.Tables["MinorCategoryVw"]));
+            if ((initTable == true)) {
+                if ((this.tableMinorCategoryVw != null)) {
+                    this.tableMinorCategoryVw.InitVars();
                 }
             }
             this.tableAssetMovementTbl = ((AssetMovementTblDataTable)(base.Tables["AssetMovementTbl"]));
@@ -791,12 +815,14 @@ namespace AssetManagement {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableAssetMoveVw = new AssetMoveVwDataTable();
             base.Tables.Add(this.tableAssetMoveVw);
-            this.tableMinorCategoryVw = new MinorCategoryVwDataTable();
-            base.Tables.Add(this.tableMinorCategoryVw);
+            this.tableSubDepartmentVw = new SubDepartmentVwDataTable();
+            base.Tables.Add(this.tableSubDepartmentVw);
             this.tableAssetVw = new AssetVwDataTable();
             base.Tables.Add(this.tableAssetVw);
             this.tableFinancialItemVw = new FinancialItemVwDataTable();
             base.Tables.Add(this.tableFinancialItemVw);
+            this.tableMinorCategoryVw = new MinorCategoryVwDataTable();
+            base.Tables.Add(this.tableMinorCategoryVw);
             this.tableAssetMovementTbl = new AssetMovementTblDataTable();
             base.Tables.Add(this.tableAssetMovementTbl);
             this.tableUserTbl = new UserTblDataTable();
@@ -921,7 +947,7 @@ namespace AssetManagement {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeMinorCategoryVw() {
+        private bool ShouldSerializeSubDepartmentVw() {
             return false;
         }
         
@@ -934,6 +960,12 @@ namespace AssetManagement {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeFinancialItemVw() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeMinorCategoryVw() {
             return false;
         }
         
@@ -1110,13 +1142,16 @@ namespace AssetManagement {
         public delegate void AssetMoveVwRowChangeEventHandler(object sender, AssetMoveVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void MinorCategoryVwRowChangeEventHandler(object sender, MinorCategoryVwRowChangeEvent e);
+        public delegate void SubDepartmentVwRowChangeEventHandler(object sender, SubDepartmentVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void AssetVwRowChangeEventHandler(object sender, AssetVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void FinancialItemVwRowChangeEventHandler(object sender, FinancialItemVwRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void MinorCategoryVwRowChangeEventHandler(object sender, MinorCategoryVwRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void AssetMovementTblRowChangeEventHandler(object sender, AssetMovementTblRowChangeEvent e);
@@ -1607,22 +1642,20 @@ namespace AssetManagement {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MinorCategoryVwDataTable : global::System.Data.TypedTableBase<MinorCategoryVwRow> {
+        public partial class SubDepartmentVwDataTable : global::System.Data.TypedTableBase<SubDepartmentVwRow> {
             
-            private global::System.Data.DataColumn columnاسم_الفئة_الفرعية;
+            private global::System.Data.DataColumn columnمعرف_الوحدة;
             
-            private global::System.Data.DataColumn columnوصف_الفئة_الفرعية;
+            private global::System.Data.DataColumn columnاسم_الوحدة;
             
-            private global::System.Data.DataColumn columnاسم_الفئة_الرئيسية;
+            private global::System.Data.DataColumn columnالقسم_التابعة_له;
             
-            private global::System.Data.DataColumn columnالعمر_الإنتاجي_بالسنوات;
-            
-            private global::System.Data.DataColumn columnمعدل_الإهلاك;
+            private global::System.Data.DataColumn columnالدائرة_التي_يتبع_لها_القسم;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwDataTable() {
-                this.TableName = "MinorCategoryVw";
+            public SubDepartmentVwDataTable() {
+                this.TableName = "SubDepartmentVw";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1630,7 +1663,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MinorCategoryVwDataTable(global::System.Data.DataTable table) {
+            internal SubDepartmentVwDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1647,48 +1680,40 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected MinorCategoryVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SubDepartmentVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn اسم_الفئة_الفرعيةColumn {
+            public global::System.Data.DataColumn معرف_الوحدةColumn {
                 get {
-                    return this.columnاسم_الفئة_الفرعية;
+                    return this.columnمعرف_الوحدة;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn وصف_الفئة_الفرعيةColumn {
+            public global::System.Data.DataColumn اسم_الوحدةColumn {
                 get {
-                    return this.columnوصف_الفئة_الفرعية;
+                    return this.columnاسم_الوحدة;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn اسم_الفئة_الرئيسيةColumn {
+            public global::System.Data.DataColumn القسم_التابعة_لهColumn {
                 get {
-                    return this.columnاسم_الفئة_الرئيسية;
+                    return this.columnالقسم_التابعة_له;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn العمر_الإنتاجي_بالسنواتColumn {
+            public global::System.Data.DataColumn الدائرة_التي_يتبع_لها_القسمColumn {
                 get {
-                    return this.columnالعمر_الإنتاجي_بالسنوات;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn معدل_الإهلاكColumn {
-                get {
-                    return this.columnمعدل_الإهلاك;
+                    return this.columnالدائرة_التي_يتبع_لها_القسم;
                 }
             }
             
@@ -1703,49 +1728,55 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow this[int index] {
+            public SubDepartmentVwRow this[int index] {
                 get {
-                    return ((MinorCategoryVwRow)(this.Rows[index]));
+                    return ((SubDepartmentVwRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanging;
+            public event SubDepartmentVwRowChangeEventHandler SubDepartmentVwRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanged;
+            public event SubDepartmentVwRowChangeEventHandler SubDepartmentVwRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleting;
+            public event SubDepartmentVwRowChangeEventHandler SubDepartmentVwRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleted;
+            public event SubDepartmentVwRowChangeEventHandler SubDepartmentVwRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddMinorCategoryVwRow(MinorCategoryVwRow row) {
+            public void AddSubDepartmentVwRow(SubDepartmentVwRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow AddMinorCategoryVwRow(string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
-                MinorCategoryVwRow rowMinorCategoryVwRow = ((MinorCategoryVwRow)(this.NewRow()));
+            public SubDepartmentVwRow AddSubDepartmentVwRow(int معرف_الوحدة, string اسم_الوحدة, string القسم_التابعة_له, string الدائرة_التي_يتبع_لها_القسم) {
+                SubDepartmentVwRow rowSubDepartmentVwRow = ((SubDepartmentVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        اسم_الفئة_الفرعية,
-                        وصف_الفئة_الفرعية,
-                        اسم_الفئة_الرئيسية,
-                        العمر_الإنتاجي_بالسنوات,
-                        معدل_الإهلاك};
-                rowMinorCategoryVwRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMinorCategoryVwRow);
-                return rowMinorCategoryVwRow;
+                        معرف_الوحدة,
+                        اسم_الوحدة,
+                        القسم_التابعة_له,
+                        الدائرة_التي_يتبع_لها_القسم};
+                rowSubDepartmentVwRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSubDepartmentVwRow);
+                return rowSubDepartmentVwRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public SubDepartmentVwRow FindByمعرف_الوحدة(int معرف_الوحدة) {
+                return ((SubDepartmentVwRow)(this.Rows.Find(new object[] {
+                            معرف_الوحدة})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                MinorCategoryVwDataTable cln = ((MinorCategoryVwDataTable)(base.Clone()));
+                SubDepartmentVwDataTable cln = ((SubDepartmentVwDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1753,65 +1784,65 @@ namespace AssetManagement {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new MinorCategoryVwDataTable();
+                return new SubDepartmentVwDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnاسم_الفئة_الفرعية = base.Columns["اسم الفئة الفرعية"];
-                this.columnوصف_الفئة_الفرعية = base.Columns["وصف الفئة الفرعية"];
-                this.columnاسم_الفئة_الرئيسية = base.Columns["اسم الفئة الرئيسية"];
-                this.columnالعمر_الإنتاجي_بالسنوات = base.Columns["العمر الإنتاجي بالسنوات"];
-                this.columnمعدل_الإهلاك = base.Columns["معدل الإهلاك"];
+                this.columnمعرف_الوحدة = base.Columns["معرف الوحدة"];
+                this.columnاسم_الوحدة = base.Columns["اسم الوحدة"];
+                this.columnالقسم_التابعة_له = base.Columns["القسم التابعة له"];
+                this.columnالدائرة_التي_يتبع_لها_القسم = base.Columns["الدائرة التي يتبع لها القسم"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnاسم_الفئة_الفرعية = new global::System.Data.DataColumn("اسم الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnاسم_الفئة_الفرعية);
-                this.columnوصف_الفئة_الفرعية = new global::System.Data.DataColumn("وصف الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnوصف_الفئة_الفرعية);
-                this.columnاسم_الفئة_الرئيسية = new global::System.Data.DataColumn("اسم الفئة الرئيسية", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnاسم_الفئة_الرئيسية);
-                this.columnالعمر_الإنتاجي_بالسنوات = new global::System.Data.DataColumn("العمر الإنتاجي بالسنوات", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnالعمر_الإنتاجي_بالسنوات);
-                this.columnمعدل_الإهلاك = new global::System.Data.DataColumn("معدل الإهلاك", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnمعدل_الإهلاك);
-                this.columnاسم_الفئة_الفرعية.AllowDBNull = false;
-                this.columnاسم_الفئة_الفرعية.MaxLength = 200;
-                this.columnوصف_الفئة_الفرعية.MaxLength = 300;
-                this.columnاسم_الفئة_الرئيسية.AllowDBNull = false;
-                this.columnاسم_الفئة_الرئيسية.MaxLength = 200;
-                this.columnالعمر_الإنتاجي_بالسنوات.AllowDBNull = false;
-                this.columnمعدل_الإهلاك.AllowDBNull = false;
+                this.columnمعرف_الوحدة = new global::System.Data.DataColumn("معرف الوحدة", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعرف_الوحدة);
+                this.columnاسم_الوحدة = new global::System.Data.DataColumn("اسم الوحدة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_الوحدة);
+                this.columnالقسم_التابعة_له = new global::System.Data.DataColumn("القسم التابعة له", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالقسم_التابعة_له);
+                this.columnالدائرة_التي_يتبع_لها_القسم = new global::System.Data.DataColumn("الدائرة التي يتبع لها القسم", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالدائرة_التي_يتبع_لها_القسم);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnمعرف_الوحدة}, true));
+                this.columnمعرف_الوحدة.AllowDBNull = false;
+                this.columnمعرف_الوحدة.Unique = true;
+                this.columnاسم_الوحدة.AllowDBNull = false;
+                this.columnاسم_الوحدة.MaxLength = 100;
+                this.columnالقسم_التابعة_له.AllowDBNull = false;
+                this.columnالقسم_التابعة_له.MaxLength = 100;
+                this.columnالدائرة_التي_يتبع_لها_القسم.AllowDBNull = false;
+                this.columnالدائرة_التي_يتبع_لها_القسم.MaxLength = 200;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow NewMinorCategoryVwRow() {
-                return ((MinorCategoryVwRow)(this.NewRow()));
+            public SubDepartmentVwRow NewSubDepartmentVwRow() {
+                return ((SubDepartmentVwRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MinorCategoryVwRow(builder);
+                return new SubDepartmentVwRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(MinorCategoryVwRow);
+                return typeof(SubDepartmentVwRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.MinorCategoryVwRowChanged != null)) {
-                    this.MinorCategoryVwRowChanged(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                if ((this.SubDepartmentVwRowChanged != null)) {
+                    this.SubDepartmentVwRowChanged(this, new SubDepartmentVwRowChangeEvent(((SubDepartmentVwRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1819,8 +1850,8 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.MinorCategoryVwRowChanging != null)) {
-                    this.MinorCategoryVwRowChanging(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                if ((this.SubDepartmentVwRowChanging != null)) {
+                    this.SubDepartmentVwRowChanging(this, new SubDepartmentVwRowChangeEvent(((SubDepartmentVwRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1828,8 +1859,8 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.MinorCategoryVwRowDeleted != null)) {
-                    this.MinorCategoryVwRowDeleted(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                if ((this.SubDepartmentVwRowDeleted != null)) {
+                    this.SubDepartmentVwRowDeleted(this, new SubDepartmentVwRowChangeEvent(((SubDepartmentVwRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1837,14 +1868,14 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.MinorCategoryVwRowDeleting != null)) {
-                    this.MinorCategoryVwRowDeleting(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                if ((this.SubDepartmentVwRowDeleting != null)) {
+                    this.SubDepartmentVwRowDeleting(this, new SubDepartmentVwRowChangeEvent(((SubDepartmentVwRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveMinorCategoryVwRow(MinorCategoryVwRow row) {
+            public void RemoveSubDepartmentVwRow(SubDepartmentVwRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1871,7 +1902,7 @@ namespace AssetManagement {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MinorCategoryVwDataTable";
+                attribute2.FixedValue = "SubDepartmentVwDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3141,6 +3172,316 @@ namespace AssetManagement {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "FinancialItemVwDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MinorCategoryVwDataTable : global::System.Data.TypedTableBase<MinorCategoryVwRow> {
+            
+            private global::System.Data.DataColumn columnاسم_الفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnوصف_الفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnاسم_الفئة_الرئيسية;
+            
+            private global::System.Data.DataColumn columnالعمر_الإنتاجي_بالسنوات;
+            
+            private global::System.Data.DataColumn columnمعدل_الإهلاك;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwDataTable() {
+                this.TableName = "MinorCategoryVw";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal MinorCategoryVwDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected MinorCategoryVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_الفئة_الفرعيةColumn {
+                get {
+                    return this.columnاسم_الفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn وصف_الفئة_الفرعيةColumn {
+                get {
+                    return this.columnوصف_الفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_الفئة_الرئيسيةColumn {
+                get {
+                    return this.columnاسم_الفئة_الرئيسية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn العمر_الإنتاجي_بالسنواتColumn {
+                get {
+                    return this.columnالعمر_الإنتاجي_بالسنوات;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معدل_الإهلاكColumn {
+                get {
+                    return this.columnمعدل_الإهلاك;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow this[int index] {
+                get {
+                    return ((MinorCategoryVwRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event MinorCategoryVwRowChangeEventHandler MinorCategoryVwRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddMinorCategoryVwRow(MinorCategoryVwRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow AddMinorCategoryVwRow(string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
+                MinorCategoryVwRow rowMinorCategoryVwRow = ((MinorCategoryVwRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        اسم_الفئة_الفرعية,
+                        وصف_الفئة_الفرعية,
+                        اسم_الفئة_الرئيسية,
+                        العمر_الإنتاجي_بالسنوات,
+                        معدل_الإهلاك};
+                rowMinorCategoryVwRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMinorCategoryVwRow);
+                return rowMinorCategoryVwRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MinorCategoryVwDataTable cln = ((MinorCategoryVwDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MinorCategoryVwDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnاسم_الفئة_الفرعية = base.Columns["اسم الفئة الفرعية"];
+                this.columnوصف_الفئة_الفرعية = base.Columns["وصف الفئة الفرعية"];
+                this.columnاسم_الفئة_الرئيسية = base.Columns["اسم الفئة الرئيسية"];
+                this.columnالعمر_الإنتاجي_بالسنوات = base.Columns["العمر الإنتاجي بالسنوات"];
+                this.columnمعدل_الإهلاك = base.Columns["معدل الإهلاك"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnاسم_الفئة_الفرعية = new global::System.Data.DataColumn("اسم الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_الفئة_الفرعية);
+                this.columnوصف_الفئة_الفرعية = new global::System.Data.DataColumn("وصف الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnوصف_الفئة_الفرعية);
+                this.columnاسم_الفئة_الرئيسية = new global::System.Data.DataColumn("اسم الفئة الرئيسية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_الفئة_الرئيسية);
+                this.columnالعمر_الإنتاجي_بالسنوات = new global::System.Data.DataColumn("العمر الإنتاجي بالسنوات", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالعمر_الإنتاجي_بالسنوات);
+                this.columnمعدل_الإهلاك = new global::System.Data.DataColumn("معدل الإهلاك", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعدل_الإهلاك);
+                this.columnاسم_الفئة_الفرعية.AllowDBNull = false;
+                this.columnاسم_الفئة_الفرعية.MaxLength = 200;
+                this.columnوصف_الفئة_الفرعية.MaxLength = 300;
+                this.columnاسم_الفئة_الرئيسية.AllowDBNull = false;
+                this.columnاسم_الفئة_الرئيسية.MaxLength = 200;
+                this.columnالعمر_الإنتاجي_بالسنوات.AllowDBNull = false;
+                this.columnمعدل_الإهلاك.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow NewMinorCategoryVwRow() {
+                return ((MinorCategoryVwRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MinorCategoryVwRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MinorCategoryVwRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MinorCategoryVwRowChanged != null)) {
+                    this.MinorCategoryVwRowChanged(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MinorCategoryVwRowChanging != null)) {
+                    this.MinorCategoryVwRowChanging(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MinorCategoryVwRowDeleted != null)) {
+                    this.MinorCategoryVwRowDeleted(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MinorCategoryVwRowDeleting != null)) {
+                    this.MinorCategoryVwRowDeleting(this, new MinorCategoryVwRowChangeEvent(((MinorCategoryVwRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveMinorCategoryVwRow(MinorCategoryVwRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AssetMngDbDataSet ds = new AssetMngDbDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MinorCategoryVwDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -10840,87 +11181,59 @@ namespace AssetManagement {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class MinorCategoryVwRow : global::System.Data.DataRow {
+        public partial class SubDepartmentVwRow : global::System.Data.DataRow {
             
-            private MinorCategoryVwDataTable tableMinorCategoryVw;
+            private SubDepartmentVwDataTable tableSubDepartmentVw;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MinorCategoryVwRow(global::System.Data.DataRowBuilder rb) : 
+            internal SubDepartmentVwRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(this.Table));
+                this.tableSubDepartmentVw = ((SubDepartmentVwDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string اسم_الفئة_الفرعية {
+            public int معرف_الوحدة {
                 get {
-                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn]));
+                    return ((int)(this[this.tableSubDepartmentVw.معرف_الوحدةColumn]));
                 }
                 set {
-                    this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn] = value;
+                    this[this.tableSubDepartmentVw.معرف_الوحدةColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string وصف_الفئة_الفرعية {
+            public string اسم_الوحدة {
                 get {
-                    try {
-                        return ((string)(this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'وصف الفئة الفرعية\' in table \'MinorCategoryVw\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableSubDepartmentVw.اسم_الوحدةColumn]));
                 }
                 set {
-                    this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = value;
+                    this[this.tableSubDepartmentVw.اسم_الوحدةColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string اسم_الفئة_الرئيسية {
+            public string القسم_التابعة_له {
                 get {
-                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn]));
+                    return ((string)(this[this.tableSubDepartmentVw.القسم_التابعة_لهColumn]));
                 }
                 set {
-                    this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn] = value;
+                    this[this.tableSubDepartmentVw.القسم_التابعة_لهColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int العمر_الإنتاجي_بالسنوات {
+            public string الدائرة_التي_يتبع_لها_القسم {
                 get {
-                    return ((int)(this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn]));
+                    return ((string)(this[this.tableSubDepartmentVw.الدائرة_التي_يتبع_لها_القسمColumn]));
                 }
                 set {
-                    this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn] = value;
+                    this[this.tableSubDepartmentVw.الدائرة_التي_يتبع_لها_القسمColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double معدل_الإهلاك {
-                get {
-                    return ((double)(this[this.tableMinorCategoryVw.معدل_الإهلاكColumn]));
-                }
-                set {
-                    this[this.tableMinorCategoryVw.معدل_الإهلاكColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isوصف_الفئة_الفرعيةNull() {
-                return this.IsNull(this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setوصف_الفئة_الفرعيةNull() {
-                this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11984,6 +12297,93 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setملاحظات_إضافيةNull() {
                 this[this.tableFinancialItemVw.ملاحظات_إضافيةColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MinorCategoryVwRow : global::System.Data.DataRow {
+            
+            private MinorCategoryVwDataTable tableMinorCategoryVw;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal MinorCategoryVwRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_الفئة_الفرعية {
+                get {
+                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.اسم_الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string وصف_الفئة_الفرعية {
+                get {
+                    try {
+                        return ((string)(this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'وصف الفئة الفرعية\' in table \'MinorCategoryVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_الفئة_الرئيسية {
+                get {
+                    return ((string)(this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.اسم_الفئة_الرئيسيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int العمر_الإنتاجي_بالسنوات {
+                get {
+                    return ((int)(this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.العمر_الإنتاجي_بالسنواتColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double معدل_الإهلاك {
+                get {
+                    return ((double)(this[this.tableMinorCategoryVw.معدل_الإهلاكColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.معدل_الإهلاكColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isوصف_الفئة_الفرعيةNull() {
+                return this.IsNull(this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setوصف_الفئة_الفرعيةNull() {
+                this[this.tableMinorCategoryVw.وصف_الفئة_الفرعيةColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16484,22 +16884,22 @@ namespace AssetManagement {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class MinorCategoryVwRowChangeEvent : global::System.EventArgs {
+        public class SubDepartmentVwRowChangeEvent : global::System.EventArgs {
             
-            private MinorCategoryVwRow eventRow;
+            private SubDepartmentVwRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRowChangeEvent(MinorCategoryVwRow row, global::System.Data.DataRowAction action) {
+            public SubDepartmentVwRowChangeEvent(SubDepartmentVwRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow Row {
+            public SubDepartmentVwRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16568,6 +16968,40 @@ namespace AssetManagement {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public FinancialItemVwRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class MinorCategoryVwRowChangeEvent : global::System.EventArgs {
+            
+            private MinorCategoryVwRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRowChangeEvent(MinorCategoryVwRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -17421,7 +17855,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MinorCategoryVwTableAdapter : global::System.ComponentModel.Component {
+    public partial class SubDepartmentVwTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -17435,7 +17869,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public MinorCategoryVwTableAdapter() {
+        public SubDepartmentVwTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -17532,12 +17966,11 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MinorCategoryVw";
-            tableMapping.ColumnMappings.Add("اسم الفئة الفرعية", "اسم الفئة الفرعية");
-            tableMapping.ColumnMappings.Add("وصف الفئة الفرعية", "وصف الفئة الفرعية");
-            tableMapping.ColumnMappings.Add("اسم الفئة الرئيسية", "اسم الفئة الرئيسية");
-            tableMapping.ColumnMappings.Add("العمر الإنتاجي بالسنوات", "العمر الإنتاجي بالسنوات");
-            tableMapping.ColumnMappings.Add("معدل الإهلاك", "معدل الإهلاك");
+            tableMapping.DataSetTable = "SubDepartmentVw";
+            tableMapping.ColumnMappings.Add("معرف الوحدة", "معرف الوحدة");
+            tableMapping.ColumnMappings.Add("اسم الوحدة", "اسم الوحدة");
+            tableMapping.ColumnMappings.Add("القسم التابعة له", "القسم التابعة له");
+            tableMapping.ColumnMappings.Add("الدائرة التي يتبع لها القسم", "الدائرة التي يتبع لها القسم");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -17554,8 +17987,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإ" +
-                "نتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw";
+            this._commandCollection[0].CommandText = "SELECT [معرف الوحدة], [اسم الوحدة], [القسم التابعة له], [الدائرة التي يتبع لها ال" +
+                "قسم] FROM dbo.SubDepartmentVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -17563,7 +17996,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(AssetMngDbDataSet.MinorCategoryVwDataTable dataTable) {
+        public virtual int Fill(AssetMngDbDataSet.SubDepartmentVwDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -17576,9 +18009,9 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMngDbDataSet.MinorCategoryVwDataTable GetData() {
+        public virtual AssetMngDbDataSet.SubDepartmentVwDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            AssetMngDbDataSet.MinorCategoryVwDataTable dataTable = new AssetMngDbDataSet.MinorCategoryVwDataTable();
+            AssetMngDbDataSet.SubDepartmentVwDataTable dataTable = new AssetMngDbDataSet.SubDepartmentVwDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -17962,6 +18395,178 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
         public virtual AssetMngDbDataSet.FinancialItemVwDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             AssetMngDbDataSet.FinancialItemVwDataTable dataTable = new AssetMngDbDataSet.FinancialItemVwDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MinorCategoryVwTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public MinorCategoryVwTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MinorCategoryVw";
+            tableMapping.ColumnMappings.Add("اسم الفئة الفرعية", "اسم الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("وصف الفئة الفرعية", "وصف الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("اسم الفئة الرئيسية", "اسم الفئة الرئيسية");
+            tableMapping.ColumnMappings.Add("العمر الإنتاجي بالسنوات", "العمر الإنتاجي بالسنوات");
+            tableMapping.ColumnMappings.Add("معدل الإهلاك", "معدل الإهلاك");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإ" +
+                "نتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AssetMngDbDataSet.MinorCategoryVwDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AssetMngDbDataSet.MinorCategoryVwDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            AssetMngDbDataSet.MinorCategoryVwDataTable dataTable = new AssetMngDbDataSet.MinorCategoryVwDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -29512,12 +30117,12 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._userRoleTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._estateAreaUnitTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._userRoleTblTableAdapter.Update(updatedRows));
+                    result = (result + this._estateAreaUnitTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -29557,12 +30162,30 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._estateAreaUnitTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._userRoleTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._estateAreaUnitTblTableAdapter.Update(updatedRows));
+                    result = (result + this._userRoleTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._currencyTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._currencyTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -29584,15 +30207,6 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._userTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -29602,30 +30216,21 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._currencyTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._currencyTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._financialItemTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._financialItemTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetMovementTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -29647,12 +30252,12 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(updatedRows));
+                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -29690,11 +30295,11 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._userRoleTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._estateAreaUnitTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._userRoleTblTableAdapter.Update(addedRows));
+                    result = (result + this._estateAreaUnitTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -29730,11 +30335,27 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._estateAreaUnitTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._userRoleTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._estateAreaUnitTblTableAdapter.Update(addedRows));
+                    result = (result + this._userRoleTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._currencyTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._currencyTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -29754,14 +30375,6 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._userTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -29770,27 +30383,19 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._currencyTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._currencyTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._financialItemTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._financialItemTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetMovementTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -29810,11 +30415,11 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(addedRows));
+                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -29828,11 +30433,11 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(AssetMngDbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(deletedRows));
+                    result = (result + this._assetTransactionTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -29852,6 +30457,14 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._assetMovementTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._financialItemTblTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.FinancialItemTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -29860,35 +30473,11 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._currencyTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._currencyTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._userTblTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._userTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -29908,11 +30497,27 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._estateAreaUnitTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._estateAreaUnitTblTableAdapter.Update(deletedRows));
+                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._currencyTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._currencyTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._userRoleTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userRoleTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -29948,11 +30553,11 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._userRoleTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.UserRoleTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._estateAreaUnitTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.EstateAreaUnitTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._userRoleTblTableAdapter.Update(deletedRows));
+                    result = (result + this._estateAreaUnitTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

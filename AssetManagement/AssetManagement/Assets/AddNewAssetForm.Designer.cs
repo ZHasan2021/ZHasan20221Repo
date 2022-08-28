@@ -1162,7 +1162,7 @@ namespace AssetManagement.Assets
             // 
             this.manageEstateAreaUnitTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageEstateAreaUnitTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageEstateAreaUnitTblBtn.Location = new System.Drawing.Point(423, 236);
+            this.manageEstateAreaUnitTblBtn.Location = new System.Drawing.Point(537, 233);
             this.manageEstateAreaUnitTblBtn.Name = "manageEstateAreaUnitTblBtn";
             this.manageEstateAreaUnitTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageEstateAreaUnitTblBtn.TabIndex = 41;
@@ -1172,7 +1172,7 @@ namespace AssetManagement.Assets
             // estateAreaUnitLookUpEdit
             // 
             this.estateAreaUnitLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.estateAreaUnitLookUpEdit.Location = new System.Drawing.Point(495, 248);
+            this.estateAreaUnitLookUpEdit.Location = new System.Drawing.Point(609, 245);
             this.estateAreaUnitLookUpEdit.Name = "estateAreaUnitLookUpEdit";
             this.estateAreaUnitLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.estateAreaUnitLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -1197,7 +1197,7 @@ namespace AssetManagement.Assets
             // 
             this.estateAreaTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateAreaTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAreaTextBox.Location = new System.Drawing.Point(717, 247);
+            this.estateAreaTextBox.Location = new System.Drawing.Point(831, 244);
             this.estateAreaTextBox.Name = "estateAreaTextBox";
             this.estateAreaTextBox.Size = new System.Drawing.Size(234, 32);
             this.estateAreaTextBox.TabIndex = 35;
@@ -1207,7 +1207,7 @@ namespace AssetManagement.Assets
             this.estateAreaLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateAreaLabel.AutoSize = true;
             this.estateAreaLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAreaLabel.Location = new System.Drawing.Point(1046, 251);
+            this.estateAreaLabel.Location = new System.Drawing.Point(1160, 248);
             this.estateAreaLabel.Name = "estateAreaLabel";
             this.estateAreaLabel.Size = new System.Drawing.Size(106, 24);
             this.estateAreaLabel.TabIndex = 30;
@@ -1217,7 +1217,7 @@ namespace AssetManagement.Assets
             // 
             this.estateOwnershipDocumentWithTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateOwnershipDocumentWithTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateOwnershipDocumentWithTextBox.Location = new System.Drawing.Point(717, 174);
+            this.estateOwnershipDocumentWithTextBox.Location = new System.Drawing.Point(831, 171);
             this.estateOwnershipDocumentWithTextBox.Name = "estateOwnershipDocumentWithTextBox";
             this.estateOwnershipDocumentWithTextBox.Size = new System.Drawing.Size(234, 32);
             this.estateOwnershipDocumentWithTextBox.TabIndex = 25;
@@ -1227,7 +1227,7 @@ namespace AssetManagement.Assets
             this.estateOwnershipDocumentWithLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateOwnershipDocumentWithLabel.AutoSize = true;
             this.estateOwnershipDocumentWithLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateOwnershipDocumentWithLabel.Location = new System.Drawing.Point(976, 177);
+            this.estateOwnershipDocumentWithLabel.Location = new System.Drawing.Point(1090, 174);
             this.estateOwnershipDocumentWithLabel.Name = "estateOwnershipDocumentWithLabel";
             this.estateOwnershipDocumentWithLabel.Size = new System.Drawing.Size(176, 24);
             this.estateOwnershipDocumentWithLabel.TabIndex = 20;
@@ -1237,7 +1237,7 @@ namespace AssetManagement.Assets
             // 
             this.estateAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateAddressTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAddressTextBox.Location = new System.Drawing.Point(626, 106);
+            this.estateAddressTextBox.Location = new System.Drawing.Point(740, 103);
             this.estateAddressTextBox.Name = "estateAddressTextBox";
             this.estateAddressTextBox.Size = new System.Drawing.Size(325, 32);
             this.estateAddressTextBox.TabIndex = 15;
@@ -1247,7 +1247,7 @@ namespace AssetManagement.Assets
             this.estateAddressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.estateAddressLabel.AutoSize = true;
             this.estateAddressLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estateAddressLabel.Location = new System.Drawing.Point(1032, 108);
+            this.estateAddressLabel.Location = new System.Drawing.Point(1146, 105);
             this.estateAddressLabel.Name = "estateAddressLabel";
             this.estateAddressLabel.Size = new System.Drawing.Size(120, 24);
             this.estateAddressLabel.TabIndex = 10;
@@ -1257,7 +1257,7 @@ namespace AssetManagement.Assets
             // 
             this.ofUsedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ofUsedTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ofUsedTextBox.Location = new System.Drawing.Point(717, 37);
+            this.ofUsedTextBox.Location = new System.Drawing.Point(831, 34);
             this.ofUsedTextBox.Name = "ofUsedTextBox";
             this.ofUsedTextBox.Size = new System.Drawing.Size(234, 32);
             this.ofUsedTextBox.TabIndex = 5;
@@ -1267,7 +1267,7 @@ namespace AssetManagement.Assets
             this.ofUsedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ofUsedLabel.AutoSize = true;
             this.ofUsedLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ofUsedLabel.Location = new System.Drawing.Point(1011, 40);
+            this.ofUsedLabel.Location = new System.Drawing.Point(1125, 37);
             this.ofUsedLabel.Name = "ofUsedLabel";
             this.ofUsedLabel.Size = new System.Drawing.Size(141, 24);
             this.ofUsedLabel.TabIndex = 0;
@@ -1291,7 +1291,7 @@ namespace AssetManagement.Assets
             // carManufacturingYearNumericUpDown
             // 
             this.carManufacturingYearNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carManufacturingYearNumericUpDown.Location = new System.Drawing.Point(751, 112);
+            this.carManufacturingYearNumericUpDown.Location = new System.Drawing.Point(841, 111);
             this.carManufacturingYearNumericUpDown.Maximum = new decimal(new int[] {
             2030,
             0,
@@ -1309,7 +1309,7 @@ namespace AssetManagement.Assets
             // carEngineNumberTextBox
             // 
             this.carEngineNumberTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carEngineNumberTextBox.Location = new System.Drawing.Point(751, 263);
+            this.carEngineNumberTextBox.Location = new System.Drawing.Point(841, 262);
             this.carEngineNumberTextBox.Name = "carEngineNumberTextBox";
             this.carEngineNumberTextBox.Size = new System.Drawing.Size(234, 32);
             this.carEngineNumberTextBox.TabIndex = 35;
@@ -1318,7 +1318,7 @@ namespace AssetManagement.Assets
             // 
             this.carEngineNumberLabel.AutoSize = true;
             this.carEngineNumberLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carEngineNumberLabel.Location = new System.Drawing.Point(1072, 266);
+            this.carEngineNumberLabel.Location = new System.Drawing.Point(1162, 265);
             this.carEngineNumberLabel.Name = "carEngineNumberLabel";
             this.carEngineNumberLabel.Size = new System.Drawing.Size(92, 24);
             this.carEngineNumberLabel.TabIndex = 30;
@@ -1327,7 +1327,7 @@ namespace AssetManagement.Assets
             // carChassisNumberTextBox
             // 
             this.carChassisNumberTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carChassisNumberTextBox.Location = new System.Drawing.Point(751, 186);
+            this.carChassisNumberTextBox.Location = new System.Drawing.Point(841, 185);
             this.carChassisNumberTextBox.Name = "carChassisNumberTextBox";
             this.carChassisNumberTextBox.Size = new System.Drawing.Size(234, 32);
             this.carChassisNumberTextBox.TabIndex = 25;
@@ -1336,7 +1336,7 @@ namespace AssetManagement.Assets
             // 
             this.carChassisNumberLabel.AutoSize = true;
             this.carChassisNumberLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carChassisNumberLabel.Location = new System.Drawing.Point(1005, 190);
+            this.carChassisNumberLabel.Location = new System.Drawing.Point(1095, 189);
             this.carChassisNumberLabel.Name = "carChassisNumberLabel";
             this.carChassisNumberLabel.Size = new System.Drawing.Size(159, 24);
             this.carChassisNumberLabel.TabIndex = 20;
@@ -1346,7 +1346,7 @@ namespace AssetManagement.Assets
             // 
             this.carManufacturingYearLabel.AutoSize = true;
             this.carManufacturingYearLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carManufacturingYearLabel.Location = new System.Drawing.Point(1075, 114);
+            this.carManufacturingYearLabel.Location = new System.Drawing.Point(1165, 113);
             this.carManufacturingYearLabel.Name = "carManufacturingYearLabel";
             this.carManufacturingYearLabel.Size = new System.Drawing.Size(89, 24);
             this.carManufacturingYearLabel.TabIndex = 10;
@@ -1355,7 +1355,7 @@ namespace AssetManagement.Assets
             // carPanelNumberTextBox
             // 
             this.carPanelNumberTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carPanelNumberTextBox.Location = new System.Drawing.Point(751, 43);
+            this.carPanelNumberTextBox.Location = new System.Drawing.Point(841, 42);
             this.carPanelNumberTextBox.Name = "carPanelNumberTextBox";
             this.carPanelNumberTextBox.Size = new System.Drawing.Size(234, 32);
             this.carPanelNumberTextBox.TabIndex = 5;
@@ -1364,7 +1364,7 @@ namespace AssetManagement.Assets
             // 
             this.carPanelNumberLabel.AutoSize = true;
             this.carPanelNumberLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carPanelNumberLabel.Location = new System.Drawing.Point(1037, 45);
+            this.carPanelNumberLabel.Location = new System.Drawing.Point(1127, 44);
             this.carPanelNumberLabel.Name = "carPanelNumberLabel";
             this.carPanelNumberLabel.Size = new System.Drawing.Size(127, 24);
             this.carPanelNumberLabel.TabIndex = 0;

@@ -39,7 +39,7 @@ namespace AssetManagement
             StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
-            addNewAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -188,8 +188,10 @@ namespace AssetManagement
 
         private void categoriesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
-            catFrm.ShowDialog();
+            //ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
+            //catFrm.ShowDialog();
+            ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
+            macaFrm.ShowDialog();
         }
 
         private void mainTimer_Tick(object sender, EventArgs e)
@@ -512,6 +514,11 @@ namespace AssetManagement
         {
             ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
             sdptFrm.ShowDialog();
+        }
+
+        private void importAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
