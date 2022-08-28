@@ -97,6 +97,7 @@ namespace AssetManagement.Assets
                     }
                     StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(new FinancialItemTbl()
                     {
+                        FinancialItemSubDept = assetToTransact.AssetSubDepartment,
                         FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fic2 => fic2.FinancialItemCategoryName == assetMaCa.MainCategoryName).First().ID,
                         FinancialItemInsertionDate = Convert.ToDateTime(assetTransactionDateDateEdit.EditValue),
                         IncomingOrOutgoing = "وارد",
@@ -143,11 +144,7 @@ namespace AssetManagement.Assets
                 return;
             }
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
-            assetInfoLabel.Text = $"فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName} {((currSrchRes.IsSold == true) ? "،الأصل مباع " : "")}{((currSrchRes.IsOutOfWork == true) ? "، الأصل خارج الخدمة" : "")}";
-            fromDepartmentTextBox.Text = currSrchRes.DepartmentName;
-            fromSectionTextBox.Text = currSrchRes.SectionName;
-            fromSquareTextBox.Text = currSrchRes.SquareName;
-            fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
+            assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName} {((currSrchRes.IsSold == true) ? "،الأصل مباع " : "")}{((currSrchRes.IsOutOfWork == true) ? "، الأصل خارج الخدمة" : "")}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;

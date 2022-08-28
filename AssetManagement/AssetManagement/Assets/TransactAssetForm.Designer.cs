@@ -53,7 +53,6 @@ namespace AssetManagement.Assets
             this.assetTransactionDateLabel = new System.Windows.Forms.Label();
             this.transactionTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetInfoLabel = new System.Windows.Forms.Label();
             this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -73,14 +72,7 @@ namespace AssetManagement.Assets
             this.colGetAssetOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.fromSquareTextBox = new System.Windows.Forms.TextBox();
-            this.fromSectionTextBox = new System.Windows.Forms.TextBox();
-            this.fromDepartmentTextBox = new System.Windows.Forms.TextBox();
-            this.fromCustodianNameTextBox = new System.Windows.Forms.TextBox();
-            this.fromCustodianNameLabel = new System.Windows.Forms.Label();
-            this.fromSquareLabel = new System.Windows.Forms.Label();
-            this.fromSectionLabel = new System.Windows.Forms.Label();
-            this.fromDepartmentLabel = new System.Windows.Forms.Label();
+            this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.assetTransactionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter();
@@ -91,7 +83,7 @@ namespace AssetManagement.Assets
             this.searchAssetBtn = new System.Windows.Forms.Button();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
-            this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetInfoTextBox = new System.Windows.Forms.TextBox();
             this.moveAssetGroupBox.SuspendLayout();
             this.assetTransactionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).BeginInit();
@@ -115,21 +107,13 @@ namespace AssetManagement.Assets
             // moveAssetGroupBox
             // 
             this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveAssetGroupBox.Controls.Add(this.assetInfoTextBox);
             this.moveAssetGroupBox.Controls.Add(this.assetTransactionPanel);
-            this.moveAssetGroupBox.Controls.Add(this.assetInfoLabel);
             this.moveAssetGroupBox.Controls.Add(this.assetTransactionGridControl);
-            this.moveAssetGroupBox.Controls.Add(this.fromSquareTextBox);
-            this.moveAssetGroupBox.Controls.Add(this.fromSectionTextBox);
-            this.moveAssetGroupBox.Controls.Add(this.fromDepartmentTextBox);
-            this.moveAssetGroupBox.Controls.Add(this.fromCustodianNameTextBox);
-            this.moveAssetGroupBox.Controls.Add(this.fromCustodianNameLabel);
-            this.moveAssetGroupBox.Controls.Add(this.fromSquareLabel);
-            this.moveAssetGroupBox.Controls.Add(this.fromSectionLabel);
-            this.moveAssetGroupBox.Controls.Add(this.fromDepartmentLabel);
             this.moveAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 179);
+            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 168);
             this.moveAssetGroupBox.Name = "moveAssetGroupBox";
-            this.moveAssetGroupBox.Size = new System.Drawing.Size(1276, 622);
+            this.moveAssetGroupBox.Size = new System.Drawing.Size(1276, 633);
             this.moveAssetGroupBox.TabIndex = 100;
             this.moveAssetGroupBox.TabStop = false;
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
@@ -156,9 +140,9 @@ namespace AssetManagement.Assets
             this.assetTransactionPanel.Controls.Add(this.transactionTypeLabel);
             this.assetTransactionPanel.Controls.Add(this.assetTransactionDateLabel);
             this.assetTransactionPanel.Controls.Add(this.transactionTypeLookUpEdit);
-            this.assetTransactionPanel.Location = new System.Drawing.Point(3, 140);
+            this.assetTransactionPanel.Location = new System.Drawing.Point(3, 116);
             this.assetTransactionPanel.Name = "assetTransactionPanel";
-            this.assetTransactionPanel.Size = new System.Drawing.Size(1270, 224);
+            this.assetTransactionPanel.Size = new System.Drawing.Size(1270, 248);
             this.assetTransactionPanel.TabIndex = 200;
             this.assetTransactionPanel.Visible = false;
             // 
@@ -235,6 +219,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.moneyAmountCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
             this.moneyAmountCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
+            this.moneyAmountCurrencyLookUpEdit.Properties.PopupWidth = 500;
             this.moneyAmountCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.moneyAmountCurrencyLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.moneyAmountCurrencyLookUpEdit.TabIndex = 265;
@@ -380,6 +365,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeName", "اسم نوع تصريف الأصل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.transactionTypeLookUpEdit.Properties.DataSource = this.transactionTypeTblBindingSource;
             this.transactionTypeLookUpEdit.Properties.DisplayMember = "TransactionTypeName";
+            this.transactionTypeLookUpEdit.Properties.PopupWidth = 500;
             this.transactionTypeLookUpEdit.Properties.ValueMember = "ID";
             this.transactionTypeLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.transactionTypeLookUpEdit.TabIndex = 220;
@@ -389,23 +375,11 @@ namespace AssetManagement.Assets
             this.transactionTypeTblBindingSource.DataMember = "TransactionTypeTbl";
             this.transactionTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // assetInfoLabel
-            // 
-            this.assetInfoLabel.AutoSize = true;
-            this.assetInfoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.assetInfoLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.assetInfoLabel.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.assetInfoLabel.Location = new System.Drawing.Point(3, 28);
-            this.assetInfoLabel.Name = "assetInfoLabel";
-            this.assetInfoLabel.Size = new System.Drawing.Size(0, 29);
-            this.assetInfoLabel.TabIndex = 310;
-            // 
             // assetTransactionGridControl
             // 
             this.assetTransactionGridControl.DataSource = this.assetTransactionTblBindingSource;
             this.assetTransactionGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetTransactionGridControl.Location = new System.Drawing.Point(3, 391);
+            this.assetTransactionGridControl.Location = new System.Drawing.Point(3, 402);
             this.assetTransactionGridControl.MainView = this.assetMoveVwGridView;
             this.assetTransactionGridControl.Name = "assetTransactionGridControl";
             this.assetTransactionGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -591,85 +565,13 @@ namespace AssetManagement.Assets
             this.colCurrentPriceWithDestroying.VisibleIndex = 7;
             this.colCurrentPriceWithDestroying.Width = 80;
             // 
-            // fromSquareTextBox
+            // colAssetTransactionUniqueKey
             // 
-            this.fromSquareTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromSquareTextBox.Location = new System.Drawing.Point(290, 41);
-            this.fromSquareTextBox.Name = "fromSquareTextBox";
-            this.fromSquareTextBox.ReadOnly = true;
-            this.fromSquareTextBox.Size = new System.Drawing.Size(261, 28);
-            this.fromSquareTextBox.TabIndex = 120;
-            // 
-            // fromSectionTextBox
-            // 
-            this.fromSectionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fromSectionTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromSectionTextBox.Location = new System.Drawing.Point(756, 88);
-            this.fromSectionTextBox.Name = "fromSectionTextBox";
-            this.fromSectionTextBox.ReadOnly = true;
-            this.fromSectionTextBox.Size = new System.Drawing.Size(261, 28);
-            this.fromSectionTextBox.TabIndex = 130;
-            // 
-            // fromDepartmentTextBox
-            // 
-            this.fromDepartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fromDepartmentTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromDepartmentTextBox.Location = new System.Drawing.Point(756, 41);
-            this.fromDepartmentTextBox.Name = "fromDepartmentTextBox";
-            this.fromDepartmentTextBox.ReadOnly = true;
-            this.fromDepartmentTextBox.Size = new System.Drawing.Size(261, 28);
-            this.fromDepartmentTextBox.TabIndex = 110;
-            // 
-            // fromCustodianNameTextBox
-            // 
-            this.fromCustodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromCustodianNameTextBox.Location = new System.Drawing.Point(290, 88);
-            this.fromCustodianNameTextBox.Name = "fromCustodianNameTextBox";
-            this.fromCustodianNameTextBox.ReadOnly = true;
-            this.fromCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
-            this.fromCustodianNameTextBox.TabIndex = 140;
-            // 
-            // fromCustodianNameLabel
-            // 
-            this.fromCustodianNameLabel.AutoSize = true;
-            this.fromCustodianNameLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromCustodianNameLabel.Location = new System.Drawing.Point(571, 92);
-            this.fromCustodianNameLabel.Name = "fromCustodianNameLabel";
-            this.fromCustodianNameLabel.Size = new System.Drawing.Size(97, 21);
-            this.fromCustodianNameLabel.TabIndex = 135;
-            this.fromCustodianNameLabel.Text = "صاحب العهدة:";
-            // 
-            // fromSquareLabel
-            // 
-            this.fromSquareLabel.AutoSize = true;
-            this.fromSquareLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromSquareLabel.Location = new System.Drawing.Point(619, 45);
-            this.fromSquareLabel.Name = "fromSquareLabel";
-            this.fromSquareLabel.Size = new System.Drawing.Size(54, 21);
-            this.fromSquareLabel.TabIndex = 115;
-            this.fromSquareLabel.Text = "الساحة:";
-            // 
-            // fromSectionLabel
-            // 
-            this.fromSectionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fromSectionLabel.AutoSize = true;
-            this.fromSectionLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromSectionLabel.Location = new System.Drawing.Point(1093, 92);
-            this.fromSectionLabel.Name = "fromSectionLabel";
-            this.fromSectionLabel.Size = new System.Drawing.Size(49, 21);
-            this.fromSectionLabel.TabIndex = 125;
-            this.fromSectionLabel.Text = "الدائرة:";
-            // 
-            // fromDepartmentLabel
-            // 
-            this.fromDepartmentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fromDepartmentLabel.AutoSize = true;
-            this.fromDepartmentLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromDepartmentLabel.Location = new System.Drawing.Point(1093, 45);
-            this.fromDepartmentLabel.Name = "fromDepartmentLabel";
-            this.fromDepartmentLabel.Size = new System.Drawing.Size(49, 21);
-            this.fromDepartmentLabel.TabIndex = 105;
-            this.fromDepartmentLabel.Text = "القسم:";
+            this.colAssetTransactionUniqueKey.Caption = "رقم فريد للسجل";
+            this.colAssetTransactionUniqueKey.FieldName = "AssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.MinWidth = 150;
+            this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.Width = 94;
             // 
             // mainAlertControl
             // 
@@ -699,10 +601,12 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = this.transactionTypeTblTableAdapter;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
@@ -779,13 +683,16 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
             this.assetCodeTextBox.TabIndex = 102;
             // 
-            // colAssetTransactionUniqueKey
+            // assetInfoTextBox
             // 
-            this.colAssetTransactionUniqueKey.Caption = "رقم فريد للسجل";
-            this.colAssetTransactionUniqueKey.FieldName = "AssetTransactionUniqueKey";
-            this.colAssetTransactionUniqueKey.MinWidth = 150;
-            this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
-            this.colAssetTransactionUniqueKey.Width = 94;
+            this.assetInfoTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.assetInfoTextBox.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetInfoTextBox.Location = new System.Drawing.Point(3, 28);
+            this.assetInfoTextBox.Multiline = true;
+            this.assetInfoTextBox.Name = "assetInfoTextBox";
+            this.assetInfoTextBox.ReadOnly = true;
+            this.assetInfoTextBox.Size = new System.Drawing.Size(1270, 82);
+            this.assetInfoTextBox.TabIndex = 606;
             // 
             // TransacteAssetForm
             // 
@@ -836,15 +743,7 @@ namespace AssetManagement.Assets
 
         #endregion
         private System.Windows.Forms.GroupBox moveAssetGroupBox;
-        private System.Windows.Forms.Label fromCustodianNameLabel;
         private DevExpress.XtraEditors.LookUpEdit transactionTypeLookUpEdit;
-        private System.Windows.Forms.Label fromSquareLabel;
-        private System.Windows.Forms.Label fromSectionLabel;
-        private System.Windows.Forms.Label fromDepartmentLabel;
-        private System.Windows.Forms.TextBox fromCustodianNameTextBox;
-        private System.Windows.Forms.TextBox fromSquareTextBox;
-        private System.Windows.Forms.TextBox fromSectionTextBox;
-        private System.Windows.Forms.TextBox fromDepartmentTextBox;
         private System.Windows.Forms.Label assetTransactionDateLabel;
         private DevExpress.XtraEditors.DateEdit assetTransactionDateDateEdit;
         private System.Windows.Forms.Button assetTransactBtn;
@@ -856,7 +755,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.BindingSource assetTransactionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter assetTransactionTblTableAdapter;
         private System.Windows.Forms.Label transactionTypeLabel;
-        private System.Windows.Forms.Label assetInfoLabel;
         private System.Windows.Forms.Panel assetTransactionPanel;
         private System.Windows.Forms.Label assetNotesLabel;
         private System.Windows.Forms.TextBox assetNotesTextBox;
@@ -896,5 +794,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Label assetCodeLabel;
         private System.Windows.Forms.TextBox assetCodeTextBox;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetTransactionUniqueKey;
+        private System.Windows.Forms.TextBox assetInfoTextBox;
     }
 }

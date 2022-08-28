@@ -97,18 +97,18 @@ namespace AssetManagement.Finance
             financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
             if (searchBySectionRadioButton.Checked)
             {
-                    List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                    financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
+                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
+                financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
             }
             if (searchByDepartmentRadioButton.Checked)
             {
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
-                    financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
+                financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
             }
             if (searchBySubDepartmentRadioButton.Checked)
             {
-                    financialItemsFromToQry = financialItemsFromToQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
+                financialItemsFromToQry = financialItemsFromToQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
             }
             if (searchWithinPeriodCheckBox.Checked)
             {

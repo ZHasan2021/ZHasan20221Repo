@@ -401,6 +401,7 @@ namespace AssetManagement.AuxTables
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategoryDescription", "وصف الفئة الرئيسية", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.mainCategoryLookUpEdit.Properties.DataSource = this.mainCategoryTblBindingSource;
             this.mainCategoryLookUpEdit.Properties.DisplayMember = "MainCategoryName";
+            this.mainCategoryLookUpEdit.Properties.PopupWidth = 500;
             this.mainCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.mainCategoryLookUpEdit.Size = new System.Drawing.Size(298, 30);
             this.mainCategoryLookUpEdit.TabIndex = 10;
@@ -433,10 +434,12 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;

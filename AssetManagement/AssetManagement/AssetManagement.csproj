@@ -181,6 +181,12 @@
     <Compile Include="Assets\AssetsXtraReport.Designer.cs">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\ManageAssetTransactionTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\ManageAssetTransactionTblForm.Designer.cs">
+      <DependentUpon>ManageAssetTransactionTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assets\ManageAssetTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,12 @@
     </Compile>
     <Compile Include="Assets\DeleteAssetForm.Designer.cs">
       <DependentUpon>DeleteAssetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\ManageAssetMovementTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\ManageAssetMovementTblForm.Designer.cs">
+      <DependentUpon>ManageAssetMovementTblForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\NewAssetInventoryForm.cs">
       <SubType>Form</SubType>
@@ -374,6 +386,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetsToDestructForm.resx">
       <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\ManageAssetTransactionTblForm.resx">
+      <DependentUpon>ManageAssetTransactionTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\ManageAssetMovementTblForm.resx">
+      <DependentUpon>ManageAssetMovementTblForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
