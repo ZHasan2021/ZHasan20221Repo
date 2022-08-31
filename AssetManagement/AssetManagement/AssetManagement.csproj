@@ -271,6 +271,24 @@
     <Compile Include="Finance\ManageFinancialItemTblForm.Designer.cs">
       <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportExport\ExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExportForm.Designer.cs">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ManageImportExportTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ManageImportExportTblForm.Designer.cs">
+      <DependentUpon>ManageImportExportTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Options\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,6 +456,15 @@
     <EmbeddedResource Include="Finance\ManageFinancialItemTblForm.resx">
       <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ExportForm.resx">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ManageImportExportTblForm.resx">
+      <DependentUpon>ManageImportExportTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options\OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,6 +554,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\36435172.png" />
+    <None Include="Resources\2800746.png" />
     <None Include="Resources\55967741.png" />
     <None Include="Resources\4306393.png" />
     <None Include="Resources\3466467.png" />

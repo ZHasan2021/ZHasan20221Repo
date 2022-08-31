@@ -140,6 +140,9 @@ namespace AssetManagement.Assets
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.errorSummaryLabel1 = new System.Windows.Forms.Label();
+            this.incorrectPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
@@ -180,6 +183,8 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewAssetWizardControl
@@ -235,6 +240,9 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage1
             // 
+            this.assetBasicsWizardPage1.Controls.Add(this.correctPictureBox1);
+            this.assetBasicsWizardPage1.Controls.Add(this.incorrectPictureBox1);
+            this.assetBasicsWizardPage1.Controls.Add(this.errorSummaryLabel1);
             this.assetBasicsWizardPage1.Controls.Add(this.manageSubDepartmentTblBtn);
             this.assetBasicsWizardPage1.Controls.Add(this.assetSubDeptLabel);
             this.assetBasicsWizardPage1.Controls.Add(this.assetSubDeptLookUpEdit);
@@ -1454,6 +1462,37 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
+            // errorSummaryLabel1
+            // 
+            this.errorSummaryLabel1.AutoSize = true;
+            this.errorSummaryLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.errorSummaryLabel1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorSummaryLabel1.ForeColor = System.Drawing.Color.Red;
+            this.errorSummaryLabel1.Location = new System.Drawing.Point(0, 589);
+            this.errorSummaryLabel1.Name = "errorSummaryLabel1";
+            this.errorSummaryLabel1.Size = new System.Drawing.Size(0, 21);
+            this.errorSummaryLabel1.TabIndex = 256;
+            // 
+            // incorrectPictureBox1
+            // 
+            this.incorrectPictureBox1.Image = global::AssetManagement.Properties.Resources._21377241;
+            this.incorrectPictureBox1.Location = new System.Drawing.Point(3, 572);
+            this.incorrectPictureBox1.Name = "incorrectPictureBox1";
+            this.incorrectPictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.incorrectPictureBox1.TabIndex = 257;
+            this.incorrectPictureBox1.TabStop = false;
+            this.incorrectPictureBox1.Visible = false;
+            // 
+            // correctPictureBox1
+            // 
+            this.correctPictureBox1.Image = global::AssetManagement.Properties.Resources._21377251;
+            this.correctPictureBox1.Location = new System.Drawing.Point(48, 572);
+            this.correctPictureBox1.Name = "correctPictureBox1";
+            this.correctPictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.correctPictureBox1.TabIndex = 258;
+            this.correctPictureBox1.TabStop = false;
+            this.correctPictureBox1.Visible = false;
+            // 
             // AddNewAssetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1512,6 +1551,8 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1628,5 +1669,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.LookUpEdit assetSubDeptLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
+        private System.Windows.Forms.PictureBox incorrectPictureBox1;
+        private System.Windows.Forms.Label errorSummaryLabel1;
+        private System.Windows.Forms.PictureBox correctPictureBox1;
     }
 }

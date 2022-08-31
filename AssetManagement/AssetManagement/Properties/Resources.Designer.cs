@@ -353,6 +353,16 @@ namespace AssetManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2800746 {
+            get {
+                object obj = ResourceManager.GetObject("2800746", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _2834767 {
             get {
                 object obj = ResourceManager.GetObject("2834767", resourceCulture);
@@ -496,6 +506,16 @@ namespace AssetManagement.Properties {
         internal static System.Drawing.Bitmap _3643517 {
             get {
                 object obj = ResourceManager.GetObject("3643517", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _36435172 {
+            get {
+                object obj = ResourceManager.GetObject("36435172", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

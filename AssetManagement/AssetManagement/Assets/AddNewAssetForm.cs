@@ -70,6 +70,7 @@ namespace AssetManagement.Assets
             switch (addNewAssetWizardControl.SelectedPageIndex)
             {
                 case 1:
+                    correctPictureBox1.Visible = incorrectPictureBox1.Visible = false;
                     if (assetCodeTextBox.Text.Trim() == "")
                         errorMsg += "كود الأصل فارغ\r\n";
                     if (assetSectionLookUpEdit.EditValue == null)
@@ -88,7 +89,7 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد تاريخ الشراء\r\n";
                     if (purchasePriceNumericUpDown.Value == 0 && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تقدير سعر الشراء\r\n";
-                    if (purchasePriceCurrencyLookUpEdit.EditValue == null)
+                    if (purchasePriceCurrencyLookUpEdit.EditValue == null && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تحديد عملة سعر الشراء\r\n";
                     if (placeOfPresenceTextBox.Text.Trim() == "")
                         errorMsg += "مكان التواجد غير محدد\r\n";
@@ -100,6 +101,7 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد عملة السعر الفعلي الحالي\r\n";
                     if (modelLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الموديل\r\n";
+                    errorSummaryLabel1.Text = errorMsg.Replace("\r\n", "، ").Trim().Trim('،').Trim();
                     if (errorMsg != "")
                     {
                         mainAlertControl.Show(this, $"هناك بعض الإدخالات الناقصة\r\n{errorMsg}", StaticCode.ApplicationTitle);

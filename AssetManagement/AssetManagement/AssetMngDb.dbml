@@ -158,6 +158,21 @@
       <Association Name="SubDepartmentTbl_FinancialItemTbl" Member="SubDepartmentTbl" ThisKey="FinancialItemSubDept" OtherKey="ID" Type="SubDepartmentTbl" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ImportExportTbl" Member="ImportExportTbls">
+    <Type Name="ImportExportTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImportOrExport" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ActionDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ActionBySection" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ActionByDepartment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ActionBySubDepartment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastModifiedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ActionNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.MainCategoryTbl" Member="MainCategoryTbls">
     <Type Name="MainCategoryTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -245,17 +260,14 @@
       <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="AddNewInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="UpdateExistedInventory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="SearchInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ViewInventories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DeleteInventoryRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreateInventoryReport" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewAssetMovement" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageAssetMovements" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewAssetTransaction" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageAssetTransactions" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ExportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ImportAllData" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ManageImportExportTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageUsers" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="PromoteDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewMainCategory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -353,7 +365,7 @@
       <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">

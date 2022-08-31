@@ -57,6 +57,9 @@ namespace AssetManagement
     partial void InsertFinancialItemTbl(FinancialItemTbl instance);
     partial void UpdateFinancialItemTbl(FinancialItemTbl instance);
     partial void DeleteFinancialItemTbl(FinancialItemTbl instance);
+    partial void InsertImportExportTbl(ImportExportTbl instance);
+    partial void UpdateImportExportTbl(ImportExportTbl instance);
+    partial void DeleteImportExportTbl(ImportExportTbl instance);
     partial void InsertMainCategoryTbl(MainCategoryTbl instance);
     partial void UpdateMainCategoryTbl(MainCategoryTbl instance);
     partial void DeleteMainCategoryTbl(MainCategoryTbl instance);
@@ -188,6 +191,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<FinancialItemTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ImportExportTbl> ImportExportTbls
+		{
+			get
+			{
+				return this.GetTable<ImportExportTbl>();
 			}
 		}
 		
@@ -3928,6 +3939,308 @@ namespace AssetManagement
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ImportExportTbl")]
+	public partial class ImportExportTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _ImportOrExport;
+		
+		private System.DateTime _ActionDate;
+		
+		private string _ActionBySection;
+		
+		private string _ActionByDepartment;
+		
+		private string _ActionBySubDepartment;
+		
+		private System.Nullable<System.DateTime> _InsertedOn;
+		
+		private System.Nullable<System.DateTime> _LastModifiedOn;
+		
+		private System.Nullable<int> _InsertedBy;
+		
+		private System.Nullable<int> _LastModifiedBy;
+		
+		private string _ActionNotes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnImportOrExportChanging(string value);
+    partial void OnImportOrExportChanged();
+    partial void OnActionDateChanging(System.DateTime value);
+    partial void OnActionDateChanged();
+    partial void OnActionBySectionChanging(string value);
+    partial void OnActionBySectionChanged();
+    partial void OnActionByDepartmentChanging(string value);
+    partial void OnActionByDepartmentChanged();
+    partial void OnActionBySubDepartmentChanging(string value);
+    partial void OnActionBySubDepartmentChanged();
+    partial void OnInsertedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnInsertedOnChanged();
+    partial void OnLastModifiedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastModifiedOnChanged();
+    partial void OnInsertedByChanging(System.Nullable<int> value);
+    partial void OnInsertedByChanged();
+    partial void OnLastModifiedByChanging(System.Nullable<int> value);
+    partial void OnLastModifiedByChanged();
+    partial void OnActionNotesChanging(string value);
+    partial void OnActionNotesChanged();
+    #endregion
+		
+		public ImportExportTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImportOrExport", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string ImportOrExport
+		{
+			get
+			{
+				return this._ImportOrExport;
+			}
+			set
+			{
+				if ((this._ImportOrExport != value))
+				{
+					this.OnImportOrExportChanging(value);
+					this.SendPropertyChanging();
+					this._ImportOrExport = value;
+					this.SendPropertyChanged("ImportOrExport");
+					this.OnImportOrExportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionDate", DbType="Date NOT NULL")]
+		public System.DateTime ActionDate
+		{
+			get
+			{
+				return this._ActionDate;
+			}
+			set
+			{
+				if ((this._ActionDate != value))
+				{
+					this.OnActionDateChanging(value);
+					this.SendPropertyChanging();
+					this._ActionDate = value;
+					this.SendPropertyChanged("ActionDate");
+					this.OnActionDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionBySection", DbType="NVarChar(100)")]
+		public string ActionBySection
+		{
+			get
+			{
+				return this._ActionBySection;
+			}
+			set
+			{
+				if ((this._ActionBySection != value))
+				{
+					this.OnActionBySectionChanging(value);
+					this.SendPropertyChanging();
+					this._ActionBySection = value;
+					this.SendPropertyChanged("ActionBySection");
+					this.OnActionBySectionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionByDepartment", DbType="NVarChar(100)")]
+		public string ActionByDepartment
+		{
+			get
+			{
+				return this._ActionByDepartment;
+			}
+			set
+			{
+				if ((this._ActionByDepartment != value))
+				{
+					this.OnActionByDepartmentChanging(value);
+					this.SendPropertyChanging();
+					this._ActionByDepartment = value;
+					this.SendPropertyChanged("ActionByDepartment");
+					this.OnActionByDepartmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionBySubDepartment", DbType="NVarChar(100)")]
+		public string ActionBySubDepartment
+		{
+			get
+			{
+				return this._ActionBySubDepartment;
+			}
+			set
+			{
+				if ((this._ActionBySubDepartment != value))
+				{
+					this.OnActionBySubDepartmentChanging(value);
+					this.SendPropertyChanging();
+					this._ActionBySubDepartment = value;
+					this.SendPropertyChanged("ActionBySubDepartment");
+					this.OnActionBySubDepartmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> InsertedOn
+		{
+			get
+			{
+				return this._InsertedOn;
+			}
+			set
+			{
+				if ((this._InsertedOn != value))
+				{
+					this.OnInsertedOnChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedOn = value;
+					this.SendPropertyChanged("InsertedOn");
+					this.OnInsertedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> LastModifiedOn
+		{
+			get
+			{
+				return this._LastModifiedOn;
+			}
+			set
+			{
+				if ((this._LastModifiedOn != value))
+				{
+					this.OnLastModifiedOnChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedOn = value;
+					this.SendPropertyChanged("LastModifiedOn");
+					this.OnLastModifiedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedBy", DbType="Int")]
+		public System.Nullable<int> InsertedBy
+		{
+			get
+			{
+				return this._InsertedBy;
+			}
+			set
+			{
+				if ((this._InsertedBy != value))
+				{
+					this.OnInsertedByChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedBy = value;
+					this.SendPropertyChanged("InsertedBy");
+					this.OnInsertedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedBy", DbType="Int")]
+		public System.Nullable<int> LastModifiedBy
+		{
+			get
+			{
+				return this._LastModifiedBy;
+			}
+			set
+			{
+				if ((this._LastModifiedBy != value))
+				{
+					this.OnLastModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedBy = value;
+					this.SendPropertyChanged("LastModifiedBy");
+					this.OnLastModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionNotes", DbType="NVarChar(MAX)")]
+		public string ActionNotes
+		{
+			get
+			{
+				return this._ActionNotes;
+			}
+			set
+			{
+				if ((this._ActionNotes != value))
+				{
+					this.OnActionNotesChanging(value);
+					this.SendPropertyChanging();
+					this._ActionNotes = value;
+					this.SendPropertyChanged("ActionNotes");
+					this.OnActionNotesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MainCategoryTbl")]
 	public partial class MainCategoryTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5342,15 +5655,7 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ViewAssetsStats;
 		
-		private System.Nullable<bool> _AddNewInventory;
-		
-		private System.Nullable<bool> _UpdateExistedInventory;
-		
-		private System.Nullable<bool> _SearchInventories;
-		
-		private System.Nullable<bool> _ViewInventories;
-		
-		private System.Nullable<bool> _DeleteInventoryRecord;
+		private System.Nullable<bool> _CreateInventoryReport;
 		
 		private System.Nullable<bool> _AddNewAssetMovement;
 		
@@ -5363,6 +5668,8 @@ namespace AssetManagement
 		private System.Nullable<bool> _ExportAllData;
 		
 		private System.Nullable<bool> _ImportAllData;
+		
+		private System.Nullable<bool> _ManageImportExportTbl;
 		
 		private System.Nullable<bool> _ManageUsers;
 		
@@ -5452,16 +5759,8 @@ namespace AssetManagement
     partial void OnViewAssetsReportsChanged();
     partial void OnViewAssetsStatsChanging(System.Nullable<bool> value);
     partial void OnViewAssetsStatsChanged();
-    partial void OnAddNewInventoryChanging(System.Nullable<bool> value);
-    partial void OnAddNewInventoryChanged();
-    partial void OnUpdateExistedInventoryChanging(System.Nullable<bool> value);
-    partial void OnUpdateExistedInventoryChanged();
-    partial void OnSearchInventoriesChanging(System.Nullable<bool> value);
-    partial void OnSearchInventoriesChanged();
-    partial void OnViewInventoriesChanging(System.Nullable<bool> value);
-    partial void OnViewInventoriesChanged();
-    partial void OnDeleteInventoryRecordChanging(System.Nullable<bool> value);
-    partial void OnDeleteInventoryRecordChanged();
+    partial void OnCreateInventoryReportChanging(System.Nullable<bool> value);
+    partial void OnCreateInventoryReportChanged();
     partial void OnAddNewAssetMovementChanging(System.Nullable<bool> value);
     partial void OnAddNewAssetMovementChanged();
     partial void OnManageAssetMovementsChanging(System.Nullable<bool> value);
@@ -5474,6 +5773,8 @@ namespace AssetManagement
     partial void OnExportAllDataChanged();
     partial void OnImportAllDataChanging(System.Nullable<bool> value);
     partial void OnImportAllDataChanged();
+    partial void OnManageImportExportTblChanging(System.Nullable<bool> value);
+    partial void OnManageImportExportTblChanged();
     partial void OnManageUsersChanging(System.Nullable<bool> value);
     partial void OnManageUsersChanged();
     partial void OnPromoteDbChanging(System.Nullable<bool> value);
@@ -5708,102 +6009,22 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewInventory", DbType="Bit")]
-		public System.Nullable<bool> AddNewInventory
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateInventoryReport", DbType="Bit")]
+		public System.Nullable<bool> CreateInventoryReport
 		{
 			get
 			{
-				return this._AddNewInventory;
+				return this._CreateInventoryReport;
 			}
 			set
 			{
-				if ((this._AddNewInventory != value))
+				if ((this._CreateInventoryReport != value))
 				{
-					this.OnAddNewInventoryChanging(value);
+					this.OnCreateInventoryReportChanging(value);
 					this.SendPropertyChanging();
-					this._AddNewInventory = value;
-					this.SendPropertyChanged("AddNewInventory");
-					this.OnAddNewInventoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedInventory", DbType="Bit")]
-		public System.Nullable<bool> UpdateExistedInventory
-		{
-			get
-			{
-				return this._UpdateExistedInventory;
-			}
-			set
-			{
-				if ((this._UpdateExistedInventory != value))
-				{
-					this.OnUpdateExistedInventoryChanging(value);
-					this.SendPropertyChanging();
-					this._UpdateExistedInventory = value;
-					this.SendPropertyChanged("UpdateExistedInventory");
-					this.OnUpdateExistedInventoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SearchInventories", DbType="Bit")]
-		public System.Nullable<bool> SearchInventories
-		{
-			get
-			{
-				return this._SearchInventories;
-			}
-			set
-			{
-				if ((this._SearchInventories != value))
-				{
-					this.OnSearchInventoriesChanging(value);
-					this.SendPropertyChanging();
-					this._SearchInventories = value;
-					this.SendPropertyChanged("SearchInventories");
-					this.OnSearchInventoriesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewInventories", DbType="Bit")]
-		public System.Nullable<bool> ViewInventories
-		{
-			get
-			{
-				return this._ViewInventories;
-			}
-			set
-			{
-				if ((this._ViewInventories != value))
-				{
-					this.OnViewInventoriesChanging(value);
-					this.SendPropertyChanging();
-					this._ViewInventories = value;
-					this.SendPropertyChanged("ViewInventories");
-					this.OnViewInventoriesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteInventoryRecord", DbType="Bit")]
-		public System.Nullable<bool> DeleteInventoryRecord
-		{
-			get
-			{
-				return this._DeleteInventoryRecord;
-			}
-			set
-			{
-				if ((this._DeleteInventoryRecord != value))
-				{
-					this.OnDeleteInventoryRecordChanging(value);
-					this.SendPropertyChanging();
-					this._DeleteInventoryRecord = value;
-					this.SendPropertyChanged("DeleteInventoryRecord");
-					this.OnDeleteInventoryRecordChanged();
+					this._CreateInventoryReport = value;
+					this.SendPropertyChanged("CreateInventoryReport");
+					this.OnCreateInventoryReportChanged();
 				}
 			}
 		}
@@ -5924,6 +6145,26 @@ namespace AssetManagement
 					this._ImportAllData = value;
 					this.SendPropertyChanged("ImportAllData");
 					this.OnImportAllDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageImportExportTbl", DbType="Bit")]
+		public System.Nullable<bool> ManageImportExportTbl
+		{
+			get
+			{
+				return this._ManageImportExportTbl;
+			}
+			set
+			{
+				if ((this._ManageImportExportTbl != value))
+				{
+					this.OnManageImportExportTblChanging(value);
+					this.SendPropertyChanging();
+					this._ManageImportExportTbl = value;
+					this.SendPropertyChanged("ManageImportExportTbl");
+					this.OnManageImportExportTblChanged();
 				}
 			}
 		}
@@ -7014,7 +7255,7 @@ namespace AssetManagement
 		
 		private double _معدل_الإهلاك_للأصل;
 		
-		private int _العمر_الافتراضي_المتبقي_للأصل;
+		private string _العمر_الافتراضي_المتبقي_للأصل;
 		
 		public AssetVw()
 		{
@@ -7580,8 +7821,8 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="Int NOT NULL")]
-		public int العمر_الافتراضي_المتبقي_للأصل
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
+		public string العمر_الافتراضي_المتبقي_للأصل
 		{
 			get
 			{

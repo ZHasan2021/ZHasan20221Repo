@@ -39,7 +39,7 @@ namespace AssetManagement
             StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
-            addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewAssetBarButtonItem.Visibility = importFormerAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -57,8 +57,7 @@ namespace AssetManagement
             manageModelTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageModels == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageEstateAreaUnitTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageEstateAreaUnits == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageTransactionTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageTransactionTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            addNewAssetInventoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewInventory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            manageAssetInventoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewInventories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewAssetInventoryBarButtonItem.Visibility = (StaticCode.activeUserRole.CreateInventoryReport == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             setAppDateAndTimeBarButtonItem.Visibility = (StaticCode.activeUserRole.SetDateAndTime == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewUserBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageUserTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -68,6 +67,7 @@ namespace AssetManagement
             deleteAssetsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteAssetRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             exportDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ExportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageImportExportTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageImportExportTbl == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -93,82 +93,8 @@ namespace AssetManagement
 
         private void exportDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var dataModel = new AttributeMappingSource().GetModel(typeof(AssetMngDbDataContext));
-            var tbls = dataModel.GetTables();
-            if (!Directory.Exists(StaticCode.ExportFolder))
-                Directory.CreateDirectory(StaticCode.ExportFolder);
-            string outFile1 = $"{StaticCode.ExportFolder}AssetMngDb{DateTime.Now.Ticks}.xlsx";
-            SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
-            if (dbConn.State != ConnectionState.Open)
-                dbConn.Open();
-            try
-            {
-                using (ExcelPackage pck = new ExcelPackage(outFile1))
-                {
-                    foreach (var oneModel in tbls)
-                    {
-                        string oneTblName = oneModel.TableName.Replace("dbo.", "");
-                        ExcelWorksheet ws = pck.Workbook.Worksheets[oneTblName];
-                        if (ws == null)
-                            ws = pck.Workbook.Worksheets.Add(oneTblName);
-                        SqlDataAdapter dbAdpt = new SqlDataAdapter($"SELECT * FROM [{oneTblName}]", dbConn);
-                        DataTable oneDt = new DataTable();
-                        dbAdpt.Fill(oneDt);
-                        if (oneDt.Rows.Count > 0)
-                        {
-                            using (var cells = ws.Cells[1, 1, oneDt.Rows.Count, oneDt.Columns.Count])
-                            {
-                                cells.Style.Numberformat.Format = "@";
-                            }
-                        }
-                        ws.Cells["A1"].LoadFromDataTable(oneDt, true, OfficeOpenXml.Table.TableStyles.Light19);
-                        pck.Save();
-                    }
-                }
-                if (encryptExportedFileBarCheckItem.Checked)
-                {
-                    #region Aes encryption
-                    if (!File.Exists(StaticCode.AesKeyAndIVPath))
-                    {
-                        if (MessageBox.Show("لا يوجد مفاتيح تشفير حالياً ونحتاج إلى توليد هذه المفاتيح، هل تريد المتابعة؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                            return;
-                        StaticCode.GenerateNewAesKeyAndIV();
-                    }
-                    try
-                    {
-                        FileStream key_IVRdr = new FileStream(StaticCode.AesKeyAndIVPath, FileMode.Open);
-                        byte[] keyArr = new byte[32];
-                        byte[] IVArr = new byte[16];
-                        key_IVRdr.Read(keyArr, 0, keyArr.Length);
-                        key_IVRdr.Read(IVArr, 0, IVArr.Length);
-                        key_IVRdr.Close();
-
-                        string outFile_Enc = outFile1.Replace("xlsx", "assf");
-                        if (StaticCode.AesEncryption(outFile1, outFile_Enc, keyArr, IVArr))
-                        {
-                            File.Delete(outFile1);
-                            mainAlertControl.Show(this, "تم تصدير قاعدة البيانات مشفرة بنجاح", StaticCode.ApplicationTitle, true);
-                        }
-                        else
-                        {
-                            mainAlertControl.Show(this, "لم يتم تصدير قاعدة البيانات المشفرة بسبب خطأ في مفتاح التشفير، يمكنك إعادة توليده مرة ثانية", StaticCode.ApplicationTitle, true);
-                        }
-                    }
-                    catch
-                    {
-                        mainAlertControl.Show(this, "خطأ في تصدير ملف مشفر", StaticCode.ApplicationTitle, true);
-                    }
-                    #endregion
-                }
-                else
-                {
-                    mainAlertControl.Show(this, "تم تصدير قاعدة البيانات بنجاح", StaticCode.ApplicationTitle, true);
-                }
-            }
-            catch
-            {
-                mainAlertControl.Show(this, "لم يتم تصدير قاعدة البيانات، حاولا لاحقاً", StaticCode.ApplicationTitle, true);
-            }
+            ExportForm expFrm = new ExportForm();
+            expFrm.ShowDialog();
         }
 
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -388,42 +314,9 @@ namespace AssetManagement
 
         private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenFileDialog encFileOFD = new OpenFileDialog() { Filter = (decryptImportedFileBarCheckItem.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
-            if (encFileOFD.ShowDialog() != DialogResult.OK)
-            {
-                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
-                return;
-            }
-            string importedExcelFilePath = encFileOFD.FileName;
-            if (decryptImportedFileBarCheckItem.Checked)
-            {
-                FileStream AesKey_IV_Rd = File.Open(StaticCode.AesKeyAndIVPath, FileMode.OpenOrCreate);
-                byte[] AesKey_IV_Dec = new byte[48];
-                AesKey_IV_Rd.Read(AesKey_IV_Dec, 0, 48);
-                AesKey_IV_Rd.Close();
-                byte[] AesKey = new byte[32];
-                byte[] AesIV = new byte[16];
-                Array.Copy(AesKey_IV_Dec, 0, AesKey, 0, 32);
-                Array.Copy(AesKey_IV_Dec, 32, AesIV, 0, 16);
-                //byte[] outBytes_enc = Encoding.UTF8.GetBytes(encryptedStr);
-                importedExcelFilePath = encFileOFD.FileName.Replace(".assf", ".xlsx");
-                bool decrypted = StaticCode.AesDecryption(encFileOFD.FileName, importedExcelFilePath, AesKey, AesIV);
-                if (!decrypted)
-                {
-                    mainAlertControl.Show(this, "الملف المستورد غير صالح أو أن مفاتيح فك التشفير تم تغييرها ولا تطابق مفاتيح التشفير", StaticCode.ApplicationTitle);
-                    return;
-                }
-            }
-            try
-            {
-                StaticCode.ImportDataFromExcel(importedExcelFilePath);
-                mainAlertControl.Show(this, "تم استيراد البيانات بشكل سليم", StaticCode.ApplicationTitle);
-                UpdateAssetToDestructLabel();
-            }
-            catch
-            {
-                mainAlertControl.Show(this, "خطأ في الوصول إلى الملف، تأكد من سلامة الملف أولاً", StaticCode.ApplicationTitle);
-            }
+            ImportForm impFrm = new ImportForm();
+            impFrm.ShowDialog();
+            UpdateAssetToDestructLabel();
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -516,9 +409,15 @@ namespace AssetManagement
             sdptFrm.ShowDialog();
         }
 
-        private void importAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void importFormerAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void manageImportExportTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageImportExportTblForm ieFrm = new ManageImportExportTblForm();
+            ieFrm.ShowDialog();
         }
     }
 }

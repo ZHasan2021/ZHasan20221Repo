@@ -42,10 +42,8 @@ namespace AssetManagement
             this.addNewMinorCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.addNewAssetInventoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.encryptExportedFileBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.exportDataBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageCategoriesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.manageAssetInventoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.setAppDateAndTimeBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.appDateBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.appTimeBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
@@ -68,7 +66,6 @@ namespace AssetManagement
             this.restoreDbBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.deleteAssetsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.optionsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.decryptImportedFileBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.importDataBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -85,6 +82,8 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importFormerAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageImportExportTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -97,8 +96,7 @@ namespace AssetManagement
             this.manageAuxTablesRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.auxTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.exportImportDataRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.exportDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.importDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.importExportDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.backupAndRestoreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.optionsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.appDateAndTimeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -110,7 +108,6 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.importAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -131,10 +128,8 @@ namespace AssetManagement
             this.addNewMinorCategoryBarButtonItem,
             this.skinDropDownButtonItem1,
             this.addNewAssetInventoryBarButtonItem,
-            this.encryptExportedFileBarCheckItem,
             this.exportDataBarButtonItem,
             this.manageCategoriesBarButtonItem,
-            this.manageAssetInventoryTblBarButtonItem,
             this.setAppDateAndTimeBarButtonItem,
             this.appDateBarStaticItem,
             this.appTimeBarStaticItem,
@@ -157,7 +152,6 @@ namespace AssetManagement
             this.restoreDbBarButtonItem,
             this.deleteAssetsBarButtonItem,
             this.optionsBarButtonItem,
-            this.decryptImportedFileBarCheckItem,
             this.importDataBarButtonItem,
             this.viewStatsBarButtonItem,
             this.addNewFinancialItemBarButtonItem,
@@ -174,10 +168,11 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem,
             this.manageModelTblBarButtonItem,
             this.manageSubDepartmentTblBarButtonItem,
-            this.importAssetsFromExcelBarButtonItem});
+            this.importFormerAssetsFromExcelBarButtonItem,
+            this.manageImportExportTblBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 64;
+            this.mainRibbonControl.MaxItemId = 65;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -276,15 +271,6 @@ namespace AssetManagement
             this.addNewAssetInventoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addNewAssetInventoryBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewAssetInventoryBarButtonItem_ItemClick);
             // 
-            // encryptExportedFileBarCheckItem
-            // 
-            this.encryptExportedFileBarCheckItem.Caption = "تشفير ملف التصدير";
-            this.encryptExportedFileBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
-            this.encryptExportedFileBarCheckItem.Id = 9;
-            this.encryptExportedFileBarCheckItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._7976039;
-            this.encryptExportedFileBarCheckItem.Name = "encryptExportedFileBarCheckItem";
-            this.encryptExportedFileBarCheckItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // exportDataBarButtonItem
             // 
             this.exportDataBarButtonItem.Caption = "تصدير البيانات";
@@ -302,15 +288,6 @@ namespace AssetManagement
             this.manageCategoriesBarButtonItem.Name = "manageCategoriesBarButtonItem";
             this.manageCategoriesBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageCategoriesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.categoriesBarButtonItem_ItemClick);
-            // 
-            // manageAssetInventoryTblBarButtonItem
-            // 
-            this.manageAssetInventoryTblBarButtonItem.Caption = "إدارة جرودات الأصول";
-            this.manageAssetInventoryTblBarButtonItem.Id = 13;
-            this.manageAssetInventoryTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._6423204;
-            this.manageAssetInventoryTblBarButtonItem.Name = "manageAssetInventoryTblBarButtonItem";
-            this.manageAssetInventoryTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.manageAssetInventoryTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageAssetInventoryTblBarButtonItem_ItemClick);
             // 
             // setAppDateAndTimeBarButtonItem
             // 
@@ -518,14 +495,6 @@ namespace AssetManagement
             this.optionsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.optionsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.optionsBarButtonItem_ItemClick);
             // 
-            // decryptImportedFileBarCheckItem
-            // 
-            this.decryptImportedFileBarCheckItem.Caption = "استيراد ملف مشفر";
-            this.decryptImportedFileBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
-            this.decryptImportedFileBarCheckItem.Id = 40;
-            this.decryptImportedFileBarCheckItem.Name = "decryptImportedFileBarCheckItem";
-            this.decryptImportedFileBarCheckItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // importDataBarButtonItem
             // 
             this.importDataBarButtonItem.Caption = "استيراد البيانات";
@@ -673,6 +642,24 @@ namespace AssetManagement
             this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSubDepartmentTblBarButtonItem_ItemClick);
             // 
+            // importFormerAssetsFromExcelBarButtonItem
+            // 
+            this.importFormerAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول سابقة";
+            this.importFormerAssetsFromExcelBarButtonItem.Id = 63;
+            this.importFormerAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importFormerAssetsFromExcelBarButtonItem.Name = "importFormerAssetsFromExcelBarButtonItem";
+            this.importFormerAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importFormerAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFormerAssetsFromExcelBarButtonItem_ItemClick);
+            // 
+            // manageImportExportTblBarButtonItem
+            // 
+            this.manageImportExportTblBarButtonItem.Caption = "إدارة سجلات الاستيراد والتصدير";
+            this.manageImportExportTblBarButtonItem.Id = 64;
+            this.manageImportExportTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2800746;
+            this.manageImportExportTblBarButtonItem.Name = "manageImportExportTblBarButtonItem";
+            this.manageImportExportTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageImportExportTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageImportExportTblBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -698,9 +685,9 @@ namespace AssetManagement
             // 
             this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
+            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importFormerAssetsFromExcelBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarButtonItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
             this.newAssetRibbonPageGroup.Text = "أصل جديد - New asset";
             // 
@@ -717,7 +704,6 @@ namespace AssetManagement
             // 
             this.assetInventoriesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.assetInventoriesRibbonPageGroup.ItemLinks.Add(this.addNewAssetInventoryBarButtonItem);
-            this.assetInventoriesRibbonPageGroup.ItemLinks.Add(this.manageAssetInventoryTblBarButtonItem);
             this.assetInventoriesRibbonPageGroup.Name = "assetInventoriesRibbonPageGroup";
             this.assetInventoriesRibbonPageGroup.Text = "جرد الأصول - Assets inventories";
             // 
@@ -792,28 +778,20 @@ namespace AssetManagement
             this.exportImportDataRibbonPage.Appearance.Options.UseTextOptions = true;
             this.exportImportDataRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.exportImportDataRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.exportDataRibbonPageGroup,
-            this.importDataRibbonPageGroup,
+            this.importExportDataRibbonPageGroup,
             this.backupAndRestoreRibbonPageGroup});
             this.exportImportDataRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._3034410;
             this.exportImportDataRibbonPage.Name = "exportImportDataRibbonPage";
             this.exportImportDataRibbonPage.Text = "تصدير / استيراد البيانات";
             // 
-            // exportDataRibbonPageGroup
+            // importExportDataRibbonPageGroup
             // 
-            this.exportDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.exportDataRibbonPageGroup.ItemLinks.Add(this.encryptExportedFileBarCheckItem);
-            this.exportDataRibbonPageGroup.ItemLinks.Add(this.exportDataBarButtonItem);
-            this.exportDataRibbonPageGroup.Name = "exportDataRibbonPageGroup";
-            this.exportDataRibbonPageGroup.Text = "تصدير البيانات - Export data";
-            // 
-            // importDataRibbonPageGroup
-            // 
-            this.importDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.importDataRibbonPageGroup.ItemLinks.Add(this.decryptImportedFileBarCheckItem);
-            this.importDataRibbonPageGroup.ItemLinks.Add(this.importDataBarButtonItem);
-            this.importDataRibbonPageGroup.Name = "importDataRibbonPageGroup";
-            this.importDataRibbonPageGroup.Text = "استيراد البيانات - Import data";
+            this.importExportDataRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
+            this.importExportDataRibbonPageGroup.ItemLinks.Add(this.importDataBarButtonItem);
+            this.importExportDataRibbonPageGroup.ItemLinks.Add(this.exportDataBarButtonItem);
+            this.importExportDataRibbonPageGroup.ItemLinks.Add(this.manageImportExportTblBarButtonItem);
+            this.importExportDataRibbonPageGroup.Name = "importExportDataRibbonPageGroup";
+            this.importExportDataRibbonPageGroup.Text = "استيراد وتصدير البيانات - Impoer and export data";
             // 
             // backupAndRestoreRibbonPageGroup
             // 
@@ -974,15 +952,6 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
-            // importAssetsFromExcelBarButtonItem
-            // 
-            this.importAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول";
-            this.importAssetsFromExcelBarButtonItem.Id = 63;
-            this.importAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.importAssetsFromExcelBarButtonItem.Name = "importAssetsFromExcelBarButtonItem";
-            this.importAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.importAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importAssetsFromExcelBarButtonItem_ItemClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1029,8 +998,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem addNewAssetInventoryBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetInventoriesRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPage exportImportDataRibbonPage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup exportDataRibbonPageGroup;
-        private DevExpress.XtraBars.BarCheckItem encryptExportedFileBarCheckItem;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup importExportDataRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem exportDataBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonMiniToolbar mainRibbonMiniToolbar;
         private DevExpress.XtraBars.Ribbon.RibbonPage manageAuxTablesRibbonPage;
@@ -1039,7 +1007,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageCategoriesBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPage optionsRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup appDateAndTimeRibbonPageGroup;
-        private DevExpress.XtraBars.BarButtonItem manageAssetInventoryTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem setAppDateAndTimeBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem appDateBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem appTimeBarStaticItem;
@@ -1067,9 +1034,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem restoreDbBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem deleteAssetsBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem optionsBarButtonItem;
-        private DevExpress.XtraBars.BarCheckItem decryptImportedFileBarCheckItem;
         private DevExpress.XtraBars.BarButtonItem importDataBarButtonItem;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup importDataRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsReportsAndStatsRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPage financeRibbonPage;
@@ -1092,7 +1057,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem importAssetsFromExcelBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem importFormerAssetsFromExcelBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageImportExportTblBarButtonItem;
     }
 }
 
