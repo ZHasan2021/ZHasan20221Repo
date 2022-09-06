@@ -55,6 +55,10 @@ namespace AssetManagement.Finance
             this.unknownImportRadioButton = new System.Windows.Forms.RadioButton();
             this.notesLabel = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.TextBox();
+            this.tablesExportedPanel = new System.Windows.Forms.Panel();
+            this.exportAssetsAndFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
+            this.exportFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
+            this.exportAssetsRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -62,6 +66,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            this.tablesExportedPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -84,10 +89,10 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSubDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(433, 145);
+            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(477, 213);
             this.manageSubDepartmentTblBtn.Name = "manageSubDepartmentTblBtn";
             this.manageSubDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageSubDepartmentTblBtn.TabIndex = 31;
+            this.manageSubDepartmentTblBtn.TabIndex = 51;
             this.manageSubDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageSubDepartmentTblBtn.Visible = false;
             this.manageSubDepartmentTblBtn.Click += new System.EventHandler(this.manageSubDepartmentTblBtn_Click);
@@ -95,7 +100,7 @@ namespace AssetManagement.Finance
             // exportBySubDepartmentLookUpEdit
             // 
             this.exportBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(173, 158);
+            this.exportBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(217, 226);
             this.exportBySubDepartmentLookUpEdit.Name = "exportBySubDepartmentLookUpEdit";
             this.exportBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -110,7 +115,7 @@ namespace AssetManagement.Finance
             this.exportBySubDepartmentLookUpEdit.Properties.PopupWidth = 500;
             this.exportBySubDepartmentLookUpEdit.Properties.ValueMember = "ID";
             this.exportBySubDepartmentLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportBySubDepartmentLookUpEdit.TabIndex = 30;
+            this.exportBySubDepartmentLookUpEdit.TabIndex = 50;
             this.exportBySubDepartmentLookUpEdit.Visible = false;
             // 
             // subDepartmentTblBindingSource
@@ -128,10 +133,10 @@ namespace AssetManagement.Finance
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(433, 25);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(477, 93);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageSectionTblBtn.TabIndex = 11;
+            this.manageSectionTblBtn.TabIndex = 31;
             this.manageSectionTblBtn.UseVisualStyleBackColor = true;
             this.manageSectionTblBtn.Visible = false;
             this.manageSectionTblBtn.Click += new System.EventHandler(this.manageSectionTblBtn_Click);
@@ -139,7 +144,7 @@ namespace AssetManagement.Finance
             // exportBySectionLookUpEdit
             // 
             this.exportBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBySectionLookUpEdit.Location = new System.Drawing.Point(173, 38);
+            this.exportBySectionLookUpEdit.Location = new System.Drawing.Point(217, 106);
             this.exportBySectionLookUpEdit.Name = "exportBySectionLookUpEdit";
             this.exportBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -153,7 +158,7 @@ namespace AssetManagement.Finance
             this.exportBySectionLookUpEdit.Properties.PopupWidth = 500;
             this.exportBySectionLookUpEdit.Properties.ValueMember = "ID";
             this.exportBySectionLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportBySectionLookUpEdit.TabIndex = 10;
+            this.exportBySectionLookUpEdit.TabIndex = 30;
             this.exportBySectionLookUpEdit.Visible = false;
             // 
             // sectionTblBindingSource
@@ -165,10 +170,10 @@ namespace AssetManagement.Finance
             // 
             this.exportBySubDepartmentRadioButton.AutoSize = true;
             this.exportBySubDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBySubDepartmentRadioButton.Location = new System.Drawing.Point(32, 160);
+            this.exportBySubDepartmentRadioButton.Location = new System.Drawing.Point(32, 228);
             this.exportBySubDepartmentRadioButton.Name = "exportBySubDepartmentRadioButton";
             this.exportBySubDepartmentRadioButton.Size = new System.Drawing.Size(132, 25);
-            this.exportBySubDepartmentRadioButton.TabIndex = 25;
+            this.exportBySubDepartmentRadioButton.TabIndex = 45;
             this.exportBySubDepartmentRadioButton.Text = "ضمن وحدة معينة";
             this.exportBySubDepartmentRadioButton.UseVisualStyleBackColor = true;
             this.exportBySubDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -177,10 +182,10 @@ namespace AssetManagement.Finance
             // 
             this.exportBySectionRadioButton.AutoSize = true;
             this.exportBySectionRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBySectionRadioButton.Location = new System.Drawing.Point(32, 40);
+            this.exportBySectionRadioButton.Location = new System.Drawing.Point(32, 108);
             this.exportBySectionRadioButton.Name = "exportBySectionRadioButton";
             this.exportBySectionRadioButton.Size = new System.Drawing.Size(128, 25);
-            this.exportBySectionRadioButton.TabIndex = 5;
+            this.exportBySectionRadioButton.TabIndex = 25;
             this.exportBySectionRadioButton.Text = "ضمن دائرة معينة";
             this.exportBySectionRadioButton.UseVisualStyleBackColor = true;
             this.exportBySectionRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -190,10 +195,10 @@ namespace AssetManagement.Finance
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(433, 85);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(477, 153);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageDepartmentTblBtn.TabIndex = 21;
+            this.manageDepartmentTblBtn.TabIndex = 41;
             this.manageDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageDepartmentTblBtn.Visible = false;
             this.manageDepartmentTblBtn.Click += new System.EventHandler(this.manageDepartmentTblBtn_Click);
@@ -201,7 +206,7 @@ namespace AssetManagement.Finance
             // exportByDepartmentLookUpEdit
             // 
             this.exportByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportByDepartmentLookUpEdit.Location = new System.Drawing.Point(173, 98);
+            this.exportByDepartmentLookUpEdit.Location = new System.Drawing.Point(217, 166);
             this.exportByDepartmentLookUpEdit.Name = "exportByDepartmentLookUpEdit";
             this.exportByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -216,7 +221,7 @@ namespace AssetManagement.Finance
             this.exportByDepartmentLookUpEdit.Properties.PopupWidth = 500;
             this.exportByDepartmentLookUpEdit.Properties.ValueMember = "ID";
             this.exportByDepartmentLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportByDepartmentLookUpEdit.TabIndex = 20;
+            this.exportByDepartmentLookUpEdit.TabIndex = 40;
             this.exportByDepartmentLookUpEdit.Visible = false;
             // 
             // departmentTblBindingSource
@@ -228,10 +233,10 @@ namespace AssetManagement.Finance
             // 
             this.exportByDepartmentRadioButton.AutoSize = true;
             this.exportByDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportByDepartmentRadioButton.Location = new System.Drawing.Point(32, 100);
+            this.exportByDepartmentRadioButton.Location = new System.Drawing.Point(32, 168);
             this.exportByDepartmentRadioButton.Name = "exportByDepartmentRadioButton";
             this.exportByDepartmentRadioButton.Size = new System.Drawing.Size(124, 25);
-            this.exportByDepartmentRadioButton.TabIndex = 15;
+            this.exportByDepartmentRadioButton.TabIndex = 35;
             this.exportByDepartmentRadioButton.Text = "ضمن قسم معين";
             this.exportByDepartmentRadioButton.UseVisualStyleBackColor = true;
             this.exportByDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -278,7 +283,7 @@ namespace AssetManagement.Finance
             this.exportData_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.exportData_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
             this.exportData_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exportData_Cancel.Location = new System.Drawing.Point(773, 352);
+            this.exportData_Cancel.Location = new System.Drawing.Point(796, 399);
             this.exportData_Cancel.Name = "exportData_Cancel";
             this.exportData_Cancel.Size = new System.Drawing.Size(156, 65);
             this.exportData_Cancel.TabIndex = 325;
@@ -291,7 +296,7 @@ namespace AssetManagement.Finance
             // 
             this.exportData_OK.Image = global::AssetManagement.Properties.Resources._3643510;
             this.exportData_OK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exportData_OK.Location = new System.Drawing.Point(773, 252);
+            this.exportData_OK.Location = new System.Drawing.Point(796, 299);
             this.exportData_OK.Name = "exportData_OK";
             this.exportData_OK.Size = new System.Drawing.Size(156, 65);
             this.exportData_OK.TabIndex = 300;
@@ -303,10 +308,10 @@ namespace AssetManagement.Finance
             // encryptExportedFileCheckBox
             // 
             this.encryptExportedFileCheckBox.AutoSize = true;
-            this.encryptExportedFileCheckBox.Location = new System.Drawing.Point(32, 280);
+            this.encryptExportedFileCheckBox.Location = new System.Drawing.Point(32, 345);
             this.encryptExportedFileCheckBox.Name = "encryptExportedFileCheckBox";
             this.encryptExportedFileCheckBox.Size = new System.Drawing.Size(167, 28);
-            this.encryptExportedFileCheckBox.TabIndex = 40;
+            this.encryptExportedFileCheckBox.TabIndex = 60;
             this.encryptExportedFileCheckBox.Text = "تشفير ملف التصدير";
             this.encryptExportedFileCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -315,10 +320,10 @@ namespace AssetManagement.Finance
             this.unknownImportRadioButton.AutoSize = true;
             this.unknownImportRadioButton.Checked = true;
             this.unknownImportRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unknownImportRadioButton.Location = new System.Drawing.Point(32, 220);
+            this.unknownImportRadioButton.Location = new System.Drawing.Point(32, 288);
             this.unknownImportRadioButton.Name = "unknownImportRadioButton";
             this.unknownImportRadioButton.Size = new System.Drawing.Size(86, 25);
-            this.unknownImportRadioButton.TabIndex = 35;
+            this.unknownImportRadioButton.TabIndex = 55;
             this.unknownImportRadioButton.TabStop = true;
             this.unknownImportRadioButton.Text = "غير محدد";
             this.unknownImportRadioButton.UseVisualStyleBackColor = true;
@@ -326,19 +331,61 @@ namespace AssetManagement.Finance
             // notesLabel
             // 
             this.notesLabel.AutoSize = true;
-            this.notesLabel.Location = new System.Drawing.Point(28, 340);
+            this.notesLabel.Location = new System.Drawing.Point(28, 405);
             this.notesLabel.Name = "notesLabel";
             this.notesLabel.Size = new System.Drawing.Size(78, 24);
-            this.notesLabel.TabIndex = 45;
+            this.notesLabel.TabIndex = 65;
             this.notesLabel.Text = "ملاحظات:";
             // 
             // notesTextBox
             // 
-            this.notesTextBox.Location = new System.Drawing.Point(173, 336);
+            this.notesTextBox.Location = new System.Drawing.Point(173, 401);
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
             this.notesTextBox.Size = new System.Drawing.Size(315, 81);
-            this.notesTextBox.TabIndex = 50;
+            this.notesTextBox.TabIndex = 70;
+            // 
+            // tablesExportedPanel
+            // 
+            this.tablesExportedPanel.Controls.Add(this.exportAssetsAndFinancialItemsRadioButton);
+            this.tablesExportedPanel.Controls.Add(this.exportFinancialItemsRadioButton);
+            this.tablesExportedPanel.Controls.Add(this.exportAssetsRadioButton);
+            this.tablesExportedPanel.Location = new System.Drawing.Point(32, 22);
+            this.tablesExportedPanel.Name = "tablesExportedPanel";
+            this.tablesExportedPanel.Size = new System.Drawing.Size(472, 52);
+            this.tablesExportedPanel.TabIndex = 5;
+            // 
+            // exportAssetsAndFinancialItemsRadioButton
+            // 
+            this.exportAssetsAndFinancialItemsRadioButton.AutoSize = true;
+            this.exportAssetsAndFinancialItemsRadioButton.Checked = true;
+            this.exportAssetsAndFinancialItemsRadioButton.Location = new System.Drawing.Point(50, 12);
+            this.exportAssetsAndFinancialItemsRadioButton.Name = "exportAssetsAndFinancialItemsRadioButton";
+            this.exportAssetsAndFinancialItemsRadioButton.Size = new System.Drawing.Size(173, 28);
+            this.exportAssetsAndFinancialItemsRadioButton.TabIndex = 20;
+            this.exportAssetsAndFinancialItemsRadioButton.TabStop = true;
+            this.exportAssetsAndFinancialItemsRadioButton.Text = "أصول وسجلات مالية";
+            this.exportAssetsAndFinancialItemsRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // exportFinancialItemsRadioButton
+            // 
+            this.exportFinancialItemsRadioButton.AutoSize = true;
+            this.exportFinancialItemsRadioButton.Location = new System.Drawing.Point(243, 12);
+            this.exportFinancialItemsRadioButton.Name = "exportFinancialItemsRadioButton";
+            this.exportFinancialItemsRadioButton.Size = new System.Drawing.Size(122, 28);
+            this.exportFinancialItemsRadioButton.TabIndex = 15;
+            this.exportFinancialItemsRadioButton.Text = "سجلات مالية";
+            this.exportFinancialItemsRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // exportAssetsRadioButton
+            // 
+            this.exportAssetsRadioButton.AutoSize = true;
+            this.exportAssetsRadioButton.Location = new System.Drawing.Point(385, 12);
+            this.exportAssetsRadioButton.Name = "exportAssetsRadioButton";
+            this.exportAssetsRadioButton.Size = new System.Drawing.Size(69, 28);
+            this.exportAssetsRadioButton.TabIndex = 10;
+            this.exportAssetsRadioButton.Text = "أصول";
+            this.exportAssetsRadioButton.UseVisualStyleBackColor = true;
             // 
             // ExportForm
             // 
@@ -346,7 +393,8 @@ namespace AssetManagement.Finance
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.exportData_Cancel;
-            this.ClientSize = new System.Drawing.Size(963, 440);
+            this.ClientSize = new System.Drawing.Size(1007, 517);
+            this.Controls.Add(this.tablesExportedPanel);
             this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.notesLabel);
             this.Controls.Add(this.unknownImportRadioButton);
@@ -379,6 +427,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            this.tablesExportedPanel.ResumeLayout(false);
+            this.tablesExportedPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,5 +460,9 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.RadioButton unknownImportRadioButton;
         private System.Windows.Forms.Label notesLabel;
         private System.Windows.Forms.TextBox notesTextBox;
+        private System.Windows.Forms.Panel tablesExportedPanel;
+        private System.Windows.Forms.RadioButton exportAssetsAndFinancialItemsRadioButton;
+        private System.Windows.Forms.RadioButton exportFinancialItemsRadioButton;
+        private System.Windows.Forms.RadioButton exportAssetsRadioButton;
     }
 }

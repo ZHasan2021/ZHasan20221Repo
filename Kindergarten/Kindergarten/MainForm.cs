@@ -347,5 +347,17 @@ namespace Kindergarten
         {
 
         }
+
+        private void addNewFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddNewFinancialItemForm newFinFrm = new AddNewFinancialItemForm();
+            newFinFrm.ShowDialog();
+        }
+
+        private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
+            fiItFrm.Show();
+        }
     }
 }

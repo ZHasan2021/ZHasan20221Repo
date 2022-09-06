@@ -3951,6 +3951,8 @@ namespace AssetManagement
 		
 		private System.DateTime _ActionDate;
 		
+		private string _TablesExported;
+		
 		private string _ActionBySection;
 		
 		private string _ActionByDepartment;
@@ -3977,6 +3979,8 @@ namespace AssetManagement
     partial void OnImportOrExportChanged();
     partial void OnActionDateChanging(System.DateTime value);
     partial void OnActionDateChanged();
+    partial void OnTablesExportedChanging(string value);
+    partial void OnTablesExportedChanged();
     partial void OnActionBySectionChanging(string value);
     partial void OnActionBySectionChanged();
     partial void OnActionByDepartmentChanging(string value);
@@ -4056,6 +4060,26 @@ namespace AssetManagement
 					this._ActionDate = value;
 					this.SendPropertyChanged("ActionDate");
 					this.OnActionDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TablesExported", DbType="NVarChar(50)")]
+		public string TablesExported
+		{
+			get
+			{
+				return this._TablesExported;
+			}
+			set
+			{
+				if ((this._TablesExported != value))
+				{
+					this.OnTablesExportedChanging(value);
+					this.SendPropertyChanging();
+					this._TablesExported = value;
+					this.SendPropertyChanged("TablesExported");
+					this.OnTablesExportedChanged();
 				}
 			}
 		}

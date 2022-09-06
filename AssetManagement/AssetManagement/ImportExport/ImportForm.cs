@@ -33,6 +33,7 @@ namespace AssetManagement.Finance
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 400);
         }
 
         private void importBySectionRadioButton_CheckedChanged(object sender, EventArgs e)

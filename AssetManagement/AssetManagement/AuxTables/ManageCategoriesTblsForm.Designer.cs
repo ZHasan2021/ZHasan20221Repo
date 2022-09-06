@@ -49,7 +49,6 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
             this.mainCategoryGroupBox = new System.Windows.Forms.GroupBox();
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox = new System.Windows.Forms.CheckBox();
             this.findAllMinorCategoriestBtn = new System.Windows.Forms.Button();
             this.addNewMainCategoryGroupBox = new System.Windows.Forms.GroupBox();
             this.newMainCategoryDescriptionLabel = new System.Windows.Forms.Label();
@@ -237,7 +236,6 @@ namespace AssetManagement.AuxTables
             // 
             // mainCategoryGroupBox
             // 
-            this.mainCategoryGroupBox.Controls.Add(this.addTheCategoryAsAFinancialItemCategoryCheckBox);
             this.mainCategoryGroupBox.Controls.Add(this.findAllMinorCategoriestBtn);
             this.mainCategoryGroupBox.Controls.Add(this.addNewMainCategoryGroupBox);
             this.mainCategoryGroupBox.Controls.Add(this.addNewMainCategoryBtn);
@@ -253,22 +251,12 @@ namespace AssetManagement.AuxTables
             this.mainCategoryGroupBox.TabStop = false;
             this.mainCategoryGroupBox.Text = "الفئات الرئيسية";
             // 
-            // addTheCategoryAsAFinancialItemCategoryCheckBox
-            // 
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.AutoSize = true;
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Location = new System.Drawing.Point(1065, 204);
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Name = "addTheCategoryAsAFinancialItemCategoryCheckBox";
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Size = new System.Drawing.Size(174, 28);
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.TabIndex = 65;
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.Text = "إضافة الفئة كبند مالي";
-            this.addTheCategoryAsAFinancialItemCategoryCheckBox.UseVisualStyleBackColor = true;
-            // 
             // findAllMinorCategoriestBtn
             // 
             this.findAllMinorCategoriestBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.findAllMinorCategoriestBtn.Image = global::AssetManagement.Properties.Resources._5928140;
             this.findAllMinorCategoriestBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.findAllMinorCategoriestBtn.Location = new System.Drawing.Point(201, 31);
+            this.findAllMinorCategoriestBtn.Location = new System.Drawing.Point(71, 31);
             this.findAllMinorCategoriestBtn.Name = "findAllMinorCategoriestBtn";
             this.findAllMinorCategoriestBtn.Size = new System.Drawing.Size(175, 54);
             this.findAllMinorCategoriestBtn.TabIndex = 55;
@@ -352,9 +340,9 @@ namespace AssetManagement.AuxTables
             // 
             this.addNewMainCategoryBtn.Image = global::AssetManagement.Properties.Resources._223645;
             this.addNewMainCategoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(1010, 104);
+            this.addNewMainCategoryBtn.Location = new System.Drawing.Point(964, 104);
             this.addNewMainCategoryBtn.Name = "addNewMainCategoryBtn";
-            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(229, 83);
+            this.addNewMainCategoryBtn.Size = new System.Drawing.Size(275, 63);
             this.addNewMainCategoryBtn.TabIndex = 60;
             this.addNewMainCategoryBtn.Text = "إضافة فئة رئيسية جديدة";
             this.addNewMainCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -366,9 +354,9 @@ namespace AssetManagement.AuxTables
             this.findMinorCategoriesByLookupEditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.findMinorCategoriesByLookupEditBtn.Image = global::AssetManagement.Properties.Resources._5928140;
             this.findMinorCategoriesByLookupEditBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.findMinorCategoriesByLookupEditBtn.Location = new System.Drawing.Point(407, 31);
+            this.findMinorCategoriesByLookupEditBtn.Location = new System.Drawing.Point(332, 31);
             this.findMinorCategoriesByLookupEditBtn.Name = "findMinorCategoriesByLookupEditBtn";
-            this.findMinorCategoriesByLookupEditBtn.Size = new System.Drawing.Size(337, 54);
+            this.findMinorCategoriesByLookupEditBtn.Size = new System.Drawing.Size(412, 54);
             this.findMinorCategoriesByLookupEditBtn.TabIndex = 50;
             this.findMinorCategoriesByLookupEditBtn.Text = "استعراض الفئات الفرعية للاختيار الحالي";
             this.findMinorCategoriesByLookupEditBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -432,6 +420,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -653,6 +642,5 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit mainCategoryRepositoryItemLookUpEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colProductiveAgeInYears;
         private DevExpress.XtraGrid.Columns.GridColumn colDestructionRate;
-        private System.Windows.Forms.CheckBox addTheCategoryAsAFinancialItemCategoryCheckBox;
     }
 }

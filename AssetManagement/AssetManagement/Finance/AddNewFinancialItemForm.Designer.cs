@@ -41,6 +41,7 @@ namespace AssetManagement.Finance
             this.financialItemInsertionDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.financialItemInsertionDateLabel = new System.Windows.Forms.Label();
             this.incomingOrOutgoingPanel = new System.Windows.Forms.Panel();
+            this.incomingOutgoingRadioButton = new System.Windows.Forms.RadioButton();
             this.outgoingRadioButton = new System.Windows.Forms.RadioButton();
             this.incomingRadioButton = new System.Windows.Forms.RadioButton();
             this.financialItemDescriptionLabel = new System.Windows.Forms.Label();
@@ -187,17 +188,28 @@ namespace AssetManagement.Finance
             // incomingOrOutgoingPanel
             // 
             this.incomingOrOutgoingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.incomingOrOutgoingPanel.Controls.Add(this.incomingOutgoingRadioButton);
             this.incomingOrOutgoingPanel.Controls.Add(this.outgoingRadioButton);
             this.incomingOrOutgoingPanel.Controls.Add(this.incomingRadioButton);
             this.incomingOrOutgoingPanel.Location = new System.Drawing.Point(50, 440);
             this.incomingOrOutgoingPanel.Name = "incomingOrOutgoingPanel";
-            this.incomingOrOutgoingPanel.Size = new System.Drawing.Size(310, 62);
+            this.incomingOrOutgoingPanel.Size = new System.Drawing.Size(441, 62);
             this.incomingOrOutgoingPanel.TabIndex = 60;
+            // 
+            // incomingOutgoingRadioButton
+            // 
+            this.incomingOutgoingRadioButton.AutoSize = true;
+            this.incomingOutgoingRadioButton.Location = new System.Drawing.Point(41, 18);
+            this.incomingOutgoingRadioButton.Name = "incomingOutgoingRadioButton";
+            this.incomingOutgoingRadioButton.Size = new System.Drawing.Size(105, 28);
+            this.incomingOutgoingRadioButton.TabIndex = 75;
+            this.incomingOutgoingRadioButton.Text = "وارد وصادر";
+            this.incomingOutgoingRadioButton.UseVisualStyleBackColor = true;
             // 
             // outgoingRadioButton
             // 
             this.outgoingRadioButton.AutoSize = true;
-            this.outgoingRadioButton.Location = new System.Drawing.Point(51, 18);
+            this.outgoingRadioButton.Location = new System.Drawing.Point(212, 18);
             this.outgoingRadioButton.Name = "outgoingRadioButton";
             this.outgoingRadioButton.Size = new System.Drawing.Size(67, 28);
             this.outgoingRadioButton.TabIndex = 70;
@@ -207,12 +219,10 @@ namespace AssetManagement.Finance
             // incomingRadioButton
             // 
             this.incomingRadioButton.AutoSize = true;
-            this.incomingRadioButton.Checked = true;
-            this.incomingRadioButton.Location = new System.Drawing.Point(220, 18);
+            this.incomingRadioButton.Location = new System.Drawing.Point(345, 18);
             this.incomingRadioButton.Name = "incomingRadioButton";
             this.incomingRadioButton.Size = new System.Drawing.Size(56, 28);
             this.incomingRadioButton.TabIndex = 65;
-            this.incomingRadioButton.TabStop = true;
             this.incomingRadioButton.Text = "وارد";
             this.incomingRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -242,7 +252,7 @@ namespace AssetManagement.Finance
             this.amountLabel.Location = new System.Drawing.Point(50, 524);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(54, 24);
-            this.amountLabel.TabIndex = 75;
+            this.amountLabel.TabIndex = 80;
             this.amountLabel.Text = "المبلغ:";
             // 
             // financialItemCurrencyLookUpEdit
@@ -262,7 +272,7 @@ namespace AssetManagement.Finance
             this.financialItemCurrencyLookUpEdit.Properties.PopupWidth = 500;
             this.financialItemCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.financialItemCurrencyLookUpEdit.Size = new System.Drawing.Size(217, 30);
-            this.financialItemCurrencyLookUpEdit.TabIndex = 85;
+            this.financialItemCurrencyLookUpEdit.TabIndex = 90;
             // 
             // currencyTblBindingSource
             // 
@@ -281,7 +291,7 @@ namespace AssetManagement.Finance
             0});
             this.amountNumericUpDown.Name = "amountNumericUpDown";
             this.amountNumericUpDown.Size = new System.Drawing.Size(153, 32);
-            this.amountNumericUpDown.TabIndex = 80;
+            this.amountNumericUpDown.TabIndex = 85;
             // 
             // manageCurrencyTblBtn
             // 
@@ -290,7 +300,7 @@ namespace AssetManagement.Finance
             this.manageCurrencyTblBtn.Location = new System.Drawing.Point(584, 509);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageCurrencyTblBtn.TabIndex = 86;
+            this.manageCurrencyTblBtn.TabIndex = 91;
             this.manageCurrencyTblBtn.UseVisualStyleBackColor = true;
             this.manageCurrencyTblBtn.Click += new System.EventHandler(this.manageCurrencyTblBtn_Click);
             // 
@@ -331,7 +341,7 @@ namespace AssetManagement.Finance
             this.additionalNotesTextBox.Location = new System.Drawing.Point(237, 571);
             this.additionalNotesTextBox.Name = "additionalNotesTextBox";
             this.additionalNotesTextBox.Size = new System.Drawing.Size(411, 32);
-            this.additionalNotesTextBox.TabIndex = 95;
+            this.additionalNotesTextBox.TabIndex = 100;
             // 
             // additionalNotesLabel
             // 
@@ -340,7 +350,7 @@ namespace AssetManagement.Finance
             this.additionalNotesLabel.Location = new System.Drawing.Point(50, 575);
             this.additionalNotesLabel.Name = "additionalNotesLabel";
             this.additionalNotesLabel.Size = new System.Drawing.Size(129, 24);
-            this.additionalNotesLabel.TabIndex = 90;
+            this.additionalNotesLabel.TabIndex = 95;
             this.additionalNotesLabel.Text = "ملاحظات إضافية:";
             // 
             // manageDepartmentTblBtn
@@ -374,6 +384,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -641,5 +652,6 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
         private System.Windows.Forms.Button addNewAssetBtn;
+        private System.Windows.Forms.RadioButton incomingOutgoingRadioButton;
     }
 }

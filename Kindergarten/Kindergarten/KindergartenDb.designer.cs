@@ -30,15 +30,24 @@ namespace Kindergarten
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertCurrencyTbl(CurrencyTbl instance);
+    partial void UpdateCurrencyTbl(CurrencyTbl instance);
+    partial void DeleteCurrencyTbl(CurrencyTbl instance);
+    partial void InsertUserRoleTbl(UserRoleTbl instance);
+    partial void UpdateUserRoleTbl(UserRoleTbl instance);
+    partial void DeleteUserRoleTbl(UserRoleTbl instance);
     partial void InsertEducationalLevelTbl(EducationalLevelTbl instance);
     partial void UpdateEducationalLevelTbl(EducationalLevelTbl instance);
     partial void DeleteEducationalLevelTbl(EducationalLevelTbl instance);
-    partial void InsertUserTbl(UserTbl instance);
-    partial void UpdateUserTbl(UserTbl instance);
-    partial void DeleteUserTbl(UserTbl instance);
     partial void InsertFeePeriodTbl(FeePeriodTbl instance);
     partial void UpdateFeePeriodTbl(FeePeriodTbl instance);
     partial void DeleteFeePeriodTbl(FeePeriodTbl instance);
+    partial void InsertFinancialItemCategoryTbl(FinancialItemCategoryTbl instance);
+    partial void UpdateFinancialItemCategoryTbl(FinancialItemCategoryTbl instance);
+    partial void DeleteFinancialItemCategoryTbl(FinancialItemCategoryTbl instance);
+    partial void InsertFinancialItemTbl(FinancialItemTbl instance);
+    partial void UpdateFinancialItemTbl(FinancialItemTbl instance);
+    partial void DeleteFinancialItemTbl(FinancialItemTbl instance);
     partial void InsertOptionsTbl(OptionsTbl instance);
     partial void UpdateOptionsTbl(OptionsTbl instance);
     partial void DeleteOptionsTbl(OptionsTbl instance);
@@ -51,9 +60,9 @@ namespace Kindergarten
     partial void InsertStudentTbl(StudentTbl instance);
     partial void UpdateStudentTbl(StudentTbl instance);
     partial void DeleteStudentTbl(StudentTbl instance);
-    partial void InsertUserRoleTbl(UserRoleTbl instance);
-    partial void UpdateUserRoleTbl(UserRoleTbl instance);
-    partial void DeleteUserRoleTbl(UserRoleTbl instance);
+    partial void InsertUserTbl(UserTbl instance);
+    partial void UpdateUserTbl(UserTbl instance);
+    partial void DeleteUserTbl(UserTbl instance);
     #endregion
 		
 		public KindergartenDbDataContext() : 
@@ -86,6 +95,22 @@ namespace Kindergarten
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<CurrencyTbl> CurrencyTbls
+		{
+			get
+			{
+				return this.GetTable<CurrencyTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserRoleTbl> UserRoleTbls
+		{
+			get
+			{
+				return this.GetTable<UserRoleTbl>();
+			}
+		}
+		
 		public System.Data.Linq.Table<EducationalLevelTbl> EducationalLevelTbls
 		{
 			get
@@ -94,19 +119,27 @@ namespace Kindergarten
 			}
 		}
 		
-		public System.Data.Linq.Table<UserTbl> UserTbls
-		{
-			get
-			{
-				return this.GetTable<UserTbl>();
-			}
-		}
-		
 		public System.Data.Linq.Table<FeePeriodTbl> FeePeriodTbls
 		{
 			get
 			{
 				return this.GetTable<FeePeriodTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FinancialItemCategoryTbl> FinancialItemCategoryTbls
+		{
+			get
+			{
+				return this.GetTable<FinancialItemCategoryTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FinancialItemTbl> FinancialItemTbls
+		{
+			get
+			{
+				return this.GetTable<FinancialItemTbl>();
 			}
 		}
 		
@@ -142,11 +175,11 @@ namespace Kindergarten
 			}
 		}
 		
-		public System.Data.Linq.Table<UserRoleTbl> UserRoleTbls
+		public System.Data.Linq.Table<UserTbl> UserTbls
 		{
 			get
 			{
-				return this.GetTable<UserRoleTbl>();
+				return this.GetTable<UserTbl>();
 			}
 		}
 		
@@ -156,6 +189,978 @@ namespace Kindergarten
 			{
 				return this.GetTable<VwStudent>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CurrencyTbl")]
+	public partial class CurrencyTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _CurrencyName;
+		
+		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnCurrencyNameChanging(string value);
+    partial void OnCurrencyNameChanged();
+    #endregion
+		
+		public CurrencyTbl()
+		{
+			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrencyName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CurrencyName
+		{
+			get
+			{
+				return this._CurrencyName;
+			}
+			set
+			{
+				if ((this._CurrencyName != value))
+				{
+					this.OnCurrencyNameChanging(value);
+					this.SendPropertyChanging();
+					this._CurrencyName = value;
+					this.SendPropertyChanged("CurrencyName");
+					this.OnCurrencyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_FinancialItemTbl", Storage="_FinancialItemTbls", ThisKey="ID", OtherKey="FinancialItemCurrency")]
+		public EntitySet<FinancialItemTbl> FinancialItemTbls
+		{
+			get
+			{
+				return this._FinancialItemTbls;
+			}
+			set
+			{
+				this._FinancialItemTbls.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.CurrencyTbl = this;
+		}
+		
+		private void detach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.CurrencyTbl = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoleTbl")]
+	public partial class UserRoleTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _RoleName;
+		
+		private System.Nullable<bool> _AddNewStudent;
+		
+		private System.Nullable<bool> _ManageStudentTbl;
+		
+		private System.Nullable<bool> _UpdateExistedStudent;
+		
+		private System.Nullable<bool> _DeleteStudentRecord;
+		
+		private System.Nullable<bool> _ViewStudentsReports;
+		
+		private System.Nullable<bool> _ViewStudentsStats;
+		
+		private System.Nullable<bool> _AddNewStudentFee;
+		
+		private System.Nullable<bool> _ManageStudentFeeTbl;
+		
+		private System.Nullable<bool> _UpdateExistedStudentFee;
+		
+		private System.Nullable<bool> _DeleteStudentFeeRecord;
+		
+		private System.Nullable<bool> _AddNewEducationalLevel;
+		
+		private System.Nullable<bool> _ManageEducationalLevels;
+		
+		private System.Nullable<bool> _AddNewScholasticYear;
+		
+		private System.Nullable<bool> _ManageScholasticYears;
+		
+		private System.Nullable<bool> _AddNewFeePeriod;
+		
+		private System.Nullable<bool> _ManageFeePeriods;
+		
+		private System.Nullable<bool> _AddNewFinancialItem;
+		
+		private System.Nullable<bool> _ManageFinancialItems;
+		
+		private System.Nullable<bool> _UpdateExistedFinancialItem;
+		
+		private System.Nullable<bool> _DeleteFinancialItemRecord;
+		
+		private System.Nullable<bool> _ViewFinancialReports;
+		
+		private System.Nullable<bool> _AddNewCurrency;
+		
+		private System.Nullable<bool> _ManageCurrencies;
+		
+		private System.Nullable<bool> _AddNewFinancialItemCategory;
+		
+		private System.Nullable<bool> _ManageFinancialItemCategories;
+		
+		private System.Nullable<bool> _ExportAllData;
+		
+		private System.Nullable<bool> _ImportAllData;
+		
+		private System.Nullable<bool> _ManageUsers;
+		
+		private System.Nullable<bool> _PromoteDb;
+		
+		private System.Nullable<bool> _BackupDb;
+		
+		private System.Nullable<bool> _RestoreDb;
+		
+		private EntitySet<UserTbl> _UserTbls;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnAddNewStudentChanging(System.Nullable<bool> value);
+    partial void OnAddNewStudentChanged();
+    partial void OnManageStudentTblChanging(System.Nullable<bool> value);
+    partial void OnManageStudentTblChanged();
+    partial void OnUpdateExistedStudentChanging(System.Nullable<bool> value);
+    partial void OnUpdateExistedStudentChanged();
+    partial void OnDeleteStudentRecordChanging(System.Nullable<bool> value);
+    partial void OnDeleteStudentRecordChanged();
+    partial void OnViewStudentsReportsChanging(System.Nullable<bool> value);
+    partial void OnViewStudentsReportsChanged();
+    partial void OnViewStudentsStatsChanging(System.Nullable<bool> value);
+    partial void OnViewStudentsStatsChanged();
+    partial void OnAddNewStudentFeeChanging(System.Nullable<bool> value);
+    partial void OnAddNewStudentFeeChanged();
+    partial void OnManageStudentFeeTblChanging(System.Nullable<bool> value);
+    partial void OnManageStudentFeeTblChanged();
+    partial void OnUpdateExistedStudentFeeChanging(System.Nullable<bool> value);
+    partial void OnUpdateExistedStudentFeeChanged();
+    partial void OnDeleteStudentFeeRecordChanging(System.Nullable<bool> value);
+    partial void OnDeleteStudentFeeRecordChanged();
+    partial void OnAddNewEducationalLevelChanging(System.Nullable<bool> value);
+    partial void OnAddNewEducationalLevelChanged();
+    partial void OnManageEducationalLevelsChanging(System.Nullable<bool> value);
+    partial void OnManageEducationalLevelsChanged();
+    partial void OnAddNewScholasticYearChanging(System.Nullable<bool> value);
+    partial void OnAddNewScholasticYearChanged();
+    partial void OnManageScholasticYearsChanging(System.Nullable<bool> value);
+    partial void OnManageScholasticYearsChanged();
+    partial void OnAddNewFeePeriodChanging(System.Nullable<bool> value);
+    partial void OnAddNewFeePeriodChanged();
+    partial void OnManageFeePeriodsChanging(System.Nullable<bool> value);
+    partial void OnManageFeePeriodsChanged();
+    partial void OnAddNewFinancialItemChanging(System.Nullable<bool> value);
+    partial void OnAddNewFinancialItemChanged();
+    partial void OnManageFinancialItemsChanging(System.Nullable<bool> value);
+    partial void OnManageFinancialItemsChanged();
+    partial void OnUpdateExistedFinancialItemChanging(System.Nullable<bool> value);
+    partial void OnUpdateExistedFinancialItemChanged();
+    partial void OnDeleteFinancialItemRecordChanging(System.Nullable<bool> value);
+    partial void OnDeleteFinancialItemRecordChanged();
+    partial void OnViewFinancialReportsChanging(System.Nullable<bool> value);
+    partial void OnViewFinancialReportsChanged();
+    partial void OnAddNewCurrencyChanging(System.Nullable<bool> value);
+    partial void OnAddNewCurrencyChanged();
+    partial void OnManageCurrenciesChanging(System.Nullable<bool> value);
+    partial void OnManageCurrenciesChanged();
+    partial void OnAddNewFinancialItemCategoryChanging(System.Nullable<bool> value);
+    partial void OnAddNewFinancialItemCategoryChanged();
+    partial void OnManageFinancialItemCategoriesChanging(System.Nullable<bool> value);
+    partial void OnManageFinancialItemCategoriesChanged();
+    partial void OnExportAllDataChanging(System.Nullable<bool> value);
+    partial void OnExportAllDataChanged();
+    partial void OnImportAllDataChanging(System.Nullable<bool> value);
+    partial void OnImportAllDataChanged();
+    partial void OnManageUsersChanging(System.Nullable<bool> value);
+    partial void OnManageUsersChanged();
+    partial void OnPromoteDbChanging(System.Nullable<bool> value);
+    partial void OnPromoteDbChanged();
+    partial void OnBackupDbChanging(System.Nullable<bool> value);
+    partial void OnBackupDbChanged();
+    partial void OnRestoreDbChanging(System.Nullable<bool> value);
+    partial void OnRestoreDbChanged();
+    #endregion
+		
+		public UserRoleTbl()
+		{
+			this._UserTbls = new EntitySet<UserTbl>(new Action<UserTbl>(this.attach_UserTbls), new Action<UserTbl>(this.detach_UserTbls));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewStudent", DbType="Bit")]
+		public System.Nullable<bool> AddNewStudent
+		{
+			get
+			{
+				return this._AddNewStudent;
+			}
+			set
+			{
+				if ((this._AddNewStudent != value))
+				{
+					this.OnAddNewStudentChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewStudent = value;
+					this.SendPropertyChanged("AddNewStudent");
+					this.OnAddNewStudentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageStudentTbl", DbType="Bit")]
+		public System.Nullable<bool> ManageStudentTbl
+		{
+			get
+			{
+				return this._ManageStudentTbl;
+			}
+			set
+			{
+				if ((this._ManageStudentTbl != value))
+				{
+					this.OnManageStudentTblChanging(value);
+					this.SendPropertyChanging();
+					this._ManageStudentTbl = value;
+					this.SendPropertyChanged("ManageStudentTbl");
+					this.OnManageStudentTblChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedStudent", DbType="Bit")]
+		public System.Nullable<bool> UpdateExistedStudent
+		{
+			get
+			{
+				return this._UpdateExistedStudent;
+			}
+			set
+			{
+				if ((this._UpdateExistedStudent != value))
+				{
+					this.OnUpdateExistedStudentChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateExistedStudent = value;
+					this.SendPropertyChanged("UpdateExistedStudent");
+					this.OnUpdateExistedStudentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteStudentRecord", DbType="Bit")]
+		public System.Nullable<bool> DeleteStudentRecord
+		{
+			get
+			{
+				return this._DeleteStudentRecord;
+			}
+			set
+			{
+				if ((this._DeleteStudentRecord != value))
+				{
+					this.OnDeleteStudentRecordChanging(value);
+					this.SendPropertyChanging();
+					this._DeleteStudentRecord = value;
+					this.SendPropertyChanged("DeleteStudentRecord");
+					this.OnDeleteStudentRecordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewStudentsReports", DbType="Bit")]
+		public System.Nullable<bool> ViewStudentsReports
+		{
+			get
+			{
+				return this._ViewStudentsReports;
+			}
+			set
+			{
+				if ((this._ViewStudentsReports != value))
+				{
+					this.OnViewStudentsReportsChanging(value);
+					this.SendPropertyChanging();
+					this._ViewStudentsReports = value;
+					this.SendPropertyChanged("ViewStudentsReports");
+					this.OnViewStudentsReportsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewStudentsStats", DbType="Bit")]
+		public System.Nullable<bool> ViewStudentsStats
+		{
+			get
+			{
+				return this._ViewStudentsStats;
+			}
+			set
+			{
+				if ((this._ViewStudentsStats != value))
+				{
+					this.OnViewStudentsStatsChanging(value);
+					this.SendPropertyChanging();
+					this._ViewStudentsStats = value;
+					this.SendPropertyChanged("ViewStudentsStats");
+					this.OnViewStudentsStatsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewStudentFee", DbType="Bit")]
+		public System.Nullable<bool> AddNewStudentFee
+		{
+			get
+			{
+				return this._AddNewStudentFee;
+			}
+			set
+			{
+				if ((this._AddNewStudentFee != value))
+				{
+					this.OnAddNewStudentFeeChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewStudentFee = value;
+					this.SendPropertyChanged("AddNewStudentFee");
+					this.OnAddNewStudentFeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageStudentFeeTbl", DbType="Bit")]
+		public System.Nullable<bool> ManageStudentFeeTbl
+		{
+			get
+			{
+				return this._ManageStudentFeeTbl;
+			}
+			set
+			{
+				if ((this._ManageStudentFeeTbl != value))
+				{
+					this.OnManageStudentFeeTblChanging(value);
+					this.SendPropertyChanging();
+					this._ManageStudentFeeTbl = value;
+					this.SendPropertyChanged("ManageStudentFeeTbl");
+					this.OnManageStudentFeeTblChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedStudentFee", DbType="Bit")]
+		public System.Nullable<bool> UpdateExistedStudentFee
+		{
+			get
+			{
+				return this._UpdateExistedStudentFee;
+			}
+			set
+			{
+				if ((this._UpdateExistedStudentFee != value))
+				{
+					this.OnUpdateExistedStudentFeeChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateExistedStudentFee = value;
+					this.SendPropertyChanged("UpdateExistedStudentFee");
+					this.OnUpdateExistedStudentFeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteStudentFeeRecord", DbType="Bit")]
+		public System.Nullable<bool> DeleteStudentFeeRecord
+		{
+			get
+			{
+				return this._DeleteStudentFeeRecord;
+			}
+			set
+			{
+				if ((this._DeleteStudentFeeRecord != value))
+				{
+					this.OnDeleteStudentFeeRecordChanging(value);
+					this.SendPropertyChanging();
+					this._DeleteStudentFeeRecord = value;
+					this.SendPropertyChanged("DeleteStudentFeeRecord");
+					this.OnDeleteStudentFeeRecordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewEducationalLevel", DbType="Bit")]
+		public System.Nullable<bool> AddNewEducationalLevel
+		{
+			get
+			{
+				return this._AddNewEducationalLevel;
+			}
+			set
+			{
+				if ((this._AddNewEducationalLevel != value))
+				{
+					this.OnAddNewEducationalLevelChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewEducationalLevel = value;
+					this.SendPropertyChanged("AddNewEducationalLevel");
+					this.OnAddNewEducationalLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageEducationalLevels", DbType="Bit")]
+		public System.Nullable<bool> ManageEducationalLevels
+		{
+			get
+			{
+				return this._ManageEducationalLevels;
+			}
+			set
+			{
+				if ((this._ManageEducationalLevels != value))
+				{
+					this.OnManageEducationalLevelsChanging(value);
+					this.SendPropertyChanging();
+					this._ManageEducationalLevels = value;
+					this.SendPropertyChanged("ManageEducationalLevels");
+					this.OnManageEducationalLevelsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewScholasticYear", DbType="Bit")]
+		public System.Nullable<bool> AddNewScholasticYear
+		{
+			get
+			{
+				return this._AddNewScholasticYear;
+			}
+			set
+			{
+				if ((this._AddNewScholasticYear != value))
+				{
+					this.OnAddNewScholasticYearChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewScholasticYear = value;
+					this.SendPropertyChanged("AddNewScholasticYear");
+					this.OnAddNewScholasticYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageScholasticYears", DbType="Bit")]
+		public System.Nullable<bool> ManageScholasticYears
+		{
+			get
+			{
+				return this._ManageScholasticYears;
+			}
+			set
+			{
+				if ((this._ManageScholasticYears != value))
+				{
+					this.OnManageScholasticYearsChanging(value);
+					this.SendPropertyChanging();
+					this._ManageScholasticYears = value;
+					this.SendPropertyChanged("ManageScholasticYears");
+					this.OnManageScholasticYearsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewFeePeriod", DbType="Bit")]
+		public System.Nullable<bool> AddNewFeePeriod
+		{
+			get
+			{
+				return this._AddNewFeePeriod;
+			}
+			set
+			{
+				if ((this._AddNewFeePeriod != value))
+				{
+					this.OnAddNewFeePeriodChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewFeePeriod = value;
+					this.SendPropertyChanged("AddNewFeePeriod");
+					this.OnAddNewFeePeriodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageFeePeriods", DbType="Bit")]
+		public System.Nullable<bool> ManageFeePeriods
+		{
+			get
+			{
+				return this._ManageFeePeriods;
+			}
+			set
+			{
+				if ((this._ManageFeePeriods != value))
+				{
+					this.OnManageFeePeriodsChanging(value);
+					this.SendPropertyChanging();
+					this._ManageFeePeriods = value;
+					this.SendPropertyChanged("ManageFeePeriods");
+					this.OnManageFeePeriodsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewFinancialItem", DbType="Bit")]
+		public System.Nullable<bool> AddNewFinancialItem
+		{
+			get
+			{
+				return this._AddNewFinancialItem;
+			}
+			set
+			{
+				if ((this._AddNewFinancialItem != value))
+				{
+					this.OnAddNewFinancialItemChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewFinancialItem = value;
+					this.SendPropertyChanged("AddNewFinancialItem");
+					this.OnAddNewFinancialItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageFinancialItems", DbType="Bit")]
+		public System.Nullable<bool> ManageFinancialItems
+		{
+			get
+			{
+				return this._ManageFinancialItems;
+			}
+			set
+			{
+				if ((this._ManageFinancialItems != value))
+				{
+					this.OnManageFinancialItemsChanging(value);
+					this.SendPropertyChanging();
+					this._ManageFinancialItems = value;
+					this.SendPropertyChanged("ManageFinancialItems");
+					this.OnManageFinancialItemsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedFinancialItem", DbType="Bit")]
+		public System.Nullable<bool> UpdateExistedFinancialItem
+		{
+			get
+			{
+				return this._UpdateExistedFinancialItem;
+			}
+			set
+			{
+				if ((this._UpdateExistedFinancialItem != value))
+				{
+					this.OnUpdateExistedFinancialItemChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateExistedFinancialItem = value;
+					this.SendPropertyChanged("UpdateExistedFinancialItem");
+					this.OnUpdateExistedFinancialItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteFinancialItemRecord", DbType="Bit")]
+		public System.Nullable<bool> DeleteFinancialItemRecord
+		{
+			get
+			{
+				return this._DeleteFinancialItemRecord;
+			}
+			set
+			{
+				if ((this._DeleteFinancialItemRecord != value))
+				{
+					this.OnDeleteFinancialItemRecordChanging(value);
+					this.SendPropertyChanging();
+					this._DeleteFinancialItemRecord = value;
+					this.SendPropertyChanged("DeleteFinancialItemRecord");
+					this.OnDeleteFinancialItemRecordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewFinancialReports", DbType="Bit")]
+		public System.Nullable<bool> ViewFinancialReports
+		{
+			get
+			{
+				return this._ViewFinancialReports;
+			}
+			set
+			{
+				if ((this._ViewFinancialReports != value))
+				{
+					this.OnViewFinancialReportsChanging(value);
+					this.SendPropertyChanging();
+					this._ViewFinancialReports = value;
+					this.SendPropertyChanged("ViewFinancialReports");
+					this.OnViewFinancialReportsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewCurrency", DbType="Bit")]
+		public System.Nullable<bool> AddNewCurrency
+		{
+			get
+			{
+				return this._AddNewCurrency;
+			}
+			set
+			{
+				if ((this._AddNewCurrency != value))
+				{
+					this.OnAddNewCurrencyChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewCurrency = value;
+					this.SendPropertyChanged("AddNewCurrency");
+					this.OnAddNewCurrencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageCurrencies", DbType="Bit")]
+		public System.Nullable<bool> ManageCurrencies
+		{
+			get
+			{
+				return this._ManageCurrencies;
+			}
+			set
+			{
+				if ((this._ManageCurrencies != value))
+				{
+					this.OnManageCurrenciesChanging(value);
+					this.SendPropertyChanging();
+					this._ManageCurrencies = value;
+					this.SendPropertyChanged("ManageCurrencies");
+					this.OnManageCurrenciesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewFinancialItemCategory", DbType="Bit")]
+		public System.Nullable<bool> AddNewFinancialItemCategory
+		{
+			get
+			{
+				return this._AddNewFinancialItemCategory;
+			}
+			set
+			{
+				if ((this._AddNewFinancialItemCategory != value))
+				{
+					this.OnAddNewFinancialItemCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewFinancialItemCategory = value;
+					this.SendPropertyChanged("AddNewFinancialItemCategory");
+					this.OnAddNewFinancialItemCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageFinancialItemCategories", DbType="Bit")]
+		public System.Nullable<bool> ManageFinancialItemCategories
+		{
+			get
+			{
+				return this._ManageFinancialItemCategories;
+			}
+			set
+			{
+				if ((this._ManageFinancialItemCategories != value))
+				{
+					this.OnManageFinancialItemCategoriesChanging(value);
+					this.SendPropertyChanging();
+					this._ManageFinancialItemCategories = value;
+					this.SendPropertyChanged("ManageFinancialItemCategories");
+					this.OnManageFinancialItemCategoriesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportAllData", DbType="Bit")]
+		public System.Nullable<bool> ExportAllData
+		{
+			get
+			{
+				return this._ExportAllData;
+			}
+			set
+			{
+				if ((this._ExportAllData != value))
+				{
+					this.OnExportAllDataChanging(value);
+					this.SendPropertyChanging();
+					this._ExportAllData = value;
+					this.SendPropertyChanged("ExportAllData");
+					this.OnExportAllDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImportAllData", DbType="Bit")]
+		public System.Nullable<bool> ImportAllData
+		{
+			get
+			{
+				return this._ImportAllData;
+			}
+			set
+			{
+				if ((this._ImportAllData != value))
+				{
+					this.OnImportAllDataChanging(value);
+					this.SendPropertyChanging();
+					this._ImportAllData = value;
+					this.SendPropertyChanged("ImportAllData");
+					this.OnImportAllDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageUsers", DbType="Bit")]
+		public System.Nullable<bool> ManageUsers
+		{
+			get
+			{
+				return this._ManageUsers;
+			}
+			set
+			{
+				if ((this._ManageUsers != value))
+				{
+					this.OnManageUsersChanging(value);
+					this.SendPropertyChanging();
+					this._ManageUsers = value;
+					this.SendPropertyChanged("ManageUsers");
+					this.OnManageUsersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromoteDb", DbType="Bit")]
+		public System.Nullable<bool> PromoteDb
+		{
+			get
+			{
+				return this._PromoteDb;
+			}
+			set
+			{
+				if ((this._PromoteDb != value))
+				{
+					this.OnPromoteDbChanging(value);
+					this.SendPropertyChanging();
+					this._PromoteDb = value;
+					this.SendPropertyChanged("PromoteDb");
+					this.OnPromoteDbChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackupDb", DbType="Bit")]
+		public System.Nullable<bool> BackupDb
+		{
+			get
+			{
+				return this._BackupDb;
+			}
+			set
+			{
+				if ((this._BackupDb != value))
+				{
+					this.OnBackupDbChanging(value);
+					this.SendPropertyChanging();
+					this._BackupDb = value;
+					this.SendPropertyChanged("BackupDb");
+					this.OnBackupDbChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestoreDb", DbType="Bit")]
+		public System.Nullable<bool> RestoreDb
+		{
+			get
+			{
+				return this._RestoreDb;
+			}
+			set
+			{
+				if ((this._RestoreDb != value))
+				{
+					this.OnRestoreDbChanging(value);
+					this.SendPropertyChanging();
+					this._RestoreDb = value;
+					this.SendPropertyChanged("RestoreDb");
+					this.OnRestoreDbChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRoleTbl_UserTbl", Storage="_UserTbls", ThisKey="ID", OtherKey="UserRole")]
+		public EntitySet<UserTbl> UserTbls
+		{
+			get
+			{
+				return this._UserTbls;
+			}
+			set
+			{
+				this._UserTbls.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserTbls(UserTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserRoleTbl = this;
+		}
+		
+		private void detach_UserTbls(UserTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserRoleTbl = null;
 		}
 	}
 	
@@ -345,164 +1350,6 @@ namespace Kindergarten
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserTbl")]
-	public partial class UserTbl : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Username;
-		
-		private string _Password;
-		
-		private int _UserRole;
-		
-		private System.Nullable<System.DateTime> _PasswordUpdatedOn;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnUserRoleChanging(int value);
-    partial void OnUserRoleChanged();
-    partial void OnPasswordUpdatedOnChanging(System.Nullable<System.DateTime> value);
-    partial void OnPasswordUpdatedOnChanged();
-    #endregion
-		
-		public UserTbl()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRole", DbType="Int NOT NULL")]
-		public int UserRole
-		{
-			get
-			{
-				return this._UserRole;
-			}
-			set
-			{
-				if ((this._UserRole != value))
-				{
-					this.OnUserRoleChanging(value);
-					this.SendPropertyChanging();
-					this._UserRole = value;
-					this.SendPropertyChanged("UserRole");
-					this.OnUserRoleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordUpdatedOn", DbType="Date")]
-		public System.Nullable<System.DateTime> PasswordUpdatedOn
-		{
-			get
-			{
-				return this._PasswordUpdatedOn;
-			}
-			set
-			{
-				if ((this._PasswordUpdatedOn != value))
-				{
-					this.OnPasswordUpdatedOnChanging(value);
-					this.SendPropertyChanging();
-					this._PasswordUpdatedOn = value;
-					this.SendPropertyChanged("PasswordUpdatedOn");
-					this.OnPasswordUpdatedOnChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FeePeriodTbl")]
 	public partial class FeePeriodTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -514,6 +1361,8 @@ namespace Kindergarten
 		private string _FeePeriodName;
 		
 		private EntitySet<StudentFeeTbl> _StudentFeeTbls;
+		
+		private EntitySet<StudentFeeTbl> _StudentFeeTbls1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -528,6 +1377,7 @@ namespace Kindergarten
 		public FeePeriodTbl()
 		{
 			this._StudentFeeTbls = new EntitySet<StudentFeeTbl>(new Action<StudentFeeTbl>(this.attach_StudentFeeTbls), new Action<StudentFeeTbl>(this.detach_StudentFeeTbls));
+			this._StudentFeeTbls1 = new EntitySet<StudentFeeTbl>(new Action<StudentFeeTbl>(this.attach_StudentFeeTbls1), new Action<StudentFeeTbl>(this.detach_StudentFeeTbls1));
 			OnCreated();
 		}
 		
@@ -584,6 +1434,19 @@ namespace Kindergarten
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FeePeriodTbl_StudentFeeTbl1", Storage="_StudentFeeTbls1", ThisKey="ID", OtherKey="FeePeriod")]
+		public EntitySet<StudentFeeTbl> StudentFeeTbls1
+		{
+			get
+			{
+				return this._StudentFeeTbls1;
+			}
+			set
+			{
+				this._StudentFeeTbls1.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -614,6 +1477,588 @@ namespace Kindergarten
 		{
 			this.SendPropertyChanging();
 			entity.FeePeriodTbl = null;
+		}
+		
+		private void attach_StudentFeeTbls1(StudentFeeTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.FeePeriodTbl1 = this;
+		}
+		
+		private void detach_StudentFeeTbls1(StudentFeeTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.FeePeriodTbl1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemCategoryTbl")]
+	public partial class FinancialItemCategoryTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _FinancialItemCategoryName;
+		
+		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnFinancialItemCategoryNameChanging(string value);
+    partial void OnFinancialItemCategoryNameChanged();
+    #endregion
+		
+		public FinancialItemCategoryTbl()
+		{
+			this._FinancialItemTbls = new EntitySet<FinancialItemTbl>(new Action<FinancialItemTbl>(this.attach_FinancialItemTbls), new Action<FinancialItemTbl>(this.detach_FinancialItemTbls));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCategoryName", DbType="NVarChar(100)")]
+		public string FinancialItemCategoryName
+		{
+			get
+			{
+				return this._FinancialItemCategoryName;
+			}
+			set
+			{
+				if ((this._FinancialItemCategoryName != value))
+				{
+					this.OnFinancialItemCategoryNameChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemCategoryName = value;
+					this.SendPropertyChanged("FinancialItemCategoryName");
+					this.OnFinancialItemCategoryNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FinancialItemCategoryTbl_FinancialItemTbl", Storage="_FinancialItemTbls", ThisKey="ID", OtherKey="FinancialItemCategory")]
+		public EntitySet<FinancialItemTbl> FinancialItemTbls
+		{
+			get
+			{
+				return this._FinancialItemTbls;
+			}
+			set
+			{
+				this._FinancialItemTbls.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.FinancialItemCategoryTbl = this;
+		}
+		
+		private void detach_FinancialItemTbls(FinancialItemTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.FinancialItemCategoryTbl = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemTbl")]
+	public partial class FinancialItemTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _FinancialItemCategory;
+		
+		private string _FinancialItemDescription;
+		
+		private string _IncomingOrOutgoing;
+		
+		private double _IncomingAmount;
+		
+		private double _OutgoingAmount;
+		
+		private int _FinancialItemCurrency;
+		
+		private System.DateTime _FinancialItemDate;
+		
+		private string _RelativePerson;
+		
+		private string _AdditionalNotes;
+		
+		private System.Nullable<System.DateTime> _InsertedOn;
+		
+		private System.Nullable<System.DateTime> _LastModifiedOn;
+		
+		private System.Nullable<int> _InsertedBy;
+		
+		private System.Nullable<int> _LastModifiedBy;
+		
+		private EntityRef<CurrencyTbl> _CurrencyTbl;
+		
+		private EntityRef<FinancialItemCategoryTbl> _FinancialItemCategoryTbl;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnFinancialItemCategoryChanging(int value);
+    partial void OnFinancialItemCategoryChanged();
+    partial void OnFinancialItemDescriptionChanging(string value);
+    partial void OnFinancialItemDescriptionChanged();
+    partial void OnIncomingOrOutgoingChanging(string value);
+    partial void OnIncomingOrOutgoingChanged();
+    partial void OnIncomingAmountChanging(double value);
+    partial void OnIncomingAmountChanged();
+    partial void OnOutgoingAmountChanging(double value);
+    partial void OnOutgoingAmountChanged();
+    partial void OnFinancialItemCurrencyChanging(int value);
+    partial void OnFinancialItemCurrencyChanged();
+    partial void OnFinancialItemDateChanging(System.DateTime value);
+    partial void OnFinancialItemDateChanged();
+    partial void OnRelativePersonChanging(string value);
+    partial void OnRelativePersonChanged();
+    partial void OnAdditionalNotesChanging(string value);
+    partial void OnAdditionalNotesChanged();
+    partial void OnInsertedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnInsertedOnChanged();
+    partial void OnLastModifiedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastModifiedOnChanged();
+    partial void OnInsertedByChanging(System.Nullable<int> value);
+    partial void OnInsertedByChanged();
+    partial void OnLastModifiedByChanging(System.Nullable<int> value);
+    partial void OnLastModifiedByChanged();
+    #endregion
+		
+		public FinancialItemTbl()
+		{
+			this._CurrencyTbl = default(EntityRef<CurrencyTbl>);
+			this._FinancialItemCategoryTbl = default(EntityRef<FinancialItemCategoryTbl>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCategory", DbType="Int NOT NULL")]
+		public int FinancialItemCategory
+		{
+			get
+			{
+				return this._FinancialItemCategory;
+			}
+			set
+			{
+				if ((this._FinancialItemCategory != value))
+				{
+					if (this._FinancialItemCategoryTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFinancialItemCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemCategory = value;
+					this.SendPropertyChanged("FinancialItemCategory");
+					this.OnFinancialItemCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemDescription", DbType="NVarChar(200)")]
+		public string FinancialItemDescription
+		{
+			get
+			{
+				return this._FinancialItemDescription;
+			}
+			set
+			{
+				if ((this._FinancialItemDescription != value))
+				{
+					this.OnFinancialItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemDescription = value;
+					this.SendPropertyChanged("FinancialItemDescription");
+					this.OnFinancialItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingOrOutgoing", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string IncomingOrOutgoing
+		{
+			get
+			{
+				return this._IncomingOrOutgoing;
+			}
+			set
+			{
+				if ((this._IncomingOrOutgoing != value))
+				{
+					this.OnIncomingOrOutgoingChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingOrOutgoing = value;
+					this.SendPropertyChanged("IncomingOrOutgoing");
+					this.OnIncomingOrOutgoingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingAmount", DbType="Float NOT NULL")]
+		public double IncomingAmount
+		{
+			get
+			{
+				return this._IncomingAmount;
+			}
+			set
+			{
+				if ((this._IncomingAmount != value))
+				{
+					this.OnIncomingAmountChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingAmount = value;
+					this.SendPropertyChanged("IncomingAmount");
+					this.OnIncomingAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutgoingAmount", DbType="Float NOT NULL")]
+		public double OutgoingAmount
+		{
+			get
+			{
+				return this._OutgoingAmount;
+			}
+			set
+			{
+				if ((this._OutgoingAmount != value))
+				{
+					this.OnOutgoingAmountChanging(value);
+					this.SendPropertyChanging();
+					this._OutgoingAmount = value;
+					this.SendPropertyChanged("OutgoingAmount");
+					this.OnOutgoingAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCurrency", DbType="Int NOT NULL")]
+		public int FinancialItemCurrency
+		{
+			get
+			{
+				return this._FinancialItemCurrency;
+			}
+			set
+			{
+				if ((this._FinancialItemCurrency != value))
+				{
+					if (this._CurrencyTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFinancialItemCurrencyChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemCurrency = value;
+					this.SendPropertyChanged("FinancialItemCurrency");
+					this.OnFinancialItemCurrencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemDate", DbType="Date NOT NULL")]
+		public System.DateTime FinancialItemDate
+		{
+			get
+			{
+				return this._FinancialItemDate;
+			}
+			set
+			{
+				if ((this._FinancialItemDate != value))
+				{
+					this.OnFinancialItemDateChanging(value);
+					this.SendPropertyChanging();
+					this._FinancialItemDate = value;
+					this.SendPropertyChanged("FinancialItemDate");
+					this.OnFinancialItemDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelativePerson", DbType="NVarChar(100)")]
+		public string RelativePerson
+		{
+			get
+			{
+				return this._RelativePerson;
+			}
+			set
+			{
+				if ((this._RelativePerson != value))
+				{
+					this.OnRelativePersonChanging(value);
+					this.SendPropertyChanging();
+					this._RelativePerson = value;
+					this.SendPropertyChanged("RelativePerson");
+					this.OnRelativePersonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdditionalNotes", DbType="NVarChar(MAX)")]
+		public string AdditionalNotes
+		{
+			get
+			{
+				return this._AdditionalNotes;
+			}
+			set
+			{
+				if ((this._AdditionalNotes != value))
+				{
+					this.OnAdditionalNotesChanging(value);
+					this.SendPropertyChanging();
+					this._AdditionalNotes = value;
+					this.SendPropertyChanged("AdditionalNotes");
+					this.OnAdditionalNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> InsertedOn
+		{
+			get
+			{
+				return this._InsertedOn;
+			}
+			set
+			{
+				if ((this._InsertedOn != value))
+				{
+					this.OnInsertedOnChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedOn = value;
+					this.SendPropertyChanged("InsertedOn");
+					this.OnInsertedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> LastModifiedOn
+		{
+			get
+			{
+				return this._LastModifiedOn;
+			}
+			set
+			{
+				if ((this._LastModifiedOn != value))
+				{
+					this.OnLastModifiedOnChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedOn = value;
+					this.SendPropertyChanged("LastModifiedOn");
+					this.OnLastModifiedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedBy", DbType="Int")]
+		public System.Nullable<int> InsertedBy
+		{
+			get
+			{
+				return this._InsertedBy;
+			}
+			set
+			{
+				if ((this._InsertedBy != value))
+				{
+					this.OnInsertedByChanging(value);
+					this.SendPropertyChanging();
+					this._InsertedBy = value;
+					this.SendPropertyChanged("InsertedBy");
+					this.OnInsertedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedBy", DbType="Int")]
+		public System.Nullable<int> LastModifiedBy
+		{
+			get
+			{
+				return this._LastModifiedBy;
+			}
+			set
+			{
+				if ((this._LastModifiedBy != value))
+				{
+					this.OnLastModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedBy = value;
+					this.SendPropertyChanged("LastModifiedBy");
+					this.OnLastModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CurrencyTbl_FinancialItemTbl", Storage="_CurrencyTbl", ThisKey="FinancialItemCurrency", OtherKey="ID", IsForeignKey=true)]
+		public CurrencyTbl CurrencyTbl
+		{
+			get
+			{
+				return this._CurrencyTbl.Entity;
+			}
+			set
+			{
+				CurrencyTbl previousValue = this._CurrencyTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._CurrencyTbl.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CurrencyTbl.Entity = null;
+						previousValue.FinancialItemTbls.Remove(this);
+					}
+					this._CurrencyTbl.Entity = value;
+					if ((value != null))
+					{
+						value.FinancialItemTbls.Add(this);
+						this._FinancialItemCurrency = value.ID;
+					}
+					else
+					{
+						this._FinancialItemCurrency = default(int);
+					}
+					this.SendPropertyChanged("CurrencyTbl");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FinancialItemCategoryTbl_FinancialItemTbl", Storage="_FinancialItemCategoryTbl", ThisKey="FinancialItemCategory", OtherKey="ID", IsForeignKey=true)]
+		public FinancialItemCategoryTbl FinancialItemCategoryTbl
+		{
+			get
+			{
+				return this._FinancialItemCategoryTbl.Entity;
+			}
+			set
+			{
+				FinancialItemCategoryTbl previousValue = this._FinancialItemCategoryTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._FinancialItemCategoryTbl.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FinancialItemCategoryTbl.Entity = null;
+						previousValue.FinancialItemTbls.Remove(this);
+					}
+					this._FinancialItemCategoryTbl.Entity = value;
+					if ((value != null))
+					{
+						value.FinancialItemTbls.Add(this);
+						this._FinancialItemCategory = value.ID;
+					}
+					else
+					{
+						this._FinancialItemCategory = default(int);
+					}
+					this.SendPropertyChanged("FinancialItemCategoryTbl");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -877,6 +2322,8 @@ namespace Kindergarten
 		
 		private EntityRef<FeePeriodTbl> _FeePeriodTbl;
 		
+		private EntityRef<FeePeriodTbl> _FeePeriodTbl1;
+		
 		private EntityRef<ScholasticYearTbl> _ScholasticYearTbl;
 		
 		private EntityRef<StudentTbl> _StudentTbl;
@@ -914,6 +2361,7 @@ namespace Kindergarten
 		public StudentFeeTbl()
 		{
 			this._FeePeriodTbl = default(EntityRef<FeePeriodTbl>);
+			this._FeePeriodTbl1 = default(EntityRef<FeePeriodTbl>);
 			this._ScholasticYearTbl = default(EntityRef<ScholasticYearTbl>);
 			this._StudentTbl = default(EntityRef<StudentTbl>);
 			OnCreated();
@@ -974,7 +2422,7 @@ namespace Kindergarten
 			{
 				if ((this._FeePeriod != value))
 				{
-					if (this._FeePeriodTbl.HasLoadedOrAssignedValue)
+					if ((this._FeePeriodTbl.HasLoadedOrAssignedValue || this._FeePeriodTbl1.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1201,6 +2649,40 @@ namespace Kindergarten
 						this._FeePeriod = default(int);
 					}
 					this.SendPropertyChanged("FeePeriodTbl");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FeePeriodTbl_StudentFeeTbl1", Storage="_FeePeriodTbl1", ThisKey="FeePeriod", OtherKey="ID", IsForeignKey=true)]
+		public FeePeriodTbl FeePeriodTbl1
+		{
+			get
+			{
+				return this._FeePeriodTbl1.Entity;
+			}
+			set
+			{
+				FeePeriodTbl previousValue = this._FeePeriodTbl1.Entity;
+				if (((previousValue != value) 
+							|| (this._FeePeriodTbl1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FeePeriodTbl1.Entity = null;
+						previousValue.StudentFeeTbls1.Remove(this);
+					}
+					this._FeePeriodTbl1.Entity = value;
+					if ((value != null))
+					{
+						value.StudentFeeTbls1.Add(this);
+						this._FeePeriod = value.ID;
+					}
+					else
+					{
+						this._FeePeriod = default(int);
+					}
+					this.SendPropertyChanged("FeePeriodTbl1");
 				}
 			}
 		}
@@ -1850,61 +3332,23 @@ namespace Kindergarten
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoleTbl")]
-	public partial class UserRoleTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserTbl")]
+	public partial class UserTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _ID;
 		
-		private string _RoleName;
+		private string _Username;
 		
-		private System.Nullable<bool> _AddNewStudent;
+		private string _Password;
 		
-		private System.Nullable<bool> _ManageStudentTbl;
+		private int _UserRole;
 		
-		private System.Nullable<bool> _UpdateExistedStudent;
+		private System.Nullable<System.DateTime> _PasswordUpdatedOn;
 		
-		private System.Nullable<bool> _DeleteStudentRecord;
-		
-		private System.Nullable<bool> _ViewStudentsReports;
-		
-		private System.Nullable<bool> _ViewStudentsStats;
-		
-		private System.Nullable<bool> _AddNewStudentFee;
-		
-		private System.Nullable<bool> _ManageStudentFeeTbl;
-		
-		private System.Nullable<bool> _UpdateExistedStudentFee;
-		
-		private System.Nullable<bool> _DeleteStudentFeeRecord;
-		
-		private System.Nullable<bool> _AddNewEducationalLevel;
-		
-		private System.Nullable<bool> _ManageEducationalLevels;
-		
-		private System.Nullable<bool> _AddNewScholasticYear;
-		
-		private System.Nullable<bool> _ManageScholasticYears;
-		
-		private System.Nullable<bool> _AddNewFeePeriod;
-		
-		private System.Nullable<bool> _ManageFeePeriods;
-		
-		private System.Nullable<bool> _ExportAllData;
-		
-		private System.Nullable<bool> _ImportAllData;
-		
-		private System.Nullable<bool> _ManageUsers;
-		
-		private System.Nullable<bool> _PromoteDb;
-		
-		private System.Nullable<bool> _BackupDb;
-		
-		private System.Nullable<bool> _RestoreDb;
-		
-		private System.Nullable<bool> _ViewFinancialReports;
+		private EntityRef<UserRoleTbl> _UserRoleTbl;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1912,58 +3356,19 @@ namespace Kindergarten
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnRoleNameChanging(string value);
-    partial void OnRoleNameChanged();
-    partial void OnAddNewStudentChanging(System.Nullable<bool> value);
-    partial void OnAddNewStudentChanged();
-    partial void OnManageStudentTblChanging(System.Nullable<bool> value);
-    partial void OnManageStudentTblChanged();
-    partial void OnUpdateExistedStudentChanging(System.Nullable<bool> value);
-    partial void OnUpdateExistedStudentChanged();
-    partial void OnDeleteStudentRecordChanging(System.Nullable<bool> value);
-    partial void OnDeleteStudentRecordChanged();
-    partial void OnViewStudentsReportsChanging(System.Nullable<bool> value);
-    partial void OnViewStudentsReportsChanged();
-    partial void OnViewStudentsStatsChanging(System.Nullable<bool> value);
-    partial void OnViewStudentsStatsChanged();
-    partial void OnAddNewStudentFeeChanging(System.Nullable<bool> value);
-    partial void OnAddNewStudentFeeChanged();
-    partial void OnManageStudentFeeTblChanging(System.Nullable<bool> value);
-    partial void OnManageStudentFeeTblChanged();
-    partial void OnUpdateExistedStudentFeeChanging(System.Nullable<bool> value);
-    partial void OnUpdateExistedStudentFeeChanged();
-    partial void OnDeleteStudentFeeRecordChanging(System.Nullable<bool> value);
-    partial void OnDeleteStudentFeeRecordChanged();
-    partial void OnAddNewEducationalLevelChanging(System.Nullable<bool> value);
-    partial void OnAddNewEducationalLevelChanged();
-    partial void OnManageEducationalLevelsChanging(System.Nullable<bool> value);
-    partial void OnManageEducationalLevelsChanged();
-    partial void OnAddNewScholasticYearChanging(System.Nullable<bool> value);
-    partial void OnAddNewScholasticYearChanged();
-    partial void OnManageScholasticYearsChanging(System.Nullable<bool> value);
-    partial void OnManageScholasticYearsChanged();
-    partial void OnAddNewFeePeriodChanging(System.Nullable<bool> value);
-    partial void OnAddNewFeePeriodChanged();
-    partial void OnManageFeePeriodsChanging(System.Nullable<bool> value);
-    partial void OnManageFeePeriodsChanged();
-    partial void OnExportAllDataChanging(System.Nullable<bool> value);
-    partial void OnExportAllDataChanged();
-    partial void OnImportAllDataChanging(System.Nullable<bool> value);
-    partial void OnImportAllDataChanged();
-    partial void OnManageUsersChanging(System.Nullable<bool> value);
-    partial void OnManageUsersChanged();
-    partial void OnPromoteDbChanging(System.Nullable<bool> value);
-    partial void OnPromoteDbChanged();
-    partial void OnBackupDbChanging(System.Nullable<bool> value);
-    partial void OnBackupDbChanged();
-    partial void OnRestoreDbChanging(System.Nullable<bool> value);
-    partial void OnRestoreDbChanged();
-    partial void OnViewFinancialReportsChanging(System.Nullable<bool> value);
-    partial void OnViewFinancialReportsChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnUserRoleChanging(int value);
+    partial void OnUserRoleChanged();
+    partial void OnPasswordUpdatedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnPasswordUpdatedOnChanged();
     #endregion
 		
-		public UserRoleTbl()
+		public UserTbl()
 		{
+			this._UserRoleTbl = default(EntityRef<UserRoleTbl>);
 			OnCreated();
 		}
 		
@@ -1987,482 +3392,120 @@ namespace Kindergarten
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string RoleName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
 		{
 			get
 			{
-				return this._RoleName;
+				return this._Username;
 			}
 			set
 			{
-				if ((this._RoleName != value))
+				if ((this._Username != value))
 				{
-					this.OnRoleNameChanging(value);
+					this.OnUsernameChanging(value);
 					this.SendPropertyChanging();
-					this._RoleName = value;
-					this.SendPropertyChanged("RoleName");
-					this.OnRoleNameChanged();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewStudent", DbType="Bit")]
-		public System.Nullable<bool> AddNewStudent
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string Password
 		{
 			get
 			{
-				return this._AddNewStudent;
+				return this._Password;
 			}
 			set
 			{
-				if ((this._AddNewStudent != value))
+				if ((this._Password != value))
 				{
-					this.OnAddNewStudentChanging(value);
+					this.OnPasswordChanging(value);
 					this.SendPropertyChanging();
-					this._AddNewStudent = value;
-					this.SendPropertyChanged("AddNewStudent");
-					this.OnAddNewStudentChanged();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageStudentTbl", DbType="Bit")]
-		public System.Nullable<bool> ManageStudentTbl
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRole", DbType="Int NOT NULL")]
+		public int UserRole
 		{
 			get
 			{
-				return this._ManageStudentTbl;
+				return this._UserRole;
 			}
 			set
 			{
-				if ((this._ManageStudentTbl != value))
+				if ((this._UserRole != value))
 				{
-					this.OnManageStudentTblChanging(value);
+					if (this._UserRoleTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserRoleChanging(value);
 					this.SendPropertyChanging();
-					this._ManageStudentTbl = value;
-					this.SendPropertyChanged("ManageStudentTbl");
-					this.OnManageStudentTblChanged();
+					this._UserRole = value;
+					this.SendPropertyChanged("UserRole");
+					this.OnUserRoleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedStudent", DbType="Bit")]
-		public System.Nullable<bool> UpdateExistedStudent
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordUpdatedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> PasswordUpdatedOn
 		{
 			get
 			{
-				return this._UpdateExistedStudent;
+				return this._PasswordUpdatedOn;
 			}
 			set
 			{
-				if ((this._UpdateExistedStudent != value))
+				if ((this._PasswordUpdatedOn != value))
 				{
-					this.OnUpdateExistedStudentChanging(value);
+					this.OnPasswordUpdatedOnChanging(value);
 					this.SendPropertyChanging();
-					this._UpdateExistedStudent = value;
-					this.SendPropertyChanged("UpdateExistedStudent");
-					this.OnUpdateExistedStudentChanged();
+					this._PasswordUpdatedOn = value;
+					this.SendPropertyChanged("PasswordUpdatedOn");
+					this.OnPasswordUpdatedOnChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteStudentRecord", DbType="Bit")]
-		public System.Nullable<bool> DeleteStudentRecord
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRoleTbl_UserTbl", Storage="_UserRoleTbl", ThisKey="UserRole", OtherKey="ID", IsForeignKey=true)]
+		public UserRoleTbl UserRoleTbl
 		{
 			get
 			{
-				return this._DeleteStudentRecord;
+				return this._UserRoleTbl.Entity;
 			}
 			set
 			{
-				if ((this._DeleteStudentRecord != value))
+				UserRoleTbl previousValue = this._UserRoleTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._UserRoleTbl.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnDeleteStudentRecordChanging(value);
 					this.SendPropertyChanging();
-					this._DeleteStudentRecord = value;
-					this.SendPropertyChanged("DeleteStudentRecord");
-					this.OnDeleteStudentRecordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewStudentsReports", DbType="Bit")]
-		public System.Nullable<bool> ViewStudentsReports
-		{
-			get
-			{
-				return this._ViewStudentsReports;
-			}
-			set
-			{
-				if ((this._ViewStudentsReports != value))
-				{
-					this.OnViewStudentsReportsChanging(value);
-					this.SendPropertyChanging();
-					this._ViewStudentsReports = value;
-					this.SendPropertyChanged("ViewStudentsReports");
-					this.OnViewStudentsReportsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewStudentsStats", DbType="Bit")]
-		public System.Nullable<bool> ViewStudentsStats
-		{
-			get
-			{
-				return this._ViewStudentsStats;
-			}
-			set
-			{
-				if ((this._ViewStudentsStats != value))
-				{
-					this.OnViewStudentsStatsChanging(value);
-					this.SendPropertyChanging();
-					this._ViewStudentsStats = value;
-					this.SendPropertyChanged("ViewStudentsStats");
-					this.OnViewStudentsStatsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewStudentFee", DbType="Bit")]
-		public System.Nullable<bool> AddNewStudentFee
-		{
-			get
-			{
-				return this._AddNewStudentFee;
-			}
-			set
-			{
-				if ((this._AddNewStudentFee != value))
-				{
-					this.OnAddNewStudentFeeChanging(value);
-					this.SendPropertyChanging();
-					this._AddNewStudentFee = value;
-					this.SendPropertyChanged("AddNewStudentFee");
-					this.OnAddNewStudentFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageStudentFeeTbl", DbType="Bit")]
-		public System.Nullable<bool> ManageStudentFeeTbl
-		{
-			get
-			{
-				return this._ManageStudentFeeTbl;
-			}
-			set
-			{
-				if ((this._ManageStudentFeeTbl != value))
-				{
-					this.OnManageStudentFeeTblChanging(value);
-					this.SendPropertyChanging();
-					this._ManageStudentFeeTbl = value;
-					this.SendPropertyChanged("ManageStudentFeeTbl");
-					this.OnManageStudentFeeTblChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateExistedStudentFee", DbType="Bit")]
-		public System.Nullable<bool> UpdateExistedStudentFee
-		{
-			get
-			{
-				return this._UpdateExistedStudentFee;
-			}
-			set
-			{
-				if ((this._UpdateExistedStudentFee != value))
-				{
-					this.OnUpdateExistedStudentFeeChanging(value);
-					this.SendPropertyChanging();
-					this._UpdateExistedStudentFee = value;
-					this.SendPropertyChanged("UpdateExistedStudentFee");
-					this.OnUpdateExistedStudentFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteStudentFeeRecord", DbType="Bit")]
-		public System.Nullable<bool> DeleteStudentFeeRecord
-		{
-			get
-			{
-				return this._DeleteStudentFeeRecord;
-			}
-			set
-			{
-				if ((this._DeleteStudentFeeRecord != value))
-				{
-					this.OnDeleteStudentFeeRecordChanging(value);
-					this.SendPropertyChanging();
-					this._DeleteStudentFeeRecord = value;
-					this.SendPropertyChanged("DeleteStudentFeeRecord");
-					this.OnDeleteStudentFeeRecordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewEducationalLevel", DbType="Bit")]
-		public System.Nullable<bool> AddNewEducationalLevel
-		{
-			get
-			{
-				return this._AddNewEducationalLevel;
-			}
-			set
-			{
-				if ((this._AddNewEducationalLevel != value))
-				{
-					this.OnAddNewEducationalLevelChanging(value);
-					this.SendPropertyChanging();
-					this._AddNewEducationalLevel = value;
-					this.SendPropertyChanged("AddNewEducationalLevel");
-					this.OnAddNewEducationalLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageEducationalLevels", DbType="Bit")]
-		public System.Nullable<bool> ManageEducationalLevels
-		{
-			get
-			{
-				return this._ManageEducationalLevels;
-			}
-			set
-			{
-				if ((this._ManageEducationalLevels != value))
-				{
-					this.OnManageEducationalLevelsChanging(value);
-					this.SendPropertyChanging();
-					this._ManageEducationalLevels = value;
-					this.SendPropertyChanged("ManageEducationalLevels");
-					this.OnManageEducationalLevelsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewScholasticYear", DbType="Bit")]
-		public System.Nullable<bool> AddNewScholasticYear
-		{
-			get
-			{
-				return this._AddNewScholasticYear;
-			}
-			set
-			{
-				if ((this._AddNewScholasticYear != value))
-				{
-					this.OnAddNewScholasticYearChanging(value);
-					this.SendPropertyChanging();
-					this._AddNewScholasticYear = value;
-					this.SendPropertyChanged("AddNewScholasticYear");
-					this.OnAddNewScholasticYearChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageScholasticYears", DbType="Bit")]
-		public System.Nullable<bool> ManageScholasticYears
-		{
-			get
-			{
-				return this._ManageScholasticYears;
-			}
-			set
-			{
-				if ((this._ManageScholasticYears != value))
-				{
-					this.OnManageScholasticYearsChanging(value);
-					this.SendPropertyChanging();
-					this._ManageScholasticYears = value;
-					this.SendPropertyChanged("ManageScholasticYears");
-					this.OnManageScholasticYearsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewFeePeriod", DbType="Bit")]
-		public System.Nullable<bool> AddNewFeePeriod
-		{
-			get
-			{
-				return this._AddNewFeePeriod;
-			}
-			set
-			{
-				if ((this._AddNewFeePeriod != value))
-				{
-					this.OnAddNewFeePeriodChanging(value);
-					this.SendPropertyChanging();
-					this._AddNewFeePeriod = value;
-					this.SendPropertyChanged("AddNewFeePeriod");
-					this.OnAddNewFeePeriodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageFeePeriods", DbType="Bit")]
-		public System.Nullable<bool> ManageFeePeriods
-		{
-			get
-			{
-				return this._ManageFeePeriods;
-			}
-			set
-			{
-				if ((this._ManageFeePeriods != value))
-				{
-					this.OnManageFeePeriodsChanging(value);
-					this.SendPropertyChanging();
-					this._ManageFeePeriods = value;
-					this.SendPropertyChanged("ManageFeePeriods");
-					this.OnManageFeePeriodsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportAllData", DbType="Bit")]
-		public System.Nullable<bool> ExportAllData
-		{
-			get
-			{
-				return this._ExportAllData;
-			}
-			set
-			{
-				if ((this._ExportAllData != value))
-				{
-					this.OnExportAllDataChanging(value);
-					this.SendPropertyChanging();
-					this._ExportAllData = value;
-					this.SendPropertyChanged("ExportAllData");
-					this.OnExportAllDataChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImportAllData", DbType="Bit")]
-		public System.Nullable<bool> ImportAllData
-		{
-			get
-			{
-				return this._ImportAllData;
-			}
-			set
-			{
-				if ((this._ImportAllData != value))
-				{
-					this.OnImportAllDataChanging(value);
-					this.SendPropertyChanging();
-					this._ImportAllData = value;
-					this.SendPropertyChanged("ImportAllData");
-					this.OnImportAllDataChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageUsers", DbType="Bit")]
-		public System.Nullable<bool> ManageUsers
-		{
-			get
-			{
-				return this._ManageUsers;
-			}
-			set
-			{
-				if ((this._ManageUsers != value))
-				{
-					this.OnManageUsersChanging(value);
-					this.SendPropertyChanging();
-					this._ManageUsers = value;
-					this.SendPropertyChanged("ManageUsers");
-					this.OnManageUsersChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromoteDb", DbType="Bit")]
-		public System.Nullable<bool> PromoteDb
-		{
-			get
-			{
-				return this._PromoteDb;
-			}
-			set
-			{
-				if ((this._PromoteDb != value))
-				{
-					this.OnPromoteDbChanging(value);
-					this.SendPropertyChanging();
-					this._PromoteDb = value;
-					this.SendPropertyChanged("PromoteDb");
-					this.OnPromoteDbChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackupDb", DbType="Bit")]
-		public System.Nullable<bool> BackupDb
-		{
-			get
-			{
-				return this._BackupDb;
-			}
-			set
-			{
-				if ((this._BackupDb != value))
-				{
-					this.OnBackupDbChanging(value);
-					this.SendPropertyChanging();
-					this._BackupDb = value;
-					this.SendPropertyChanged("BackupDb");
-					this.OnBackupDbChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestoreDb", DbType="Bit")]
-		public System.Nullable<bool> RestoreDb
-		{
-			get
-			{
-				return this._RestoreDb;
-			}
-			set
-			{
-				if ((this._RestoreDb != value))
-				{
-					this.OnRestoreDbChanging(value);
-					this.SendPropertyChanging();
-					this._RestoreDb = value;
-					this.SendPropertyChanged("RestoreDb");
-					this.OnRestoreDbChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewFinancialReports", DbType="Bit")]
-		public System.Nullable<bool> ViewFinancialReports
-		{
-			get
-			{
-				return this._ViewFinancialReports;
-			}
-			set
-			{
-				if ((this._ViewFinancialReports != value))
-				{
-					this.OnViewFinancialReportsChanging(value);
-					this.SendPropertyChanging();
-					this._ViewFinancialReports = value;
-					this.SendPropertyChanged("ViewFinancialReports");
-					this.OnViewFinancialReportsChanged();
+					if ((previousValue != null))
+					{
+						this._UserRoleTbl.Entity = null;
+						previousValue.UserTbls.Remove(this);
+					}
+					this._UserRoleTbl.Entity = value;
+					if ((value != null))
+					{
+						value.UserTbls.Add(this);
+						this._UserRole = value.ID;
+					}
+					else
+					{
+						this._UserRole = default(int);
+					}
+					this.SendPropertyChanged("UserRoleTbl");
 				}
 			}
 		}

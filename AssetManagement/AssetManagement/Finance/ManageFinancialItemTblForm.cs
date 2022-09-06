@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AssetManagement.AuxTables
+namespace AssetManagement.Finance
 {
     public partial class ManageFinancialItemTblForm : Form
     {

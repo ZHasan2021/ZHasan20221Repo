@@ -38,26 +38,6 @@ namespace Kindergarten.Users
             this.userRoleTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kindergartenDbDataSet = new Kindergarten.KindergartenDbDataSet();
             this.userRoleGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAddNewStudent = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageStudentTbl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUpdateExistedStudent = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDeleteStudentRecord = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAddNewStudentFee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageStudentFeeTbl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUpdateExistedStudentFee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDeleteStudentFeeRecord = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAddNewScholasticYear = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageScholasticYears = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAddNewFeePeriod = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageFeePeriods = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colExportAllData = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colImportAllData = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageUsers = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPromoteDb = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBackupDb = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRestoreDb = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.userRoleTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -74,6 +54,39 @@ namespace Kindergarten.Users
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.userRoleTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.UserRoleTblTableAdapter();
             this.tableAdapterManager = new Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRoleName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewStudent = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageStudentTbl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateExistedStudent = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeleteStudentRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewStudentsReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewStudentsStats = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewStudentFee = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageStudentFeeTbl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateExistedStudentFee = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeleteStudentFeeRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewEducationalLevel = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageEducationalLevels = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewScholasticYear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageScholasticYears = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewFeePeriod = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageFeePeriods = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewFinancialItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageFinancialItems = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateExistedFinancialItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDeleteFinancialItemRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colViewFinancialReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageCurrencies = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewFinancialItemCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageFinancialItemCategories = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colExportAllData = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colImportAllData = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageUsers = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPromoteDb = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBackupDb = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRestoreDb = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSet)).BeginInit();
@@ -117,14 +130,27 @@ namespace Kindergarten.Users
             this.colManageStudentTbl,
             this.colUpdateExistedStudent,
             this.colDeleteStudentRecord,
+            this.colViewStudentsReports,
+            this.colViewStudentsStats,
             this.colAddNewStudentFee,
             this.colManageStudentFeeTbl,
             this.colUpdateExistedStudentFee,
             this.colDeleteStudentFeeRecord,
+            this.colAddNewEducationalLevel,
+            this.colManageEducationalLevels,
             this.colAddNewScholasticYear,
             this.colManageScholasticYears,
             this.colAddNewFeePeriod,
             this.colManageFeePeriods,
+            this.colAddNewFinancialItem,
+            this.colManageFinancialItems,
+            this.colUpdateExistedFinancialItem,
+            this.colDeleteFinancialItemRecord,
+            this.colViewFinancialReports,
+            this.colAddNewCurrency,
+            this.colManageCurrencies,
+            this.colAddNewFinancialItemCategory,
+            this.colManageFinancialItemCategories,
             this.colExportAllData,
             this.colImportAllData,
             this.colManageUsers,
@@ -133,186 +159,6 @@ namespace Kindergarten.Users
             this.colRestoreDb});
             this.userRoleGridView.GridControl = this.userRoleGridControl;
             this.userRoleGridView.Name = "userRoleGridView";
-            // 
-            // colID
-            // 
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 25;
-            this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 0;
-            this.colID.Width = 94;
-            // 
-            // colRoleName
-            // 
-            this.colRoleName.FieldName = "RoleName";
-            this.colRoleName.MinWidth = 25;
-            this.colRoleName.Name = "colRoleName";
-            this.colRoleName.Visible = true;
-            this.colRoleName.VisibleIndex = 1;
-            this.colRoleName.Width = 94;
-            // 
-            // colAddNewStudent
-            // 
-            this.colAddNewStudent.FieldName = "AddNewStudent";
-            this.colAddNewStudent.MinWidth = 25;
-            this.colAddNewStudent.Name = "colAddNewStudent";
-            this.colAddNewStudent.Visible = true;
-            this.colAddNewStudent.VisibleIndex = 2;
-            this.colAddNewStudent.Width = 94;
-            // 
-            // colManageStudentTbl
-            // 
-            this.colManageStudentTbl.FieldName = "ManageStudentTbl";
-            this.colManageStudentTbl.MinWidth = 25;
-            this.colManageStudentTbl.Name = "colManageStudentTbl";
-            this.colManageStudentTbl.Visible = true;
-            this.colManageStudentTbl.VisibleIndex = 3;
-            this.colManageStudentTbl.Width = 94;
-            // 
-            // colUpdateExistedStudent
-            // 
-            this.colUpdateExistedStudent.FieldName = "UpdateExistedStudent";
-            this.colUpdateExistedStudent.MinWidth = 25;
-            this.colUpdateExistedStudent.Name = "colUpdateExistedStudent";
-            this.colUpdateExistedStudent.Visible = true;
-            this.colUpdateExistedStudent.VisibleIndex = 4;
-            this.colUpdateExistedStudent.Width = 94;
-            // 
-            // colDeleteStudentRecord
-            // 
-            this.colDeleteStudentRecord.FieldName = "DeleteStudentRecord";
-            this.colDeleteStudentRecord.MinWidth = 25;
-            this.colDeleteStudentRecord.Name = "colDeleteStudentRecord";
-            this.colDeleteStudentRecord.Visible = true;
-            this.colDeleteStudentRecord.VisibleIndex = 5;
-            this.colDeleteStudentRecord.Width = 94;
-            // 
-            // colAddNewStudentFee
-            // 
-            this.colAddNewStudentFee.FieldName = "AddNewStudentFee";
-            this.colAddNewStudentFee.MinWidth = 25;
-            this.colAddNewStudentFee.Name = "colAddNewStudentFee";
-            this.colAddNewStudentFee.Visible = true;
-            this.colAddNewStudentFee.VisibleIndex = 6;
-            this.colAddNewStudentFee.Width = 94;
-            // 
-            // colManageStudentFeeTbl
-            // 
-            this.colManageStudentFeeTbl.FieldName = "ManageStudentFeeTbl";
-            this.colManageStudentFeeTbl.MinWidth = 25;
-            this.colManageStudentFeeTbl.Name = "colManageStudentFeeTbl";
-            this.colManageStudentFeeTbl.Visible = true;
-            this.colManageStudentFeeTbl.VisibleIndex = 7;
-            this.colManageStudentFeeTbl.Width = 94;
-            // 
-            // colUpdateExistedStudentFee
-            // 
-            this.colUpdateExistedStudentFee.FieldName = "UpdateExistedStudentFee";
-            this.colUpdateExistedStudentFee.MinWidth = 25;
-            this.colUpdateExistedStudentFee.Name = "colUpdateExistedStudentFee";
-            this.colUpdateExistedStudentFee.Visible = true;
-            this.colUpdateExistedStudentFee.VisibleIndex = 8;
-            this.colUpdateExistedStudentFee.Width = 94;
-            // 
-            // colDeleteStudentFeeRecord
-            // 
-            this.colDeleteStudentFeeRecord.FieldName = "DeleteStudentFeeRecord";
-            this.colDeleteStudentFeeRecord.MinWidth = 25;
-            this.colDeleteStudentFeeRecord.Name = "colDeleteStudentFeeRecord";
-            this.colDeleteStudentFeeRecord.Visible = true;
-            this.colDeleteStudentFeeRecord.VisibleIndex = 9;
-            this.colDeleteStudentFeeRecord.Width = 94;
-            // 
-            // colAddNewScholasticYear
-            // 
-            this.colAddNewScholasticYear.FieldName = "AddNewScholasticYear";
-            this.colAddNewScholasticYear.MinWidth = 25;
-            this.colAddNewScholasticYear.Name = "colAddNewScholasticYear";
-            this.colAddNewScholasticYear.Visible = true;
-            this.colAddNewScholasticYear.VisibleIndex = 10;
-            this.colAddNewScholasticYear.Width = 94;
-            // 
-            // colManageScholasticYears
-            // 
-            this.colManageScholasticYears.FieldName = "ManageScholasticYears";
-            this.colManageScholasticYears.MinWidth = 25;
-            this.colManageScholasticYears.Name = "colManageScholasticYears";
-            this.colManageScholasticYears.Visible = true;
-            this.colManageScholasticYears.VisibleIndex = 11;
-            this.colManageScholasticYears.Width = 94;
-            // 
-            // colAddNewFeePeriod
-            // 
-            this.colAddNewFeePeriod.FieldName = "AddNewFeePeriod";
-            this.colAddNewFeePeriod.MinWidth = 25;
-            this.colAddNewFeePeriod.Name = "colAddNewFeePeriod";
-            this.colAddNewFeePeriod.Visible = true;
-            this.colAddNewFeePeriod.VisibleIndex = 12;
-            this.colAddNewFeePeriod.Width = 94;
-            // 
-            // colManageFeePeriods
-            // 
-            this.colManageFeePeriods.FieldName = "ManageFeePeriods";
-            this.colManageFeePeriods.MinWidth = 25;
-            this.colManageFeePeriods.Name = "colManageFeePeriods";
-            this.colManageFeePeriods.Visible = true;
-            this.colManageFeePeriods.VisibleIndex = 13;
-            this.colManageFeePeriods.Width = 94;
-            // 
-            // colExportAllData
-            // 
-            this.colExportAllData.FieldName = "ExportAllData";
-            this.colExportAllData.MinWidth = 25;
-            this.colExportAllData.Name = "colExportAllData";
-            this.colExportAllData.Visible = true;
-            this.colExportAllData.VisibleIndex = 14;
-            this.colExportAllData.Width = 94;
-            // 
-            // colImportAllData
-            // 
-            this.colImportAllData.FieldName = "ImportAllData";
-            this.colImportAllData.MinWidth = 25;
-            this.colImportAllData.Name = "colImportAllData";
-            this.colImportAllData.Visible = true;
-            this.colImportAllData.VisibleIndex = 15;
-            this.colImportAllData.Width = 94;
-            // 
-            // colManageUsers
-            // 
-            this.colManageUsers.FieldName = "ManageUsers";
-            this.colManageUsers.MinWidth = 25;
-            this.colManageUsers.Name = "colManageUsers";
-            this.colManageUsers.Visible = true;
-            this.colManageUsers.VisibleIndex = 16;
-            this.colManageUsers.Width = 94;
-            // 
-            // colPromoteDb
-            // 
-            this.colPromoteDb.FieldName = "PromoteDb";
-            this.colPromoteDb.MinWidth = 25;
-            this.colPromoteDb.Name = "colPromoteDb";
-            this.colPromoteDb.Visible = true;
-            this.colPromoteDb.VisibleIndex = 17;
-            this.colPromoteDb.Width = 94;
-            // 
-            // colBackupDb
-            // 
-            this.colBackupDb.FieldName = "BackupDb";
-            this.colBackupDb.MinWidth = 25;
-            this.colBackupDb.Name = "colBackupDb";
-            this.colBackupDb.Visible = true;
-            this.colBackupDb.VisibleIndex = 18;
-            this.colBackupDb.Width = 94;
-            // 
-            // colRestoreDb
-            // 
-            this.colRestoreDb.FieldName = "RestoreDb";
-            this.colRestoreDb.MinWidth = 25;
-            this.colRestoreDb.Name = "colRestoreDb";
-            this.colRestoreDb.Visible = true;
-            this.colRestoreDb.VisibleIndex = 19;
-            this.colRestoreDb.Width = 94;
             // 
             // mainAlertControl
             // 
@@ -461,8 +307,11 @@ namespace Kindergarten.Users
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.EducationalLevelTblTableAdapter = null;
             this.tableAdapterManager.FeePeriodTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.ScholasticYearTblTableAdapter = null;
             this.tableAdapterManager.StudentFeeTblTableAdapter = null;
@@ -470,6 +319,303 @@ namespace Kindergarten.Users
             this.tableAdapterManager.UpdateOrder = Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = this.userRoleTblTableAdapter;
             this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // colID
+            // 
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 25;
+            this.colID.Name = "colID";
+            this.colID.Visible = true;
+            this.colID.VisibleIndex = 0;
+            this.colID.Width = 94;
+            // 
+            // colRoleName
+            // 
+            this.colRoleName.FieldName = "RoleName";
+            this.colRoleName.MinWidth = 25;
+            this.colRoleName.Name = "colRoleName";
+            this.colRoleName.Visible = true;
+            this.colRoleName.VisibleIndex = 1;
+            this.colRoleName.Width = 94;
+            // 
+            // colAddNewStudent
+            // 
+            this.colAddNewStudent.FieldName = "AddNewStudent";
+            this.colAddNewStudent.MinWidth = 25;
+            this.colAddNewStudent.Name = "colAddNewStudent";
+            this.colAddNewStudent.Visible = true;
+            this.colAddNewStudent.VisibleIndex = 2;
+            this.colAddNewStudent.Width = 94;
+            // 
+            // colManageStudentTbl
+            // 
+            this.colManageStudentTbl.FieldName = "ManageStudentTbl";
+            this.colManageStudentTbl.MinWidth = 25;
+            this.colManageStudentTbl.Name = "colManageStudentTbl";
+            this.colManageStudentTbl.Visible = true;
+            this.colManageStudentTbl.VisibleIndex = 3;
+            this.colManageStudentTbl.Width = 94;
+            // 
+            // colUpdateExistedStudent
+            // 
+            this.colUpdateExistedStudent.FieldName = "UpdateExistedStudent";
+            this.colUpdateExistedStudent.MinWidth = 25;
+            this.colUpdateExistedStudent.Name = "colUpdateExistedStudent";
+            this.colUpdateExistedStudent.Visible = true;
+            this.colUpdateExistedStudent.VisibleIndex = 4;
+            this.colUpdateExistedStudent.Width = 94;
+            // 
+            // colDeleteStudentRecord
+            // 
+            this.colDeleteStudentRecord.FieldName = "DeleteStudentRecord";
+            this.colDeleteStudentRecord.MinWidth = 25;
+            this.colDeleteStudentRecord.Name = "colDeleteStudentRecord";
+            this.colDeleteStudentRecord.Visible = true;
+            this.colDeleteStudentRecord.VisibleIndex = 5;
+            this.colDeleteStudentRecord.Width = 94;
+            // 
+            // colViewStudentsReports
+            // 
+            this.colViewStudentsReports.FieldName = "ViewStudentsReports";
+            this.colViewStudentsReports.MinWidth = 25;
+            this.colViewStudentsReports.Name = "colViewStudentsReports";
+            this.colViewStudentsReports.Visible = true;
+            this.colViewStudentsReports.VisibleIndex = 6;
+            this.colViewStudentsReports.Width = 94;
+            // 
+            // colViewStudentsStats
+            // 
+            this.colViewStudentsStats.FieldName = "ViewStudentsStats";
+            this.colViewStudentsStats.MinWidth = 25;
+            this.colViewStudentsStats.Name = "colViewStudentsStats";
+            this.colViewStudentsStats.Visible = true;
+            this.colViewStudentsStats.VisibleIndex = 7;
+            this.colViewStudentsStats.Width = 94;
+            // 
+            // colAddNewStudentFee
+            // 
+            this.colAddNewStudentFee.FieldName = "AddNewStudentFee";
+            this.colAddNewStudentFee.MinWidth = 25;
+            this.colAddNewStudentFee.Name = "colAddNewStudentFee";
+            this.colAddNewStudentFee.Visible = true;
+            this.colAddNewStudentFee.VisibleIndex = 8;
+            this.colAddNewStudentFee.Width = 94;
+            // 
+            // colManageStudentFeeTbl
+            // 
+            this.colManageStudentFeeTbl.FieldName = "ManageStudentFeeTbl";
+            this.colManageStudentFeeTbl.MinWidth = 25;
+            this.colManageStudentFeeTbl.Name = "colManageStudentFeeTbl";
+            this.colManageStudentFeeTbl.Visible = true;
+            this.colManageStudentFeeTbl.VisibleIndex = 9;
+            this.colManageStudentFeeTbl.Width = 94;
+            // 
+            // colUpdateExistedStudentFee
+            // 
+            this.colUpdateExistedStudentFee.FieldName = "UpdateExistedStudentFee";
+            this.colUpdateExistedStudentFee.MinWidth = 25;
+            this.colUpdateExistedStudentFee.Name = "colUpdateExistedStudentFee";
+            this.colUpdateExistedStudentFee.Visible = true;
+            this.colUpdateExistedStudentFee.VisibleIndex = 10;
+            this.colUpdateExistedStudentFee.Width = 94;
+            // 
+            // colDeleteStudentFeeRecord
+            // 
+            this.colDeleteStudentFeeRecord.FieldName = "DeleteStudentFeeRecord";
+            this.colDeleteStudentFeeRecord.MinWidth = 25;
+            this.colDeleteStudentFeeRecord.Name = "colDeleteStudentFeeRecord";
+            this.colDeleteStudentFeeRecord.Visible = true;
+            this.colDeleteStudentFeeRecord.VisibleIndex = 11;
+            this.colDeleteStudentFeeRecord.Width = 94;
+            // 
+            // colAddNewEducationalLevel
+            // 
+            this.colAddNewEducationalLevel.FieldName = "AddNewEducationalLevel";
+            this.colAddNewEducationalLevel.MinWidth = 25;
+            this.colAddNewEducationalLevel.Name = "colAddNewEducationalLevel";
+            this.colAddNewEducationalLevel.Visible = true;
+            this.colAddNewEducationalLevel.VisibleIndex = 12;
+            this.colAddNewEducationalLevel.Width = 94;
+            // 
+            // colManageEducationalLevels
+            // 
+            this.colManageEducationalLevels.FieldName = "ManageEducationalLevels";
+            this.colManageEducationalLevels.MinWidth = 25;
+            this.colManageEducationalLevels.Name = "colManageEducationalLevels";
+            this.colManageEducationalLevels.Visible = true;
+            this.colManageEducationalLevels.VisibleIndex = 13;
+            this.colManageEducationalLevels.Width = 94;
+            // 
+            // colAddNewScholasticYear
+            // 
+            this.colAddNewScholasticYear.FieldName = "AddNewScholasticYear";
+            this.colAddNewScholasticYear.MinWidth = 25;
+            this.colAddNewScholasticYear.Name = "colAddNewScholasticYear";
+            this.colAddNewScholasticYear.Visible = true;
+            this.colAddNewScholasticYear.VisibleIndex = 14;
+            this.colAddNewScholasticYear.Width = 94;
+            // 
+            // colManageScholasticYears
+            // 
+            this.colManageScholasticYears.FieldName = "ManageScholasticYears";
+            this.colManageScholasticYears.MinWidth = 25;
+            this.colManageScholasticYears.Name = "colManageScholasticYears";
+            this.colManageScholasticYears.Visible = true;
+            this.colManageScholasticYears.VisibleIndex = 15;
+            this.colManageScholasticYears.Width = 94;
+            // 
+            // colAddNewFeePeriod
+            // 
+            this.colAddNewFeePeriod.FieldName = "AddNewFeePeriod";
+            this.colAddNewFeePeriod.MinWidth = 25;
+            this.colAddNewFeePeriod.Name = "colAddNewFeePeriod";
+            this.colAddNewFeePeriod.Visible = true;
+            this.colAddNewFeePeriod.VisibleIndex = 16;
+            this.colAddNewFeePeriod.Width = 94;
+            // 
+            // colManageFeePeriods
+            // 
+            this.colManageFeePeriods.FieldName = "ManageFeePeriods";
+            this.colManageFeePeriods.MinWidth = 25;
+            this.colManageFeePeriods.Name = "colManageFeePeriods";
+            this.colManageFeePeriods.Visible = true;
+            this.colManageFeePeriods.VisibleIndex = 17;
+            this.colManageFeePeriods.Width = 94;
+            // 
+            // colAddNewFinancialItem
+            // 
+            this.colAddNewFinancialItem.FieldName = "AddNewFinancialItem";
+            this.colAddNewFinancialItem.MinWidth = 25;
+            this.colAddNewFinancialItem.Name = "colAddNewFinancialItem";
+            this.colAddNewFinancialItem.Visible = true;
+            this.colAddNewFinancialItem.VisibleIndex = 18;
+            this.colAddNewFinancialItem.Width = 94;
+            // 
+            // colManageFinancialItems
+            // 
+            this.colManageFinancialItems.FieldName = "ManageFinancialItems";
+            this.colManageFinancialItems.MinWidth = 25;
+            this.colManageFinancialItems.Name = "colManageFinancialItems";
+            this.colManageFinancialItems.Visible = true;
+            this.colManageFinancialItems.VisibleIndex = 19;
+            this.colManageFinancialItems.Width = 94;
+            // 
+            // colUpdateExistedFinancialItem
+            // 
+            this.colUpdateExistedFinancialItem.FieldName = "UpdateExistedFinancialItem";
+            this.colUpdateExistedFinancialItem.MinWidth = 25;
+            this.colUpdateExistedFinancialItem.Name = "colUpdateExistedFinancialItem";
+            this.colUpdateExistedFinancialItem.Visible = true;
+            this.colUpdateExistedFinancialItem.VisibleIndex = 20;
+            this.colUpdateExistedFinancialItem.Width = 94;
+            // 
+            // colDeleteFinancialItemRecord
+            // 
+            this.colDeleteFinancialItemRecord.FieldName = "DeleteFinancialItemRecord";
+            this.colDeleteFinancialItemRecord.MinWidth = 25;
+            this.colDeleteFinancialItemRecord.Name = "colDeleteFinancialItemRecord";
+            this.colDeleteFinancialItemRecord.Visible = true;
+            this.colDeleteFinancialItemRecord.VisibleIndex = 21;
+            this.colDeleteFinancialItemRecord.Width = 94;
+            // 
+            // colViewFinancialReports
+            // 
+            this.colViewFinancialReports.FieldName = "ViewFinancialReports";
+            this.colViewFinancialReports.MinWidth = 25;
+            this.colViewFinancialReports.Name = "colViewFinancialReports";
+            this.colViewFinancialReports.Visible = true;
+            this.colViewFinancialReports.VisibleIndex = 22;
+            this.colViewFinancialReports.Width = 94;
+            // 
+            // colAddNewCurrency
+            // 
+            this.colAddNewCurrency.FieldName = "AddNewCurrency";
+            this.colAddNewCurrency.MinWidth = 25;
+            this.colAddNewCurrency.Name = "colAddNewCurrency";
+            this.colAddNewCurrency.Visible = true;
+            this.colAddNewCurrency.VisibleIndex = 23;
+            this.colAddNewCurrency.Width = 94;
+            // 
+            // colManageCurrencies
+            // 
+            this.colManageCurrencies.FieldName = "ManageCurrencies";
+            this.colManageCurrencies.MinWidth = 25;
+            this.colManageCurrencies.Name = "colManageCurrencies";
+            this.colManageCurrencies.Visible = true;
+            this.colManageCurrencies.VisibleIndex = 24;
+            this.colManageCurrencies.Width = 94;
+            // 
+            // colAddNewFinancialItemCategory
+            // 
+            this.colAddNewFinancialItemCategory.FieldName = "AddNewFinancialItemCategory";
+            this.colAddNewFinancialItemCategory.MinWidth = 25;
+            this.colAddNewFinancialItemCategory.Name = "colAddNewFinancialItemCategory";
+            this.colAddNewFinancialItemCategory.Visible = true;
+            this.colAddNewFinancialItemCategory.VisibleIndex = 25;
+            this.colAddNewFinancialItemCategory.Width = 94;
+            // 
+            // colManageFinancialItemCategories
+            // 
+            this.colManageFinancialItemCategories.FieldName = "ManageFinancialItemCategories";
+            this.colManageFinancialItemCategories.MinWidth = 25;
+            this.colManageFinancialItemCategories.Name = "colManageFinancialItemCategories";
+            this.colManageFinancialItemCategories.Visible = true;
+            this.colManageFinancialItemCategories.VisibleIndex = 26;
+            this.colManageFinancialItemCategories.Width = 94;
+            // 
+            // colExportAllData
+            // 
+            this.colExportAllData.FieldName = "ExportAllData";
+            this.colExportAllData.MinWidth = 25;
+            this.colExportAllData.Name = "colExportAllData";
+            this.colExportAllData.Visible = true;
+            this.colExportAllData.VisibleIndex = 27;
+            this.colExportAllData.Width = 94;
+            // 
+            // colImportAllData
+            // 
+            this.colImportAllData.FieldName = "ImportAllData";
+            this.colImportAllData.MinWidth = 25;
+            this.colImportAllData.Name = "colImportAllData";
+            this.colImportAllData.Visible = true;
+            this.colImportAllData.VisibleIndex = 28;
+            this.colImportAllData.Width = 94;
+            // 
+            // colManageUsers
+            // 
+            this.colManageUsers.FieldName = "ManageUsers";
+            this.colManageUsers.MinWidth = 25;
+            this.colManageUsers.Name = "colManageUsers";
+            this.colManageUsers.Visible = true;
+            this.colManageUsers.VisibleIndex = 29;
+            this.colManageUsers.Width = 94;
+            // 
+            // colPromoteDb
+            // 
+            this.colPromoteDb.FieldName = "PromoteDb";
+            this.colPromoteDb.MinWidth = 25;
+            this.colPromoteDb.Name = "colPromoteDb";
+            this.colPromoteDb.Visible = true;
+            this.colPromoteDb.VisibleIndex = 30;
+            this.colPromoteDb.Width = 94;
+            // 
+            // colBackupDb
+            // 
+            this.colBackupDb.FieldName = "BackupDb";
+            this.colBackupDb.MinWidth = 25;
+            this.colBackupDb.Name = "colBackupDb";
+            this.colBackupDb.Visible = true;
+            this.colBackupDb.VisibleIndex = 31;
+            this.colBackupDb.Width = 94;
+            // 
+            // colRestoreDb
+            // 
+            this.colRestoreDb.FieldName = "RestoreDb";
+            this.colRestoreDb.MinWidth = 25;
+            this.colRestoreDb.Name = "colRestoreDb";
+            this.colRestoreDb.Visible = true;
+            this.colRestoreDb.VisibleIndex = 32;
+            this.colRestoreDb.Width = 94;
             // 
             // ManageUserRoleTblForm
             // 
@@ -517,26 +663,39 @@ namespace Kindergarten.Users
         private KindergartenDbDataSet kindergartenDbDataSet;
         private System.Windows.Forms.BindingSource userRoleTblBindingSource;
         private KindergartenDbDataSetTableAdapters.UserRoleTblTableAdapter userRoleTblTableAdapter;
+        private KindergartenDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colRoleName;
         private DevExpress.XtraGrid.Columns.GridColumn colAddNewStudent;
         private DevExpress.XtraGrid.Columns.GridColumn colManageStudentTbl;
         private DevExpress.XtraGrid.Columns.GridColumn colUpdateExistedStudent;
         private DevExpress.XtraGrid.Columns.GridColumn colDeleteStudentRecord;
+        private DevExpress.XtraGrid.Columns.GridColumn colViewStudentsReports;
+        private DevExpress.XtraGrid.Columns.GridColumn colViewStudentsStats;
         private DevExpress.XtraGrid.Columns.GridColumn colAddNewStudentFee;
         private DevExpress.XtraGrid.Columns.GridColumn colManageStudentFeeTbl;
         private DevExpress.XtraGrid.Columns.GridColumn colUpdateExistedStudentFee;
         private DevExpress.XtraGrid.Columns.GridColumn colDeleteStudentFeeRecord;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewEducationalLevel;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageEducationalLevels;
         private DevExpress.XtraGrid.Columns.GridColumn colAddNewScholasticYear;
         private DevExpress.XtraGrid.Columns.GridColumn colManageScholasticYears;
         private DevExpress.XtraGrid.Columns.GridColumn colAddNewFeePeriod;
         private DevExpress.XtraGrid.Columns.GridColumn colManageFeePeriods;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewFinancialItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageFinancialItems;
+        private DevExpress.XtraGrid.Columns.GridColumn colUpdateExistedFinancialItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colDeleteFinancialItemRecord;
+        private DevExpress.XtraGrid.Columns.GridColumn colViewFinancialReports;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewCurrency;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageCurrencies;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewFinancialItemCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageFinancialItemCategories;
         private DevExpress.XtraGrid.Columns.GridColumn colExportAllData;
         private DevExpress.XtraGrid.Columns.GridColumn colImportAllData;
         private DevExpress.XtraGrid.Columns.GridColumn colManageUsers;
         private DevExpress.XtraGrid.Columns.GridColumn colPromoteDb;
         private DevExpress.XtraGrid.Columns.GridColumn colBackupDb;
         private DevExpress.XtraGrid.Columns.GridColumn colRestoreDb;
-        private KindergartenDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

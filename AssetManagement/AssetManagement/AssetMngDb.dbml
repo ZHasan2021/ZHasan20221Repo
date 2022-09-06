@@ -163,6 +163,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ImportOrExport" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="ActionDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TablesExported" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ActionBySection" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ActionByDepartment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ActionBySubDepartment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />

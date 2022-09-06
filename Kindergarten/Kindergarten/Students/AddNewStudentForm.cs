@@ -22,6 +22,8 @@ namespace Kindergarten.Students
 
         private void AddNewStudentForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kindergartenDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
+            this.currencyTblTableAdapter.Fill(this.kindergartenDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'kindergartenDbDataSet.ScholasticYearTbl' table. You can move, or remove it, as needed.
             this.scholasticYearTblTableAdapter.Fill(this.kindergartenDbDataSet.ScholasticYearTbl);
             // TODO: This line of code loads data into the 'kindergartenDbDataSet.FeePeriodTbl' table. You can move, or remove it, as needed.
@@ -29,6 +31,8 @@ namespace Kindergarten.Students
             // TODO: This line of code loads data into the 'kindergartenDbDataSet.EducationalLevelTbl' table. You can move, or remove it, as needed.
             this.educationalLevelTblTableAdapter.Fill(this.kindergartenDbDataSet.EducationalLevelTbl);
             manageEducationalLevelTblBtn.Visible = StaticCode.activeUserRole.ManageEducationalLevels == true;
+            manageFeePeriodTblBtn.Visible = StaticCode.activeUserRole.ManageFeePeriods == true;
+            manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             this.MinimumSize = this.Size;
         }
 
@@ -96,12 +100,17 @@ namespace Kindergarten.Students
                 {
                     errorSummaryMessage += "الموسم الدراسي غير محدد، ";
                 }
+                if (feeCurrencyLookUpEdit.EditValue == null)
+                {
+                    errorSummaryMessage += "عملة الرسم الدراسي غير محددة، ";
+                }
             }
             errorSummaryMessage = errorSummaryMessage.Trim().Trim('،').Trim();
             if (errorSummaryMessage == "")
             {
                 try
                 {
+                    string fullNameStr = $"{firstNameTextBox.Text.Trim()} {lastNameTextBox.Text.Trim()} بن {fatherTextBox.Text.Trim()} و {motherTextBox.Text.Trim()}";
                     StudentTbl newStudentRecord = new StudentTbl()
                     {
                         FirstName = firstNameTextBox.Text.Trim(),
@@ -127,6 +136,26 @@ namespace Kindergarten.Students
                             VoucherNumber = voucherNumberTextBox.Text.Trim(),
                             VoucherPreparedBy = voucherPreparedByTextBox.Text.Trim(),
                         });
+
+                        int fiCa = 1;
+                        if (feePeriodLookUpEdit.Text.Contains("شهري"))
+                            fiCa = 7;
+                        if (feePeriodLookUpEdit.Text.Contains("فصلي"))
+                            fiCa = 8;
+                        if (feePeriodLookUpEdit.Text.Contains("سنوي"))
+                            fiCa = 9;
+                        FinancialItemTbl newFiRecord = new FinancialItemTbl()
+                        {
+                            FinancialItemCategory = fiCa,
+                            FinancialItemDate = Convert.ToDateTime(feePayingDateDateEdit.EditValue),
+                            FinancialItemCurrency = Convert.ToInt32(feeCurrencyLookUpEdit.EditValue),
+                            IncomingAmount = Convert.ToInt32(feeAmountNumericUpDown.Value),
+                            IncomingOrOutgoing = "وارد",
+                            OutgoingAmount = 0,
+                            FinancialItemDescription = $"دفع قسط {feePeriodLookUpEdit.Text} للطالب {fullNameStr}",
+                            RelativePerson = fullNameStr
+                        };
+                        StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(newFiRecord);
                     }
                     StaticCode.mainDbContext.StudentTbls.InsertOnSubmit(newStudentRecord);
                     StaticCode.mainDbContext.SubmitChanges();
@@ -217,6 +246,13 @@ namespace Kindergarten.Students
                 feeAmountNumericUpDown.Value = Convert.ToDecimal(selectedEdLv.EducationalLevelSemesterFee);
             if (feePeriodLookUpEdit.Text == "سنوي")
                 feeAmountNumericUpDown.Value = Convert.ToDecimal(selectedEdLv.EducationalLevelAnnualFee);
+        }
+
+        private void manageCurrencyTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageScholasticYearTblForm mngsch = new ManageScholasticYearTblForm();
+            mngsch.ShowDialog();
+            this.scholasticYearTblTableAdapter.Fill(this.kindergartenDbDataSet.ScholasticYearTbl);
         }
     }
 }

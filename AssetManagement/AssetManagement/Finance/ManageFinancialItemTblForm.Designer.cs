@@ -1,5 +1,5 @@
 ﻿
-namespace AssetManagement.AuxTables
+namespace AssetManagement.Finance
 {
     partial class ManageFinancialItemTblForm
     {

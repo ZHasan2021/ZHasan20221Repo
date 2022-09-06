@@ -29,7 +29,6 @@ namespace AssetManagement.AuxTables
             minorCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewMinorCategory == true;
             minorCategoryGridControl.EmbeddedNavigator.Buttons.Edit.Visible =
             minorCategoryGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.ManageMinorCategories == true;
-            addTheCategoryAsAFinancialItemCategoryCheckBox.Visible = StaticCode.activeUserRole.AddNewFinancialItemCategory == true;
 
             this.MinimumSize = this.Size;
         }
@@ -60,10 +59,10 @@ namespace AssetManagement.AuxTables
                 return;
             }
 
-            bool addFinancialItem = addTheCategoryAsAFinancialItemCategoryCheckBox.Checked;
+            bool addFinancialCategoryItem = StaticCode.activeUserRole.AddNewFinancialItemCategory == true && StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fica => fica.FinancialItemCategoryName == newMainCategoryNameTextBox.Text.Trim()) == 0;
 
             StaticCode.mainDbContext.MainCategoryTbls.InsertOnSubmit(new MainCategoryTbl() { MainCategoryName = newMainCategoryNameTextBox.Text.Trim(), MainCategoryDescription = newMainCategoryDescriptionTextBox.Text.Trim() });
-            if (addFinancialItem)
+            if (addFinancialCategoryItem)
             {
                 FinancialItemCategoryTbl newFICat = new FinancialItemCategoryTbl()
                 {
@@ -77,7 +76,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
 
-            mainAlertControl.Show(this, $"تم إضافة فئة رئيسية{((addFinancialItem) ? " مع بند مالي كذلك" : "")}", StaticCode.ApplicationTitle);
+            mainAlertControl.Show(this, $"تم إضافة فئة رئيسية{((addFinancialCategoryItem) ? " مع بند مالي جديد كذلك" : "")}", StaticCode.ApplicationTitle);
             addNewMainCategoryGroupBox.Visible = false;
         }
 

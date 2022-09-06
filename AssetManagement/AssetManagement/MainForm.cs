@@ -419,5 +419,10 @@ namespace AssetManagement
             ManageImportExportTblForm ieFrm = new ManageImportExportTblForm();
             ieFrm.ShowDialog();
         }
+
+        private void helpBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.Start($"{Application.StartupPath}//Help//مساعد إدارة الأصول.docx");
+        }
     }
 }

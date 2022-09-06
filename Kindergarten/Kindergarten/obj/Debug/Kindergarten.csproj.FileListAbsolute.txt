@@ -561,3 +561,7 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kind
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.csproj.AssemblyReference.cache
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.Students.ManageStudentFeeTblForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.Students.StudentsXtraReport.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.Finance.AddNewFinancialItemForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.AuxTables.ManageFinancialItemCategoryTblForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.AuxTables.ManageCurrencyTblForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\Kindergarten\Kindergarten\obj\Debug\Kindergarten.AuxTables.ManageFinancialItemTblForm.resources

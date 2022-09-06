@@ -91,6 +91,11 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "اكتب تاريخ السجل المالي أولاً", StaticCode.ApplicationTitle);
                 return;
             }
+            if (!(incomingRadioButton.Checked || outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked))
+            {
+                mainAlertControl.Show(this, "قم بتحديد طبيعة السجل المالي (صادر / وارد) أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
             if (amountNumericUpDown.Value == 0)
             {
                 mainAlertControl.Show(this, "اكتب المبلغ أولاً", StaticCode.ApplicationTitle);
@@ -112,7 +117,7 @@ namespace AssetManagement.Finance
                     FinancialItemSubDept = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue),
                     FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
                     FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
-                    IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : "صادر",
+                    IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : (outgoingRadioButton.Checked ? "صادر" : "وارد وصادر"),
                     IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(amountNumericUpDown.Value) : 0,
                     OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(amountNumericUpDown.Value),
                     FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue),

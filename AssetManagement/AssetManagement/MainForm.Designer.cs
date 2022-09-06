@@ -108,6 +108,7 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.helpBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -169,10 +170,11 @@ namespace AssetManagement
             this.manageModelTblBarButtonItem,
             this.manageSubDepartmentTblBarButtonItem,
             this.importFormerAssetsFromExcelBarButtonItem,
-            this.manageImportExportTblBarButtonItem});
+            this.manageImportExportTblBarButtonItem,
+            this.helpBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 65;
+            this.mainRibbonControl.MaxItemId = 66;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -184,6 +186,7 @@ namespace AssetManagement
             this.optionsRibbonPage});
             this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewAssetBarButtonItem2);
             this.mainRibbonControl.QuickToolbarItemLinks.Add(this.addNewFinancialItemBarButtonItem2);
+            this.mainRibbonControl.QuickToolbarItemLinks.Add(this.helpBarButtonItem);
             this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
             this.mainRibbonControl.Size = new System.Drawing.Size(1485, 283);
             this.mainRibbonControl.StatusBar = this.mainRibbonStatusBar;
@@ -952,6 +955,15 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
+            // helpBarButtonItem
+            // 
+            this.helpBarButtonItem.Caption = "مساعدة";
+            this.helpBarButtonItem.Id = 65;
+            this.helpBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.helpBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.helpBarButtonItem.Name = "helpBarButtonItem";
+            this.helpBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.helpBarButtonItem_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1059,6 +1071,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importFormerAssetsFromExcelBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageImportExportTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem helpBarButtonItem;
     }
 }
 

@@ -135,6 +135,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageFinancialItemCategoryTblForm.Designer.cs">
+      <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageCurrencyTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageCurrencyTblForm.Designer.cs">
+      <DependentUpon>ManageCurrencyTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuxTables\ManageScholasticYearTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +164,18 @@
     </Compile>
     <Compile Include="Blank\BlankForm.Designer.cs">
       <DependentUpon>BlankForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\AddNewFinancialItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\AddNewFinancialItemForm.Designer.cs">
+      <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\ManageFinancialItemTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\ManageFinancialItemTblForm.Designer.cs">
+      <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Finance\ManageStudentFeeTblForm.cs">
       <SubType>Form</SubType>
@@ -240,6 +264,12 @@
     <Compile Include="Users\AddNewUserForm.Designer.cs">
       <DependentUpon>AddNewUserForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AuxTables\ManageFinancialItemCategoryTblForm.resx">
+      <DependentUpon>ManageFinancialItemCategoryTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageCurrencyTblForm.resx">
+      <DependentUpon>ManageCurrencyTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageScholasticYearTblForm.resx">
       <DependentUpon>ManageScholasticYearTblForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -252,6 +282,12 @@
     <None Include="KindergartenDb.dbml.layout">
       <DependentUpon>KindergartenDb.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Finance\AddNewFinancialItemForm.resx">
+      <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finance\ManageFinancialItemTblForm.resx">
+      <DependentUpon>ManageFinancialItemTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Finance\ManageStudentFeeTblForm.resx">
       <DependentUpon>ManageStudentFeeTblForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -302,6 +338,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="7030130_0Bp_icon.ico" />
+    <None Include="Resources\9813821.png" />
+    <None Include="Resources\2236451.png" />
+    <None Include="Resources\21377071.png" />
+    <None Include="Resources\21377101.png" />
     <None Include="bin\Debug\logo.png" />
     <Content Include="Db\KindergartenDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

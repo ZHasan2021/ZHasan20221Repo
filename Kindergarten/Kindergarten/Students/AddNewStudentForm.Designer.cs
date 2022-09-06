@@ -51,66 +51,72 @@ namespace Kindergarten.Students
             this.educationalLevelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.educationalLevelTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.EducationalLevelTblTableAdapter();
             this.errorSummaryPanel = new System.Windows.Forms.Panel();
+            this.incorrectPictureBox = new System.Windows.Forms.PictureBox();
+            this.correctPictureBox = new System.Windows.Forms.PictureBox();
             this.errorSummaryLabel = new System.Windows.Forms.Label();
             this.tableAdapterManager = new Kindergarten.KindergartenDbDataSetTableAdapters.TableAdapterManager();
+            this.feePeriodTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.FeePeriodTblTableAdapter();
+            this.scholasticYearTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.ScholasticYearTblTableAdapter();
             this.studentFeePanel = new System.Windows.Forms.Panel();
+            this.voucherPreparedByTextBox = new System.Windows.Forms.TextBox();
+            this.voucherPreparedByLabel = new System.Windows.Forms.Label();
+            this.voucherNumberTextBox = new System.Windows.Forms.TextBox();
+            this.voucherNumberLabel = new System.Windows.Forms.Label();
+            this.feePayingDateLabel = new System.Windows.Forms.Label();
+            this.feePayingDateDateEdit = new DevExpress.XtraEditors.DateEdit();
+            this.feeAmountLabel = new System.Windows.Forms.Label();
+            this.feeAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.feeScholasticYearLabel = new System.Windows.Forms.Label();
+            this.manageScholasticYearTblBtn2 = new System.Windows.Forms.Button();
+            this.feeScholasticYearLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.scholasticYearTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.feePeriodLabel = new System.Windows.Forms.Label();
+            this.manageFeePeriodTblBtn = new System.Windows.Forms.Button();
+            this.feePeriodLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.feePeriodTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.studentPaidFeeCheckBox = new System.Windows.Forms.CheckBox();
             this.addNewStudentBtn_OK = new System.Windows.Forms.Button();
             this.addNewStudentBtn_Cancel = new System.Windows.Forms.Button();
             this.addNewStudentBtn_Reset = new System.Windows.Forms.Button();
-            this.incorrectPictureBox = new System.Windows.Forms.PictureBox();
-            this.correctPictureBox = new System.Windows.Forms.PictureBox();
             this.registeringDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.manageEducationalLevelTblBtn = new System.Windows.Forms.Button();
             this.educationalLevelLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.dateOfBirthDateEdit = new DevExpress.XtraEditors.DateEdit();
-            this.feePeriodLabel = new System.Windows.Forms.Label();
-            this.manageFeePeriodTblBtn = new System.Windows.Forms.Button();
-            this.feePeriodLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.feeScholasticYearLabel = new System.Windows.Forms.Label();
-            this.manageScholasticYearTblBtn2 = new System.Windows.Forms.Button();
-            this.feeScholasticYearLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.feeAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.feeAmountLabel = new System.Windows.Forms.Label();
-            this.feePeriodTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.feePeriodTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.FeePeriodTblTableAdapter();
             this.kindergartenDbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scholasticYearTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.scholasticYearTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.ScholasticYearTblTableAdapter();
-            this.feePayingDateDateEdit = new DevExpress.XtraEditors.DateEdit();
-            this.feePayingDateLabel = new System.Windows.Forms.Label();
-            this.voucherNumberTextBox = new System.Windows.Forms.TextBox();
-            this.voucherNumberLabel = new System.Windows.Forms.Label();
-            this.voucherPreparedByTextBox = new System.Windows.Forms.TextBox();
-            this.voucherPreparedByLabel = new System.Windows.Forms.Label();
             this.scholasticYearLabel = new System.Windows.Forms.Label();
             this.manageScholasticYearTblBtn = new System.Windows.Forms.Button();
             this.scholasticYearLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.notesLabel = new System.Windows.Forms.Label();
-            this.scholasticYearTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.feeCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.currencyTblTableAdapter = new Kindergarten.KindergartenDbDataSetTableAdapters.CurrencyTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.studentGradeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelTblBindingSource)).BeginInit();
             this.errorSummaryPanel.SuspendLayout();
-            this.studentFeePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox)).BeginInit();
+            this.studentFeePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeAmountNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeScholasticYearLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePeriodLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePeriodTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeringDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeringDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOfBirthDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOfBirthDateEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePeriodLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feeScholasticYearLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feeAmountNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePeriodTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scholasticYearLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeCurrencyLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -282,6 +288,26 @@ namespace Kindergarten.Students
             this.errorSummaryPanel.TabIndex = 800;
             this.errorSummaryPanel.Visible = false;
             // 
+            // incorrectPictureBox
+            // 
+            this.incorrectPictureBox.Image = global::Kindergarten.Properties.Resources._21377241;
+            this.incorrectPictureBox.Location = new System.Drawing.Point(160, 7);
+            this.incorrectPictureBox.Name = "incorrectPictureBox";
+            this.incorrectPictureBox.Size = new System.Drawing.Size(30, 30);
+            this.incorrectPictureBox.TabIndex = 2;
+            this.incorrectPictureBox.TabStop = false;
+            this.incorrectPictureBox.Visible = false;
+            // 
+            // correctPictureBox
+            // 
+            this.correctPictureBox.Image = global::Kindergarten.Properties.Resources._21377251;
+            this.correctPictureBox.Location = new System.Drawing.Point(100, 7);
+            this.correctPictureBox.Name = "correctPictureBox";
+            this.correctPictureBox.Size = new System.Drawing.Size(30, 30);
+            this.correctPictureBox.TabIndex = 1;
+            this.correctPictureBox.TabStop = false;
+            this.correctPictureBox.Visible = false;
+            // 
             // errorSummaryLabel
             // 
             this.errorSummaryLabel.AutoSize = true;
@@ -294,8 +320,11 @@ namespace Kindergarten.Students
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.EducationalLevelTblTableAdapter = this.educationalLevelTblTableAdapter;
             this.tableAdapterManager.FeePeriodTblTableAdapter = this.feePeriodTblTableAdapter;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.ScholasticYearTblTableAdapter = this.scholasticYearTblTableAdapter;
             this.tableAdapterManager.StudentFeeTblTableAdapter = null;
@@ -304,9 +333,19 @@ namespace Kindergarten.Students
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
+            // feePeriodTblTableAdapter
+            // 
+            this.feePeriodTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // scholasticYearTblTableAdapter
+            // 
+            this.scholasticYearTblTableAdapter.ClearBeforeFill = true;
+            // 
             // studentFeePanel
             // 
             this.studentFeePanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.studentFeePanel.Controls.Add(this.manageCurrencyTblBtn);
+            this.studentFeePanel.Controls.Add(this.feeCurrencyLookUpEdit);
             this.studentFeePanel.Controls.Add(this.voucherPreparedByTextBox);
             this.studentFeePanel.Controls.Add(this.voucherPreparedByLabel);
             this.studentFeePanel.Controls.Add(this.voucherNumberTextBox);
@@ -321,16 +360,179 @@ namespace Kindergarten.Students
             this.studentFeePanel.Controls.Add(this.feePeriodLabel);
             this.studentFeePanel.Controls.Add(this.manageFeePeriodTblBtn);
             this.studentFeePanel.Controls.Add(this.feePeriodLookUpEdit);
-            this.studentFeePanel.Location = new System.Drawing.Point(592, 83);
+            this.studentFeePanel.Location = new System.Drawing.Point(582, 83);
             this.studentFeePanel.Name = "studentFeePanel";
-            this.studentFeePanel.Size = new System.Drawing.Size(564, 407);
+            this.studentFeePanel.Size = new System.Drawing.Size(593, 407);
             this.studentFeePanel.TabIndex = 155;
             this.studentFeePanel.Visible = false;
+            // 
+            // voucherPreparedByTextBox
+            // 
+            this.voucherPreparedByTextBox.Location = new System.Drawing.Point(169, 326);
+            this.voucherPreparedByTextBox.Name = "voucherPreparedByTextBox";
+            this.voucherPreparedByTextBox.Size = new System.Drawing.Size(229, 32);
+            this.voucherPreparedByTextBox.TabIndex = 220;
+            // 
+            // voucherPreparedByLabel
+            // 
+            this.voucherPreparedByLabel.AutoSize = true;
+            this.voucherPreparedByLabel.Location = new System.Drawing.Point(433, 330);
+            this.voucherPreparedByLabel.Name = "voucherPreparedByLabel";
+            this.voucherPreparedByLabel.Size = new System.Drawing.Size(138, 24);
+            this.voucherPreparedByLabel.TabIndex = 215;
+            this.voucherPreparedByLabel.Text = "منظم ايصال الدفع:";
+            // 
+            // voucherNumberTextBox
+            // 
+            this.voucherNumberTextBox.Location = new System.Drawing.Point(169, 266);
+            this.voucherNumberTextBox.Name = "voucherNumberTextBox";
+            this.voucherNumberTextBox.Size = new System.Drawing.Size(229, 32);
+            this.voucherNumberTextBox.TabIndex = 210;
+            // 
+            // voucherNumberLabel
+            // 
+            this.voucherNumberLabel.AutoSize = true;
+            this.voucherNumberLabel.Location = new System.Drawing.Point(447, 270);
+            this.voucherNumberLabel.Name = "voucherNumberLabel";
+            this.voucherNumberLabel.Size = new System.Drawing.Size(124, 24);
+            this.voucherNumberLabel.TabIndex = 205;
+            this.voucherNumberLabel.Text = "رقم ايصال الدفع:";
+            // 
+            // feePayingDateLabel
+            // 
+            this.feePayingDateLabel.AutoSize = true;
+            this.feePayingDateLabel.Location = new System.Drawing.Point(479, 90);
+            this.feePayingDateLabel.Name = "feePayingDateLabel";
+            this.feePayingDateLabel.Size = new System.Drawing.Size(92, 24);
+            this.feePayingDateLabel.TabIndex = 170;
+            this.feePayingDateLabel.Text = "تاريخ الدفع:";
+            // 
+            // feePayingDateDateEdit
+            // 
+            this.feePayingDateDateEdit.EditValue = null;
+            this.feePayingDateDateEdit.Location = new System.Drawing.Point(169, 87);
+            this.feePayingDateDateEdit.Name = "feePayingDateDateEdit";
+            this.feePayingDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feePayingDateDateEdit.Properties.Appearance.Options.UseFont = true;
+            this.feePayingDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.feePayingDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.feePayingDateDateEdit.Size = new System.Drawing.Size(229, 30);
+            this.feePayingDateDateEdit.TabIndex = 175;
+            // 
+            // feeAmountLabel
+            // 
+            this.feeAmountLabel.AutoSize = true;
+            this.feeAmountLabel.Location = new System.Drawing.Point(475, 210);
+            this.feeAmountLabel.Name = "feeAmountLabel";
+            this.feeAmountLabel.Size = new System.Drawing.Size(96, 24);
+            this.feeAmountLabel.TabIndex = 190;
+            this.feeAmountLabel.Text = "قيمة الرسوم:";
+            // 
+            // feeAmountNumericUpDown
+            // 
+            this.feeAmountNumericUpDown.DecimalPlaces = 2;
+            this.feeAmountNumericUpDown.Enabled = false;
+            this.feeAmountNumericUpDown.Location = new System.Drawing.Point(270, 206);
+            this.feeAmountNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.feeAmountNumericUpDown.Name = "feeAmountNumericUpDown";
+            this.feeAmountNumericUpDown.Size = new System.Drawing.Size(128, 32);
+            this.feeAmountNumericUpDown.TabIndex = 195;
+            // 
+            // feeScholasticYearLabel
+            // 
+            this.feeScholasticYearLabel.AutoSize = true;
+            this.feeScholasticYearLabel.Location = new System.Drawing.Point(452, 150);
+            this.feeScholasticYearLabel.Name = "feeScholasticYearLabel";
+            this.feeScholasticYearLabel.Size = new System.Drawing.Size(119, 24);
+            this.feeScholasticYearLabel.TabIndex = 180;
+            this.feeScholasticYearLabel.Text = "الموسم الدراسي:";
+            // 
+            // manageScholasticYearTblBtn2
+            // 
+            this.manageScholasticYearTblBtn2.Image = global::Kindergarten.Properties.Resources._981382;
+            this.manageScholasticYearTblBtn2.Location = new System.Drawing.Point(18, 135);
+            this.manageScholasticYearTblBtn2.Name = "manageScholasticYearTblBtn2";
+            this.manageScholasticYearTblBtn2.Size = new System.Drawing.Size(55, 55);
+            this.manageScholasticYearTblBtn2.TabIndex = 186;
+            this.manageScholasticYearTblBtn2.UseVisualStyleBackColor = true;
+            this.manageScholasticYearTblBtn2.Click += new System.EventHandler(this.manageScholasticYearTblBtn_Click);
+            // 
+            // feeScholasticYearLookUpEdit
+            // 
+            this.feeScholasticYearLookUpEdit.Location = new System.Drawing.Point(169, 147);
+            this.feeScholasticYearLookUpEdit.Name = "feeScholasticYearLookUpEdit";
+            this.feeScholasticYearLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feeScholasticYearLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.feeScholasticYearLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.feeScholasticYearLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموسم الدراسي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ScholasticYearName", "اسم الموسم الدراسي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.feeScholasticYearLookUpEdit.Properties.DataSource = this.scholasticYearTblBindingSource1;
+            this.feeScholasticYearLookUpEdit.Properties.DisplayMember = "ScholasticYearName";
+            this.feeScholasticYearLookUpEdit.Properties.PopupWidth = 500;
+            this.feeScholasticYearLookUpEdit.Properties.ValueMember = "ID";
+            this.feeScholasticYearLookUpEdit.Size = new System.Drawing.Size(229, 30);
+            this.feeScholasticYearLookUpEdit.TabIndex = 185;
+            // 
+            // scholasticYearTblBindingSource1
+            // 
+            this.scholasticYearTblBindingSource1.DataMember = "ScholasticYearTbl";
+            this.scholasticYearTblBindingSource1.DataSource = this.kindergartenDbDataSet;
+            // 
+            // feePeriodLabel
+            // 
+            this.feePeriodLabel.AutoSize = true;
+            this.feePeriodLabel.Location = new System.Drawing.Point(434, 30);
+            this.feePeriodLabel.Name = "feePeriodLabel";
+            this.feePeriodLabel.Size = new System.Drawing.Size(137, 24);
+            this.feePeriodLabel.TabIndex = 160;
+            this.feePeriodLabel.Text = "فترة الرسم الدراسي:";
+            // 
+            // manageFeePeriodTblBtn
+            // 
+            this.manageFeePeriodTblBtn.Image = global::Kindergarten.Properties.Resources._981382;
+            this.manageFeePeriodTblBtn.Location = new System.Drawing.Point(18, 15);
+            this.manageFeePeriodTblBtn.Name = "manageFeePeriodTblBtn";
+            this.manageFeePeriodTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageFeePeriodTblBtn.TabIndex = 166;
+            this.manageFeePeriodTblBtn.UseVisualStyleBackColor = true;
+            this.manageFeePeriodTblBtn.Click += new System.EventHandler(this.manageFeePeriodTblBtn_Click);
+            // 
+            // feePeriodLookUpEdit
+            // 
+            this.feePeriodLookUpEdit.Location = new System.Drawing.Point(169, 27);
+            this.feePeriodLookUpEdit.Name = "feePeriodLookUpEdit";
+            this.feePeriodLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feePeriodLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.feePeriodLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.feePeriodLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف فترة الرسم الدراسي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FeePeriodName", "اسم فترة الرسم الدراسي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.feePeriodLookUpEdit.Properties.DataSource = this.feePeriodTblBindingSource;
+            this.feePeriodLookUpEdit.Properties.DisplayMember = "FeePeriodName";
+            this.feePeriodLookUpEdit.Properties.PopupWidth = 500;
+            this.feePeriodLookUpEdit.Properties.ValueMember = "ID";
+            this.feePeriodLookUpEdit.Size = new System.Drawing.Size(229, 30);
+            this.feePeriodLookUpEdit.TabIndex = 165;
+            this.feePeriodLookUpEdit.EditValueChanged += new System.EventHandler(this.feePeriodLookUpEdit_EditValueChanged);
+            // 
+            // feePeriodTblBindingSource
+            // 
+            this.feePeriodTblBindingSource.DataMember = "FeePeriodTbl";
+            this.feePeriodTblBindingSource.DataSource = this.kindergartenDbDataSet;
             // 
             // studentPaidFeeCheckBox
             // 
             this.studentPaidFeeCheckBox.AutoSize = true;
-            this.studentPaidFeeCheckBox.Location = new System.Drawing.Point(592, 30);
+            this.studentPaidFeeCheckBox.Location = new System.Drawing.Point(582, 30);
             this.studentPaidFeeCheckBox.Name = "studentPaidFeeCheckBox";
             this.studentPaidFeeCheckBox.Size = new System.Drawing.Size(127, 28);
             this.studentPaidFeeCheckBox.TabIndex = 150;
@@ -378,26 +580,6 @@ namespace Kindergarten.Students
             this.addNewStudentBtn_Reset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addNewStudentBtn_Reset.UseVisualStyleBackColor = true;
             this.addNewStudentBtn_Reset.Click += new System.EventHandler(this.addNewStudentBtn_Reset_Click);
-            // 
-            // incorrectPictureBox
-            // 
-            this.incorrectPictureBox.Image = global::Kindergarten.Properties.Resources._21377241;
-            this.incorrectPictureBox.Location = new System.Drawing.Point(160, 7);
-            this.incorrectPictureBox.Name = "incorrectPictureBox";
-            this.incorrectPictureBox.Size = new System.Drawing.Size(30, 30);
-            this.incorrectPictureBox.TabIndex = 2;
-            this.incorrectPictureBox.TabStop = false;
-            this.incorrectPictureBox.Visible = false;
-            // 
-            // correctPictureBox
-            // 
-            this.correctPictureBox.Image = global::Kindergarten.Properties.Resources._21377251;
-            this.correctPictureBox.Location = new System.Drawing.Point(100, 7);
-            this.correctPictureBox.Name = "correctPictureBox";
-            this.correctPictureBox.Size = new System.Drawing.Size(30, 30);
-            this.correctPictureBox.TabIndex = 1;
-            this.correctPictureBox.TabStop = false;
-            this.correctPictureBox.Visible = false;
             // 
             // registeringDateDateEdit
             // 
@@ -461,117 +643,6 @@ namespace Kindergarten.Students
             this.dateOfBirthDateEdit.Size = new System.Drawing.Size(229, 30);
             this.dateOfBirthDateEdit.TabIndex = 55;
             // 
-            // feePeriodLabel
-            // 
-            this.feePeriodLabel.AutoSize = true;
-            this.feePeriodLabel.Location = new System.Drawing.Point(407, 30);
-            this.feePeriodLabel.Name = "feePeriodLabel";
-            this.feePeriodLabel.Size = new System.Drawing.Size(137, 24);
-            this.feePeriodLabel.TabIndex = 160;
-            this.feePeriodLabel.Text = "فترة الرسم الدراسي:";
-            // 
-            // manageFeePeriodTblBtn
-            // 
-            this.manageFeePeriodTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manageFeePeriodTblBtn.Image = global::Kindergarten.Properties.Resources._981382;
-            this.manageFeePeriodTblBtn.Location = new System.Drawing.Point(43, 15);
-            this.manageFeePeriodTblBtn.Name = "manageFeePeriodTblBtn";
-            this.manageFeePeriodTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageFeePeriodTblBtn.TabIndex = 166;
-            this.manageFeePeriodTblBtn.UseVisualStyleBackColor = true;
-            this.manageFeePeriodTblBtn.Click += new System.EventHandler(this.manageFeePeriodTblBtn_Click);
-            // 
-            // feePeriodLookUpEdit
-            // 
-            this.feePeriodLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.feePeriodLookUpEdit.Location = new System.Drawing.Point(142, 27);
-            this.feePeriodLookUpEdit.Name = "feePeriodLookUpEdit";
-            this.feePeriodLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.feePeriodLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.feePeriodLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.feePeriodLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف فترة الرسم الدراسي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FeePeriodName", "اسم فترة الرسم الدراسي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.feePeriodLookUpEdit.Properties.DataSource = this.feePeriodTblBindingSource;
-            this.feePeriodLookUpEdit.Properties.DisplayMember = "FeePeriodName";
-            this.feePeriodLookUpEdit.Properties.PopupWidth = 500;
-            this.feePeriodLookUpEdit.Properties.ValueMember = "ID";
-            this.feePeriodLookUpEdit.Size = new System.Drawing.Size(229, 30);
-            this.feePeriodLookUpEdit.TabIndex = 165;
-            this.feePeriodLookUpEdit.EditValueChanged += new System.EventHandler(this.feePeriodLookUpEdit_EditValueChanged);
-            // 
-            // feeScholasticYearLabel
-            // 
-            this.feeScholasticYearLabel.AutoSize = true;
-            this.feeScholasticYearLabel.Location = new System.Drawing.Point(425, 150);
-            this.feeScholasticYearLabel.Name = "feeScholasticYearLabel";
-            this.feeScholasticYearLabel.Size = new System.Drawing.Size(119, 24);
-            this.feeScholasticYearLabel.TabIndex = 180;
-            this.feeScholasticYearLabel.Text = "الموسم الدراسي:";
-            // 
-            // manageScholasticYearTblBtn2
-            // 
-            this.manageScholasticYearTblBtn2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manageScholasticYearTblBtn2.Image = global::Kindergarten.Properties.Resources._981382;
-            this.manageScholasticYearTblBtn2.Location = new System.Drawing.Point(43, 135);
-            this.manageScholasticYearTblBtn2.Name = "manageScholasticYearTblBtn2";
-            this.manageScholasticYearTblBtn2.Size = new System.Drawing.Size(55, 55);
-            this.manageScholasticYearTblBtn2.TabIndex = 186;
-            this.manageScholasticYearTblBtn2.UseVisualStyleBackColor = true;
-            this.manageScholasticYearTblBtn2.Click += new System.EventHandler(this.manageScholasticYearTblBtn_Click);
-            // 
-            // feeScholasticYearLookUpEdit
-            // 
-            this.feeScholasticYearLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.feeScholasticYearLookUpEdit.Location = new System.Drawing.Point(142, 147);
-            this.feeScholasticYearLookUpEdit.Name = "feeScholasticYearLookUpEdit";
-            this.feeScholasticYearLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.feeScholasticYearLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.feeScholasticYearLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.feeScholasticYearLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموسم الدراسي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ScholasticYearName", "اسم الموسم الدراسي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.feeScholasticYearLookUpEdit.Properties.DataSource = this.scholasticYearTblBindingSource1;
-            this.feeScholasticYearLookUpEdit.Properties.DisplayMember = "ScholasticYearName";
-            this.feeScholasticYearLookUpEdit.Properties.PopupWidth = 500;
-            this.feeScholasticYearLookUpEdit.Properties.ValueMember = "ID";
-            this.feeScholasticYearLookUpEdit.Size = new System.Drawing.Size(229, 30);
-            this.feeScholasticYearLookUpEdit.TabIndex = 185;
-            // 
-            // feeAmountNumericUpDown
-            // 
-            this.feeAmountNumericUpDown.DecimalPlaces = 2;
-            this.feeAmountNumericUpDown.Enabled = false;
-            this.feeAmountNumericUpDown.Location = new System.Drawing.Point(142, 206);
-            this.feeAmountNumericUpDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.feeAmountNumericUpDown.Name = "feeAmountNumericUpDown";
-            this.feeAmountNumericUpDown.Size = new System.Drawing.Size(229, 32);
-            this.feeAmountNumericUpDown.TabIndex = 195;
-            // 
-            // feeAmountLabel
-            // 
-            this.feeAmountLabel.AutoSize = true;
-            this.feeAmountLabel.Location = new System.Drawing.Point(448, 210);
-            this.feeAmountLabel.Name = "feeAmountLabel";
-            this.feeAmountLabel.Size = new System.Drawing.Size(96, 24);
-            this.feeAmountLabel.TabIndex = 190;
-            this.feeAmountLabel.Text = "قيمة الرسوم:";
-            // 
-            // feePeriodTblBindingSource
-            // 
-            this.feePeriodTblBindingSource.DataMember = "FeePeriodTbl";
-            this.feePeriodTblBindingSource.DataSource = this.kindergartenDbDataSet;
-            // 
-            // feePeriodTblTableAdapter
-            // 
-            this.feePeriodTblTableAdapter.ClearBeforeFill = true;
-            // 
             // kindergartenDbDataSetBindingSource
             // 
             this.kindergartenDbDataSetBindingSource.DataSource = this.kindergartenDbDataSet;
@@ -581,65 +652,6 @@ namespace Kindergarten.Students
             // 
             this.scholasticYearTblBindingSource.DataMember = "ScholasticYearTbl";
             this.scholasticYearTblBindingSource.DataSource = this.kindergartenDbDataSet;
-            // 
-            // scholasticYearTblTableAdapter
-            // 
-            this.scholasticYearTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // feePayingDateDateEdit
-            // 
-            this.feePayingDateDateEdit.EditValue = null;
-            this.feePayingDateDateEdit.Location = new System.Drawing.Point(142, 87);
-            this.feePayingDateDateEdit.Name = "feePayingDateDateEdit";
-            this.feePayingDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.feePayingDateDateEdit.Properties.Appearance.Options.UseFont = true;
-            this.feePayingDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.feePayingDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.feePayingDateDateEdit.Size = new System.Drawing.Size(229, 30);
-            this.feePayingDateDateEdit.TabIndex = 175;
-            // 
-            // feePayingDateLabel
-            // 
-            this.feePayingDateLabel.AutoSize = true;
-            this.feePayingDateLabel.Location = new System.Drawing.Point(452, 90);
-            this.feePayingDateLabel.Name = "feePayingDateLabel";
-            this.feePayingDateLabel.Size = new System.Drawing.Size(92, 24);
-            this.feePayingDateLabel.TabIndex = 170;
-            this.feePayingDateLabel.Text = "تاريخ الدفع:";
-            // 
-            // voucherNumberTextBox
-            // 
-            this.voucherNumberTextBox.Location = new System.Drawing.Point(142, 266);
-            this.voucherNumberTextBox.Name = "voucherNumberTextBox";
-            this.voucherNumberTextBox.Size = new System.Drawing.Size(229, 32);
-            this.voucherNumberTextBox.TabIndex = 205;
-            // 
-            // voucherNumberLabel
-            // 
-            this.voucherNumberLabel.AutoSize = true;
-            this.voucherNumberLabel.Location = new System.Drawing.Point(420, 270);
-            this.voucherNumberLabel.Name = "voucherNumberLabel";
-            this.voucherNumberLabel.Size = new System.Drawing.Size(124, 24);
-            this.voucherNumberLabel.TabIndex = 200;
-            this.voucherNumberLabel.Text = "رقم ايصال الدفع:";
-            // 
-            // voucherPreparedByTextBox
-            // 
-            this.voucherPreparedByTextBox.Location = new System.Drawing.Point(142, 326);
-            this.voucherPreparedByTextBox.Name = "voucherPreparedByTextBox";
-            this.voucherPreparedByTextBox.Size = new System.Drawing.Size(229, 32);
-            this.voucherPreparedByTextBox.TabIndex = 215;
-            // 
-            // voucherPreparedByLabel
-            // 
-            this.voucherPreparedByLabel.AutoSize = true;
-            this.voucherPreparedByLabel.Location = new System.Drawing.Point(406, 330);
-            this.voucherPreparedByLabel.Name = "voucherPreparedByLabel";
-            this.voucherPreparedByLabel.Size = new System.Drawing.Size(138, 24);
-            this.voucherPreparedByLabel.TabIndex = 210;
-            this.voucherPreparedByLabel.Text = "منظم ايصال الدفع:";
             // 
             // scholasticYearLabel
             // 
@@ -697,10 +709,42 @@ namespace Kindergarten.Students
             this.notesLabel.TabIndex = 100;
             this.notesLabel.Text = "ملاحظات:";
             // 
-            // scholasticYearTblBindingSource1
+            // feeCurrencyLookUpEdit
             // 
-            this.scholasticYearTblBindingSource1.DataMember = "ScholasticYearTbl";
-            this.scholasticYearTblBindingSource1.DataSource = this.kindergartenDbDataSet;
+            this.feeCurrencyLookUpEdit.Location = new System.Drawing.Point(84, 207);
+            this.feeCurrencyLookUpEdit.Name = "feeCurrencyLookUpEdit";
+            this.feeCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feeCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.feeCurrencyLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.feeCurrencyLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.feeCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
+            this.feeCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
+            this.feeCurrencyLookUpEdit.Properties.PopupWidth = 500;
+            this.feeCurrencyLookUpEdit.Properties.ValueMember = "ID";
+            this.feeCurrencyLookUpEdit.Size = new System.Drawing.Size(175, 30);
+            this.feeCurrencyLookUpEdit.TabIndex = 200;
+            // 
+            // manageCurrencyTblBtn
+            // 
+            this.manageCurrencyTblBtn.Image = global::Kindergarten.Properties.Resources._981382;
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(18, 195);
+            this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
+            this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageCurrencyTblBtn.TabIndex = 201;
+            this.manageCurrencyTblBtn.UseVisualStyleBackColor = true;
+            this.manageCurrencyTblBtn.Click += new System.EventHandler(this.manageCurrencyTblBtn_Click);
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.kindergartenDbDataSet;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
             // 
             // AddNewStudentForm
             // 
@@ -754,25 +798,27 @@ namespace Kindergarten.Students
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelTblBindingSource)).EndInit();
             this.errorSummaryPanel.ResumeLayout(false);
             this.errorSummaryPanel.PerformLayout();
-            this.studentFeePanel.ResumeLayout(false);
-            this.studentFeePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox)).EndInit();
+            this.studentFeePanel.ResumeLayout(false);
+            this.studentFeePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeAmountNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeScholasticYearLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePeriodLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feePeriodTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeringDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeringDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationalLevelLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOfBirthDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateOfBirthDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePeriodLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feeScholasticYearLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feeAmountNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePeriodTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kindergartenDbDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feePayingDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scholasticYearLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scholasticYearTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feeCurrencyLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -838,5 +884,9 @@ namespace Kindergarten.Students
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Label notesLabel;
         private System.Windows.Forms.BindingSource scholasticYearTblBindingSource1;
+        private System.Windows.Forms.Button manageCurrencyTblBtn;
+        private DevExpress.XtraEditors.LookUpEdit feeCurrencyLookUpEdit;
+        private System.Windows.Forms.BindingSource currencyTblBindingSource;
+        private KindergartenDbDataSetTableAdapters.CurrencyTblTableAdapter currencyTblTableAdapter;
     }
 }

@@ -63,8 +63,10 @@ namespace Kindergarten
             this.openBackupFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addNewFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageFinancialItemsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
-            this.الطلاب = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.studentsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.existedAssetsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.assetsReportsAndStatsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -125,15 +127,17 @@ namespace Kindergarten
             this.openAppFolderBarButtonItem,
             this.openBackupFolderBarButtonItem,
             this.assetsToDestructBarStaticItem,
-            this.openExportFolderBarButtonItem});
+            this.openExportFolderBarButtonItem,
+            this.addNewFinancialItemBarButtonItem,
+            this.manageFinancialItemsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 61;
+            this.mainRibbonControl.MaxItemId = 63;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
             this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.الطلاب,
+            this.studentsRibbonPage,
             this.financeRibbonPage,
             this.manageAuxTablesRibbonPage,
             this.exportImportDataRibbonPage,
@@ -421,24 +425,42 @@ namespace Kindergarten
             this.openExportFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.openExportFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openExportFolderBarButtonItem_ItemClick);
             // 
+            // addNewFinancialItemBarButtonItem
+            // 
+            this.addNewFinancialItemBarButtonItem.Caption = "إضافة سجل مالي جديد";
+            this.addNewFinancialItemBarButtonItem.Id = 61;
+            this.addNewFinancialItemBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._2636671;
+            this.addNewFinancialItemBarButtonItem.Name = "addNewFinancialItemBarButtonItem";
+            this.addNewFinancialItemBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addNewFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewFinancialItemBarButtonItem_ItemClick);
+            // 
+            // manageFinancialItemsBarButtonItem
+            // 
+            this.manageFinancialItemsBarButtonItem.Caption = "إدارة سجلات الحركة المالية";
+            this.manageFinancialItemsBarButtonItem.Id = 62;
+            this.manageFinancialItemsBarButtonItem.ImageOptions.Image = global::Kindergarten.Properties.Resources._2834767;
+            this.manageFinancialItemsBarButtonItem.Name = "manageFinancialItemsBarButtonItem";
+            this.manageFinancialItemsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageFinancialItemsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageFinancialItemsBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
             // 
-            // الطلاب
+            // studentsRibbonPage
             // 
-            this.الطلاب.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.الطلاب.Appearance.Options.UseFont = true;
-            this.الطلاب.Appearance.Options.UseTextOptions = true;
-            this.الطلاب.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.الطلاب.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.studentsRibbonPage.Appearance.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentsRibbonPage.Appearance.Options.UseFont = true;
+            this.studentsRibbonPage.Appearance.Options.UseTextOptions = true;
+            this.studentsRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.studentsRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.newAssetRibbonPageGroup,
             this.existedAssetsRibbonPageGroup,
             this.assetsReportsAndStatsRibbonPageGroup});
-            this.الطلاب.ImageOptions.Image = global::Kindergarten.Properties.Resources._6944290;
-            this.الطلاب.ImageOptions.ImageIndex = 41;
-            this.الطلاب.Name = "الطلاب";
-            this.الطلاب.Text = "الأصول";
+            this.studentsRibbonPage.ImageOptions.Image = global::Kindergarten.Properties.Resources._6944290;
+            this.studentsRibbonPage.ImageOptions.ImageIndex = 41;
+            this.studentsRibbonPage.Name = "studentsRibbonPage";
+            this.studentsRibbonPage.Text = "الطلاب";
             // 
             // newAssetRibbonPageGroup
             // 
@@ -475,6 +497,8 @@ namespace Kindergarten
             // 
             // FinancialRecordsRibbonPageGroup
             // 
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.addNewFinancialItemBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.prepareFinancialReportsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.Name = "FinancialRecordsRibbonPageGroup";
             this.FinancialRecordsRibbonPageGroup.Text = "السجلات المالية";
@@ -712,7 +736,7 @@ namespace Kindergarten
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl mainRibbonControl;
-        private DevExpress.XtraBars.Ribbon.RibbonPage الطلاب;
+        private DevExpress.XtraBars.Ribbon.RibbonPage studentsRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup newAssetRibbonPageGroup;
         private System.Windows.Forms.ImageList ribbonImageList;
         private DevExpress.XtraBars.BarButtonItem addNewStudentBarButtonItem;
@@ -765,6 +789,8 @@ namespace Kindergarten
         private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private System.Windows.Forms.PictureBox logoPictureBox;
+        private DevExpress.XtraBars.BarButtonItem addNewFinancialItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageFinancialItemsBarButtonItem;
     }
 }
 

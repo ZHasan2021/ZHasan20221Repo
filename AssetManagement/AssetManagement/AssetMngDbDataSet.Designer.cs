@@ -7266,6 +7266,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnActionDate;
             
+            private global::System.Data.DataColumn columnTablesExported;
+            
             private global::System.Data.DataColumn columnActionBySection;
             
             private global::System.Data.DataColumn columnActionByDepartment;
@@ -7336,6 +7338,14 @@ namespace AssetManagement {
             public global::System.Data.DataColumn ActionDateColumn {
                 get {
                     return this.columnActionDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn TablesExportedColumn {
+                get {
+                    return this.columnTablesExported;
                 }
             }
             
@@ -7440,12 +7450,13 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ImportExportTblRow AddImportExportTblRow(string ImportOrExport, System.DateTime ActionDate, string ActionBySection, string ActionByDepartment, string ActionBySubDepartment, System.DateTime InsertedOn, System.DateTime LastModifiedOn, int InsertedBy, int LastModifiedBy, string ActionNotes) {
+            public ImportExportTblRow AddImportExportTblRow(string ImportOrExport, System.DateTime ActionDate, string TablesExported, string ActionBySection, string ActionByDepartment, string ActionBySubDepartment, System.DateTime InsertedOn, System.DateTime LastModifiedOn, int InsertedBy, int LastModifiedBy, string ActionNotes) {
                 ImportExportTblRow rowImportExportTblRow = ((ImportExportTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ImportOrExport,
                         ActionDate,
+                        TablesExported,
                         ActionBySection,
                         ActionByDepartment,
                         ActionBySubDepartment,
@@ -7486,6 +7497,7 @@ namespace AssetManagement {
                 this.columnID = base.Columns["ID"];
                 this.columnImportOrExport = base.Columns["ImportOrExport"];
                 this.columnActionDate = base.Columns["ActionDate"];
+                this.columnTablesExported = base.Columns["TablesExported"];
                 this.columnActionBySection = base.Columns["ActionBySection"];
                 this.columnActionByDepartment = base.Columns["ActionByDepartment"];
                 this.columnActionBySubDepartment = base.Columns["ActionBySubDepartment"];
@@ -7505,6 +7517,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnImportOrExport);
                 this.columnActionDate = new global::System.Data.DataColumn("ActionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActionDate);
+                this.columnTablesExported = new global::System.Data.DataColumn("TablesExported", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTablesExported);
                 this.columnActionBySection = new global::System.Data.DataColumn("ActionBySection", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActionBySection);
                 this.columnActionByDepartment = new global::System.Data.DataColumn("ActionByDepartment", typeof(string), null, global::System.Data.MappingType.Element);
@@ -7532,6 +7546,7 @@ namespace AssetManagement {
                 this.columnImportOrExport.AllowDBNull = false;
                 this.columnImportOrExport.MaxLength = 20;
                 this.columnActionDate.AllowDBNull = false;
+                this.columnTablesExported.MaxLength = 50;
                 this.columnActionBySection.MaxLength = 100;
                 this.columnActionByDepartment.MaxLength = 100;
                 this.columnActionBySubDepartment.MaxLength = 100;
@@ -15154,6 +15169,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string TablesExported {
+                get {
+                    try {
+                        return ((string)(this[this.tableImportExportTbl.TablesExportedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TablesExported\' in table \'ImportExportTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableImportExportTbl.TablesExportedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string ActionBySection {
                 get {
                     try {
@@ -15279,6 +15310,18 @@ namespace AssetManagement {
                 set {
                     this[this.tableImportExportTbl.ActionNotesColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsTablesExportedNull() {
+                return this.IsNull(this.tableImportExportTbl.TablesExportedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetTablesExportedNull() {
+                this[this.tableImportExportTbl.TablesExportedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24615,6 +24658,7 @@ SELECT ID, FinancialItemCode, FinancialItemSubDept, FinancialItemCategory, Finan
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ImportOrExport", "ImportOrExport");
             tableMapping.ColumnMappings.Add("ActionDate", "ActionDate");
+            tableMapping.ColumnMappings.Add("TablesExported", "TablesExported");
             tableMapping.ColumnMappings.Add("ActionBySection", "ActionBySection");
             tableMapping.ColumnMappings.Add("ActionByDepartment", "ActionByDepartment");
             tableMapping.ColumnMappings.Add("ActionBySubDepartment", "ActionBySubDepartment");
@@ -24626,11 +24670,13 @@ SELECT ID, FinancialItemCode, FinancialItemSubDept, FinancialItemCategory, Finan
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ImportExportTbl] WHERE (([ID] = @Original_ID) AND ([ImportOrExport] = @Original_ImportOrExport) AND ([ActionDate] = @Original_ActionDate) AND ((@IsNull_ActionBySection = 1 AND [ActionBySection] IS NULL) OR ([ActionBySection] = @Original_ActionBySection)) AND ((@IsNull_ActionByDepartment = 1 AND [ActionByDepartment] IS NULL) OR ([ActionByDepartment] = @Original_ActionByDepartment)) AND ((@IsNull_ActionBySubDepartment = 1 AND [ActionBySubDepartment] IS NULL) OR ([ActionBySubDepartment] = @Original_ActionBySubDepartment)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ImportExportTbl] WHERE (([ID] = @Original_ID) AND ([ImportOrExport] = @Original_ImportOrExport) AND ([ActionDate] = @Original_ActionDate) AND ((@IsNull_TablesExported = 1 AND [TablesExported] IS NULL) OR ([TablesExported] = @Original_TablesExported)) AND ((@IsNull_ActionBySection = 1 AND [ActionBySection] IS NULL) OR ([ActionBySection] = @Original_ActionBySection)) AND ((@IsNull_ActionByDepartment = 1 AND [ActionByDepartment] IS NULL) OR ([ActionByDepartment] = @Original_ActionByDepartment)) AND ((@IsNull_ActionBySubDepartment = 1 AND [ActionBySubDepartment] IS NULL) OR ([ActionBySubDepartment] = @Original_ActionBySubDepartment)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Original_LastModifiedBy)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImportOrExport", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImportOrExport", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ActionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TablesExported", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TablesExported", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActionBySection", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ActionBySection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActionByDepartment", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionByDepartment", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -24647,11 +24693,12 @@ SELECT ID, FinancialItemCode, FinancialItemSubDept, FinancialItemCategory, Finan
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastModifiedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ImportExportTbl] ([ImportOrExport], [ActionDate], [ActionBySection], [ActionByDepartment], [ActionBySubDepartment], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy], [ActionNotes]) VALUES (@ImportOrExport, @ActionDate, @ActionBySection, @ActionByDepartment, @ActionBySubDepartment, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy, @ActionNotes);
-SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, ActionNotes FROM ImportExportTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ImportExportTbl] ([ImportOrExport], [ActionDate], [TablesExported], [ActionBySection], [ActionByDepartment], [ActionBySubDepartment], [InsertedOn], [LastModifiedOn], [InsertedBy], [LastModifiedBy], [ActionNotes]) VALUES (@ImportOrExport, @ActionDate, @TablesExported, @ActionBySection, @ActionByDepartment, @ActionBySubDepartment, @InsertedOn, @LastModifiedOn, @InsertedBy, @LastModifiedBy, @ActionNotes);
+SELECT ID, ImportOrExport, ActionDate, TablesExported, ActionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, ActionNotes FROM ImportExportTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImportOrExport", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImportOrExport", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TablesExported", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionBySection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionByDepartment", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionByDepartment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionBySubDepartment", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySubDepartment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24663,28 +24710,31 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[ImportExportTbl] SET [ImportOrExport] = @ImportOrExport, [ActionDat" +
-                "e] = @ActionDate, [ActionBySection] = @ActionBySection, [ActionByDepartment] = @" +
-                "ActionByDepartment, [ActionBySubDepartment] = @ActionBySubDepartment, [InsertedO" +
-                "n] = @InsertedOn, [LastModifiedOn] = @LastModifiedOn, [InsertedBy] = @InsertedBy" +
-                ", [LastModifiedBy] = @LastModifiedBy, [ActionNotes] = @ActionNotes WHERE (([ID] " +
-                "= @Original_ID) AND ([ImportOrExport] = @Original_ImportOrExport) AND ([ActionDa" +
-                "te] = @Original_ActionDate) AND ((@IsNull_ActionBySection = 1 AND [ActionBySecti" +
-                "on] IS NULL) OR ([ActionBySection] = @Original_ActionBySection)) AND ((@IsNull_A" +
-                "ctionByDepartment = 1 AND [ActionByDepartment] IS NULL) OR ([ActionByDepartment]" +
-                " = @Original_ActionByDepartment)) AND ((@IsNull_ActionBySubDepartment = 1 AND [A" +
-                "ctionBySubDepartment] IS NULL) OR ([ActionBySubDepartment] = @Original_ActionByS" +
-                "ubDepartment)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([Inser" +
-                "tedOn] = @Original_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifi" +
-                "edOn] IS NULL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_I" +
-                "nsertedBy = 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)" +
-                ") AND ((@IsNull_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifi" +
-                "edBy] = @Original_LastModifiedBy)));\r\nSELECT ID, ImportOrExport, ActionDate, Act" +
-                "ionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastModifie" +
-                "dOn, InsertedBy, LastModifiedBy, ActionNotes FROM ImportExportTbl WHERE (ID = @I" +
-                "D)";
+                "e] = @ActionDate, [TablesExported] = @TablesExported, [ActionBySection] = @Actio" +
+                "nBySection, [ActionByDepartment] = @ActionByDepartment, [ActionBySubDepartment] " +
+                "= @ActionBySubDepartment, [InsertedOn] = @InsertedOn, [LastModifiedOn] = @LastMo" +
+                "difiedOn, [InsertedBy] = @InsertedBy, [LastModifiedBy] = @LastModifiedBy, [Actio" +
+                "nNotes] = @ActionNotes WHERE (([ID] = @Original_ID) AND ([ImportOrExport] = @Ori" +
+                "ginal_ImportOrExport) AND ([ActionDate] = @Original_ActionDate) AND ((@IsNull_Ta" +
+                "blesExported = 1 AND [TablesExported] IS NULL) OR ([TablesExported] = @Original_" +
+                "TablesExported)) AND ((@IsNull_ActionBySection = 1 AND [ActionBySection] IS NULL" +
+                ") OR ([ActionBySection] = @Original_ActionBySection)) AND ((@IsNull_ActionByDepa" +
+                "rtment = 1 AND [ActionByDepartment] IS NULL) OR ([ActionByDepartment] = @Origina" +
+                "l_ActionByDepartment)) AND ((@IsNull_ActionBySubDepartment = 1 AND [ActionBySubD" +
+                "epartment] IS NULL) OR ([ActionBySubDepartment] = @Original_ActionBySubDepartmen" +
+                "t)) AND ((@IsNull_InsertedOn = 1 AND [InsertedOn] IS NULL) OR ([InsertedOn] = @O" +
+                "riginal_InsertedOn)) AND ((@IsNull_LastModifiedOn = 1 AND [LastModifiedOn] IS NU" +
+                "LL) OR ([LastModifiedOn] = @Original_LastModifiedOn)) AND ((@IsNull_InsertedBy =" +
+                " 1 AND [InsertedBy] IS NULL) OR ([InsertedBy] = @Original_InsertedBy)) AND ((@Is" +
+                "Null_LastModifiedBy = 1 AND [LastModifiedBy] IS NULL) OR ([LastModifiedBy] = @Or" +
+                "iginal_LastModifiedBy)));\r\nSELECT ID, ImportOrExport, ActionDate, TablesExported" +
+                ", ActionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastMo" +
+                "difiedOn, InsertedBy, LastModifiedBy, ActionNotes FROM ImportExportTbl WHERE (ID" +
+                " = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImportOrExport", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImportOrExport", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TablesExported", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionBySection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionByDepartment", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionByDepartment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActionBySubDepartment", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySubDepartment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24696,6 +24746,8 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImportOrExport", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImportOrExport", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ActionDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TablesExported", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TablesExported", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TablesExported", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActionBySection", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ActionBySection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionBySection", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActionByDepartment", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActionByDepartment", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -24726,9 +24778,9 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Actio" +
-                "nBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, Action" +
-                "Notes FROM dbo.ImportExportTbl";
+            this._commandCollection[0].CommandText = "SELECT ID, ImportOrExport, ActionDate, TablesExported, ActionBySection, ActionByD" +
+                "epartment, ActionBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastMo" +
+                "difiedBy, ActionNotes FROM dbo.ImportExportTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -24789,7 +24841,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_ImportOrExport, System.DateTime Original_ActionDate, string Original_ActionBySection, string Original_ActionByDepartment, string Original_ActionBySubDepartment, global::System.Nullable<global::System.DateTime> Original_InsertedOn, global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, global::System.Nullable<int> Original_InsertedBy, global::System.Nullable<int> Original_LastModifiedBy) {
+        public virtual int Delete(int Original_ID, string Original_ImportOrExport, System.DateTime Original_ActionDate, string Original_TablesExported, string Original_ActionBySection, string Original_ActionByDepartment, string Original_ActionBySubDepartment, global::System.Nullable<global::System.DateTime> Original_InsertedOn, global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, global::System.Nullable<int> Original_InsertedBy, global::System.Nullable<int> Original_LastModifiedBy) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_ImportOrExport == null)) {
                 throw new global::System.ArgumentNullException("Original_ImportOrExport");
@@ -24798,61 +24850,69 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ImportOrExport));
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_ActionDate));
-            if ((Original_ActionBySection == null)) {
+            if ((Original_TablesExported == null)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_ActionBySection));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_TablesExported));
             }
-            if ((Original_ActionByDepartment == null)) {
+            if ((Original_ActionBySection == null)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_ActionByDepartment));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_ActionBySection));
             }
-            if ((Original_ActionBySubDepartment == null)) {
+            if ((Original_ActionByDepartment == null)) {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ActionBySubDepartment));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ActionByDepartment));
             }
-            if ((Original_InsertedOn.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((System.DateTime)(Original_InsertedOn.Value));
-            }
-            else {
+            if ((Original_ActionBySubDepartment == null)) {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastModifiedOn.HasValue == true)) {
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_ActionBySubDepartment));
+            }
+            if ((Original_InsertedOn.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((System.DateTime)(Original_InsertedOn.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((Original_InsertedBy.HasValue == true)) {
+            if ((Original_LastModifiedOn.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_InsertedBy.Value));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_LastModifiedBy.HasValue == true)) {
+            if ((Original_InsertedBy.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_LastModifiedBy.Value));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_InsertedBy.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Original_LastModifiedBy.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_LastModifiedBy.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -24874,7 +24934,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string ImportOrExport, System.DateTime ActionDate, string ActionBySection, string ActionByDepartment, string ActionBySubDepartment, global::System.Nullable<global::System.DateTime> InsertedOn, global::System.Nullable<global::System.DateTime> LastModifiedOn, global::System.Nullable<int> InsertedBy, global::System.Nullable<int> LastModifiedBy, string ActionNotes) {
+        public virtual int Insert(string ImportOrExport, System.DateTime ActionDate, string TablesExported, string ActionBySection, string ActionByDepartment, string ActionBySubDepartment, global::System.Nullable<global::System.DateTime> InsertedOn, global::System.Nullable<global::System.DateTime> LastModifiedOn, global::System.Nullable<int> InsertedBy, global::System.Nullable<int> LastModifiedBy, string ActionNotes) {
             if ((ImportOrExport == null)) {
                 throw new global::System.ArgumentNullException("ImportOrExport");
             }
@@ -24882,53 +24942,59 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ImportOrExport));
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(ActionDate));
-            if ((ActionBySection == null)) {
+            if ((TablesExported == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ActionBySection));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(TablesExported));
             }
-            if ((ActionByDepartment == null)) {
+            if ((ActionBySection == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ActionByDepartment));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ActionBySection));
             }
-            if ((ActionBySubDepartment == null)) {
+            if ((ActionByDepartment == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ActionBySubDepartment));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ActionByDepartment));
             }
-            if ((InsertedOn.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(InsertedOn.Value));
-            }
-            else {
+            if ((ActionBySubDepartment == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((LastModifiedOn.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(LastModifiedOn.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ActionBySubDepartment));
+            }
+            if ((InsertedOn.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(InsertedOn.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((InsertedBy.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(InsertedBy.Value));
+            if ((LastModifiedOn.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(LastModifiedOn.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((LastModifiedBy.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(LastModifiedBy.Value));
+            if ((InsertedBy.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(InsertedBy.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((ActionNotes == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((LastModifiedBy.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((int)(LastModifiedBy.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ActionNotes));
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((ActionNotes == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(ActionNotes));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -24953,6 +25019,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
         public virtual int Update(
                     string ImportOrExport, 
                     System.DateTime ActionDate, 
+                    string TablesExported, 
                     string ActionBySection, 
                     string ActionByDepartment, 
                     string ActionBySubDepartment, 
@@ -24964,6 +25031,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                     int Original_ID, 
                     string Original_ImportOrExport, 
                     System.DateTime Original_ActionDate, 
+                    string Original_TablesExported, 
                     string Original_ActionBySection, 
                     string Original_ActionByDepartment, 
                     string Original_ActionBySubDepartment, 
@@ -24979,119 +25047,133 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ImportOrExport));
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(ActionDate));
-            if ((ActionBySection == null)) {
+            if ((TablesExported == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ActionBySection));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(TablesExported));
             }
-            if ((ActionByDepartment == null)) {
+            if ((ActionBySection == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ActionByDepartment));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ActionBySection));
             }
-            if ((ActionBySubDepartment == null)) {
+            if ((ActionByDepartment == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ActionBySubDepartment));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ActionByDepartment));
             }
-            if ((InsertedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(InsertedOn.Value));
-            }
-            else {
+            if ((ActionBySubDepartment == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((LastModifiedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(LastModifiedOn.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ActionBySubDepartment));
+            }
+            if ((InsertedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(InsertedOn.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((InsertedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(InsertedBy.Value));
+            if ((LastModifiedOn.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(LastModifiedOn.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((LastModifiedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(LastModifiedBy.Value));
+            if ((InsertedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(InsertedBy.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((ActionNotes == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((LastModifiedBy.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(LastModifiedBy.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ActionNotes));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ID));
+            if ((ActionNotes == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(ActionNotes));
+            }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_ID));
             if ((Original_ImportOrExport == null)) {
                 throw new global::System.ArgumentNullException("Original_ImportOrExport");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_ImportOrExport));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_ImportOrExport));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_ActionDate));
-            if ((Original_ActionBySection == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_ActionDate));
+            if ((Original_TablesExported == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_ActionBySection));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_TablesExported));
+            }
+            if ((Original_ActionBySection == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_ActionBySection));
             }
             if ((Original_ActionByDepartment == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_ActionByDepartment));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_ActionByDepartment));
             }
             if ((Original_ActionBySubDepartment == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_ActionBySubDepartment));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_ActionBySubDepartment));
             }
             if ((Original_InsertedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_InsertedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(Original_InsertedOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             if ((Original_LastModifiedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((System.DateTime)(Original_LastModifiedOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             if ((Original_InsertedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_InsertedBy.Value));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(Original_InsertedBy.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
             if ((Original_LastModifiedBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(Original_LastModifiedBy.Value));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(Original_LastModifiedBy.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -25115,6 +25197,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
         public virtual int Update(
                     string ImportOrExport, 
                     System.DateTime ActionDate, 
+                    string TablesExported, 
                     string ActionBySection, 
                     string ActionByDepartment, 
                     string ActionBySubDepartment, 
@@ -25126,6 +25209,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                     int Original_ID, 
                     string Original_ImportOrExport, 
                     System.DateTime Original_ActionDate, 
+                    string Original_TablesExported, 
                     string Original_ActionBySection, 
                     string Original_ActionByDepartment, 
                     string Original_ActionBySubDepartment, 
@@ -25133,7 +25217,7 @@ SELECT ID, ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, Acti
                     global::System.Nullable<global::System.DateTime> Original_LastModifiedOn, 
                     global::System.Nullable<int> Original_InsertedBy, 
                     global::System.Nullable<int> Original_LastModifiedBy) {
-            return this.Update(ImportOrExport, ActionDate, ActionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, ActionNotes, Original_ID, Original_ImportOrExport, Original_ActionDate, Original_ActionBySection, Original_ActionByDepartment, Original_ActionBySubDepartment, Original_InsertedOn, Original_LastModifiedOn, Original_InsertedBy, Original_LastModifiedBy, Original_ID);
+            return this.Update(ImportOrExport, ActionDate, TablesExported, ActionBySection, ActionByDepartment, ActionBySubDepartment, InsertedOn, LastModifiedOn, InsertedBy, LastModifiedBy, ActionNotes, Original_ID, Original_ImportOrExport, Original_ActionDate, Original_TablesExported, Original_ActionBySection, Original_ActionByDepartment, Original_ActionBySubDepartment, Original_InsertedOn, Original_LastModifiedOn, Original_InsertedBy, Original_LastModifiedBy, Original_ID);
         }
     }
     
