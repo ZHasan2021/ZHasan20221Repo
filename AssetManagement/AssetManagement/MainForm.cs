@@ -107,8 +107,8 @@ namespace AssetManagement
 
         private void manageAssetTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ManageAssetTblForm mngFrm = new ManageAssetTblForm();
-            mngFrm.ShowDialog();
+            CustomAssetsForm cuFrm = new CustomAssetsForm();
+            cuFrm.ShowDialog();
             UpdateAssetToDestructLabel();
         }
 

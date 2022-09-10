@@ -85,7 +85,7 @@ namespace AssetManagement.Assets
 
         private void searchByAssetDescriptionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            searchByAssetDescriptionTextBox.Visible = searchByAssetDescriptionCheckBox.Checked;
+            searchByAssetSpecificationsTextBox.Visible = searchByAssetSpecificationsCheckBox.Checked;
         }
 
         private void searchByPurchaseDateCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -190,6 +190,92 @@ namespace AssetManagement.Assets
                     {
                         assetsQry = assetsQry.Where(ast => ast.AssetMinorCategory == Convert.ToInt32(searchByMinorCategoryLookUpEdit.EditValue));
                     }
+                }
+                if (searchByStatusCheckBox.Checked)
+                {
+                    if (searchByStatusLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "حدد الحالة أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        assetsQry = assetsQry.Where(ast => ast.CurrentStatus == Convert.ToInt32(searchByStatusLookUpEdit.EditValue));
+                    }
+                }
+                if (searchByAssetCodeCheckBox.Checked)
+                {
+                    if (searchByAssetCodeTextBox.Text.Trim() == "")
+                    {
+                        mainAlertControl.Show(this, "اكتب كود الأصل أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        assetsQry = assetsQry.Where(ast => ast.AssetCode.Contains(searchByAssetCodeTextBox.Text.Trim()));
+                    }
+                }
+                if (searchByCustodianNameCheckBox.Checked)
+                {
+                    if (searchByCustodianNameTextBox.Text.Trim() == "")
+                    {
+                        mainAlertControl.Show(this, "اكتب صاحب العهدة أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        assetsQry = assetsQry.Where(ast => ast.CustodianName.Contains(searchByCustodianNameTextBox.Text.Trim()));
+                    }
+                }
+                if (searchByAssetSpecificationsCheckBox.Checked)
+                {
+                    if (searchByAssetSpecificationsTextBox.Text.Trim() == "")
+                    {
+                        mainAlertControl.Show(this, "اكتب مواصفات الأصل أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    else
+                    {
+                        assetsQry = assetsQry.Where(ast => ast.AssetSpecifications.Contains(searchByAssetSpecificationsTextBox.Text.Trim()));
+                    }
+                }
+                if (searchByPurchaseDateCheckBox.Checked)
+                {
+                    if (searchByPurchaseDateDateEdit_From.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اكتب بداية تاريخ الشراء أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (searchByPurchaseDateDateEdit_To.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اكتب نهاية تاريخ الشراء أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) > Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue))
+                    {
+                        mainAlertControl.Show(this, "بداية تاريخ الشراء أحدث من نهاية تاريخ الشراء", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    assetsQry = assetsQry.Where(ast => ast.PurchaseDate != null && ast.PurchaseDate >= Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) && ast.PurchaseDate <= Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue));
+                }
+                if (searchByInsertionDateCheckBox.Checked)
+                {
+                    if (searchByInsertionDateDateEdit_From.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اكتب بداية تاريخ الإدخال أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (searchByInsertionDateDateEdit_To.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اكتب نهاية تاريخ الإدخال أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) > Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue))
+                    {
+                        mainAlertControl.Show(this, "بداية تاريخ الإدخال أحدث من نهاية تاريخ الإدخال", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    assetsQry = assetsQry.Where(ast => ast.InsertedOn != null && ast.InsertedOn >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.InsertedOn <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
                 }
             }
 

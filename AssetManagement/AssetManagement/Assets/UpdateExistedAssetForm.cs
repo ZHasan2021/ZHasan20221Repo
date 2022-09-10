@@ -84,6 +84,7 @@ namespace AssetManagement.Assets
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(200, 500);
         }
 
         private void searchAssetBtn_Click(object sender, EventArgs e)

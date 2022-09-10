@@ -181,6 +181,12 @@
     <Compile Include="Assets\AssetsXtraReport.Designer.cs">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\CustomAssetsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\CustomAssetsForm.Designer.cs">
+      <DependentUpon>CustomAssetsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assets\ManageAssetTransactionTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -416,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetsToDestructForm.resx">
       <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\CustomAssetsForm.resx">
+      <DependentUpon>CustomAssetsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\ManageAssetTransactionTblForm.resx">
       <DependentUpon>ManageAssetTransactionTblForm.cs</DependentUpon>

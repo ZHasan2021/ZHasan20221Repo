@@ -3,20 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
-
+        IQueryable<AssetVw> customDS = null;
         public ManageAssetTblForm()
         {
             InitializeComponent();
+        }
+
+        public ManageAssetTblForm(IQueryable<AssetVw> customDS)
+        {
+            InitializeComponent();
+            this.customDS = customDS;
         }
 
         private void ManageAssetTblForm_Load(object sender, EventArgs e)
@@ -44,9 +52,37 @@ namespace AssetManagement.Assets
 
             this.MinimumSize = this.Size;
 
+            assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewAsset == true;
             assetGridControl.EmbeddedNavigator.Buttons.Edit.Visible = assetGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.UpdateExistedAsset == true;
             saveChangesBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = StaticCode.activeUserRole.DeleteAssetRecord == true;
+            assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
+            saveChangesBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            if (customDS != null)
+            {
+                var lll = assetVwBindingSource;
+                List<int> IDsIncluded = customDS.Select(asv1 => asv1.معرف_الأصل).ToList();
+                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                this.assetVwTableAdapter.Fill(customVw);
+                assetGridControl.DataSource = assetVwBindingSource;
+                //this.Validate();
+                //assetVwBindingSource.EndEdit();
+                //tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+            }
         }
 
         private void assetGridView_AfterPrintRow(object sender, DevExpress.XtraGrid.Views.Printing.PrintRowEventArgs e)
@@ -72,7 +108,7 @@ namespace AssetManagement.Assets
         private void saveChangesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Validate();
-            assetTblBindingSource.EndEdit();
+            assetVwBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
         }
@@ -147,6 +183,11 @@ namespace AssetManagement.Assets
             {
                 mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
             }
+        }
+
+        private void toolbarFormControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

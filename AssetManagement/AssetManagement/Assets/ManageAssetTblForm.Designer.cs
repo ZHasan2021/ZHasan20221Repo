@@ -242,6 +242,7 @@ namespace AssetManagement.Assets
             this.toolbarFormControl1.TitleItemLinks.Add(this.showAssetCardBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.editDataBarButtonItem);
             this.toolbarFormControl1.ToolbarForm = this;
+            this.toolbarFormControl1.Click += new System.EventHandler(this.toolbarFormControl1_Click);
             // 
             // toolbarFormManager2
             // 
@@ -389,7 +390,6 @@ namespace AssetManagement.Assets
             // 
             // assetGridControl
             // 
-            this.assetGridControl.DataSource = this.assetVwBindingSource;
             this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assetGridControl.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
@@ -778,11 +778,11 @@ namespace AssetManagement.Assets
             // colالعمرالافتراضيالمتبقيللأصل
             // 
             this.colالعمرالافتراضيالمتبقيللأصل.FieldName = "العمر الافتراضي المتبقي للأصل";
-            this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 80;
+            this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 150;
             this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
             this.colالعمرالافتراضيالمتبقيللأصل.Visible = true;
             this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 34;
-            this.colالعمرالافتراضيالمتبقيللأصل.Width = 94;
+            this.colالعمرالافتراضيالمتبقيللأصل.Width = 150;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -945,6 +945,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
