@@ -87,6 +87,8 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد الفئة الفرعية للأصل\r\n";
                     if (purchaseDateDateEdit.EditValue == null && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تحديد تاريخ الشراء\r\n";
+                    if (purchaseDateDateEdit.EditValue != null && DateTime.Today < Convert.ToDateTime(purchaseDateDateEdit.EditValue))
+                        errorMsg += "تاريخ الشراء أحدث من تاريخ اليوم\r\n";
                     if (purchasePriceNumericUpDown.Value == 0 && isNewAssetRadioButton.Checked)
                         errorMsg += "لم يتم تقدير سعر الشراء\r\n";
                     if (purchasePriceCurrencyLookUpEdit.EditValue == null && isNewAssetRadioButton.Checked)
@@ -109,7 +111,14 @@ namespace AssetManagement.Assets
                     e.Cancel = errorMsg != "";
                     break;
                 case 2:
-                    //e.Cancel = true;
+                    if (custodianNameTextBox.Text.Trim() == "")
+                        errorMsg += "اسم صاحب العهدة فارغ\r\n";
+                    errorSummaryLabel2.Text = errorMsg.Replace("\r\n", "، ").Trim().Trim('،').Trim();
+                    if (errorMsg != "")
+                    {
+                        mainAlertControl.Show(this, $"هناك بعض الإدخالات الناقصة\r\n{errorMsg}", StaticCode.ApplicationTitle);
+                    }
+                    e.Cancel = errorMsg != "";
                     break;
                 default:
                     break;
@@ -144,7 +153,7 @@ namespace AssetManagement.Assets
                     Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text,
                     Color = colorComboBox.Text,
                     Volume = volumeTextBox.Text.Trim(),
-                    PurchasePrice = Convert.ToInt32(actualCurrentPriceNumericUpDown.Value),
+                    PurchasePrice = Convert.ToInt32(purchasePriceNumericUpDown.Value),
                     PurchasePriceCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue),
                     PlaceOfPresence = placeOfPresenceTextBox.Text.Trim(),
                     CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue),

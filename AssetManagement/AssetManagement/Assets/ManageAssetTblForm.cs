@@ -15,13 +15,13 @@ namespace AssetManagement.Assets
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
-        IQueryable<AssetVw> customDS = null;
+        IQueryable<AssetTbl> customDS = null;
         public ManageAssetTblForm()
         {
             InitializeComponent();
         }
 
-        public ManageAssetTblForm(IQueryable<AssetVw> customDS)
+        public ManageAssetTblForm(IQueryable<AssetTbl> customDS)
         {
             InitializeComponent();
             this.customDS = customDS;
@@ -53,15 +53,20 @@ namespace AssetManagement.Assets
             this.MinimumSize = this.Size;
 
             assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewAsset == true;
+            editDataBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             assetGridControl.EmbeddedNavigator.Buttons.Edit.Visible = assetGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = StaticCode.activeUserRole.UpdateExistedAsset == true;
+            deleteAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteAssetRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             saveChangesBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = StaticCode.activeUserRole.DeleteAssetRecord == true;
             assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
             saveChangesBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             if (customDS != null)
             {
-                var lll = assetVwBindingSource;
-                List<int> IDsIncluded = customDS.Select(asv1 => asv1.معرف_الأصل).ToList();
+                List<int> IDsIncluded = customDS.Select(as1 => as1.ID).ToList();
+                string plusQry = "";
+                foreach (int oneID in IDsIncluded)
+                    plusQry += oneID + ", ";
+                plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
                 AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
                 for (int i = 0; i < customVw.Rows.Count; i++)
                 {
@@ -77,11 +82,7 @@ namespace AssetManagement.Assets
                         continue;
                     }
                 }
-                this.assetVwTableAdapter.Fill(customVw);
-                assetGridControl.DataSource = assetVwBindingSource;
-                //this.Validate();
-                //assetVwBindingSource.EndEdit();
-                //tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
             }
         }
 
@@ -188,6 +189,28 @@ namespace AssetManagement.Assets
         private void toolbarFormControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void deleteAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                DeleteAssetForm cardVwFrm = new DeleteAssetForm(currAssetID);
+                cardVwFrm.ShowDialog();
+                currRow = 0;
+                this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
+                this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+            }
         }
     }
 }

@@ -38,7 +38,10 @@ namespace AssetManagement
                 SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
                 if (dbConn.State != System.Data.ConnectionState.Open)
                     dbConn.Open();
-                using (SqlCommand backupDbComm = new SqlCommand($"Backup DATABASE AssetMngDb TO DISK='{backupName}'", dbConn))
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Settings().AssetMngDbConnectionString);
+                string server = builder.DataSource;
+                string database = builder.InitialCatalog;
+                using (SqlCommand backupDbComm = new SqlCommand($"Backup DATABASE {builder.InitialCatalog} TO DISK='{backupName}'", dbConn))
                 {
                     backupDbComm.ExecuteNonQuery();
                 }
@@ -57,7 +60,10 @@ namespace AssetManagement
                 SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
                 if (dbConn.State != System.Data.ConnectionState.Open)
                     dbConn.Open();
-                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE AssetMngDb FROM DISK='{backupName}' WITH REPLACE", dbConn))
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Settings().AssetMngDbConnectionString);
+                string server = builder.DataSource;
+                string database = builder.InitialCatalog;
+                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE {builder.InitialCatalog} FROM DISK='{backupName}' WITH REPLACE", dbConn))
                 {
                     backupDbComm.ExecuteNonQuery();
                 }
@@ -86,6 +92,45 @@ namespace AssetManagement
             sqlComm.CommandType = System.Data.CommandType.StoredProcedure;
             sqlComm.ExecuteNonQuery();
         }
+
+        //public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
+        //{
+        //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+        //    if (whereIndex == -1)
+        //    {
+        //        this.CommandCollection[0].CommandText += whereQuery;
+        //    }
+        //    else
+        //    {
+        //        this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+        //    }
+        //    this.Adapter.SelectCommand = this.CommandCollection[0];
+        //    if ((this.ClearBeforeFill == true))
+        //    {
+        //        dataTable.Clear();
+        //    }
+        //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+
+        //public virtual int FillByQuery(AssetMngDbDataSet.FinancialItemVwDataTable dataTable, string whereQuery)
+        //{
+        //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+        //    if (whereIndex == -1)
+        //    {
+        //        this.CommandCollection[0].CommandText += whereQuery;
+        //    }
+        //    else
+        //    {
+        //        this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+        //    }
+        //    this.Adapter.SelectCommand = this.CommandCollection[0];
+        //    if ((this.ClearBeforeFill == true))
+        //    {
+        //        dataTable.Clear();
+        //    }
+        //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+        //}
         #endregion
 
         #region Login

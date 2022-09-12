@@ -89,6 +89,7 @@ namespace AssetManagement.Assets
                 if (assetSold)
                 {
                     assetToTransact.IsSold = true;
+                    assetToTransact.IsOutOfWork = true;
                     MainCategoryTbl assetMaCa = StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == assetToTransact.AssetMinorCategory).MainCategory);
                     if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fic1 => fic1.FinancialItemCategoryName == assetMaCa.MainCategoryName) == 0)
                     {

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -279,14 +280,35 @@ namespace AssetManagement.Assets
                 }
             }
 
-            List<int> assetQryIDs = assetsQry.Select(ast1 => ast1.ID).ToList();
-            var assetsVwQry = StaticCode.mainDbContext.AssetVws.Where(ast2 => assetQryIDs.Contains(ast2.معرف_الأصل));
-            assetGridControl.DataSource = assetsVwQry;
             assetGridControl.Visible =
             exportToExcelDropDownButton.Enabled = assetsQry.Count() > 0;
             if (assetsQry.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا توجد نتائج", StaticCode.ApplicationTitle);
+            }
+            else
+            {
+                List<int> IDsIncluded = assetsQry.Select(as1 => as1.ID).ToList();
+                string plusQry = "";
+                foreach (int oneID in IDsIncluded)
+                    plusQry += oneID + ", ";
+                plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
             }
         }
 
@@ -513,7 +535,7 @@ namespace AssetManagement.Assets
 
                     astWs.Cells[currentRow, 2].Value = astCount;
                     astWs.Cells[currentRow, 3].Value = oneAst.AssetCode;
-                    astWs.Cells[currentRow, 4].Value = oneAst.AssetSpecifications;
+                    astWs.Cells[currentRow, 4].Value = $"{StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName}، {oneAst.AssetSpecifications}";
                     astWs.Cells[currentRow, 5].Value = oneAst.ItemsQuantity;
                     astWs.Cells[currentRow, 6].Value = oneAst.OwnerName;
                     astWs.Cells[currentRow, 7].Value = oneAst.EstateAddress;
@@ -593,26 +615,26 @@ namespace AssetManagement.Assets
 
         private void searchBySectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            if (searchBySectionCheckBox.Checked)
-            {
-                if (searchBySectionLookUpEdit.EditValue == null)
-                    return;
-                var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
-                searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
-                searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
-                searchBySubDepartmentLookUpEdit.EditValue = null;
-            }
+            //if (searchBySectionCheckBox.Checked)
+            //{
+            //    if (searchBySectionLookUpEdit.EditValue == null)
+            //        return;
+            //    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+            //    searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
+            //    searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
+            //    searchBySubDepartmentLookUpEdit.EditValue = null;
+            //}
         }
 
         private void searchByDepartmentLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            if (searchByDepartmentCheckBox.Checked)
-            {
-                if (searchByDepartmentLookUpEdit.EditValue == null)
-                    return;
-                var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
-                searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
-            }
+            //if (searchByDepartmentCheckBox.Checked)
+            //{
+            //    if (searchByDepartmentLookUpEdit.EditValue == null)
+            //        return;
+            //    var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+            //    searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+            //}
         }
     }
 }

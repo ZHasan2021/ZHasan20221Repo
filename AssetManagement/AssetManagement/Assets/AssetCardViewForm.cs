@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -31,7 +32,25 @@ namespace AssetManagement.Assets
             this.MinimumSize = this.Size;
 
             if (assetID != 0)
-                assetVwGridControl.DataSource = StaticCode.mainDbContext.AssetVws.Where(astv1 => astv1.معرف_الأصل == assetID);
+            {
+                string plusQry = $" WHERE [معرف الأصل] = ({assetID});";
+                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (assetID != Convert.ToInt32(oneRowItemArray[0]))
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
         }
 
         private void saveChangesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

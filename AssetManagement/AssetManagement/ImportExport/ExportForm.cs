@@ -17,6 +17,7 @@ namespace AssetManagement.Finance
 {
     public partial class ExportForm : Form
     {
+        string tablesExported = "";
         public ExportForm()
         {
             InitializeComponent();
@@ -103,11 +104,32 @@ namespace AssetManagement.Finance
             var tbls = dataModel.GetTables();
             List<string> tbls2 = new List<string>();
             if (exportAssetsRadioButton.Checked)
+            {
                 tbls2 = new List<string>() { "AssetTbl" };
+                tablesExported = "أصول";
+                if (includeMovementsAndTransactionsInExportCheckBox.Checked)
+                {
+                    tbls2.Add("AssetMovementTbl");
+                    tbls2.Add("AssetTransactionTbl");
+                    tablesExported = "أصول وسجلات نقل وتصريف";
+                }
+            }
             if (exportFinancialItemsRadioButton.Checked)
+            {
                 tbls2 = new List<string>() { "FinancialItemTbl" };
+                tablesExported = "سجلات مالية";
+            }
             if (exportAssetsAndFinancialItemsRadioButton.Checked)
+            {
                 tbls2 = new List<string>() { "AssetTbl", "FinancialItemTbl" };
+                tablesExported = "أصول وسجلات مالية";
+                if (includeMovementsAndTransactionsInExportCheckBox.Checked)
+                {
+                    tbls2.Add("AssetMovementTbl");
+                    tbls2.Add("AssetTransactionTbl");
+                    tablesExported = "أصول وسجلات مالية وسجلات نقل وتصريف";
+                }
+            }
             if (!Directory.Exists(StaticCode.ExportFolder))
                 Directory.CreateDirectory(StaticCode.ExportFolder);
             string outFile1 = $"Export{DateTime.Now.Ticks}{((exportBySectionRadioButton.Checked) ? $"-الدائرة {exportBySectionLookUpEdit.Text}" : "")}{((exportByDepartmentRadioButton.Checked) ? $"-القسم {exportByDepartmentLookUpEdit.Text}" : "")}{((exportBySubDepartmentRadioButton.Checked) ? $"-الوحدة {exportBySubDepartmentLookUpEdit.Text}" : "")}.xlsx";
@@ -141,6 +163,10 @@ namespace AssetManagement.Finance
                             case "FinancialItemTbl":
                                 fieldToFilter = "FinancialItemSubDept";
                                 break;
+                            case "AssetMovementTbl":
+                            case "AssetTransactionTbl":
+                                fieldToFilter = "AssetID IN (SELECT ID FROM AssetTbl WHERE AssetSubDepartment";
+                                break;
                             default:
                                 break;
                         }
@@ -150,6 +176,8 @@ namespace AssetManagement.Finance
                             queryStr += $" WHERE {fieldToFilter} IN (SELECT ID FROM SubDepartmentTbl WHERE MainDepartment = {exportByDepartmentLookUpEdit.EditValue})";
                         if (exportBySectionRadioButton.Checked)
                             queryStr += $" WHERE {fieldToFilter} IN (SELECT ID FROM SubDepartmentTbl WHERE MainDepartment IN (SELECT ID FROM SectionTbl WHERE ID = {exportBySectionLookUpEdit.EditValue}))";
+                        if (oneTblName == "AssetMovementTbl" || oneTblName == "AssetTransactionTbl")
+                            queryStr += ")";
                         SqlDataAdapter dbAdpt = new SqlDataAdapter(queryStr, dbConn);
                         DataTable oneDt = new DataTable();
                         dbAdpt.Fill(oneDt);
@@ -204,17 +232,17 @@ namespace AssetManagement.Finance
                     mainAlertControl.Show(this, "تم تصدير قاعدة البيانات بنجاح", StaticCode.ApplicationTitle, true);
                 }
 
-                ImportExportTbl newImport = new ImportExportTbl()
+                ImportExportTbl newExport = new ImportExportTbl()
                 {
                     ActionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
                     ImportOrExport = "تصدير",
-                    TablesExported = (exportAssetsRadioButton.Checked) ? "أصول" : ((exportFinancialItemsRadioButton.Checked) ? "سجلات مالية" : "أصول وسجلات مالية"),
+                    TablesExported = tablesExported,
                     ActionByDepartment = (exportByDepartmentRadioButton.Checked) ? exportByDepartmentLookUpEdit.Text : "",
                     ActionBySection = (exportBySectionRadioButton.Checked) ? exportBySectionLookUpEdit.Text : "",
                     ActionBySubDepartment = (exportBySubDepartmentRadioButton.Checked) ? exportBySubDepartmentLookUpEdit.Text : "",
                     ActionNotes = notesTextBox.Text.Trim(),
                 };
-                StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
+                StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newExport);
                 StaticCode.mainDbContext.SubmitChanges();
             }
             catch
@@ -226,6 +254,12 @@ namespace AssetManagement.Finance
         private void importData_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void exportAssetsRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            includeMovementsAndTransactionsInExportCheckBox.Visible = exportAssetsRadioButton.Checked || exportAssetsAndFinancialItemsRadioButton.Checked;
+            includeMovementsAndTransactionsInExportCheckBox.Checked = false;
         }
     }
 }

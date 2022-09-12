@@ -121,6 +121,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
+            this.deleteAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -241,6 +242,7 @@ namespace AssetManagement.Assets
             this.toolbarFormControl1.TitleItemLinks.Add(this.exportToExcelBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.showAssetCardBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.editDataBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.deleteAssetBarButtonItem);
             this.toolbarFormControl1.ToolbarForm = this;
             this.toolbarFormControl1.Click += new System.EventHandler(this.toolbarFormControl1_Click);
             // 
@@ -255,8 +257,9 @@ namespace AssetManagement.Assets
             this.saveChangesBarButtonItem,
             this.exportToExcelBarButtonItem,
             this.showAssetCardBarButtonItem,
-            this.editDataBarButtonItem});
-            this.toolbarFormManager2.MaxItemId = 4;
+            this.editDataBarButtonItem,
+            this.deleteAssetBarButtonItem});
+            this.toolbarFormManager2.MaxItemId = 5;
             // 
             // barDockControl1
             // 
@@ -390,6 +393,7 @@ namespace AssetManagement.Assets
             // 
             // assetGridControl
             // 
+            this.assetGridControl.DataSource = this.assetVwBindingSource;
             this.assetGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assetGridControl.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
@@ -457,6 +461,9 @@ namespace AssetManagement.Assets
             this.colالعمرالافتراضيالمتبقيللأصل});
             this.assetGridView.GridControl = this.assetGridControl;
             this.assetGridView.Name = "assetGridView";
+            this.assetGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.assetGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.assetGridView.OptionsBehavior.Editable = false;
             this.assetGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.assetGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
             this.assetGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
@@ -967,6 +974,14 @@ namespace AssetManagement.Assets
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
+            // deleteAssetBarButtonItem
+            // 
+            this.deleteAssetBarButtonItem.Caption = "حذف";
+            this.deleteAssetBarButtonItem.Id = 4;
+            this.deleteAssetBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteAssetBarButtonItem.ImageOptions.SvgImage")));
+            this.deleteAssetBarButtonItem.Name = "deleteAssetBarButtonItem";
+            this.deleteAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteAssetBarButtonItem_ItemClick);
+            // 
             // ManageAssetTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1115,5 +1130,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colالعمرالافتراضيالمتبقيللأصل;
         private DevExpress.XtraBars.BarButtonItem editDataBarButtonItem;
         private DevExpress.XtraGrid.Columns.GridColumn colالوحدة;
+        private DevExpress.XtraBars.BarButtonItem deleteAssetBarButtonItem;
     }
 }

@@ -16,7 +16,7 @@ namespace AssetManagement.Assets
 {
     public partial class CustomAssetsForm : Form
     {
-        IQueryable<AssetVw> assetsQry = null;
+        IQueryable<AssetTbl> assetsQry = null;
 
         public CustomAssetsForm()
         {
@@ -102,21 +102,21 @@ namespace AssetManagement.Assets
                 return;
             }
 
-            assetsQry = StaticCode.mainDbContext.AssetVws.Select(asv1 => asv1);
+            assetsQry = StaticCode.mainDbContext.AssetTbls.Select(asv1 => asv1);
             if (searchBySectionRadioButton.Checked)
             {
                 List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
                 List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                assetsQry = from qry in assetsQry where qry.الدائرة == searchBySectionLookUpEdit.Text select qry;
+                assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
             }
             if (searchByDepartmentRadioButton.Checked)
             {
                 List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
-                assetsQry = from qry in assetsQry where qry.القسم == searchByDepartmentLookUpEdit.Text select qry;
+                assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
             }
             if (searchBySubDepartmentRadioButton.Checked)
             {
-                assetsQry = from qry in assetsQry where qry.الوحدة == searchBySubDepartmentLookUpEdit.Text select qry;
+                assetsQry = from qry in assetsQry where qry.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue) select qry;
             }
             bool resultsFound = assetsQry != null && assetsQry.Count() > 0;
             if (!resultsFound)

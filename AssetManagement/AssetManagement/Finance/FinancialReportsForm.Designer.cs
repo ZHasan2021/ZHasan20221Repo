@@ -37,28 +37,30 @@ namespace AssetManagement.Finance
             this.fromDateLabel = new System.Windows.Forms.Label();
             this.toDateLabel = new System.Windows.Forms.Label();
             this.financialItemGridControl = new DevExpress.XtraGrid.GridControl();
-            this.financialItemTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFinancialItemCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFinancialItemCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colكودالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالبندالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colبيانالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colتاريختحريرالسجل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colواردأمصادر = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالمبلغالوارد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالمبلغالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالعملة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colملاحظاتإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
             this.financialItemCategoryRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colFinancialItemSubDept = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.subdRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.subDepartmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.colFinancialItemDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFinancialItemInsertionDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIncomingOrOutgoing = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIncomingAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOutgoingAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFinancialItemCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.currencyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colAdditionalNotes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.departmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.subdRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.subDepartmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter();
             this.searchFinancialItemDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportFinancialReportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
@@ -89,22 +91,25 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
             this.searchBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter();
+            this.financialItemVwBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subdRepositoryItemLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subdRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
             this.fromToPanel.SuspendLayout();
             this.searchWithinPeriodPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).BeginInit();
@@ -113,6 +118,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -180,9 +187,9 @@ namespace AssetManagement.Finance
             // 
             // financialItemGridControl
             // 
-            this.financialItemGridControl.DataSource = this.financialItemTblBindingSource;
+            this.financialItemGridControl.DataSource = this.financialItemVwBindingSource;
             this.financialItemGridControl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.financialItemGridControl.Location = new System.Drawing.Point(502, 0);
+            this.financialItemGridControl.Location = new System.Drawing.Point(590, 0);
             this.financialItemGridControl.MainView = this.financialItemGridView;
             this.financialItemGridControl.Name = "financialItemGridControl";
             this.financialItemGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -190,65 +197,143 @@ namespace AssetManagement.Finance
             this.currencyRepositoryItemLookUpEdit,
             this.repositoryItemLookUpEdit1,
             this.subdRepositoryItemLookUpEdit});
-            this.financialItemGridControl.Size = new System.Drawing.Size(879, 726);
+            this.financialItemGridControl.Size = new System.Drawing.Size(791, 726);
             this.financialItemGridControl.TabIndex = 600;
             this.financialItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.financialItemGridView});
             this.financialItemGridControl.Visible = false;
             // 
-            // financialItemTblBindingSource
-            // 
-            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
-            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // financialItemGridView
             // 
             this.financialItemGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colID,
-            this.colFinancialItemCode,
-            this.colFinancialItemCategory,
-            this.colFinancialItemSubDept,
-            this.colFinancialItemDescription,
-            this.colFinancialItemInsertionDate,
-            this.colIncomingOrOutgoing,
-            this.colIncomingAmount,
-            this.colOutgoingAmount,
-            this.colFinancialItemCurrency,
-            this.colAdditionalNotes});
+            this.colمعرفالسجلالمالي,
+            this.colكودالسجلالمالي,
+            this.colاسمالبندالمالي,
+            this.colبيانالسجلالمالي,
+            this.colالدائرة,
+            this.colالقسم,
+            this.colالوحدة,
+            this.colتاريختحريرالسجل,
+            this.colواردأمصادر,
+            this.colالمبلغالوارد,
+            this.colالمبلغالصادر,
+            this.colالعملة,
+            this.colملاحظاتإضافية});
             this.financialItemGridView.GridControl = this.financialItemGridControl;
             this.financialItemGridView.Name = "financialItemGridView";
             // 
-            // colID
+            // colمعرفالسجلالمالي
             // 
-            this.colID.Caption = "معرف السجل المالي";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
-            this.colID.Name = "colID";
-            this.colID.Width = 94;
+            this.colمعرفالسجلالمالي.FieldName = "معرف السجل المالي";
+            this.colمعرفالسجلالمالي.MinWidth = 100;
+            this.colمعرفالسجلالمالي.Name = "colمعرفالسجلالمالي";
+            this.colمعرفالسجلالمالي.Width = 94;
             // 
-            // colFinancialItemCode
+            // colكودالسجلالمالي
             // 
-            this.colFinancialItemCode.Caption = "كود السجل المالي";
-            this.colFinancialItemCode.FieldName = "FinancialItemCode";
-            this.colFinancialItemCode.MinWidth = 150;
-            this.colFinancialItemCode.Name = "colFinancialItemCode";
-            this.colFinancialItemCode.Width = 150;
+            this.colكودالسجلالمالي.FieldName = "كود السجل المالي";
+            this.colكودالسجلالمالي.MinWidth = 120;
+            this.colكودالسجلالمالي.Name = "colكودالسجلالمالي";
+            this.colكودالسجلالمالي.Width = 94;
             // 
-            // colFinancialItemCategory
+            // colاسمالبندالمالي
             // 
-            this.colFinancialItemCategory.Caption = "البند المالي";
-            this.colFinancialItemCategory.ColumnEdit = this.financialItemCategoryRepositoryItemLookUpEdit;
-            this.colFinancialItemCategory.FieldName = "FinancialItemCategory";
-            this.colFinancialItemCategory.MinWidth = 150;
-            this.colFinancialItemCategory.Name = "colFinancialItemCategory";
-            this.colFinancialItemCategory.Visible = true;
-            this.colFinancialItemCategory.VisibleIndex = 0;
-            this.colFinancialItemCategory.Width = 150;
+            this.colاسمالبندالمالي.FieldName = "اسم البند المالي";
+            this.colاسمالبندالمالي.MinWidth = 150;
+            this.colاسمالبندالمالي.Name = "colاسمالبندالمالي";
+            this.colاسمالبندالمالي.Visible = true;
+            this.colاسمالبندالمالي.VisibleIndex = 0;
+            this.colاسمالبندالمالي.Width = 150;
+            // 
+            // colبيانالسجلالمالي
+            // 
+            this.colبيانالسجلالمالي.FieldName = "بيان السجل المالي";
+            this.colبيانالسجلالمالي.MinWidth = 200;
+            this.colبيانالسجلالمالي.Name = "colبيانالسجلالمالي";
+            this.colبيانالسجلالمالي.Visible = true;
+            this.colبيانالسجلالمالي.VisibleIndex = 1;
+            this.colبيانالسجلالمالي.Width = 200;
+            // 
+            // colالدائرة
+            // 
+            this.colالدائرة.FieldName = "الدائرة";
+            this.colالدائرة.MinWidth = 150;
+            this.colالدائرة.Name = "colالدائرة";
+            this.colالدائرة.Visible = true;
+            this.colالدائرة.VisibleIndex = 2;
+            this.colالدائرة.Width = 150;
+            // 
+            // colالقسم
+            // 
+            this.colالقسم.FieldName = "القسم";
+            this.colالقسم.MinWidth = 150;
+            this.colالقسم.Name = "colالقسم";
+            this.colالقسم.Visible = true;
+            this.colالقسم.VisibleIndex = 3;
+            this.colالقسم.Width = 150;
+            // 
+            // colالوحدة
+            // 
+            this.colالوحدة.FieldName = "الوحدة";
+            this.colالوحدة.MinWidth = 150;
+            this.colالوحدة.Name = "colالوحدة";
+            this.colالوحدة.Visible = true;
+            this.colالوحدة.VisibleIndex = 4;
+            this.colالوحدة.Width = 150;
+            // 
+            // colتاريختحريرالسجل
+            // 
+            this.colتاريختحريرالسجل.FieldName = "تاريخ تحرير السجل";
+            this.colتاريختحريرالسجل.MinWidth = 120;
+            this.colتاريختحريرالسجل.Name = "colتاريختحريرالسجل";
+            this.colتاريختحريرالسجل.Visible = true;
+            this.colتاريختحريرالسجل.VisibleIndex = 5;
+            this.colتاريختحريرالسجل.Width = 120;
+            // 
+            // colواردأمصادر
+            // 
+            this.colواردأمصادر.FieldName = "وارد أم صادر";
+            this.colواردأمصادر.MinWidth = 120;
+            this.colواردأمصادر.Name = "colواردأمصادر";
+            this.colواردأمصادر.Visible = true;
+            this.colواردأمصادر.VisibleIndex = 6;
+            this.colواردأمصادر.Width = 120;
+            // 
+            // colالمبلغالوارد
+            // 
+            this.colالمبلغالوارد.FieldName = "المبلغ الوارد";
+            this.colالمبلغالوارد.MinWidth = 120;
+            this.colالمبلغالوارد.Name = "colالمبلغالوارد";
+            this.colالمبلغالوارد.Visible = true;
+            this.colالمبلغالوارد.VisibleIndex = 7;
+            this.colالمبلغالوارد.Width = 120;
+            // 
+            // colالمبلغالصادر
+            // 
+            this.colالمبلغالصادر.FieldName = "المبلغ الصادر";
+            this.colالمبلغالصادر.MinWidth = 120;
+            this.colالمبلغالصادر.Name = "colالمبلغالصادر";
+            this.colالمبلغالصادر.Visible = true;
+            this.colالمبلغالصادر.VisibleIndex = 8;
+            this.colالمبلغالصادر.Width = 120;
+            // 
+            // colالعملة
+            // 
+            this.colالعملة.FieldName = "العملة";
+            this.colالعملة.MinWidth = 120;
+            this.colالعملة.Name = "colالعملة";
+            this.colالعملة.Visible = true;
+            this.colالعملة.VisibleIndex = 9;
+            this.colالعملة.Width = 120;
+            // 
+            // colملاحظاتإضافية
+            // 
+            this.colملاحظاتإضافية.FieldName = "ملاحظات إضافية";
+            this.colملاحظاتإضافية.MinWidth = 200;
+            this.colملاحظاتإضافية.Name = "colملاحظاتإضافية";
+            this.colملاحظاتإضافية.Visible = true;
+            this.colملاحظاتإضافية.VisibleIndex = 10;
+            this.colملاحظاتإضافية.Width = 200;
             // 
             // financialItemCategoryRepositoryItemLookUpEdit
             // 
@@ -270,96 +355,10 @@ namespace AssetManagement.Finance
             this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
             this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // colFinancialItemSubDept
+            // assetMngDbDataSet
             // 
-            this.colFinancialItemSubDept.Caption = "الوحدة";
-            this.colFinancialItemSubDept.ColumnEdit = this.subdRepositoryItemLookUpEdit;
-            this.colFinancialItemSubDept.FieldName = "FinancialItemSubDept";
-            this.colFinancialItemSubDept.MinWidth = 150;
-            this.colFinancialItemSubDept.Name = "colFinancialItemSubDept";
-            this.colFinancialItemSubDept.Visible = true;
-            this.colFinancialItemSubDept.VisibleIndex = 1;
-            this.colFinancialItemSubDept.Width = 150;
-            // 
-            // subdRepositoryItemLookUpEdit
-            // 
-            this.subdRepositoryItemLookUpEdit.AutoHeight = false;
-            this.subdRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.subdRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.subdRepositoryItemLookUpEdit.DataSource = this.subDepartmentTblBindingSource1;
-            this.subdRepositoryItemLookUpEdit.DisplayMember = "SubDepartmentName";
-            this.subdRepositoryItemLookUpEdit.Name = "subdRepositoryItemLookUpEdit";
-            this.subdRepositoryItemLookUpEdit.ValueMember = "ID";
-            // 
-            // subDepartmentTblBindingSource1
-            // 
-            this.subDepartmentTblBindingSource1.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
-            // colFinancialItemDescription
-            // 
-            this.colFinancialItemDescription.Caption = "بيان السجل المالي";
-            this.colFinancialItemDescription.FieldName = "FinancialItemDescription";
-            this.colFinancialItemDescription.MinWidth = 150;
-            this.colFinancialItemDescription.Name = "colFinancialItemDescription";
-            this.colFinancialItemDescription.Visible = true;
-            this.colFinancialItemDescription.VisibleIndex = 2;
-            this.colFinancialItemDescription.Width = 150;
-            // 
-            // colFinancialItemInsertionDate
-            // 
-            this.colFinancialItemInsertionDate.Caption = "تاريخ السجل المالي";
-            this.colFinancialItemInsertionDate.FieldName = "FinancialItemInsertionDate";
-            this.colFinancialItemInsertionDate.MinWidth = 100;
-            this.colFinancialItemInsertionDate.Name = "colFinancialItemInsertionDate";
-            this.colFinancialItemInsertionDate.Visible = true;
-            this.colFinancialItemInsertionDate.VisibleIndex = 3;
-            this.colFinancialItemInsertionDate.Width = 1000;
-            // 
-            // colIncomingOrOutgoing
-            // 
-            this.colIncomingOrOutgoing.Caption = "صادر أو وارد";
-            this.colIncomingOrOutgoing.FieldName = "IncomingOrOutgoing";
-            this.colIncomingOrOutgoing.MinWidth = 80;
-            this.colIncomingOrOutgoing.Name = "colIncomingOrOutgoing";
-            this.colIncomingOrOutgoing.Visible = true;
-            this.colIncomingOrOutgoing.VisibleIndex = 4;
-            this.colIncomingOrOutgoing.Width = 94;
-            // 
-            // colIncomingAmount
-            // 
-            this.colIncomingAmount.Caption = "المبلغ الوارد";
-            this.colIncomingAmount.FieldName = "IncomingAmount";
-            this.colIncomingAmount.MinWidth = 80;
-            this.colIncomingAmount.Name = "colIncomingAmount";
-            this.colIncomingAmount.Visible = true;
-            this.colIncomingAmount.VisibleIndex = 5;
-            this.colIncomingAmount.Width = 100;
-            // 
-            // colOutgoingAmount
-            // 
-            this.colOutgoingAmount.Caption = "المبلغ الصادر";
-            this.colOutgoingAmount.FieldName = "OutgoingAmount";
-            this.colOutgoingAmount.MinWidth = 80;
-            this.colOutgoingAmount.Name = "colOutgoingAmount";
-            this.colOutgoingAmount.Visible = true;
-            this.colOutgoingAmount.VisibleIndex = 6;
-            this.colOutgoingAmount.Width = 94;
-            // 
-            // colFinancialItemCurrency
-            // 
-            this.colFinancialItemCurrency.Caption = "العملة";
-            this.colFinancialItemCurrency.ColumnEdit = this.currencyRepositoryItemLookUpEdit;
-            this.colFinancialItemCurrency.FieldName = "FinancialItemCurrency";
-            this.colFinancialItemCurrency.MinWidth = 100;
-            this.colFinancialItemCurrency.Name = "colFinancialItemCurrency";
-            this.colFinancialItemCurrency.Visible = true;
-            this.colFinancialItemCurrency.VisibleIndex = 7;
-            this.colFinancialItemCurrency.Width = 100;
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // currencyRepositoryItemLookUpEdit
             // 
@@ -380,16 +379,6 @@ namespace AssetManagement.Finance
             this.currencyTblBindingSource.DataMember = "CurrencyTbl";
             this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // colAdditionalNotes
-            // 
-            this.colAdditionalNotes.Caption = "ملاحظات إضافية";
-            this.colAdditionalNotes.FieldName = "AdditionalNotes";
-            this.colAdditionalNotes.MinWidth = 150;
-            this.colAdditionalNotes.Name = "colAdditionalNotes";
-            this.colAdditionalNotes.Visible = true;
-            this.colAdditionalNotes.VisibleIndex = 8;
-            this.colAdditionalNotes.Width = 150;
-            // 
             // repositoryItemLookUpEdit1
             // 
             this.repositoryItemLookUpEdit1.AutoHeight = false;
@@ -409,6 +398,30 @@ namespace AssetManagement.Finance
             // 
             this.departmentTblBindingSource1.DataMember = "DepartmentTbl";
             this.departmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // subdRepositoryItemLookUpEdit
+            // 
+            this.subdRepositoryItemLookUpEdit.AutoHeight = false;
+            this.subdRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.subdRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.subdRepositoryItemLookUpEdit.DataSource = this.subDepartmentTblBindingSource1;
+            this.subdRepositoryItemLookUpEdit.DisplayMember = "SubDepartmentName";
+            this.subdRepositoryItemLookUpEdit.Name = "subdRepositoryItemLookUpEdit";
+            this.subdRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // subDepartmentTblBindingSource1
+            // 
+            this.subDepartmentTblBindingSource1.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemTblBindingSource
+            // 
+            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
+            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // financialItemTblTableAdapter
             // 
@@ -519,7 +532,7 @@ namespace AssetManagement.Finance
             this.searchWithinPeriodPanel.Controls.Add(this.monthlyRadioButton);
             this.searchWithinPeriodPanel.Controls.Add(this.annualRadioButton);
             this.searchWithinPeriodPanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchWithinPeriodPanel.Location = new System.Drawing.Point(12, 288);
+            this.searchWithinPeriodPanel.Location = new System.Drawing.Point(21, 288);
             this.searchWithinPeriodPanel.Name = "searchWithinPeriodPanel";
             this.searchWithinPeriodPanel.Size = new System.Drawing.Size(459, 294);
             this.searchWithinPeriodPanel.TabIndex = 55;
@@ -529,7 +542,7 @@ namespace AssetManagement.Finance
             // 
             this.searchByDepartmentRadioButton.AutoSize = true;
             this.searchByDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchByDepartmentRadioButton.Location = new System.Drawing.Point(12, 135);
+            this.searchByDepartmentRadioButton.Location = new System.Drawing.Point(21, 135);
             this.searchByDepartmentRadioButton.Name = "searchByDepartmentRadioButton";
             this.searchByDepartmentRadioButton.Size = new System.Drawing.Size(124, 25);
             this.searchByDepartmentRadioButton.TabIndex = 5;
@@ -542,7 +555,7 @@ namespace AssetManagement.Finance
             this.searchAllRadioButton.AutoSize = true;
             this.searchAllRadioButton.Checked = true;
             this.searchAllRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchAllRadioButton.Location = new System.Drawing.Point(12, 15);
+            this.searchAllRadioButton.Location = new System.Drawing.Point(21, 15);
             this.searchAllRadioButton.Name = "searchAllRadioButton";
             this.searchAllRadioButton.Size = new System.Drawing.Size(144, 25);
             this.searchAllRadioButton.TabIndex = 15;
@@ -555,7 +568,7 @@ namespace AssetManagement.Finance
             // 
             this.searchWithinPeriodCheckBox.AutoSize = true;
             this.searchWithinPeriodCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchWithinPeriodCheckBox.Location = new System.Drawing.Point(12, 255);
+            this.searchWithinPeriodCheckBox.Location = new System.Drawing.Point(21, 255);
             this.searchWithinPeriodCheckBox.Name = "searchWithinPeriodCheckBox";
             this.searchWithinPeriodCheckBox.Size = new System.Drawing.Size(165, 25);
             this.searchWithinPeriodCheckBox.TabIndex = 50;
@@ -568,7 +581,7 @@ namespace AssetManagement.Finance
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(413, 120);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(422, 120);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 206;
@@ -579,7 +592,7 @@ namespace AssetManagement.Finance
             // searchByDepartmentLookUpEdit
             // 
             this.searchByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(153, 133);
+            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(162, 133);
             this.searchByDepartmentLookUpEdit.Name = "searchByDepartmentLookUpEdit";
             this.searchByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -643,7 +656,7 @@ namespace AssetManagement.Finance
             // 
             this.searchBySectionRadioButton.AutoSize = true;
             this.searchBySectionRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBySectionRadioButton.Location = new System.Drawing.Point(12, 75);
+            this.searchBySectionRadioButton.Location = new System.Drawing.Point(21, 75);
             this.searchBySectionRadioButton.Name = "searchBySectionRadioButton";
             this.searchBySectionRadioButton.Size = new System.Drawing.Size(128, 25);
             this.searchBySectionRadioButton.TabIndex = 601;
@@ -655,7 +668,7 @@ namespace AssetManagement.Finance
             // 
             this.searchBySubDepartmentRadioButton.AutoSize = true;
             this.searchBySubDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBySubDepartmentRadioButton.Location = new System.Drawing.Point(12, 195);
+            this.searchBySubDepartmentRadioButton.Location = new System.Drawing.Point(21, 195);
             this.searchBySubDepartmentRadioButton.Name = "searchBySubDepartmentRadioButton";
             this.searchBySubDepartmentRadioButton.Size = new System.Drawing.Size(132, 25);
             this.searchBySubDepartmentRadioButton.TabIndex = 602;
@@ -668,7 +681,7 @@ namespace AssetManagement.Finance
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(413, 60);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(422, 60);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSectionTblBtn.TabIndex = 604;
@@ -679,7 +692,7 @@ namespace AssetManagement.Finance
             // searchBySectionLookUpEdit
             // 
             this.searchBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(153, 73);
+            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(162, 73);
             this.searchBySectionLookUpEdit.Name = "searchBySectionLookUpEdit";
             this.searchBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -706,7 +719,7 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSubDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(413, 180);
+            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(422, 180);
             this.manageSubDepartmentTblBtn.Name = "manageSubDepartmentTblBtn";
             this.manageSubDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSubDepartmentTblBtn.TabIndex = 606;
@@ -717,7 +730,7 @@ namespace AssetManagement.Finance
             // searchBySubDepartmentLookUpEdit
             // 
             this.searchBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(153, 193);
+            this.searchBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(162, 193);
             this.searchBySubDepartmentLookUpEdit.Name = "searchBySubDepartmentLookUpEdit";
             this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -739,6 +752,20 @@ namespace AssetManagement.Finance
             // 
             this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
             this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemVwBindingSource
+            // 
+            this.financialItemVwBindingSource.DataMember = "FinancialItemVw";
+            this.financialItemVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemVwTableAdapter
+            // 
+            this.financialItemVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // financialItemVwBindingSource1
+            // 
+            this.financialItemVwBindingSource1.DataMember = "FinancialItemVw";
+            this.financialItemVwBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
             // FinancialReportsForm
             // 
@@ -775,17 +802,17 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subdRepositoryItemLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subdRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).EndInit();
             this.fromToPanel.ResumeLayout(false);
             this.fromToPanel.PerformLayout();
             this.searchWithinPeriodPanel.ResumeLayout(false);
@@ -796,6 +823,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,15 +842,6 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSet assetMngDbDataSet;
         private System.Windows.Forms.BindingSource financialItemTblBindingSource;
         private AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter financialItemTblTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemCategory;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemDescription;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemInsertionDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colIncomingOrOutgoing;
-        private DevExpress.XtraGrid.Columns.GridColumn colIncomingAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colOutgoingAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemCurrency;
-        private DevExpress.XtraGrid.Columns.GridColumn colAdditionalNotes;
         private DevExpress.XtraEditors.DropDownButton searchFinancialItemDropDownButton;
         private DevExpress.XtraEditors.DropDownButton exportFinancialReportToExcelDropDownButton;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit financialItemCategoryRepositoryItemLookUpEdit;
@@ -844,7 +864,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraEditors.LookUpEdit searchByDepartmentLookUpEdit;
         private System.Windows.Forms.BindingSource departmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private System.Windows.Forms.BindingSource departmentTblBindingSource1;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
@@ -858,8 +877,23 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn colFinancialItemSubDept;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit subdRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource1;
+        private System.Windows.Forms.BindingSource financialItemVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter financialItemVwTableAdapter;
+        private System.Windows.Forms.BindingSource financialItemVwBindingSource1;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالسجلالمالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colكودالسجلالمالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمالبندالمالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colبيانالسجلالمالي;
+        private DevExpress.XtraGrid.Columns.GridColumn colالدائرة;
+        private DevExpress.XtraGrid.Columns.GridColumn colالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colالوحدة;
+        private DevExpress.XtraGrid.Columns.GridColumn colتاريختحريرالسجل;
+        private DevExpress.XtraGrid.Columns.GridColumn colواردأمصادر;
+        private DevExpress.XtraGrid.Columns.GridColumn colالمبلغالوارد;
+        private DevExpress.XtraGrid.Columns.GridColumn colالمبلغالصادر;
+        private DevExpress.XtraGrid.Columns.GridColumn colالعملة;
+        private DevExpress.XtraGrid.Columns.GridColumn colملاحظاتإضافية;
     }
 }

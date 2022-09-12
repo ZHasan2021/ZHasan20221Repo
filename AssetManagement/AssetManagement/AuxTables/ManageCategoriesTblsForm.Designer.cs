@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCategoriesTblsForm));
             this.minorCategoryGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.minorCategoryGridControl = new DevExpress.XtraGrid.GridControl();
@@ -104,10 +104,10 @@ namespace AssetManagement.AuxTables
             this.minorCategoryGridControl.EmbeddedNavigator.Appearance.Options.UseFont = true;
             this.minorCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
             this.minorCategoryGridControl.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.minorCategoryGridControl_EmbeddedNavigator_ButtonClick);
-            gridLevelNode1.LevelTemplate = this.minorCategoryGridView;
-            gridLevelNode1.RelationName = "minorCategoryLevel";
+            gridLevelNode2.LevelTemplate = this.minorCategoryGridView;
+            gridLevelNode2.RelationName = "minorCategoryLevel";
             this.minorCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.minorCategoryGridControl.Location = new System.Drawing.Point(0, 290);
             this.minorCategoryGridControl.MainView = this.mainCategoryGridView;
             this.minorCategoryGridControl.Name = "minorCategoryGridControl";

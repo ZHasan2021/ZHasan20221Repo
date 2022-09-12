@@ -21,6 +21,21 @@ namespace AssetManagement.Assets
             InitializeComponent();
         }
 
+        public DeleteAssetForm(int assetID)
+        {
+            InitializeComponent();
+            try
+            {
+                srchRes = StaticCode.mainDbContext.AssetMoveVws.Where(asmv1 => asmv1.ID == assetID);
+                currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Where(asmv1 => asmv1.ID == assetID).First();
+            }
+            catch
+            {
+                srchRes = null;
+                currSrchRes = null;
+            }
+        }
+
         private void DeleteAssetForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMovementTbl' table. You can move, or remove it, as needed.
@@ -34,11 +49,20 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             this.MinimumSize = this.Size;
+
+            if (currSrchRes != null)
+            {
+                assetCodeTextBox.Text = currSrchRes.AssetCode;
+                searchResultsListBox.DataSource = srchRes;
+                searchResultsListBox.SelectedIndex = 0;
+                viewAssetInformationBtn_Click(sender, e);
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(200, 500);
         }
 
         private void deleteAssetBtn_Click(object sender, EventArgs e)

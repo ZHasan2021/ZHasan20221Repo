@@ -33,6 +33,9 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.incorrectPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorSummaryLabel1 = new System.Windows.Forms.Label();
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
             this.assetSubDeptLabel = new System.Windows.Forms.Label();
             this.assetSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -140,12 +143,12 @@ namespace AssetManagement.Assets
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.errorSummaryLabel1 = new System.Windows.Forms.Label();
-            this.incorrectPictureBox1 = new System.Windows.Forms.PictureBox();
-            this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorSummaryLabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
@@ -183,8 +186,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewAssetWizardControl
@@ -294,6 +295,37 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Name = "assetBasicsWizardPage1";
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1311, 610);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
+            // 
+            // correctPictureBox1
+            // 
+            this.correctPictureBox1.Image = global::AssetManagement.Properties.Resources._21377251;
+            this.correctPictureBox1.Location = new System.Drawing.Point(48, 572);
+            this.correctPictureBox1.Name = "correctPictureBox1";
+            this.correctPictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.correctPictureBox1.TabIndex = 258;
+            this.correctPictureBox1.TabStop = false;
+            this.correctPictureBox1.Visible = false;
+            // 
+            // incorrectPictureBox1
+            // 
+            this.incorrectPictureBox1.Image = global::AssetManagement.Properties.Resources._21377241;
+            this.incorrectPictureBox1.Location = new System.Drawing.Point(3, 572);
+            this.incorrectPictureBox1.Name = "incorrectPictureBox1";
+            this.incorrectPictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.incorrectPictureBox1.TabIndex = 257;
+            this.incorrectPictureBox1.TabStop = false;
+            this.incorrectPictureBox1.Visible = false;
+            // 
+            // errorSummaryLabel1
+            // 
+            this.errorSummaryLabel1.AutoSize = true;
+            this.errorSummaryLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.errorSummaryLabel1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorSummaryLabel1.ForeColor = System.Drawing.Color.Red;
+            this.errorSummaryLabel1.Location = new System.Drawing.Point(0, 589);
+            this.errorSummaryLabel1.Name = "errorSummaryLabel1";
+            this.errorSummaryLabel1.Size = new System.Drawing.Size(0, 21);
+            this.errorSummaryLabel1.TabIndex = 256;
             // 
             // manageSubDepartmentTblBtn
             // 
@@ -1036,6 +1068,7 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage2
             // 
+            this.assetBasicsWizardPage2.Controls.Add(this.errorSummaryLabel2);
             this.assetBasicsWizardPage2.Controls.Add(this.benefitPercentageTextBox);
             this.assetBasicsWizardPage2.Controls.Add(this.benefitPercentageLabel);
             this.assetBasicsWizardPage2.Controls.Add(this.ownerNameTextBox);
@@ -1397,6 +1430,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = this.modelTblTableAdapter;
@@ -1462,36 +1496,16 @@ namespace AssetManagement.Assets
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
-            // errorSummaryLabel1
+            // errorSummaryLabel2
             // 
-            this.errorSummaryLabel1.AutoSize = true;
-            this.errorSummaryLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.errorSummaryLabel1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorSummaryLabel1.ForeColor = System.Drawing.Color.Red;
-            this.errorSummaryLabel1.Location = new System.Drawing.Point(0, 589);
-            this.errorSummaryLabel1.Name = "errorSummaryLabel1";
-            this.errorSummaryLabel1.Size = new System.Drawing.Size(0, 21);
-            this.errorSummaryLabel1.TabIndex = 256;
-            // 
-            // incorrectPictureBox1
-            // 
-            this.incorrectPictureBox1.Image = global::AssetManagement.Properties.Resources._21377241;
-            this.incorrectPictureBox1.Location = new System.Drawing.Point(3, 572);
-            this.incorrectPictureBox1.Name = "incorrectPictureBox1";
-            this.incorrectPictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.incorrectPictureBox1.TabIndex = 257;
-            this.incorrectPictureBox1.TabStop = false;
-            this.incorrectPictureBox1.Visible = false;
-            // 
-            // correctPictureBox1
-            // 
-            this.correctPictureBox1.Image = global::AssetManagement.Properties.Resources._21377251;
-            this.correctPictureBox1.Location = new System.Drawing.Point(48, 572);
-            this.correctPictureBox1.Name = "correctPictureBox1";
-            this.correctPictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.correctPictureBox1.TabIndex = 258;
-            this.correctPictureBox1.TabStop = false;
-            this.correctPictureBox1.Visible = false;
+            this.errorSummaryLabel2.AutoSize = true;
+            this.errorSummaryLabel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.errorSummaryLabel2.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorSummaryLabel2.ForeColor = System.Drawing.Color.Red;
+            this.errorSummaryLabel2.Location = new System.Drawing.Point(0, 589);
+            this.errorSummaryLabel2.Name = "errorSummaryLabel2";
+            this.errorSummaryLabel2.Size = new System.Drawing.Size(0, 21);
+            this.errorSummaryLabel2.TabIndex = 257;
             // 
             // AddNewAssetForm
             // 
@@ -1510,6 +1524,8 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl.ResumeLayout(false);
             this.assetBasicsWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
@@ -1551,8 +1567,6 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1672,5 +1686,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.PictureBox incorrectPictureBox1;
         private System.Windows.Forms.Label errorSummaryLabel1;
         private System.Windows.Forms.PictureBox correctPictureBox1;
+        private System.Windows.Forms.Label errorSummaryLabel2;
     }
 }

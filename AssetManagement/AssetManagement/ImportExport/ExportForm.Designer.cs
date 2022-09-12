@@ -59,6 +59,7 @@ namespace AssetManagement.Finance
             this.exportAssetsAndFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportAssetsRadioButton = new System.Windows.Forms.RadioButton();
+            this.includeMovementsAndTransactionsInExportCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -173,7 +174,7 @@ namespace AssetManagement.Finance
             this.exportBySubDepartmentRadioButton.Location = new System.Drawing.Point(32, 228);
             this.exportBySubDepartmentRadioButton.Name = "exportBySubDepartmentRadioButton";
             this.exportBySubDepartmentRadioButton.Size = new System.Drawing.Size(132, 25);
-            this.exportBySubDepartmentRadioButton.TabIndex = 45;
+            this.exportBySubDepartmentRadioButton.TabIndex = 70;
             this.exportBySubDepartmentRadioButton.Text = "ضمن وحدة معينة";
             this.exportBySubDepartmentRadioButton.UseVisualStyleBackColor = true;
             this.exportBySubDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -185,7 +186,7 @@ namespace AssetManagement.Finance
             this.exportBySectionRadioButton.Location = new System.Drawing.Point(32, 108);
             this.exportBySectionRadioButton.Name = "exportBySectionRadioButton";
             this.exportBySectionRadioButton.Size = new System.Drawing.Size(128, 25);
-            this.exportBySectionRadioButton.TabIndex = 25;
+            this.exportBySectionRadioButton.TabIndex = 50;
             this.exportBySectionRadioButton.Text = "ضمن دائرة معينة";
             this.exportBySectionRadioButton.UseVisualStyleBackColor = true;
             this.exportBySectionRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -236,7 +237,7 @@ namespace AssetManagement.Finance
             this.exportByDepartmentRadioButton.Location = new System.Drawing.Point(32, 168);
             this.exportByDepartmentRadioButton.Name = "exportByDepartmentRadioButton";
             this.exportByDepartmentRadioButton.Size = new System.Drawing.Size(124, 25);
-            this.exportByDepartmentRadioButton.TabIndex = 35;
+            this.exportByDepartmentRadioButton.TabIndex = 60;
             this.exportByDepartmentRadioButton.Text = "ضمن قسم معين";
             this.exportByDepartmentRadioButton.UseVisualStyleBackColor = true;
             this.exportByDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
@@ -311,7 +312,7 @@ namespace AssetManagement.Finance
             this.encryptExportedFileCheckBox.Location = new System.Drawing.Point(32, 345);
             this.encryptExportedFileCheckBox.Name = "encryptExportedFileCheckBox";
             this.encryptExportedFileCheckBox.Size = new System.Drawing.Size(167, 28);
-            this.encryptExportedFileCheckBox.TabIndex = 60;
+            this.encryptExportedFileCheckBox.TabIndex = 85;
             this.encryptExportedFileCheckBox.Text = "تشفير ملف التصدير";
             this.encryptExportedFileCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -323,7 +324,7 @@ namespace AssetManagement.Finance
             this.unknownImportRadioButton.Location = new System.Drawing.Point(32, 288);
             this.unknownImportRadioButton.Name = "unknownImportRadioButton";
             this.unknownImportRadioButton.Size = new System.Drawing.Size(86, 25);
-            this.unknownImportRadioButton.TabIndex = 55;
+            this.unknownImportRadioButton.TabIndex = 80;
             this.unknownImportRadioButton.TabStop = true;
             this.unknownImportRadioButton.Text = "غير محدد";
             this.unknownImportRadioButton.UseVisualStyleBackColor = true;
@@ -334,7 +335,7 @@ namespace AssetManagement.Finance
             this.notesLabel.Location = new System.Drawing.Point(28, 405);
             this.notesLabel.Name = "notesLabel";
             this.notesLabel.Size = new System.Drawing.Size(78, 24);
-            this.notesLabel.TabIndex = 65;
+            this.notesLabel.TabIndex = 90;
             this.notesLabel.Text = "ملاحظات:";
             // 
             // notesTextBox
@@ -343,49 +344,63 @@ namespace AssetManagement.Finance
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
             this.notesTextBox.Size = new System.Drawing.Size(315, 81);
-            this.notesTextBox.TabIndex = 70;
+            this.notesTextBox.TabIndex = 95;
             // 
             // tablesExportedPanel
             // 
+            this.tablesExportedPanel.Controls.Add(this.includeMovementsAndTransactionsInExportCheckBox);
             this.tablesExportedPanel.Controls.Add(this.exportAssetsAndFinancialItemsRadioButton);
             this.tablesExportedPanel.Controls.Add(this.exportFinancialItemsRadioButton);
             this.tablesExportedPanel.Controls.Add(this.exportAssetsRadioButton);
             this.tablesExportedPanel.Location = new System.Drawing.Point(32, 22);
             this.tablesExportedPanel.Name = "tablesExportedPanel";
-            this.tablesExportedPanel.Size = new System.Drawing.Size(472, 52);
+            this.tablesExportedPanel.Size = new System.Drawing.Size(790, 52);
             this.tablesExportedPanel.TabIndex = 5;
             // 
             // exportAssetsAndFinancialItemsRadioButton
             // 
             this.exportAssetsAndFinancialItemsRadioButton.AutoSize = true;
             this.exportAssetsAndFinancialItemsRadioButton.Checked = true;
-            this.exportAssetsAndFinancialItemsRadioButton.Location = new System.Drawing.Point(50, 12);
+            this.exportAssetsAndFinancialItemsRadioButton.Location = new System.Drawing.Point(358, 11);
             this.exportAssetsAndFinancialItemsRadioButton.Name = "exportAssetsAndFinancialItemsRadioButton";
             this.exportAssetsAndFinancialItemsRadioButton.Size = new System.Drawing.Size(173, 28);
             this.exportAssetsAndFinancialItemsRadioButton.TabIndex = 20;
             this.exportAssetsAndFinancialItemsRadioButton.TabStop = true;
             this.exportAssetsAndFinancialItemsRadioButton.Text = "أصول وسجلات مالية";
             this.exportAssetsAndFinancialItemsRadioButton.UseVisualStyleBackColor = true;
+            this.exportAssetsAndFinancialItemsRadioButton.CheckedChanged += new System.EventHandler(this.exportAssetsRadioButton_CheckedChanged);
             // 
             // exportFinancialItemsRadioButton
             // 
             this.exportFinancialItemsRadioButton.AutoSize = true;
-            this.exportFinancialItemsRadioButton.Location = new System.Drawing.Point(243, 12);
+            this.exportFinancialItemsRadioButton.Location = new System.Drawing.Point(551, 11);
             this.exportFinancialItemsRadioButton.Name = "exportFinancialItemsRadioButton";
             this.exportFinancialItemsRadioButton.Size = new System.Drawing.Size(122, 28);
             this.exportFinancialItemsRadioButton.TabIndex = 15;
             this.exportFinancialItemsRadioButton.Text = "سجلات مالية";
             this.exportFinancialItemsRadioButton.UseVisualStyleBackColor = true;
+            this.exportFinancialItemsRadioButton.CheckedChanged += new System.EventHandler(this.exportAssetsRadioButton_CheckedChanged);
             // 
             // exportAssetsRadioButton
             // 
             this.exportAssetsRadioButton.AutoSize = true;
-            this.exportAssetsRadioButton.Location = new System.Drawing.Point(385, 12);
+            this.exportAssetsRadioButton.Location = new System.Drawing.Point(693, 11);
             this.exportAssetsRadioButton.Name = "exportAssetsRadioButton";
             this.exportAssetsRadioButton.Size = new System.Drawing.Size(69, 28);
             this.exportAssetsRadioButton.TabIndex = 10;
             this.exportAssetsRadioButton.Text = "أصول";
             this.exportAssetsRadioButton.UseVisualStyleBackColor = true;
+            this.exportAssetsRadioButton.CheckedChanged += new System.EventHandler(this.exportAssetsRadioButton_CheckedChanged);
+            // 
+            // includeMovementsAndTransactionsInExportCheckBox
+            // 
+            this.includeMovementsAndTransactionsInExportCheckBox.AutoSize = true;
+            this.includeMovementsAndTransactionsInExportCheckBox.Location = new System.Drawing.Point(77, 11);
+            this.includeMovementsAndTransactionsInExportCheckBox.Name = "includeMovementsAndTransactionsInExportCheckBox";
+            this.includeMovementsAndTransactionsInExportCheckBox.Size = new System.Drawing.Size(247, 28);
+            this.includeMovementsAndTransactionsInExportCheckBox.TabIndex = 86;
+            this.includeMovementsAndTransactionsInExportCheckBox.Text = "تضمين سجلات النقل والتصريف";
+            this.includeMovementsAndTransactionsInExportCheckBox.UseVisualStyleBackColor = true;
             // 
             // ExportForm
             // 
@@ -464,5 +479,6 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.RadioButton exportAssetsAndFinancialItemsRadioButton;
         private System.Windows.Forms.RadioButton exportFinancialItemsRadioButton;
         private System.Windows.Forms.RadioButton exportAssetsRadioButton;
+        private System.Windows.Forms.CheckBox includeMovementsAndTransactionsInExportCheckBox;
     }
 }

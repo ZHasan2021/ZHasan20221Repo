@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Finance
 {
@@ -25,6 +26,8 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemVw' table. You can move, or remove it, as needed.
+            this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
@@ -131,7 +134,6 @@ namespace AssetManagement.Finance
                 }
                 financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
-            financialItemGridControl.DataSource = financialItemsFromToQry;
             bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
             exportFinancialReportToExcelDropDownButton.Enabled = financialItemGridControl.Visible = resultsFound;
             if (!resultsFound)
@@ -139,6 +141,30 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
                 MessageBox.Show("لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
+            else
+            {
+                List<int> IDsIncluded = financialItemsFromToQry.Select(fii1 => fii1.ID).ToList();
+                string plusQry = "";
+                foreach (int oneID in IDsIncluded)
+                    plusQry += oneID + ", ";
+                plusQry = $" WHERE [معرف السجل المالي] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                FinancialItemVwDataTable customVw = this.assetMngDbDataSet.FinancialItemVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);
             }
         }
 
@@ -161,6 +187,9 @@ namespace AssetManagement.Finance
             ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
+            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
             int startRow = 5;
             foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
