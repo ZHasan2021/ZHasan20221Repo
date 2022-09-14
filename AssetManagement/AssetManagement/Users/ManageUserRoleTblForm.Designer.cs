@@ -43,6 +43,7 @@ namespace AssetManagement.Users
             this.colAddNewAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManageAssetTbl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateSubDepartmentForExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeleteAssetRecord = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colViewAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colViewAssetsStats = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -121,7 +122,7 @@ namespace AssetManagement.Users
             this.userRoleGridControl.Location = new System.Drawing.Point(0, 27);
             this.userRoleGridControl.MainView = this.userRoleGridView;
             this.userRoleGridControl.Name = "userRoleGridControl";
-            this.userRoleGridControl.Size = new System.Drawing.Size(1213, 634);
+            this.userRoleGridControl.Size = new System.Drawing.Size(1301, 721);
             this.userRoleGridControl.TabIndex = 8;
             this.userRoleGridControl.UseEmbeddedNavigator = true;
             this.userRoleGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -145,6 +146,7 @@ namespace AssetManagement.Users
             this.colAddNewAsset,
             this.colManageAssetTbl,
             this.colUpdateExistedAsset,
+            this.colUpdateSubDepartmentForExistedAsset,
             this.colDeleteAssetRecord,
             this.colViewAssetsReports,
             this.colViewAssetsStats,
@@ -227,7 +229,7 @@ namespace AssetManagement.Users
             this.colManageAssetTbl.MinWidth = 150;
             this.colManageAssetTbl.Name = "colManageAssetTbl";
             this.colManageAssetTbl.Visible = true;
-            this.colManageAssetTbl.VisibleIndex = 47;
+            this.colManageAssetTbl.VisibleIndex = 48;
             this.colManageAssetTbl.Width = 150;
             // 
             // colUpdateExistedAsset
@@ -240,6 +242,16 @@ namespace AssetManagement.Users
             this.colUpdateExistedAsset.VisibleIndex = 2;
             this.colUpdateExistedAsset.Width = 150;
             // 
+            // colUpdateSubDepartmentForExistedAsset
+            // 
+            this.colUpdateSubDepartmentForExistedAsset.Caption = "تعديل المعلومات الإدارية لأصل موجود";
+            this.colUpdateSubDepartmentForExistedAsset.FieldName = "UpdateSubDepartmentForExistedAsset";
+            this.colUpdateSubDepartmentForExistedAsset.MinWidth = 150;
+            this.colUpdateSubDepartmentForExistedAsset.Name = "colUpdateSubDepartmentForExistedAsset";
+            this.colUpdateSubDepartmentForExistedAsset.Visible = true;
+            this.colUpdateSubDepartmentForExistedAsset.VisibleIndex = 3;
+            this.colUpdateSubDepartmentForExistedAsset.Width = 150;
+            // 
             // colDeleteAssetRecord
             // 
             this.colDeleteAssetRecord.Caption = "حذف سجل أصل";
@@ -247,7 +259,7 @@ namespace AssetManagement.Users
             this.colDeleteAssetRecord.MinWidth = 150;
             this.colDeleteAssetRecord.Name = "colDeleteAssetRecord";
             this.colDeleteAssetRecord.Visible = true;
-            this.colDeleteAssetRecord.VisibleIndex = 3;
+            this.colDeleteAssetRecord.VisibleIndex = 4;
             this.colDeleteAssetRecord.Width = 150;
             // 
             // colViewAssetsReports
@@ -257,7 +269,7 @@ namespace AssetManagement.Users
             this.colViewAssetsReports.MinWidth = 150;
             this.colViewAssetsReports.Name = "colViewAssetsReports";
             this.colViewAssetsReports.Visible = true;
-            this.colViewAssetsReports.VisibleIndex = 4;
+            this.colViewAssetsReports.VisibleIndex = 5;
             this.colViewAssetsReports.Width = 150;
             // 
             // colViewAssetsStats
@@ -267,7 +279,7 @@ namespace AssetManagement.Users
             this.colViewAssetsStats.MinWidth = 150;
             this.colViewAssetsStats.Name = "colViewAssetsStats";
             this.colViewAssetsStats.Visible = true;
-            this.colViewAssetsStats.VisibleIndex = 5;
+            this.colViewAssetsStats.VisibleIndex = 6;
             this.colViewAssetsStats.Width = 150;
             // 
             // colCreateInventoryReport
@@ -277,7 +289,7 @@ namespace AssetManagement.Users
             this.colCreateInventoryReport.MinWidth = 150;
             this.colCreateInventoryReport.Name = "colCreateInventoryReport";
             this.colCreateInventoryReport.Visible = true;
-            this.colCreateInventoryReport.VisibleIndex = 6;
+            this.colCreateInventoryReport.VisibleIndex = 7;
             this.colCreateInventoryReport.Width = 150;
             // 
             // colAddNewAssetMovement
@@ -287,7 +299,7 @@ namespace AssetManagement.Users
             this.colAddNewAssetMovement.MinWidth = 150;
             this.colAddNewAssetMovement.Name = "colAddNewAssetMovement";
             this.colAddNewAssetMovement.Visible = true;
-            this.colAddNewAssetMovement.VisibleIndex = 7;
+            this.colAddNewAssetMovement.VisibleIndex = 8;
             this.colAddNewAssetMovement.Width = 150;
             // 
             // colManageAssetMovements
@@ -297,7 +309,7 @@ namespace AssetManagement.Users
             this.colManageAssetMovements.MinWidth = 150;
             this.colManageAssetMovements.Name = "colManageAssetMovements";
             this.colManageAssetMovements.Visible = true;
-            this.colManageAssetMovements.VisibleIndex = 8;
+            this.colManageAssetMovements.VisibleIndex = 9;
             this.colManageAssetMovements.Width = 150;
             // 
             // colAddNewAssetTransaction
@@ -307,7 +319,7 @@ namespace AssetManagement.Users
             this.colAddNewAssetTransaction.MinWidth = 150;
             this.colAddNewAssetTransaction.Name = "colAddNewAssetTransaction";
             this.colAddNewAssetTransaction.Visible = true;
-            this.colAddNewAssetTransaction.VisibleIndex = 9;
+            this.colAddNewAssetTransaction.VisibleIndex = 10;
             this.colAddNewAssetTransaction.Width = 150;
             // 
             // colManageAssetTransactions
@@ -317,7 +329,7 @@ namespace AssetManagement.Users
             this.colManageAssetTransactions.MinWidth = 150;
             this.colManageAssetTransactions.Name = "colManageAssetTransactions";
             this.colManageAssetTransactions.Visible = true;
-            this.colManageAssetTransactions.VisibleIndex = 10;
+            this.colManageAssetTransactions.VisibleIndex = 11;
             this.colManageAssetTransactions.Width = 150;
             // 
             // colExportAllData
@@ -327,7 +339,7 @@ namespace AssetManagement.Users
             this.colExportAllData.MinWidth = 150;
             this.colExportAllData.Name = "colExportAllData";
             this.colExportAllData.Visible = true;
-            this.colExportAllData.VisibleIndex = 11;
+            this.colExportAllData.VisibleIndex = 12;
             this.colExportAllData.Width = 150;
             // 
             // colImportAllData
@@ -337,7 +349,7 @@ namespace AssetManagement.Users
             this.colImportAllData.MinWidth = 150;
             this.colImportAllData.Name = "colImportAllData";
             this.colImportAllData.Visible = true;
-            this.colImportAllData.VisibleIndex = 12;
+            this.colImportAllData.VisibleIndex = 13;
             this.colImportAllData.Width = 150;
             // 
             // colManageImportExportTbl
@@ -347,7 +359,7 @@ namespace AssetManagement.Users
             this.colManageImportExportTbl.MinWidth = 150;
             this.colManageImportExportTbl.Name = "colManageImportExportTbl";
             this.colManageImportExportTbl.Visible = true;
-            this.colManageImportExportTbl.VisibleIndex = 13;
+            this.colManageImportExportTbl.VisibleIndex = 14;
             this.colManageImportExportTbl.Width = 150;
             // 
             // colManageUsers
@@ -357,7 +369,7 @@ namespace AssetManagement.Users
             this.colManageUsers.MinWidth = 150;
             this.colManageUsers.Name = "colManageUsers";
             this.colManageUsers.Visible = true;
-            this.colManageUsers.VisibleIndex = 14;
+            this.colManageUsers.VisibleIndex = 15;
             this.colManageUsers.Width = 150;
             // 
             // colPromoteDb
@@ -367,7 +379,7 @@ namespace AssetManagement.Users
             this.colPromoteDb.MinWidth = 150;
             this.colPromoteDb.Name = "colPromoteDb";
             this.colPromoteDb.Visible = true;
-            this.colPromoteDb.VisibleIndex = 15;
+            this.colPromoteDb.VisibleIndex = 16;
             this.colPromoteDb.Width = 150;
             // 
             // colAddNewMainCategory
@@ -377,7 +389,7 @@ namespace AssetManagement.Users
             this.colAddNewMainCategory.MinWidth = 150;
             this.colAddNewMainCategory.Name = "colAddNewMainCategory";
             this.colAddNewMainCategory.Visible = true;
-            this.colAddNewMainCategory.VisibleIndex = 16;
+            this.colAddNewMainCategory.VisibleIndex = 17;
             this.colAddNewMainCategory.Width = 150;
             // 
             // colManageMainCategories
@@ -387,7 +399,7 @@ namespace AssetManagement.Users
             this.colManageMainCategories.MinWidth = 150;
             this.colManageMainCategories.Name = "colManageMainCategories";
             this.colManageMainCategories.Visible = true;
-            this.colManageMainCategories.VisibleIndex = 17;
+            this.colManageMainCategories.VisibleIndex = 18;
             this.colManageMainCategories.Width = 150;
             // 
             // colAddNewMinorCategory
@@ -397,7 +409,7 @@ namespace AssetManagement.Users
             this.colAddNewMinorCategory.MinWidth = 150;
             this.colAddNewMinorCategory.Name = "colAddNewMinorCategory";
             this.colAddNewMinorCategory.Visible = true;
-            this.colAddNewMinorCategory.VisibleIndex = 18;
+            this.colAddNewMinorCategory.VisibleIndex = 19;
             this.colAddNewMinorCategory.Width = 258;
             // 
             // colManageMinorCategories
@@ -407,7 +419,7 @@ namespace AssetManagement.Users
             this.colManageMinorCategories.MinWidth = 150;
             this.colManageMinorCategories.Name = "colManageMinorCategories";
             this.colManageMinorCategories.Visible = true;
-            this.colManageMinorCategories.VisibleIndex = 19;
+            this.colManageMinorCategories.VisibleIndex = 20;
             this.colManageMinorCategories.Width = 150;
             // 
             // colAddNewSection
@@ -417,7 +429,7 @@ namespace AssetManagement.Users
             this.colAddNewSection.MinWidth = 150;
             this.colAddNewSection.Name = "colAddNewSection";
             this.colAddNewSection.Visible = true;
-            this.colAddNewSection.VisibleIndex = 20;
+            this.colAddNewSection.VisibleIndex = 21;
             this.colAddNewSection.Width = 150;
             // 
             // colManageSections
@@ -427,7 +439,7 @@ namespace AssetManagement.Users
             this.colManageSections.MinWidth = 150;
             this.colManageSections.Name = "colManageSections";
             this.colManageSections.Visible = true;
-            this.colManageSections.VisibleIndex = 21;
+            this.colManageSections.VisibleIndex = 22;
             this.colManageSections.Width = 150;
             // 
             // colAddNewDepartment
@@ -437,7 +449,7 @@ namespace AssetManagement.Users
             this.colAddNewDepartment.MinWidth = 150;
             this.colAddNewDepartment.Name = "colAddNewDepartment";
             this.colAddNewDepartment.Visible = true;
-            this.colAddNewDepartment.VisibleIndex = 22;
+            this.colAddNewDepartment.VisibleIndex = 23;
             this.colAddNewDepartment.Width = 258;
             // 
             // colManageDepartments
@@ -447,7 +459,7 @@ namespace AssetManagement.Users
             this.colManageDepartments.MinWidth = 150;
             this.colManageDepartments.Name = "colManageDepartments";
             this.colManageDepartments.Visible = true;
-            this.colManageDepartments.VisibleIndex = 23;
+            this.colManageDepartments.VisibleIndex = 24;
             this.colManageDepartments.Width = 150;
             // 
             // colAddNewSubDepartment
@@ -457,7 +469,7 @@ namespace AssetManagement.Users
             this.colAddNewSubDepartment.MinWidth = 150;
             this.colAddNewSubDepartment.Name = "colAddNewSubDepartment";
             this.colAddNewSubDepartment.Visible = true;
-            this.colAddNewSubDepartment.VisibleIndex = 24;
+            this.colAddNewSubDepartment.VisibleIndex = 25;
             this.colAddNewSubDepartment.Width = 150;
             // 
             // colManageSubDepartments
@@ -467,7 +479,7 @@ namespace AssetManagement.Users
             this.colManageSubDepartments.MinWidth = 150;
             this.colManageSubDepartments.Name = "colManageSubDepartments";
             this.colManageSubDepartments.Visible = true;
-            this.colManageSubDepartments.VisibleIndex = 25;
+            this.colManageSubDepartments.VisibleIndex = 26;
             this.colManageSubDepartments.Width = 150;
             // 
             // colAddNewSquare
@@ -477,7 +489,7 @@ namespace AssetManagement.Users
             this.colAddNewSquare.MinWidth = 150;
             this.colAddNewSquare.Name = "colAddNewSquare";
             this.colAddNewSquare.Visible = true;
-            this.colAddNewSquare.VisibleIndex = 26;
+            this.colAddNewSquare.VisibleIndex = 27;
             this.colAddNewSquare.Width = 150;
             // 
             // colManageSquares
@@ -487,7 +499,7 @@ namespace AssetManagement.Users
             this.colManageSquares.MinWidth = 150;
             this.colManageSquares.Name = "colManageSquares";
             this.colManageSquares.Visible = true;
-            this.colManageSquares.VisibleIndex = 27;
+            this.colManageSquares.VisibleIndex = 28;
             this.colManageSquares.Width = 150;
             // 
             // colAddNewCurrency
@@ -497,7 +509,7 @@ namespace AssetManagement.Users
             this.colAddNewCurrency.MinWidth = 150;
             this.colAddNewCurrency.Name = "colAddNewCurrency";
             this.colAddNewCurrency.Visible = true;
-            this.colAddNewCurrency.VisibleIndex = 28;
+            this.colAddNewCurrency.VisibleIndex = 29;
             this.colAddNewCurrency.Width = 150;
             // 
             // colManageCurrencies
@@ -507,7 +519,7 @@ namespace AssetManagement.Users
             this.colManageCurrencies.MinWidth = 150;
             this.colManageCurrencies.Name = "colManageCurrencies";
             this.colManageCurrencies.Visible = true;
-            this.colManageCurrencies.VisibleIndex = 29;
+            this.colManageCurrencies.VisibleIndex = 30;
             this.colManageCurrencies.Width = 150;
             // 
             // colAddNewModel
@@ -517,7 +529,7 @@ namespace AssetManagement.Users
             this.colAddNewModel.MinWidth = 150;
             this.colAddNewModel.Name = "colAddNewModel";
             this.colAddNewModel.Visible = true;
-            this.colAddNewModel.VisibleIndex = 30;
+            this.colAddNewModel.VisibleIndex = 31;
             this.colAddNewModel.Width = 150;
             // 
             // colManageModels
@@ -527,7 +539,7 @@ namespace AssetManagement.Users
             this.colManageModels.MinWidth = 150;
             this.colManageModels.Name = "colManageModels";
             this.colManageModels.Visible = true;
-            this.colManageModels.VisibleIndex = 31;
+            this.colManageModels.VisibleIndex = 32;
             this.colManageModels.Width = 150;
             // 
             // colAddNewEstateAreaUnit
@@ -537,7 +549,7 @@ namespace AssetManagement.Users
             this.colAddNewEstateAreaUnit.MinWidth = 150;
             this.colAddNewEstateAreaUnit.Name = "colAddNewEstateAreaUnit";
             this.colAddNewEstateAreaUnit.Visible = true;
-            this.colAddNewEstateAreaUnit.VisibleIndex = 32;
+            this.colAddNewEstateAreaUnit.VisibleIndex = 33;
             this.colAddNewEstateAreaUnit.Width = 150;
             // 
             // colManageEstateAreaUnits
@@ -547,7 +559,7 @@ namespace AssetManagement.Users
             this.colManageEstateAreaUnits.MinWidth = 150;
             this.colManageEstateAreaUnits.Name = "colManageEstateAreaUnits";
             this.colManageEstateAreaUnits.Visible = true;
-            this.colManageEstateAreaUnits.VisibleIndex = 33;
+            this.colManageEstateAreaUnits.VisibleIndex = 34;
             this.colManageEstateAreaUnits.Width = 150;
             // 
             // colAddNewTransactionType
@@ -557,7 +569,7 @@ namespace AssetManagement.Users
             this.colAddNewTransactionType.MinWidth = 150;
             this.colAddNewTransactionType.Name = "colAddNewTransactionType";
             this.colAddNewTransactionType.Visible = true;
-            this.colAddNewTransactionType.VisibleIndex = 34;
+            this.colAddNewTransactionType.VisibleIndex = 35;
             this.colAddNewTransactionType.Width = 150;
             // 
             // colManageTransactionTypes
@@ -567,7 +579,7 @@ namespace AssetManagement.Users
             this.colManageTransactionTypes.MinWidth = 150;
             this.colManageTransactionTypes.Name = "colManageTransactionTypes";
             this.colManageTransactionTypes.Visible = true;
-            this.colManageTransactionTypes.VisibleIndex = 35;
+            this.colManageTransactionTypes.VisibleIndex = 36;
             this.colManageTransactionTypes.Width = 150;
             // 
             // colAddNewFinancialItem
@@ -577,7 +589,7 @@ namespace AssetManagement.Users
             this.colAddNewFinancialItem.MinWidth = 150;
             this.colAddNewFinancialItem.Name = "colAddNewFinancialItem";
             this.colAddNewFinancialItem.Visible = true;
-            this.colAddNewFinancialItem.VisibleIndex = 36;
+            this.colAddNewFinancialItem.VisibleIndex = 37;
             this.colAddNewFinancialItem.Width = 150;
             // 
             // colManageFinancialItems
@@ -587,7 +599,7 @@ namespace AssetManagement.Users
             this.colManageFinancialItems.MinWidth = 150;
             this.colManageFinancialItems.Name = "colManageFinancialItems";
             this.colManageFinancialItems.Visible = true;
-            this.colManageFinancialItems.VisibleIndex = 37;
+            this.colManageFinancialItems.VisibleIndex = 38;
             this.colManageFinancialItems.Width = 150;
             // 
             // colUpdateExistedFinancialItem
@@ -597,7 +609,7 @@ namespace AssetManagement.Users
             this.colUpdateExistedFinancialItem.MinWidth = 150;
             this.colUpdateExistedFinancialItem.Name = "colUpdateExistedFinancialItem";
             this.colUpdateExistedFinancialItem.Visible = true;
-            this.colUpdateExistedFinancialItem.VisibleIndex = 38;
+            this.colUpdateExistedFinancialItem.VisibleIndex = 39;
             this.colUpdateExistedFinancialItem.Width = 150;
             // 
             // colDeleteFinancialItemRecord
@@ -607,7 +619,7 @@ namespace AssetManagement.Users
             this.colDeleteFinancialItemRecord.MinWidth = 150;
             this.colDeleteFinancialItemRecord.Name = "colDeleteFinancialItemRecord";
             this.colDeleteFinancialItemRecord.Visible = true;
-            this.colDeleteFinancialItemRecord.VisibleIndex = 39;
+            this.colDeleteFinancialItemRecord.VisibleIndex = 40;
             this.colDeleteFinancialItemRecord.Width = 150;
             // 
             // colViewFinancialReports
@@ -617,7 +629,7 @@ namespace AssetManagement.Users
             this.colViewFinancialReports.MinWidth = 150;
             this.colViewFinancialReports.Name = "colViewFinancialReports";
             this.colViewFinancialReports.Visible = true;
-            this.colViewFinancialReports.VisibleIndex = 40;
+            this.colViewFinancialReports.VisibleIndex = 41;
             this.colViewFinancialReports.Width = 150;
             // 
             // colAddNewFinancialItemCategory
@@ -627,7 +639,7 @@ namespace AssetManagement.Users
             this.colAddNewFinancialItemCategory.MinWidth = 150;
             this.colAddNewFinancialItemCategory.Name = "colAddNewFinancialItemCategory";
             this.colAddNewFinancialItemCategory.Visible = true;
-            this.colAddNewFinancialItemCategory.VisibleIndex = 41;
+            this.colAddNewFinancialItemCategory.VisibleIndex = 42;
             this.colAddNewFinancialItemCategory.Width = 150;
             // 
             // colManageFinancialItemCategories
@@ -637,7 +649,7 @@ namespace AssetManagement.Users
             this.colManageFinancialItemCategories.MinWidth = 150;
             this.colManageFinancialItemCategories.Name = "colManageFinancialItemCategories";
             this.colManageFinancialItemCategories.Visible = true;
-            this.colManageFinancialItemCategories.VisibleIndex = 42;
+            this.colManageFinancialItemCategories.VisibleIndex = 43;
             this.colManageFinancialItemCategories.Width = 150;
             // 
             // colSetDateAndTime
@@ -647,7 +659,7 @@ namespace AssetManagement.Users
             this.colSetDateAndTime.MinWidth = 150;
             this.colSetDateAndTime.Name = "colSetDateAndTime";
             this.colSetDateAndTime.Visible = true;
-            this.colSetDateAndTime.VisibleIndex = 43;
+            this.colSetDateAndTime.VisibleIndex = 44;
             this.colSetDateAndTime.Width = 150;
             // 
             // colBackupDb
@@ -657,7 +669,7 @@ namespace AssetManagement.Users
             this.colBackupDb.MinWidth = 150;
             this.colBackupDb.Name = "colBackupDb";
             this.colBackupDb.Visible = true;
-            this.colBackupDb.VisibleIndex = 44;
+            this.colBackupDb.VisibleIndex = 45;
             this.colBackupDb.Width = 150;
             // 
             // colRestoreDb
@@ -667,7 +679,7 @@ namespace AssetManagement.Users
             this.colRestoreDb.MinWidth = 150;
             this.colRestoreDb.Name = "colRestoreDb";
             this.colRestoreDb.Visible = true;
-            this.colRestoreDb.VisibleIndex = 45;
+            this.colRestoreDb.VisibleIndex = 46;
             this.colRestoreDb.Width = 150;
             // 
             // colCreateAssetsReports
@@ -677,7 +689,7 @@ namespace AssetManagement.Users
             this.colCreateAssetsReports.MinWidth = 150;
             this.colCreateAssetsReports.Name = "colCreateAssetsReports";
             this.colCreateAssetsReports.Visible = true;
-            this.colCreateAssetsReports.VisibleIndex = 46;
+            this.colCreateAssetsReports.VisibleIndex = 47;
             this.colCreateAssetsReports.Width = 150;
             // 
             // mainAlertControl
@@ -751,7 +763,7 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userRoleTblBindingNavigator.Name = "userRoleTblBindingNavigator";
             this.userRoleTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1213, 27);
+            this.userRoleTblBindingNavigator.Size = new System.Drawing.Size(1301, 27);
             this.userRoleTblBindingNavigator.TabIndex = 6;
             this.userRoleTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -854,7 +866,7 @@ namespace AssetManagement.Users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 661);
+            this.ClientSize = new System.Drawing.Size(1301, 748);
             this.Controls.Add(this.userRoleGridControl);
             this.Controls.Add(this.userRoleTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -946,5 +958,6 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colManageSubDepartments;
         private DevExpress.XtraGrid.Columns.GridColumn colCreateInventoryReport;
         private DevExpress.XtraGrid.Columns.GridColumn colManageImportExportTbl;
+        private DevExpress.XtraGrid.Columns.GridColumn colUpdateSubDepartmentForExistedAsset;
     }
 }

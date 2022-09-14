@@ -44,7 +44,7 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.MinorCategoryTbl' table. You can move, or remove it, as needed.
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
 
-            manageCategoriesTblsBtn.Visible = StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true;
+            manageMainCategoryTblBtn.Visible = manageMinorCategoryTblBtn.Visible = StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
@@ -196,11 +196,15 @@ namespace AssetManagement.Assets
                 }
                 StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;
+                e.Cancel = false;
             }
-            catch
+            catch (Exception ex)
             {
+                string fff = ex.Message;
                 mainAlertControl.Show(this, "خطأ في بعص الإدخالات، تأكد ثانية من القيم", StaticCode.ApplicationTitle);
+                e.Cancel = true;
             }
+            progressPanel1.Visible = false;
         }
 
         private void mainCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
@@ -237,12 +241,19 @@ namespace AssetManagement.Assets
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
         }
 
-        private void manageCategoriesTblsBtn_Click(object sender, EventArgs e)
+        private void manageMainCategoryTblBtn_Click(object sender, EventArgs e)
         {
-            ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
-            catFrm.ShowDialog();
+            ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
+            macaFrm.ShowDialog();
 
             this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
+        }
+
+        private void manageMinorCategoryTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageMinorCategoryTblForm micaFrm = new ManageMinorCategoryTblForm();
+            micaFrm.ShowDialog();
+
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
         }
 

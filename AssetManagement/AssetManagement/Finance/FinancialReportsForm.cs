@@ -221,7 +221,7 @@ namespace AssetManagement.Finance
                 startRow++;
             }
             List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
-            int macaStartRow = 12;
+            int macaStartRow = 70;
             foreach (string oneMaCa in mainCategoriesNames)
             {
                 fiRpWs.Cells[macaStartRow, 7].Value = oneMaCa;

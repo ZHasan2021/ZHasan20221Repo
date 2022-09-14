@@ -3255,6 +3255,8 @@ namespace AssetManagement
 		
 		private string _FinancialItemCategoryDetails;
 		
+		private string _IsIncomingOrOutgiung;
+		
 		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
 		
     #region Extensibility Method Definitions
@@ -3267,6 +3269,8 @@ namespace AssetManagement
     partial void OnFinancialItemCategoryNameChanged();
     partial void OnFinancialItemCategoryDetailsChanging(string value);
     partial void OnFinancialItemCategoryDetailsChanged();
+    partial void OnIsIncomingOrOutgiungChanging(string value);
+    partial void OnIsIncomingOrOutgiungChanged();
     #endregion
 		
 		public FinancialItemCategoryTbl()
@@ -3331,6 +3335,26 @@ namespace AssetManagement
 					this._FinancialItemCategoryDetails = value;
 					this.SendPropertyChanged("FinancialItemCategoryDetails");
 					this.OnFinancialItemCategoryDetailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsIncomingOrOutgiung", DbType="NVarChar(50)")]
+		public string IsIncomingOrOutgiung
+		{
+			get
+			{
+				return this._IsIncomingOrOutgiung;
+			}
+			set
+			{
+				if ((this._IsIncomingOrOutgiung != value))
+				{
+					this.OnIsIncomingOrOutgiungChanging(value);
+					this.SendPropertyChanging();
+					this._IsIncomingOrOutgiung = value;
+					this.SendPropertyChanged("IsIncomingOrOutgiung");
+					this.OnIsIncomingOrOutgiungChanged();
 				}
 			}
 		}
@@ -5673,6 +5697,8 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _UpdateExistedAsset;
 		
+		private System.Nullable<bool> _UpdateSubDepartmentForExistedAsset;
+		
 		private System.Nullable<bool> _DeleteAssetRecord;
 		
 		private System.Nullable<bool> _ViewAssetsReports;
@@ -5777,6 +5803,8 @@ namespace AssetManagement
     partial void OnManageAssetTblChanged();
     partial void OnUpdateExistedAssetChanging(System.Nullable<bool> value);
     partial void OnUpdateExistedAssetChanged();
+    partial void OnUpdateSubDepartmentForExistedAssetChanging(System.Nullable<bool> value);
+    partial void OnUpdateSubDepartmentForExistedAssetChanged();
     partial void OnDeleteAssetRecordChanging(System.Nullable<bool> value);
     partial void OnDeleteAssetRecordChanged();
     partial void OnViewAssetsReportsChanging(System.Nullable<bool> value);
@@ -5969,6 +5997,26 @@ namespace AssetManagement
 					this._UpdateExistedAsset = value;
 					this.SendPropertyChanged("UpdateExistedAsset");
 					this.OnUpdateExistedAssetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateSubDepartmentForExistedAsset", DbType="Bit")]
+		public System.Nullable<bool> UpdateSubDepartmentForExistedAsset
+		{
+			get
+			{
+				return this._UpdateSubDepartmentForExistedAsset;
+			}
+			set
+			{
+				if ((this._UpdateSubDepartmentForExistedAsset != value))
+				{
+					this.OnUpdateSubDepartmentForExistedAssetChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateSubDepartmentForExistedAsset = value;
+					this.SendPropertyChanged("UpdateSubDepartmentForExistedAsset");
+					this.OnUpdateSubDepartmentForExistedAssetChanged();
 				}
 			}
 		}

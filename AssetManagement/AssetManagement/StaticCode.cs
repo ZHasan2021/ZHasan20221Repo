@@ -25,8 +25,6 @@ namespace AssetManagement
         #region Db
         public static string dbPath = $"{Application.StartupPath}//Db//AssetMngDb.mdf";
         public static string db_logPath = $"{Application.StartupPath}//Db//AssetMngDb_log.ldf";
-        public static string dbPath_stat = $"{Application.StartupPath}//Db//AssetMngDb2.mdf";
-        public static string db_logPath_stat = $"{Application.StartupPath}//Db//AssetMngDb2_log.ldf";
         public static AssetMngDbDataContext mainDbContext = new AssetMngDbDataContext();
         public static OptionsTbl appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
@@ -229,7 +227,7 @@ namespace AssetManagement
                         sqlcomm.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     continue;
                 }

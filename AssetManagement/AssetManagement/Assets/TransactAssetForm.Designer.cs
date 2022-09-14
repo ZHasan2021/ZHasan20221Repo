@@ -32,23 +32,27 @@ namespace AssetManagement.Assets
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransacteAssetForm));
             this.moveAssetGroupBox = new System.Windows.Forms.GroupBox();
-            this.assetInfoTextBox = new System.Windows.Forms.TextBox();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
-            this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.assetMoveVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.transactionTypeRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.transactionTypeTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.colTransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTransactionNotes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTransactionMadeOn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTransactionMadeBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMoneyAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMoneyAmountCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.currencyTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.assetTransactionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter();
-            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
-            this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
-            this.viewAssetInformationBtn = new System.Windows.Forms.Button();
-            this.searchResultsListBox = new System.Windows.Forms.ListBox();
-            this.searchAssetBtn = new System.Windows.Forms.Button();
-            this.assetCodeLabel = new System.Windows.Forms.Label();
-            this.assetCodeTextBox = new System.Windows.Forms.TextBox();
+            this.colGetAssetOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetTransactionPanel = new System.Windows.Forms.Panel();
             this.currentPriceWithDestroyingLabel = new System.Windows.Forms.Label();
             this.currentPriceWithDestroyingNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -56,6 +60,7 @@ namespace AssetManagement.Assets
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.moneyAmountCurrencyLabel = new System.Windows.Forms.Label();
             this.moneyAmountCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.manageTransactionTypeTblBtn = new System.Windows.Forms.Button();
             this.moneyAmountLabel = new System.Windows.Forms.Label();
             this.moneyAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -67,41 +72,36 @@ namespace AssetManagement.Assets
             this.transactionTypeLabel = new System.Windows.Forms.Label();
             this.assetTransactionDateLabel = new System.Windows.Forms.Label();
             this.transactionTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
-            this.assetMoveVwGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.transactionTypeRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colTransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTransactionNotes = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTransactionMadeOn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTransactionMadeBy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMoneyAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMoneyAmountCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colGetAssetOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetInfoTextBox = new System.Windows.Forms.TextBox();
+            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.assetTransactionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter();
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
+            this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
+            this.viewAssetInformationBtn = new System.Windows.Forms.Button();
+            this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.searchAssetBtn = new System.Windows.Forms.Button();
+            this.assetCodeLabel = new System.Windows.Forms.Label();
+            this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.moveAssetGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).BeginInit();
             this.assetTransactionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // moveAssetGroupBox
@@ -119,156 +119,207 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
             this.moveAssetGroupBox.Visible = false;
             // 
-            // assetInfoTextBox
+            // assetTransactionGridControl
             // 
-            this.assetInfoTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.assetInfoTextBox.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetInfoTextBox.Location = new System.Drawing.Point(3, 28);
-            this.assetInfoTextBox.Multiline = true;
-            this.assetInfoTextBox.Name = "assetInfoTextBox";
-            this.assetInfoTextBox.ReadOnly = true;
-            this.assetInfoTextBox.Size = new System.Drawing.Size(1270, 82);
-            this.assetInfoTextBox.TabIndex = 606;
-            // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // transactionTypeTblBindingSource
-            // 
-            this.transactionTypeTblBindingSource.DataMember = "TransactionTypeTbl";
-            this.transactionTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            this.assetTransactionGridControl.DataSource = this.assetTransactionTblBindingSource;
+            this.assetTransactionGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assetTransactionGridControl.Location = new System.Drawing.Point(3, 358);
+            this.assetTransactionGridControl.MainView = this.assetMoveVwGridView;
+            this.assetTransactionGridControl.Name = "assetTransactionGridControl";
+            this.assetTransactionGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.transactionTypeRepositoryItemLookUpEdit,
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit});
+            this.assetTransactionGridControl.Size = new System.Drawing.Size(1270, 272);
+            this.assetTransactionGridControl.TabIndex = 608;
+            this.assetTransactionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.assetMoveVwGridView});
             // 
             // assetTransactionTblBindingSource
             // 
             this.assetTransactionTblBindingSource.DataMember = "AssetTransactionTbl";
             this.assetTransactionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // assetMoveVwGridView
+            // 
+            this.assetMoveVwGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colID,
+            this.colAssetID,
+            this.colTransactionType,
+            this.colTransactionDate,
+            this.colTransactionNotes,
+            this.colTransactionMadeOn,
+            this.colTransactionMadeBy,
+            this.colMoneyAmount,
+            this.colMoneyAmountCurrency,
+            this.colGetAssetOutOfWork,
+            this.colWithDestroying,
+            this.colCurrentPriceWithDestroying,
+            this.colAssetTransactionUniqueKey});
+            this.assetMoveVwGridView.GridControl = this.assetTransactionGridControl;
+            this.assetMoveVwGridView.Name = "assetMoveVwGridView";
+            // 
+            // colID
+            // 
+            this.colID.Caption = "معرف سجل التصريف";
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 25;
+            this.colID.Name = "colID";
+            this.colID.Width = 80;
+            // 
+            // colAssetID
+            // 
+            this.colAssetID.Caption = "معرف الأصل";
+            this.colAssetID.FieldName = "AssetID";
+            this.colAssetID.MinWidth = 25;
+            this.colAssetID.Name = "colAssetID";
+            this.colAssetID.Width = 80;
+            // 
+            // colTransactionType
+            // 
+            this.colTransactionType.Caption = "نوع التصريف";
+            this.colTransactionType.ColumnEdit = this.transactionTypeRepositoryItemLookUpEdit;
+            this.colTransactionType.FieldName = "TransactionType";
+            this.colTransactionType.MinWidth = 25;
+            this.colTransactionType.Name = "colTransactionType";
+            this.colTransactionType.Visible = true;
+            this.colTransactionType.VisibleIndex = 0;
+            this.colTransactionType.Width = 48;
+            // 
+            // transactionTypeRepositoryItemLookUpEdit
+            // 
+            this.transactionTypeRepositoryItemLookUpEdit.AutoHeight = false;
+            this.transactionTypeRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.transactionTypeRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف نوع تصريف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeName", "اسم نوع تصريف العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.transactionTypeRepositoryItemLookUpEdit.DataSource = this.transactionTypeTblBindingSource1;
+            this.transactionTypeRepositoryItemLookUpEdit.DisplayMember = "TransactionTypeName";
+            this.transactionTypeRepositoryItemLookUpEdit.Name = "transactionTypeRepositoryItemLookUpEdit";
+            this.transactionTypeRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
             // transactionTypeTblBindingSource1
             // 
             this.transactionTypeTblBindingSource1.DataMember = "TransactionTypeTbl";
             this.transactionTypeTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // colTransactionDate
+            // 
+            this.colTransactionDate.Caption = "تاريخ التصريف";
+            this.colTransactionDate.FieldName = "TransactionDate";
+            this.colTransactionDate.MinWidth = 25;
+            this.colTransactionDate.Name = "colTransactionDate";
+            this.colTransactionDate.Visible = true;
+            this.colTransactionDate.VisibleIndex = 1;
+            this.colTransactionDate.Width = 72;
+            // 
+            // colTransactionNotes
+            // 
+            this.colTransactionNotes.Caption = "ملاحظات التصريف";
+            this.colTransactionNotes.FieldName = "TransactionNotes";
+            this.colTransactionNotes.MinWidth = 25;
+            this.colTransactionNotes.Name = "colTransactionNotes";
+            this.colTransactionNotes.Visible = true;
+            this.colTransactionNotes.VisibleIndex = 2;
+            this.colTransactionNotes.Width = 200;
+            // 
+            // colTransactionMadeOn
+            // 
+            this.colTransactionMadeOn.Caption = "تاريخ إنشاء سجل التصريف";
+            this.colTransactionMadeOn.FieldName = "TransactionMadeOn";
+            this.colTransactionMadeOn.MinWidth = 25;
+            this.colTransactionMadeOn.Name = "colTransactionMadeOn";
+            this.colTransactionMadeOn.Width = 80;
+            // 
+            // colTransactionMadeBy
+            // 
+            this.colTransactionMadeBy.Caption = "الحساب الذي قام بالإنشاء";
+            this.colTransactionMadeBy.FieldName = "TransactionMadeBy";
+            this.colTransactionMadeBy.MinWidth = 25;
+            this.colTransactionMadeBy.Name = "colTransactionMadeBy";
+            this.colTransactionMadeBy.Width = 80;
+            // 
+            // colMoneyAmount
+            // 
+            this.colMoneyAmount.Caption = "مبلغ البيع";
+            this.colMoneyAmount.FieldName = "MoneyAmount";
+            this.colMoneyAmount.MinWidth = 25;
+            this.colMoneyAmount.Name = "colMoneyAmount";
+            this.colMoneyAmount.Visible = true;
+            this.colMoneyAmount.VisibleIndex = 3;
+            this.colMoneyAmount.Width = 80;
+            // 
+            // colMoneyAmountCurrency
+            // 
+            this.colMoneyAmountCurrency.Caption = "عملة البيع";
+            this.colMoneyAmountCurrency.ColumnEdit = this.moneyAmountCurrencyRepositoryItemLookUpEdit;
+            this.colMoneyAmountCurrency.FieldName = "MoneyAmountCurrency";
+            this.colMoneyAmountCurrency.MinWidth = 25;
+            this.colMoneyAmountCurrency.Name = "colMoneyAmountCurrency";
+            this.colMoneyAmountCurrency.Visible = true;
+            this.colMoneyAmountCurrency.VisibleIndex = 4;
+            this.colMoneyAmountCurrency.Width = 120;
+            // 
+            // moneyAmountCurrencyRepositoryItemLookUpEdit
+            // 
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.AutoHeight = false;
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.DataSource = this.currencyTblBindingSource1;
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.DisplayMember = "CurrencyName";
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Name = "moneyAmountCurrencyRepositoryItemLookUpEdit";
+            this.moneyAmountCurrencyRepositoryItemLookUpEdit.ValueMember = "ID";
             // 
             // currencyTblBindingSource1
             // 
             this.currencyTblBindingSource1.DataMember = "CurrencyTbl";
             this.currencyTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
-            // mainAlertControl
+            // colGetAssetOutOfWork
             // 
-            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
-            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.mainAlertControl.AppearanceText.Options.UseFont = true;
-            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
-            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
-            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
+            this.colGetAssetOutOfWork.Caption = "إخراج الأصل من الخدمة";
+            this.colGetAssetOutOfWork.FieldName = "GetAssetOutOfWork";
+            this.colGetAssetOutOfWork.MinWidth = 25;
+            this.colGetAssetOutOfWork.Name = "colGetAssetOutOfWork";
+            this.colGetAssetOutOfWork.Visible = true;
+            this.colGetAssetOutOfWork.VisibleIndex = 5;
+            this.colGetAssetOutOfWork.Width = 50;
             // 
-            // tableAdapterManager
+            // colWithDestroying
             // 
-            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
-            this.tableAdapterManager.AssetTblTableAdapter = null;
-            this.tableAdapterManager.AssetTransactionTblTableAdapter = this.assetTransactionTblTableAdapter;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
-            this.tableAdapterManager.DepartmentTblTableAdapter = null;
-            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
-            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
-            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
-            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
-            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
-            this.tableAdapterManager.ModelTblTableAdapter = null;
-            this.tableAdapterManager.OptionsTblTableAdapter = null;
-            this.tableAdapterManager.SectionTblTableAdapter = null;
-            this.tableAdapterManager.SquareTblTableAdapter = null;
-            this.tableAdapterManager.StatusTblTableAdapter = null;
-            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
-            this.tableAdapterManager.TransactionTypeTblTableAdapter = this.transactionTypeTblTableAdapter;
-            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRoleTblTableAdapter = null;
-            this.tableAdapterManager.UserTblTableAdapter = null;
+            this.colWithDestroying.Caption = "مع إهلاك";
+            this.colWithDestroying.FieldName = "WithDestroying";
+            this.colWithDestroying.MinWidth = 25;
+            this.colWithDestroying.Name = "colWithDestroying";
+            this.colWithDestroying.Visible = true;
+            this.colWithDestroying.VisibleIndex = 6;
+            this.colWithDestroying.Width = 50;
             // 
-            // assetTransactionTblTableAdapter
+            // colCurrentPriceWithDestroying
             // 
-            this.assetTransactionTblTableAdapter.ClearBeforeFill = true;
+            this.colCurrentPriceWithDestroying.Caption = "القيمة الحالية مع الإهلاك";
+            this.colCurrentPriceWithDestroying.FieldName = "CurrentPriceWithDestroying";
+            this.colCurrentPriceWithDestroying.MinWidth = 25;
+            this.colCurrentPriceWithDestroying.Name = "colCurrentPriceWithDestroying";
+            this.colCurrentPriceWithDestroying.Visible = true;
+            this.colCurrentPriceWithDestroying.VisibleIndex = 7;
+            this.colCurrentPriceWithDestroying.Width = 80;
             // 
-            // currencyTblTableAdapter
+            // colAssetTransactionUniqueKey
             // 
-            this.currencyTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // transactionTypeTblTableAdapter
-            // 
-            this.transactionTypeTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // viewAssetInformationBtn
-            // 
-            this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
-            this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1085, 53);
-            this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
-            this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
-            this.viewAssetInformationBtn.TabIndex = 105;
-            this.viewAssetInformationBtn.Text = "عرض معلومات الأصل";
-            this.viewAssetInformationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.viewAssetInformationBtn.UseVisualStyleBackColor = true;
-            this.viewAssetInformationBtn.Visible = false;
-            this.viewAssetInformationBtn.Click += new System.EventHandler(this.viewAssetInformationBtn_Click);
-            // 
-            // searchResultsListBox
-            // 
-            this.searchResultsListBox.DisplayMember = "AssetCode";
-            this.searchResultsListBox.FormattingEnabled = true;
-            this.searchResultsListBox.ItemHeight = 24;
-            this.searchResultsListBox.Location = new System.Drawing.Point(598, 25);
-            this.searchResultsListBox.Name = "searchResultsListBox";
-            this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
-            this.searchResultsListBox.TabIndex = 104;
-            this.searchResultsListBox.ValueMember = "ID";
-            this.searchResultsListBox.Visible = false;
-            this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
-            // 
-            // searchAssetBtn
-            // 
-            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.searchAssetBtn.Location = new System.Drawing.Point(225, 78);
-            this.searchAssetBtn.Name = "searchAssetBtn";
-            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
-            this.searchAssetBtn.TabIndex = 103;
-            this.searchAssetBtn.Text = "بحث";
-            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.searchAssetBtn.UseVisualStyleBackColor = true;
-            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
-            // 
-            // assetCodeLabel
-            // 
-            this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetCodeLabel.AutoSize = true;
-            this.assetCodeLabel.Location = new System.Drawing.Point(57, 29);
-            this.assetCodeLabel.Name = "assetCodeLabel";
-            this.assetCodeLabel.Size = new System.Drawing.Size(86, 24);
-            this.assetCodeLabel.TabIndex = 101;
-            this.assetCodeLabel.Text = "كود الأصل:";
-            // 
-            // assetCodeTextBox
-            // 
-            this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetCodeTextBox.Location = new System.Drawing.Point(185, 25);
-            this.assetCodeTextBox.Name = "assetCodeTextBox";
-            this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
-            this.assetCodeTextBox.TabIndex = 102;
+            this.colAssetTransactionUniqueKey.Caption = "رقم فريد للسجل";
+            this.colAssetTransactionUniqueKey.FieldName = "AssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.MinWidth = 150;
+            this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
+            this.colAssetTransactionUniqueKey.Width = 94;
             // 
             // assetTransactionPanel
             // 
@@ -375,6 +426,11 @@ namespace AssetManagement.Assets
             this.moneyAmountCurrencyLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.moneyAmountCurrencyLookUpEdit.TabIndex = 265;
             // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // manageTransactionTypeTblBtn
             // 
             this.manageTransactionTypeTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -469,7 +525,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.assetTransactionDateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.assetTransactionDateDateEdit.Size = new System.Drawing.Size(259, 22);
+            this.assetTransactionDateDateEdit.Size = new System.Drawing.Size(259, 28);
             this.assetTransactionDateDateEdit.TabIndex = 210;
             // 
             // transactionTypeLabel
@@ -510,188 +566,134 @@ namespace AssetManagement.Assets
             this.transactionTypeLookUpEdit.Properties.ValueMember = "ID";
             this.transactionTypeLookUpEdit.Size = new System.Drawing.Size(261, 28);
             this.transactionTypeLookUpEdit.TabIndex = 220;
+            this.transactionTypeLookUpEdit.EditValueChanged += new System.EventHandler(this.transactionTypeLookUpEdit_EditValueChanged);
             // 
-            // assetTransactionGridControl
+            // transactionTypeTblBindingSource
             // 
-            this.assetTransactionGridControl.DataSource = this.assetTransactionTblBindingSource;
-            this.assetTransactionGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assetTransactionGridControl.Location = new System.Drawing.Point(3, 358);
-            this.assetTransactionGridControl.MainView = this.assetMoveVwGridView;
-            this.assetTransactionGridControl.Name = "assetTransactionGridControl";
-            this.assetTransactionGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.transactionTypeRepositoryItemLookUpEdit,
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit});
-            this.assetTransactionGridControl.Size = new System.Drawing.Size(1270, 272);
-            this.assetTransactionGridControl.TabIndex = 608;
-            this.assetTransactionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.assetMoveVwGridView});
+            this.transactionTypeTblBindingSource.DataMember = "TransactionTypeTbl";
+            this.transactionTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // assetMoveVwGridView
+            // assetInfoTextBox
             // 
-            this.assetMoveVwGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colID,
-            this.colAssetID,
-            this.colTransactionType,
-            this.colTransactionDate,
-            this.colTransactionNotes,
-            this.colTransactionMadeOn,
-            this.colTransactionMadeBy,
-            this.colMoneyAmount,
-            this.colMoneyAmountCurrency,
-            this.colGetAssetOutOfWork,
-            this.colWithDestroying,
-            this.colCurrentPriceWithDestroying,
-            this.colAssetTransactionUniqueKey});
-            this.assetMoveVwGridView.GridControl = this.assetTransactionGridControl;
-            this.assetMoveVwGridView.Name = "assetMoveVwGridView";
+            this.assetInfoTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.assetInfoTextBox.Font = new System.Drawing.Font("Sakkal Majalla", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetInfoTextBox.Location = new System.Drawing.Point(3, 28);
+            this.assetInfoTextBox.Multiline = true;
+            this.assetInfoTextBox.Name = "assetInfoTextBox";
+            this.assetInfoTextBox.ReadOnly = true;
+            this.assetInfoTextBox.Size = new System.Drawing.Size(1270, 82);
+            this.assetInfoTextBox.TabIndex = 606;
             // 
-            // colID
+            // mainAlertControl
             // 
-            this.colID.Caption = "معرف سجل التصريف";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 25;
-            this.colID.Name = "colID";
-            this.colID.Width = 80;
+            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
+            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.mainAlertControl.AppearanceText.Options.UseFont = true;
+            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
+            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
-            // colAssetID
+            // tableAdapterManager
             // 
-            this.colAssetID.Caption = "معرف الأصل";
-            this.colAssetID.FieldName = "AssetID";
-            this.colAssetID.MinWidth = 25;
-            this.colAssetID.Name = "colAssetID";
-            this.colAssetID.Width = 80;
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = null;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = this.assetTransactionTblTableAdapter;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
+            this.tableAdapterManager.DepartmentTblTableAdapter = null;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = null;
+            this.tableAdapterManager.SquareTblTableAdapter = null;
+            this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = this.transactionTypeTblTableAdapter;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = null;
+            this.tableAdapterManager.UserTblTableAdapter = null;
             // 
-            // colTransactionType
+            // assetTransactionTblTableAdapter
             // 
-            this.colTransactionType.Caption = "نوع التصريف";
-            this.colTransactionType.ColumnEdit = this.transactionTypeRepositoryItemLookUpEdit;
-            this.colTransactionType.FieldName = "TransactionType";
-            this.colTransactionType.MinWidth = 25;
-            this.colTransactionType.Name = "colTransactionType";
-            this.colTransactionType.Visible = true;
-            this.colTransactionType.VisibleIndex = 0;
-            this.colTransactionType.Width = 48;
+            this.assetTransactionTblTableAdapter.ClearBeforeFill = true;
             // 
-            // transactionTypeRepositoryItemLookUpEdit
+            // currencyTblTableAdapter
             // 
-            this.transactionTypeRepositoryItemLookUpEdit.AutoHeight = false;
-            this.transactionTypeRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.transactionTypeRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف نوع تصريف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeName", "اسم نوع تصريف العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.transactionTypeRepositoryItemLookUpEdit.DataSource = this.transactionTypeTblBindingSource1;
-            this.transactionTypeRepositoryItemLookUpEdit.DisplayMember = "TransactionTypeName";
-            this.transactionTypeRepositoryItemLookUpEdit.Name = "transactionTypeRepositoryItemLookUpEdit";
-            this.transactionTypeRepositoryItemLookUpEdit.ValueMember = "ID";
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
             // 
-            // colTransactionDate
+            // transactionTypeTblTableAdapter
             // 
-            this.colTransactionDate.Caption = "تاريخ التصريف";
-            this.colTransactionDate.FieldName = "TransactionDate";
-            this.colTransactionDate.MinWidth = 25;
-            this.colTransactionDate.Name = "colTransactionDate";
-            this.colTransactionDate.Visible = true;
-            this.colTransactionDate.VisibleIndex = 1;
-            this.colTransactionDate.Width = 72;
+            this.transactionTypeTblTableAdapter.ClearBeforeFill = true;
             // 
-            // colTransactionNotes
+            // viewAssetInformationBtn
             // 
-            this.colTransactionNotes.Caption = "ملاحظات التصريف";
-            this.colTransactionNotes.FieldName = "TransactionNotes";
-            this.colTransactionNotes.MinWidth = 25;
-            this.colTransactionNotes.Name = "colTransactionNotes";
-            this.colTransactionNotes.Visible = true;
-            this.colTransactionNotes.VisibleIndex = 2;
-            this.colTransactionNotes.Width = 200;
+            this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
+            this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.viewAssetInformationBtn.Location = new System.Drawing.Point(1085, 53);
+            this.viewAssetInformationBtn.Name = "viewAssetInformationBtn";
+            this.viewAssetInformationBtn.Size = new System.Drawing.Size(163, 74);
+            this.viewAssetInformationBtn.TabIndex = 105;
+            this.viewAssetInformationBtn.Text = "عرض معلومات الأصل";
+            this.viewAssetInformationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.viewAssetInformationBtn.UseVisualStyleBackColor = true;
+            this.viewAssetInformationBtn.Visible = false;
+            this.viewAssetInformationBtn.Click += new System.EventHandler(this.viewAssetInformationBtn_Click);
             // 
-            // colTransactionMadeOn
+            // searchResultsListBox
             // 
-            this.colTransactionMadeOn.Caption = "تاريخ إنشاء سجل التصريف";
-            this.colTransactionMadeOn.FieldName = "TransactionMadeOn";
-            this.colTransactionMadeOn.MinWidth = 25;
-            this.colTransactionMadeOn.Name = "colTransactionMadeOn";
-            this.colTransactionMadeOn.Width = 80;
+            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.FormattingEnabled = true;
+            this.searchResultsListBox.ItemHeight = 24;
+            this.searchResultsListBox.Location = new System.Drawing.Point(598, 25);
+            this.searchResultsListBox.Name = "searchResultsListBox";
+            this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
+            this.searchResultsListBox.TabIndex = 104;
+            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.Visible = false;
+            this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
             // 
-            // colTransactionMadeBy
+            // searchAssetBtn
             // 
-            this.colTransactionMadeBy.Caption = "الحساب الذي قام بالإنشاء";
-            this.colTransactionMadeBy.FieldName = "TransactionMadeBy";
-            this.colTransactionMadeBy.MinWidth = 25;
-            this.colTransactionMadeBy.Name = "colTransactionMadeBy";
-            this.colTransactionMadeBy.Width = 80;
+            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
+            this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.searchAssetBtn.Location = new System.Drawing.Point(225, 78);
+            this.searchAssetBtn.Name = "searchAssetBtn";
+            this.searchAssetBtn.Size = new System.Drawing.Size(163, 74);
+            this.searchAssetBtn.TabIndex = 103;
+            this.searchAssetBtn.Text = "بحث";
+            this.searchAssetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.searchAssetBtn.UseVisualStyleBackColor = true;
+            this.searchAssetBtn.Click += new System.EventHandler(this.searchAssetBtn_Click);
             // 
-            // colMoneyAmount
+            // assetCodeLabel
             // 
-            this.colMoneyAmount.Caption = "مبلغ البيع";
-            this.colMoneyAmount.FieldName = "MoneyAmount";
-            this.colMoneyAmount.MinWidth = 25;
-            this.colMoneyAmount.Name = "colMoneyAmount";
-            this.colMoneyAmount.Visible = true;
-            this.colMoneyAmount.VisibleIndex = 3;
-            this.colMoneyAmount.Width = 80;
+            this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeLabel.AutoSize = true;
+            this.assetCodeLabel.Location = new System.Drawing.Point(57, 29);
+            this.assetCodeLabel.Name = "assetCodeLabel";
+            this.assetCodeLabel.Size = new System.Drawing.Size(86, 24);
+            this.assetCodeLabel.TabIndex = 101;
+            this.assetCodeLabel.Text = "كود الأصل:";
             // 
-            // colMoneyAmountCurrency
+            // assetCodeTextBox
             // 
-            this.colMoneyAmountCurrency.Caption = "عملة البيع";
-            this.colMoneyAmountCurrency.ColumnEdit = this.moneyAmountCurrencyRepositoryItemLookUpEdit;
-            this.colMoneyAmountCurrency.FieldName = "MoneyAmountCurrency";
-            this.colMoneyAmountCurrency.MinWidth = 25;
-            this.colMoneyAmountCurrency.Name = "colMoneyAmountCurrency";
-            this.colMoneyAmountCurrency.Visible = true;
-            this.colMoneyAmountCurrency.VisibleIndex = 4;
-            this.colMoneyAmountCurrency.Width = 120;
-            // 
-            // moneyAmountCurrencyRepositoryItemLookUpEdit
-            // 
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.AutoHeight = false;
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.DataSource = this.currencyTblBindingSource1;
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.DisplayMember = "CurrencyName";
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.Name = "moneyAmountCurrencyRepositoryItemLookUpEdit";
-            this.moneyAmountCurrencyRepositoryItemLookUpEdit.ValueMember = "ID";
-            // 
-            // colGetAssetOutOfWork
-            // 
-            this.colGetAssetOutOfWork.Caption = "إخراج الأصل من الخدمة";
-            this.colGetAssetOutOfWork.FieldName = "GetAssetOutOfWork";
-            this.colGetAssetOutOfWork.MinWidth = 25;
-            this.colGetAssetOutOfWork.Name = "colGetAssetOutOfWork";
-            this.colGetAssetOutOfWork.Visible = true;
-            this.colGetAssetOutOfWork.VisibleIndex = 5;
-            this.colGetAssetOutOfWork.Width = 50;
-            // 
-            // colWithDestroying
-            // 
-            this.colWithDestroying.Caption = "مع إهلاك";
-            this.colWithDestroying.FieldName = "WithDestroying";
-            this.colWithDestroying.MinWidth = 25;
-            this.colWithDestroying.Name = "colWithDestroying";
-            this.colWithDestroying.Visible = true;
-            this.colWithDestroying.VisibleIndex = 6;
-            this.colWithDestroying.Width = 50;
-            // 
-            // colCurrentPriceWithDestroying
-            // 
-            this.colCurrentPriceWithDestroying.Caption = "القيمة الحالية مع الإهلاك";
-            this.colCurrentPriceWithDestroying.FieldName = "CurrentPriceWithDestroying";
-            this.colCurrentPriceWithDestroying.MinWidth = 25;
-            this.colCurrentPriceWithDestroying.Name = "colCurrentPriceWithDestroying";
-            this.colCurrentPriceWithDestroying.Visible = true;
-            this.colCurrentPriceWithDestroying.VisibleIndex = 7;
-            this.colCurrentPriceWithDestroying.Width = 80;
-            // 
-            // colAssetTransactionUniqueKey
-            // 
-            this.colAssetTransactionUniqueKey.Caption = "رقم فريد للسجل";
-            this.colAssetTransactionUniqueKey.FieldName = "AssetTransactionUniqueKey";
-            this.colAssetTransactionUniqueKey.MinWidth = 150;
-            this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
-            this.colAssetTransactionUniqueKey.Width = 94;
+            this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeTextBox.Location = new System.Drawing.Point(185, 25);
+            this.assetCodeTextBox.Name = "assetCodeTextBox";
+            this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
+            this.assetCodeTextBox.TabIndex = 102;
             // 
             // TransacteAssetForm
             // 
@@ -717,24 +719,24 @@ namespace AssetManagement.Assets
             this.Load += new System.EventHandler(this.TransacteAssetForm_Load);
             this.moveAssetGroupBox.ResumeLayout(false);
             this.moveAssetGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).EndInit();
             this.assetTransactionPanel.ResumeLayout(false);
             this.assetTransactionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeRepositoryItemLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

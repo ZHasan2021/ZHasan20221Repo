@@ -184,5 +184,20 @@ namespace AssetManagement.Finance
             AddNewAssetForm newast = new AddNewAssetForm();
             newast.ShowDialog();
         }
+
+        private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
+        }
+
+        private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
+        }
+
+        private void incomingOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            financialItemCategoryLookUpEdit.Properties.DataSource = financialItemCategoryTblBindingSource;
+        }
     }
 }

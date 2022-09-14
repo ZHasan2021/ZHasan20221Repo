@@ -62,6 +62,7 @@ namespace AssetManagement.Assets
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
+            assetSectionLookUpEdit.Enabled = assetDeptLookUpEdit.Enabled = assetSubDeptLookUpEdit.Enabled = StaticCode.activeUserRole.UpdateSubDepartmentForExistedAsset == true;
 
             if (preLoadedAssetID > 0)
             {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AssetMngDb" Class="AssetMngDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Initial Catalog=AssetMngDb;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AssetMovementTbl" Member="AssetMovementTbls">
     <Type Name="AssetMovementTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -132,6 +132,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FinancialItemCategoryName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="FinancialItemCategoryDetails" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsIncomingOrOutgiung" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="FinancialItemCategoryTbl_FinancialItemTbl" Member="FinancialItemTbls" ThisKey="ID" OtherKey="FinancialItemCategory" Type="FinancialItemTbl" />
     </Type>
   </Table>
@@ -258,6 +259,7 @@
       <Column Name="AddNewAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageAssetTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdateSubDepartmentForExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />

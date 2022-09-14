@@ -55,6 +55,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemCategoryTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.colIsIncomingOrOutgiung = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -94,7 +95,8 @@ namespace AssetManagement.AuxTables
             this.financialItemCategoryGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
             this.colFinancialItemCategoryName,
-            this.colFinancialItemCategoryDetails});
+            this.colFinancialItemCategoryDetails,
+            this.colIsIncomingOrOutgiung});
             this.financialItemCategoryGridView.GridControl = this.financialItemCategoryGridControl;
             this.financialItemCategoryGridView.Name = "financialItemCategoryGridView";
             // 
@@ -152,12 +154,15 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
@@ -293,6 +298,16 @@ namespace AssetManagement.AuxTables
             this.financialItemCategoryTblBindingNavigator.TabIndex = 4;
             this.financialItemCategoryTblBindingNavigator.Text = "bindingNavigator1";
             // 
+            // colIsIncomingOrOutgiung
+            // 
+            this.colIsIncomingOrOutgiung.Caption = "صادر أم وارد";
+            this.colIsIncomingOrOutgiung.FieldName = "IsIncomingOrOutgiung";
+            this.colIsIncomingOrOutgiung.MinWidth = 120;
+            this.colIsIncomingOrOutgiung.Name = "colIsIncomingOrOutgiung";
+            this.colIsIncomingOrOutgiung.Visible = true;
+            this.colIsIncomingOrOutgiung.VisibleIndex = 2;
+            this.colIsIncomingOrOutgiung.Width = 120;
+            // 
             // ManageFinancialItemCategoryTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -343,5 +358,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton financialItemCategoryTblBindingNavigatorSaveItem;
         private System.Windows.Forms.BindingNavigator financialItemCategoryTblBindingNavigator;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsIncomingOrOutgiung;
     }
 }

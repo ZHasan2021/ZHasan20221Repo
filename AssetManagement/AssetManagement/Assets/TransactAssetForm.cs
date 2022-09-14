@@ -37,6 +37,7 @@ namespace AssetManagement.Assets
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 400);
         }
 
         private void assetTransactBtn_Click(object sender, EventArgs e)
@@ -91,15 +92,15 @@ namespace AssetManagement.Assets
                     assetToTransact.IsSold = true;
                     assetToTransact.IsOutOfWork = true;
                     MainCategoryTbl assetMaCa = StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == assetToTransact.AssetMinorCategory).MainCategory);
-                    if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fic1 => fic1.FinancialItemCategoryName == assetMaCa.MainCategoryName) == 0)
+                    if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fic1 => fic1.FinancialItemCategoryName == "واردات بيع أصول") == 0)
                     {
-                        StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(new FinancialItemCategoryTbl() { FinancialItemCategoryName = assetMaCa.MainCategoryName, FinancialItemCategoryDetails = "أصول ثابتة" });
+                        StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(new FinancialItemCategoryTbl() { FinancialItemCategoryName = "واردات بيع أصول", FinancialItemCategoryDetails = "بيع أصل ثابت", IsIncomingOrOutgiung = "وارد" });
                         StaticCode.mainDbContext.SubmitChanges();
                     }
                     StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(new FinancialItemTbl()
                     {
                         FinancialItemSubDept = assetToTransact.AssetSubDepartment,
-                        FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fic2 => fic2.FinancialItemCategoryName == assetMaCa.MainCategoryName).First().ID,
+                        FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fic2 => fic2.FinancialItemCategoryName == "واردات بيع أصول").First().ID,
                         FinancialItemInsertionDate = Convert.ToDateTime(assetTransactionDateDateEdit.EditValue),
                         IncomingOrOutgoing = "وارد",
                         IncomingAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
@@ -181,6 +182,12 @@ namespace AssetManagement.Assets
         private void assetMoveVwGridControl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void transactionTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            getAssetOutOfWorkCheckBox.Visible = transactionTypeLookUpEdit.Text != "بيع";
+            getAssetOutOfWorkCheckBox.Checked = withDestroyingCheckBox.Checked = false;
         }
     }
 }

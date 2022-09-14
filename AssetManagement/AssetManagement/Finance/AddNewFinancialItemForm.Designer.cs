@@ -121,12 +121,13 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.financialItemCategoryLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف البند المالي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryName", "اسم البند المالي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryDetails", "وصف البند المالي", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف البند المالي", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryName", "اسم البند المالي", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryDetails", "وصف البند المالي", 300, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IsIncomingOrOutgiung", "صادر أم وارد", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.financialItemCategoryLookUpEdit.Properties.DataSource = this.financialItemCategoryTblBindingSource;
             this.financialItemCategoryLookUpEdit.Properties.DisplayMember = "FinancialItemCategoryName";
-            this.financialItemCategoryLookUpEdit.Properties.PopupWidth = 500;
+            this.financialItemCategoryLookUpEdit.Properties.PopupWidth = 800;
             this.financialItemCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.financialItemCategoryLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemCategoryLookUpEdit.TabIndex = 5;
@@ -205,6 +206,7 @@ namespace AssetManagement.Finance
             this.incomingOutgoingRadioButton.TabIndex = 75;
             this.incomingOutgoingRadioButton.Text = "وارد وصادر";
             this.incomingOutgoingRadioButton.UseVisualStyleBackColor = true;
+            this.incomingOutgoingRadioButton.CheckedChanged += new System.EventHandler(this.incomingOutgoingRadioButton_CheckedChanged);
             // 
             // outgoingRadioButton
             // 
@@ -215,6 +217,7 @@ namespace AssetManagement.Finance
             this.outgoingRadioButton.TabIndex = 70;
             this.outgoingRadioButton.Text = "صادر";
             this.outgoingRadioButton.UseVisualStyleBackColor = true;
+            this.outgoingRadioButton.CheckedChanged += new System.EventHandler(this.outgoingRadioButton_CheckedChanged);
             // 
             // incomingRadioButton
             // 
@@ -225,6 +228,7 @@ namespace AssetManagement.Finance
             this.incomingRadioButton.TabIndex = 65;
             this.incomingRadioButton.Text = "وارد";
             this.incomingRadioButton.UseVisualStyleBackColor = true;
+            this.incomingRadioButton.CheckedChanged += new System.EventHandler(this.incomingRadioButton_CheckedChanged);
             // 
             // financialItemDescriptionLabel
             // 
