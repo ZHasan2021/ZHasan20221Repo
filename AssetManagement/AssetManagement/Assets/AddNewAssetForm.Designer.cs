@@ -33,6 +33,7 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.cautionLabel1 = new System.Windows.Forms.Label();
             this.manageMinorCategoryTblBtn = new System.Windows.Forms.Button();
             this.manageMainCategoryTblBtn = new System.Windows.Forms.Button();
             this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
@@ -145,7 +146,6 @@ namespace AssetManagement.Assets
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.cautionLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
@@ -299,6 +299,19 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Name = "assetBasicsWizardPage1";
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1466, 643);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
+            // 
+            // cautionLabel1
+            // 
+            this.cautionLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cautionLabel1.AutoSize = true;
+            this.cautionLabel1.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cautionLabel1.ForeColor = System.Drawing.Color.Red;
+            this.cautionLabel1.Location = new System.Drawing.Point(737, 361);
+            this.cautionLabel1.Name = "cautionLabel1";
+            this.cautionLabel1.Size = new System.Drawing.Size(222, 100);
+            this.cautionLabel1.TabIndex = 77;
+            this.cautionLabel1.Text = "ملاحظة:\r\nيلزمك إضافة الفئة الرئيسية كبند مالي\r\nفي حال كان الأصل جديد\r\nكي تتم إضاف" +
+    "ة الأصل بنجاح";
             // 
             // manageMinorCategoryTblBtn
             // 
@@ -1516,24 +1529,12 @@ namespace AssetManagement.Assets
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // mainCategoryTblBindingSource1
             // 
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
-            // cautionLabel1
-            // 
-            this.cautionLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cautionLabel1.AutoSize = true;
-            this.cautionLabel1.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cautionLabel1.ForeColor = System.Drawing.Color.Red;
-            this.cautionLabel1.Location = new System.Drawing.Point(737, 361);
-            this.cautionLabel1.Name = "cautionLabel1";
-            this.cautionLabel1.Size = new System.Drawing.Size(222, 100);
-            this.cautionLabel1.TabIndex = 77;
-            this.cautionLabel1.Text = "ملاحظة:\r\nيلزمك إضافة الفئة الرئيسية كبند مالي\r\nفي حال كان الأصل جديد\r\nكي تتم إضاف" +
-    "ة الأصل بنجاح";
             // 
             // AddNewAssetForm
             // 

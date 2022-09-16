@@ -39,9 +39,51 @@ namespace AssetManagement.Assets
 
         private void ViewStatInChartControl(object sender, EventArgs e)
         {
-            //Series series1 = mainChartControl.Series.First();
-            //series1.ArgumentDataMember = "القسم";
-            //series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+            Series series1 = mainChartControl.Series[0];
+            switch (aggregateStatTypeComboBox.Text)
+            {
+                case "عدد الأصول":
+                    switch (byFieldComboBox.Text)
+                    {
+                        case "القسم":
+                            series1.ArgumentDataMember = "القسم";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            break;
+                        case "الفئة الرئيسية":
+                            series1.ArgumentDataMember = "الفئة الرئيسية";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            break;
+                        case "الفئة الفرعية":
+                            series1.ArgumentDataMember = "الفئة الفرعية";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "مجموع مبالغ الشراء":
+                    switch (byFieldComboBox.Text)
+                    {
+                        case "القسم":
+                            series1.ArgumentDataMember = "القسم";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            break;
+                        case "الفئة الرئيسية":
+                            series1.ArgumentDataMember = "الفئة الرئيسية";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            break;
+                        case "الفئة الفرعية":
+                            series1.ArgumentDataMember = "الفئة الفرعية";
+                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }

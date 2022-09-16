@@ -322,16 +322,16 @@ namespace AssetManagement.Assets
             "مجموع مبالغ الشراء",
             "عدد الأصول المهلكة",
             "عدد الأصول المباعة"});
-            this.aggregateStatTypeComboBox.Location = new System.Drawing.Point(1002, 51);
+            this.aggregateStatTypeComboBox.Location = new System.Drawing.Point(940, 51);
             this.aggregateStatTypeComboBox.Name = "aggregateStatTypeComboBox";
-            this.aggregateStatTypeComboBox.Size = new System.Drawing.Size(205, 32);
+            this.aggregateStatTypeComboBox.Size = new System.Drawing.Size(267, 32);
             this.aggregateStatTypeComboBox.TabIndex = 2;
             this.aggregateStatTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ViewStatInChartControl);
             // 
             // aggregateStateByFieldLabel
             // 
             this.aggregateStateByFieldLabel.AutoSize = true;
-            this.aggregateStateByFieldLabel.Location = new System.Drawing.Point(881, 54);
+            this.aggregateStateByFieldLabel.Location = new System.Drawing.Point(848, 54);
             this.aggregateStateByFieldLabel.Name = "aggregateStateByFieldLabel";
             this.aggregateStateByFieldLabel.Size = new System.Drawing.Size(53, 24);
             this.aggregateStateByFieldLabel.TabIndex = 1;
@@ -350,9 +350,9 @@ namespace AssetManagement.Assets
             "الفئة الرئيسية وحالة الأصل",
             "الفئة الفرعية وحالة الأصل",
             "القسم وحالة الأصل"});
-            this.byFieldComboBox.Location = new System.Drawing.Point(611, 51);
+            this.byFieldComboBox.Location = new System.Drawing.Point(559, 51);
             this.byFieldComboBox.Name = "byFieldComboBox";
-            this.byFieldComboBox.Size = new System.Drawing.Size(205, 32);
+            this.byFieldComboBox.Size = new System.Drawing.Size(257, 32);
             this.byFieldComboBox.TabIndex = 0;
             this.byFieldComboBox.SelectedIndexChanged += new System.EventHandler(this.ViewStatInChartControl);
             // 
@@ -395,7 +395,7 @@ namespace AssetManagement.Assets
             series1.Label = sideBySideBarSeriesLabel1;
             series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             series1.Name = "Series 1";
-            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
             sideBySideBarSeriesView1.ColorEach = true;
             series1.View = sideBySideBarSeriesView1;
             this.mainChartControl.SeriesSerializable = new DevExpress.XtraCharts.Series[] {

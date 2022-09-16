@@ -51,7 +51,7 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb(string backupName)
+        public static bool RestoreDb2(string backupName)
         {
             try
             {
@@ -61,14 +61,41 @@ namespace AssetManagement
                 System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Settings().AssetMngDbConnectionString);
                 string server = builder.DataSource;
                 string database = builder.InitialCatalog;
-                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE {builder.InitialCatalog} FROM DISK='{backupName}' WITH REPLACE", dbConn))
+                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE AssetMngDb FROM DISK='{backupName}' WITH REPLACE", dbConn))
                 {
                     backupDbComm.ExecuteNonQuery();
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                string dddd = ex.Message;
+                return false;
+            }
+        }
+
+        public static bool RestoreDb(string backupName)
+        {
+            try
+            {
+                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                if (dbConn.State != System.Data.ConnectionState.Open)
+                    dbConn.Open();
+                string dbName = dbConn.Database;
+                using (SqlCommand backupDbComm = new SqlCommand($"ALTER DATABASE [{dbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE ", dbConn))
+                {
+                    backupDbComm.ExecuteNonQuery();
+                    backupDbComm.CommandText = $"USE MASTER RESTORE DATABASE [{dbName}] FROM DISK = '{backupName}' WITH REPLACE";
+                    backupDbComm.ExecuteNonQuery();
+                    backupDbComm.CommandText = $"ALTER DATABASE [{dbName}] SET MULTI_USER";
+                    backupDbComm.ExecuteNonQuery();
+                    dbConn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string dddd = ex.Message;
                 return false;
             }
         }
@@ -91,6 +118,28 @@ namespace AssetManagement
             sqlComm.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newYear"></param>
+        /// <param name="newMonth"></param>
+        /// <param name="levelID"></param>
+        /// <param name="levelRank">1 for sections, 2 for departments, and 3 for sub-departments</param>
+        /// <returns></returns>
+        public static List<double> GetCycledToMonth(IQueryable<FinancialItemTbl> fiQry, int newYear, int newMonth, int levelID, int levelRank)
+        {
+            DateTime firstDayInNewMonth = new DateTime(newYear, newMonth, 1);
+            DateTime lastDayInOldMonth = firstDayInNewMonth.AddDays(-1);
+            DateTime firstDayInOldMonth = new DateTime(lastDayInOldMonth.Year, lastDayInOldMonth.Month, 1);
+            var fiQryCycled = fiQry.Where(fii5 => fii5.FinancialItemInsertionDate >= firstDayInOldMonth && fii5.FinancialItemInsertionDate <= lastDayInOldMonth);
+
+            double incomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
+            double outcomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
+            double incomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
+            double outcomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
+            double cycled = incomes2 - outcomes2;
+            return new List<double>() { incomes, outcomes, cycled };
+        }
         //public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         //{
         //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -109,6 +158,7 @@ namespace AssetManagement
         //    }
         //    int returnValue = this.Adapter.Fill(dataTable);
         //    return returnValue;
+        //}
 
         //public virtual int FillByQuery(AssetMngDbDataSet.FinancialItemVwDataTable dataTable, string whereQuery)
         //{
@@ -127,8 +177,6 @@ namespace AssetManagement
         //        dataTable.Clear();
         //    }
         //    int returnValue = this.Adapter.Fill(dataTable);
-        //    return returnValue;
-        //}
         #endregion
 
         #region Login

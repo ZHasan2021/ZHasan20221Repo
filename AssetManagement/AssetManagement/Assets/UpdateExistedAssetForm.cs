@@ -33,6 +33,8 @@ namespace AssetManagement.Assets
 
         private void UpdateExistedAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.ModelTbl' table. You can move, or remove it, as needed.
+            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.EstateAreaUnitTbl' table. You can move, or remove it, as needed.
@@ -132,8 +134,8 @@ namespace AssetManagement.Assets
                 currentStatusLookUpEdit.EditValue = currSrchRes.CurrentStatus;
                 actualCurrentPriceNumericUpDown.Value = Convert.ToDecimal(currSrchRes.ActualCurrentPrice);
                 actualCurrentPriceCurrencyLookUpEdit.EditValue = currSrchRes.ActualCurrentPriceCurrency;
-                modelTextBox.Text = currSrchRes.Model;
-                colorColorPickEdit.EditValue = currSrchRes.Color;
+                modelLookUpEdit.Text = currSrchRes.Model;
+                colorComboBox.Text = currSrchRes.Color;
                 volumeTextBox.Text = currSrchRes.Volume;
                 custodianNameTextBox.Text = currSrchRes.CustodianName;
                 ownerNameTextBox.Text = currSrchRes.OwnerName;
@@ -253,8 +255,8 @@ namespace AssetManagement.Assets
                 currSrchRes.CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue);
                 currSrchRes.ActualCurrentPrice = Convert.ToDouble(actualCurrentPriceNumericUpDown.Value);
                 currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(actualCurrentPriceCurrencyLookUpEdit.EditValue);
-                currSrchRes.Model = modelTextBox.Text.Trim();
-                currSrchRes.Color = colorColorPickEdit.Text;
+                currSrchRes.Model = modelLookUpEdit.Text;
+                currSrchRes.Color = colorComboBox.Text;
                 currSrchRes.Volume = volumeTextBox.Text.Trim();
                 currSrchRes.CustodianName = custodianNameTextBox.Text.Trim();
                 currSrchRes.OwnerName = ownerNameTextBox.Text.Trim();
@@ -330,6 +332,14 @@ namespace AssetManagement.Assets
             assetDeptLookUpEdit.Properties.DataSource = deptItems;
             assetDeptLookUpEdit_EditValueChanged(sender, e);
             assetSubDeptLookUpEdit.EditValue = null;
+        }
+
+        private void manageModelTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageModelTblForm mdlFrm = new ManageModelTblForm();
+            mdlFrm.ShowDialog();
+
+            this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
         }
     }
 }

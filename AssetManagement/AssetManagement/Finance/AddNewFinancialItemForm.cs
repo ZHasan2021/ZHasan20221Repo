@@ -14,9 +14,18 @@ namespace AssetManagement.Finance
 {
     public partial class AddNewFinancialItemForm : Form
     {
+        bool updateExisted = false;
+        int existedRecord = 0;
         public AddNewFinancialItemForm()
         {
             InitializeComponent();
+        }
+
+        public AddNewFinancialItemForm(int recordToUpdate)
+        {
+            InitializeComponent();
+            existedRecord = recordToUpdate;
+            updateExisted = true;
         }
 
         private void AddNewFinancialItemForm_Load(object sender, EventArgs e)
@@ -37,6 +46,25 @@ namespace AssetManagement.Finance
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
+
+            if (updateExisted)
+            {
+                FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecord);
+                financialItemSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment).SectionOfDepartment;
+                financialItemDeptLookUpEdit.EditValue = StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment;
+                financialItemSubDeptLookUpEdit.EditValue = currFiIt.FinancialItemSubDept;
+                financialItemDescriptionTextBox.Text = currFiIt.FinancialItemDescription;
+                financialItemInsertionDateDateEdit.EditValue = currFiIt.FinancialItemInsertionDate;
+                incomingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد";
+                outgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "صادر";
+                incomingOutgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد وصادر";
+                financialItemCategoryLookUpEdit.EditValue = currFiIt.FinancialItemCategory;
+                incomingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.IncomingAmount);
+                outgoingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.OutgoingAmount);
+                financialItemCurrencyLookUpEdit.EditValue = currFiIt.FinancialItemCurrency;
+                additionalNotesTextBox.Text = currFiIt.AdditionalNotes;
+                this.Text = "تعديل سجل مالي موجود";
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -96,9 +124,14 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "قم بتحديد طبيعة السجل المالي (صادر / وارد) أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (amountNumericUpDown.Value == 0)
+            if ((incomingRadioButton.Checked || incomingOutgoingRadioButton.Checked) && incomingAmountNumericUpDown.Value == 0)
             {
-                mainAlertControl.Show(this, "اكتب المبلغ أولاً", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if ((outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked) && outgoingAmountNumericUpDown.Value == 0)
+            {
+                mainAlertControl.Show(this, "اكتب المبلغ الصادر أولاً", StaticCode.ApplicationTitle);
                 return;
             }
             if (financialItemCurrencyLookUpEdit.EditValue == null)
@@ -111,26 +144,27 @@ namespace AssetManagement.Finance
                 return;
             try
             {
-                FinancialItemTbl newFiIt = new FinancialItemTbl()
-                {
-                    FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue),
-                    FinancialItemSubDept = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue),
-                    FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
-                    FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
-                    IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : (outgoingRadioButton.Checked ? "صادر" : "وارد وصادر"),
-                    IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(amountNumericUpDown.Value) : 0,
-                    OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(amountNumericUpDown.Value),
-                    FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue),
-                    AdditionalNotes = additionalNotesTextBox.Text.Trim(),
-                };
-                StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(newFiIt);
+                FinancialItemTbl newFiIt = new FinancialItemTbl();
+                if (updateExisted)
+                    newFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecord);
+                newFiIt.FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue);
+                newFiIt.FinancialItemSubDept = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
+                newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
+                newFiIt.FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue);
+                newFiIt.IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : (outgoingRadioButton.Checked ? "صادر" : "وارد وصادر");
+                newFiIt.IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(incomingAmountNumericUpDown.Value) : 0;
+                newFiIt.OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(incomingAmountNumericUpDown.Value);
+                newFiIt.FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue);
+                newFiIt.AdditionalNotes = additionalNotesTextBox.Text.Trim();
+                if (!updateExisted)
+                    StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(newFiIt);
                 StaticCode.mainDbContext.SubmitChanges();
 
-                mainAlertControl.Show(this, "تمت إضافة السجل المالي بنجاح", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, $"تمت {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي بنجاح", StaticCode.ApplicationTitle);
             }
             catch
             {
-                mainAlertControl.Show(this, "خطأ في إضافة السجل المالي، حاول لاحقاً", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, $"خطأ في {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي، حاول لاحقاً", StaticCode.ApplicationTitle);
             }
             this.Close();
         }
@@ -188,6 +222,10 @@ namespace AssetManagement.Finance
         private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
+            incomingAmountNumericUpDown.Enabled = incomingRadioButton.Checked || incomingOutgoingRadioButton.Checked;
+            outgoingAmountNumericUpDown.Enabled = outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked;
+            incomingAmountNumericUpDown.Value =
+                outgoingAmountNumericUpDown.Value = 0;
         }
 
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)

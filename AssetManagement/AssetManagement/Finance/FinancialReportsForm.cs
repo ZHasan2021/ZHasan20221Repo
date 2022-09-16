@@ -18,6 +18,8 @@ namespace AssetManagement.Finance
     public partial class FinancialReportsForm : Form
     {
         IQueryable<FinancialItemTbl> financialItemsFromToQry = null;
+        int levelSelected = 0;
+        int levelID = 0;
 
         public FinancialReportsForm()
         {
@@ -52,6 +54,11 @@ namespace AssetManagement.Finance
             e.AlertForm.Location = new Point(200, 500);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
             if (searchBySectionRadioButton.Checked && searchBySectionLookUpEdit.EditValue == null)
@@ -100,17 +107,20 @@ namespace AssetManagement.Finance
             financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
             if (searchBySectionRadioButton.Checked)
             {
+                levelID = Convert.ToInt32(searchBySectionLookUpEdit.EditValue);
                 List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
                 List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
                 financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
             }
             if (searchByDepartmentRadioButton.Checked)
             {
+                levelID = Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue);
                 List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
                 financialItemsFromToQry = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
             }
             if (searchBySubDepartmentRadioButton.Checked)
             {
+                levelID = Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue);
                 financialItemsFromToQry = financialItemsFromToQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
             }
             if (searchWithinPeriodCheckBox.Checked)
@@ -135,7 +145,7 @@ namespace AssetManagement.Finance
                 financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
             bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
-            exportFinancialReportToExcelDropDownButton.Enabled = financialItemGridControl.Visible = resultsFound;
+            exportFinancialReportToExcelDropDownButton.Enabled = financialItemTblPanel.Visible = resultsFound;
             if (!resultsFound)
             {
                 mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
@@ -165,6 +175,65 @@ namespace AssetManagement.Finance
                     }
                 }
                 this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);
+
+                DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
+                List<double> totals1 = StaticCode.GetCycledToMonth(financialItemsFromToQry, today1.Year, today1.Month, levelID, levelSelected);
+                totalIncomesNumericUpDown.Value = Convert.ToDecimal(totals1[0]);
+                totalOutcomesNumericUpDown.Value = Convert.ToDecimal(totals1[1]);
+                totalCycledNumericUpDown.Value = Convert.ToDecimal(totals1[2]);
+
+                subLevelTotalsTreeView.Nodes.Clear();
+                switch (levelSelected)
+                {
+                    case 0:
+                        var subLevelQuery1 = StaticCode.mainDbContext.SectionTbls;
+                        foreach (SectionTbl oneItem in subLevelQuery1)
+                        {
+                            Application.DoEvents();
+                            List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == oneItem.ID select dpt1.ID).ToList();
+                            List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
+                            var levelQry1 = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+
+                            TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SectionName);
+                            List<double> totals2 = StaticCode.GetCycledToMonth(levelQry1, today1.Year, today1.Month, oneItem.ID, 1);
+                            oneNode.Nodes.Add($"الوارد: {totals2[0]}");
+                            oneNode.Nodes.Add($"الصادر: {totals2[1]}");
+                            oneNode.Nodes.Add($"المدور: {totals2[2]}");
+                        }
+                        break;
+                    case 1:
+                        var subLevelQuery2 = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                        foreach (DepartmentTbl oneItem in subLevelQuery2)
+                        {
+                            Application.DoEvents();
+                            List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == oneItem.ID select sdep1.ID).ToList();
+                            var levelQry2 = from qry in financialItemsFromToQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+
+                            TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.DepartmentName);
+                            List<double> totals2 = StaticCode.GetCycledToMonth(levelQry2, today1.Year, today1.Month, oneItem.ID, 2);
+                            oneNode.Nodes.Add($"الوارد: {totals2[0]}");
+                            oneNode.Nodes.Add($"الصادر: {totals2[1]}");
+                            oneNode.Nodes.Add($"المدور: {totals2[2]}");
+                        }
+                        break;
+                    case 2:
+                        var subLevelQuery3 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => sdpt1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+                        foreach (SubDepartmentTbl oneItem in subLevelQuery3)
+                        {
+                            Application.DoEvents();
+                            var levelQry3 = financialItemsFromToQry.Where(fi1 => fi1.FinancialItemSubDept == oneItem.ID);
+
+                            TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SubDepartmentName);
+                            List<double> totals2 = StaticCode.GetCycledToMonth(levelQry3, today1.Year, today1.Month, oneItem.ID, 3);
+                            oneNode.Nodes.Add($"الوارد: {totals2[0]}");
+                            oneNode.Nodes.Add($"الصادر: {totals2[1]}");
+                            oneNode.Nodes.Add($"المدور: {totals2[2]}");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                subLevelTotalsTreeView.ExpandAll();
             }
         }
 
@@ -247,6 +316,26 @@ namespace AssetManagement.Finance
             manageSectionTblBtn.Visible = searchBySectionRadioButton.Checked && StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = searchByDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = searchBySubDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
+            if (searchAllRadioButton.Checked)
+            {
+                levelSelected = 0;
+                levelID = 0;
+            }
+            if (searchBySectionRadioButton.Checked)
+            {
+                levelSelected = 1;
+            }
+            if (searchByDepartmentRadioButton.Checked)
+            {
+                levelSelected = 2;
+                levelID = 0;
+            }
+            if (searchBySubDepartmentRadioButton.Checked)
+            {
+                levelSelected = 3;
+                levelID = 0;
+            }
+            subLevelTotalsTreeView.Visible = levelSelected < 3;
         }
 
         private void manageDepartmentTblBtn_Click(object sender, EventArgs e)
@@ -273,6 +362,11 @@ namespace AssetManagement.Finance
             ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
             sdptFrm.ShowDialog();
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+
+        }
+
+        private void moneySummaryPanel_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

@@ -93,7 +93,7 @@ namespace AssetManagement
     #endregion
 		
 		public AssetMngDbDataContext() : 
-				base(global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString, mappingSource)
+				base(global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

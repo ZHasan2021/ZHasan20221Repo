@@ -18978,7 +18978,6 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
-
         public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         {
             int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -18999,7 +18998,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             return returnValue;
         }
 
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
@@ -19179,7 +19178,6 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
-
         public virtual int FillByQuery(AssetMngDbDataSet.FinancialItemVwDataTable dataTable, string whereQuery)
         {
             int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
