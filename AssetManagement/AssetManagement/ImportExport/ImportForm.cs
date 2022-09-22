@@ -53,7 +53,6 @@ namespace AssetManagement.Finance
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
         }
 
-
         private void manageSectionTblBtn_Click(object sender, EventArgs e)
         {
             ManageSectionTblForm sctFrm = new ManageSectionTblForm();

@@ -64,6 +64,7 @@ namespace AssetManagement.Finance
                 financialItemCurrencyLookUpEdit.EditValue = currFiIt.FinancialItemCurrency;
                 additionalNotesTextBox.Text = currFiIt.AdditionalNotes;
                 this.Text = "تعديل سجل مالي موجود";
+                addNewFinancialItemBtn_OK.Text = "حفظ";
             }
         }
 

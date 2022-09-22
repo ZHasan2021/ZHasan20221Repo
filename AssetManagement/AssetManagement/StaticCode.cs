@@ -1,4 +1,6 @@
 ﻿using AssetManagement.Properties;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -33,10 +35,10 @@ namespace AssetManagement
         {
             try
             {
-                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
                 if (dbConn.State != System.Data.ConnectionState.Open)
                     dbConn.Open();
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Settings().AssetMngDbConnectionString);
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Properties.Settings().AssetMngDbConnectionString);
                 string server = builder.DataSource;
                 string database = builder.InitialCatalog;
                 using (SqlCommand backupDbComm = new SqlCommand($"Backup DATABASE {builder.InitialCatalog} TO DISK='{backupName}'", dbConn))
@@ -55,10 +57,10 @@ namespace AssetManagement
         {
             try
             {
-                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
                 if (dbConn.State != System.Data.ConnectionState.Open)
                     dbConn.Open();
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Settings().AssetMngDbConnectionString);
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Properties.Settings().AssetMngDbConnectionString);
                 string server = builder.DataSource;
                 string database = builder.InitialCatalog;
                 using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE AssetMngDb FROM DISK='{backupName}' WITH REPLACE", dbConn))
@@ -74,11 +76,11 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb(string backupName)
+        public static bool RestoreDb3(string backupName)
         {
             try
             {
-                SqlConnection dbConn = new SqlConnection(new Settings().AssetMngDbConnectionString);
+                SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
                 if (dbConn.State != System.Data.ConnectionState.Open)
                     dbConn.Open();
                 string dbName = dbConn.Database;
@@ -91,6 +93,27 @@ namespace AssetManagement
                     backupDbComm.ExecuteNonQuery();
                     dbConn.Close();
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string dddd = ex.Message;
+                return false;
+            }
+        }
+
+        public static bool RestoreDb(string backupName)
+        {
+            try
+            {
+                Microsoft.Data.SqlClient.SqlConnection sqlConnection = new Microsoft.Data.SqlClient.SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
+                if (sqlConnection.State != ConnectionState.Open)
+                    sqlConnection.Open();
+                Server dbServer = new Server(new ServerConnection(sqlConnection));
+                Restore dbRestore = new Restore() { Database = sqlConnection.Database, Action = RestoreActionType.Database, ReplaceDatabase = true, NoRecovery = false };
+                dbRestore.Devices.AddDevice(backupName, DeviceType.File);
+                dbRestore.SqlRestoreAsync(dbServer);
+                sqlConnection.Close();
                 return true;
             }
             catch (Exception ex)
@@ -284,6 +307,41 @@ namespace AssetManagement
             string qryAfter = "ENABLE TRIGGER SetDateAndUser_Asset on AssetTbl; ENABLE TRIGGER UpdateAssetLifeSpanandDestructionRate on AssetTbl;";
             sqlcomm.CommandText = qryAfter;
             sqlcomm.ExecuteNonQuery();
+        }
+
+        public static List<string> ImportAssetsFromExcel(string assetsFilePath)
+        {
+            if (!File.Exists(assetsFilePath))
+                return null;
+            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
+            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
+            ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+            List<string> unknownMinorCategories = new List<string>();
+            try
+            {
+                int rowStartNo = 8;
+                string currMainCategoryName = "";
+                while (rowStartNo <= srcExcelWs.Dimension.End.Row)
+                {
+                    currMainCategoryName = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString();
+                    rowStartNo++;
+                    while (srcExcelWs.Cells[rowStartNo, 5].Value != null && srcExcelWs.Cells[rowStartNo, 5].Value?.ToString() != "")
+                    {
+                        string currMinorCategoryName = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Split(':')[0].ToString();
+                        var existedMiCa = StaticCode.mainDbContext.MinorCategoryVws.Where(mc1 => mc1.اسم_الفئة_الرئيسية == currMainCategoryName && mc1.اسم_الفئة_الفرعية == currMinorCategoryName);
+                        if (existedMiCa.Count() == 0)
+                        {
+                            unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- الفئة الرئيسية: {currMainCategoryName}، الفئة الفرعية: {currMinorCategoryName}");
+                        }
+                        rowStartNo++;
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            return unknownMinorCategories;
         }
         #endregion
 

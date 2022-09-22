@@ -437,7 +437,14 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "";
+                string sectionName = "";
+                if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
+                    sectionName = searchBySectionLookUpEdit.Text;
+                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
+                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
+                cells.Value = sectionName;
             }
             using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
             {
@@ -461,7 +468,12 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked) ? searchByDepartmentLookUpEdit.Text : "";
+                string deptName = "";
+                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
+                    deptName = searchByDepartmentLookUpEdit.Text;
+                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).DepartmentName;
+                cells.Value = deptName;
             }
             using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
             {
@@ -474,9 +486,34 @@ namespace AssetManagement.Assets
                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = "التاريخ";
+                cells.Value = "الوحدة";
             }
             using (var cells = astWs.Cells[5, startCol3 + 5, 5, startCol3 + 6])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentLookUpEdit.Text : "";
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 7, 5, startCol3 + 8])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Style.Font.Bold = true;
+                cells.Merge = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "التاريخ";
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 9, 5, startCol3 + 9])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -535,7 +572,7 @@ namespace AssetManagement.Assets
 
                     astWs.Cells[currentRow, 2].Value = astCount;
                     astWs.Cells[currentRow, 3].Value = oneAst.AssetCode;
-                    astWs.Cells[currentRow, 4].Value = $"{StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName}، {oneAst.AssetSpecifications}";
+                    astWs.Cells[currentRow, 4].Value = $"{StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName}: {oneAst.AssetSpecifications}";
                     astWs.Cells[currentRow, 5].Value = oneAst.ItemsQuantity;
                     astWs.Cells[currentRow, 6].Value = oneAst.OwnerName;
                     astWs.Cells[currentRow, 7].Value = oneAst.EstateAddress;
@@ -606,6 +643,7 @@ namespace AssetManagement.Assets
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(500, 400);
         }
 
         private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)

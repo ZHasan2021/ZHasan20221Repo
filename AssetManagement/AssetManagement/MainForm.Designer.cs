@@ -82,8 +82,9 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importFormerAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageImportExportTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.helpBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -108,7 +109,7 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.helpBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importFinancialItemsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -169,12 +170,13 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem,
             this.manageModelTblBarButtonItem,
             this.manageSubDepartmentTblBarButtonItem,
-            this.importFormerAssetsFromExcelBarButtonItem,
+            this.importAssetsFromExcelBarButtonItem,
             this.manageImportExportTblBarButtonItem,
-            this.helpBarButtonItem});
+            this.helpBarButtonItem,
+            this.importFinancialItemsFromExcelBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 66;
+            this.mainRibbonControl.MaxItemId = 67;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -645,14 +647,14 @@ namespace AssetManagement
             this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSubDepartmentTblBarButtonItem_ItemClick);
             // 
-            // importFormerAssetsFromExcelBarButtonItem
+            // importAssetsFromExcelBarButtonItem
             // 
-            this.importFormerAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول سابقة";
-            this.importFormerAssetsFromExcelBarButtonItem.Id = 63;
-            this.importFormerAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.importFormerAssetsFromExcelBarButtonItem.Name = "importFormerAssetsFromExcelBarButtonItem";
-            this.importFormerAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.importFormerAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFormerAssetsFromExcelBarButtonItem_ItemClick);
+            this.importAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول";
+            this.importAssetsFromExcelBarButtonItem.Id = 63;
+            this.importAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importAssetsFromExcelBarButtonItem.Name = "importAssetsFromExcelBarButtonItem";
+            this.importAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importAssetsFromExcelBarButtonItem_ItemClick);
             // 
             // manageImportExportTblBarButtonItem
             // 
@@ -662,6 +664,15 @@ namespace AssetManagement
             this.manageImportExportTblBarButtonItem.Name = "manageImportExportTblBarButtonItem";
             this.manageImportExportTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageImportExportTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageImportExportTblBarButtonItem_ItemClick);
+            // 
+            // helpBarButtonItem
+            // 
+            this.helpBarButtonItem.Caption = "مساعدة";
+            this.helpBarButtonItem.Id = 65;
+            this.helpBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("helpBarButtonItem.ImageOptions.Image")));
+            this.helpBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("helpBarButtonItem.ImageOptions.LargeImage")));
+            this.helpBarButtonItem.Name = "helpBarButtonItem";
+            this.helpBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.helpBarButtonItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -688,7 +699,7 @@ namespace AssetManagement
             // 
             this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importFormerAssetsFromExcelBarButtonItem);
+            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
@@ -741,6 +752,7 @@ namespace AssetManagement
             // FinancialRecordsRibbonPageGroup
             // 
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.addNewFinancialItemBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.importFinancialItemsFromExcelBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.prepareFinancialReportsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.Name = "FinancialRecordsRibbonPageGroup";
@@ -947,22 +959,25 @@ namespace AssetManagement
             // mainMemoEdit
             // 
             this.mainMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMemoEdit.Enabled = false;
             this.mainMemoEdit.Location = new System.Drawing.Point(0, 283);
             this.mainMemoEdit.MenuManager = this.mainRibbonControl;
             this.mainMemoEdit.Name = "mainMemoEdit";
-            this.mainMemoEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainMemoEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainMemoEdit.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.mainMemoEdit.Properties.Appearance.Options.UseFont = true;
+            this.mainMemoEdit.Properties.Appearance.Options.UseForeColor = true;
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
-            // helpBarButtonItem
+            // importFinancialItemsFromExcelBarButtonItem
             // 
-            this.helpBarButtonItem.Caption = "مساعدة";
-            this.helpBarButtonItem.Id = 65;
-            this.helpBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.helpBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.helpBarButtonItem.Name = "helpBarButtonItem";
-            this.helpBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.helpBarButtonItem_ItemClick);
+            this.importFinancialItemsFromExcelBarButtonItem.Caption = "استيراد سجلات مالية";
+            this.importFinancialItemsFromExcelBarButtonItem.Id = 66;
+            this.importFinancialItemsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importFinancialItemsFromExcelBarButtonItem.Name = "importFinancialItemsFromExcelBarButtonItem";
+            this.importFinancialItemsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importFinancialItemsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFinancialItemsFromExcelBarButtonItem_ItemClick);
             // 
             // MainForm
             // 
@@ -1069,9 +1084,10 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem importFormerAssetsFromExcelBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem importAssetsFromExcelBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageImportExportTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem helpBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem importFinancialItemsFromExcelBarButtonItem;
     }
 }
 

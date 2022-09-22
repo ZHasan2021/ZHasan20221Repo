@@ -39,7 +39,7 @@ namespace AssetManagement
             StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
-            addNewAssetBarButtonItem.Visibility = importFormerAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -70,7 +70,8 @@ namespace AssetManagement
             manageImportExportTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageImportExportTbl == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            addNewFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewFinancialItemBarButtonItem.Visibility =
+importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItemCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -325,7 +326,7 @@ namespace AssetManagement
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Black;
             e.AlertForm.StartPosition = FormStartPosition.Manual;
-            e.AlertForm.Location = new Point(500, 400);
+            e.AlertForm.Location = new Point(200, 200);
         }
 
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -409,9 +410,34 @@ namespace AssetManagement
             sdptFrm.ShowDialog();
         }
 
-        private void importFormerAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void importAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            mainMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
 
+            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName);
+            if (importingReport == null)
+            {
+                mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمج", StaticCode.ApplicationTitle);
+                return;
+            }
+            string importReport = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{importingReport[0]}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
+            mainMemoEdit.Text = importReport;
+            if (importingReport.Count() > 0)
+            {
+                mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
+                return;
+            }
+            else
+            {
+                mainAlertControl.Show(this, "تم استيراد الأصول بنجاح، راجع إدارة سجلات الأصول للتأكد من ذلك", StaticCode.ApplicationTitle);
+                return;
+            }
         }
 
         private void manageImportExportTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -423,6 +449,11 @@ namespace AssetManagement
         private void helpBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Process.Start($"{Application.StartupPath}//Help//مساعد إدارة الأصول.docx");
+        }
+
+        private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
