@@ -369,6 +369,8 @@
       <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="مباع" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[خارج الخدمة]" Member="خارج_الخدمة" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">
@@ -390,11 +392,13 @@
   </Table>
   <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
     <Type Name="MinorCategoryVw">
+      <Column Name="[معرف الفئة الفرعية]" Member="معرف_الفئة_الفرعية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[معرف الفئة الرئيسية]" Member="معرف_الفئة_الرئيسية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

@@ -58,7 +58,7 @@
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.AssetVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل] FROM dbo.AssetVw</CommandText>
+                    <CommandText>SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل], مباع, [خارج الخدمة] FROM dbo.AssetVw</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -101,6 +101,8 @@
               <Mapping SourceColumn="رقم المحرك للمركبة" DataSetColumn="رقم المحرك للمركبة" />
               <Mapping SourceColumn="معدل الإهلاك للأصل" DataSetColumn="معدل الإهلاك للأصل" />
               <Mapping SourceColumn="العمر الافتراضي المتبقي للأصل" DataSetColumn="العمر الافتراضي المتبقي للأصل" />
+              <Mapping SourceColumn="مباع" DataSetColumn="مباع" />
+              <Mapping SourceColumn="خارج الخدمة" DataSetColumn="خارج الخدمة" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -137,13 +139,15 @@
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.MinorCategoryVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
+                    <CommandText>SELECT [معرف الفئة الفرعية], [معرف الفئة الرئيسية], [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
+              <Mapping SourceColumn="معرف الفئة الفرعية" DataSetColumn="معرف الفئة الفرعية" />
+              <Mapping SourceColumn="معرف الفئة الرئيسية" DataSetColumn="معرف الفئة الرئيسية" />
               <Mapping SourceColumn="اسم الفئة الفرعية" DataSetColumn="اسم الفئة الفرعية" />
               <Mapping SourceColumn="وصف الفئة الفرعية" DataSetColumn="وصف الفئة الفرعية" />
               <Mapping SourceColumn="اسم الفئة الرئيسية" DataSetColumn="اسم الفئة الرئيسية" />
@@ -2352,6 +2356,8 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="مباع" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnمباع" msprop:Generator_ColumnPropNameInRow="مباع" msprop:Generator_ColumnPropNameInTable="مباعColumn" msprop:Generator_UserColumnName="مباع" type="xs:boolean" minOccurs="0" />
+              <xs:element name="خارج_x0020_الخدمة" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnخارج_الخدمة" msprop:Generator_ColumnPropNameInRow="خارج_الخدمة" msprop:Generator_ColumnPropNameInTable="خارج_الخدمةColumn" msprop:Generator_UserColumnName="خارج الخدمة" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2431,6 +2437,8 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD
         <xs:element name="MinorCategoryVw" msprop:Generator_TableClassName="MinorCategoryVwDataTable" msprop:Generator_TableVarName="tableMinorCategoryVw" msprop:Generator_TablePropName="MinorCategoryVw" msprop:Generator_RowDeletingName="MinorCategoryVwRowDeleting" msprop:Generator_RowChangingName="MinorCategoryVwRowChanging" msprop:Generator_RowEvHandlerName="MinorCategoryVwRowChangeEventHandler" msprop:Generator_RowDeletedName="MinorCategoryVwRowDeleted" msprop:Generator_UserTableName="MinorCategoryVw" msprop:Generator_RowChangedName="MinorCategoryVwRowChanged" msprop:Generator_RowEvArgName="MinorCategoryVwRowChangeEvent" msprop:Generator_RowClassName="MinorCategoryVwRow">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="معرف_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnمعرف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="معرف_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="معرف_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="معرف الفئة الفرعية" type="xs:int" />
+              <xs:element name="معرف_x0020_الفئة_x0020_الرئيسية" msprop:Generator_ColumnVarNameInTable="columnمعرف_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInRow="معرف_الفئة_الرئيسية" msprop:Generator_ColumnPropNameInTable="معرف_الفئة_الرئيسيةColumn" msprop:Generator_UserColumnName="معرف الفئة الرئيسية" type="xs:int" />
               <xs:element name="اسم_x0020_الفئة_x0020_الفرعية" msprop:Generator_ColumnVarNameInTable="columnاسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInRow="اسم_الفئة_الفرعية" msprop:Generator_ColumnPropNameInTable="اسم_الفئة_الفرعيةColumn" msprop:Generator_UserColumnName="اسم الفئة الفرعية">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -3123,6 +3131,11 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD
     <xs:unique name="FinancialItemVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:FinancialItemVw" />
       <xs:field xpath="mstns:معرف_x0020_السجل_x0020_المالي" />
+    </xs:unique>
+    <xs:unique name="MinorCategoryVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MinorCategoryVw" />
+      <xs:field xpath="mstns:معرف_x0020_الفئة_x0020_الفرعية" />
+      <xs:field xpath="mstns:معرف_x0020_الفئة_x0020_الرئيسية" />
     </xs:unique>
     <xs:unique name="AssetMovementTbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetMovementTbl" />

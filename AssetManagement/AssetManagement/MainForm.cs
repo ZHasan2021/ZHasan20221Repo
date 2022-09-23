@@ -39,7 +39,7 @@ namespace AssetManagement
             StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
-            addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = importAssetsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMainCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewMinorCategoryBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             updateExistedAssetBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -410,7 +410,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             sdptFrm.ShowDialog();
         }
 
-        private void importAssetsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
         {
             mainMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
@@ -420,16 +420,16 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 return;
             }
 
-            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName);
+            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo);
             if (importingReport == null)
             {
-                mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمج", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد", StaticCode.ApplicationTitle);
                 return;
             }
-            string importReport = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{importingReport[0]}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
-            mainMemoEdit.Text = importReport;
             if (importingReport.Count() > 0)
             {
+                string importingReportStr = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{importingReport[0]}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
+                mainMemoEdit.Text = importingReportStr;
                 mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
                 return;
             }
@@ -454,6 +454,21 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
         private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportAssetsFromExcel(sender, e, 1);
+        }
+
+        private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportAssetsFromExcel(sender, e, 2);
+        }
+
+        private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportAssetsFromExcel(sender, e, 3);
         }
     }
 }

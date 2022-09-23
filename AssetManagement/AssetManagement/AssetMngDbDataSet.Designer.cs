@@ -2057,6 +2057,10 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnالعمر_الافتراضي_المتبقي_للأصل;
             
+            private global::System.Data.DataColumn columnمباع;
+            
+            private global::System.Data.DataColumn columnخارج_الخدمة;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetVwDataTable() {
@@ -2380,6 +2384,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn مباعColumn {
+                get {
+                    return this.columnمباع;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn خارج_الخدمةColumn {
+                get {
+                    return this.columnخارج_الخدمة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2451,7 +2471,9 @@ namespace AssetManagement {
                         string _رقم_الهيكل__الشاصيه__للمركبة, 
                         string رقم_المحرك_للمركبة, 
                         double معدل_الإهلاك_للأصل, 
-                        string العمر_الافتراضي_المتبقي_للأصل) {
+                        string العمر_الافتراضي_المتبقي_للأصل, 
+                        bool مباع, 
+                        bool خارج_الخدمة) {
                 AssetVwRow rowAssetVwRow = ((AssetVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         معرف_الأصل,
@@ -2489,7 +2511,9 @@ namespace AssetManagement {
                         _رقم_الهيكل__الشاصيه__للمركبة,
                         رقم_المحرك_للمركبة,
                         معدل_الإهلاك_للأصل,
-                        العمر_الافتراضي_المتبقي_للأصل};
+                        العمر_الافتراضي_المتبقي_للأصل,
+                        مباع,
+                        خارج_الخدمة};
                 rowAssetVwRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssetVwRow);
                 return rowAssetVwRow;
@@ -2555,6 +2579,8 @@ namespace AssetManagement {
                 this.columnرقم_المحرك_للمركبة = base.Columns["رقم المحرك للمركبة"];
                 this.columnمعدل_الإهلاك_للأصل = base.Columns["معدل الإهلاك للأصل"];
                 this.columnالعمر_الافتراضي_المتبقي_للأصل = base.Columns["العمر الافتراضي المتبقي للأصل"];
+                this.columnمباع = base.Columns["مباع"];
+                this.columnخارج_الخدمة = base.Columns["خارج الخدمة"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2636,6 +2662,10 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnمعدل_الإهلاك_للأصل);
                 this.columnالعمر_الافتراضي_المتبقي_للأصل = new global::System.Data.DataColumn("العمر الافتراضي المتبقي للأصل", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnالعمر_الافتراضي_المتبقي_للأصل);
+                this.columnمباع = new global::System.Data.DataColumn("مباع", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمباع);
+                this.columnخارج_الخدمة = new global::System.Data.DataColumn("خارج الخدمة", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnخارج_الخدمة);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnمعرف_الأصل}, true));
                 this.columnمعرف_الأصل.AllowDBNull = false;
@@ -2680,6 +2710,8 @@ namespace AssetManagement {
                 this.columnمعدل_الإهلاك_للأصل.AllowDBNull = false;
                 this.columnالعمر_الافتراضي_المتبقي_للأصل.ReadOnly = true;
                 this.columnالعمر_الافتراضي_المتبقي_للأصل.MaxLength = 50;
+                this.columnمباع.ReadOnly = true;
+                this.columnخارج_الخدمة.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3255,6 +3287,10 @@ namespace AssetManagement {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class MinorCategoryVwDataTable : global::System.Data.TypedTableBase<MinorCategoryVwRow> {
             
+            private global::System.Data.DataColumn columnمعرف_الفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnمعرف_الفئة_الرئيسية;
+            
             private global::System.Data.DataColumn columnاسم_الفئة_الفرعية;
             
             private global::System.Data.DataColumn columnوصف_الفئة_الفرعية;
@@ -3296,6 +3332,22 @@ namespace AssetManagement {
             protected MinorCategoryVwDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معرف_الفئة_الفرعيةColumn {
+                get {
+                    return this.columnمعرف_الفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معرف_الفئة_الرئيسيةColumn {
+                get {
+                    return this.columnمعرف_الفئة_الرئيسية;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3375,9 +3427,11 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MinorCategoryVwRow AddMinorCategoryVwRow(string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
+            public MinorCategoryVwRow AddMinorCategoryVwRow(int معرف_الفئة_الفرعية, int معرف_الفئة_الرئيسية, string اسم_الفئة_الفرعية, string وصف_الفئة_الفرعية, string اسم_الفئة_الرئيسية, int العمر_الإنتاجي_بالسنوات, double معدل_الإهلاك) {
                 MinorCategoryVwRow rowMinorCategoryVwRow = ((MinorCategoryVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        معرف_الفئة_الفرعية,
+                        معرف_الفئة_الرئيسية,
                         اسم_الفئة_الفرعية,
                         وصف_الفئة_الفرعية,
                         اسم_الفئة_الرئيسية,
@@ -3386,6 +3440,14 @@ namespace AssetManagement {
                 rowMinorCategoryVwRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMinorCategoryVwRow);
                 return rowMinorCategoryVwRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MinorCategoryVwRow FindByمعرف_الفئة_الفرعيةمعرف_الفئة_الرئيسية(int معرف_الفئة_الفرعية, int معرف_الفئة_الرئيسية) {
+                return ((MinorCategoryVwRow)(this.Rows.Find(new object[] {
+                            معرف_الفئة_الفرعية,
+                            معرف_الفئة_الرئيسية})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3405,6 +3467,8 @@ namespace AssetManagement {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnمعرف_الفئة_الفرعية = base.Columns["معرف الفئة الفرعية"];
+                this.columnمعرف_الفئة_الرئيسية = base.Columns["معرف الفئة الرئيسية"];
                 this.columnاسم_الفئة_الفرعية = base.Columns["اسم الفئة الفرعية"];
                 this.columnوصف_الفئة_الفرعية = base.Columns["وصف الفئة الفرعية"];
                 this.columnاسم_الفئة_الرئيسية = base.Columns["اسم الفئة الرئيسية"];
@@ -3415,6 +3479,10 @@ namespace AssetManagement {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnمعرف_الفئة_الفرعية = new global::System.Data.DataColumn("معرف الفئة الفرعية", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعرف_الفئة_الفرعية);
+                this.columnمعرف_الفئة_الرئيسية = new global::System.Data.DataColumn("معرف الفئة الرئيسية", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعرف_الفئة_الرئيسية);
                 this.columnاسم_الفئة_الفرعية = new global::System.Data.DataColumn("اسم الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnاسم_الفئة_الفرعية);
                 this.columnوصف_الفئة_الفرعية = new global::System.Data.DataColumn("وصف الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3425,6 +3493,11 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnالعمر_الإنتاجي_بالسنوات);
                 this.columnمعدل_الإهلاك = new global::System.Data.DataColumn("معدل الإهلاك", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnمعدل_الإهلاك);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnمعرف_الفئة_الفرعية,
+                                this.columnمعرف_الفئة_الرئيسية}, true));
+                this.columnمعرف_الفئة_الفرعية.AllowDBNull = false;
+                this.columnمعرف_الفئة_الرئيسية.AllowDBNull = false;
                 this.columnاسم_الفئة_الفرعية.AllowDBNull = false;
                 this.columnاسم_الفئة_الفرعية.MaxLength = 200;
                 this.columnوصف_الفئة_الفرعية.MaxLength = 300;
@@ -12221,6 +12294,38 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool مباع {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAssetVw.مباعColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'مباع\' in table \'AssetVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw.مباعColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool خارج_الخدمة {
+                get {
+                    try {
+                        return ((bool)(this[this.tableAssetVw.خارج_الخدمةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'خارج الخدمة\' in table \'AssetVw\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw.خارج_الخدمةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isكود_الأصلNull() {
                 return this.IsNull(this.tableAssetVw.كود_الأصلColumn);
             }
@@ -12518,6 +12623,30 @@ namespace AssetManagement {
             public void Setالعمر_الافتراضي_المتبقي_للأصلNull() {
                 this[this.tableAssetVw.العمر_الافتراضي_المتبقي_للأصلColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsمباعNull() {
+                return this.IsNull(this.tableAssetVw.مباعColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetمباعNull() {
+                this[this.tableAssetVw.مباعColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isخارج_الخدمةNull() {
+                return this.IsNull(this.tableAssetVw.خارج_الخدمةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setخارج_الخدمةNull() {
+                this[this.tableAssetVw.خارج_الخدمةColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -12775,6 +12904,28 @@ namespace AssetManagement {
             internal MinorCategoryVwRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableMinorCategoryVw = ((MinorCategoryVwDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int معرف_الفئة_الفرعية {
+                get {
+                    return ((int)(this[this.tableMinorCategoryVw.معرف_الفئة_الفرعيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.معرف_الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int معرف_الفئة_الرئيسية {
+                get {
+                    return ((int)(this[this.tableMinorCategoryVw.معرف_الفئة_الرئيسيةColumn]));
+                }
+                set {
+                    this[this.tableMinorCategoryVw.معرف_الفئة_الرئيسيةColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18946,6 +19097,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("رقم المحرك للمركبة", "رقم المحرك للمركبة");
             tableMapping.ColumnMappings.Add("معدل الإهلاك للأصل", "معدل الإهلاك للأصل");
             tableMapping.ColumnMappings.Add("العمر الافتراضي المتبقي للأصل", "العمر الافتراضي المتبقي للأصل");
+            tableMapping.ColumnMappings.Add("مباع", "مباع");
+            tableMapping.ColumnMappings.Add("خارج الخدمة", "خارج الخدمة");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18962,7 +19115,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل] FROM dbo.AssetVw";
+            this._commandCollection[0].CommandText = @"SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل], مباع, [خارج الخدمة] FROM dbo.AssetVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -18978,7 +19131,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
-        public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
+
+       public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         {
             int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
             if (whereIndex == -1)
@@ -19178,6 +19332,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
+
         public virtual int FillByQuery(AssetMngDbDataSet.FinancialItemVwDataTable dataTable, string whereQuery)
         {
             int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -19331,6 +19486,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "MinorCategoryVw";
+            tableMapping.ColumnMappings.Add("معرف الفئة الفرعية", "معرف الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("معرف الفئة الرئيسية", "معرف الفئة الرئيسية");
             tableMapping.ColumnMappings.Add("اسم الفئة الفرعية", "اسم الفئة الفرعية");
             tableMapping.ColumnMappings.Add("وصف الفئة الفرعية", "وصف الفئة الفرعية");
             tableMapping.ColumnMappings.Add("اسم الفئة الرئيسية", "اسم الفئة الرئيسية");
@@ -19352,8 +19509,9 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [اسم الفئة الفرعية], [وصف الفئة الفرعية], [اسم الفئة الرئيسية], [العمر الإ" +
-                "نتاجي بالسنوات], [معدل الإهلاك] FROM dbo.MinorCategoryVw";
+            this._commandCollection[0].CommandText = "SELECT [معرف الفئة الفرعية], [معرف الفئة الرئيسية], [اسم الفئة الفرعية], [وصف الف" +
+                "ئة الفرعية], [اسم الفئة الرئيسية], [العمر الإنتاجي بالسنوات], [معدل الإهلاك] FRO" +
+                "M dbo.MinorCategoryVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

@@ -200,6 +200,8 @@ namespace AssetManagement
         //        dataTable.Clear();
         //    }
         //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+        //}
         #endregion
 
         #region Login
@@ -309,17 +311,29 @@ namespace AssetManagement
             sqlcomm.ExecuteNonQuery();
         }
 
-        public static List<string> ImportAssetsFromExcel(string assetsFilePath)
+        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo)
         {
             if (!File.Exists(assetsFilePath))
                 return null;
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+            string sectionName = srcExcelWs.Cells[5, 5].Value?.ToString();
+            string departmentName = srcExcelWs.Cells[5, (formNo == 3) ? 11 : 10].Value?.ToString();
+            string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString();
+            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(sdpt1 => sdpt1.اسم_الوحدة == subDepartmentName && sdpt1.القسم_التابعة_له == departmentName && sdpt1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+            if (existedSubDept == null || existedSubDept.Count() == 0)
+                return null;
             List<string> unknownMinorCategories = new List<string>();
+            List<AssetTbl> importedAssets = new List<AssetTbl>();
             try
             {
                 int rowStartNo = 8;
+                int formShift = 0;
+                if (formNo == 2)
+                    formShift = 4;
+                if (formNo == 3)
+                    formShift = 7;
                 string currMainCategoryName = "";
                 while (rowStartNo <= srcExcelWs.Dimension.End.Row)
                 {
@@ -329,18 +343,78 @@ namespace AssetManagement
                     {
                         string currMinorCategoryName = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Split(':')[0].ToString();
                         var existedMiCa = StaticCode.mainDbContext.MinorCategoryVws.Where(mc1 => mc1.اسم_الفئة_الرئيسية == currMainCategoryName && mc1.اسم_الفئة_الفرعية == currMinorCategoryName);
-                        if (existedMiCa.Count() == 0)
+                        if (existedMiCa.Count() != 1)
                         {
                             unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- الفئة الرئيسية: {currMainCategoryName}، الفئة الفرعية: {currMinorCategoryName}");
+                        }
+                        else
+                        {
+                            AssetTbl newAsset = new AssetTbl()
+                            {
+                                AssetCode = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString(),
+                                AssetMinorCategory = existedMiCa.First().معرف_الفئة_الفرعية,
+                                AssetSpecifications = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Substring(srcExcelWs.Cells[rowStartNo, 4].Value.ToString().IndexOf(':') + 1),
+                                AssetSubDepartment = existedSubDept.First().معرف_الوحدة,
+                                ItemsQuantity = Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 5].Value),
+                                IsOldOrNewAsset = "قديم",
+                                CustodianName = srcExcelWs.Cells[rowStartNo, 13 + formShift].Value?.ToString(),
+                                EstateArea = "",
+                                EstateAreaUnit = 1,
+                                CurrentStatus = StaticCode.mainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 10 + formShift].Value.ToString()).ID,
+                                DestructionRate = existedMiCa.First().معدل_الإهلاك,
+                                LifeSpanInMonths = 0,
+                                PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 8 + formShift].Value?.ToString(),
+                                BenefitPercentage = srcExcelWs.Cells[rowStartNo, 11 + formShift].Value?.ToString(),
+                                MoreDetails = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString(),
+                                AssetNotes = srcExcelWs.Cells[rowStartNo, 19 + formShift].Value?.ToString(),
+                                Model = (formNo == 6) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
+                                Color = (formNo == 8) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
+                                Volume = "",
+                                OfUsed = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 8].Value?.ToString() : "",
+                                CarChassisNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
+                                CarEngineNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 11].Value?.ToString() : "",
+                                CarPanelNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "",
+                                CarManufacturingYear = (formNo == 3) ? Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 9].Value?.ToString()) : 0,
+                                EstateAddress = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "",
+                                EstateOwnershipDocumentWith = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 9].Value?.ToString() : "",
+                                OwnerName = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 12].Value?.ToString() : ((formNo == 2) ? srcExcelWs.Cells[rowStartNo, 6].Value?.ToString() : ""),
+                                AssetSquare = 1,
+                                IsSold = false,
+                                IsOutOfWork = false,
+                            };
+                            if (srcExcelWs.Cells[rowStartNo, 6 + formShift].Value != null)
+                            {
+                                newAsset.PurchaseDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 6 + formShift].Value);
+                            }
+                            if (srcExcelWs.Cells[rowStartNo, 7 + formShift].Value != null)
+                            {
+                                string strVal = srcExcelWs.Cells[rowStartNo, 7 + formShift].Value?.ToString();
+                                newAsset.PurchasePrice = Convert.ToDouble(strVal.Split(' ')[0]);
+                                string purchaseCurr = strVal.Replace(newAsset.PurchasePrice.ToString(), "").Trim();
+                                newAsset.PurchasePriceCurrency = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == purchaseCurr).ID;
+                                int monthsDiff = existedMiCa.First().العمر_الإنتاجي_بالسنوات * 12 - ((DateTime.Today.Year - Convert.ToDateTime(newAsset.PurchaseDate).Year) * 12 + (DateTime.Today.Month - Convert.ToDateTime(newAsset.PurchaseDate).Month));
+                                newAsset.LifeSpanInMonths = monthsDiff;
+                            }
+                            if (srcExcelWs.Cells[rowStartNo, 12 + formShift].Value != null)
+                            {
+                                string strVal = srcExcelWs.Cells[rowStartNo, 12 + formShift].Value?.ToString();
+                                newAsset.ActualCurrentPrice = Convert.ToDouble(strVal.Split(' ')[0]);
+                                string activePriceCurr = strVal.Replace(newAsset.ActualCurrentPrice.ToString(), "").Trim();
+                                newAsset.ActualCurrentPriceCurrency = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == activePriceCurr).ID;
+                            }
+                            importedAssets.Add(newAsset);
                         }
                         rowStartNo++;
                     }
                 }
+                StaticCode.mainDbContext.AssetTbls.InsertAllOnSubmit(importedAssets);
+                StaticCode.mainDbContext.SubmitChanges();
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }
+
             return unknownMinorCategories;
         }
         #endregion

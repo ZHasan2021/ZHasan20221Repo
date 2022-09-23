@@ -82,9 +82,13 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importAssetsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageImportExportTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.helpBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importFinancialItemsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importAssetsFromExcelBarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.fromGeneralFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.fromEstatesFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.fromVehiclesFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -109,7 +113,8 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.importFinancialItemsFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             this.mainStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -170,13 +175,16 @@ namespace AssetManagement
             this.openExportFolderBarButtonItem,
             this.manageModelTblBarButtonItem,
             this.manageSubDepartmentTblBarButtonItem,
-            this.importAssetsFromExcelBarButtonItem,
             this.manageImportExportTblBarButtonItem,
             this.helpBarButtonItem,
-            this.importFinancialItemsFromExcelBarButtonItem});
+            this.importFinancialItemsFromExcelBarButtonItem,
+            this.importAssetsFromExcelBarSubItem,
+            this.fromGeneralFormBarButtonItem,
+            this.fromEstatesFormBarButtonItem,
+            this.fromVehiclesFormBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 67;
+            this.mainRibbonControl.MaxItemId = 77;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -647,15 +655,6 @@ namespace AssetManagement
             this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.manageSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSubDepartmentTblBarButtonItem_ItemClick);
             // 
-            // importAssetsFromExcelBarButtonItem
-            // 
-            this.importAssetsFromExcelBarButtonItem.Caption = "استيراد بيانات أصول";
-            this.importAssetsFromExcelBarButtonItem.Id = 63;
-            this.importAssetsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.importAssetsFromExcelBarButtonItem.Name = "importAssetsFromExcelBarButtonItem";
-            this.importAssetsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.importAssetsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importAssetsFromExcelBarButtonItem_ItemClick);
-            // 
             // manageImportExportTblBarButtonItem
             // 
             this.manageImportExportTblBarButtonItem.Caption = "إدارة سجلات الاستيراد والتصدير";
@@ -673,6 +672,48 @@ namespace AssetManagement
             this.helpBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("helpBarButtonItem.ImageOptions.LargeImage")));
             this.helpBarButtonItem.Name = "helpBarButtonItem";
             this.helpBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.helpBarButtonItem_ItemClick);
+            // 
+            // importFinancialItemsFromExcelBarButtonItem
+            // 
+            this.importFinancialItemsFromExcelBarButtonItem.Caption = "استيراد سجلات مالية";
+            this.importFinancialItemsFromExcelBarButtonItem.Id = 66;
+            this.importFinancialItemsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importFinancialItemsFromExcelBarButtonItem.Name = "importFinancialItemsFromExcelBarButtonItem";
+            this.importFinancialItemsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importFinancialItemsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFinancialItemsFromExcelBarButtonItem_ItemClick);
+            // 
+            // importAssetsFromExcelBarSubItem
+            // 
+            this.importAssetsFromExcelBarSubItem.Caption = "استيراد بيانات أصول";
+            this.importAssetsFromExcelBarSubItem.Id = 73;
+            this.importAssetsFromExcelBarSubItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.importAssetsFromExcelBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.fromGeneralFormBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.fromEstatesFormBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.fromVehiclesFormBarButtonItem)});
+            this.importAssetsFromExcelBarSubItem.Name = "importAssetsFromExcelBarSubItem";
+            this.importAssetsFromExcelBarSubItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // fromGeneralFormBarButtonItem
+            // 
+            this.fromGeneralFormBarButtonItem.Caption = "النموذج العام";
+            this.fromGeneralFormBarButtonItem.Id = 74;
+            this.fromGeneralFormBarButtonItem.Name = "fromGeneralFormBarButtonItem";
+            this.fromGeneralFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fromGeneralFormBarButtonItem_ItemClick);
+            // 
+            // fromEstatesFormBarButtonItem
+            // 
+            this.fromEstatesFormBarButtonItem.Caption = "نموذج العقارات";
+            this.fromEstatesFormBarButtonItem.Id = 75;
+            this.fromEstatesFormBarButtonItem.Name = "fromEstatesFormBarButtonItem";
+            this.fromEstatesFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fromEstatesFormBarButtonItem_ItemClick);
+            // 
+            // fromVehiclesFormBarButtonItem
+            // 
+            this.fromVehiclesFormBarButtonItem.Caption = "نموذج المركبات";
+            this.fromVehiclesFormBarButtonItem.Id = 76;
+            this.fromVehiclesFormBarButtonItem.Name = "fromVehiclesFormBarButtonItem";
+            this.fromVehiclesFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fromVehiclesFormBarButtonItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -699,7 +740,7 @@ namespace AssetManagement
             // 
             this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarButtonItem);
+            this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarSubItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
@@ -970,14 +1011,21 @@ namespace AssetManagement
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
             this.mainMemoEdit.TabIndex = 5;
             // 
-            // importFinancialItemsFromExcelBarButtonItem
+            // barButtonItem1
             // 
-            this.importFinancialItemsFromExcelBarButtonItem.Caption = "استيراد سجلات مالية";
-            this.importFinancialItemsFromExcelBarButtonItem.Id = 66;
-            this.importFinancialItemsFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.importFinancialItemsFromExcelBarButtonItem.Name = "importFinancialItemsFromExcelBarButtonItem";
-            this.importFinancialItemsFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.importFinancialItemsFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFinancialItemsFromExcelBarButtonItem_ItemClick);
+            this.barButtonItem1.Caption = "استيراد بيانات أصول";
+            this.barButtonItem1.Id = 63;
+            this.barButtonItem1.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "استيراد بيانات أصول";
+            this.barButtonItem2.Id = 63;
+            this.barButtonItem2.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // MainForm
             // 
@@ -1084,10 +1132,15 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageSubDepartmentTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem importAssetsFromExcelBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageImportExportTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem helpBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importFinancialItemsFromExcelBarButtonItem;
+        private DevExpress.XtraBars.BarSubItem importAssetsFromExcelBarSubItem;
+        private DevExpress.XtraBars.BarButtonItem fromGeneralFormBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem fromEstatesFormBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem fromVehiclesFormBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }
 
