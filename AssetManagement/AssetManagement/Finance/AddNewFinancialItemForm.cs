@@ -57,7 +57,6 @@ namespace AssetManagement.Finance
                 financialItemInsertionDateDateEdit.EditValue = currFiIt.FinancialItemInsertionDate;
                 incomingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد";
                 outgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "صادر";
-                incomingOutgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد وصادر";
                 financialItemCategoryLookUpEdit.EditValue = currFiIt.FinancialItemCategory;
                 incomingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.IncomingAmount);
                 outgoingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.OutgoingAmount);
@@ -120,17 +119,17 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "اكتب تاريخ السجل المالي أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (!(incomingRadioButton.Checked || outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked))
+            if (!(incomingRadioButton.Checked || outgoingRadioButton.Checked))
             {
                 mainAlertControl.Show(this, "قم بتحديد طبيعة السجل المالي (صادر / وارد) أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if ((incomingRadioButton.Checked || incomingOutgoingRadioButton.Checked) && incomingAmountNumericUpDown.Value == 0)
+            if (incomingRadioButton.Checked && incomingAmountNumericUpDown.Value == 0)
             {
                 mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if ((outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked) && outgoingAmountNumericUpDown.Value == 0)
+            if (outgoingRadioButton.Checked && outgoingAmountNumericUpDown.Value == 0)
             {
                 mainAlertControl.Show(this, "اكتب المبلغ الصادر أولاً", StaticCode.ApplicationTitle);
                 return;
@@ -223,8 +222,8 @@ namespace AssetManagement.Finance
         private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
-            incomingAmountNumericUpDown.Enabled = incomingRadioButton.Checked || incomingOutgoingRadioButton.Checked;
-            outgoingAmountNumericUpDown.Enabled = outgoingRadioButton.Checked || incomingOutgoingRadioButton.Checked;
+            incomingAmountNumericUpDown.Enabled = incomingRadioButton.Checked;
+            outgoingAmountNumericUpDown.Enabled = outgoingRadioButton.Checked;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
         }

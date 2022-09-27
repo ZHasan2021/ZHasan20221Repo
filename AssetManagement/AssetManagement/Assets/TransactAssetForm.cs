@@ -150,6 +150,10 @@ namespace AssetManagement.Assets
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
+            assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
+            getAssetOutOfWorkCheckBox.Checked = withDestroyingCheckBox.Checked = false;
+            assetNotesTextBox.Text = "";
+            moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
         }
 
         private void assetTransactionTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

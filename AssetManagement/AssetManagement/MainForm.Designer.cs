@@ -775,8 +775,8 @@ namespace AssetManagement
             // assetsReportsAndStatsRibbonPageGroup
             // 
             this.assetsReportsAndStatsRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
+            this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem, true);
             this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewReportsBarButtonItem);
-            this.assetsReportsAndStatsRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
             this.assetsReportsAndStatsRibbonPageGroup.Name = "assetsReportsAndStatsRibbonPageGroup";
             this.assetsReportsAndStatsRibbonPageGroup.Text = "تقارير وإحصائيات الأصول";
             // 

@@ -263,6 +263,8 @@ namespace AssetManagement.Assets
             this.searchByPurchaseDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
             this.searchByPurchaseDateLabel_From = new System.Windows.Forms.Label();
             this.searchByPurchaseDateDateEdit_From = new DevExpress.XtraEditors.DateEdit();
+            this.outOfWorkCheckBox = new System.Windows.Forms.CheckBox();
+            this.soldAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByInsertionDateCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySectionCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByDepartmentCheckBox = new System.Windows.Forms.CheckBox();
@@ -1402,6 +1404,8 @@ namespace AssetManagement.Assets
             this.dockPanel1_Container.Controls.Add(this.searchByInsertionDatePanel);
             this.dockPanel1_Container.Controls.Add(this.searchByMainCategoryCheckBox);
             this.dockPanel1_Container.Controls.Add(this.searchByPurchaseDatePanel);
+            this.dockPanel1_Container.Controls.Add(this.outOfWorkCheckBox);
+            this.dockPanel1_Container.Controls.Add(this.soldAssetsCheckBox);
             this.dockPanel1_Container.Controls.Add(this.searchByInsertionDateCheckBox);
             this.dockPanel1_Container.Controls.Add(this.searchBySectionCheckBox);
             this.dockPanel1_Container.Controls.Add(this.searchByDepartmentCheckBox);
@@ -1417,7 +1421,7 @@ namespace AssetManagement.Assets
             // 
             this.searchAssetDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAssetDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetDropDownButton.Location = new System.Drawing.Point(91, 513);
+            this.searchAssetDropDownButton.Location = new System.Drawing.Point(37, 513);
             this.searchAssetDropDownButton.Name = "searchAssetDropDownButton";
             this.searchAssetDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.searchAssetDropDownButton.TabIndex = 508;
@@ -1676,6 +1680,32 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchByPurchaseDateDateEdit_From.Size = new System.Drawing.Size(156, 28);
             this.searchByPurchaseDateDateEdit_From.TabIndex = 245;
+            // 
+            // outOfWorkCheckBox
+            // 
+            this.outOfWorkCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.outOfWorkCheckBox.AutoSize = true;
+            this.outOfWorkCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outOfWorkCheckBox.Location = new System.Drawing.Point(332, 561);
+            this.outOfWorkCheckBox.Name = "outOfWorkCheckBox";
+            this.outOfWorkCheckBox.Size = new System.Drawing.Size(104, 25);
+            this.outOfWorkCheckBox.TabIndex = 295;
+            this.outOfWorkCheckBox.Text = "خارج الخدمة";
+            this.outOfWorkCheckBox.UseVisualStyleBackColor = true;
+            this.outOfWorkCheckBox.CheckedChanged += new System.EventHandler(this.searchByInsertionDateCheckBox_CheckedChanged);
+            // 
+            // soldAssetsCheckBox
+            // 
+            this.soldAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.soldAssetsCheckBox.AutoSize = true;
+            this.soldAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soldAssetsCheckBox.Location = new System.Drawing.Point(380, 513);
+            this.soldAssetsCheckBox.Name = "soldAssetsCheckBox";
+            this.soldAssetsCheckBox.Size = new System.Drawing.Size(56, 25);
+            this.soldAssetsCheckBox.TabIndex = 290;
+            this.soldAssetsCheckBox.Text = "مباع";
+            this.soldAssetsCheckBox.UseVisualStyleBackColor = true;
+            this.soldAssetsCheckBox.CheckedChanged += new System.EventHandler(this.searchByInsertionDateCheckBox_CheckedChanged);
             // 
             // searchByInsertionDateCheckBox
             // 
@@ -1994,5 +2024,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup statTypeRibbonPageGroup;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
+        private System.Windows.Forms.CheckBox outOfWorkCheckBox;
+        private System.Windows.Forms.CheckBox soldAssetsCheckBox;
     }
 }

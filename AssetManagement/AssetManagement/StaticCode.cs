@@ -311,10 +311,14 @@ namespace AssetManagement
             sqlcomm.ExecuteNonQuery();
         }
 
-        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo)
+        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, out int errorCat)
         {
+            errorCat = 0;
             if (!File.Exists(assetsFilePath))
+            {
+                errorCat = 1;
                 return null;
+            }
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
@@ -323,7 +327,10 @@ namespace AssetManagement
             string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString();
             var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(sdpt1 => sdpt1.اسم_الوحدة == subDepartmentName && sdpt1.القسم_التابعة_له == departmentName && sdpt1.الدائرة_التي_يتبع_لها_القسم == sectionName);
             if (existedSubDept == null || existedSubDept.Count() == 0)
+            {
+                errorCat = 2;
                 return null;
+            }
             List<string> unknownMinorCategories = new List<string>();
             List<AssetTbl> importedAssets = new List<AssetTbl>();
             try
@@ -341,6 +348,8 @@ namespace AssetManagement
                     rowStartNo++;
                     while (srcExcelWs.Cells[rowStartNo, 5].Value != null && srcExcelWs.Cells[rowStartNo, 5].Value?.ToString() != "")
                     {
+                        Application.DoEvents();
+
                         string currMinorCategoryName = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Split(':')[0].ToString();
                         var existedMiCa = StaticCode.mainDbContext.MinorCategoryVws.Where(mc1 => mc1.اسم_الفئة_الرئيسية == currMainCategoryName && mc1.اسم_الفئة_الفرعية == currMinorCategoryName);
                         if (existedMiCa.Count() != 1)
@@ -410,11 +419,93 @@ namespace AssetManagement
                 StaticCode.mainDbContext.AssetTbls.InsertAllOnSubmit(importedAssets);
                 StaticCode.mainDbContext.SubmitChanges();
             }
-            catch (Exception ex)
+            catch
             {
+                errorCat = 3;
                 return null;
             }
 
+            if (unknownMinorCategories.Count() > 0)
+                errorCat = 4;
+            return unknownMinorCategories;
+        }
+
+        public static List<string> ImportFinancialItemsFromExcel(string fiItsFilePath, out int errorCat)
+        {
+            errorCat = 0;
+            if (!File.Exists(fiItsFilePath))
+            {
+                errorCat = 1;
+                return null;
+            }
+            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(fiItsFilePath));
+            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
+            ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+            string sectionName = srcExcelWs.Cells[2, 1].Value?.ToString().Replace("الدائرة:", "").Trim();
+            string departmentName = srcExcelWs.Cells[2, 3].Value?.ToString().Replace("القسم:", "").Trim();
+            string subDepartmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("الوحدة:", "").Trim();
+            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+            if (existedSubDept == null || existedSubDept.Count() == 0)
+            {
+                errorCat = 2;
+                return null;
+            }
+            List<string> unknownMinorCategories = new List<string>();
+            List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
+            try
+            {
+                int usdDollarCurrID = StaticCode.mainDbContext.CurrencyTbls.Where(cu1 => cu1.CurrencyName.Contains("دولار")).First().ID;
+                int rowStartNo = 5;
+                bool isIncoming = true;
+                while (rowStartNo <= srcExcelWs.Dimension.End.Row)
+                {
+                    Application.DoEvents();
+
+                    if (srcExcelWs.Cells[rowStartNo, 1].Value?.ToString() == "ثانياً : المصاريف :")
+                    {
+                        isIncoming = false;
+                        rowStartNo++;
+                    }
+                    if (srcExcelWs.Cells[rowStartNo, 5].Value == null || srcExcelWs.Cells[rowStartNo, 5].Value?.ToString() == "")
+                    {
+                        rowStartNo++;
+                        continue;
+                    }
+                    string fiItCatName = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString().Split(':')[0].ToString();
+                    var existedFiItCat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == fiItCatName);
+                    if (existedFiItCat.Count() != 1)
+                    {
+                        unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {fiItCatName}");
+                    }
+                    else
+                    {
+                        FinancialItemTbl newFinancialItem = new FinancialItemTbl()
+                        {
+                            FinancialItemCategory = existedFiItCat.First().ID,
+                            FinancialItemDescription = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString(),
+                            FinancialItemSubDept = existedSubDept.First().معرف_الوحدة,
+                            FinancialItemInsertionDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 4].Value),
+                            FinancialItemCurrency = usdDollarCurrID,
+                            IncomingAmount = (isIncoming) ? Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 1].Value) : 0,
+                            IncomingOrOutgoing = (isIncoming) ? "وارد" : "صادر",
+                            OutgoingAmount = (isIncoming) ? 0 : Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 2].Value),
+                            AdditionalNotes = "",
+                        };
+                        importedAssets.Add(newFinancialItem);
+                    }
+                    rowStartNo++;
+                }
+                StaticCode.mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
+                StaticCode.mainDbContext.SubmitChanges();
+            }
+            catch
+            {
+                errorCat = 3;
+                return null;
+            }
+
+            if (unknownMinorCategories.Count() > 0)
+                errorCat = 4;
             return unknownMinorCategories;
         }
         #endregion

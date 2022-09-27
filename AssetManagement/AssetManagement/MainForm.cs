@@ -420,15 +420,37 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 return;
             }
 
-            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo);
+            int errorCat = -1;
+            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, out errorCat);
             if (importingReport == null)
             {
-                mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد", StaticCode.ApplicationTitle);
-                return;
+                if (errorCat == 1)
+                {
+                    mainMemoEdit.Text = "مسار الملف غير صحيح";
+                    mainAlertControl.Show(this, "مسار الملف غير صحيح", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (errorCat == 2)
+                {
+                    mainMemoEdit.Text = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً";
+                    mainAlertControl.Show(this, "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (errorCat == 3)
+                {
+                    mainMemoEdit.Text = "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد";
+                    mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد", StaticCode.ApplicationTitle);
+                    return;
+                }
             }
-            if (importingReport.Count() > 0)
+            if (errorCat == 4 && importingReport.Count() > 0)
             {
-                string importingReportStr = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{importingReport[0]}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
+                string tmp = "";
+                foreach (string oneItem in importingReport)
+                {
+                    tmp += oneItem + "\r\n";
+                }
+                string importingReportStr = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
                 mainMemoEdit.Text = importingReportStr;
                 mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
                 return;
@@ -453,7 +475,54 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            mainMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
 
+            int errorCat = -1;
+            List<string> importingReport = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName,  out errorCat);
+            if (importingReport == null)
+            {
+                if (errorCat == 1)
+                {
+                    mainMemoEdit.Text = "مسار الملف غير صحيح";
+                    mainAlertControl.Show(this, "مسار الملف غير صحيح", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (errorCat == 2)
+                {
+                    mainMemoEdit.Text = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً";
+                    mainAlertControl.Show(this, "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (errorCat == 3)
+                {
+                    mainMemoEdit.Text = "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد";
+                    mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد", StaticCode.ApplicationTitle);
+                    return;
+                }
+            }
+            if (errorCat == 4 && importingReport.Count() > 0)
+            {
+                string tmp = "";
+            foreach(string oneItem in importingReport)
+            {
+                    tmp += oneItem + "\r\n";
+            }
+                string importingReportStr = $"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
+                mainMemoEdit.Text = importingReportStr;
+                mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
+                return;
+            }
+            else
+            {
+                mainAlertControl.Show(this, "تم استيراد السجلات المالية بنجاح، راجع إدارة السجلات المالية للتأكد من ذلك", StaticCode.ApplicationTitle);
+                return;
+            }
         }
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

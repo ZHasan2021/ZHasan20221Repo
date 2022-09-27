@@ -160,18 +160,6 @@ namespace AssetManagement.Assets
                     assetsQry = assetsQry.Where(ast => ast.AssetMinorCategory == Convert.ToInt32(searchByMinorCategoryLookUpEdit.EditValue));
                 }
             }
-            //if (searchByAssetCodeCheckBox.Checked)
-            //{
-            //    if (searchByAssetCodeTextBox.Text.Trim() == "")
-            //    {
-            //        mainAlertControl.Show(this, "اكتب كود الأصل أولاً", StaticCode.ApplicationTitle);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        assetsQry = assetsQry.Where(ast => ast.AssetCode.Contains(searchByAssetCodeTextBox.Text.Trim()));
-            //    }
-            //}
             if (searchByPurchaseDateCheckBox.Checked)
             {
                 if (searchByPurchaseDateDateEdit_From.EditValue == null)
@@ -210,6 +198,14 @@ namespace AssetManagement.Assets
                 }
                 assetsQry = assetsQry.Where(ast => ast.InsertedOn != null && ast.InsertedOn >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.InsertedOn <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
             }
+            if (soldAssetsCheckBox.Checked)
+            {
+                assetsQry = assetsQry.Where(ast => ast.IsSold == true);
+            }
+            if (outOfWorkCheckBox.Checked)
+            {
+                assetsQry = assetsQry.Where(ast => ast.IsOutOfWork == true);
+            }
 
             mainChartControl.Visible = assetsQry.Count() > 0;
             if (assetsQry.Count() == 0)
@@ -242,16 +238,15 @@ namespace AssetManagement.Assets
             }
         }
 
+        private void aggregateStatTypeBarEditItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void aggregateStatTypeBarEditItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
         private void aggregateStatTypeBarEditItem_EditValueChanged(object sender, EventArgs e)
         {
             if (aggregateStatTypeBarEditItem.EditValue == null || byFieldBarEditItem.EditValue == null) return;
