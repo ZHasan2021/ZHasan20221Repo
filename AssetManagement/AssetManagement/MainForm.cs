@@ -34,9 +34,10 @@ namespace AssetManagement
 
         private void ApplyUserRolesOnInterface()
         {
+            StaticCode.AssignDbParams();
+
             activeUserToolStripStatusLabel.Text = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
             activeUserRoleToolStripStatusLabel.Text = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
-            StaticCode.activeUserOptions.ActiveUser = StaticCode.activeUser.ID;
             StaticCode.mainDbContext.SubmitChanges();
 
             addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -224,6 +225,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
         {
             ManageUserTblForm mngusrFrm = new ManageUserTblForm();
             mngusrFrm.ShowDialog();
+
+            ApplyUserRolesOnInterface();
         }
 
         private void loginBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -484,7 +487,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             }
 
             int errorCat = -1;
-            List<string> importingReport = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName,  out errorCat);
+            List<string> importingReport = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName, out errorCat);
             if (importingReport == null)
             {
                 if (errorCat == 1)
@@ -509,10 +512,10 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             if (errorCat == 4 && importingReport.Count() > 0)
             {
                 string tmp = "";
-            foreach(string oneItem in importingReport)
-            {
+                foreach (string oneItem in importingReport)
+                {
                     tmp += oneItem + "\r\n";
-            }
+                }
                 string importingReportStr = $"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
                 mainMemoEdit.Text = importingReportStr;
                 mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);

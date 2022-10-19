@@ -616,11 +616,11 @@ namespace AssetManagement.Finance
             // 
             this.totalCycledLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.totalCycledLabel.AutoSize = true;
-            this.totalCycledLabel.Location = new System.Drawing.Point(526, 120);
+            this.totalCycledLabel.Location = new System.Drawing.Point(594, 120);
             this.totalCycledLabel.Name = "totalCycledLabel";
-            this.totalCycledLabel.Size = new System.Drawing.Size(177, 24);
+            this.totalCycledLabel.Size = new System.Drawing.Size(109, 24);
             this.totalCycledLabel.TabIndex = 675;
-            this.totalCycledLabel.Text = "المدور من الشهر السابق:";
+            this.totalCycledLabel.Text = "الرصيد المدور:";
             // 
             // totalOutcomesNumericUpDown
             // 

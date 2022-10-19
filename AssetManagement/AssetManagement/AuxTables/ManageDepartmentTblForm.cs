@@ -31,10 +31,17 @@ namespace AssetManagement.AuxTables
 
         private void departmentTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            departmentTblBindingSource.EndEdit();
-            tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
-            mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            try
+            {
+                this.Validate();
+                departmentTblBindingSource.EndEdit();
+                tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+                mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "هناك تكرار في أسماء الأقسام، أزل التكرار أولاً", StaticCode.ApplicationTitle);
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

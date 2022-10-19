@@ -65,6 +65,22 @@ namespace AssetManagement.Finance
                 this.Text = "تعديل سجل مالي موجود";
                 addNewFinancialItemBtn_OK.Text = "حفظ";
             }
+            else
+            {
+                if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                {
+                    try
+                    {
+                        financialItemSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                        financialItemDeptLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                        financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -87,6 +103,11 @@ namespace AssetManagement.Finance
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewFinancialItemBtn_OK_Click(object sender, EventArgs e)
         {
             if (financialItemCategoryLookUpEdit.EditValue == null)
@@ -151,9 +172,9 @@ namespace AssetManagement.Finance
                 newFiIt.FinancialItemSubDept = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
                 newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
                 newFiIt.FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue);
-                newFiIt.IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : (outgoingRadioButton.Checked ? "صادر" : "وارد وصادر");
+                newFiIt.IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : "صادر";
                 newFiIt.IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(incomingAmountNumericUpDown.Value) : 0;
-                newFiIt.OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(incomingAmountNumericUpDown.Value);
+                newFiIt.OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(outgoingAmountNumericUpDown.Value);
                 newFiIt.FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue);
                 newFiIt.AdditionalNotes = additionalNotesTextBox.Text.Trim();
                 if (!updateExisted)
@@ -222,8 +243,8 @@ namespace AssetManagement.Finance
         private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
-            incomingAmountNumericUpDown.Enabled = incomingRadioButton.Checked;
-            outgoingAmountNumericUpDown.Enabled = outgoingRadioButton.Checked;
+            incomingAmountNumericUpDown.Enabled = true;
+            outgoingAmountNumericUpDown.Enabled = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
         }
@@ -231,11 +252,45 @@ namespace AssetManagement.Finance
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
+            incomingAmountNumericUpDown.Enabled = false;
+            outgoingAmountNumericUpDown.Enabled = true;
+            incomingAmountNumericUpDown.Value =
+                outgoingAmountNumericUpDown.Value = 0;
         }
 
         private void incomingOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = financialItemCategoryTblBindingSource;
+        }
+
+        private void financialItemCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            addNewFinancialItemBtn_OK.Enabled = true;
+            if (financialItemCategoryLookUpEdit.EditValue == null)
+                return;
+            try
+            {
+                string fiCaDtl = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue)).FinancialItemCategoryDetails;
+                if (fiCaDtl.Contains("أصل") || fiCaDtl.Contains("أصول"))
+                {
+                    if (StaticCode.activeUserRole.AddNewAsset == true)
+                    {
+                        MessageBox.Show("هذا البند المالي يوصف على أنه أصل ثابت، الرجاء إدخال كافة بيانات الأصل ", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        AddNewAssetForm astFrm = new AddNewAssetForm();
+                        astFrm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا البند المالي يوصف على أنه أصل ثابت لكنك لا تملك الصلاحية لإضافة أصل، الرجاء طلب سماحية لإضافة أصل ثم إدخال كافة بيانات الأصل ", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        addNewFinancialItemBtn_OK.Enabled = false;
+                        return;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }

@@ -242,12 +242,18 @@ namespace AssetManagement.Assets
         {
 
         }
+
+        private void aggregateStatTypeBarEditItem_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void aggregateStatTypeBarEditItem_EditValueChanged(object sender, EventArgs e)
+        private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (aggregateStatTypeBarEditItem.EditValue == null || byFieldBarEditItem.EditValue == null) return;
             Series series1 = mainChartControl.Series[0];

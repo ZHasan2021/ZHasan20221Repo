@@ -32,6 +32,8 @@ namespace AssetManagement.Finance
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             this.MinimumSize = this.Size;
+
+            includeMovementsAndTransactionsInExportCheckBox.Checked = true;
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -142,9 +144,11 @@ namespace AssetManagement.Finance
             SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
             if (dbConn.State != ConnectionState.Open)
                 dbConn.Open();
+            string excelFilePath = exportSFD.FileName.Replace(".assf", ".xlsx");
+            string encryptedFilePath = exportSFD.FileName.Replace(".xlsx", ".assf");
             try
             {
-                using (ExcelPackage pck = new ExcelPackage(exportSFD.FileName))
+                using (ExcelPackage pck = new ExcelPackage(excelFilePath))
                 {
                     foreach (var oneModel in tbls2)
                     {
@@ -177,7 +181,10 @@ namespace AssetManagement.Finance
                         if (exportBySectionRadioButton.Checked)
                             queryStr += $" WHERE {fieldToFilter} IN (SELECT ID FROM SubDepartmentTbl WHERE MainDepartment IN (SELECT ID FROM SectionTbl WHERE ID = {exportBySectionLookUpEdit.EditValue}))";
                         if (oneTblName == "AssetMovementTbl" || oneTblName == "AssetTransactionTbl")
-                            queryStr += ")";
+                        {
+                            if (!unknownImportRadioButton.Checked)
+                                queryStr += ")";
+                        }
                         SqlDataAdapter dbAdpt = new SqlDataAdapter(queryStr, dbConn);
                         DataTable oneDt = new DataTable();
                         dbAdpt.Fill(oneDt);
@@ -210,19 +217,26 @@ namespace AssetManagement.Finance
                         key_IVRdr.Read(IVArr, 0, IVArr.Length);
                         key_IVRdr.Close();
 
-                        string outFile_Enc = outFile1.Replace("xlsx", "assf");
-                        if (StaticCode.AesEncryption(outFile1, outFile_Enc, keyArr, IVArr))
+                        if (StaticCode.AesEncryption(excelFilePath, encryptedFilePath, keyArr, IVArr))
                         {
-                            File.Delete(outFile1);
+                            File.Delete(excelFilePath);
                             mainAlertControl.Show(this, "تم تصدير قاعدة البيانات مشفرة بنجاح", StaticCode.ApplicationTitle, true);
                         }
                         else
                         {
+                            if (File.Exists(excelFilePath))
+                                File.Delete(excelFilePath);
+                            if (File.Exists(encryptedFilePath))
+                                File.Delete(encryptedFilePath);
                             mainAlertControl.Show(this, "لم يتم تصدير قاعدة البيانات المشفرة بسبب خطأ في مفتاح التشفير، يمكنك إعادة توليده مرة ثانية", StaticCode.ApplicationTitle, true);
                         }
                     }
                     catch
                     {
+                        if (File.Exists(excelFilePath))
+                            File.Delete(excelFilePath);
+                        if (File.Exists(encryptedFilePath))
+                            File.Delete(encryptedFilePath);
                         mainAlertControl.Show(this, "خطأ في تصدير ملف مشفر", StaticCode.ApplicationTitle, true);
                     }
                     #endregion
@@ -247,6 +261,10 @@ namespace AssetManagement.Finance
             }
             catch
             {
+                if (File.Exists(excelFilePath))
+                    File.Delete(excelFilePath);
+                if (File.Exists(encryptedFilePath))
+                    File.Delete(encryptedFilePath);
                 mainAlertControl.Show(this, "لم يتم تصدير قاعدة البيانات، حاولا لاحقاً", StaticCode.ApplicationTitle, true);
             }
         }

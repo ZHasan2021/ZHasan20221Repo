@@ -133,6 +133,7 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLookUpEdit.Properties.ValueMember = "ID";
             this.financialItemCategoryLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemCategoryLookUpEdit.TabIndex = 30;
+            this.financialItemCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.financialItemCategoryLookUpEdit_EditValueChanged);
             // 
             // financialItemCategoryTblBindingSource
             // 

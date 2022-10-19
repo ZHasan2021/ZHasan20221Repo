@@ -56,10 +56,10 @@ namespace AssetManagement.Finance
             this.notesLabel = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.tablesExportedPanel = new System.Windows.Forms.Panel();
+            this.includeMovementsAndTransactionsInExportCheckBox = new System.Windows.Forms.CheckBox();
             this.exportAssetsAndFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportAssetsRadioButton = new System.Windows.Forms.RadioButton();
-            this.includeMovementsAndTransactionsInExportCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -357,6 +357,17 @@ namespace AssetManagement.Finance
             this.tablesExportedPanel.Size = new System.Drawing.Size(790, 52);
             this.tablesExportedPanel.TabIndex = 5;
             // 
+            // includeMovementsAndTransactionsInExportCheckBox
+            // 
+            this.includeMovementsAndTransactionsInExportCheckBox.AutoSize = true;
+            this.includeMovementsAndTransactionsInExportCheckBox.Location = new System.Drawing.Point(77, 11);
+            this.includeMovementsAndTransactionsInExportCheckBox.Name = "includeMovementsAndTransactionsInExportCheckBox";
+            this.includeMovementsAndTransactionsInExportCheckBox.Size = new System.Drawing.Size(247, 28);
+            this.includeMovementsAndTransactionsInExportCheckBox.TabIndex = 86;
+            this.includeMovementsAndTransactionsInExportCheckBox.Text = "تضمين سجلات النقل والتصريف";
+            this.includeMovementsAndTransactionsInExportCheckBox.UseVisualStyleBackColor = true;
+            this.includeMovementsAndTransactionsInExportCheckBox.Visible = false;
+            // 
             // exportAssetsAndFinancialItemsRadioButton
             // 
             this.exportAssetsAndFinancialItemsRadioButton.AutoSize = true;
@@ -391,16 +402,6 @@ namespace AssetManagement.Finance
             this.exportAssetsRadioButton.Text = "أصول";
             this.exportAssetsRadioButton.UseVisualStyleBackColor = true;
             this.exportAssetsRadioButton.CheckedChanged += new System.EventHandler(this.exportAssetsRadioButton_CheckedChanged);
-            // 
-            // includeMovementsAndTransactionsInExportCheckBox
-            // 
-            this.includeMovementsAndTransactionsInExportCheckBox.AutoSize = true;
-            this.includeMovementsAndTransactionsInExportCheckBox.Location = new System.Drawing.Point(77, 11);
-            this.includeMovementsAndTransactionsInExportCheckBox.Name = "includeMovementsAndTransactionsInExportCheckBox";
-            this.includeMovementsAndTransactionsInExportCheckBox.Size = new System.Drawing.Size(247, 28);
-            this.includeMovementsAndTransactionsInExportCheckBox.TabIndex = 86;
-            this.includeMovementsAndTransactionsInExportCheckBox.Text = "تضمين سجلات النقل والتصريف";
-            this.includeMovementsAndTransactionsInExportCheckBox.UseVisualStyleBackColor = true;
             // 
             // ExportForm
             // 

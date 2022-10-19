@@ -25,12 +25,24 @@ namespace AssetManagement
         #endregion
 
         #region Db
+        public static SqlConnection mainConn { get; set; }
         public static string dbPath = $"{Application.StartupPath}//Db//AssetMngDb.mdf";
         public static string db_logPath = $"{Application.StartupPath}//Db//AssetMngDb_log.ldf";
         public static AssetMngDbDataContext mainDbContext = new AssetMngDbDataContext();
-        public static OptionsTbl appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
+        public static OptionsTbl appOptions { get; set; }
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
 
+
+        public static void AssignDbParams()
+        {
+            mainDbContext = new AssetMngDbDataContext();
+            mainDbContext.Refresh(RefreshMode.OverwriteCurrentValues);
+
+            activeUser = mainDbContext.UserTbls.Single(usr1 => usr1.ID == activeUser.ID);
+            mainConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
+            appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
+            activeUserRole = mainDbContext.UserRoleTbls.Single(usrrl => usrrl.ID == activeUser.UserRole);
+        }
         public static bool BackupDb(string backupName)
         {
             try
@@ -204,10 +216,31 @@ namespace AssetManagement
         //}
         #endregion
 
+        #region Assets
+        public static string GetTheNewAssetCode()
+        {
+            string currUserPrefix = activeUser.UserPrefix;
+            var currUserAssets = mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode.Contains(currUserPrefix + "-"));
+            if (currUserAssets == null || currUserAssets.Count() == 0)
+                return ($"{currUserPrefix}-0000001");
+            string maxAssetCodeForCurrUser = currUserAssets.Max(ast2 => ast2.AssetCode);
+            int maxAssetIDForCurrUser = 1;
+            try
+            {
+                maxAssetIDForCurrUser = Convert.ToInt32(maxAssetCodeForCurrUser.Replace(currUserPrefix + "-", "")) + 1;
+            }
+            catch
+            {
+                maxAssetIDForCurrUser = 1;
+            }
+            string maxAssetIDForCurrUser_Str = maxAssetIDForCurrUser.ToString();
+            return ($"{currUserPrefix}-{maxAssetIDForCurrUser_Str.PadLeft(7, '0')}");
+        }
+        #endregion
+
         #region Login
         public static UserTbl activeUser { get; set; }
         public static UserRoleTbl activeUserRole { get; set; }
-        public static OptionsTbl activeUserOptions { get; set; }
         #endregion
 
         #region Export and Import

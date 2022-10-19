@@ -149,6 +149,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colتاريخالإدخال = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -993,6 +994,7 @@ namespace AssetManagement.Assets
             this.colالفئةالرئيسية,
             this.colالفئةالفرعية,
             this.colمواصفاتالأصل,
+            this.colتاريخالإدخال,
             this.colالموديل,
             this.colاللون,
             this.gridColumn1,
@@ -1462,6 +1464,15 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7.PopupWidth = 500;
             this.repositoryItemLookUpEdit7.ValueMember = "ID";
             // 
+            // colتاريخالإدخال
+            // 
+            this.colتاريخالإدخال.FieldName = "تاريخ الإدخال";
+            this.colتاريخالإدخال.MinWidth = 120;
+            this.colتاريخالإدخال.Name = "colتاريخالإدخال";
+            this.colتاريخالإدخال.Visible = true;
+            this.colتاريخالإدخال.VisibleIndex = 35;
+            this.colتاريخالإدخال.Width = 120;
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
@@ -1656,5 +1667,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit6;
         private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit7;
+        private DevExpress.XtraGrid.Columns.GridColumn colتاريخالإدخال;
     }
 }

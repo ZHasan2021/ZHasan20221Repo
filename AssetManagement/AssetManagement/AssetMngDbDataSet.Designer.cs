@@ -1272,9 +1272,7 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnCustodianName;
             
-            private global::System.Data.DataColumn columnIsSold;
-            
-            private global::System.Data.DataColumn columnIsOutOfWork;
+            private global::System.Data.DataColumn columnتاريخ_الإدخال;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1391,17 +1389,9 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IsSoldColumn {
+            public global::System.Data.DataColumn تاريخ_الإدخالColumn {
                 get {
-                    return this.columnIsSold;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IsOutOfWorkColumn {
-                get {
-                    return this.columnIsOutOfWork;
+                    return this.columnتاريخ_الإدخال;
                 }
             }
             
@@ -1442,7 +1432,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public AssetMoveVwRow AddAssetMoveVwRow(int ID, string MainCategoryName, string MinorCategoryName, string AssetCode, string SectionName, string DepartmentName, string SubDepartmentName, string SquareName, string StatusName, string CustodianName, bool IsSold, bool IsOutOfWork) {
+            public AssetMoveVwRow AddAssetMoveVwRow(int ID, string MainCategoryName, string MinorCategoryName, string AssetCode, string SectionName, string DepartmentName, string SubDepartmentName, string SquareName, string StatusName, string CustodianName, System.DateTime تاريخ_الإدخال) {
                 AssetMoveVwRow rowAssetMoveVwRow = ((AssetMoveVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -1455,8 +1445,7 @@ namespace AssetManagement {
                         SquareName,
                         StatusName,
                         CustodianName,
-                        IsSold,
-                        IsOutOfWork};
+                        تاريخ_الإدخال};
                 rowAssetMoveVwRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssetMoveVwRow);
                 return rowAssetMoveVwRow;
@@ -1496,8 +1485,7 @@ namespace AssetManagement {
                 this.columnSquareName = base.Columns["SquareName"];
                 this.columnStatusName = base.Columns["StatusName"];
                 this.columnCustodianName = base.Columns["CustodianName"];
-                this.columnIsSold = base.Columns["IsSold"];
-                this.columnIsOutOfWork = base.Columns["IsOutOfWork"];
+                this.columnتاريخ_الإدخال = base.Columns["تاريخ الإدخال"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1523,10 +1511,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnStatusName);
                 this.columnCustodianName = new global::System.Data.DataColumn("CustodianName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustodianName);
-                this.columnIsSold = new global::System.Data.DataColumn("IsSold", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsSold);
-                this.columnIsOutOfWork = new global::System.Data.DataColumn("IsOutOfWork", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsOutOfWork);
+                this.columnتاريخ_الإدخال = new global::System.Data.DataColumn("تاريخ الإدخال", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnتاريخ_الإدخال);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -2057,9 +2043,7 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnالعمر_الافتراضي_المتبقي_للأصل;
             
-            private global::System.Data.DataColumn columnمباع;
-            
-            private global::System.Data.DataColumn columnخارج_الخدمة;
+            private global::System.Data.DataColumn columnتاريخ_الإدخال;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -2384,17 +2368,9 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn مباعColumn {
+            public global::System.Data.DataColumn تاريخ_الإدخالColumn {
                 get {
-                    return this.columnمباع;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn خارج_الخدمةColumn {
-                get {
-                    return this.columnخارج_الخدمة;
+                    return this.columnتاريخ_الإدخال;
                 }
             }
             
@@ -2472,8 +2448,7 @@ namespace AssetManagement {
                         string رقم_المحرك_للمركبة, 
                         double معدل_الإهلاك_للأصل, 
                         string العمر_الافتراضي_المتبقي_للأصل, 
-                        bool مباع, 
-                        bool خارج_الخدمة) {
+                        System.DateTime تاريخ_الإدخال) {
                 AssetVwRow rowAssetVwRow = ((AssetVwRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         معرف_الأصل,
@@ -2512,8 +2487,7 @@ namespace AssetManagement {
                         رقم_المحرك_للمركبة,
                         معدل_الإهلاك_للأصل,
                         العمر_الافتراضي_المتبقي_للأصل,
-                        مباع,
-                        خارج_الخدمة};
+                        تاريخ_الإدخال};
                 rowAssetVwRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAssetVwRow);
                 return rowAssetVwRow;
@@ -2579,8 +2553,7 @@ namespace AssetManagement {
                 this.columnرقم_المحرك_للمركبة = base.Columns["رقم المحرك للمركبة"];
                 this.columnمعدل_الإهلاك_للأصل = base.Columns["معدل الإهلاك للأصل"];
                 this.columnالعمر_الافتراضي_المتبقي_للأصل = base.Columns["العمر الافتراضي المتبقي للأصل"];
-                this.columnمباع = base.Columns["مباع"];
-                this.columnخارج_الخدمة = base.Columns["خارج الخدمة"];
+                this.columnتاريخ_الإدخال = base.Columns["تاريخ الإدخال"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2662,10 +2635,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnمعدل_الإهلاك_للأصل);
                 this.columnالعمر_الافتراضي_المتبقي_للأصل = new global::System.Data.DataColumn("العمر الافتراضي المتبقي للأصل", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnالعمر_الافتراضي_المتبقي_للأصل);
-                this.columnمباع = new global::System.Data.DataColumn("مباع", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnمباع);
-                this.columnخارج_الخدمة = new global::System.Data.DataColumn("خارج الخدمة", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnخارج_الخدمة);
+                this.columnتاريخ_الإدخال = new global::System.Data.DataColumn("تاريخ الإدخال", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnتاريخ_الإدخال);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnمعرف_الأصل}, true));
                 this.columnمعرف_الأصل.AllowDBNull = false;
@@ -2710,8 +2681,6 @@ namespace AssetManagement {
                 this.columnمعدل_الإهلاك_للأصل.AllowDBNull = false;
                 this.columnالعمر_الافتراضي_المتبقي_للأصل.ReadOnly = true;
                 this.columnالعمر_الافتراضي_المتبقي_للأصل.MaxLength = 50;
-                this.columnمباع.ReadOnly = true;
-                this.columnخارج_الخدمة.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4039,6 +4008,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnUserDept;
             
+            private global::System.Data.DataColumn columnUserPrefix;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UserTblDataTable() {
@@ -4122,6 +4093,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn UserPrefixColumn {
+                get {
+                    return this.columnUserPrefix;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4157,7 +4136,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserTblRow AddUserTblRow(string Username, string Password, UserRoleTblRow parentUserRoleTblRowByFK_UserTbl_UserRoleTbl, System.DateTime PasswordUpdatedOn, DepartmentTblRow parentDepartmentTblRowByFK_UserTbl_DepartmentTbl) {
+            public UserTblRow AddUserTblRow(string Username, string Password, UserRoleTblRow parentUserRoleTblRowByFK_UserTbl_UserRoleTbl, System.DateTime PasswordUpdatedOn, DepartmentTblRow parentDepartmentTblRowByFK_UserTbl_DepartmentTbl, string UserPrefix) {
                 UserTblRow rowUserTblRow = ((UserTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4165,7 +4144,8 @@ namespace AssetManagement {
                         Password,
                         null,
                         PasswordUpdatedOn,
-                        null};
+                        null,
+                        UserPrefix};
                 if ((parentUserRoleTblRowByFK_UserTbl_UserRoleTbl != null)) {
                     columnValuesArray[3] = parentUserRoleTblRowByFK_UserTbl_UserRoleTbl[0];
                 }
@@ -4207,6 +4187,7 @@ namespace AssetManagement {
                 this.columnUserRole = base.Columns["UserRole"];
                 this.columnPasswordUpdatedOn = base.Columns["PasswordUpdatedOn"];
                 this.columnUserDept = base.Columns["UserDept"];
+                this.columnUserPrefix = base.Columns["UserPrefix"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4224,6 +4205,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnPasswordUpdatedOn);
                 this.columnUserDept = new global::System.Data.DataColumn("UserDept", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserDept);
+                this.columnUserPrefix = new global::System.Data.DataColumn("UserPrefix", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserPrefix);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4238,6 +4221,7 @@ namespace AssetManagement {
                 this.columnPassword.MaxLength = 25;
                 this.columnUserRole.AllowDBNull = false;
                 this.columnUserDept.AllowDBNull = false;
+                this.columnUserPrefix.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10572,6 +10556,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnCreateAssetsReports;
             
+            private global::System.Data.DataColumn columnIsDepartmentIndependent;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UserRoleTblDataTable() {
@@ -11007,6 +10993,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsDepartmentIndependentColumn {
+                get {
+                    return this.columnIsDepartmentIndependent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -11091,7 +11085,8 @@ namespace AssetManagement {
                         bool SetDateAndTime, 
                         bool BackupDb, 
                         bool RestoreDb, 
-                        bool CreateAssetsReports) {
+                        bool CreateAssetsReports, 
+                        bool IsDepartmentIndependent) {
                 UserRoleTblRow rowUserRoleTblRow = ((UserRoleTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -11143,7 +11138,8 @@ namespace AssetManagement {
                         SetDateAndTime,
                         BackupDb,
                         RestoreDb,
-                        CreateAssetsReports};
+                        CreateAssetsReports,
+                        IsDepartmentIndependent};
                 rowUserRoleTblRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUserRoleTblRow);
                 return rowUserRoleTblRow;
@@ -11223,6 +11219,7 @@ namespace AssetManagement {
                 this.columnBackupDb = base.Columns["BackupDb"];
                 this.columnRestoreDb = base.Columns["RestoreDb"];
                 this.columnCreateAssetsReports = base.Columns["CreateAssetsReports"];
+                this.columnIsDepartmentIndependent = base.Columns["IsDepartmentIndependent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11328,6 +11325,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnRestoreDb);
                 this.columnCreateAssetsReports = new global::System.Data.DataColumn("CreateAssetsReports", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateAssetsReports);
+                this.columnIsDepartmentIndependent = new global::System.Data.DataColumn("IsDepartmentIndependent", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsDepartmentIndependent);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -11605,33 +11604,17 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsSold {
+            public System.DateTime تاريخ_الإدخال {
                 get {
                     try {
-                        return ((bool)(this[this.tableAssetMoveVw.IsSoldColumn]));
+                        return ((global::System.DateTime)(this[this.tableAssetMoveVw.تاريخ_الإدخالColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsSold\' in table \'AssetMoveVw\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'تاريخ الإدخال\' in table \'AssetMoveVw\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableAssetMoveVw.IsSoldColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsOutOfWork {
-                get {
-                    try {
-                        return ((bool)(this[this.tableAssetMoveVw.IsOutOfWorkColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsOutOfWork\' in table \'AssetMoveVw\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableAssetMoveVw.IsOutOfWorkColumn] = value;
+                    this[this.tableAssetMoveVw.تاريخ_الإدخالColumn] = value;
                 }
             }
             
@@ -11673,26 +11656,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsIsSoldNull() {
-                return this.IsNull(this.tableAssetMoveVw.IsSoldColumn);
+            public bool Isتاريخ_الإدخالNull() {
+                return this.IsNull(this.tableAssetMoveVw.تاريخ_الإدخالColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetIsSoldNull() {
-                this[this.tableAssetMoveVw.IsSoldColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsIsOutOfWorkNull() {
-                return this.IsNull(this.tableAssetMoveVw.IsOutOfWorkColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetIsOutOfWorkNull() {
-                this[this.tableAssetMoveVw.IsOutOfWorkColumn] = global::System.Convert.DBNull;
+            public void Setتاريخ_الإدخالNull() {
+                this[this.tableAssetMoveVw.تاريخ_الإدخالColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12294,33 +12265,17 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool مباع {
+            public System.DateTime تاريخ_الإدخال {
                 get {
                     try {
-                        return ((bool)(this[this.tableAssetVw.مباعColumn]));
+                        return ((global::System.DateTime)(this[this.tableAssetVw.تاريخ_الإدخالColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'مباع\' in table \'AssetVw\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'تاريخ الإدخال\' in table \'AssetVw\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableAssetVw.مباعColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool خارج_الخدمة {
-                get {
-                    try {
-                        return ((bool)(this[this.tableAssetVw.خارج_الخدمةColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'خارج الخدمة\' in table \'AssetVw\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableAssetVw.خارج_الخدمةColumn] = value;
+                    this[this.tableAssetVw.تاريخ_الإدخالColumn] = value;
                 }
             }
             
@@ -12626,26 +12581,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsمباعNull() {
-                return this.IsNull(this.tableAssetVw.مباعColumn);
+            public bool Isتاريخ_الإدخالNull() {
+                return this.IsNull(this.tableAssetVw.تاريخ_الإدخالColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetمباعNull() {
-                this[this.tableAssetVw.مباعColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isخارج_الخدمةNull() {
-                return this.IsNull(this.tableAssetVw.خارج_الخدمةColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setخارج_الخدمةNull() {
-                this[this.tableAssetVw.خارج_الخدمةColumn] = global::System.Convert.DBNull;
+            public void Setتاريخ_الإدخالNull() {
+                this[this.tableAssetVw.تاريخ_الإدخالColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13276,6 +13219,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string UserPrefix {
+                get {
+                    try {
+                        return ((string)(this[this.tableUserTbl.UserPrefixColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UserPrefix\' in table \'UserTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserTbl.UserPrefixColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DepartmentTblRow DepartmentTblRow {
                 get {
                     return ((DepartmentTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserTbl_DepartmentTbl"])));
@@ -13306,6 +13265,18 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetPasswordUpdatedOnNull() {
                 this[this.tableUserTbl.PasswordUpdatedOnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsUserPrefixNull() {
+                return this.IsNull(this.tableUserTbl.UserPrefixColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetUserPrefixNull() {
+                this[this.tableUserTbl.UserPrefixColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17149,6 +17120,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDepartmentIndependent {
+                get {
+                    try {
+                        return ((bool)(this[this.tableUserRoleTbl.IsDepartmentIndependentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsDepartmentIndependent\' in table \'UserRoleTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserRoleTbl.IsDepartmentIndependentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsAddNewAssetNull() {
                 return this.IsNull(this.tableUserRoleTbl.AddNewAssetColumn);
             }
@@ -17721,6 +17708,18 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCreateAssetsReportsNull() {
                 this[this.tableUserRoleTbl.CreateAssetsReportsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsDepartmentIndependentNull() {
+                return this.IsNull(this.tableUserRoleTbl.IsDepartmentIndependentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsDepartmentIndependentNull() {
+                this[this.tableUserRoleTbl.IsDepartmentIndependentColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18720,8 +18719,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SquareName", "SquareName");
             tableMapping.ColumnMappings.Add("StatusName", "StatusName");
             tableMapping.ColumnMappings.Add("CustodianName", "CustodianName");
-            tableMapping.ColumnMappings.Add("IsSold", "IsSold");
-            tableMapping.ColumnMappings.Add("IsOutOfWork", "IsOutOfWork");
+            tableMapping.ColumnMappings.Add("تاريخ الإدخال", "تاريخ الإدخال");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18739,8 +18737,8 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, MainCategoryName, MinorCategoryName, AssetCode, SectionName, Departmen" +
-                "tName, SubDepartmentName, SquareName, StatusName, CustodianName, IsSold, IsOutOf" +
-                "Work FROM dbo.AssetMoveVw";
+                "tName, SubDepartmentName, SquareName, StatusName, CustodianName, [تاريخ الإدخال]" +
+                " FROM dbo.AssetMoveVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19097,8 +19095,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("رقم المحرك للمركبة", "رقم المحرك للمركبة");
             tableMapping.ColumnMappings.Add("معدل الإهلاك للأصل", "معدل الإهلاك للأصل");
             tableMapping.ColumnMappings.Add("العمر الافتراضي المتبقي للأصل", "العمر الافتراضي المتبقي للأصل");
-            tableMapping.ColumnMappings.Add("مباع", "مباع");
-            tableMapping.ColumnMappings.Add("خارج الخدمة", "خارج الخدمة");
+            tableMapping.ColumnMappings.Add("تاريخ الإدخال", "تاريخ الإدخال");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19115,7 +19112,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل], مباع, [خارج الخدمة] FROM dbo.AssetVw";
+            this._commandCollection[0].CommandText = @"SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل], [تاريخ الإدخال] FROM dbo.AssetVw";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19132,7 +19129,27 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             return returnValue;
         }
 
-       public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
+        public virtual int FillByQuery(AssetMngDbDataSet.FinancialItemVwDataTable dataTable, string whereQuery)
+        {
+            int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+            if (whereIndex == -1)
+            {
+                this.CommandCollection[0].CommandText += whereQuery;
+            }
+            else
+            {
+                this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+            }
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true))
+            {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+
+        public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         {
             int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
             if (whereIndex == -1)
@@ -20200,10 +20217,11 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             tableMapping.ColumnMappings.Add("UserRole", "UserRole");
             tableMapping.ColumnMappings.Add("PasswordUpdatedOn", "PasswordUpdatedOn");
             tableMapping.ColumnMappings.Add("UserDept", "UserDept");
+            tableMapping.ColumnMappings.Add("UserPrefix", "UserPrefix");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserTbl] WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserTbl] WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept) AND ((@IsNull_UserPrefix = 1 AND [UserPrefix] IS NULL) OR ([UserPrefix] = @Original_UserPrefix)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -20212,26 +20230,30 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PasswordUpdatedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserPrefix", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserTbl] ([Username], [Password], [UserRole], [PasswordUpdatedOn], [UserDept]) VALUES (@Username, @Password, @UserRole, @PasswordUpdatedOn, @UserDept);
-SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserTbl] ([Username], [Password], [UserRole], [PasswordUpdatedOn], [UserDept], [UserPrefix]) VALUES (@Username, @Password, @UserRole, @PasswordUpdatedOn, @UserDept, @UserPrefix);
+SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix FROM UserTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserTbl] SET [Username] = @Username, [Password] = @Password, [UserRole] = @UserRole, [PasswordUpdatedOn] = @PasswordUpdatedOn, [UserDept] = @UserDept WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept));
-SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTbl WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserTbl] SET [Username] = @Username, [Password] = @Password, [UserRole] = @UserRole, [PasswordUpdatedOn] = @PasswordUpdatedOn, [UserDept] = @UserDept, [UserPrefix] = @UserPrefix WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept) AND ((@IsNull_UserPrefix = 1 AND [UserPrefix] IS NULL) OR ([UserPrefix] = @Original_UserPrefix)));
+SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix FROM UserTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -20239,6 +20261,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PasswordUpdatedOn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserPrefix", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -20255,8 +20279,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM dbo.Use" +
-                "rTbl";
+            this._commandCollection[0].CommandText = "SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix " +
+                "FROM dbo.UserTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -20317,7 +20341,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept) {
+        public virtual int Delete(int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
@@ -20341,6 +20365,14 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_UserDept));
+            if ((Original_UserPrefix == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_UserPrefix));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20361,7 +20393,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept) {
+        public virtual int Insert(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -20382,6 +20414,12 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((int)(UserDept));
+            if ((UserPrefix == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(UserPrefix));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20402,7 +20440,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, int ID) {
+        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix, int ID) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -20423,30 +20461,44 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(UserDept));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
+            if ((UserPrefix == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(UserPrefix));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Username));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Username));
             }
             if ((Original_Password == null)) {
                 throw new global::System.ArgumentNullException("Original_Password");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Password));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Password));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_UserRole));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_UserRole));
             if ((Original_PasswordUpdatedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_PasswordUpdatedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_PasswordUpdatedOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_UserDept));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_UserDept));
+            if ((Original_UserPrefix == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_UserPrefix));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20467,8 +20519,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept FROM UserTb
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept) {
-            return this.Update(Username, Password, UserRole, PasswordUpdatedOn, UserDept, Original_ID, Original_Username, Original_Password, Original_UserRole, Original_PasswordUpdatedOn, Original_UserDept, Original_ID);
+        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix) {
+            return this.Update(Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix, Original_ID, Original_Username, Original_Password, Original_UserRole, Original_PasswordUpdatedOn, Original_UserDept, Original_UserPrefix, Original_ID);
         }
     }
     
@@ -28830,6 +28882,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             tableMapping.ColumnMappings.Add("BackupDb", "BackupDb");
             tableMapping.ColumnMappings.Add("RestoreDb", "RestoreDb");
             tableMapping.ColumnMappings.Add("CreateAssetsReports", "CreateAssetsReports");
+            tableMapping.ColumnMappings.Add("IsDepartmentIndependent", "IsDepartmentIndependent");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -28911,7 +28964,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([Re" +
                 "storeDb] = @Original_RestoreDb)) AND ((@IsNull_CreateAssetsReports = 1 AND [Crea" +
                 "teAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsRepo" +
-                "rts)))";
+                "rts)) AND ((@IsNull_IsDepartmentIndependent = 1 AND [IsDepartmentIndependent] IS" +
+                " NULL) OR ([IsDepartmentIndependent] = @Original_IsDepartmentIndependent)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -29011,6 +29065,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreateAssetsReports", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsDepartmentIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[UserRoleTbl] ([RoleName], [AddNewAsset], [ManageAssetTbl], [Up" +
@@ -29026,33 +29082,34 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "], [ManageTransactionTypes], [AddNewFinancialItem], [ManageFinancialItems], [Upd" +
                 "ateExistedFinancialItem], [DeleteFinancialItemRecord], [ViewFinancialReports], [" +
                 "AddNewFinancialItemCategory], [ManageFinancialItemCategories], [SetDateAndTime]," +
-                " [BackupDb], [RestoreDb], [CreateAssetsReports]) VALUES (@RoleName, @AddNewAsset" +
-                ", @ManageAssetTbl, @UpdateExistedAsset, @UpdateSubDepartmentForExistedAsset, @De" +
-                "leteAssetRecord, @ViewAssetsReports, @ViewAssetsStats, @CreateInventoryReport, @" +
-                "AddNewAssetMovement, @ManageAssetMovements, @AddNewAssetTransaction, @ManageAsse" +
-                "tTransactions, @ExportAllData, @ImportAllData, @ManageImportExportTbl, @ManageUs" +
-                "ers, @PromoteDb, @AddNewMainCategory, @ManageMainCategories, @AddNewMinorCategor" +
-                "y, @ManageMinorCategories, @AddNewSection, @ManageSections, @AddNewDepartment, @" +
-                "ManageDepartments, @AddNewSubDepartment, @ManageSubDepartments, @AddNewSquare, @" +
-                "ManageSquares, @AddNewCurrency, @ManageCurrencies, @AddNewModel, @ManageModels, " +
-                "@AddNewEstateAreaUnit, @ManageEstateAreaUnits, @AddNewTransactionType, @ManageTr" +
-                "ansactionTypes, @AddNewFinancialItem, @ManageFinancialItems, @UpdateExistedFinan" +
-                "cialItem, @DeleteFinancialItemRecord, @ViewFinancialReports, @AddNewFinancialIte" +
-                "mCategory, @ManageFinancialItemCategories, @SetDateAndTime, @BackupDb, @RestoreD" +
-                "b, @CreateAssetsReports);\r\nSELECT ID, RoleName, AddNewAsset, ManageAssetTbl, Upd" +
-                "ateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAsse" +
-                "tsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAs" +
-                "setMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, Im" +
-                "portAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, " +
-                "ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection," +
-                " ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, Manag" +
-                "eSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, " +
-                "AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTr" +
-                "ansactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems" +
-                ", UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, A" +
-                "ddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, Backu" +
-                "pDb, RestoreDb, CreateAssetsReports FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY(" +
-                "))";
+                " [BackupDb], [RestoreDb], [CreateAssetsReports], [IsDepartmentIndependent]) VALU" +
+                "ES (@RoleName, @AddNewAsset, @ManageAssetTbl, @UpdateExistedAsset, @UpdateSubDep" +
+                "artmentForExistedAsset, @DeleteAssetRecord, @ViewAssetsReports, @ViewAssetsStats" +
+                ", @CreateInventoryReport, @AddNewAssetMovement, @ManageAssetMovements, @AddNewAs" +
+                "setTransaction, @ManageAssetTransactions, @ExportAllData, @ImportAllData, @Manag" +
+                "eImportExportTbl, @ManageUsers, @PromoteDb, @AddNewMainCategory, @ManageMainCate" +
+                "gories, @AddNewMinorCategory, @ManageMinorCategories, @AddNewSection, @ManageSec" +
+                "tions, @AddNewDepartment, @ManageDepartments, @AddNewSubDepartment, @ManageSubDe" +
+                "partments, @AddNewSquare, @ManageSquares, @AddNewCurrency, @ManageCurrencies, @A" +
+                "ddNewModel, @ManageModels, @AddNewEstateAreaUnit, @ManageEstateAreaUnits, @AddNe" +
+                "wTransactionType, @ManageTransactionTypes, @AddNewFinancialItem, @ManageFinancia" +
+                "lItems, @UpdateExistedFinancialItem, @DeleteFinancialItemRecord, @ViewFinancialR" +
+                "eports, @AddNewFinancialItemCategory, @ManageFinancialItemCategories, @SetDateAn" +
+                "dTime, @BackupDb, @RestoreDb, @CreateAssetsReports, @IsDepartmentIndependent);\r\n" +
+                "SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD" +
+                "epartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats," +
+                " CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTr" +
+                "ansaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportEx" +
+                "portTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNe" +
+                "wMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepa" +
+                "rtment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSqua" +
+                "re, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, " +
+                "AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransa" +
+                "ctionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialIte" +
+                "m, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory," +
+                " ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAsset" +
+                "sReports, IsDepartmentIndependent FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY())" +
+                "";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddNewAsset", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddNewAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29103,6 +29160,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BackupDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BackupDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[UserRoleTbl] SET [RoleName] = @RoleName, [AddNewAsset] = @AddNewAss" +
@@ -29131,98 +29189,100 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "wFinancialReports] = @ViewFinancialReports, [AddNewFinancialItemCategory] = @Add" +
                 "NewFinancialItemCategory, [ManageFinancialItemCategories] = @ManageFinancialItem" +
                 "Categories, [SetDateAndTime] = @SetDateAndTime, [BackupDb] = @BackupDb, [Restore" +
-                "Db] = @RestoreDb, [CreateAssetsReports] = @CreateAssetsReports WHERE (([ID] = @O" +
-                "riginal_ID) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 " +
-                "AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@Is" +
-                "Null_ManageAssetTbl = 1 AND [ManageAssetTbl] IS NULL) OR ([ManageAssetTbl] = @Or" +
-                "iginal_ManageAssetTbl)) AND ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedA" +
-                "sset] IS NULL) OR ([UpdateExistedAsset] = @Original_UpdateExistedAsset)) AND ((@" +
-                "IsNull_UpdateSubDepartmentForExistedAsset = 1 AND [UpdateSubDepartmentForExisted" +
-                "Asset] IS NULL) OR ([UpdateSubDepartmentForExistedAsset] = @Original_UpdateSubDe" +
-                "partmentForExistedAsset)) AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRe" +
-                "cord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteAssetRecord)) AND ((@Is" +
-                "Null_ViewAssetsReports = 1 AND [ViewAssetsReports] IS NULL) OR ([ViewAssetsRepor" +
-                "ts] = @Original_ViewAssetsReports)) AND ((@IsNull_ViewAssetsStats = 1 AND [ViewA" +
-                "ssetsStats] IS NULL) OR ([ViewAssetsStats] = @Original_ViewAssetsStats)) AND ((@" +
-                "IsNull_CreateInventoryReport = 1 AND [CreateInventoryReport] IS NULL) OR ([Creat" +
-                "eInventoryReport] = @Original_CreateInventoryReport)) AND ((@IsNull_AddNewAssetM" +
-                "ovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNewAssetMovement] = @Orig" +
-                "inal_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAss" +
-                "etMovements] IS NULL) OR ([ManageAssetMovements] = @Original_ManageAssetMovement" +
-                "s)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAssetTransaction] IS NUL" +
-                "L) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTransaction)) AND ((@IsNu" +
-                "ll_ManageAssetTransactions = 1 AND [ManageAssetTransactions] IS NULL) OR ([Manag" +
-                "eAssetTransactions] = @Original_ManageAssetTransactions)) AND ((@IsNull_ExportAl" +
-                "lData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData] = @Original_ExportAll" +
-                "Data)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportA" +
-                "llData] = @Original_ImportAllData)) AND ((@IsNull_ManageImportExportTbl = 1 AND " +
-                "[ManageImportExportTbl] IS NULL) OR ([ManageImportExportTbl] = @Original_ManageI" +
-                "mportExportTbl)) AND ((@IsNull_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([M" +
-                "anageUsers] = @Original_ManageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb" +
-                "] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCateg" +
-                "ory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainCategory] = @Original_A" +
-                "ddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1 AND [ManageMainCatego" +
-                "ries] IS NULL) OR ([ManageMainCategories] = @Original_ManageMainCategories)) AND" +
-                " ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNe" +
-                "wMinorCategory] = @Original_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCateg" +
-                "ories = 1 AND [ManageMinorCategories] IS NULL) OR ([ManageMinorCategories] = @Or" +
-                "iginal_ManageMinorCategories)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSectio" +
-                "n] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)) AND ((@IsNull_Manage" +
-                "Sections = 1 AND [ManageSections] IS NULL) OR ([ManageSections] = @Original_Mana" +
-                "geSections)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) " +
-                "OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND ((@IsNull_ManageDepart" +
-                "ments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepartments] = @Original_M" +
-                "anageDepartments)) AND ((@IsNull_AddNewSubDepartment = 1 AND [AddNewSubDepartmen" +
-                "t] IS NULL) OR ([AddNewSubDepartment] = @Original_AddNewSubDepartment)) AND ((@I" +
-                "sNull_ManageSubDepartments = 1 AND [ManageSubDepartments] IS NULL) OR ([ManageSu" +
-                "bDepartments] = @Original_ManageSubDepartments)) AND ((@IsNull_AddNewSquare = 1 " +
-                "AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((" +
-                "@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Or" +
-                "iginal_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS " +
-                "NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurr" +
-                "encies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurrencies] = @Original_Ma" +
-                "nageCurrencies)) AND ((@IsNull_AddNewModel = 1 AND [AddNewModel] IS NULL) OR ([A" +
-                "ddNewModel] = @Original_AddNewModel)) AND ((@IsNull_ManageModels = 1 AND [Manage" +
-                "Models] IS NULL) OR ([ManageModels] = @Original_ManageModels)) AND ((@IsNull_Add" +
-                "NewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaU" +
-                "nit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 " +
-                "AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateAreaUnits] = @Original_Man" +
-                "ageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType = 1 AND [AddNewTransact" +
-                "ionType] IS NULL) OR ([AddNewTransactionType] = @Original_AddNewTransactionType)" +
-                ") AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTransactionTypes] IS NULL)" +
-                " OR ([ManageTransactionTypes] = @Original_ManageTransactionTypes)) AND ((@IsNull" +
-                "_AddNewFinancialItem = 1 AND [AddNewFinancialItem] IS NULL) OR ([AddNewFinancial" +
-                "Item] = @Original_AddNewFinancialItem)) AND ((@IsNull_ManageFinancialItems = 1 A" +
-                "ND [ManageFinancialItems] IS NULL) OR ([ManageFinancialItems] = @Original_Manage" +
-                "FinancialItems)) AND ((@IsNull_UpdateExistedFinancialItem = 1 AND [UpdateExisted" +
-                "FinancialItem] IS NULL) OR ([UpdateExistedFinancialItem] = @Original_UpdateExist" +
-                "edFinancialItem)) AND ((@IsNull_DeleteFinancialItemRecord = 1 AND [DeleteFinanci" +
-                "alItemRecord] IS NULL) OR ([DeleteFinancialItemRecord] = @Original_DeleteFinanci" +
-                "alItemRecord)) AND ((@IsNull_ViewFinancialReports = 1 AND [ViewFinancialReports]" +
-                " IS NULL) OR ([ViewFinancialReports] = @Original_ViewFinancialReports)) AND ((@I" +
-                "sNull_AddNewFinancialItemCategory = 1 AND [AddNewFinancialItemCategory] IS NULL)" +
-                " OR ([AddNewFinancialItemCategory] = @Original_AddNewFinancialItemCategory)) AND" +
-                " ((@IsNull_ManageFinancialItemCategories = 1 AND [ManageFinancialItemCategories]" +
-                " IS NULL) OR ([ManageFinancialItemCategories] = @Original_ManageFinancialItemCat" +
-                "egories)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([Se" +
-                "tDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [Backu" +
-                "pDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 " +
-                "AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_C" +
-                "reateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) OR ([CreateAssetsRepor" +
-                "ts] = @Original_CreateAssetsReports)));\r\nSELECT ID, RoleName, AddNewAsset, Manag" +
-                "eAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRe" +
-                "cord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMove" +
-                "ment, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, Exp" +
-                "ortAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNew" +
-                "MainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, " +
-                "AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDep" +
-                "artment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, Mana" +
-                "geCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaU" +
-                "nits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, Manage" +
-                "FinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinan" +
-                "cialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDate" +
-                "AndTime, BackupDb, RestoreDb, CreateAssetsReports FROM UserRoleTbl WHERE (ID = @" +
-                "ID)";
+                "Db] = @RestoreDb, [CreateAssetsReports] = @CreateAssetsReports, [IsDepartmentInd" +
+                "ependent] = @IsDepartmentIndependent WHERE (([ID] = @Original_ID) AND ([RoleName" +
+                "] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL)" +
+                " OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_ManageAssetTbl = 1 AN" +
+                "D [ManageAssetTbl] IS NULL) OR ([ManageAssetTbl] = @Original_ManageAssetTbl)) AN" +
+                "D ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([Update" +
+                "ExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_UpdateSubDepartment" +
+                "ForExistedAsset = 1 AND [UpdateSubDepartmentForExistedAsset] IS NULL) OR ([Updat" +
+                "eSubDepartmentForExistedAsset] = @Original_UpdateSubDepartmentForExistedAsset)) " +
+                "AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([Delete" +
+                "AssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_ViewAssetsReports = 1" +
+                " AND [ViewAssetsReports] IS NULL) OR ([ViewAssetsReports] = @Original_ViewAssets" +
+                "Reports)) AND ((@IsNull_ViewAssetsStats = 1 AND [ViewAssetsStats] IS NULL) OR ([" +
+                "ViewAssetsStats] = @Original_ViewAssetsStats)) AND ((@IsNull_CreateInventoryRepo" +
+                "rt = 1 AND [CreateInventoryReport] IS NULL) OR ([CreateInventoryReport] = @Origi" +
+                "nal_CreateInventoryReport)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAss" +
+                "etMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement))" +
+                " AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR (" +
+                "[ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAs" +
+                "setTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransac" +
+                "tion] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions" +
+                " = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Ori" +
+                "ginal_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllDa" +
+                "ta] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_Impor" +
+                "tAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_Import" +
+                "AllData)) AND ((@IsNull_ManageImportExportTbl = 1 AND [ManageImportExportTbl] IS" +
+                " NULL) OR ([ManageImportExportTbl] = @Original_ManageImportExportTbl)) AND ((@Is" +
+                "Null_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_Ma" +
+                "nageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb]" +
+                " = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCat" +
+                "egory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((" +
+                "@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([Manage" +
+                "MainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCate" +
+                "gory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Origina" +
+                "l_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinor" +
+                "Categories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategori" +
+                "es)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSec" +
+                "tion] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSe" +
+                "ctions] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull" +
+                "_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @" +
+                "Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepar" +
+                "tments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@" +
+                "IsNull_AddNewSubDepartment = 1 AND [AddNewSubDepartment] IS NULL) OR ([AddNewSub" +
+                "Department] = @Original_AddNewSubDepartment)) AND ((@IsNull_ManageSubDepartments" +
+                " = 1 AND [ManageSubDepartments] IS NULL) OR ([ManageSubDepartments] = @Original_" +
+                "ManageSubDepartments)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL" +
+                ") OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 " +
+                "AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND" +
+                " ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency]" +
+                " = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurr" +
+                "encies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@Is" +
+                "Null_AddNewModel = 1 AND [AddNewModel] IS NULL) OR ([AddNewModel] = @Original_Ad" +
+                "dNewModel)) AND ((@IsNull_ManageModels = 1 AND [ManageModels] IS NULL) OR ([Mana" +
+                "geModels] = @Original_ManageModels)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND " +
+                "[AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEst" +
+                "ateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits" +
+                "] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND (" +
+                "(@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([Add" +
+                "NewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTran" +
+                "sactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTyp" +
+                "es] = @Original_ManageTransactionTypes)) AND ((@IsNull_AddNewFinancialItem = 1 A" +
+                "ND [AddNewFinancialItem] IS NULL) OR ([AddNewFinancialItem] = @Original_AddNewFi" +
+                "nancialItem)) AND ((@IsNull_ManageFinancialItems = 1 AND [ManageFinancialItems] " +
+                "IS NULL) OR ([ManageFinancialItems] = @Original_ManageFinancialItems)) AND ((@Is" +
+                "Null_UpdateExistedFinancialItem = 1 AND [UpdateExistedFinancialItem] IS NULL) OR" +
+                " ([UpdateExistedFinancialItem] = @Original_UpdateExistedFinancialItem)) AND ((@I" +
+                "sNull_DeleteFinancialItemRecord = 1 AND [DeleteFinancialItemRecord] IS NULL) OR " +
+                "([DeleteFinancialItemRecord] = @Original_DeleteFinancialItemRecord)) AND ((@IsNu" +
+                "ll_ViewFinancialReports = 1 AND [ViewFinancialReports] IS NULL) OR ([ViewFinanci" +
+                "alReports] = @Original_ViewFinancialReports)) AND ((@IsNull_AddNewFinancialItemC" +
+                "ategory = 1 AND [AddNewFinancialItemCategory] IS NULL) OR ([AddNewFinancialItemC" +
+                "ategory] = @Original_AddNewFinancialItemCategory)) AND ((@IsNull_ManageFinancial" +
+                "ItemCategories = 1 AND [ManageFinancialItemCategories] IS NULL) OR ([ManageFinan" +
+                "cialItemCategories] = @Original_ManageFinancialItemCategories)) AND ((@IsNull_Se" +
+                "tDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_" +
+                "SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupD" +
+                "b] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) O" +
+                "R ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_CreateAssetsReports = 1 AND" +
+                " [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAsse" +
+                "tsReports)) AND ((@IsNull_IsDepartmentIndependent = 1 AND [IsDepartmentIndepende" +
+                "nt] IS NULL) OR ([IsDepartmentIndependent] = @Original_IsDepartmentIndependent))" +
+                ");\r\nSELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, Update" +
+                "SubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsSt" +
+                "ats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAss" +
+                "etTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImpo" +
+                "rtExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, A" +
+                "ddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNew" +
+                "Department, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNew" +
+                "Square, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageMode" +
+                "ls, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTr" +
+                "ansactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancia" +
+                "lItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCateg" +
+                "ory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateA" +
+                "ssetsReports, IsDepartmentIndependent FROM UserRoleTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddNewAsset", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddNewAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29273,6 +29333,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BackupDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BackupDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AddNewAsset", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddNewAsset", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -29371,6 +29432,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreateAssetsReports", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsDepartmentIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -29387,7 +29450,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports FROM dbo.UserRoleTbl";
+            this._commandCollection[0].CommandText = @"SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsDepartmentIndependent FROM dbo.UserRoleTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -29498,7 +29561,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_SetDateAndTime, 
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
-                    global::System.Nullable<bool> Original_CreateAssetsReports) {
+                    global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsDepartmentIndependent) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_RoleName == null)) {
                 throw new global::System.ArgumentNullException("Original_RoleName");
@@ -29890,6 +29954,14 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 this.Adapter.DeleteCommand.Parameters[96].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[97].Value = global::System.DBNull.Value;
             }
+            if ((Original_IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[98].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[99].Value = ((bool)(Original_IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[98].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[99].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -29959,7 +30031,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> SetDateAndTime, 
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
-                    global::System.Nullable<bool> CreateAssetsReports) {
+                    global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsDepartmentIndependent) {
             if ((RoleName == null)) {
                 throw new global::System.ArgumentNullException("RoleName");
             }
@@ -30254,6 +30327,12 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             else {
                 this.Adapter.InsertCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
+            if ((IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[49].Value = ((bool)(IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -30324,6 +30403,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
                     global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsDepartmentIndependent, 
                     int Original_ID, 
                     string Original_RoleName, 
                     global::System.Nullable<bool> Original_AddNewAsset, 
@@ -30374,6 +30454,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
                     global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsDepartmentIndependent, 
                     int ID) {
             if ((RoleName == null)) {
                 throw new global::System.ArgumentNullException("RoleName");
@@ -30669,398 +30750,412 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             else {
                 this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(Original_ID));
+            if ((IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((bool)(IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[50].Value = ((int)(Original_ID));
             if ((Original_RoleName == null)) {
                 throw new global::System.ArgumentNullException("Original_RoleName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_RoleName));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((string)(Original_RoleName));
             }
             if ((Original_AddNewAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((bool)(Original_AddNewAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((bool)(Original_AddNewAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[52].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetTbl.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((bool)(Original_ManageAssetTbl.Value));
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((bool)(Original_ManageAssetTbl.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateExistedAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((bool)(Original_UpdateExistedAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((bool)(Original_UpdateExistedAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateSubDepartmentForExistedAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((bool)(Original_UpdateSubDepartmentForExistedAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((bool)(Original_UpdateSubDepartmentForExistedAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[59].Value = global::System.DBNull.Value;
             }
             if ((Original_DeleteAssetRecord.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((bool)(Original_DeleteAssetRecord.Value));
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((bool)(Original_DeleteAssetRecord.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[61].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewAssetsReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((bool)(Original_ViewAssetsReports.Value));
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((bool)(Original_ViewAssetsReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[62].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[63].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewAssetsStats.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((bool)(Original_ViewAssetsStats.Value));
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((bool)(Original_ViewAssetsStats.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[64].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[65].Value = global::System.DBNull.Value;
             }
             if ((Original_CreateInventoryReport.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((bool)(Original_CreateInventoryReport.Value));
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((bool)(Original_CreateInventoryReport.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[66].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[67].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewAssetMovement.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((bool)(Original_AddNewAssetMovement.Value));
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((bool)(Original_AddNewAssetMovement.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[68].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[69].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetMovements.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((bool)(Original_ManageAssetMovements.Value));
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((bool)(Original_ManageAssetMovements.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[70].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[71].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewAssetTransaction.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((bool)(Original_AddNewAssetTransaction.Value));
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((bool)(Original_AddNewAssetTransaction.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[72].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[73].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetTransactions.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[74].Value = ((bool)(Original_ManageAssetTransactions.Value));
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((bool)(Original_ManageAssetTransactions.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[74].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[75].Value = global::System.DBNull.Value;
             }
             if ((Original_ExportAllData.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((bool)(Original_ExportAllData.Value));
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((bool)(Original_ExportAllData.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[76].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[77].Value = global::System.DBNull.Value;
             }
             if ((Original_ImportAllData.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[78].Value = ((bool)(Original_ImportAllData.Value));
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((bool)(Original_ImportAllData.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[78].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[79].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageImportExportTbl.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[80].Value = ((bool)(Original_ManageImportExportTbl.Value));
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((bool)(Original_ManageImportExportTbl.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[80].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[81].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageUsers.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[82].Value = ((bool)(Original_ManageUsers.Value));
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((bool)(Original_ManageUsers.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[82].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[83].Value = global::System.DBNull.Value;
             }
             if ((Original_PromoteDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((bool)(Original_PromoteDb.Value));
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((bool)(Original_PromoteDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[84].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[85].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewMainCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[86].Value = ((bool)(Original_AddNewMainCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((bool)(Original_AddNewMainCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[86].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[87].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageMainCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[88].Value = ((bool)(Original_ManageMainCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((bool)(Original_ManageMainCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[88].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[89].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewMinorCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[90].Value = ((bool)(Original_AddNewMinorCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((bool)(Original_AddNewMinorCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[91].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageMinorCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[92].Value = ((bool)(Original_ManageMinorCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((bool)(Original_ManageMinorCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[93].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSection.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[94].Value = ((bool)(Original_AddNewSection.Value));
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((bool)(Original_AddNewSection.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[94].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[95].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSections.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((bool)(Original_ManageSections.Value));
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((bool)(Original_ManageSections.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[97].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewDepartment.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((bool)(Original_AddNewDepartment.Value));
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((bool)(Original_AddNewDepartment.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[99].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageDepartments.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((bool)(Original_ManageDepartments.Value));
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((bool)(Original_ManageDepartments.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[101].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSubDepartment.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[102].Value = ((bool)(Original_AddNewSubDepartment.Value));
+                this.Adapter.UpdateCommand.Parameters[102].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[103].Value = ((bool)(Original_AddNewSubDepartment.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[102].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[102].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[103].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSubDepartments.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((bool)(Original_ManageSubDepartments.Value));
+                this.Adapter.UpdateCommand.Parameters[104].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((bool)(Original_ManageSubDepartments.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[104].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[104].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[105].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSquare.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[106].Value = ((bool)(Original_AddNewSquare.Value));
+                this.Adapter.UpdateCommand.Parameters[106].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((bool)(Original_AddNewSquare.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[106].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[106].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[107].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSquares.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[108].Value = ((bool)(Original_ManageSquares.Value));
+                this.Adapter.UpdateCommand.Parameters[108].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((bool)(Original_ManageSquares.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[108].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[108].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[109].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewCurrency.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[110].Value = ((bool)(Original_AddNewCurrency.Value));
+                this.Adapter.UpdateCommand.Parameters[110].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((bool)(Original_AddNewCurrency.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[110].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[110].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[111].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageCurrencies.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[112].Value = ((bool)(Original_ManageCurrencies.Value));
+                this.Adapter.UpdateCommand.Parameters[112].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((bool)(Original_ManageCurrencies.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[112].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[112].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[113].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewModel.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[114].Value = ((bool)(Original_AddNewModel.Value));
+                this.Adapter.UpdateCommand.Parameters[114].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((bool)(Original_AddNewModel.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[114].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[114].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[115].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageModels.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[116].Value = ((bool)(Original_ManageModels.Value));
+                this.Adapter.UpdateCommand.Parameters[116].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((bool)(Original_ManageModels.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[116].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[116].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[117].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewEstateAreaUnit.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[118].Value = ((bool)(Original_AddNewEstateAreaUnit.Value));
+                this.Adapter.UpdateCommand.Parameters[118].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[119].Value = ((bool)(Original_AddNewEstateAreaUnit.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[118].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[118].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[119].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageEstateAreaUnits.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[120].Value = ((bool)(Original_ManageEstateAreaUnits.Value));
+                this.Adapter.UpdateCommand.Parameters[120].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[121].Value = ((bool)(Original_ManageEstateAreaUnits.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[120].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[120].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[121].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewTransactionType.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[122].Value = ((bool)(Original_AddNewTransactionType.Value));
+                this.Adapter.UpdateCommand.Parameters[122].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((bool)(Original_AddNewTransactionType.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[122].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[122].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[123].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageTransactionTypes.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[124].Value = ((bool)(Original_ManageTransactionTypes.Value));
+                this.Adapter.UpdateCommand.Parameters[124].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[125].Value = ((bool)(Original_ManageTransactionTypes.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[124].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[124].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[125].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewFinancialItem.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[126].Value = ((bool)(Original_AddNewFinancialItem.Value));
+                this.Adapter.UpdateCommand.Parameters[126].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[127].Value = ((bool)(Original_AddNewFinancialItem.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[126].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[126].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[127].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageFinancialItems.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[128].Value = ((bool)(Original_ManageFinancialItems.Value));
+                this.Adapter.UpdateCommand.Parameters[128].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[129].Value = ((bool)(Original_ManageFinancialItems.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[128].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[128].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[129].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateExistedFinancialItem.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[130].Value = ((bool)(Original_UpdateExistedFinancialItem.Value));
+                this.Adapter.UpdateCommand.Parameters[130].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[131].Value = ((bool)(Original_UpdateExistedFinancialItem.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[130].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[130].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[131].Value = global::System.DBNull.Value;
             }
             if ((Original_DeleteFinancialItemRecord.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[132].Value = ((bool)(Original_DeleteFinancialItemRecord.Value));
+                this.Adapter.UpdateCommand.Parameters[132].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[133].Value = ((bool)(Original_DeleteFinancialItemRecord.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[132].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[132].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[133].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewFinancialReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[134].Value = ((bool)(Original_ViewFinancialReports.Value));
+                this.Adapter.UpdateCommand.Parameters[134].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[135].Value = ((bool)(Original_ViewFinancialReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[134].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[134].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[135].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewFinancialItemCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[136].Value = ((bool)(Original_AddNewFinancialItemCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[136].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[137].Value = ((bool)(Original_AddNewFinancialItemCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[136].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[136].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[137].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageFinancialItemCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[138].Value = ((bool)(Original_ManageFinancialItemCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[138].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[139].Value = ((bool)(Original_ManageFinancialItemCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[138].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[138].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[139].Value = global::System.DBNull.Value;
             }
             if ((Original_SetDateAndTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[140].Value = ((bool)(Original_SetDateAndTime.Value));
+                this.Adapter.UpdateCommand.Parameters[140].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[141].Value = ((bool)(Original_SetDateAndTime.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[140].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[140].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[141].Value = global::System.DBNull.Value;
             }
             if ((Original_BackupDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[142].Value = ((bool)(Original_BackupDb.Value));
+                this.Adapter.UpdateCommand.Parameters[142].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[143].Value = ((bool)(Original_BackupDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[142].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[142].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[143].Value = global::System.DBNull.Value;
             }
             if ((Original_RestoreDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[144].Value = ((bool)(Original_RestoreDb.Value));
+                this.Adapter.UpdateCommand.Parameters[144].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[145].Value = ((bool)(Original_RestoreDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[144].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[144].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[145].Value = global::System.DBNull.Value;
             }
             if ((Original_CreateAssetsReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[146].Value = ((bool)(Original_CreateAssetsReports.Value));
+                this.Adapter.UpdateCommand.Parameters[146].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[147].Value = ((bool)(Original_CreateAssetsReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[146].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[146].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[147].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[147].Value = ((int)(ID));
+            if ((Original_IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[148].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[149].Value = ((bool)(Original_IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[148].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[149].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[150].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -31131,6 +31226,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
                     global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsDepartmentIndependent, 
                     int Original_ID, 
                     string Original_RoleName, 
                     global::System.Nullable<bool> Original_AddNewAsset, 
@@ -31180,8 +31276,9 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_SetDateAndTime, 
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
-                    global::System.Nullable<bool> Original_CreateAssetsReports) {
-            return this.Update(RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, Original_ID, Original_RoleName, Original_AddNewAsset, Original_ManageAssetTbl, Original_UpdateExistedAsset, Original_UpdateSubDepartmentForExistedAsset, Original_DeleteAssetRecord, Original_ViewAssetsReports, Original_ViewAssetsStats, Original_CreateInventoryReport, Original_AddNewAssetMovement, Original_ManageAssetMovements, Original_AddNewAssetTransaction, Original_ManageAssetTransactions, Original_ExportAllData, Original_ImportAllData, Original_ManageImportExportTbl, Original_ManageUsers, Original_PromoteDb, Original_AddNewMainCategory, Original_ManageMainCategories, Original_AddNewMinorCategory, Original_ManageMinorCategories, Original_AddNewSection, Original_ManageSections, Original_AddNewDepartment, Original_ManageDepartments, Original_AddNewSubDepartment, Original_ManageSubDepartments, Original_AddNewSquare, Original_ManageSquares, Original_AddNewCurrency, Original_ManageCurrencies, Original_AddNewModel, Original_ManageModels, Original_AddNewEstateAreaUnit, Original_ManageEstateAreaUnits, Original_AddNewTransactionType, Original_ManageTransactionTypes, Original_AddNewFinancialItem, Original_ManageFinancialItems, Original_UpdateExistedFinancialItem, Original_DeleteFinancialItemRecord, Original_ViewFinancialReports, Original_AddNewFinancialItemCategory, Original_ManageFinancialItemCategories, Original_SetDateAndTime, Original_BackupDb, Original_RestoreDb, Original_CreateAssetsReports, Original_ID);
+                    global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsDepartmentIndependent) {
+            return this.Update(RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsDepartmentIndependent, Original_ID, Original_RoleName, Original_AddNewAsset, Original_ManageAssetTbl, Original_UpdateExistedAsset, Original_UpdateSubDepartmentForExistedAsset, Original_DeleteAssetRecord, Original_ViewAssetsReports, Original_ViewAssetsStats, Original_CreateInventoryReport, Original_AddNewAssetMovement, Original_ManageAssetMovements, Original_AddNewAssetTransaction, Original_ManageAssetTransactions, Original_ExportAllData, Original_ImportAllData, Original_ManageImportExportTbl, Original_ManageUsers, Original_PromoteDb, Original_AddNewMainCategory, Original_ManageMainCategories, Original_AddNewMinorCategory, Original_ManageMinorCategories, Original_AddNewSection, Original_ManageSections, Original_AddNewDepartment, Original_ManageDepartments, Original_AddNewSubDepartment, Original_ManageSubDepartments, Original_AddNewSquare, Original_ManageSquares, Original_AddNewCurrency, Original_ManageCurrencies, Original_AddNewModel, Original_ManageModels, Original_AddNewEstateAreaUnit, Original_ManageEstateAreaUnits, Original_AddNewTransactionType, Original_ManageTransactionTypes, Original_AddNewFinancialItem, Original_ManageFinancialItems, Original_UpdateExistedFinancialItem, Original_DeleteFinancialItemRecord, Original_ViewFinancialReports, Original_AddNewFinancialItemCategory, Original_ManageFinancialItemCategories, Original_SetDateAndTime, Original_BackupDb, Original_RestoreDb, Original_CreateAssetsReports, Original_IsDepartmentIndependent, Original_ID);
         }
     }
     

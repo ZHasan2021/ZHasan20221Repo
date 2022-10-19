@@ -677,6 +677,8 @@ namespace AssetManagement
 		
 		private int _UserDept;
 		
+		private string _UserPrefix;
+		
 		private EntitySet<AssetMovementTbl> _AssetMovementTbls;
 		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
@@ -701,6 +703,8 @@ namespace AssetManagement
     partial void OnPasswordUpdatedOnChanged();
     partial void OnUserDeptChanging(int value);
     partial void OnUserDeptChanged();
+    partial void OnUserPrefixChanging(string value);
+    partial void OnUserPrefixChanged();
     #endregion
 		
 		public UserTbl()
@@ -836,6 +840,26 @@ namespace AssetManagement
 					this._UserDept = value;
 					this.SendPropertyChanged("UserDept");
 					this.OnUserDeptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPrefix", DbType="NVarChar(50)")]
+		public string UserPrefix
+		{
+			get
+			{
+				return this._UserPrefix;
+			}
+			set
+			{
+				if ((this._UserPrefix != value))
+				{
+					this.OnUserPrefixChanging(value);
+					this.SendPropertyChanging();
+					this._UserPrefix = value;
+					this.SendPropertyChanged("UserPrefix");
+					this.OnUserPrefixChanged();
 				}
 			}
 		}
@@ -5787,6 +5811,8 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _CreateAssetsReports;
 		
+		private System.Nullable<bool> _IsDepartmentIndependent;
+		
 		private EntitySet<UserTbl> _UserTbls;
 		
     #region Extensibility Method Definitions
@@ -5893,6 +5919,8 @@ namespace AssetManagement
     partial void OnRestoreDbChanged();
     partial void OnCreateAssetsReportsChanging(System.Nullable<bool> value);
     partial void OnCreateAssetsReportsChanged();
+    partial void OnIsDepartmentIndependentChanging(System.Nullable<bool> value);
+    partial void OnIsDepartmentIndependentChanged();
     #endregion
 		
 		public UserRoleTbl()
@@ -6901,6 +6929,26 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDepartmentIndependent", DbType="Bit")]
+		public System.Nullable<bool> IsDepartmentIndependent
+		{
+			get
+			{
+				return this._IsDepartmentIndependent;
+			}
+			set
+			{
+				if ((this._IsDepartmentIndependent != value))
+				{
+					this.OnIsDepartmentIndependentChanging(value);
+					this.SendPropertyChanging();
+					this._IsDepartmentIndependent = value;
+					this.SendPropertyChanged("IsDepartmentIndependent");
+					this.OnIsDepartmentIndependentChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRoleTbl_UserTbl", Storage="_UserTbls", ThisKey="ID", OtherKey="UserRole")]
 		public EntitySet<UserTbl> UserTbls
 		{
@@ -6971,9 +7019,7 @@ namespace AssetManagement
 		
 		private string _CustodianName;
 		
-		private System.Nullable<bool> _IsSold;
-		
-		private System.Nullable<bool> _IsOutOfWork;
+		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
 		
 		public AssetMoveVw()
 		{
@@ -7139,34 +7185,18 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSold", DbType="Bit")]
-		public System.Nullable<bool> IsSold
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الإدخال
 		{
 			get
 			{
-				return this._IsSold;
+				return this._تاريخ_الإدخال;
 			}
 			set
 			{
-				if ((this._IsSold != value))
+				if ((this._تاريخ_الإدخال != value))
 				{
-					this._IsSold = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOutOfWork", DbType="Bit")]
-		public System.Nullable<bool> IsOutOfWork
-		{
-			get
-			{
-				return this._IsOutOfWork;
-			}
-			set
-			{
-				if ((this._IsOutOfWork != value))
-				{
-					this._IsOutOfWork = value;
+					this._تاريخ_الإدخال = value;
 				}
 			}
 		}
@@ -7329,9 +7359,7 @@ namespace AssetManagement
 		
 		private string _العمر_الافتراضي_المتبقي_للأصل;
 		
-		private bool _مباع;
-		
-		private bool _خارج_الخدمة;
+		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
 		
 		public AssetVw()
 		{
@@ -7913,34 +7941,18 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_مباع", DbType="Bit NOT NULL")]
-		public bool مباع
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الإدخال
 		{
 			get
 			{
-				return this._مباع;
+				return this._تاريخ_الإدخال;
 			}
 			set
 			{
-				if ((this._مباع != value))
+				if ((this._تاريخ_الإدخال != value))
 				{
-					this._مباع = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[خارج الخدمة]", Storage="_خارج_الخدمة", DbType="Bit NOT NULL")]
-		public bool خارج_الخدمة
-		{
-			get
-			{
-				return this._خارج_الخدمة;
-			}
-			set
-			{
-				if ((this._خارج_الخدمة != value))
-				{
-					this._خارج_الخدمة = value;
+					this._تاريخ_الإدخال = value;
 				}
 			}
 		}

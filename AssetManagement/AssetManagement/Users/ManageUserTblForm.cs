@@ -34,6 +34,11 @@ namespace AssetManagement.Users
             this.Validate();
             userTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+
+            StaticCode.mainConn.Close();
+            StaticCode.mainConn.Open();
+
+            mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
         }
 
         private void userTblBindingNavigatorManageUserRolesItem_Click(object sender, EventArgs e)
@@ -41,6 +46,12 @@ namespace AssetManagement.Users
             ManageUserRoleTblForm usrrlFrm = new ManageUserRoleTblForm();
             usrrlFrm.ShowDialog();
             this.userRoleTblTableAdapter.Fill(this.assetMngDbDataSet.UserRoleTbl);
+        }
+
+        private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Location = new Point(200, 200);
         }
     }
 }

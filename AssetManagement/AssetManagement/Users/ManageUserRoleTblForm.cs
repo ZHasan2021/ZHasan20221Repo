@@ -32,7 +32,10 @@ namespace AssetManagement.Users
             userRoleTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
 
-            StaticCode.mainDbContext.SubmitChanges();
+            StaticCode.mainConn.Close();
+            StaticCode.mainConn.Open();
+
+            mainAlertControl.Show(this,"تم الحفظ", StaticCode.ApplicationTitle);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

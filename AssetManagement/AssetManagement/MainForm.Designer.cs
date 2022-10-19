@@ -465,7 +465,7 @@ namespace AssetManagement
             // 
             // manageUserRoleTblBarButtonItem
             // 
-            this.manageUserRoleTblBarButtonItem.Caption = "إدارة أنواع حسابات المستخدمين";
+            this.manageUserRoleTblBarButtonItem.Caption = "إدارة صلاحيات المستخدمين";
             this.manageUserRoleTblBarButtonItem.Id = 35;
             this.manageUserRoleTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2529580;
             this.manageUserRoleTblBarButtonItem.Name = "manageUserRoleTblBarButtonItem";

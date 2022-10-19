@@ -42,6 +42,20 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void searchAllRadioButton_CheckedChanged(object sender, EventArgs e)

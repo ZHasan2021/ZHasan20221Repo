@@ -279,6 +279,7 @@ namespace AssetManagement.Assets
             this.minorCategoryVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
+            this.viewStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
@@ -465,9 +466,10 @@ namespace AssetManagement.Assets
             this.addVerticalConstantLineBarItem1,
             this.addHorizontalConstantLineBarItem1,
             this.aggregateStatTypeBarEditItem,
-            this.byFieldBarEditItem});
+            this.byFieldBarEditItem,
+            this.viewStatsBarButtonItem});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 44;
+            this.ribbonControl1.MaxItemId = 45;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartRibbonPageCategory1});
@@ -1184,6 +1186,7 @@ namespace AssetManagement.Assets
             // 
             this.statTypeRibbonPageGroup.ItemLinks.Add(this.aggregateStatTypeBarEditItem);
             this.statTypeRibbonPageGroup.ItemLinks.Add(this.byFieldBarEditItem);
+            this.statTypeRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
             this.statTypeRibbonPageGroup.Name = "statTypeRibbonPageGroup";
             this.statTypeRibbonPageGroup.Text = "الحقول والقيم";
             // 
@@ -1826,6 +1829,15 @@ namespace AssetManagement.Assets
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
+            // viewStatsBarButtonItem
+            // 
+            this.viewStatsBarButtonItem.Caption = "عرض الإحصائيات";
+            this.viewStatsBarButtonItem.Id = 44;
+            this.viewStatsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2922838;
+            this.viewStatsBarButtonItem.Name = "viewStatsBarButtonItem";
+            this.viewStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.viewStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewStatsBarButtonItem_ItemClick);
+            // 
             // AssetsStatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -2026,5 +2038,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
         private System.Windows.Forms.CheckBox outOfWorkCheckBox;
         private System.Windows.Forms.CheckBox soldAssetsCheckBox;
+        private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
     }
 }

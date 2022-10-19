@@ -23,6 +23,7 @@
       <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="PasswordUpdatedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UserDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserPrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="UserTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetMovedBy" Type="AssetMovementTbl" />
       <Association Name="UserTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="TransactionMadeBy" Type="AssetTransactionTbl" />
       <Association Name="DepartmentTbl_UserTbl" Member="DepartmentTbl" ThisKey="UserDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
@@ -304,6 +305,7 @@
       <Column Name="BackupDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="RestoreDb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CreateAssetsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDepartmentIndependent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="UserRoleTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserRole" Type="UserTbl" />
     </Type>
   </Table>
@@ -319,8 +321,7 @@
       <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsSold" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="IsOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.SubDepartmentVw" Member="SubDepartmentVws">
@@ -369,8 +370,7 @@
       <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="مباع" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="[خارج الخدمة]" Member="خارج_الخدمة" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">

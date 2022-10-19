@@ -33,6 +33,11 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl = new DevExpress.XtraWizard.WizardControl();
             this.welcomeWizardPage1 = new DevExpress.XtraWizard.WelcomeWizardPage();
             this.assetBasicsWizardPage1 = new DevExpress.XtraWizard.WizardPage();
+            this.manageFinancialItemCategoryTblBtn = new System.Windows.Forms.Button();
+            this.assetFinancialItemCategoryLabel = new System.Windows.Forms.Label();
+            this.assetFinancialItemCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet1 = new AssetManagement.AssetMngDbDataSet();
             this.cautionLabel1 = new System.Windows.Forms.Label();
             this.manageMinorCategoryTblBtn = new System.Windows.Forms.Button();
             this.manageMainCategoryTblBtn = new System.Windows.Forms.Button();
@@ -43,7 +48,6 @@ namespace AssetManagement.Assets
             this.assetSubDeptLabel = new System.Windows.Forms.Label();
             this.assetSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet1 = new AssetManagement.AssetMngDbDataSet();
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
@@ -139,6 +143,7 @@ namespace AssetManagement.Assets
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
+            this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
@@ -149,11 +154,13 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetFinancialItemCategoryLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
@@ -243,6 +250,9 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage1
             // 
+            this.assetBasicsWizardPage1.Controls.Add(this.manageFinancialItemCategoryTblBtn);
+            this.assetBasicsWizardPage1.Controls.Add(this.assetFinancialItemCategoryLabel);
+            this.assetBasicsWizardPage1.Controls.Add(this.assetFinancialItemCategoryLookUpEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.cautionLabel1);
             this.assetBasicsWizardPage1.Controls.Add(this.manageMinorCategoryTblBtn);
             this.assetBasicsWizardPage1.Controls.Add(this.manageMainCategoryTblBtn);
@@ -300,6 +310,59 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Size = new System.Drawing.Size(1466, 643);
             this.assetBasicsWizardPage1.Text = "صفحة 1 من 4";
             // 
+            // manageFinancialItemCategoryTblBtn
+            // 
+            this.manageFinancialItemCategoryTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageFinancialItemCategoryTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageFinancialItemCategoryTblBtn.Location = new System.Drawing.Point(978, 577);
+            this.manageFinancialItemCategoryTblBtn.Name = "manageFinancialItemCategoryTblBtn";
+            this.manageFinancialItemCategoryTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageFinancialItemCategoryTblBtn.TabIndex = 106;
+            this.manageFinancialItemCategoryTblBtn.UseVisualStyleBackColor = true;
+            this.manageFinancialItemCategoryTblBtn.Click += new System.EventHandler(this.manageFinancialItemCategoryTblBtn_Click);
+            // 
+            // assetFinancialItemCategoryLabel
+            // 
+            this.assetFinancialItemCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetFinancialItemCategoryLabel.AutoSize = true;
+            this.assetFinancialItemCategoryLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetFinancialItemCategoryLabel.Location = new System.Drawing.Point(1337, 592);
+            this.assetFinancialItemCategoryLabel.Name = "assetFinancialItemCategoryLabel";
+            this.assetFinancialItemCategoryLabel.Size = new System.Drawing.Size(87, 24);
+            this.assetFinancialItemCategoryLabel.TabIndex = 100;
+            this.assetFinancialItemCategoryLabel.Text = "البند المالي:";
+            // 
+            // assetFinancialItemCategoryLookUpEdit
+            // 
+            this.assetFinancialItemCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetFinancialItemCategoryLookUpEdit.Location = new System.Drawing.Point(1045, 589);
+            this.assetFinancialItemCategoryLookUpEdit.Name = "assetFinancialItemCategoryLookUpEdit";
+            this.assetFinancialItemCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetFinancialItemCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.assetFinancialItemCategoryLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.assetFinancialItemCategoryLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف البند المالي", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryName", "اسم البند المالي", 170, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialItemCategoryDetails", "وصف البند المالي", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IsIncomingOrOutgiung", "صادر أم وارد", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.assetFinancialItemCategoryLookUpEdit.Properties.DataSource = this.financialItemCategoryTblBindingSource;
+            this.assetFinancialItemCategoryLookUpEdit.Properties.DisplayMember = "FinancialItemCategoryName";
+            this.assetFinancialItemCategoryLookUpEdit.Properties.PopupWidth = 500;
+            this.assetFinancialItemCategoryLookUpEdit.Properties.ValueMember = "ID";
+            this.assetFinancialItemCategoryLookUpEdit.Size = new System.Drawing.Size(234, 30);
+            this.assetFinancialItemCategoryLookUpEdit.TabIndex = 105;
+            // 
+            // financialItemCategoryTblBindingSource
+            // 
+            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet1;
+            // 
+            // assetMngDbDataSet1
+            // 
+            this.assetMngDbDataSet1.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // cautionLabel1
             // 
             this.cautionLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -312,6 +375,7 @@ namespace AssetManagement.Assets
             this.cautionLabel1.TabIndex = 77;
             this.cautionLabel1.Text = "ملاحظة:\r\nيلزمك إضافة الفئة الرئيسية كبند مالي\r\nفي حال كان الأصل جديد\r\nكي تتم إضاف" +
     "ة الأصل بنجاح";
+            this.cautionLabel1.Visible = false;
             // 
             // manageMinorCategoryTblBtn
             // 
@@ -413,11 +477,6 @@ namespace AssetManagement.Assets
             this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
             this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet1;
             // 
-            // assetMngDbDataSet1
-            // 
-            this.assetMngDbDataSet1.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // isNewOrOldAssetPanel
             // 
             this.isNewOrOldAssetPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -440,6 +499,7 @@ namespace AssetManagement.Assets
             this.isNewAssetRadioButton.TabStop = true;
             this.isNewAssetRadioButton.Text = "جديد";
             this.isNewAssetRadioButton.UseVisualStyleBackColor = true;
+            this.isNewAssetRadioButton.CheckedChanged += new System.EventHandler(this.OldOrNew);
             // 
             // isOldAssetRadioButton
             // 
@@ -451,6 +511,7 @@ namespace AssetManagement.Assets
             this.isOldAssetRadioButton.TabIndex = 5;
             this.isOldAssetRadioButton.Text = "قديم";
             this.isOldAssetRadioButton.UseVisualStyleBackColor = true;
+            this.isOldAssetRadioButton.CheckedChanged += new System.EventHandler(this.OldOrNew);
             // 
             // modelLookUpEdit
             // 
@@ -1022,6 +1083,7 @@ namespace AssetManagement.Assets
             // assetCodeTextBox
             // 
             this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeTextBox.Enabled = false;
             this.assetCodeTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetCodeTextBox.Location = new System.Drawing.Point(1045, 91);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
@@ -1467,7 +1529,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
-            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
@@ -1494,6 +1556,10 @@ namespace AssetManagement.Assets
             // estateAreaUnitTblTableAdapter
             // 
             this.estateAreaUnitTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // financialItemCategoryTblTableAdapter
+            // 
+            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
             // modelTblTableAdapter
             // 
@@ -1553,11 +1619,13 @@ namespace AssetManagement.Assets
             this.addNewAssetWizardControl.ResumeLayout(false);
             this.assetBasicsWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetFinancialItemCategoryLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
@@ -1718,5 +1786,10 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Button manageMinorCategoryTblBtn;
         private System.Windows.Forms.Button manageMainCategoryTblBtn;
         private System.Windows.Forms.Label cautionLabel1;
+        private System.Windows.Forms.Button manageFinancialItemCategoryTblBtn;
+        private System.Windows.Forms.Label assetFinancialItemCategoryLabel;
+        private DevExpress.XtraEditors.LookUpEdit assetFinancialItemCategoryLookUpEdit;
+        private System.Windows.Forms.BindingSource financialItemCategoryTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter financialItemCategoryTblTableAdapter;
     }
 }

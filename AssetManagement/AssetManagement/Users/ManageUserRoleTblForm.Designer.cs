@@ -104,6 +104,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.colIsDepartmentIndependent = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -190,7 +191,8 @@ namespace AssetManagement.Users
             this.colSetDateAndTime,
             this.colBackupDb,
             this.colRestoreDb,
-            this.colCreateAssetsReports});
+            this.colCreateAssetsReports,
+            this.colIsDepartmentIndependent});
             this.userRoleGridView.GridControl = this.userRoleGridControl;
             this.userRoleGridView.Name = "userRoleGridView";
             // 
@@ -246,11 +248,11 @@ namespace AssetManagement.Users
             // 
             this.colUpdateSubDepartmentForExistedAsset.Caption = "تعديل المعلومات الإدارية لأصل موجود";
             this.colUpdateSubDepartmentForExistedAsset.FieldName = "UpdateSubDepartmentForExistedAsset";
-            this.colUpdateSubDepartmentForExistedAsset.MinWidth = 150;
+            this.colUpdateSubDepartmentForExistedAsset.MinWidth = 200;
             this.colUpdateSubDepartmentForExistedAsset.Name = "colUpdateSubDepartmentForExistedAsset";
             this.colUpdateSubDepartmentForExistedAsset.Visible = true;
             this.colUpdateSubDepartmentForExistedAsset.VisibleIndex = 3;
-            this.colUpdateSubDepartmentForExistedAsset.Width = 150;
+            this.colUpdateSubDepartmentForExistedAsset.Width = 200;
             // 
             // colDeleteAssetRecord
             // 
@@ -356,11 +358,11 @@ namespace AssetManagement.Users
             // 
             this.colManageImportExportTbl.Caption = "إدارة سجلات الاستيراد والتصدير";
             this.colManageImportExportTbl.FieldName = "ManageImportExportTbl";
-            this.colManageImportExportTbl.MinWidth = 150;
+            this.colManageImportExportTbl.MinWidth = 200;
             this.colManageImportExportTbl.Name = "colManageImportExportTbl";
             this.colManageImportExportTbl.Visible = true;
             this.colManageImportExportTbl.VisibleIndex = 14;
-            this.colManageImportExportTbl.Width = 150;
+            this.colManageImportExportTbl.Width = 200;
             // 
             // colManageUsers
             // 
@@ -546,21 +548,21 @@ namespace AssetManagement.Users
             // 
             this.colAddNewEstateAreaUnit.Caption = "إضافة وحدة مساحة عقار جديدة";
             this.colAddNewEstateAreaUnit.FieldName = "AddNewEstateAreaUnit";
-            this.colAddNewEstateAreaUnit.MinWidth = 150;
+            this.colAddNewEstateAreaUnit.MinWidth = 200;
             this.colAddNewEstateAreaUnit.Name = "colAddNewEstateAreaUnit";
             this.colAddNewEstateAreaUnit.Visible = true;
             this.colAddNewEstateAreaUnit.VisibleIndex = 33;
-            this.colAddNewEstateAreaUnit.Width = 150;
+            this.colAddNewEstateAreaUnit.Width = 200;
             // 
             // colManageEstateAreaUnits
             // 
             this.colManageEstateAreaUnits.Caption = "إدارة جدول وحدات مساحات العقارات";
             this.colManageEstateAreaUnits.FieldName = "ManageEstateAreaUnits";
-            this.colManageEstateAreaUnits.MinWidth = 150;
+            this.colManageEstateAreaUnits.MinWidth = 200;
             this.colManageEstateAreaUnits.Name = "colManageEstateAreaUnits";
             this.colManageEstateAreaUnits.Visible = true;
             this.colManageEstateAreaUnits.VisibleIndex = 34;
-            this.colManageEstateAreaUnits.Width = 150;
+            this.colManageEstateAreaUnits.Width = 1000;
             // 
             // colAddNewTransactionType
             // 
@@ -576,11 +578,11 @@ namespace AssetManagement.Users
             // 
             this.colManageTransactionTypes.Caption = "إدارة جدول أنواع تصريف الأصول";
             this.colManageTransactionTypes.FieldName = "ManageTransactionTypes";
-            this.colManageTransactionTypes.MinWidth = 150;
+            this.colManageTransactionTypes.MinWidth = 200;
             this.colManageTransactionTypes.Name = "colManageTransactionTypes";
             this.colManageTransactionTypes.Visible = true;
             this.colManageTransactionTypes.VisibleIndex = 36;
-            this.colManageTransactionTypes.Width = 150;
+            this.colManageTransactionTypes.Width = 200;
             // 
             // colAddNewFinancialItem
             // 
@@ -819,7 +821,6 @@ namespace AssetManagement.Users
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -861,6 +862,16 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.userRoleTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userRoleTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userRoleTblBindingNavigatorSaveItem_Click);
+            // 
+            // colIsDepartmentIndependent
+            // 
+            this.colIsDepartmentIndependent.Caption = "الحساب لا يتبع لقسم محدد";
+            this.colIsDepartmentIndependent.FieldName = "IsDepartmentIndependent";
+            this.colIsDepartmentIndependent.MinWidth = 150;
+            this.colIsDepartmentIndependent.Name = "colIsDepartmentIndependent";
+            this.colIsDepartmentIndependent.Visible = true;
+            this.colIsDepartmentIndependent.VisibleIndex = 49;
+            this.colIsDepartmentIndependent.Width = 150;
             // 
             // ManageUserRoleTblForm
             // 
@@ -959,5 +970,6 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colCreateInventoryReport;
         private DevExpress.XtraGrid.Columns.GridColumn colManageImportExportTbl;
         private DevExpress.XtraGrid.Columns.GridColumn colUpdateSubDepartmentForExistedAsset;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsDepartmentIndependent;
     }
 }

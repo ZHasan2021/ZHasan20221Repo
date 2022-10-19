@@ -46,6 +46,20 @@ namespace AssetManagement.Finance
             //manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             //manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

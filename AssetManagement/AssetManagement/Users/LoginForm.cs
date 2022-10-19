@@ -34,7 +34,7 @@ namespace AssetManagement.Users
             {
                 StaticCode.activeUser = existedUser.First();
                 StaticCode.activeUserRole = StaticCode.mainDbContext.UserRoleTbls.Single(usrrl => usrrl.ID == StaticCode.activeUser.UserRole);
-                StaticCode.activeUserOptions = StaticCode.mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
+                StaticCode.appOptions = StaticCode.mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

@@ -60,6 +60,7 @@ namespace AssetManagement.AuxTables
             }
 
             bool addFinancialCategoryItem = StaticCode.activeUserRole.AddNewFinancialItemCategory == true && StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fica => fica.FinancialItemCategoryName == newMainCategoryNameTextBox.Text.Trim()) == 0;
+            addFinancialCategoryItem = false;
 
             StaticCode.mainDbContext.MainCategoryTbls.InsertOnSubmit(new MainCategoryTbl() { MainCategoryName = newMainCategoryNameTextBox.Text.Trim(), MainCategoryDescription = newMainCategoryDescriptionTextBox.Text.Trim() });
             if (addFinancialCategoryItem)

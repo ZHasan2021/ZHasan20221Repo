@@ -23,6 +23,8 @@ namespace AssetManagement.Assets
 
         private void AddNewAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet1.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
+            this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet1.FinancialItemCategoryTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.SubDepartmentTbl' table. You can move, or remove it, as needed.
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet1.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.ModelTbl' table. You can move, or remove it, as needed.
@@ -52,6 +54,24 @@ namespace AssetManagement.Assets
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
             manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
+            manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
+            assetFinancialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر");
+
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    assetSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    assetDeptLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    assetSectionLookUpEdit.Enabled = assetDeptLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
+
+            assetCodeTextBox.Text = StaticCode.GetTheNewAssetCode();
         }
 
         private void addNewAssetWizardControl_NextClick(object sender, DevExpress.XtraWizard.WizardCommandButtonClickEventArgs e)
@@ -85,14 +105,19 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد الفئة الرئيسية للأصل\r\n";
                     if (minorCategoryLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الفئة الفرعية للأصل\r\n";
-                    if (purchaseDateDateEdit.EditValue == null && isNewAssetRadioButton.Checked)
-                        errorMsg += "لم يتم تحديد تاريخ الشراء\r\n";
                     if (purchaseDateDateEdit.EditValue != null && DateTime.Today < Convert.ToDateTime(purchaseDateDateEdit.EditValue))
                         errorMsg += "تاريخ الشراء أحدث من تاريخ اليوم\r\n";
-                    if (purchasePriceNumericUpDown.Value == 0 && isNewAssetRadioButton.Checked)
-                        errorMsg += "لم يتم تقدير سعر الشراء\r\n";
-                    if (purchasePriceCurrencyLookUpEdit.EditValue == null && isNewAssetRadioButton.Checked)
-                        errorMsg += "لم يتم تحديد عملة سعر الشراء\r\n";
+                    if (isNewAssetRadioButton.Checked)
+                    {
+                        if (purchaseDateDateEdit.EditValue == null)
+                            errorMsg += "لم يتم تحديد تاريخ الشراء\r\n";
+                        if (purchasePriceNumericUpDown.Value == 0)
+                            errorMsg += "لم يتم تقدير سعر الشراء\r\n";
+                        if (purchasePriceCurrencyLookUpEdit.EditValue == null)
+                            errorMsg += "لم يتم تحديد عملة سعر الشراء\r\n";
+                        if (assetFinancialItemCategoryLookUpEdit.EditValue == null)
+                            errorMsg += "لم يتم تحديد البند المالي للأصل\r\n";
+                    }
                     if (placeOfPresenceTextBox.Text.Trim() == "")
                         errorMsg += "مكان التواجد غير محدد\r\n";
                     if (currentStatusLookUpEdit.EditValue == null)
@@ -184,7 +209,7 @@ namespace AssetManagement.Assets
                     StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(new FinancialItemTbl()
                     {
                         FinancialItemSubDept = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue),
-                        FinancialItemCategory = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica => fica.FinancialItemCategoryName == mainCategoryLookUpEdit.Text).First().ID,
+                        FinancialItemCategory = Convert.ToInt32(assetFinancialItemCategoryLookUpEdit.EditValue),
                         FinancialItemInsertionDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
                         IncomingOrOutgoing = "صادر",
                         IncomingAmount = Convert.ToDouble(purchasePriceNumericUpDown.Value),
@@ -354,6 +379,20 @@ namespace AssetManagement.Assets
         {
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.Location = new Point(200, 500);
+        }
+
+        private void manageFinancialItemCategoryTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageFinancialItemCategoryTblForm ficaFrm = new ManageFinancialItemCategoryTblForm();
+            ficaFrm.ShowDialog();
+
+            this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemCategoryTbl);
+        }
+
+        private void OldOrNew(object sender, EventArgs e)
+        {
+            assetFinancialItemCategoryLabel.Visible = assetFinancialItemCategoryLookUpEdit.Visible = isNewAssetRadioButton.Checked;
+            manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
         }
     }
 }

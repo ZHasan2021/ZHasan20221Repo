@@ -146,7 +146,7 @@ namespace AssetManagement.Assets
                 return;
             }
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
-            assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل {currSrchRes.StatusName} {((currSrchRes.IsSold == true) ? "،الأصل مباع " : "")}{((currSrchRes.IsOutOfWork == true) ? "، الأصل خارج الخدمة" : "")}";
+            assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل: {currSrchRes.StatusName}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
