@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AssetMngDb" Class="AssetMngDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Initial Catalog=AssetMngDb;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Initial Catalog=AssetMngDb;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AssetMovementTbl" Member="AssetMovementTbls">
     <Type Name="AssetMovementTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -371,6 +371,13 @@
       <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepartmentVw" Member="DepartmentVws">
+    <Type Name="DepartmentVw">
+      <Column Name="[معرف القسم]" Member="معرف_القسم" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم القسم]" Member="اسم_القسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[الدائرة التي يتبع لها القسم]" Member="الدائرة_التي_يتبع_لها_القسم" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">

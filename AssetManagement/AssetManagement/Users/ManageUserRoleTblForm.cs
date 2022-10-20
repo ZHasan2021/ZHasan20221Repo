@@ -35,7 +35,7 @@ namespace AssetManagement.Users
             StaticCode.mainConn.Close();
             StaticCode.mainConn.Open();
 
-            mainAlertControl.Show(this,"تم الحفظ", StaticCode.ApplicationTitle);
+            mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

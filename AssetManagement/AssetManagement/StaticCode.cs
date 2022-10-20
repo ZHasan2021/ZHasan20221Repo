@@ -32,7 +32,6 @@ namespace AssetManagement
         public static OptionsTbl appOptions { get; set; }
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
 
-
         public static void AssignDbParams()
         {
             mainDbContext = new AssetMngDbDataContext();
@@ -291,7 +290,7 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
-                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
+                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "DEON"))
                                 {
                                     DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
                                     fieldsValuesPairs += $"{oneField} = N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
@@ -315,7 +314,7 @@ namespace AssetManagement
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
                                 fieldsPairs += $"{oneField}, ";
-                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON"))
+                                if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "DEON"))
                                 {
                                     DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
                                     valuesPairs += $"N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
@@ -333,7 +332,7 @@ namespace AssetManagement
                         sqlcomm.ExecuteNonQuery();
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     continue;
                 }
@@ -344,7 +343,7 @@ namespace AssetManagement
             sqlcomm.ExecuteNonQuery();
         }
 
-        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, out int errorCat)
+        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out int errorCat)
         {
             errorCat = 0;
             if (!File.Exists(assetsFilePath))
@@ -391,39 +390,48 @@ namespace AssetManagement
                         }
                         else
                         {
-                            AssetTbl newAsset = new AssetTbl()
+                            string astCode = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString();
+                            AssetTbl newAsset = new AssetTbl();
+                            if (StaticCode.mainDbContext.AssetTbls.Any(ast1 => ast1.AssetCode == astCode))
                             {
-                                AssetCode = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString(),
-                                AssetMinorCategory = existedMiCa.First().معرف_الفئة_الفرعية,
-                                AssetSpecifications = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Substring(srcExcelWs.Cells[rowStartNo, 4].Value.ToString().IndexOf(':') + 1),
-                                AssetSubDepartment = existedSubDept.First().معرف_الوحدة,
-                                ItemsQuantity = Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 5].Value),
-                                IsOldOrNewAsset = "قديم",
-                                CustodianName = srcExcelWs.Cells[rowStartNo, 13 + formShift].Value?.ToString(),
-                                EstateArea = "",
-                                EstateAreaUnit = 1,
-                                CurrentStatus = StaticCode.mainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 10 + formShift].Value.ToString()).ID,
-                                DestructionRate = existedMiCa.First().معدل_الإهلاك,
-                                LifeSpanInMonths = 0,
-                                PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 8 + formShift].Value?.ToString(),
-                                BenefitPercentage = srcExcelWs.Cells[rowStartNo, 11 + formShift].Value?.ToString(),
-                                MoreDetails = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString(),
-                                AssetNotes = srcExcelWs.Cells[rowStartNo, 19 + formShift].Value?.ToString(),
-                                Model = (formNo == 6) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
-                                Color = (formNo == 8) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
-                                Volume = "",
-                                OfUsed = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 8].Value?.ToString() : "",
-                                CarChassisNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "",
-                                CarEngineNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 11].Value?.ToString() : "",
-                                CarPanelNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "",
-                                CarManufacturingYear = (formNo == 3) ? Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 9].Value?.ToString()) : 0,
-                                EstateAddress = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "",
-                                EstateOwnershipDocumentWith = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 9].Value?.ToString() : "",
-                                OwnerName = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 12].Value?.ToString() : ((formNo == 2) ? srcExcelWs.Cells[rowStartNo, 6].Value?.ToString() : ""),
-                                AssetSquare = 1,
-                                IsSold = false,
-                                IsOutOfWork = false,
-                            };
+                                if (!updateExistedAssets)
+                                    continue;
+                            newAsset = StaticCode.mainDbContext.AssetTbls.Single(ast2 => ast2.AssetCode == astCode);
+                            }
+                            else
+                            {
+                                importedAssets.Add(newAsset);
+                            }
+                            newAsset.AssetCode = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString();
+                            newAsset.AssetMinorCategory = existedMiCa.First().معرف_الفئة_الفرعية;
+                            newAsset.AssetSpecifications = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Substring(srcExcelWs.Cells[rowStartNo, 4].Value.ToString().IndexOf(':') + 1);
+                            newAsset.AssetSubDepartment = existedSubDept.First().معرف_الوحدة;
+                            newAsset.ItemsQuantity = Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 5].Value);
+                            newAsset.IsOldOrNewAsset = "قديم";
+                            newAsset.CustodianName = srcExcelWs.Cells[rowStartNo, 13 + formShift].Value?.ToString();
+                            newAsset.EstateArea = "";
+                            newAsset.EstateAreaUnit = 1;
+                            newAsset.CurrentStatus = StaticCode.mainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 10 + formShift].Value.ToString()).ID;
+                            newAsset.DestructionRate = existedMiCa.First().معدل_الإهلاك;
+                            newAsset.LifeSpanInMonths = 0;
+                                newAsset.PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 8 + formShift].Value?.ToString();
+                            newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, 11 + formShift].Value?.ToString();
+                            newAsset.MoreDetails = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString();
+                            newAsset.AssetNotes = srcExcelWs.Cells[rowStartNo, 19 + formShift].Value?.ToString();
+                            newAsset.Model = (formNo == 6) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
+                            newAsset.Color = (formNo == 8) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
+                            newAsset.Volume = "";
+                            newAsset.OfUsed = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 8].Value?.ToString() : "";
+                            newAsset.CarChassisNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
+                            newAsset.CarEngineNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 11].Value?.ToString() : "";
+                            newAsset.CarPanelNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "";
+                            newAsset.CarManufacturingYear = (formNo == 3) ? Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 9].Value?.ToString()) : 0;
+                            newAsset.EstateAddress = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "";
+                            newAsset.EstateOwnershipDocumentWith = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 9].Value?.ToString() : "";
+                            newAsset.OwnerName = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 12].Value?.ToString() : ((formNo == 2) ? srcExcelWs.Cells[rowStartNo, 6].Value?.ToString() : "");
+                            newAsset.AssetSquare = 1;
+                            newAsset.IsSold = false;
+                            newAsset.IsOutOfWork = false;
                             if (srcExcelWs.Cells[rowStartNo, 6 + formShift].Value != null)
                             {
                                 newAsset.PurchaseDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 6 + formShift].Value);
@@ -444,15 +452,14 @@ namespace AssetManagement
                                 string activePriceCurr = strVal.Replace(newAsset.ActualCurrentPrice.ToString(), "").Trim();
                                 newAsset.ActualCurrentPriceCurrency = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == activePriceCurr).ID;
                             }
-                            importedAssets.Add(newAsset);
-                        }
+                            }
                         rowStartNo++;
                     }
                 }
                 StaticCode.mainDbContext.AssetTbls.InsertAllOnSubmit(importedAssets);
                 StaticCode.mainDbContext.SubmitChanges();
             }
-            catch
+            catch(Exception ex)
             {
                 errorCat = 3;
                 return null;

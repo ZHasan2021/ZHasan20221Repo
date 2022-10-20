@@ -291,7 +291,7 @@ namespace AssetManagement.Finance
             this.exportData_Cancel.Text = "إغلاق";
             this.exportData_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.exportData_Cancel.UseVisualStyleBackColor = true;
-            this.exportData_Cancel.Click += new System.EventHandler(this.importData_Cancel_Click);
+            this.exportData_Cancel.Click += new System.EventHandler(this.exportData_Cancel_Click);
             // 
             // exportData_OK
             // 
@@ -304,7 +304,7 @@ namespace AssetManagement.Finance
             this.exportData_OK.Text = "تصدير";
             this.exportData_OK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.exportData_OK.UseVisualStyleBackColor = true;
-            this.exportData_OK.Click += new System.EventHandler(this.importData_OK_Click);
+            this.exportData_OK.Click += new System.EventHandler(this.exportData_OK_Click);
             // 
             // encryptExportedFileCheckBox
             // 

@@ -75,7 +75,7 @@ namespace AssetManagement.Finance
 
         }
 
-        private void importData_OK_Click(object sender, EventArgs e)
+        private void exportData_OK_Click(object sender, EventArgs e)
         {
             if (exportBySectionRadioButton.Checked && exportBySectionLookUpEdit.EditValue == null)
             {
@@ -269,7 +269,7 @@ namespace AssetManagement.Finance
             }
         }
 
-        private void importData_Cancel_Click(object sender, EventArgs e)
+        private void exportData_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

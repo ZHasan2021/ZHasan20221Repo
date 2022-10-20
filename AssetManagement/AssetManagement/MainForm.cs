@@ -423,8 +423,19 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 return;
             }
 
+            ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook astWb = astEp.Workbook;
+            ExcelWorksheet astWs = astWb.Worksheets.First();
+            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
+            bool updateExistedAssets = false;
+            if(existedCodes.Count()>0)
+            {
+                updateExistedAssets = MessageBox.Show("هناك بعض الأصول موجودة مسبقاً في سجلات الأصول، هل تريد تحديث معلوماتها؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            }
+
             int errorCat = -1;
-            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, out errorCat);
+            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorCat);
             if (importingReport == null)
             {
                 if (errorCat == 1)

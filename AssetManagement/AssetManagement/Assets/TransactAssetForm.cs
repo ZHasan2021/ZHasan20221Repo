@@ -40,6 +40,11 @@ namespace AssetManagement.Assets
             e.AlertForm.Location = new Point(500, 400);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void assetTransactBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من إدخالاتك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -62,7 +67,7 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر العملة أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (moneyAmountCurrencyLookUpEdit.EditValue != null && moneyAmountNumericUpDown.Value == 0)
+            if (moneyAmountCurrencyLookUpEdit.EditValue != null && moneyAmountCurrencyLookUpEdit.Text.Contains("بيع") && moneyAmountNumericUpDown.Value == 0)
             {
                 mainAlertControl.Show(this, "اكتب مبلغ البيع أو الشراء أولاً", StaticCode.ApplicationTitle);
                 return;
@@ -148,6 +153,7 @@ namespace AssetManagement.Assets
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
             assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل: {currSrchRes.StatusName}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
+            assetItemsQuantityNumericUpDown.Value = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currSrchRes.ID).ItemsQuantity;
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;

@@ -41,6 +41,21 @@ namespace AssetManagement.Assets
             //manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             //manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySubDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdp1 => sdp1.MainDepartment == StaticCode.activeUser.UserDept);
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

@@ -306,6 +306,14 @@ namespace AssetManagement
 			}
 		}
 		
+		public System.Data.Linq.Table<DepartmentVw> DepartmentVws
+		{
+			get
+			{
+				return this.GetTable<DepartmentVw>();
+			}
+		}
+		
 		public System.Data.Linq.Table<FinancialItemVw> FinancialItemVws
 		{
 			get
@@ -7953,6 +7961,69 @@ namespace AssetManagement
 				if ((this._تاريخ_الإدخال != value))
 				{
 					this._تاريخ_الإدخال = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DepartmentVw")]
+	public partial class DepartmentVw
+	{
+		
+		private int _معرف_القسم;
+		
+		private string _اسم_القسم;
+		
+		private string _الدائرة_التي_يتبع_لها_القسم;
+		
+		public DepartmentVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف القسم]", Storage="_معرف_القسم", DbType="Int NOT NULL")]
+		public int معرف_القسم
+		{
+			get
+			{
+				return this._معرف_القسم;
+			}
+			set
+			{
+				if ((this._معرف_القسم != value))
+				{
+					this._معرف_القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم القسم]", Storage="_اسم_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string اسم_القسم
+		{
+			get
+			{
+				return this._اسم_القسم;
+			}
+			set
+			{
+				if ((this._اسم_القسم != value))
+				{
+					this._اسم_القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الدائرة التي يتبع لها القسم]", Storage="_الدائرة_التي_يتبع_لها_القسم", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة_التي_يتبع_لها_القسم
+		{
+			get
+			{
+				return this._الدائرة_التي_يتبع_لها_القسم;
+			}
+			set
+			{
+				if ((this._الدائرة_التي_يتبع_لها_القسم != value))
+				{
+					this._الدائرة_التي_يتبع_لها_القسم = value;
 				}
 			}
 		}

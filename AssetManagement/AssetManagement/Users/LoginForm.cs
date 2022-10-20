@@ -30,11 +30,13 @@ namespace AssetManagement.Users
             string usernameTyped = usernameTextBox.Text;
             string passwordTyped = passwordTextBox.Text;
             var existedUser = StaticCode.mainDbContext.UserTbls.Where(usr => usr.Username == usernameTextBox.Text && usr.Password == passwordTextBox.Text);
-            if (existedUser.Count() > 0)
+            if (existedUser.Count() == 1)
             {
                 StaticCode.activeUser = existedUser.First();
                 StaticCode.activeUserRole = StaticCode.mainDbContext.UserRoleTbls.Single(usrrl => usrrl.ID == StaticCode.activeUser.UserRole);
                 StaticCode.appOptions = StaticCode.mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
+                StaticCode.appOptions.ActiveUser = StaticCode.activeUser.ID;
+                StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

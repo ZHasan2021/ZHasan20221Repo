@@ -26,8 +26,8 @@ namespace AssetManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=AssetMngDb;AttachDbFilename=|D" +
-            "ataDirectory|\\Db\\AssetMngDb.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Db\\AssetMngDb" +
+            ".mdf;Initial Catalog=AssetMngDb;Integrated Security=True")]
         public string AssetMngDbConnectionString {
             get {
                 return ((string)(this["AssetMngDbConnectionString"]));

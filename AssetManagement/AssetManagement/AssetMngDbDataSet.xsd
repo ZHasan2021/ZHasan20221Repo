@@ -104,6 +104,24 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepartmentVwTableAdapter" GeneratorDataComponentClassName="DepartmentVwTableAdapter" Name="DepartmentVw" UserDataComponentName="DepartmentVwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.DepartmentVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [معرف القسم], [اسم القسم], [الدائرة التي يتبع لها القسم] FROM dbo.DepartmentVw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="معرف القسم" DataSetColumn="معرف القسم" />
+              <Mapping SourceColumn="اسم القسم" DataSetColumn="اسم القسم" />
+              <Mapping SourceColumn="الدائرة التي يتبع لها القسم" DataSetColumn="الدائرة التي يتبع لها القسم" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FinancialItemVwTableAdapter" GeneratorDataComponentClassName="FinancialItemVwTableAdapter" Name="FinancialItemVw" UserDataComponentName="FinancialItemVwTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="AssetMngDbConnectionString (Settings)" DbObjectName="dbo.FinancialItemVw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -2371,6 +2389,27 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DepartmentVw" msprop:Generator_TableClassName="DepartmentVwDataTable" msprop:Generator_TableVarName="tableDepartmentVw" msprop:Generator_TablePropName="DepartmentVw" msprop:Generator_RowDeletingName="DepartmentVwRowDeleting" msprop:Generator_RowChangingName="DepartmentVwRowChanging" msprop:Generator_RowEvHandlerName="DepartmentVwRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentVwRowDeleted" msprop:Generator_UserTableName="DepartmentVw" msprop:Generator_RowChangedName="DepartmentVwRowChanged" msprop:Generator_RowEvArgName="DepartmentVwRowChangeEvent" msprop:Generator_RowClassName="DepartmentVwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="معرف_x0020_القسم" msprop:Generator_ColumnVarNameInTable="columnمعرف_القسم" msprop:Generator_ColumnPropNameInRow="معرف_القسم" msprop:Generator_ColumnPropNameInTable="معرف_القسمColumn" msprop:Generator_UserColumnName="معرف القسم" type="xs:int" />
+              <xs:element name="اسم_x0020_القسم" msprop:Generator_ColumnVarNameInTable="columnاسم_القسم" msprop:Generator_ColumnPropNameInRow="اسم_القسم" msprop:Generator_ColumnPropNameInTable="اسم_القسمColumn" msprop:Generator_UserColumnName="اسم القسم">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="الدائرة_x0020_التي_x0020_يتبع_x0020_لها_x0020_القسم" msprop:Generator_ColumnVarNameInTable="columnالدائرة_التي_يتبع_لها_القسم" msprop:Generator_ColumnPropNameInRow="الدائرة_التي_يتبع_لها_القسم" msprop:Generator_ColumnPropNameInTable="الدائرة_التي_يتبع_لها_القسمColumn" msprop:Generator_UserColumnName="الدائرة التي يتبع لها القسم">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="FinancialItemVw" msprop:Generator_TableClassName="FinancialItemVwDataTable" msprop:Generator_TableVarName="tableFinancialItemVw" msprop:Generator_TablePropName="FinancialItemVw" msprop:Generator_RowDeletingName="FinancialItemVwRowDeleting" msprop:Generator_RowChangingName="FinancialItemVwRowChanging" msprop:Generator_RowEvHandlerName="FinancialItemVwRowChangeEventHandler" msprop:Generator_RowDeletedName="FinancialItemVwRowDeleted" msprop:Generator_UserTableName="FinancialItemVw" msprop:Generator_RowChangedName="FinancialItemVwRowChanged" msprop:Generator_RowEvArgName="FinancialItemVwRowChangeEvent" msprop:Generator_RowClassName="FinancialItemVwRow">
           <xs:complexType>
             <xs:sequence>
@@ -3145,6 +3184,10 @@ SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD
     <xs:unique name="AssetVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AssetVw" />
       <xs:field xpath="mstns:معرف_x0020_الأصل" />
+    </xs:unique>
+    <xs:unique name="DepartmentVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DepartmentVw" />
+      <xs:field xpath="mstns:معرف_x0020_القسم" />
     </xs:unique>
     <xs:unique name="FinancialItemVw_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:FinancialItemVw" />
