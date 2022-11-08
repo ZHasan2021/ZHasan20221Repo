@@ -213,6 +213,26 @@ namespace AssetManagement
         //    int returnValue = this.Adapter.Fill(dataTable);
         //    return returnValue;
         //}
+
+        //public virtual int FillByQuery(AssetMngDbDataSet.AssetVw_AllDataTable dataTable, string whereQuery)
+        //{
+        //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+        //    if (whereIndex == -1)
+        //    {
+        //        this.CommandCollection[0].CommandText += whereQuery;
+        //    }
+        //    else
+        //    {
+        //        this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+        //    }
+        //    this.Adapter.SelectCommand = this.CommandCollection[0];
+        //    if ((this.ClearBeforeFill == true))
+        //    {
+        //        dataTable.Clear();
+        //    }
+        //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+        //}
         #endregion
 
         #region Assets
@@ -343,12 +363,12 @@ namespace AssetManagement
             sqlcomm.ExecuteNonQuery();
         }
 
-        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out int errorCat)
+        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out string errorMsg)
         {
-            errorCat = 0;
+            errorMsg = "";
             if (!File.Exists(assetsFilePath))
             {
-                errorCat = 1;
+                errorMsg = "مسار الملف غير صحيح";
                 return null;
             }
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
@@ -360,14 +380,14 @@ namespace AssetManagement
             var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(sdpt1 => sdpt1.اسم_الوحدة == subDepartmentName && sdpt1.القسم_التابعة_له == departmentName && sdpt1.الدائرة_التي_يتبع_لها_القسم == sectionName);
             if (existedSubDept == null || existedSubDept.Count() == 0)
             {
-                errorCat = 2;
+                errorMsg = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو غير تابعة لبعضها إدارياً";
                 return null;
             }
             List<string> unknownMinorCategories = new List<string>();
             List<AssetTbl> importedAssets = new List<AssetTbl>();
+            int rowStartNo = 8;
             try
             {
-                int rowStartNo = 8;
                 int formShift = 0;
                 if (formNo == 2)
                     formShift = 4;
@@ -396,7 +416,7 @@ namespace AssetManagement
                             {
                                 if (!updateExistedAssets)
                                     continue;
-                            newAsset = StaticCode.mainDbContext.AssetTbls.Single(ast2 => ast2.AssetCode == astCode);
+                                newAsset = StaticCode.mainDbContext.AssetTbls.Single(ast2 => ast2.AssetCode == astCode);
                             }
                             else
                             {
@@ -408,18 +428,19 @@ namespace AssetManagement
                             newAsset.AssetSubDepartment = existedSubDept.First().معرف_الوحدة;
                             newAsset.ItemsQuantity = Convert.ToInt32(srcExcelWs.Cells[rowStartNo, 5].Value);
                             newAsset.IsOldOrNewAsset = "قديم";
-                            newAsset.CustodianName = srcExcelWs.Cells[rowStartNo, 13 + formShift].Value?.ToString();
+                            newAsset.CustodianName = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString();
                             newAsset.EstateArea = "";
                             newAsset.EstateAreaUnit = 1;
-                            newAsset.CurrentStatus = StaticCode.mainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 10 + formShift].Value.ToString()).ID;
+                            newAsset.CurrentStatus = StaticCode.mainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 11 + formShift].Value.ToString()).ID;
                             newAsset.DestructionRate = existedMiCa.First().معدل_الإهلاك;
                             newAsset.LifeSpanInMonths = 0;
-                                newAsset.PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 8 + formShift].Value?.ToString();
-                            newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, 11 + formShift].Value?.ToString();
-                            newAsset.MoreDetails = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString();
-                            newAsset.AssetNotes = srcExcelWs.Cells[rowStartNo, 19 + formShift].Value?.ToString();
-                            newAsset.Model = (formNo == 6) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
-                            newAsset.Color = (formNo == 8) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
+                            newAsset.PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 8 + formShift].Value?.ToString();
+                            newAsset.AssetSquare = StaticCode.mainDbContext.SquareTbls.Single(sq1 => sq1.SquareName == srcExcelWs.Cells[rowStartNo, 9 + formShift].Value.ToString()).ID;
+                            newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, 12 + formShift].Value?.ToString();
+                            newAsset.MoreDetails = srcExcelWs.Cells[rowStartNo, 15 + formShift].Value?.ToString();
+                            newAsset.AssetNotes = srcExcelWs.Cells[rowStartNo, 20 + formShift].Value?.ToString();
+                            newAsset.Model = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 6].Value?.ToString() : "";
+                            newAsset.Color = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 8].Value?.ToString() : "";
                             newAsset.Volume = "";
                             newAsset.OfUsed = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 8].Value?.ToString() : "";
                             newAsset.CarChassisNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 10].Value?.ToString() : "";
@@ -429,7 +450,6 @@ namespace AssetManagement
                             newAsset.EstateAddress = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 7].Value?.ToString() : "";
                             newAsset.EstateOwnershipDocumentWith = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, 9].Value?.ToString() : "";
                             newAsset.OwnerName = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, 12].Value?.ToString() : ((formNo == 2) ? srcExcelWs.Cells[rowStartNo, 6].Value?.ToString() : "");
-                            newAsset.AssetSquare = 1;
                             newAsset.IsSold = false;
                             newAsset.IsOutOfWork = false;
                             if (srcExcelWs.Cells[rowStartNo, 6 + formShift].Value != null)
@@ -445,28 +465,45 @@ namespace AssetManagement
                                 int monthsDiff = existedMiCa.First().العمر_الإنتاجي_بالسنوات * 12 - ((DateTime.Today.Year - Convert.ToDateTime(newAsset.PurchaseDate).Year) * 12 + (DateTime.Today.Month - Convert.ToDateTime(newAsset.PurchaseDate).Month));
                                 newAsset.LifeSpanInMonths = monthsDiff;
                             }
-                            if (srcExcelWs.Cells[rowStartNo, 12 + formShift].Value != null)
+                            if (srcExcelWs.Cells[rowStartNo, 13 + formShift].Value != null)
                             {
-                                string strVal = srcExcelWs.Cells[rowStartNo, 12 + formShift].Value?.ToString();
+                                string strVal = srcExcelWs.Cells[rowStartNo, 13 + formShift].Value?.ToString();
                                 newAsset.ActualCurrentPrice = Convert.ToDouble(strVal.Split(' ')[0]);
                                 string activePriceCurr = strVal.Replace(newAsset.ActualCurrentPrice.ToString(), "").Trim();
                                 newAsset.ActualCurrentPriceCurrency = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == activePriceCurr).ID;
                             }
-                            }
+                        }
                         rowStartNo++;
                     }
                 }
                 StaticCode.mainDbContext.AssetTbls.InsertAllOnSubmit(importedAssets);
                 StaticCode.mainDbContext.SubmitChanges();
             }
-            catch(Exception ex)
+            catch (FormatException)
             {
-                errorCat = 3;
+                errorMsg = $"إحدى القيم في السطر {rowStartNo} ليست صحيحة";
+                return null;
+            }
+            catch (NullReferenceException)
+            {
+                errorMsg = $"إحدى القيم في السطر {rowStartNo} فارغة";
+                return null;
+            }
+            catch (Exception)
+            {
+                errorMsg = $"ملف الاستيراد غير صحيح";
                 return null;
             }
 
             if (unknownMinorCategories.Count() > 0)
-                errorCat = 4;
+            {
+                string tmp = "";
+                foreach (string oneItem in unknownMinorCategories)
+                {
+                    tmp += oneItem + "\r\n";
+                }
+                errorMsg = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
+            }
             return unknownMinorCategories;
         }
 

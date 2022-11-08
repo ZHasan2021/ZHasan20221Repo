@@ -161,45 +161,47 @@ namespace AssetManagement.Finance
             this.financialItemGridView.Name = "financialItemGridView";
             this.financialItemGridView.OptionsBehavior.Editable = false;
             this.financialItemGridView.OptionsView.ShowFooter = true;
+            this.financialItemGridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colتاريختحريرالسجل, DevExpress.Data.ColumnSortOrder.Descending)});
             this.financialItemGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.financialItemGridView_RowClick);
             this.financialItemGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.financialItemGridView_RowCellClick);
             // 
             // colمعرفالسجلالمالي
             // 
             this.colمعرفالسجلالمالي.FieldName = "معرف السجل المالي";
-            this.colمعرفالسجلالمالي.MinWidth = 87;
+            this.colمعرفالسجلالمالي.MinWidth = 100;
             this.colمعرفالسجلالمالي.Name = "colمعرفالسجلالمالي";
             this.colمعرفالسجلالمالي.Width = 87;
             // 
             // colكودالسجلالمالي
             // 
             this.colكودالسجلالمالي.FieldName = "كود السجل المالي";
-            this.colكودالسجلالمالي.MinWidth = 131;
+            this.colكودالسجلالمالي.MinWidth = 150;
             this.colكودالسجلالمالي.Name = "colكودالسجلالمالي";
             this.colكودالسجلالمالي.Width = 131;
             // 
             // colاسمالبندالمالي
             // 
             this.colاسمالبندالمالي.FieldName = "اسم البند المالي";
-            this.colاسمالبندالمالي.MinWidth = 131;
+            this.colاسمالبندالمالي.MinWidth = 200;
             this.colاسمالبندالمالي.Name = "colاسمالبندالمالي";
             this.colاسمالبندالمالي.Visible = true;
             this.colاسمالبندالمالي.VisibleIndex = 0;
-            this.colاسمالبندالمالي.Width = 131;
+            this.colاسمالبندالمالي.Width = 200;
             // 
             // colبيانالسجلالمالي
             // 
             this.colبيانالسجلالمالي.FieldName = "بيان السجل المالي";
-            this.colبيانالسجلالمالي.MinWidth = 175;
+            this.colبيانالسجلالمالي.MinWidth = 200;
             this.colبيانالسجلالمالي.Name = "colبيانالسجلالمالي";
             this.colبيانالسجلالمالي.Visible = true;
             this.colبيانالسجلالمالي.VisibleIndex = 1;
-            this.colبيانالسجلالمالي.Width = 175;
+            this.colبيانالسجلالمالي.Width = 200;
             // 
             // colالدائرة
             // 
             this.colالدائرة.FieldName = "الدائرة";
-            this.colالدائرة.MinWidth = 131;
+            this.colالدائرة.MinWidth = 120;
             this.colالدائرة.Name = "colالدائرة";
             this.colالدائرة.Visible = true;
             this.colالدائرة.VisibleIndex = 2;
@@ -208,7 +210,7 @@ namespace AssetManagement.Finance
             // colالقسم
             // 
             this.colالقسم.FieldName = "القسم";
-            this.colالقسم.MinWidth = 131;
+            this.colالقسم.MinWidth = 120;
             this.colالقسم.Name = "colالقسم";
             this.colالقسم.Visible = true;
             this.colالقسم.VisibleIndex = 3;
@@ -217,7 +219,7 @@ namespace AssetManagement.Finance
             // colالوحدة
             // 
             this.colالوحدة.FieldName = "الوحدة";
-            this.colالوحدة.MinWidth = 131;
+            this.colالوحدة.MinWidth = 120;
             this.colالوحدة.Name = "colالوحدة";
             this.colالوحدة.Visible = true;
             this.colالوحدة.VisibleIndex = 4;
@@ -226,16 +228,16 @@ namespace AssetManagement.Finance
             // colتاريختحريرالسجل
             // 
             this.colتاريختحريرالسجل.FieldName = "تاريخ تحرير السجل";
-            this.colتاريختحريرالسجل.MinWidth = 105;
+            this.colتاريختحريرالسجل.MinWidth = 150;
             this.colتاريختحريرالسجل.Name = "colتاريختحريرالسجل";
             this.colتاريختحريرالسجل.Visible = true;
             this.colتاريختحريرالسجل.VisibleIndex = 5;
-            this.colتاريختحريرالسجل.Width = 105;
+            this.colتاريختحريرالسجل.Width = 150;
             // 
             // colواردأمصادر
             // 
             this.colواردأمصادر.FieldName = "وارد أم صادر";
-            this.colواردأمصادر.MinWidth = 105;
+            this.colواردأمصادر.MinWidth = 100;
             this.colواردأمصادر.Name = "colواردأمصادر";
             this.colواردأمصادر.Visible = true;
             this.colواردأمصادر.VisibleIndex = 6;
@@ -244,7 +246,7 @@ namespace AssetManagement.Finance
             // colالمبلغالوارد
             // 
             this.colالمبلغالوارد.FieldName = "المبلغ الوارد";
-            this.colالمبلغالوارد.MinWidth = 150;
+            this.colالمبلغالوارد.MinWidth = 120;
             this.colالمبلغالوارد.Name = "colالمبلغالوارد";
             this.colالمبلغالوارد.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الوارد", "مجموع الوارد={0:0.##}")});
@@ -255,7 +257,7 @@ namespace AssetManagement.Finance
             // colالمبلغالصادر
             // 
             this.colالمبلغالصادر.FieldName = "المبلغ الصادر";
-            this.colالمبلغالصادر.MinWidth = 150;
+            this.colالمبلغالصادر.MinWidth = 120;
             this.colالمبلغالصادر.Name = "colالمبلغالصادر";
             this.colالمبلغالصادر.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", "مجموع الصادر={0:0.##}")});
@@ -266,20 +268,20 @@ namespace AssetManagement.Finance
             // colالعملة
             // 
             this.colالعملة.FieldName = "العملة";
-            this.colالعملة.MinWidth = 87;
+            this.colالعملة.MinWidth = 100;
             this.colالعملة.Name = "colالعملة";
             this.colالعملة.Visible = true;
             this.colالعملة.VisibleIndex = 9;
-            this.colالعملة.Width = 87;
+            this.colالعملة.Width = 100;
             // 
             // colملاحظاتإضافية
             // 
             this.colملاحظاتإضافية.FieldName = "ملاحظات إضافية";
-            this.colملاحظاتإضافية.MinWidth = 175;
+            this.colملاحظاتإضافية.MinWidth = 200;
             this.colملاحظاتإضافية.Name = "colملاحظاتإضافية";
             this.colملاحظاتإضافية.Visible = true;
             this.colملاحظاتإضافية.VisibleIndex = 10;
-            this.colملاحظاتإضافية.Width = 175;
+            this.colملاحظاتإضافية.Width = 200;
             // 
             // ficatRepositoryItemLookUpEdit
             // 

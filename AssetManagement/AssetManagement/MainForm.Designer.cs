@@ -36,6 +36,7 @@ namespace AssetManagement
             this.userRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.activeUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.activeUserRoleToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.activeUserDeptToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addNewMainCategoryBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -208,7 +209,8 @@ namespace AssetManagement
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userRoleToolStripStatusLabel,
             this.activeUserToolStripStatusLabel,
-            this.activeUserRoleToolStripStatusLabel});
+            this.activeUserRoleToolStripStatusLabel,
+            this.activeUserDeptToolStripStatusLabel});
             this.mainStatusStrip.Location = new System.Drawing.Point(0, 929);
             this.mainStatusStrip.Name = "mainStatusStrip";
             this.mainStatusStrip.Padding = new System.Windows.Forms.Padding(12, 0, 1, 0);
@@ -232,6 +234,12 @@ namespace AssetManagement
             this.activeUserRoleToolStripStatusLabel.BackColor = System.Drawing.Color.Aqua;
             this.activeUserRoleToolStripStatusLabel.Name = "activeUserRoleToolStripStatusLabel";
             this.activeUserRoleToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // activeUserDeptToolStripStatusLabel
+            // 
+            this.activeUserDeptToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.activeUserDeptToolStripStatusLabel.Name = "activeUserDeptToolStripStatusLabel";
+            this.activeUserDeptToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
             // addNewAssetBarButtonItem
             // 
@@ -1000,12 +1008,11 @@ namespace AssetManagement
             // mainMemoEdit
             // 
             this.mainMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainMemoEdit.Enabled = false;
             this.mainMemoEdit.Location = new System.Drawing.Point(0, 283);
             this.mainMemoEdit.MenuManager = this.mainRibbonControl;
             this.mainMemoEdit.Name = "mainMemoEdit";
             this.mainMemoEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainMemoEdit.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.mainMemoEdit.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.mainMemoEdit.Properties.Appearance.Options.UseFont = true;
             this.mainMemoEdit.Properties.Appearance.Options.UseForeColor = true;
             this.mainMemoEdit.Size = new System.Drawing.Size(1485, 646);
@@ -1141,6 +1148,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem fromVehiclesFormBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private System.Windows.Forms.ToolStripStatusLabel activeUserDeptToolStripStatusLabel;
     }
 }
 

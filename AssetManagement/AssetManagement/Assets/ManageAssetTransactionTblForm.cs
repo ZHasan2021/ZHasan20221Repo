@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssetManagement.Assets;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace AssetManagement.AuxTables
 {
     public partial class ManageAssetTransactionTblForm : Form
     {
+        int currRow = -1;
+
         public ManageAssetTransactionTblForm()
         {
             InitializeComponent();
@@ -19,6 +22,8 @@ namespace AssetManagement.AuxTables
 
         private void ManageAssetTransactionTblForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw_All' table. You can move, or remove it, as needed.
+            this.assetVw_AllTableAdapter.Fill(this.assetMngDbDataSet.AssetVw_All);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.TransactionTypeTbl' table. You can move, or remove it, as needed.
             this.transactionTypeTblTableAdapter.Fill(this.assetMngDbDataSet.TransactionTypeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
@@ -43,6 +48,45 @@ namespace AssetManagement.AuxTables
         {
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.Location = new Point(200, 200);
+        }
+
+        private void assetTransactionTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            assetTransactionGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "سجلات تصريف الأصول" });
+            mainAlertControl.Show(this, "تم تصدير سجلات تصريف الأصول إلى اكسل", StaticCode.ApplicationTitle);
+        }
+
+        private void assetTransactionTblBindingNavigatorViewAssetCardItem_Click(object sender, EventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetTransactionGridView.GetRowCellValue(currRow, colAssetID));
+                AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
+                cardVwFrm.ShowDialog();
+                currRow = 0;
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void assetTransactionGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            currRow = e.RowHandle;
+        }
+
+        private void assetTransactionGridView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            currRow = e.RowHandle;
         }
     }
 }

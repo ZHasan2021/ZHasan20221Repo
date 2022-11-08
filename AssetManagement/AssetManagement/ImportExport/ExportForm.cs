@@ -32,8 +32,6 @@ namespace AssetManagement.Finance
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             this.MinimumSize = this.Size;
-
-            includeMovementsAndTransactionsInExportCheckBox.Checked = true;
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -108,13 +106,9 @@ namespace AssetManagement.Finance
             if (exportAssetsRadioButton.Checked)
             {
                 tbls2 = new List<string>() { "AssetTbl" };
-                tablesExported = "أصول";
-                if (includeMovementsAndTransactionsInExportCheckBox.Checked)
-                {
-                    tbls2.Add("AssetMovementTbl");
-                    tbls2.Add("AssetTransactionTbl");
-                    tablesExported = "أصول وسجلات نقل وتصريف";
-                }
+                tablesExported = "أصول وسجلات نقل وتصريف";
+                tbls2.Add("AssetMovementTbl");
+                tbls2.Add("AssetTransactionTbl");
             }
             if (exportFinancialItemsRadioButton.Checked)
             {
@@ -124,13 +118,9 @@ namespace AssetManagement.Finance
             if (exportAssetsAndFinancialItemsRadioButton.Checked)
             {
                 tbls2 = new List<string>() { "AssetTbl", "FinancialItemTbl" };
-                tablesExported = "أصول وسجلات مالية";
-                if (includeMovementsAndTransactionsInExportCheckBox.Checked)
-                {
-                    tbls2.Add("AssetMovementTbl");
-                    tbls2.Add("AssetTransactionTbl");
-                    tablesExported = "أصول وسجلات مالية وسجلات نقل وتصريف";
-                }
+                tablesExported = "أصول وسجلات مالية وسجلات نقل وتصريف";
+                tbls2.Add("AssetMovementTbl");
+                tbls2.Add("AssetTransactionTbl");
             }
             if (!Directory.Exists(StaticCode.ExportFolder))
                 Directory.CreateDirectory(StaticCode.ExportFolder);
@@ -276,8 +266,6 @@ namespace AssetManagement.Finance
 
         private void exportAssetsRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            includeMovementsAndTransactionsInExportCheckBox.Visible = exportAssetsRadioButton.Checked || exportAssetsAndFinancialItemsRadioButton.Checked;
-            includeMovementsAndTransactionsInExportCheckBox.Checked = false;
         }
     }
 }

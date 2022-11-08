@@ -48,8 +48,9 @@ namespace AssetManagement.Users
             this.colPasswordUpdatedOn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUserDept = new DevExpress.XtraGrid.Columns.GridColumn();
             this.userDeptRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colUserPrefix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
@@ -69,7 +70,6 @@ namespace AssetManagement.Users
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.userTblBindingNavigatorManageUserRolesItem = new System.Windows.Forms.ToolStripButton();
-            this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
@@ -79,10 +79,10 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.userRoleRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).BeginInit();
             this.userTblBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // minorCategoryGridView
@@ -104,7 +104,7 @@ namespace AssetManagement.Users
             this.userGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.userRoleRepositoryItemLookUpEdit,
             this.userDeptRepositoryItemLookUpEdit});
-            this.userGridControl.Size = new System.Drawing.Size(1130, 630);
+            this.userGridControl.Size = new System.Drawing.Size(1274, 672);
             this.userGridControl.TabIndex = 8;
             this.userGridControl.UseEmbeddedNavigator = true;
             this.userGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -204,11 +204,11 @@ namespace AssetManagement.Users
             this.colUserDept.Caption = "القسم";
             this.colUserDept.ColumnEdit = this.userDeptRepositoryItemLookUpEdit;
             this.colUserDept.FieldName = "UserDept";
-            this.colUserDept.MinWidth = 150;
+            this.colUserDept.MinWidth = 200;
             this.colUserDept.Name = "colUserDept";
             this.colUserDept.Visible = true;
             this.colUserDept.VisibleIndex = 3;
-            this.colUserDept.Width = 168;
+            this.colUserDept.Width = 200;
             // 
             // userDeptRepositoryItemLookUpEdit
             // 
@@ -225,10 +225,10 @@ namespace AssetManagement.Users
             this.userDeptRepositoryItemLookUpEdit.PopupWidth = 500;
             this.userDeptRepositoryItemLookUpEdit.ValueMember = "معرف القسم";
             // 
-            // departmentTblBindingSource
+            // departmentVwBindingSource
             // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            this.departmentVwBindingSource.DataMember = "DepartmentVw";
+            this.departmentVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // colUserPrefix
             // 
@@ -239,6 +239,11 @@ namespace AssetManagement.Users
             this.colUserPrefix.Visible = true;
             this.colUserPrefix.VisibleIndex = 4;
             this.colUserPrefix.Width = 150;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // mainAlertControl
             // 
@@ -320,7 +325,7 @@ namespace AssetManagement.Users
             this.userTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userTblBindingNavigator.Name = "userTblBindingNavigator";
             this.userTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userTblBindingNavigator.Size = new System.Drawing.Size(1130, 27);
+            this.userTblBindingNavigator.Size = new System.Drawing.Size(1274, 27);
             this.userTblBindingNavigator.TabIndex = 6;
             this.userTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -429,11 +434,6 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorManageUserRolesItem.Text = "toolStripButton1";
             this.userTblBindingNavigatorManageUserRolesItem.Click += new System.EventHandler(this.userTblBindingNavigatorManageUserRolesItem_Click);
             // 
-            // departmentVwBindingSource
-            // 
-            this.departmentVwBindingSource.DataMember = "DepartmentVw";
-            this.departmentVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // departmentVwTableAdapter
             // 
             this.departmentVwTableAdapter.ClearBeforeFill = true;
@@ -442,7 +442,7 @@ namespace AssetManagement.Users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 657);
+            this.ClientSize = new System.Drawing.Size(1274, 699);
             this.Controls.Add(this.userGridControl);
             this.Controls.Add(this.userTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -460,11 +460,11 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.userRoleRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).EndInit();
             this.userTblBindingNavigator.ResumeLayout(false);
             this.userTblBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

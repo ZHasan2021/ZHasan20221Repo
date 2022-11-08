@@ -30,6 +30,8 @@ namespace AssetManagement {
         
         private AssetVwDataTable tableAssetVw;
         
+        private AssetVw_AllDataTable tableAssetVw_All;
+        
         private DepartmentVwDataTable tableDepartmentVw;
         
         private FinancialItemVwDataTable tableFinancialItemVw;
@@ -151,6 +153,9 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetVw"] != null)) {
                     base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
+                if ((ds.Tables["AssetVw_All"] != null)) {
+                    base.Tables.Add(new AssetVw_AllDataTable(ds.Tables["AssetVw_All"]));
+                }
                 if ((ds.Tables["DepartmentVw"] != null)) {
                     base.Tables.Add(new DepartmentVwDataTable(ds.Tables["DepartmentVw"]));
                 }
@@ -265,6 +270,16 @@ namespace AssetManagement {
         public AssetVwDataTable AssetVw {
             get {
                 return this.tableAssetVw;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public AssetVw_AllDataTable AssetVw_All {
+            get {
+                return this.tableAssetVw_All;
             }
         }
         
@@ -574,6 +589,9 @@ namespace AssetManagement {
                 if ((ds.Tables["AssetVw"] != null)) {
                     base.Tables.Add(new AssetVwDataTable(ds.Tables["AssetVw"]));
                 }
+                if ((ds.Tables["AssetVw_All"] != null)) {
+                    base.Tables.Add(new AssetVw_AllDataTable(ds.Tables["AssetVw_All"]));
+                }
                 if ((ds.Tables["DepartmentVw"] != null)) {
                     base.Tables.Add(new DepartmentVwDataTable(ds.Tables["DepartmentVw"]));
                 }
@@ -692,6 +710,12 @@ namespace AssetManagement {
             if ((initTable == true)) {
                 if ((this.tableAssetVw != null)) {
                     this.tableAssetVw.InitVars();
+                }
+            }
+            this.tableAssetVw_All = ((AssetVw_AllDataTable)(base.Tables["AssetVw_All"]));
+            if ((initTable == true)) {
+                if ((this.tableAssetVw_All != null)) {
+                    this.tableAssetVw_All.InitVars();
                 }
             }
             this.tableDepartmentVw = ((DepartmentVwDataTable)(base.Tables["DepartmentVw"]));
@@ -867,6 +891,8 @@ namespace AssetManagement {
             base.Tables.Add(this.tableSubDepartmentVw);
             this.tableAssetVw = new AssetVwDataTable();
             base.Tables.Add(this.tableAssetVw);
+            this.tableAssetVw_All = new AssetVw_AllDataTable();
+            base.Tables.Add(this.tableAssetVw_All);
             this.tableDepartmentVw = new DepartmentVwDataTable();
             base.Tables.Add(this.tableDepartmentVw);
             this.tableFinancialItemVw = new FinancialItemVwDataTable();
@@ -1006,6 +1032,12 @@ namespace AssetManagement {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeAssetVw() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeAssetVw_All() {
             return false;
         }
         
@@ -1210,6 +1242,9 @@ namespace AssetManagement {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void AssetVwRowChangeEventHandler(object sender, AssetVwRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void AssetVw_AllRowChangeEventHandler(object sender, AssetVw_AllRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void DepartmentVwRowChangeEventHandler(object sender, DepartmentVwRowChangeEvent e);
@@ -2847,6 +2882,849 @@ namespace AssetManagement {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class AssetVw_AllDataTable : global::System.Data.TypedTableBase<AssetVw_AllRow> {
+            
+            private global::System.Data.DataColumn columnمعرف_الأصل;
+            
+            private global::System.Data.DataColumn columnكود_الأصل;
+            
+            private global::System.Data.DataColumn columnالعدد;
+            
+            private global::System.Data.DataColumn columnالدائرة;
+            
+            private global::System.Data.DataColumn columnالقسم;
+            
+            private global::System.Data.DataColumn columnالوحدة;
+            
+            private global::System.Data.DataColumn columnالساحة;
+            
+            private global::System.Data.DataColumn columnالفئة_الرئيسية;
+            
+            private global::System.Data.DataColumn columnالفئة_الفرعية;
+            
+            private global::System.Data.DataColumn columnمواصفات_الأصل;
+            
+            private global::System.Data.DataColumn columnالموديل;
+            
+            private global::System.Data.DataColumn columnاللون;
+            
+            private global::System.Data.DataColumn _columnالحجم___السعة;
+            
+            private global::System.Data.DataColumn columnتاريخ_الشراء;
+            
+            private global::System.Data.DataColumn columnسعر_الشراء;
+            
+            private global::System.Data.DataColumn columnعملة_سعر_الشراء;
+            
+            private global::System.Data.DataColumn columnمكان_التواجد;
+            
+            private global::System.Data.DataColumn columnحالة_الأصل_الآنية;
+            
+            private global::System.Data.DataColumn columnنسبة_الاستفادة_منه;
+            
+            private global::System.Data.DataColumn columnالسعر_الفعلي_الحالي;
+            
+            private global::System.Data.DataColumn columnعملة_السعر_الفعلي_الحالي;
+            
+            private global::System.Data.DataColumn columnاسم_صاحب_العهدة;
+            
+            private global::System.Data.DataColumn columnتفاصيل_إضافية;
+            
+            private global::System.Data.DataColumn columnملاحظات_أخرى;
+            
+            private global::System.Data.DataColumn columnعنوان_العقار;
+            
+            private global::System.Data.DataColumn columnاسم_المالك;
+            
+            private global::System.Data.DataColumn columnالمستغل_منه;
+            
+            private global::System.Data.DataColumn columnمع_من_ورقة_الملكية;
+            
+            private global::System.Data.DataColumn columnمساحة_العقار;
+            
+            private global::System.Data.DataColumn columnوحدة_مساحة_العقار;
+            
+            private global::System.Data.DataColumn columnرقم_لوحة_المركبة;
+            
+            private global::System.Data.DataColumn columnسنة_صنع_المركبة;
+            
+            private global::System.Data.DataColumn _columnرقم_الهيكل__الشاصيه__للمركبة;
+            
+            private global::System.Data.DataColumn columnرقم_المحرك_للمركبة;
+            
+            private global::System.Data.DataColumn columnمعدل_الإهلاك_للأصل;
+            
+            private global::System.Data.DataColumn columnالعمر_الافتراضي_المتبقي_للأصل;
+            
+            private global::System.Data.DataColumn columnتاريخ_الإدخال;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllDataTable() {
+                this.TableName = "AssetVw_All";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal AssetVw_AllDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected AssetVw_AllDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معرف_الأصلColumn {
+                get {
+                    return this.columnمعرف_الأصل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn كود_الأصلColumn {
+                get {
+                    return this.columnكود_الأصل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn العددColumn {
+                get {
+                    return this.columnالعدد;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الدائرةColumn {
+                get {
+                    return this.columnالدائرة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn القسمColumn {
+                get {
+                    return this.columnالقسم;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الوحدةColumn {
+                get {
+                    return this.columnالوحدة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الساحةColumn {
+                get {
+                    return this.columnالساحة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الفئة_الرئيسيةColumn {
+                get {
+                    return this.columnالفئة_الرئيسية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الفئة_الفرعيةColumn {
+                get {
+                    return this.columnالفئة_الفرعية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn مواصفات_الأصلColumn {
+                get {
+                    return this.columnمواصفات_الأصل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn الموديلColumn {
+                get {
+                    return this.columnالموديل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اللونColumn {
+                get {
+                    return this.columnاللون;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn _الحجم___السعةColumn {
+                get {
+                    return this._columnالحجم___السعة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn تاريخ_الشراءColumn {
+                get {
+                    return this.columnتاريخ_الشراء;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn سعر_الشراءColumn {
+                get {
+                    return this.columnسعر_الشراء;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn عملة_سعر_الشراءColumn {
+                get {
+                    return this.columnعملة_سعر_الشراء;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn مكان_التواجدColumn {
+                get {
+                    return this.columnمكان_التواجد;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn حالة_الأصل_الآنيةColumn {
+                get {
+                    return this.columnحالة_الأصل_الآنية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn نسبة_الاستفادة_منهColumn {
+                get {
+                    return this.columnنسبة_الاستفادة_منه;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn السعر_الفعلي_الحاليColumn {
+                get {
+                    return this.columnالسعر_الفعلي_الحالي;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn عملة_السعر_الفعلي_الحاليColumn {
+                get {
+                    return this.columnعملة_السعر_الفعلي_الحالي;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_صاحب_العهدةColumn {
+                get {
+                    return this.columnاسم_صاحب_العهدة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn تفاصيل_إضافيةColumn {
+                get {
+                    return this.columnتفاصيل_إضافية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ملاحظات_أخرىColumn {
+                get {
+                    return this.columnملاحظات_أخرى;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn عنوان_العقارColumn {
+                get {
+                    return this.columnعنوان_العقار;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn اسم_المالكColumn {
+                get {
+                    return this.columnاسم_المالك;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn المستغل_منهColumn {
+                get {
+                    return this.columnالمستغل_منه;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn مع_من_ورقة_الملكيةColumn {
+                get {
+                    return this.columnمع_من_ورقة_الملكية;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn مساحة_العقارColumn {
+                get {
+                    return this.columnمساحة_العقار;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn وحدة_مساحة_العقارColumn {
+                get {
+                    return this.columnوحدة_مساحة_العقار;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn رقم_لوحة_المركبةColumn {
+                get {
+                    return this.columnرقم_لوحة_المركبة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn سنة_صنع_المركبةColumn {
+                get {
+                    return this.columnسنة_صنع_المركبة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn _رقم_الهيكل__الشاصيه__للمركبةColumn {
+                get {
+                    return this._columnرقم_الهيكل__الشاصيه__للمركبة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn رقم_المحرك_للمركبةColumn {
+                get {
+                    return this.columnرقم_المحرك_للمركبة;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn معدل_الإهلاك_للأصلColumn {
+                get {
+                    return this.columnمعدل_الإهلاك_للأصل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn العمر_الافتراضي_المتبقي_للأصلColumn {
+                get {
+                    return this.columnالعمر_الافتراضي_المتبقي_للأصل;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn تاريخ_الإدخالColumn {
+                get {
+                    return this.columnتاريخ_الإدخال;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRow this[int index] {
+                get {
+                    return ((AssetVw_AllRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event AssetVw_AllRowChangeEventHandler AssetVw_AllRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event AssetVw_AllRowChangeEventHandler AssetVw_AllRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event AssetVw_AllRowChangeEventHandler AssetVw_AllRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event AssetVw_AllRowChangeEventHandler AssetVw_AllRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddAssetVw_AllRow(AssetVw_AllRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRow AddAssetVw_AllRow(
+                        int معرف_الأصل, 
+                        string كود_الأصل, 
+                        int العدد, 
+                        string الدائرة, 
+                        string القسم, 
+                        string الوحدة, 
+                        string الساحة, 
+                        string الفئة_الرئيسية, 
+                        string الفئة_الفرعية, 
+                        string مواصفات_الأصل, 
+                        string الموديل, 
+                        string اللون, 
+                        string _الحجم___السعة, 
+                        System.DateTime تاريخ_الشراء, 
+                        double سعر_الشراء, 
+                        string عملة_سعر_الشراء, 
+                        string مكان_التواجد, 
+                        string حالة_الأصل_الآنية, 
+                        string نسبة_الاستفادة_منه, 
+                        double السعر_الفعلي_الحالي, 
+                        string عملة_السعر_الفعلي_الحالي, 
+                        string اسم_صاحب_العهدة, 
+                        string تفاصيل_إضافية, 
+                        string ملاحظات_أخرى, 
+                        string عنوان_العقار, 
+                        string اسم_المالك, 
+                        string المستغل_منه, 
+                        string مع_من_ورقة_الملكية, 
+                        string مساحة_العقار, 
+                        string وحدة_مساحة_العقار, 
+                        string رقم_لوحة_المركبة, 
+                        int سنة_صنع_المركبة, 
+                        string _رقم_الهيكل__الشاصيه__للمركبة, 
+                        string رقم_المحرك_للمركبة, 
+                        double معدل_الإهلاك_للأصل, 
+                        string العمر_الافتراضي_المتبقي_للأصل, 
+                        System.DateTime تاريخ_الإدخال) {
+                AssetVw_AllRow rowAssetVw_AllRow = ((AssetVw_AllRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        معرف_الأصل,
+                        كود_الأصل,
+                        العدد,
+                        الدائرة,
+                        القسم,
+                        الوحدة,
+                        الساحة,
+                        الفئة_الرئيسية,
+                        الفئة_الفرعية,
+                        مواصفات_الأصل,
+                        الموديل,
+                        اللون,
+                        _الحجم___السعة,
+                        تاريخ_الشراء,
+                        سعر_الشراء,
+                        عملة_سعر_الشراء,
+                        مكان_التواجد,
+                        حالة_الأصل_الآنية,
+                        نسبة_الاستفادة_منه,
+                        السعر_الفعلي_الحالي,
+                        عملة_السعر_الفعلي_الحالي,
+                        اسم_صاحب_العهدة,
+                        تفاصيل_إضافية,
+                        ملاحظات_أخرى,
+                        عنوان_العقار,
+                        اسم_المالك,
+                        المستغل_منه,
+                        مع_من_ورقة_الملكية,
+                        مساحة_العقار,
+                        وحدة_مساحة_العقار,
+                        رقم_لوحة_المركبة,
+                        سنة_صنع_المركبة,
+                        _رقم_الهيكل__الشاصيه__للمركبة,
+                        رقم_المحرك_للمركبة,
+                        معدل_الإهلاك_للأصل,
+                        العمر_الافتراضي_المتبقي_للأصل,
+                        تاريخ_الإدخال};
+                rowAssetVw_AllRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowAssetVw_AllRow);
+                return rowAssetVw_AllRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRow FindByمعرف_الأصل(int معرف_الأصل) {
+                return ((AssetVw_AllRow)(this.Rows.Find(new object[] {
+                            معرف_الأصل})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                AssetVw_AllDataTable cln = ((AssetVw_AllDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new AssetVw_AllDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnمعرف_الأصل = base.Columns["معرف الأصل"];
+                this.columnكود_الأصل = base.Columns["كود الأصل"];
+                this.columnالعدد = base.Columns["العدد"];
+                this.columnالدائرة = base.Columns["الدائرة"];
+                this.columnالقسم = base.Columns["القسم"];
+                this.columnالوحدة = base.Columns["الوحدة"];
+                this.columnالساحة = base.Columns["الساحة"];
+                this.columnالفئة_الرئيسية = base.Columns["الفئة الرئيسية"];
+                this.columnالفئة_الفرعية = base.Columns["الفئة الفرعية"];
+                this.columnمواصفات_الأصل = base.Columns["مواصفات الأصل"];
+                this.columnالموديل = base.Columns["الموديل"];
+                this.columnاللون = base.Columns["اللون"];
+                this._columnالحجم___السعة = base.Columns["الحجم / السعة"];
+                this.columnتاريخ_الشراء = base.Columns["تاريخ الشراء"];
+                this.columnسعر_الشراء = base.Columns["سعر الشراء"];
+                this.columnعملة_سعر_الشراء = base.Columns["عملة سعر الشراء"];
+                this.columnمكان_التواجد = base.Columns["مكان التواجد"];
+                this.columnحالة_الأصل_الآنية = base.Columns["حالة الأصل الآنية"];
+                this.columnنسبة_الاستفادة_منه = base.Columns["نسبة الاستفادة منه"];
+                this.columnالسعر_الفعلي_الحالي = base.Columns["السعر الفعلي الحالي"];
+                this.columnعملة_السعر_الفعلي_الحالي = base.Columns["عملة السعر الفعلي الحالي"];
+                this.columnاسم_صاحب_العهدة = base.Columns["اسم صاحب العهدة"];
+                this.columnتفاصيل_إضافية = base.Columns["تفاصيل إضافية"];
+                this.columnملاحظات_أخرى = base.Columns["ملاحظات أخرى"];
+                this.columnعنوان_العقار = base.Columns["عنوان العقار"];
+                this.columnاسم_المالك = base.Columns["اسم المالك"];
+                this.columnالمستغل_منه = base.Columns["المستغل منه"];
+                this.columnمع_من_ورقة_الملكية = base.Columns["مع من ورقة الملكية"];
+                this.columnمساحة_العقار = base.Columns["مساحة العقار"];
+                this.columnوحدة_مساحة_العقار = base.Columns["وحدة مساحة العقار"];
+                this.columnرقم_لوحة_المركبة = base.Columns["رقم لوحة المركبة"];
+                this.columnسنة_صنع_المركبة = base.Columns["سنة صنع المركبة"];
+                this._columnرقم_الهيكل__الشاصيه__للمركبة = base.Columns["رقم الهيكل (الشاصيه) للمركبة"];
+                this.columnرقم_المحرك_للمركبة = base.Columns["رقم المحرك للمركبة"];
+                this.columnمعدل_الإهلاك_للأصل = base.Columns["معدل الإهلاك للأصل"];
+                this.columnالعمر_الافتراضي_المتبقي_للأصل = base.Columns["العمر الافتراضي المتبقي للأصل"];
+                this.columnتاريخ_الإدخال = base.Columns["تاريخ الإدخال"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnمعرف_الأصل = new global::System.Data.DataColumn("معرف الأصل", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعرف_الأصل);
+                this.columnكود_الأصل = new global::System.Data.DataColumn("كود الأصل", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnكود_الأصل);
+                this.columnالعدد = new global::System.Data.DataColumn("العدد", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالعدد);
+                this.columnالدائرة = new global::System.Data.DataColumn("الدائرة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالدائرة);
+                this.columnالقسم = new global::System.Data.DataColumn("القسم", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالقسم);
+                this.columnالوحدة = new global::System.Data.DataColumn("الوحدة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالوحدة);
+                this.columnالساحة = new global::System.Data.DataColumn("الساحة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالساحة);
+                this.columnالفئة_الرئيسية = new global::System.Data.DataColumn("الفئة الرئيسية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالفئة_الرئيسية);
+                this.columnالفئة_الفرعية = new global::System.Data.DataColumn("الفئة الفرعية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالفئة_الفرعية);
+                this.columnمواصفات_الأصل = new global::System.Data.DataColumn("مواصفات الأصل", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمواصفات_الأصل);
+                this.columnالموديل = new global::System.Data.DataColumn("الموديل", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالموديل);
+                this.columnاللون = new global::System.Data.DataColumn("اللون", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاللون);
+                this._columnالحجم___السعة = new global::System.Data.DataColumn("الحجم / السعة", typeof(string), null, global::System.Data.MappingType.Element);
+                this._columnالحجم___السعة.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnالحجم___السعة");
+                this._columnالحجم___السعة.ExtendedProperties.Add("Generator_UserColumnName", "الحجم / السعة");
+                base.Columns.Add(this._columnالحجم___السعة);
+                this.columnتاريخ_الشراء = new global::System.Data.DataColumn("تاريخ الشراء", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnتاريخ_الشراء);
+                this.columnسعر_الشراء = new global::System.Data.DataColumn("سعر الشراء", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnسعر_الشراء);
+                this.columnعملة_سعر_الشراء = new global::System.Data.DataColumn("عملة سعر الشراء", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnعملة_سعر_الشراء);
+                this.columnمكان_التواجد = new global::System.Data.DataColumn("مكان التواجد", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمكان_التواجد);
+                this.columnحالة_الأصل_الآنية = new global::System.Data.DataColumn("حالة الأصل الآنية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnحالة_الأصل_الآنية);
+                this.columnنسبة_الاستفادة_منه = new global::System.Data.DataColumn("نسبة الاستفادة منه", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnنسبة_الاستفادة_منه);
+                this.columnالسعر_الفعلي_الحالي = new global::System.Data.DataColumn("السعر الفعلي الحالي", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالسعر_الفعلي_الحالي);
+                this.columnعملة_السعر_الفعلي_الحالي = new global::System.Data.DataColumn("عملة السعر الفعلي الحالي", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnعملة_السعر_الفعلي_الحالي);
+                this.columnاسم_صاحب_العهدة = new global::System.Data.DataColumn("اسم صاحب العهدة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_صاحب_العهدة);
+                this.columnتفاصيل_إضافية = new global::System.Data.DataColumn("تفاصيل إضافية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnتفاصيل_إضافية);
+                this.columnملاحظات_أخرى = new global::System.Data.DataColumn("ملاحظات أخرى", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnملاحظات_أخرى);
+                this.columnعنوان_العقار = new global::System.Data.DataColumn("عنوان العقار", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnعنوان_العقار);
+                this.columnاسم_المالك = new global::System.Data.DataColumn("اسم المالك", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnاسم_المالك);
+                this.columnالمستغل_منه = new global::System.Data.DataColumn("المستغل منه", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالمستغل_منه);
+                this.columnمع_من_ورقة_الملكية = new global::System.Data.DataColumn("مع من ورقة الملكية", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمع_من_ورقة_الملكية);
+                this.columnمساحة_العقار = new global::System.Data.DataColumn("مساحة العقار", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمساحة_العقار);
+                this.columnوحدة_مساحة_العقار = new global::System.Data.DataColumn("وحدة مساحة العقار", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnوحدة_مساحة_العقار);
+                this.columnرقم_لوحة_المركبة = new global::System.Data.DataColumn("رقم لوحة المركبة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnرقم_لوحة_المركبة);
+                this.columnسنة_صنع_المركبة = new global::System.Data.DataColumn("سنة صنع المركبة", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnسنة_صنع_المركبة);
+                this._columnرقم_الهيكل__الشاصيه__للمركبة = new global::System.Data.DataColumn("رقم الهيكل (الشاصيه) للمركبة", typeof(string), null, global::System.Data.MappingType.Element);
+                this._columnرقم_الهيكل__الشاصيه__للمركبة.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnرقم_الهيكل__الشاصيه__للمركبة");
+                this._columnرقم_الهيكل__الشاصيه__للمركبة.ExtendedProperties.Add("Generator_UserColumnName", "رقم الهيكل (الشاصيه) للمركبة");
+                base.Columns.Add(this._columnرقم_الهيكل__الشاصيه__للمركبة);
+                this.columnرقم_المحرك_للمركبة = new global::System.Data.DataColumn("رقم المحرك للمركبة", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnرقم_المحرك_للمركبة);
+                this.columnمعدل_الإهلاك_للأصل = new global::System.Data.DataColumn("معدل الإهلاك للأصل", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnمعدل_الإهلاك_للأصل);
+                this.columnالعمر_الافتراضي_المتبقي_للأصل = new global::System.Data.DataColumn("العمر الافتراضي المتبقي للأصل", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnالعمر_الافتراضي_المتبقي_للأصل);
+                this.columnتاريخ_الإدخال = new global::System.Data.DataColumn("تاريخ الإدخال", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnتاريخ_الإدخال);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnمعرف_الأصل}, true));
+                this.columnمعرف_الأصل.AllowDBNull = false;
+                this.columnمعرف_الأصل.Unique = true;
+                this.columnكود_الأصل.MaxLength = 100;
+                this.columnالعدد.AllowDBNull = false;
+                this.columnالدائرة.AllowDBNull = false;
+                this.columnالدائرة.MaxLength = 200;
+                this.columnالقسم.AllowDBNull = false;
+                this.columnالقسم.MaxLength = 100;
+                this.columnالوحدة.AllowDBNull = false;
+                this.columnالوحدة.MaxLength = 100;
+                this.columnالساحة.MaxLength = 100;
+                this.columnالفئة_الرئيسية.AllowDBNull = false;
+                this.columnالفئة_الرئيسية.MaxLength = 200;
+                this.columnالفئة_الفرعية.AllowDBNull = false;
+                this.columnالفئة_الفرعية.MaxLength = 200;
+                this.columnمواصفات_الأصل.MaxLength = 2147483647;
+                this.columnالموديل.MaxLength = 100;
+                this.columnاللون.MaxLength = 50;
+                this._columnالحجم___السعة.MaxLength = 50;
+                this.columnعملة_سعر_الشراء.MaxLength = 100;
+                this.columnمكان_التواجد.AllowDBNull = false;
+                this.columnمكان_التواجد.MaxLength = 100;
+                this.columnحالة_الأصل_الآنية.AllowDBNull = false;
+                this.columnحالة_الأصل_الآنية.MaxLength = 100;
+                this.columnنسبة_الاستفادة_منه.MaxLength = 50;
+                this.columnالسعر_الفعلي_الحالي.AllowDBNull = false;
+                this.columnعملة_السعر_الفعلي_الحالي.MaxLength = 100;
+                this.columnاسم_صاحب_العهدة.MaxLength = 50;
+                this.columnتفاصيل_إضافية.MaxLength = 2147483647;
+                this.columnملاحظات_أخرى.MaxLength = 2147483647;
+                this.columnعنوان_العقار.MaxLength = 200;
+                this.columnاسم_المالك.MaxLength = 200;
+                this.columnالمستغل_منه.MaxLength = 200;
+                this.columnمع_من_ورقة_الملكية.MaxLength = 200;
+                this.columnمساحة_العقار.MaxLength = 50;
+                this.columnوحدة_مساحة_العقار.MaxLength = 100;
+                this.columnرقم_لوحة_المركبة.MaxLength = 20;
+                this._columnرقم_الهيكل__الشاصيه__للمركبة.MaxLength = 50;
+                this.columnرقم_المحرك_للمركبة.MaxLength = 50;
+                this.columnمعدل_الإهلاك_للأصل.AllowDBNull = false;
+                this.columnالعمر_الافتراضي_المتبقي_للأصل.ReadOnly = true;
+                this.columnالعمر_الافتراضي_المتبقي_للأصل.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRow NewAssetVw_AllRow() {
+                return ((AssetVw_AllRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new AssetVw_AllRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(AssetVw_AllRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.AssetVw_AllRowChanged != null)) {
+                    this.AssetVw_AllRowChanged(this, new AssetVw_AllRowChangeEvent(((AssetVw_AllRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.AssetVw_AllRowChanging != null)) {
+                    this.AssetVw_AllRowChanging(this, new AssetVw_AllRowChangeEvent(((AssetVw_AllRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.AssetVw_AllRowDeleted != null)) {
+                    this.AssetVw_AllRowDeleted(this, new AssetVw_AllRowChangeEvent(((AssetVw_AllRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.AssetVw_AllRowDeleting != null)) {
+                    this.AssetVw_AllRowDeleting(this, new AssetVw_AllRowChangeEvent(((AssetVw_AllRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveAssetVw_AllRow(AssetVw_AllRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AssetMngDbDataSet ds = new AssetMngDbDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "AssetVw_AllDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DepartmentVwDataTable : global::System.Data.TypedTableBase<DepartmentVwRow> {
             
             private global::System.Data.DataColumn columnمعرف_القسم;
@@ -4335,6 +5213,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnUserPrefix;
             
+            private global::System.Data.DataColumn columnUserNotes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UserTblDataTable() {
@@ -4426,6 +5306,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn UserNotesColumn {
+                get {
+                    return this.columnUserNotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4461,7 +5349,7 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserTblRow AddUserTblRow(string Username, string Password, UserRoleTblRow parentUserRoleTblRowByFK_UserTbl_UserRoleTbl, System.DateTime PasswordUpdatedOn, DepartmentTblRow parentDepartmentTblRowByFK_UserTbl_DepartmentTbl, string UserPrefix) {
+            public UserTblRow AddUserTblRow(string Username, string Password, UserRoleTblRow parentUserRoleTblRowByFK_UserTbl_UserRoleTbl, System.DateTime PasswordUpdatedOn, DepartmentTblRow parentDepartmentTblRowByFK_UserTbl_DepartmentTbl, string UserPrefix, string UserNotes) {
                 UserTblRow rowUserTblRow = ((UserTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4470,7 +5358,8 @@ namespace AssetManagement {
                         null,
                         PasswordUpdatedOn,
                         null,
-                        UserPrefix};
+                        UserPrefix,
+                        UserNotes};
                 if ((parentUserRoleTblRowByFK_UserTbl_UserRoleTbl != null)) {
                     columnValuesArray[3] = parentUserRoleTblRowByFK_UserTbl_UserRoleTbl[0];
                 }
@@ -4513,6 +5402,7 @@ namespace AssetManagement {
                 this.columnPasswordUpdatedOn = base.Columns["PasswordUpdatedOn"];
                 this.columnUserDept = base.Columns["UserDept"];
                 this.columnUserPrefix = base.Columns["UserPrefix"];
+                this.columnUserNotes = base.Columns["UserNotes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4532,6 +5422,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnUserDept);
                 this.columnUserPrefix = new global::System.Data.DataColumn("UserPrefix", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserPrefix);
+                this.columnUserNotes = new global::System.Data.DataColumn("UserNotes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserNotes);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4547,6 +5439,7 @@ namespace AssetManagement {
                 this.columnUserRole.AllowDBNull = false;
                 this.columnUserDept.AllowDBNull = false;
                 this.columnUserPrefix.MaxLength = 50;
+                this.columnUserNotes.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10881,6 +11774,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnCreateAssetsReports;
             
+            private global::System.Data.DataColumn columnIsSectionIndependent;
+            
             private global::System.Data.DataColumn columnIsDepartmentIndependent;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11318,6 +12213,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IsSectionIndependentColumn {
+                get {
+                    return this.columnIsSectionIndependent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn IsDepartmentIndependentColumn {
                 get {
                     return this.columnIsDepartmentIndependent;
@@ -11411,6 +12314,7 @@ namespace AssetManagement {
                         bool BackupDb, 
                         bool RestoreDb, 
                         bool CreateAssetsReports, 
+                        bool IsSectionIndependent, 
                         bool IsDepartmentIndependent) {
                 UserRoleTblRow rowUserRoleTblRow = ((UserRoleTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -11464,6 +12368,7 @@ namespace AssetManagement {
                         BackupDb,
                         RestoreDb,
                         CreateAssetsReports,
+                        IsSectionIndependent,
                         IsDepartmentIndependent};
                 rowUserRoleTblRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUserRoleTblRow);
@@ -11544,6 +12449,7 @@ namespace AssetManagement {
                 this.columnBackupDb = base.Columns["BackupDb"];
                 this.columnRestoreDb = base.Columns["RestoreDb"];
                 this.columnCreateAssetsReports = base.Columns["CreateAssetsReports"];
+                this.columnIsSectionIndependent = base.Columns["IsSectionIndependent"];
                 this.columnIsDepartmentIndependent = base.Columns["IsDepartmentIndependent"];
             }
             
@@ -11650,6 +12556,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnRestoreDb);
                 this.columnCreateAssetsReports = new global::System.Data.DataColumn("CreateAssetsReports", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateAssetsReports);
+                this.columnIsSectionIndependent = new global::System.Data.DataColumn("IsSectionIndependent", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsSectionIndependent);
                 this.columnIsDepartmentIndependent = new global::System.Data.DataColumn("IsDepartmentIndependent", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsDepartmentIndependent);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -12920,6 +13828,873 @@ namespace AssetManagement {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class AssetVw_AllRow : global::System.Data.DataRow {
+            
+            private AssetVw_AllDataTable tableAssetVw_All;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal AssetVw_AllRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableAssetVw_All = ((AssetVw_AllDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int معرف_الأصل {
+                get {
+                    return ((int)(this[this.tableAssetVw_All.معرف_الأصلColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.معرف_الأصلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string كود_الأصل {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.كود_الأصلColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'كود الأصل\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.كود_الأصلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int العدد {
+                get {
+                    return ((int)(this[this.tableAssetVw_All.العددColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.العددColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الدائرة {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.الدائرةColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.الدائرةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string القسم {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.القسمColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.القسمColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الوحدة {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.الوحدةColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.الوحدةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الساحة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.الساحةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الساحة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.الساحةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الفئة_الرئيسية {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.الفئة_الرئيسيةColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.الفئة_الرئيسيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الفئة_الفرعية {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.الفئة_الفرعيةColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.الفئة_الفرعيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string مواصفات_الأصل {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.مواصفات_الأصلColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'مواصفات الأصل\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.مواصفات_الأصلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string الموديل {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.الموديلColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الموديل\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.الموديلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اللون {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.اللونColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'اللون\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.اللونColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string _الحجم___السعة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All._الحجم___السعةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الحجم / السعة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All._الحجم___السعةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime تاريخ_الشراء {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableAssetVw_All.تاريخ_الشراءColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'تاريخ الشراء\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.تاريخ_الشراءColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double سعر_الشراء {
+                get {
+                    try {
+                        return ((double)(this[this.tableAssetVw_All.سعر_الشراءColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'سعر الشراء\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.سعر_الشراءColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string عملة_سعر_الشراء {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.عملة_سعر_الشراءColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'عملة سعر الشراء\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.عملة_سعر_الشراءColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string مكان_التواجد {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.مكان_التواجدColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.مكان_التواجدColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string حالة_الأصل_الآنية {
+                get {
+                    return ((string)(this[this.tableAssetVw_All.حالة_الأصل_الآنيةColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.حالة_الأصل_الآنيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string نسبة_الاستفادة_منه {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.نسبة_الاستفادة_منهColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'نسبة الاستفادة منه\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.نسبة_الاستفادة_منهColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double السعر_الفعلي_الحالي {
+                get {
+                    return ((double)(this[this.tableAssetVw_All.السعر_الفعلي_الحاليColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.السعر_الفعلي_الحاليColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string عملة_السعر_الفعلي_الحالي {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.عملة_السعر_الفعلي_الحاليColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'عملة السعر الفعلي الحالي\' in table \'AssetVw_All\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.عملة_السعر_الفعلي_الحاليColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_صاحب_العهدة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.اسم_صاحب_العهدةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'اسم صاحب العهدة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.اسم_صاحب_العهدةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string تفاصيل_إضافية {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.تفاصيل_إضافيةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'تفاصيل إضافية\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.تفاصيل_إضافيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ملاحظات_أخرى {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.ملاحظات_أخرىColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ملاحظات أخرى\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.ملاحظات_أخرىColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string عنوان_العقار {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.عنوان_العقارColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'عنوان العقار\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.عنوان_العقارColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string اسم_المالك {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.اسم_المالكColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'اسم المالك\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.اسم_المالكColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string المستغل_منه {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.المستغل_منهColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'المستغل منه\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.المستغل_منهColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string مع_من_ورقة_الملكية {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.مع_من_ورقة_الملكيةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'مع من ورقة الملكية\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.مع_من_ورقة_الملكيةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string مساحة_العقار {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.مساحة_العقارColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'مساحة العقار\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.مساحة_العقارColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string وحدة_مساحة_العقار {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.وحدة_مساحة_العقارColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'وحدة مساحة العقار\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.وحدة_مساحة_العقارColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string رقم_لوحة_المركبة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.رقم_لوحة_المركبةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'رقم لوحة المركبة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.رقم_لوحة_المركبةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int سنة_صنع_المركبة {
+                get {
+                    try {
+                        return ((int)(this[this.tableAssetVw_All.سنة_صنع_المركبةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'سنة صنع المركبة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.سنة_صنع_المركبةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string _رقم_الهيكل__الشاصيه__للمركبة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All._رقم_الهيكل__الشاصيه__للمركبةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'رقم الهيكل (الشاصيه) للمركبة\' in table \'AssetVw_All\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All._رقم_الهيكل__الشاصيه__للمركبةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string رقم_المحرك_للمركبة {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.رقم_المحرك_للمركبةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'رقم المحرك للمركبة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.رقم_المحرك_للمركبةColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double معدل_الإهلاك_للأصل {
+                get {
+                    return ((double)(this[this.tableAssetVw_All.معدل_الإهلاك_للأصلColumn]));
+                }
+                set {
+                    this[this.tableAssetVw_All.معدل_الإهلاك_للأصلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string العمر_الافتراضي_المتبقي_للأصل {
+                get {
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.العمر_الافتراضي_المتبقي_للأصلColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'العمر الافتراضي المتبقي للأصل\' in table \'AssetVw_All\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.العمر_الافتراضي_المتبقي_للأصلColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime تاريخ_الإدخال {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableAssetVw_All.تاريخ_الإدخالColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'تاريخ الإدخال\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAssetVw_All.تاريخ_الإدخالColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isكود_الأصلNull() {
+                return this.IsNull(this.tableAssetVw_All.كود_الأصلColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setكود_الأصلNull() {
+                this[this.tableAssetVw_All.كود_الأصلColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالساحةNull() {
+                return this.IsNull(this.tableAssetVw_All.الساحةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالساحةNull() {
+                this[this.tableAssetVw_All.الساحةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isمواصفات_الأصلNull() {
+                return this.IsNull(this.tableAssetVw_All.مواصفات_الأصلColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setمواصفات_الأصلNull() {
+                this[this.tableAssetVw_All.مواصفات_الأصلColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالموديلNull() {
+                return this.IsNull(this.tableAssetVw_All.الموديلColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالموديلNull() {
+                this[this.tableAssetVw_All.الموديلColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsاللونNull() {
+                return this.IsNull(this.tableAssetVw_All.اللونColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetاللونNull() {
+                this[this.tableAssetVw_All.اللونColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Is_الحجم___السعةNull() {
+                return this.IsNull(this.tableAssetVw_All._الحجم___السعةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Set_الحجم___السعةNull() {
+                this[this.tableAssetVw_All._الحجم___السعةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isتاريخ_الشراءNull() {
+                return this.IsNull(this.tableAssetVw_All.تاريخ_الشراءColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setتاريخ_الشراءNull() {
+                this[this.tableAssetVw_All.تاريخ_الشراءColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isسعر_الشراءNull() {
+                return this.IsNull(this.tableAssetVw_All.سعر_الشراءColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setسعر_الشراءNull() {
+                this[this.tableAssetVw_All.سعر_الشراءColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isعملة_سعر_الشراءNull() {
+                return this.IsNull(this.tableAssetVw_All.عملة_سعر_الشراءColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setعملة_سعر_الشراءNull() {
+                this[this.tableAssetVw_All.عملة_سعر_الشراءColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isنسبة_الاستفادة_منهNull() {
+                return this.IsNull(this.tableAssetVw_All.نسبة_الاستفادة_منهColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setنسبة_الاستفادة_منهNull() {
+                this[this.tableAssetVw_All.نسبة_الاستفادة_منهColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isعملة_السعر_الفعلي_الحاليNull() {
+                return this.IsNull(this.tableAssetVw_All.عملة_السعر_الفعلي_الحاليColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setعملة_السعر_الفعلي_الحاليNull() {
+                this[this.tableAssetVw_All.عملة_السعر_الفعلي_الحاليColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isاسم_صاحب_العهدةNull() {
+                return this.IsNull(this.tableAssetVw_All.اسم_صاحب_العهدةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setاسم_صاحب_العهدةNull() {
+                this[this.tableAssetVw_All.اسم_صاحب_العهدةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isتفاصيل_إضافيةNull() {
+                return this.IsNull(this.tableAssetVw_All.تفاصيل_إضافيةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setتفاصيل_إضافيةNull() {
+                this[this.tableAssetVw_All.تفاصيل_إضافيةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isملاحظات_أخرىNull() {
+                return this.IsNull(this.tableAssetVw_All.ملاحظات_أخرىColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setملاحظات_أخرىNull() {
+                this[this.tableAssetVw_All.ملاحظات_أخرىColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isعنوان_العقارNull() {
+                return this.IsNull(this.tableAssetVw_All.عنوان_العقارColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setعنوان_العقارNull() {
+                this[this.tableAssetVw_All.عنوان_العقارColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isاسم_المالكNull() {
+                return this.IsNull(this.tableAssetVw_All.اسم_المالكColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setاسم_المالكNull() {
+                this[this.tableAssetVw_All.اسم_المالكColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isالمستغل_منهNull() {
+                return this.IsNull(this.tableAssetVw_All.المستغل_منهColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setالمستغل_منهNull() {
+                this[this.tableAssetVw_All.المستغل_منهColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isمع_من_ورقة_الملكيةNull() {
+                return this.IsNull(this.tableAssetVw_All.مع_من_ورقة_الملكيةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setمع_من_ورقة_الملكيةNull() {
+                this[this.tableAssetVw_All.مع_من_ورقة_الملكيةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isمساحة_العقارNull() {
+                return this.IsNull(this.tableAssetVw_All.مساحة_العقارColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setمساحة_العقارNull() {
+                this[this.tableAssetVw_All.مساحة_العقارColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isوحدة_مساحة_العقارNull() {
+                return this.IsNull(this.tableAssetVw_All.وحدة_مساحة_العقارColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setوحدة_مساحة_العقارNull() {
+                this[this.tableAssetVw_All.وحدة_مساحة_العقارColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isرقم_لوحة_المركبةNull() {
+                return this.IsNull(this.tableAssetVw_All.رقم_لوحة_المركبةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setرقم_لوحة_المركبةNull() {
+                this[this.tableAssetVw_All.رقم_لوحة_المركبةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isسنة_صنع_المركبةNull() {
+                return this.IsNull(this.tableAssetVw_All.سنة_صنع_المركبةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setسنة_صنع_المركبةNull() {
+                this[this.tableAssetVw_All.سنة_صنع_المركبةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Is_رقم_الهيكل__الشاصيه__للمركبةNull() {
+                return this.IsNull(this.tableAssetVw_All._رقم_الهيكل__الشاصيه__للمركبةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Set_رقم_الهيكل__الشاصيه__للمركبةNull() {
+                this[this.tableAssetVw_All._رقم_الهيكل__الشاصيه__للمركبةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isرقم_المحرك_للمركبةNull() {
+                return this.IsNull(this.tableAssetVw_All.رقم_المحرك_للمركبةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setرقم_المحرك_للمركبةNull() {
+                this[this.tableAssetVw_All.رقم_المحرك_للمركبةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isالعمر_الافتراضي_المتبقي_للأصلNull() {
+                return this.IsNull(this.tableAssetVw_All.العمر_الافتراضي_المتبقي_للأصلColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setالعمر_الافتراضي_المتبقي_للأصلNull() {
+                this[this.tableAssetVw_All.العمر_الافتراضي_المتبقي_للأصلColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isتاريخ_الإدخالNull() {
+                return this.IsNull(this.tableAssetVw_All.تاريخ_الإدخالColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setتاريخ_الإدخالNull() {
+                this[this.tableAssetVw_All.تاريخ_الإدخالColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class DepartmentVwRow : global::System.Data.DataRow {
             
             private DepartmentVwDataTable tableDepartmentVw;
@@ -13608,6 +15383,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string UserNotes {
+                get {
+                    try {
+                        return ((string)(this[this.tableUserTbl.UserNotesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UserNotes\' in table \'UserTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserTbl.UserNotesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DepartmentTblRow DepartmentTblRow {
                 get {
                     return ((DepartmentTblRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserTbl_DepartmentTbl"])));
@@ -13650,6 +15441,18 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetUserPrefixNull() {
                 this[this.tableUserTbl.UserPrefixColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsUserNotesNull() {
+                return this.IsNull(this.tableUserTbl.UserNotesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetUserNotesNull() {
+                this[this.tableUserTbl.UserNotesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17493,6 +19296,22 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSectionIndependent {
+                get {
+                    try {
+                        return ((bool)(this[this.tableUserRoleTbl.IsSectionIndependentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsSectionIndependent\' in table \'UserRoleTbl\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserRoleTbl.IsSectionIndependentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDepartmentIndependent {
                 get {
                     try {
@@ -18085,6 +19904,18 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIsSectionIndependentNull() {
+                return this.IsNull(this.tableUserRoleTbl.IsSectionIndependentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIsSectionIndependentNull() {
+                this[this.tableUserRoleTbl.IsSectionIndependentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIsDepartmentIndependentNull() {
                 return this.IsNull(this.tableUserRoleTbl.IsDepartmentIndependentColumn);
             }
@@ -18195,6 +20026,40 @@ namespace AssetManagement {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public AssetVwRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class AssetVw_AllRowChangeEvent : global::System.EventArgs {
+            
+            private AssetVw_AllRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRowChangeEvent(AssetVw_AllRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public AssetVw_AllRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -19577,6 +21442,229 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class AssetVw_AllTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public AssetVw_AllTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "AssetVw_All";
+            tableMapping.ColumnMappings.Add("معرف الأصل", "معرف الأصل");
+            tableMapping.ColumnMappings.Add("كود الأصل", "كود الأصل");
+            tableMapping.ColumnMappings.Add("العدد", "العدد");
+            tableMapping.ColumnMappings.Add("الدائرة", "الدائرة");
+            tableMapping.ColumnMappings.Add("القسم", "القسم");
+            tableMapping.ColumnMappings.Add("الوحدة", "الوحدة");
+            tableMapping.ColumnMappings.Add("الساحة", "الساحة");
+            tableMapping.ColumnMappings.Add("الفئة الرئيسية", "الفئة الرئيسية");
+            tableMapping.ColumnMappings.Add("الفئة الفرعية", "الفئة الفرعية");
+            tableMapping.ColumnMappings.Add("مواصفات الأصل", "مواصفات الأصل");
+            tableMapping.ColumnMappings.Add("الموديل", "الموديل");
+            tableMapping.ColumnMappings.Add("اللون", "اللون");
+            tableMapping.ColumnMappings.Add("الحجم / السعة", "الحجم / السعة");
+            tableMapping.ColumnMappings.Add("تاريخ الشراء", "تاريخ الشراء");
+            tableMapping.ColumnMappings.Add("سعر الشراء", "سعر الشراء");
+            tableMapping.ColumnMappings.Add("عملة سعر الشراء", "عملة سعر الشراء");
+            tableMapping.ColumnMappings.Add("مكان التواجد", "مكان التواجد");
+            tableMapping.ColumnMappings.Add("حالة الأصل الآنية", "حالة الأصل الآنية");
+            tableMapping.ColumnMappings.Add("نسبة الاستفادة منه", "نسبة الاستفادة منه");
+            tableMapping.ColumnMappings.Add("السعر الفعلي الحالي", "السعر الفعلي الحالي");
+            tableMapping.ColumnMappings.Add("عملة السعر الفعلي الحالي", "عملة السعر الفعلي الحالي");
+            tableMapping.ColumnMappings.Add("اسم صاحب العهدة", "اسم صاحب العهدة");
+            tableMapping.ColumnMappings.Add("تفاصيل إضافية", "تفاصيل إضافية");
+            tableMapping.ColumnMappings.Add("ملاحظات أخرى", "ملاحظات أخرى");
+            tableMapping.ColumnMappings.Add("عنوان العقار", "عنوان العقار");
+            tableMapping.ColumnMappings.Add("اسم المالك", "اسم المالك");
+            tableMapping.ColumnMappings.Add("المستغل منه", "المستغل منه");
+            tableMapping.ColumnMappings.Add("مع من ورقة الملكية", "مع من ورقة الملكية");
+            tableMapping.ColumnMappings.Add("مساحة العقار", "مساحة العقار");
+            tableMapping.ColumnMappings.Add("وحدة مساحة العقار", "وحدة مساحة العقار");
+            tableMapping.ColumnMappings.Add("رقم لوحة المركبة", "رقم لوحة المركبة");
+            tableMapping.ColumnMappings.Add("سنة صنع المركبة", "سنة صنع المركبة");
+            tableMapping.ColumnMappings.Add("رقم الهيكل (الشاصيه) للمركبة", "رقم الهيكل (الشاصيه) للمركبة");
+            tableMapping.ColumnMappings.Add("رقم المحرك للمركبة", "رقم المحرك للمركبة");
+            tableMapping.ColumnMappings.Add("معدل الإهلاك للأصل", "معدل الإهلاك للأصل");
+            tableMapping.ColumnMappings.Add("العمر الافتراضي المتبقي للأصل", "العمر الافتراضي المتبقي للأصل");
+            tableMapping.ColumnMappings.Add("تاريخ الإدخال", "تاريخ الإدخال");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::AssetManagement.Properties.Settings.Default.AssetMngDbConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT [معرف الأصل], [كود الأصل], العدد, الدائرة, القسم, الوحدة, الساحة, [الفئة الرئيسية], [الفئة الفرعية], [مواصفات الأصل], الموديل, اللون, [الحجم / السعة], [تاريخ الشراء], [سعر الشراء], [عملة سعر الشراء], [مكان التواجد], [حالة الأصل الآنية], [نسبة الاستفادة منه], [السعر الفعلي الحالي], [عملة السعر الفعلي الحالي], [اسم صاحب العهدة], [تفاصيل إضافية], [ملاحظات أخرى], [عنوان العقار], [اسم المالك], [المستغل منه], [مع من ورقة الملكية], [مساحة العقار], [وحدة مساحة العقار], [رقم لوحة المركبة], [سنة صنع المركبة], [رقم الهيكل (الشاصيه) للمركبة], [رقم المحرك للمركبة], [معدل الإهلاك للأصل], [العمر الافتراضي المتبقي للأصل], [تاريخ الإدخال] FROM dbo.AssetVw_All";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AssetMngDbDataSet.AssetVw_AllDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+
+        public virtual int FillByQuery(AssetMngDbDataSet.AssetVw_AllDataTable dataTable, string whereQuery)
+        {
+            int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+            if (whereIndex == -1)
+            {
+                this.CommandCollection[0].CommandText += whereQuery;
+            }
+            else
+            {
+                this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+            }
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true))
+            {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AssetMngDbDataSet.AssetVw_AllDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            AssetMngDbDataSet.AssetVw_AllDataTable dataTable = new AssetMngDbDataSet.AssetVw_AllDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class DepartmentVwTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -20775,6 +22863,7 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             tableMapping.ColumnMappings.Add("PasswordUpdatedOn", "PasswordUpdatedOn");
             tableMapping.ColumnMappings.Add("UserDept", "UserDept");
             tableMapping.ColumnMappings.Add("UserPrefix", "UserPrefix");
+            tableMapping.ColumnMappings.Add("UserNotes", "UserNotes");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -20791,8 +22880,8 @@ SELECT ID, AssetID, FieldChanged, OldValue, NewValue, MovementDate, AssetMovedOn
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserTbl] ([Username], [Password], [UserRole], [PasswordUpdatedOn], [UserDept], [UserPrefix]) VALUES (@Username, @Password, @UserRole, @PasswordUpdatedOn, @UserDept, @UserPrefix);
-SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix FROM UserTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserTbl] ([Username], [Password], [UserRole], [PasswordUpdatedOn], [UserDept], [UserPrefix], [UserNotes]) VALUES (@Username, @Password, @UserRole, @PasswordUpdatedOn, @UserDept, @UserPrefix, @UserNotes);
+SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix, UserNotes FROM UserTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20800,10 +22889,11 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserNotes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserTbl] SET [Username] = @Username, [Password] = @Password, [UserRole] = @UserRole, [PasswordUpdatedOn] = @PasswordUpdatedOn, [UserDept] = @UserDept, [UserPrefix] = @UserPrefix WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept) AND ((@IsNull_UserPrefix = 1 AND [UserPrefix] IS NULL) OR ([UserPrefix] = @Original_UserPrefix)));
-SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix FROM UserTbl WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserTbl] SET [Username] = @Username, [Password] = @Password, [UserRole] = @UserRole, [PasswordUpdatedOn] = @PasswordUpdatedOn, [UserDept] = @UserDept, [UserPrefix] = @UserPrefix, [UserNotes] = @UserNotes WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([UserRole] = @Original_UserRole) AND ((@IsNull_PasswordUpdatedOn = 1 AND [PasswordUpdatedOn] IS NULL) OR ([PasswordUpdatedOn] = @Original_PasswordUpdatedOn)) AND ([UserDept] = @Original_UserDept) AND ((@IsNull_UserPrefix = 1 AND [UserPrefix] IS NULL) OR ([UserPrefix] = @Original_UserPrefix)));
+SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix, UserNotes FROM UserTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20811,6 +22901,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PasswordUpdatedOn", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PasswordUpdatedOn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserDept", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserPrefix", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserNotes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserNotes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -20836,8 +22927,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix " +
-                "FROM dbo.UserTbl";
+            this._commandCollection[0].CommandText = "SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix," +
+                " UserNotes FROM dbo.UserTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -20950,7 +23041,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix) {
+        public virtual int Insert(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, string UserNotes) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -20977,6 +23068,12 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(UserPrefix));
             }
+            if ((UserNotes == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(UserNotes));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -20997,7 +23094,7 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix, int ID) {
+        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, string UserNotes, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix, int ID) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -21024,38 +23121,44 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(UserPrefix));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
+            if ((UserNotes == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(UserNotes));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Username));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Username));
             }
             if ((Original_Password == null)) {
                 throw new global::System.ArgumentNullException("Original_Password");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Password));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Password));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_UserRole));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_UserRole));
             if ((Original_PasswordUpdatedOn.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_PasswordUpdatedOn.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_PasswordUpdatedOn.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_UserDept));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_UserDept));
             if ((Original_UserPrefix == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_UserPrefix));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_UserPrefix));
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21076,8 +23179,8 @@ SELECT ID, Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix) {
-            return this.Update(Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix, Original_ID, Original_Username, Original_Password, Original_UserRole, Original_PasswordUpdatedOn, Original_UserDept, Original_UserPrefix, Original_ID);
+        public virtual int Update(string Username, string Password, int UserRole, global::System.Nullable<global::System.DateTime> PasswordUpdatedOn, int UserDept, string UserPrefix, string UserNotes, int Original_ID, string Original_Username, string Original_Password, int Original_UserRole, global::System.Nullable<global::System.DateTime> Original_PasswordUpdatedOn, int Original_UserDept, string Original_UserPrefix) {
+            return this.Update(Username, Password, UserRole, PasswordUpdatedOn, UserDept, UserPrefix, UserNotes, Original_ID, Original_Username, Original_Password, Original_UserRole, Original_PasswordUpdatedOn, Original_UserDept, Original_UserPrefix, Original_ID);
         }
     }
     
@@ -29439,6 +31542,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             tableMapping.ColumnMappings.Add("BackupDb", "BackupDb");
             tableMapping.ColumnMappings.Add("RestoreDb", "RestoreDb");
             tableMapping.ColumnMappings.Add("CreateAssetsReports", "CreateAssetsReports");
+            tableMapping.ColumnMappings.Add("IsSectionIndependent", "IsSectionIndependent");
             tableMapping.ColumnMappings.Add("IsDepartmentIndependent", "IsDepartmentIndependent");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
@@ -29521,8 +31625,10 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([Re" +
                 "storeDb] = @Original_RestoreDb)) AND ((@IsNull_CreateAssetsReports = 1 AND [Crea" +
                 "teAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAssetsRepo" +
-                "rts)) AND ((@IsNull_IsDepartmentIndependent = 1 AND [IsDepartmentIndependent] IS" +
-                " NULL) OR ([IsDepartmentIndependent] = @Original_IsDepartmentIndependent)))";
+                "rts)) AND ((@IsNull_IsSectionIndependent = 1 AND [IsSectionIndependent] IS NULL)" +
+                " OR ([IsSectionIndependent] = @Original_IsSectionIndependent)) AND ((@IsNull_IsD" +
+                "epartmentIndependent = 1 AND [IsDepartmentIndependent] IS NULL) OR ([IsDepartmen" +
+                "tIndependent] = @Original_IsDepartmentIndependent)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -29622,6 +31728,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreateAssetsReports", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsSectionIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsSectionIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsDepartmentIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
@@ -29639,34 +31747,34 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "], [ManageTransactionTypes], [AddNewFinancialItem], [ManageFinancialItems], [Upd" +
                 "ateExistedFinancialItem], [DeleteFinancialItemRecord], [ViewFinancialReports], [" +
                 "AddNewFinancialItemCategory], [ManageFinancialItemCategories], [SetDateAndTime]," +
-                " [BackupDb], [RestoreDb], [CreateAssetsReports], [IsDepartmentIndependent]) VALU" +
-                "ES (@RoleName, @AddNewAsset, @ManageAssetTbl, @UpdateExistedAsset, @UpdateSubDep" +
-                "artmentForExistedAsset, @DeleteAssetRecord, @ViewAssetsReports, @ViewAssetsStats" +
-                ", @CreateInventoryReport, @AddNewAssetMovement, @ManageAssetMovements, @AddNewAs" +
-                "setTransaction, @ManageAssetTransactions, @ExportAllData, @ImportAllData, @Manag" +
-                "eImportExportTbl, @ManageUsers, @PromoteDb, @AddNewMainCategory, @ManageMainCate" +
-                "gories, @AddNewMinorCategory, @ManageMinorCategories, @AddNewSection, @ManageSec" +
-                "tions, @AddNewDepartment, @ManageDepartments, @AddNewSubDepartment, @ManageSubDe" +
-                "partments, @AddNewSquare, @ManageSquares, @AddNewCurrency, @ManageCurrencies, @A" +
-                "ddNewModel, @ManageModels, @AddNewEstateAreaUnit, @ManageEstateAreaUnits, @AddNe" +
-                "wTransactionType, @ManageTransactionTypes, @AddNewFinancialItem, @ManageFinancia" +
-                "lItems, @UpdateExistedFinancialItem, @DeleteFinancialItemRecord, @ViewFinancialR" +
-                "eports, @AddNewFinancialItemCategory, @ManageFinancialItemCategories, @SetDateAn" +
-                "dTime, @BackupDb, @RestoreDb, @CreateAssetsReports, @IsDepartmentIndependent);\r\n" +
-                "SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubD" +
-                "epartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats," +
-                " CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTr" +
-                "ansaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportEx" +
-                "portTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNe" +
-                "wMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepa" +
-                "rtment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSqua" +
-                "re, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, " +
-                "AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransa" +
-                "ctionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialIte" +
-                "m, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory," +
-                " ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAsset" +
-                "sReports, IsDepartmentIndependent FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY())" +
-                "";
+                " [BackupDb], [RestoreDb], [CreateAssetsReports], [IsSectionIndependent], [IsDepa" +
+                "rtmentIndependent]) VALUES (@RoleName, @AddNewAsset, @ManageAssetTbl, @UpdateExi" +
+                "stedAsset, @UpdateSubDepartmentForExistedAsset, @DeleteAssetRecord, @ViewAssetsR" +
+                "eports, @ViewAssetsStats, @CreateInventoryReport, @AddNewAssetMovement, @ManageA" +
+                "ssetMovements, @AddNewAssetTransaction, @ManageAssetTransactions, @ExportAllData" +
+                ", @ImportAllData, @ManageImportExportTbl, @ManageUsers, @PromoteDb, @AddNewMainC" +
+                "ategory, @ManageMainCategories, @AddNewMinorCategory, @ManageMinorCategories, @A" +
+                "ddNewSection, @ManageSections, @AddNewDepartment, @ManageDepartments, @AddNewSub" +
+                "Department, @ManageSubDepartments, @AddNewSquare, @ManageSquares, @AddNewCurrenc" +
+                "y, @ManageCurrencies, @AddNewModel, @ManageModels, @AddNewEstateAreaUnit, @Manag" +
+                "eEstateAreaUnits, @AddNewTransactionType, @ManageTransactionTypes, @AddNewFinanc" +
+                "ialItem, @ManageFinancialItems, @UpdateExistedFinancialItem, @DeleteFinancialIte" +
+                "mRecord, @ViewFinancialReports, @AddNewFinancialItemCategory, @ManageFinancialIt" +
+                "emCategories, @SetDateAndTime, @BackupDb, @RestoreDb, @CreateAssetsReports, @IsS" +
+                "ectionIndependent, @IsDepartmentIndependent);\r\nSELECT ID, RoleName, AddNewAsset," +
+                " ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteA" +
+                "ssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAss" +
+                "etMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransaction" +
+                "s, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, " +
+                "AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCatego" +
+                "ries, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNew" +
+                "SubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency" +
+                ", ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstat" +
+                "eAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, " +
+                "ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, Vie" +
+                "wFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, S" +
+                "etDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsSectionIndependent, I" +
+                "sDepartmentIndependent FROM UserRoleTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddNewAsset", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddNewAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29717,6 +31825,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BackupDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BackupDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSectionIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
@@ -29746,100 +31855,103 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 "wFinancialReports] = @ViewFinancialReports, [AddNewFinancialItemCategory] = @Add" +
                 "NewFinancialItemCategory, [ManageFinancialItemCategories] = @ManageFinancialItem" +
                 "Categories, [SetDateAndTime] = @SetDateAndTime, [BackupDb] = @BackupDb, [Restore" +
-                "Db] = @RestoreDb, [CreateAssetsReports] = @CreateAssetsReports, [IsDepartmentInd" +
-                "ependent] = @IsDepartmentIndependent WHERE (([ID] = @Original_ID) AND ([RoleName" +
-                "] = @Original_RoleName) AND ((@IsNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL)" +
-                " OR ([AddNewAsset] = @Original_AddNewAsset)) AND ((@IsNull_ManageAssetTbl = 1 AN" +
-                "D [ManageAssetTbl] IS NULL) OR ([ManageAssetTbl] = @Original_ManageAssetTbl)) AN" +
-                "D ((@IsNull_UpdateExistedAsset = 1 AND [UpdateExistedAsset] IS NULL) OR ([Update" +
-                "ExistedAsset] = @Original_UpdateExistedAsset)) AND ((@IsNull_UpdateSubDepartment" +
-                "ForExistedAsset = 1 AND [UpdateSubDepartmentForExistedAsset] IS NULL) OR ([Updat" +
-                "eSubDepartmentForExistedAsset] = @Original_UpdateSubDepartmentForExistedAsset)) " +
-                "AND ((@IsNull_DeleteAssetRecord = 1 AND [DeleteAssetRecord] IS NULL) OR ([Delete" +
-                "AssetRecord] = @Original_DeleteAssetRecord)) AND ((@IsNull_ViewAssetsReports = 1" +
-                " AND [ViewAssetsReports] IS NULL) OR ([ViewAssetsReports] = @Original_ViewAssets" +
-                "Reports)) AND ((@IsNull_ViewAssetsStats = 1 AND [ViewAssetsStats] IS NULL) OR ([" +
-                "ViewAssetsStats] = @Original_ViewAssetsStats)) AND ((@IsNull_CreateInventoryRepo" +
-                "rt = 1 AND [CreateInventoryReport] IS NULL) OR ([CreateInventoryReport] = @Origi" +
-                "nal_CreateInventoryReport)) AND ((@IsNull_AddNewAssetMovement = 1 AND [AddNewAss" +
-                "etMovement] IS NULL) OR ([AddNewAssetMovement] = @Original_AddNewAssetMovement))" +
-                " AND ((@IsNull_ManageAssetMovements = 1 AND [ManageAssetMovements] IS NULL) OR (" +
-                "[ManageAssetMovements] = @Original_ManageAssetMovements)) AND ((@IsNull_AddNewAs" +
-                "setTransaction = 1 AND [AddNewAssetTransaction] IS NULL) OR ([AddNewAssetTransac" +
-                "tion] = @Original_AddNewAssetTransaction)) AND ((@IsNull_ManageAssetTransactions" +
-                " = 1 AND [ManageAssetTransactions] IS NULL) OR ([ManageAssetTransactions] = @Ori" +
-                "ginal_ManageAssetTransactions)) AND ((@IsNull_ExportAllData = 1 AND [ExportAllDa" +
-                "ta] IS NULL) OR ([ExportAllData] = @Original_ExportAllData)) AND ((@IsNull_Impor" +
-                "tAllData = 1 AND [ImportAllData] IS NULL) OR ([ImportAllData] = @Original_Import" +
-                "AllData)) AND ((@IsNull_ManageImportExportTbl = 1 AND [ManageImportExportTbl] IS" +
-                " NULL) OR ([ManageImportExportTbl] = @Original_ManageImportExportTbl)) AND ((@Is" +
-                "Null_ManageUsers = 1 AND [ManageUsers] IS NULL) OR ([ManageUsers] = @Original_Ma" +
-                "nageUsers)) AND ((@IsNull_PromoteDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb]" +
-                " = @Original_PromoteDb)) AND ((@IsNull_AddNewMainCategory = 1 AND [AddNewMainCat" +
-                "egory] IS NULL) OR ([AddNewMainCategory] = @Original_AddNewMainCategory)) AND ((" +
-                "@IsNull_ManageMainCategories = 1 AND [ManageMainCategories] IS NULL) OR ([Manage" +
-                "MainCategories] = @Original_ManageMainCategories)) AND ((@IsNull_AddNewMinorCate" +
-                "gory = 1 AND [AddNewMinorCategory] IS NULL) OR ([AddNewMinorCategory] = @Origina" +
-                "l_AddNewMinorCategory)) AND ((@IsNull_ManageMinorCategories = 1 AND [ManageMinor" +
-                "Categories] IS NULL) OR ([ManageMinorCategories] = @Original_ManageMinorCategori" +
-                "es)) AND ((@IsNull_AddNewSection = 1 AND [AddNewSection] IS NULL) OR ([AddNewSec" +
-                "tion] = @Original_AddNewSection)) AND ((@IsNull_ManageSections = 1 AND [ManageSe" +
-                "ctions] IS NULL) OR ([ManageSections] = @Original_ManageSections)) AND ((@IsNull" +
-                "_AddNewDepartment = 1 AND [AddNewDepartment] IS NULL) OR ([AddNewDepartment] = @" +
-                "Original_AddNewDepartment)) AND ((@IsNull_ManageDepartments = 1 AND [ManageDepar" +
-                "tments] IS NULL) OR ([ManageDepartments] = @Original_ManageDepartments)) AND ((@" +
-                "IsNull_AddNewSubDepartment = 1 AND [AddNewSubDepartment] IS NULL) OR ([AddNewSub" +
-                "Department] = @Original_AddNewSubDepartment)) AND ((@IsNull_ManageSubDepartments" +
-                " = 1 AND [ManageSubDepartments] IS NULL) OR ([ManageSubDepartments] = @Original_" +
-                "ManageSubDepartments)) AND ((@IsNull_AddNewSquare = 1 AND [AddNewSquare] IS NULL" +
-                ") OR ([AddNewSquare] = @Original_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 " +
-                "AND [ManageSquares] IS NULL) OR ([ManageSquares] = @Original_ManageSquares)) AND" +
-                " ((@IsNull_AddNewCurrency = 1 AND [AddNewCurrency] IS NULL) OR ([AddNewCurrency]" +
-                " = @Original_AddNewCurrency)) AND ((@IsNull_ManageCurrencies = 1 AND [ManageCurr" +
-                "encies] IS NULL) OR ([ManageCurrencies] = @Original_ManageCurrencies)) AND ((@Is" +
-                "Null_AddNewModel = 1 AND [AddNewModel] IS NULL) OR ([AddNewModel] = @Original_Ad" +
-                "dNewModel)) AND ((@IsNull_ManageModels = 1 AND [ManageModels] IS NULL) OR ([Mana" +
-                "geModels] = @Original_ManageModels)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND " +
-                "[AddNewEstateAreaUnit] IS NULL) OR ([AddNewEstateAreaUnit] = @Original_AddNewEst" +
-                "ateAreaUnit)) AND ((@IsNull_ManageEstateAreaUnits = 1 AND [ManageEstateAreaUnits" +
-                "] IS NULL) OR ([ManageEstateAreaUnits] = @Original_ManageEstateAreaUnits)) AND (" +
-                "(@IsNull_AddNewTransactionType = 1 AND [AddNewTransactionType] IS NULL) OR ([Add" +
-                "NewTransactionType] = @Original_AddNewTransactionType)) AND ((@IsNull_ManageTran" +
-                "sactionTypes = 1 AND [ManageTransactionTypes] IS NULL) OR ([ManageTransactionTyp" +
-                "es] = @Original_ManageTransactionTypes)) AND ((@IsNull_AddNewFinancialItem = 1 A" +
-                "ND [AddNewFinancialItem] IS NULL) OR ([AddNewFinancialItem] = @Original_AddNewFi" +
-                "nancialItem)) AND ((@IsNull_ManageFinancialItems = 1 AND [ManageFinancialItems] " +
-                "IS NULL) OR ([ManageFinancialItems] = @Original_ManageFinancialItems)) AND ((@Is" +
-                "Null_UpdateExistedFinancialItem = 1 AND [UpdateExistedFinancialItem] IS NULL) OR" +
-                " ([UpdateExistedFinancialItem] = @Original_UpdateExistedFinancialItem)) AND ((@I" +
-                "sNull_DeleteFinancialItemRecord = 1 AND [DeleteFinancialItemRecord] IS NULL) OR " +
-                "([DeleteFinancialItemRecord] = @Original_DeleteFinancialItemRecord)) AND ((@IsNu" +
-                "ll_ViewFinancialReports = 1 AND [ViewFinancialReports] IS NULL) OR ([ViewFinanci" +
-                "alReports] = @Original_ViewFinancialReports)) AND ((@IsNull_AddNewFinancialItemC" +
-                "ategory = 1 AND [AddNewFinancialItemCategory] IS NULL) OR ([AddNewFinancialItemC" +
-                "ategory] = @Original_AddNewFinancialItemCategory)) AND ((@IsNull_ManageFinancial" +
-                "ItemCategories = 1 AND [ManageFinancialItemCategories] IS NULL) OR ([ManageFinan" +
-                "cialItemCategories] = @Original_ManageFinancialItemCategories)) AND ((@IsNull_Se" +
-                "tDateAndTime = 1 AND [SetDateAndTime] IS NULL) OR ([SetDateAndTime] = @Original_" +
-                "SetDateAndTime)) AND ((@IsNull_BackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupD" +
-                "b] = @Original_BackupDb)) AND ((@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) O" +
-                "R ([RestoreDb] = @Original_RestoreDb)) AND ((@IsNull_CreateAssetsReports = 1 AND" +
-                " [CreateAssetsReports] IS NULL) OR ([CreateAssetsReports] = @Original_CreateAsse" +
-                "tsReports)) AND ((@IsNull_IsDepartmentIndependent = 1 AND [IsDepartmentIndepende" +
-                "nt] IS NULL) OR ([IsDepartmentIndependent] = @Original_IsDepartmentIndependent))" +
-                ");\r\nSELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, Update" +
-                "SubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsSt" +
-                "ats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAss" +
-                "etTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImpo" +
-                "rtExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, A" +
-                "ddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNew" +
-                "Department, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNew" +
-                "Square, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageMode" +
-                "ls, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTr" +
-                "ansactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancia" +
-                "lItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCateg" +
-                "ory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateA" +
-                "ssetsReports, IsDepartmentIndependent FROM UserRoleTbl WHERE (ID = @ID)";
+                "Db] = @RestoreDb, [CreateAssetsReports] = @CreateAssetsReports, [IsSectionIndepe" +
+                "ndent] = @IsSectionIndependent, [IsDepartmentIndependent] = @IsDepartmentIndepen" +
+                "dent WHERE (([ID] = @Original_ID) AND ([RoleName] = @Original_RoleName) AND ((@I" +
+                "sNull_AddNewAsset = 1 AND [AddNewAsset] IS NULL) OR ([AddNewAsset] = @Original_A" +
+                "ddNewAsset)) AND ((@IsNull_ManageAssetTbl = 1 AND [ManageAssetTbl] IS NULL) OR (" +
+                "[ManageAssetTbl] = @Original_ManageAssetTbl)) AND ((@IsNull_UpdateExistedAsset =" +
+                " 1 AND [UpdateExistedAsset] IS NULL) OR ([UpdateExistedAsset] = @Original_Update" +
+                "ExistedAsset)) AND ((@IsNull_UpdateSubDepartmentForExistedAsset = 1 AND [UpdateS" +
+                "ubDepartmentForExistedAsset] IS NULL) OR ([UpdateSubDepartmentForExistedAsset] =" +
+                " @Original_UpdateSubDepartmentForExistedAsset)) AND ((@IsNull_DeleteAssetRecord " +
+                "= 1 AND [DeleteAssetRecord] IS NULL) OR ([DeleteAssetRecord] = @Original_DeleteA" +
+                "ssetRecord)) AND ((@IsNull_ViewAssetsReports = 1 AND [ViewAssetsReports] IS NULL" +
+                ") OR ([ViewAssetsReports] = @Original_ViewAssetsReports)) AND ((@IsNull_ViewAsse" +
+                "tsStats = 1 AND [ViewAssetsStats] IS NULL) OR ([ViewAssetsStats] = @Original_Vie" +
+                "wAssetsStats)) AND ((@IsNull_CreateInventoryReport = 1 AND [CreateInventoryRepor" +
+                "t] IS NULL) OR ([CreateInventoryReport] = @Original_CreateInventoryReport)) AND " +
+                "((@IsNull_AddNewAssetMovement = 1 AND [AddNewAssetMovement] IS NULL) OR ([AddNew" +
+                "AssetMovement] = @Original_AddNewAssetMovement)) AND ((@IsNull_ManageAssetMoveme" +
+                "nts = 1 AND [ManageAssetMovements] IS NULL) OR ([ManageAssetMovements] = @Origin" +
+                "al_ManageAssetMovements)) AND ((@IsNull_AddNewAssetTransaction = 1 AND [AddNewAs" +
+                "setTransaction] IS NULL) OR ([AddNewAssetTransaction] = @Original_AddNewAssetTra" +
+                "nsaction)) AND ((@IsNull_ManageAssetTransactions = 1 AND [ManageAssetTransaction" +
+                "s] IS NULL) OR ([ManageAssetTransactions] = @Original_ManageAssetTransactions)) " +
+                "AND ((@IsNull_ExportAllData = 1 AND [ExportAllData] IS NULL) OR ([ExportAllData]" +
+                " = @Original_ExportAllData)) AND ((@IsNull_ImportAllData = 1 AND [ImportAllData]" +
+                " IS NULL) OR ([ImportAllData] = @Original_ImportAllData)) AND ((@IsNull_ManageIm" +
+                "portExportTbl = 1 AND [ManageImportExportTbl] IS NULL) OR ([ManageImportExportTb" +
+                "l] = @Original_ManageImportExportTbl)) AND ((@IsNull_ManageUsers = 1 AND [Manage" +
+                "Users] IS NULL) OR ([ManageUsers] = @Original_ManageUsers)) AND ((@IsNull_Promot" +
+                "eDb = 1 AND [PromoteDb] IS NULL) OR ([PromoteDb] = @Original_PromoteDb)) AND ((@" +
+                "IsNull_AddNewMainCategory = 1 AND [AddNewMainCategory] IS NULL) OR ([AddNewMainC" +
+                "ategory] = @Original_AddNewMainCategory)) AND ((@IsNull_ManageMainCategories = 1" +
+                " AND [ManageMainCategories] IS NULL) OR ([ManageMainCategories] = @Original_Mana" +
+                "geMainCategories)) AND ((@IsNull_AddNewMinorCategory = 1 AND [AddNewMinorCategor" +
+                "y] IS NULL) OR ([AddNewMinorCategory] = @Original_AddNewMinorCategory)) AND ((@I" +
+                "sNull_ManageMinorCategories = 1 AND [ManageMinorCategories] IS NULL) OR ([Manage" +
+                "MinorCategories] = @Original_ManageMinorCategories)) AND ((@IsNull_AddNewSection" +
+                " = 1 AND [AddNewSection] IS NULL) OR ([AddNewSection] = @Original_AddNewSection)" +
+                ") AND ((@IsNull_ManageSections = 1 AND [ManageSections] IS NULL) OR ([ManageSect" +
+                "ions] = @Original_ManageSections)) AND ((@IsNull_AddNewDepartment = 1 AND [AddNe" +
+                "wDepartment] IS NULL) OR ([AddNewDepartment] = @Original_AddNewDepartment)) AND " +
+                "((@IsNull_ManageDepartments = 1 AND [ManageDepartments] IS NULL) OR ([ManageDepa" +
+                "rtments] = @Original_ManageDepartments)) AND ((@IsNull_AddNewSubDepartment = 1 A" +
+                "ND [AddNewSubDepartment] IS NULL) OR ([AddNewSubDepartment] = @Original_AddNewSu" +
+                "bDepartment)) AND ((@IsNull_ManageSubDepartments = 1 AND [ManageSubDepartments] " +
+                "IS NULL) OR ([ManageSubDepartments] = @Original_ManageSubDepartments)) AND ((@Is" +
+                "Null_AddNewSquare = 1 AND [AddNewSquare] IS NULL) OR ([AddNewSquare] = @Original" +
+                "_AddNewSquare)) AND ((@IsNull_ManageSquares = 1 AND [ManageSquares] IS NULL) OR " +
+                "([ManageSquares] = @Original_ManageSquares)) AND ((@IsNull_AddNewCurrency = 1 AN" +
+                "D [AddNewCurrency] IS NULL) OR ([AddNewCurrency] = @Original_AddNewCurrency)) AN" +
+                "D ((@IsNull_ManageCurrencies = 1 AND [ManageCurrencies] IS NULL) OR ([ManageCurr" +
+                "encies] = @Original_ManageCurrencies)) AND ((@IsNull_AddNewModel = 1 AND [AddNew" +
+                "Model] IS NULL) OR ([AddNewModel] = @Original_AddNewModel)) AND ((@IsNull_Manage" +
+                "Models = 1 AND [ManageModels] IS NULL) OR ([ManageModels] = @Original_ManageMode" +
+                "ls)) AND ((@IsNull_AddNewEstateAreaUnit = 1 AND [AddNewEstateAreaUnit] IS NULL) " +
+                "OR ([AddNewEstateAreaUnit] = @Original_AddNewEstateAreaUnit)) AND ((@IsNull_Mana" +
+                "geEstateAreaUnits = 1 AND [ManageEstateAreaUnits] IS NULL) OR ([ManageEstateArea" +
+                "Units] = @Original_ManageEstateAreaUnits)) AND ((@IsNull_AddNewTransactionType =" +
+                " 1 AND [AddNewTransactionType] IS NULL) OR ([AddNewTransactionType] = @Original_" +
+                "AddNewTransactionType)) AND ((@IsNull_ManageTransactionTypes = 1 AND [ManageTran" +
+                "sactionTypes] IS NULL) OR ([ManageTransactionTypes] = @Original_ManageTransactio" +
+                "nTypes)) AND ((@IsNull_AddNewFinancialItem = 1 AND [AddNewFinancialItem] IS NULL" +
+                ") OR ([AddNewFinancialItem] = @Original_AddNewFinancialItem)) AND ((@IsNull_Mana" +
+                "geFinancialItems = 1 AND [ManageFinancialItems] IS NULL) OR ([ManageFinancialIte" +
+                "ms] = @Original_ManageFinancialItems)) AND ((@IsNull_UpdateExistedFinancialItem " +
+                "= 1 AND [UpdateExistedFinancialItem] IS NULL) OR ([UpdateExistedFinancialItem] =" +
+                " @Original_UpdateExistedFinancialItem)) AND ((@IsNull_DeleteFinancialItemRecord " +
+                "= 1 AND [DeleteFinancialItemRecord] IS NULL) OR ([DeleteFinancialItemRecord] = @" +
+                "Original_DeleteFinancialItemRecord)) AND ((@IsNull_ViewFinancialReports = 1 AND " +
+                "[ViewFinancialReports] IS NULL) OR ([ViewFinancialReports] = @Original_ViewFinan" +
+                "cialReports)) AND ((@IsNull_AddNewFinancialItemCategory = 1 AND [AddNewFinancial" +
+                "ItemCategory] IS NULL) OR ([AddNewFinancialItemCategory] = @Original_AddNewFinan" +
+                "cialItemCategory)) AND ((@IsNull_ManageFinancialItemCategories = 1 AND [ManageFi" +
+                "nancialItemCategories] IS NULL) OR ([ManageFinancialItemCategories] = @Original_" +
+                "ManageFinancialItemCategories)) AND ((@IsNull_SetDateAndTime = 1 AND [SetDateAnd" +
+                "Time] IS NULL) OR ([SetDateAndTime] = @Original_SetDateAndTime)) AND ((@IsNull_B" +
+                "ackupDb = 1 AND [BackupDb] IS NULL) OR ([BackupDb] = @Original_BackupDb)) AND ((" +
+                "@IsNull_RestoreDb = 1 AND [RestoreDb] IS NULL) OR ([RestoreDb] = @Original_Resto" +
+                "reDb)) AND ((@IsNull_CreateAssetsReports = 1 AND [CreateAssetsReports] IS NULL) " +
+                "OR ([CreateAssetsReports] = @Original_CreateAssetsReports)) AND ((@IsNull_IsSect" +
+                "ionIndependent = 1 AND [IsSectionIndependent] IS NULL) OR ([IsSectionIndependent" +
+                "] = @Original_IsSectionIndependent)) AND ((@IsNull_IsDepartmentIndependent = 1 A" +
+                "ND [IsDepartmentIndependent] IS NULL) OR ([IsDepartmentIndependent] = @Original_" +
+                "IsDepartmentIndependent)));\r\nSELECT ID, RoleName, AddNewAsset, ManageAssetTbl, U" +
+                "pdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAs" +
+                "setsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, Manage" +
+                "AssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, " +
+                "ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory" +
+                ", ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSectio" +
+                "n, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, Man" +
+                "ageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies" +
+                ", AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNew" +
+                "TransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialIte" +
+                "ms, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports," +
+                " AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, Bac" +
+                "kupDb, RestoreDb, CreateAssetsReports, IsSectionIndependent, IsDepartmentIndepen" +
+                "dent FROM UserRoleTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddNewAsset", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddNewAsset", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29890,6 +32002,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BackupDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BackupDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSectionIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -29989,6 +32102,8 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RestoreDb", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RestoreDb", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CreateAssetsReports", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateAssetsReports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateAssetsReports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsSectionIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsSectionIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSectionIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IsDepartmentIndependent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDepartmentIndependent", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDepartmentIndependent", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -30007,7 +32122,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsDepartmentIndependent FROM dbo.UserRoleTbl";
+            this._commandCollection[0].CommandText = @"SELECT ID, RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsSectionIndependent, IsDepartmentIndependent FROM dbo.UserRoleTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -30119,6 +32234,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
                     global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsSectionIndependent, 
                     global::System.Nullable<bool> Original_IsDepartmentIndependent) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_RoleName == null)) {
@@ -30511,13 +32627,21 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                 this.Adapter.DeleteCommand.Parameters[96].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[97].Value = global::System.DBNull.Value;
             }
-            if ((Original_IsDepartmentIndependent.HasValue == true)) {
+            if ((Original_IsSectionIndependent.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[98].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[99].Value = ((bool)(Original_IsDepartmentIndependent.Value));
+                this.Adapter.DeleteCommand.Parameters[99].Value = ((bool)(Original_IsSectionIndependent.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[98].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[99].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[100].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[101].Value = ((bool)(Original_IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[100].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[101].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -30589,6 +32713,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
                     global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsSectionIndependent, 
                     global::System.Nullable<bool> IsDepartmentIndependent) {
             if ((RoleName == null)) {
                 throw new global::System.ArgumentNullException("RoleName");
@@ -30884,11 +33009,17 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             else {
                 this.Adapter.InsertCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
-            if ((IsDepartmentIndependent.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[49].Value = ((bool)(IsDepartmentIndependent.Value));
+            if ((IsSectionIndependent.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[49].Value = ((bool)(IsSectionIndependent.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            if ((IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[50].Value = ((bool)(IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[50].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -30960,6 +33091,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
                     global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsSectionIndependent, 
                     global::System.Nullable<bool> IsDepartmentIndependent, 
                     int Original_ID, 
                     string Original_RoleName, 
@@ -31011,6 +33143,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
                     global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsSectionIndependent, 
                     global::System.Nullable<bool> Original_IsDepartmentIndependent, 
                     int ID) {
             if ((RoleName == null)) {
@@ -31307,412 +33440,426 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
             else {
                 this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
-            if ((IsDepartmentIndependent.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((bool)(IsDepartmentIndependent.Value));
+            if ((IsSectionIndependent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((bool)(IsSectionIndependent.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[50].Value = ((int)(Original_ID));
+            if ((IsDepartmentIndependent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((bool)(IsDepartmentIndependent.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[50].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(Original_ID));
             if ((Original_RoleName == null)) {
                 throw new global::System.ArgumentNullException("Original_RoleName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((string)(Original_RoleName));
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((string)(Original_RoleName));
             }
             if ((Original_AddNewAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((bool)(Original_AddNewAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((bool)(Original_AddNewAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetTbl.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((bool)(Original_ManageAssetTbl.Value));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((bool)(Original_ManageAssetTbl.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateExistedAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((bool)(Original_UpdateExistedAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((bool)(Original_UpdateExistedAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateSubDepartmentForExistedAsset.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((bool)(Original_UpdateSubDepartmentForExistedAsset.Value));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((bool)(Original_UpdateSubDepartmentForExistedAsset.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[59].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
             }
             if ((Original_DeleteAssetRecord.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((bool)(Original_DeleteAssetRecord.Value));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((bool)(Original_DeleteAssetRecord.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[61].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[62].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewAssetsReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((bool)(Original_ViewAssetsReports.Value));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((bool)(Original_ViewAssetsReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[63].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[64].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewAssetsStats.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((bool)(Original_ViewAssetsStats.Value));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((bool)(Original_ViewAssetsStats.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[65].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[66].Value = global::System.DBNull.Value;
             }
             if ((Original_CreateInventoryReport.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((bool)(Original_CreateInventoryReport.Value));
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((bool)(Original_CreateInventoryReport.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[67].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[68].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewAssetMovement.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((bool)(Original_AddNewAssetMovement.Value));
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((bool)(Original_AddNewAssetMovement.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[69].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[70].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetMovements.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((bool)(Original_ManageAssetMovements.Value));
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((bool)(Original_ManageAssetMovements.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[71].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[72].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewAssetTransaction.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((bool)(Original_AddNewAssetTransaction.Value));
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((bool)(Original_AddNewAssetTransaction.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[73].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[74].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageAssetTransactions.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((bool)(Original_ManageAssetTransactions.Value));
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((bool)(Original_ManageAssetTransactions.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[75].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[76].Value = global::System.DBNull.Value;
             }
             if ((Original_ExportAllData.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((bool)(Original_ExportAllData.Value));
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((bool)(Original_ExportAllData.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[77].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[78].Value = global::System.DBNull.Value;
             }
             if ((Original_ImportAllData.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[79].Value = ((bool)(Original_ImportAllData.Value));
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((bool)(Original_ImportAllData.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[79].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[80].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageImportExportTbl.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((bool)(Original_ManageImportExportTbl.Value));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((bool)(Original_ManageImportExportTbl.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[81].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[82].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageUsers.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((bool)(Original_ManageUsers.Value));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((bool)(Original_ManageUsers.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[83].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[84].Value = global::System.DBNull.Value;
             }
             if ((Original_PromoteDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((bool)(Original_PromoteDb.Value));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((bool)(Original_PromoteDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[85].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[86].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewMainCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((bool)(Original_AddNewMainCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((bool)(Original_AddNewMainCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[87].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[88].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageMainCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((bool)(Original_ManageMainCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((bool)(Original_ManageMainCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[89].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewMinorCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((bool)(Original_AddNewMinorCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((bool)(Original_AddNewMinorCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[91].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageMinorCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[93].Value = ((bool)(Original_ManageMinorCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((bool)(Original_ManageMinorCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[93].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[94].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSection.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((bool)(Original_AddNewSection.Value));
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((bool)(Original_AddNewSection.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[95].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSections.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((bool)(Original_ManageSections.Value));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((bool)(Original_ManageSections.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[97].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewDepartment.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((bool)(Original_AddNewDepartment.Value));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((bool)(Original_AddNewDepartment.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[99].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageDepartments.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((bool)(Original_ManageDepartments.Value));
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[102].Value = ((bool)(Original_ManageDepartments.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[101].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[102].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSubDepartment.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[102].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((bool)(Original_AddNewSubDepartment.Value));
+                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[104].Value = ((bool)(Original_AddNewSubDepartment.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[102].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[103].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[104].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSubDepartments.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((bool)(Original_ManageSubDepartments.Value));
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[106].Value = ((bool)(Original_ManageSubDepartments.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[105].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[106].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewSquare.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[106].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((bool)(Original_AddNewSquare.Value));
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[108].Value = ((bool)(Original_AddNewSquare.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[106].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[107].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[108].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageSquares.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[108].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((bool)(Original_ManageSquares.Value));
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[110].Value = ((bool)(Original_ManageSquares.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[108].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[109].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[110].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewCurrency.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[110].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((bool)(Original_AddNewCurrency.Value));
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[112].Value = ((bool)(Original_AddNewCurrency.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[110].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[111].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[112].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageCurrencies.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[112].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((bool)(Original_ManageCurrencies.Value));
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[114].Value = ((bool)(Original_ManageCurrencies.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[112].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[113].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[114].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewModel.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[114].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((bool)(Original_AddNewModel.Value));
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[116].Value = ((bool)(Original_AddNewModel.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[114].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[115].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[116].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageModels.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[116].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((bool)(Original_ManageModels.Value));
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[118].Value = ((bool)(Original_ManageModels.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[116].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[117].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[118].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewEstateAreaUnit.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[118].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[119].Value = ((bool)(Original_AddNewEstateAreaUnit.Value));
+                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[120].Value = ((bool)(Original_AddNewEstateAreaUnit.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[118].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[119].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[120].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageEstateAreaUnits.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[120].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[121].Value = ((bool)(Original_ManageEstateAreaUnits.Value));
+                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[122].Value = ((bool)(Original_ManageEstateAreaUnits.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[120].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[121].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[122].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewTransactionType.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[122].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[123].Value = ((bool)(Original_AddNewTransactionType.Value));
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[124].Value = ((bool)(Original_AddNewTransactionType.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[122].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[123].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[124].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageTransactionTypes.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[124].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[125].Value = ((bool)(Original_ManageTransactionTypes.Value));
+                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[126].Value = ((bool)(Original_ManageTransactionTypes.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[124].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[125].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[126].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewFinancialItem.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[126].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[127].Value = ((bool)(Original_AddNewFinancialItem.Value));
+                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[128].Value = ((bool)(Original_AddNewFinancialItem.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[126].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[127].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[128].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageFinancialItems.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[128].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[129].Value = ((bool)(Original_ManageFinancialItems.Value));
+                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[130].Value = ((bool)(Original_ManageFinancialItems.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[128].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[129].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[130].Value = global::System.DBNull.Value;
             }
             if ((Original_UpdateExistedFinancialItem.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[130].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[131].Value = ((bool)(Original_UpdateExistedFinancialItem.Value));
+                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[132].Value = ((bool)(Original_UpdateExistedFinancialItem.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[130].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[131].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[132].Value = global::System.DBNull.Value;
             }
             if ((Original_DeleteFinancialItemRecord.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[132].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[133].Value = ((bool)(Original_DeleteFinancialItemRecord.Value));
+                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[134].Value = ((bool)(Original_DeleteFinancialItemRecord.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[132].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[133].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[134].Value = global::System.DBNull.Value;
             }
             if ((Original_ViewFinancialReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[134].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[135].Value = ((bool)(Original_ViewFinancialReports.Value));
+                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[136].Value = ((bool)(Original_ViewFinancialReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[134].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[135].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[136].Value = global::System.DBNull.Value;
             }
             if ((Original_AddNewFinancialItemCategory.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[136].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[137].Value = ((bool)(Original_AddNewFinancialItemCategory.Value));
+                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[138].Value = ((bool)(Original_AddNewFinancialItemCategory.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[136].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[137].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[138].Value = global::System.DBNull.Value;
             }
             if ((Original_ManageFinancialItemCategories.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[138].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[139].Value = ((bool)(Original_ManageFinancialItemCategories.Value));
+                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[140].Value = ((bool)(Original_ManageFinancialItemCategories.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[138].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[139].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[140].Value = global::System.DBNull.Value;
             }
             if ((Original_SetDateAndTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[140].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[141].Value = ((bool)(Original_SetDateAndTime.Value));
+                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[142].Value = ((bool)(Original_SetDateAndTime.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[140].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[141].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[142].Value = global::System.DBNull.Value;
             }
             if ((Original_BackupDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[142].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[143].Value = ((bool)(Original_BackupDb.Value));
+                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[144].Value = ((bool)(Original_BackupDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[142].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[143].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[144].Value = global::System.DBNull.Value;
             }
             if ((Original_RestoreDb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[144].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[145].Value = ((bool)(Original_RestoreDb.Value));
+                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[146].Value = ((bool)(Original_RestoreDb.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[144].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[145].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[146].Value = global::System.DBNull.Value;
             }
             if ((Original_CreateAssetsReports.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[146].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[147].Value = ((bool)(Original_CreateAssetsReports.Value));
+                this.Adapter.UpdateCommand.Parameters[147].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[148].Value = ((bool)(Original_CreateAssetsReports.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[146].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[147].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[147].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[148].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IsSectionIndependent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[149].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[150].Value = ((bool)(Original_IsSectionIndependent.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[149].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[150].Value = global::System.DBNull.Value;
             }
             if ((Original_IsDepartmentIndependent.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[148].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[149].Value = ((bool)(Original_IsDepartmentIndependent.Value));
+                this.Adapter.UpdateCommand.Parameters[151].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[152].Value = ((bool)(Original_IsDepartmentIndependent.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[148].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[149].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[151].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[152].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[150].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[153].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -31783,6 +33930,7 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> BackupDb, 
                     global::System.Nullable<bool> RestoreDb, 
                     global::System.Nullable<bool> CreateAssetsReports, 
+                    global::System.Nullable<bool> IsSectionIndependent, 
                     global::System.Nullable<bool> IsDepartmentIndependent, 
                     int Original_ID, 
                     string Original_RoleName, 
@@ -31834,8 +33982,9 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     global::System.Nullable<bool> Original_BackupDb, 
                     global::System.Nullable<bool> Original_RestoreDb, 
                     global::System.Nullable<bool> Original_CreateAssetsReports, 
+                    global::System.Nullable<bool> Original_IsSectionIndependent, 
                     global::System.Nullable<bool> Original_IsDepartmentIndependent) {
-            return this.Update(RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsDepartmentIndependent, Original_ID, Original_RoleName, Original_AddNewAsset, Original_ManageAssetTbl, Original_UpdateExistedAsset, Original_UpdateSubDepartmentForExistedAsset, Original_DeleteAssetRecord, Original_ViewAssetsReports, Original_ViewAssetsStats, Original_CreateInventoryReport, Original_AddNewAssetMovement, Original_ManageAssetMovements, Original_AddNewAssetTransaction, Original_ManageAssetTransactions, Original_ExportAllData, Original_ImportAllData, Original_ManageImportExportTbl, Original_ManageUsers, Original_PromoteDb, Original_AddNewMainCategory, Original_ManageMainCategories, Original_AddNewMinorCategory, Original_ManageMinorCategories, Original_AddNewSection, Original_ManageSections, Original_AddNewDepartment, Original_ManageDepartments, Original_AddNewSubDepartment, Original_ManageSubDepartments, Original_AddNewSquare, Original_ManageSquares, Original_AddNewCurrency, Original_ManageCurrencies, Original_AddNewModel, Original_ManageModels, Original_AddNewEstateAreaUnit, Original_ManageEstateAreaUnits, Original_AddNewTransactionType, Original_ManageTransactionTypes, Original_AddNewFinancialItem, Original_ManageFinancialItems, Original_UpdateExistedFinancialItem, Original_DeleteFinancialItemRecord, Original_ViewFinancialReports, Original_AddNewFinancialItemCategory, Original_ManageFinancialItemCategories, Original_SetDateAndTime, Original_BackupDb, Original_RestoreDb, Original_CreateAssetsReports, Original_IsDepartmentIndependent, Original_ID);
+            return this.Update(RoleName, AddNewAsset, ManageAssetTbl, UpdateExistedAsset, UpdateSubDepartmentForExistedAsset, DeleteAssetRecord, ViewAssetsReports, ViewAssetsStats, CreateInventoryReport, AddNewAssetMovement, ManageAssetMovements, AddNewAssetTransaction, ManageAssetTransactions, ExportAllData, ImportAllData, ManageImportExportTbl, ManageUsers, PromoteDb, AddNewMainCategory, ManageMainCategories, AddNewMinorCategory, ManageMinorCategories, AddNewSection, ManageSections, AddNewDepartment, ManageDepartments, AddNewSubDepartment, ManageSubDepartments, AddNewSquare, ManageSquares, AddNewCurrency, ManageCurrencies, AddNewModel, ManageModels, AddNewEstateAreaUnit, ManageEstateAreaUnits, AddNewTransactionType, ManageTransactionTypes, AddNewFinancialItem, ManageFinancialItems, UpdateExistedFinancialItem, DeleteFinancialItemRecord, ViewFinancialReports, AddNewFinancialItemCategory, ManageFinancialItemCategories, SetDateAndTime, BackupDb, RestoreDb, CreateAssetsReports, IsSectionIndependent, IsDepartmentIndependent, Original_ID, Original_RoleName, Original_AddNewAsset, Original_ManageAssetTbl, Original_UpdateExistedAsset, Original_UpdateSubDepartmentForExistedAsset, Original_DeleteAssetRecord, Original_ViewAssetsReports, Original_ViewAssetsStats, Original_CreateInventoryReport, Original_AddNewAssetMovement, Original_ManageAssetMovements, Original_AddNewAssetTransaction, Original_ManageAssetTransactions, Original_ExportAllData, Original_ImportAllData, Original_ManageImportExportTbl, Original_ManageUsers, Original_PromoteDb, Original_AddNewMainCategory, Original_ManageMainCategories, Original_AddNewMinorCategory, Original_ManageMinorCategories, Original_AddNewSection, Original_ManageSections, Original_AddNewDepartment, Original_ManageDepartments, Original_AddNewSubDepartment, Original_ManageSubDepartments, Original_AddNewSquare, Original_ManageSquares, Original_AddNewCurrency, Original_ManageCurrencies, Original_AddNewModel, Original_ManageModels, Original_AddNewEstateAreaUnit, Original_ManageEstateAreaUnits, Original_AddNewTransactionType, Original_ManageTransactionTypes, Original_AddNewFinancialItem, Original_ManageFinancialItems, Original_UpdateExistedFinancialItem, Original_DeleteFinancialItemRecord, Original_ViewFinancialReports, Original_AddNewFinancialItemCategory, Original_ManageFinancialItemCategories, Original_SetDateAndTime, Original_BackupDb, Original_RestoreDb, Original_CreateAssetsReports, Original_IsSectionIndependent, Original_IsDepartmentIndependent, Original_ID);
         }
     }
     
@@ -32450,21 +34599,21 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._currencyTblTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._currencyTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._userTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._userTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -32486,39 +34635,21 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._userTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(updatedRows));
+                    result = (result + this._userTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._optionsTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._modelTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._modelTblTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(updatedRows));
+                    result = (result + this._optionsTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -32540,12 +34671,30 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._optionsTblTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._optionsTblTableAdapter.Update(updatedRows));
+                    result = (result + this._assetMovementTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._assetTransactionTblTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._modelTblTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._modelTblTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -32631,19 +34780,19 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._currencyTblTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._currencyTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._userTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._userTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -32663,35 +34812,19 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._userTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(addedRows));
+                    result = (result + this._userTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._optionsTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._modelTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._modelTblTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(addedRows));
+                    result = (result + this._optionsTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -32711,11 +34844,27 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._optionsTblTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._optionsTblTableAdapter.Update(addedRows));
+                    result = (result + this._assetMovementTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._assetTransactionTblTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._modelTblTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._modelTblTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -32729,11 +34878,27 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(AssetMngDbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._optionsTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._modelTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._optionsTblTableAdapter.Update(deletedRows));
+                    result = (result + this._modelTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._assetTransactionTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._assetTransactionTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._assetMovementTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._assetMovementTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -32753,35 +34918,19 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._assetMovementTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetMovementTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._optionsTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.OptionsTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._assetMovementTblTableAdapter.Update(deletedRows));
+                    result = (result + this._optionsTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._modelTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.ModelTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._userTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._modelTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._assetTransactionTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetTransactionTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._assetTransactionTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._assetTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
+                    result = (result + this._userTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -32801,19 +34950,19 @@ SELECT ID, SubDepartmentName, MainDepartment FROM SubDepartmentTbl WHERE (ID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._userTblTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.UserTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userTblTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._currencyTblTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.CurrencyTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._currencyTblTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._assetTblTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AssetTbl.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._assetTblTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

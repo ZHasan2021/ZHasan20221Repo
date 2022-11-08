@@ -58,6 +58,8 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.assetTransactionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTransactionTblTableAdapter();
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
+            this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
             this.assetTransactionTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -71,9 +73,11 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.assetTransactionTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.assetTransactionTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem = new System.Windows.Forms.ToolStripButton();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
-            this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVw_AllTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -86,6 +90,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).BeginInit();
             this.assetTransactionTblBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // assetTransactionGridControl
@@ -95,14 +100,14 @@ namespace AssetManagement.AuxTables
             gridLevelNode1.RelationName = "assetTransactionLevel";
             this.assetTransactionGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.assetTransactionGridControl.Location = new System.Drawing.Point(0, 27);
+            this.assetTransactionGridControl.Location = new System.Drawing.Point(0, 47);
             this.assetTransactionGridControl.MainView = this.assetTransactionGridView;
             this.assetTransactionGridControl.Name = "assetTransactionGridControl";
             this.assetTransactionGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.astRepositoryItemLookUpEdit,
             this.currRepositoryItemLookUpEdit,
             this.trtyRepositoryItemLookUpEdit});
-            this.assetTransactionGridControl.Size = new System.Drawing.Size(1282, 726);
+            this.assetTransactionGridControl.Size = new System.Drawing.Size(1282, 706);
             this.assetTransactionGridControl.TabIndex = 5;
             this.assetTransactionGridControl.UseEmbeddedNavigator = true;
             this.assetTransactionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -136,6 +141,9 @@ namespace AssetManagement.AuxTables
             this.colAssetTransactionUniqueKey});
             this.assetTransactionGridView.GridControl = this.assetTransactionGridControl;
             this.assetTransactionGridView.Name = "assetTransactionGridView";
+            this.assetTransactionGridView.OptionsBehavior.Editable = false;
+            this.assetTransactionGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTransactionGridView_RowClick);
+            this.assetTransactionGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTransactionGridView_RowCellClick);
             // 
             // colID
             // 
@@ -171,7 +179,7 @@ namespace AssetManagement.AuxTables
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("الفئة الرئيسية", "الفئة الرئيسية", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("الفئة الفرعية", "الفئة الفرعية", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("مواصفات الأصل", "مواصفات الأصل", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.astRepositoryItemLookUpEdit.DataSource = this.assetVwBindingSource;
+            this.astRepositoryItemLookUpEdit.DataSource = this.assetVwAllBindingSource;
             this.astRepositoryItemLookUpEdit.DisplayMember = "كود الأصل";
             this.astRepositoryItemLookUpEdit.Name = "astRepositoryItemLookUpEdit";
             this.astRepositoryItemLookUpEdit.PopupWidth = 800;
@@ -352,6 +360,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -369,13 +378,21 @@ namespace AssetManagement.AuxTables
             // 
             this.assetTransactionTblTableAdapter.ClearBeforeFill = true;
             // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // transactionTypeTblTableAdapter
+            // 
+            this.transactionTypeTblTableAdapter.ClearBeforeFill = true;
+            // 
             // assetTransactionTblBindingNavigator
             // 
             this.assetTransactionTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
             this.assetTransactionTblBindingNavigator.BindingSource = this.assetTransactionTblBindingSource;
             this.assetTransactionTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.assetTransactionTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.assetTransactionTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.assetTransactionTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.assetTransactionTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -388,7 +405,9 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.assetTransactionTblBindingNavigatorSaveItem});
+            this.assetTransactionTblBindingNavigatorSaveItem,
+            this.assetTransactionTblBindingNavigatorExportToExcelItem,
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem});
             this.assetTransactionTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.assetTransactionTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetTransactionTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -396,7 +415,7 @@ namespace AssetManagement.AuxTables
             this.assetTransactionTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.assetTransactionTblBindingNavigator.Name = "assetTransactionTblBindingNavigator";
             this.assetTransactionTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.assetTransactionTblBindingNavigator.Size = new System.Drawing.Size(1282, 27);
+            this.assetTransactionTblBindingNavigator.Size = new System.Drawing.Size(1282, 47);
             this.assetTransactionTblBindingNavigator.TabIndex = 4;
             this.assetTransactionTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -406,13 +425,14 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 44);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -422,8 +442,9 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Visible = false;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -431,7 +452,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -440,13 +461,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -461,7 +482,7 @@ namespace AssetManagement.AuxTables
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -469,7 +490,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -478,34 +499,56 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
             // assetTransactionTblBindingNavigatorSaveItem
             // 
             this.assetTransactionTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.assetTransactionTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("assetTransactionTblBindingNavigatorSaveItem.Image")));
             this.assetTransactionTblBindingNavigatorSaveItem.Name = "assetTransactionTblBindingNavigatorSaveItem";
-            this.assetTransactionTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.assetTransactionTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(44, 44);
             this.assetTransactionTblBindingNavigatorSaveItem.Text = "Save Data";
+            this.assetTransactionTblBindingNavigatorSaveItem.Visible = false;
             this.assetTransactionTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorSaveItem_Click);
+            // 
+            // assetTransactionTblBindingNavigatorExportToExcelItem
+            // 
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.Image = global::AssetManagement.Properties.Resources._36435172;
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.Name = "assetTransactionTblBindingNavigatorExportToExcelItem";
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.Size = new System.Drawing.Size(44, 44);
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى اكسل";
+            this.assetTransactionTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorExportToExcelItem_Click);
+            // 
+            // assetTransactionTblBindingNavigatorViewAssetCardItem
+            // 
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Image = global::AssetManagement.Properties.Resources._8341961;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Name = "assetTransactionTblBindingNavigatorViewAssetCardItem";
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Size = new System.Drawing.Size(44, 44);
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Text = "عرض بطاقة الأصل";
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorViewAssetCardItem_Click);
             // 
             // assetVwTableAdapter
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
-            // currencyTblTableAdapter
+            // assetVwAllBindingSource
             // 
-            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // transactionTypeTblTableAdapter
+            // assetVw_AllTableAdapter
             // 
-            this.transactionTypeTblTableAdapter.ClearBeforeFill = true;
+            this.assetVw_AllTableAdapter.ClearBeforeFill = true;
             // 
             // ManageAssetTransactionTblForm
             // 
@@ -534,6 +577,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).EndInit();
             this.assetTransactionTblBindingNavigator.ResumeLayout(false);
             this.assetTransactionTblBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -582,5 +626,9 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit trtyRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource transactionTypeTblBindingSource;
         private AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter transactionTypeTblTableAdapter;
+        private System.Windows.Forms.ToolStripButton assetTransactionTblBindingNavigatorExportToExcelItem;
+        private System.Windows.Forms.ToolStripButton assetTransactionTblBindingNavigatorViewAssetCardItem;
+        private System.Windows.Forms.BindingSource assetVwAllBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter assetVw_AllTableAdapter;
     }
 }

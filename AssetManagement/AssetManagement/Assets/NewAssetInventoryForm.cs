@@ -66,11 +66,13 @@ namespace AssetManagement.Assets
         private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             searchByDepartmentLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
         }
 
         private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            searchBySectionLookUpEdit_EditValueChanged(sender, e);
         }
 
         private void searchBySquareCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -348,7 +350,7 @@ namespace AssetManagement.Assets
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
             astWs.View.RightToLeft = true;
-            List<int> columnsWidths = new List<int>() { 8, 15, 40, 8, 20, 25, 12, 15, 12, 12, 10, 10, 15, 15, 15, 12, 12, 20, 15, 12, 18, 15, 15, 20, 15, 15, 15, 10, 25 };
+            List<int> columnsWidths = new List<int>() { 8, 15, 40, 8, 20, 25, 12, 15, 12, 12, 10, 10, 15, 15, 15, 12, 12, 20, 15, 15, 12, 18, 15, 15, 20, 15, 15, 15, 10, 25 };
             List<string> columnsTitles = new List<string>()
             {
                 "التسلسل",
@@ -369,16 +371,17 @@ namespace AssetManagement.Assets
                 "تاريخ الشراء",
                 "قيمة الشراء",
                 "مكان وجوده",
+                "الساحة",
                 "العمر الافتراضي المتبقي",
                 "حالته الآنية",
                 "مدى الاستفاده الحالية منه",
                 "قيمته الفعلية الحالية",
                 "صاحب العهدة",
                 "إضافات أخرى",
-                "ما أتلف سابقاً",
-                "ما تم تحويله سابقاً",
-                "ما بيع سابقاً",
-                "الرصيد",
+                "ما تم تصريفه",
+                "ما تم نقله",
+                "ما تم بيعه",
+                "معدل الإهلاك",
                 "ملاحظات",
             };
             List<int> hiddenCols = new List<int>() { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
@@ -602,17 +605,18 @@ namespace AssetManagement.Assets
                     astWs.Cells[currentRow, 17].Value = oneAst.PurchaseDate?.ToShortDateString();
                     astWs.Cells[currentRow, 18].Value = $"{oneAst.PurchasePrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName}";
                     astWs.Cells[currentRow, 19].Value = oneAst.PlaceOfPresence;
-                    astWs.Cells[currentRow, 20].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";
-                    astWs.Cells[currentRow, 21].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
-                    astWs.Cells[currentRow, 22].Value = oneAst.BenefitPercentage;
-                    astWs.Cells[currentRow, 23].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
-                    astWs.Cells[currentRow, 24].Value = oneAst.CustodianName;
-                    astWs.Cells[currentRow, 25].Value = oneAst.MoreDetails;
-                    astWs.Cells[currentRow, 26].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && astt1.GetAssetOutOfWork == true);
-                    astWs.Cells[currentRow, 27].Value = StaticCode.mainDbContext.AssetMovementTbls.Count(astm1 => astm1.AssetID == oneAst.ID);
-                    astWs.Cells[currentRow, 28].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).ToList().Contains(astt1.TransactionType));
-                    astWs.Cells[currentRow, 29].Value = oneAst.DestructionRate;
-                    astWs.Cells[currentRow, 30].Value = oneAst.AssetNotes;
+                    astWs.Cells[currentRow, 20].Value = StaticCode.mainDbContext.SquareTbls.Single(sqr1 => sqr1.ID == oneAst.AssetSquare).SquareName;
+                    astWs.Cells[currentRow, 21].Value = $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر";
+                    astWs.Cells[currentRow, 22].Value = StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName;
+                    astWs.Cells[currentRow, 23].Value = oneAst.BenefitPercentage;
+                    astWs.Cells[currentRow, 24].Value = $"{oneAst.ActualCurrentPrice} {StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName}";
+                    astWs.Cells[currentRow, 25].Value = oneAst.CustodianName;
+                    astWs.Cells[currentRow, 26].Value = oneAst.MoreDetails;
+                    astWs.Cells[currentRow, 27].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && astt1.GetAssetOutOfWork == true);
+                    astWs.Cells[currentRow, 28].Value = StaticCode.mainDbContext.AssetMovementTbls.Count(astm1 => astm1.AssetID == oneAst.ID);
+                    astWs.Cells[currentRow, 29].Value = StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).ToList().Contains(astt1.TransactionType));
+                    astWs.Cells[currentRow, 30].Value = oneAst.DestructionRate;
+                    astWs.Cells[currentRow, 31].Value = oneAst.AssetNotes;
 
                     currentRow++;
                     astCount++;
@@ -667,26 +671,47 @@ namespace AssetManagement.Assets
 
         private void searchBySectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            //if (searchBySectionCheckBox.Checked)
-            //{
-            //    if (searchBySectionLookUpEdit.EditValue == null)
-            //        return;
-            //    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
-            //    searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
-            //    searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
-            //    searchBySubDepartmentLookUpEdit.EditValue = null;
-            //}
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                    return;
+                var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
+                searchByDepartmentLookUpEdit_EditValueChanged(sender, e);
+                searchBySubDepartmentLookUpEdit.EditValue = null;
+            }
+            else
+            {
+                this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
+            }
         }
 
         private void searchByDepartmentLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            //if (searchByDepartmentCheckBox.Checked)
-            //{
-            //    if (searchByDepartmentLookUpEdit.EditValue == null)
-            //        return;
-            //    var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
-            //    searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
-            //}
+            if (searchByDepartmentCheckBox.Checked)
+            {
+                if (searchByDepartmentLookUpEdit.EditValue == null)
+                    return;
+                var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+                searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+            }
+            else
+            {
+                if (searchBySectionCheckBox.Checked)
+                {
+                    if (searchBySectionLookUpEdit.EditValue == null)
+                        return;
+                    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                    List<int> dptIds = deptItems.Select(dpt2 => dpt2.ID).ToList();
+                    var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment));
+                    int jj = subDeptItems.Count();
+                    searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+                }
+                else
+                {
+                    this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+                }
+            }
         }
     }
 }

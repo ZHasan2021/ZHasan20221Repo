@@ -278,6 +278,7 @@ namespace AssetManagement.Finance
                         MessageBox.Show("هذا البند المالي يوصف على أنه أصل ثابت، الرجاء إدخال كافة بيانات الأصل ", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         AddNewAssetForm astFrm = new AddNewAssetForm();
                         astFrm.ShowDialog();
+                        addNewFinancialItemBtn_OK.Enabled = AddNewAssetForm.AssetAdded;
                     }
                     else
                     {

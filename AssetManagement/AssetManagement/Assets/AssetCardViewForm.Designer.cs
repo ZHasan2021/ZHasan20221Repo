@@ -121,6 +121,8 @@ namespace AssetManagement.Assets
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVw_AllTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
@@ -164,6 +166,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // assetMngDbDataSet
@@ -294,12 +297,15 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
@@ -307,7 +313,7 @@ namespace AssetManagement.Assets
             // 
             // assetVwGridControl
             // 
-            this.assetVwGridControl.DataSource = this.assetVwBindingSource;
+            this.assetVwGridControl.DataSource = this.assetVwAllBindingSource;
             this.assetVwGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assetVwGridControl.Location = new System.Drawing.Point(0, 39);
             this.assetVwGridControl.MainView = this.assetLayoutView;
@@ -987,6 +993,15 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
+            // assetVwAllBindingSource
+            // 
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetVw_AllTableAdapter
+            // 
+            this.assetVw_AllTableAdapter.ClearBeforeFill = true;
+            // 
             // AssetCardViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1053,6 +1068,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1149,5 +1165,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.LayoutViewColumn colالعمرالافتراضيالمتبقيللأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colالعمرالافتراضيالمتبقيللأصل;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
+        private System.Windows.Forms.BindingSource assetVwAllBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter assetVw_AllTableAdapter;
     }
 }

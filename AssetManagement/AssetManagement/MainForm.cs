@@ -38,6 +38,8 @@ namespace AssetManagement
 
             activeUserToolStripStatusLabel.Text = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
             activeUserRoleToolStripStatusLabel.Text = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
+            activeUserDeptToolStripStatusLabel.Text = $"القسم الذي يتبع له الحساب النشط: ( {StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
+            mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
             StaticCode.mainDbContext.SubmitChanges();
 
             addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -231,6 +233,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void loginBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            StaticCode.activeUser.UserNotes = mainMemoEdit.EditValue?.ToString();
+            StaticCode.mainDbContext.SubmitChanges();
             LoginForm logFrm = new LoginForm();
             DialogResult logResult = logFrm.ShowDialog();
             if (logResult == DialogResult.OK)
@@ -249,6 +253,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            StaticCode.activeUser.UserNotes = mainMemoEdit.EditValue?.ToString();
+            StaticCode.mainDbContext.SubmitChanges();
             if (MessageBox.Show("هل تريد بالتاكيد إغلاق البرنامج؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 e.Cancel = false;
@@ -429,44 +435,17 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3).Select(cl2 => cl2.Value?.ToString()).ToList();
             List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             bool updateExistedAssets = false;
-            if(existedCodes.Count()>0)
+            if (existedCodes.Count() > 0)
             {
                 updateExistedAssets = MessageBox.Show("هناك بعض الأصول موجودة مسبقاً في سجلات الأصول، هل تريد تحديث معلوماتها؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
 
-            int errorCat = -1;
-            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorCat);
+            string errorMsgOut = "";
+            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
             if (importingReport == null)
             {
-                if (errorCat == 1)
-                {
-                    mainMemoEdit.Text = "مسار الملف غير صحيح";
-                    mainAlertControl.Show(this, "مسار الملف غير صحيح", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (errorCat == 2)
-                {
-                    mainMemoEdit.Text = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً";
-                    mainAlertControl.Show(this, "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (errorCat == 3)
-                {
-                    mainMemoEdit.Text = "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد";
-                    mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للأصول وفق النموذج المعتمد", StaticCode.ApplicationTitle);
-                    return;
-                }
-            }
-            if (errorCat == 4 && importingReport.Count() > 0)
-            {
-                string tmp = "";
-                foreach (string oneItem in importingReport)
-                {
-                    tmp += oneItem + "\r\n";
-                }
-                string importingReportStr = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
-                mainMemoEdit.Text = importingReportStr;
-                mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
+                mainMemoEdit.Text = errorMsgOut;
+                mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
                 return;
             }
             else

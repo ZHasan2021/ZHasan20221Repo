@@ -27,6 +27,8 @@ namespace AssetManagement.Assets
 
         private void AssetCardViewForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw_All' table. You can move, or remove it, as needed.
+            this.assetVw_AllTableAdapter.Fill(this.assetMngDbDataSet.AssetVw_All);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             this.MinimumSize = this.Size;
@@ -34,7 +36,7 @@ namespace AssetManagement.Assets
             if (assetID != 0)
             {
                 string plusQry = $" WHERE [معرف الأصل] = ({assetID});";
-                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+                AssetVw_AllDataTable customVw = this.assetMngDbDataSet.AssetVw_All;
                 for (int i = 0; i < customVw.Rows.Count; i++)
                 {
                     try
@@ -49,7 +51,7 @@ namespace AssetManagement.Assets
                         continue;
                     }
                 }
-                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+                this.assetVw_AllTableAdapter.FillByQuery(customVw, plusQry);
             }
         }
 

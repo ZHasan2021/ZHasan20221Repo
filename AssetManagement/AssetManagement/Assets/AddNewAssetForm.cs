@@ -16,6 +16,8 @@ namespace AssetManagement.Assets
         double assetDesRate = 0;
         int assetProdAge = 0;
 
+        public static bool AssetAdded = false;
+
         public AddNewAssetForm()
         {
             InitializeComponent();
@@ -166,7 +168,8 @@ namespace AssetManagement.Assets
             {
                 AssetTbl newAssetRecord = new AssetTbl()
                 {
-                    AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
+                    //AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
+                    AssetCode = assetCodeTextBox.Text.Trim(),
                     IsOldOrNewAsset = (isNewAssetRadioButton.Checked) ? "جديد" : "قديم",
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
@@ -212,8 +215,8 @@ namespace AssetManagement.Assets
                         FinancialItemCategory = Convert.ToInt32(assetFinancialItemCategoryLookUpEdit.EditValue),
                         FinancialItemInsertionDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
                         IncomingOrOutgoing = "صادر",
-                        IncomingAmount = Convert.ToDouble(purchasePriceNumericUpDown.Value),
-                        OutgoingAmount = 0,
+                        OutgoingAmount = Convert.ToDouble(purchasePriceNumericUpDown.Value),
+                        IncomingAmount = 0,
                         FinancialItemCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue),
                         FinancialItemDescription = "شراء أصل",
                         AdditionalNotes = $"شراء أصل من فئة {mainCategoryLookUpEdit.Text}-{minorCategoryLookUpEdit.Text} الذي يحمل الكود {newAssetRecord.AssetCode}",
@@ -221,12 +224,14 @@ namespace AssetManagement.Assets
                 }
                 StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;
+                AssetAdded = true;
                 e.Cancel = false;
             }
             catch (Exception ex)
             {
                 string fff = ex.Message;
                 mainAlertControl.Show(this, "خطأ في بعص الإدخالات، تأكد ثانية من القيم", StaticCode.ApplicationTitle);
+                AssetAdded = false;
                 e.Cancel = true;
             }
             progressPanel1.Visible = false;

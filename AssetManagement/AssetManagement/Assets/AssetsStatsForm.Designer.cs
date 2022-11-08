@@ -220,6 +220,7 @@ namespace AssetManagement.Assets
             this.aggregateStatTypeRepositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.byFieldBarEditItem = new DevExpress.XtraBars.BarEditItem();
             this.byFieldRepositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.viewStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.chartRibbonPageCategory1 = new DevExpress.XtraCharts.UI.ChartRibbonPageCategory();
             this.selectStatRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.statTypeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -279,7 +280,6 @@ namespace AssetManagement.Assets
             this.minorCategoryVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
-            this.viewStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
@@ -1164,6 +1164,15 @@ namespace AssetManagement.Assets
             "القسم وحالة الأصل"});
             this.byFieldRepositoryItemComboBox.Name = "byFieldRepositoryItemComboBox";
             // 
+            // viewStatsBarButtonItem
+            // 
+            this.viewStatsBarButtonItem.Caption = "عرض الإحصائيات";
+            this.viewStatsBarButtonItem.Id = 44;
+            this.viewStatsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2922838;
+            this.viewStatsBarButtonItem.Name = "viewStatsBarButtonItem";
+            this.viewStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.viewStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewStatsBarButtonItem_ItemClick);
+            // 
             // chartRibbonPageCategory1
             // 
             this.chartRibbonPageCategory1.Control = this.mainChartControl;
@@ -1545,6 +1554,7 @@ namespace AssetManagement.Assets
             this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchByDepartmentLookUpEdit.TabIndex = 269;
             this.searchByDepartmentLookUpEdit.Visible = false;
+            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentLookUpEdit_EditValueChanged);
             // 
             // departmentTblBindingSource
             // 
@@ -1794,6 +1804,7 @@ namespace AssetManagement.Assets
             this.searchBySectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchBySectionLookUpEdit.TabIndex = 267;
             this.searchBySectionLookUpEdit.Visible = false;
+            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionLookUpEdit_EditValueChanged);
             // 
             // sectionTblBindingSource
             // 
@@ -1828,15 +1839,6 @@ namespace AssetManagement.Assets
             // minorCategoryTblTableAdapter
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // viewStatsBarButtonItem
-            // 
-            this.viewStatsBarButtonItem.Caption = "عرض الإحصائيات";
-            this.viewStatsBarButtonItem.Id = 44;
-            this.viewStatsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2922838;
-            this.viewStatsBarButtonItem.Name = "viewStatsBarButtonItem";
-            this.viewStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.viewStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewStatsBarButtonItem_ItemClick);
             // 
             // AssetsStatsForm
             // 
