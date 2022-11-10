@@ -67,6 +67,18 @@ namespace AssetManagement.Finance
             }
             else
             {
+                if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                {
+                    try
+                    {
+                        financialItemSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                        financialItemSectionLookUpEdit.Enabled = false;
+                    }
+                    catch
+                    {
+
+                    }
+                }
                 if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
                 {
                     try

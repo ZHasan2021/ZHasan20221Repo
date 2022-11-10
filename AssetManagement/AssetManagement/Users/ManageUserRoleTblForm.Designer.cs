@@ -88,6 +88,7 @@ namespace AssetManagement.Users
             this.colBackupDb = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRestoreDb = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCreateAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsDepartmentIndependent = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.userRoleTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter();
@@ -104,7 +105,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.colIsDepartmentIndependent = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsSectionIndependent = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -192,6 +193,7 @@ namespace AssetManagement.Users
             this.colBackupDb,
             this.colRestoreDb,
             this.colCreateAssetsReports,
+            this.colIsSectionIndependent,
             this.colIsDepartmentIndependent});
             this.userRoleGridView.GridControl = this.userRoleGridControl;
             this.userRoleGridView.Name = "userRoleGridView";
@@ -694,6 +696,16 @@ namespace AssetManagement.Users
             this.colCreateAssetsReports.VisibleIndex = 47;
             this.colCreateAssetsReports.Width = 150;
             // 
+            // colIsDepartmentIndependent
+            // 
+            this.colIsDepartmentIndependent.Caption = "الحساب لا يتبع لقسم محدد";
+            this.colIsDepartmentIndependent.FieldName = "IsDepartmentIndependent";
+            this.colIsDepartmentIndependent.MinWidth = 150;
+            this.colIsDepartmentIndependent.Name = "colIsDepartmentIndependent";
+            this.colIsDepartmentIndependent.Visible = true;
+            this.colIsDepartmentIndependent.VisibleIndex = 50;
+            this.colIsDepartmentIndependent.Width = 150;
+            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -821,6 +833,7 @@ namespace AssetManagement.Users
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -863,15 +876,15 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userRoleTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userRoleTblBindingNavigatorSaveItem_Click);
             // 
-            // colIsDepartmentIndependent
+            // colIsSectionIndependent
             // 
-            this.colIsDepartmentIndependent.Caption = "الحساب لا يتبع لقسم محدد";
-            this.colIsDepartmentIndependent.FieldName = "IsDepartmentIndependent";
-            this.colIsDepartmentIndependent.MinWidth = 150;
-            this.colIsDepartmentIndependent.Name = "colIsDepartmentIndependent";
-            this.colIsDepartmentIndependent.Visible = true;
-            this.colIsDepartmentIndependent.VisibleIndex = 49;
-            this.colIsDepartmentIndependent.Width = 150;
+            this.colIsSectionIndependent.Caption = "الحساب لا يتبع لدائرة محددة";
+            this.colIsSectionIndependent.FieldName = "IsSectionIndependent";
+            this.colIsSectionIndependent.MinWidth = 150;
+            this.colIsSectionIndependent.Name = "colIsSectionIndependent";
+            this.colIsSectionIndependent.Visible = true;
+            this.colIsSectionIndependent.VisibleIndex = 49;
+            this.colIsSectionIndependent.Width = 150;
             // 
             // ManageUserRoleTblForm
             // 
@@ -971,5 +984,6 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colManageImportExportTbl;
         private DevExpress.XtraGrid.Columns.GridColumn colUpdateSubDepartmentForExistedAsset;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDepartmentIndependent;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsSectionIndependent;
     }
 }

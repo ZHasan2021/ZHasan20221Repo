@@ -19,6 +19,8 @@ namespace AssetManagement.Users
 
         private void ManageUserTblForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
+            this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.
             this.departmentVwTableAdapter.Fill(this.assetMngDbDataSet.DepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.

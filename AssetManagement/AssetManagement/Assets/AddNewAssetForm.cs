@@ -59,6 +59,18 @@ namespace AssetManagement.Assets
             manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
             assetFinancialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر");
 
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                try
+                {
+                    assetSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                    assetSectionLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
             if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
             {
                 try

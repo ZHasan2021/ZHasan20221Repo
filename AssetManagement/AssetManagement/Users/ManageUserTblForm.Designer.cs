@@ -71,6 +71,11 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.userTblBindingNavigatorManageUserRolesItem = new System.Windows.Forms.ToolStripButton();
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
+            this.colUserSection = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserNotes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.sectionRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingSource)).BeginInit();
@@ -83,6 +88,8 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).BeginInit();
             this.userTblBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // minorCategoryGridView
@@ -103,7 +110,8 @@ namespace AssetManagement.Users
             this.userGridControl.Name = "userGridControl";
             this.userGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.userRoleRepositoryItemLookUpEdit,
-            this.userDeptRepositoryItemLookUpEdit});
+            this.userDeptRepositoryItemLookUpEdit,
+            this.sectionRepositoryItemLookUpEdit});
             this.userGridControl.Size = new System.Drawing.Size(1274, 672);
             this.userGridControl.TabIndex = 8;
             this.userGridControl.UseEmbeddedNavigator = true;
@@ -129,8 +137,10 @@ namespace AssetManagement.Users
             this.colPassword,
             this.colUserRole,
             this.colPasswordUpdatedOn,
+            this.colUserSection,
             this.colUserDept,
-            this.colUserPrefix});
+            this.colUserPrefix,
+            this.colUserNotes});
             this.userGridView.GridControl = this.userGridControl;
             this.userGridView.Name = "userGridView";
             // 
@@ -207,7 +217,7 @@ namespace AssetManagement.Users
             this.colUserDept.MinWidth = 200;
             this.colUserDept.Name = "colUserDept";
             this.colUserDept.Visible = true;
-            this.colUserDept.VisibleIndex = 3;
+            this.colUserDept.VisibleIndex = 4;
             this.colUserDept.Width = 200;
             // 
             // userDeptRepositoryItemLookUpEdit
@@ -237,7 +247,7 @@ namespace AssetManagement.Users
             this.colUserPrefix.MinWidth = 150;
             this.colUserPrefix.Name = "colUserPrefix";
             this.colUserPrefix.Visible = true;
-            this.colUserPrefix.VisibleIndex = 4;
+            this.colUserPrefix.VisibleIndex = 5;
             this.colUserPrefix.Width = 150;
             // 
             // departmentTblBindingSource
@@ -276,7 +286,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
-            this.tableAdapterManager.SectionTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
@@ -438,6 +448,48 @@ namespace AssetManagement.Users
             // 
             this.departmentVwTableAdapter.ClearBeforeFill = true;
             // 
+            // colUserSection
+            // 
+            this.colUserSection.Caption = "الدائرة";
+            this.colUserSection.ColumnEdit = this.sectionRepositoryItemLookUpEdit;
+            this.colUserSection.FieldName = "UserSection";
+            this.colUserSection.MinWidth = 150;
+            this.colUserSection.Name = "colUserSection";
+            this.colUserSection.Visible = true;
+            this.colUserSection.VisibleIndex = 3;
+            this.colUserSection.Width = 150;
+            // 
+            // colUserNotes
+            // 
+            this.colUserNotes.Caption = "ملاحظات";
+            this.colUserNotes.FieldName = "UserNotes";
+            this.colUserNotes.MinWidth = 200;
+            this.colUserNotes.Name = "colUserNotes";
+            this.colUserNotes.Width = 200;
+            // 
+            // sectionRepositoryItemLookUpEdit
+            // 
+            this.sectionRepositoryItemLookUpEdit.AutoHeight = false;
+            this.sectionRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.sectionRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.sectionRepositoryItemLookUpEdit.DataSource = this.sectionTblBindingSource;
+            this.sectionRepositoryItemLookUpEdit.DisplayMember = "SectionName";
+            this.sectionRepositoryItemLookUpEdit.Name = "sectionRepositoryItemLookUpEdit";
+            this.sectionRepositoryItemLookUpEdit.PopupWidth = 500;
+            this.sectionRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
             // ManageUserTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -465,6 +517,8 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).EndInit();
             this.userTblBindingNavigator.ResumeLayout(false);
             this.userTblBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,5 +562,10 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colUserPrefix;
         private System.Windows.Forms.BindingSource departmentVwBindingSource;
         private AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter departmentVwTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserSection;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit sectionRepositoryItemLookUpEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserNotes;
+        private System.Windows.Forms.BindingSource sectionTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
     }
 }

@@ -36,10 +36,13 @@ namespace AssetManagement
         {
             StaticCode.AssignDbParams();
 
-            activeUserToolStripStatusLabel.Text = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
-            activeUserRoleToolStripStatusLabel.Text = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
-            activeUserDeptToolStripStatusLabel.Text = $"القسم الذي يتبع له الحساب النشط: ( {StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
-            mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
+            activeUserBarStaticItem.Caption = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
+            activeUserRoleBarStaticItem.Caption = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
+            if (StaticCode.activeUser.UserDept != null)
+                activeUserDeptBarStaticItem.Caption = $"القسم الذي يتبع له الحساب النشط: ( {StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
+            else
+                activeUserDeptBarStaticItem.Caption = "الحساب لا يتبع لقسم محدد";
+           mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
             StaticCode.mainDbContext.SubmitChanges();
 
             addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -531,6 +534,16 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 3);
+        }
+
+        private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportAssetsFromExcel(sender, e, 4);
+        }
+
+        private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportAssetsFromExcel(sender, e, 5);
         }
     }
 }

@@ -44,6 +44,32 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                    searchBySectionLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

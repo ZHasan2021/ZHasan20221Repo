@@ -22,7 +22,8 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
       <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="PasswordUpdatedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UserDept" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserSection" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserDept" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserPrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="UserNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="UserTbl_AssetMovementTbl" Member="AssetMovementTbls" ThisKey="ID" OtherKey="AssetMovedBy" Type="AssetMovementTbl" />

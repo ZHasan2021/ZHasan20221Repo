@@ -1398,6 +1398,7 @@ namespace AssetManagement.Assets
             this.customizeStatDockPanel.ID = new System.Guid("48575b10-1875-45b0-8efd-835ac8fdd9bf");
             this.customizeStatDockPanel.Location = new System.Drawing.Point(26, 183);
             this.customizeStatDockPanel.Name = "customizeStatDockPanel";
+            this.customizeStatDockPanel.Options.ShowCloseButton = false;
             this.customizeStatDockPanel.OriginalSize = new System.Drawing.Size(464, 200);
             this.customizeStatDockPanel.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.customizeStatDockPanel.SavedIndex = 0;

@@ -130,6 +130,12 @@ namespace AssetManagement.Finance
                 StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
                 StaticCode.mainDbContext.SubmitChanges();
 
+                if (decryptImportedFileCheckBox.Checked)
+                {
+                    if (File.Exists(importedExcelFilePath))
+                        File.Delete(importedExcelFilePath);
+                }
+
                 mainAlertControl.Show(this, "تم استيراد البيانات بشكل سليم وإضافة سجل تقرير حول العملية", StaticCode.ApplicationTitle);
             }
             catch

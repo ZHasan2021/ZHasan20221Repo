@@ -47,6 +47,18 @@ namespace AssetManagement.Finance
             //manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             this.MinimumSize = this.Size;
 
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                try
+                {
+                    searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                    searchBySectionLookUpEdit.Enabled = false;
+                }
+                catch
+                {
+
+                }
+            }
             if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
             {
                 try

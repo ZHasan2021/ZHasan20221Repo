@@ -691,7 +691,9 @@ namespace AssetManagement
 		
 		private System.Nullable<System.DateTime> _PasswordUpdatedOn;
 		
-		private int _UserDept;
+		private System.Nullable<int> _UserSection;
+		
+		private System.Nullable<int> _UserDept;
 		
 		private string _UserPrefix;
 		
@@ -719,7 +721,9 @@ namespace AssetManagement
     partial void OnUserRoleChanged();
     partial void OnPasswordUpdatedOnChanging(System.Nullable<System.DateTime> value);
     partial void OnPasswordUpdatedOnChanged();
-    partial void OnUserDeptChanging(int value);
+    partial void OnUserSectionChanging(System.Nullable<int> value);
+    partial void OnUserSectionChanged();
+    partial void OnUserDeptChanging(System.Nullable<int> value);
     partial void OnUserDeptChanged();
     partial void OnUserPrefixChanging(string value);
     partial void OnUserPrefixChanged();
@@ -840,8 +844,28 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserDept", DbType="Int NOT NULL")]
-		public int UserDept
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserSection", DbType="Int")]
+		public System.Nullable<int> UserSection
+		{
+			get
+			{
+				return this._UserSection;
+			}
+			set
+			{
+				if ((this._UserSection != value))
+				{
+					this.OnUserSectionChanging(value);
+					this.SendPropertyChanging();
+					this._UserSection = value;
+					this.SendPropertyChanged("UserSection");
+					this.OnUserSectionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserDept", DbType="Int")]
+		public System.Nullable<int> UserDept
 		{
 			get
 			{
@@ -957,7 +981,7 @@ namespace AssetManagement
 					}
 					else
 					{
-						this._UserDept = default(int);
+						this._UserDept = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("DepartmentTbl");
 				}

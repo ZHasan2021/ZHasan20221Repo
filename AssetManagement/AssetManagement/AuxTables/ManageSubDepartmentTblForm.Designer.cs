@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSubDepartmentTblForm));
             this.subDepartmentGridControl = new DevExpress.XtraGrid.GridControl();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -45,6 +45,7 @@ namespace AssetManagement.AuxTables
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.subDepartmentTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -58,7 +59,8 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.subDepartmentTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
+            this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -68,22 +70,23 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.sctRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingNavigator)).BeginInit();
             this.subDepartmentTblBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // subDepartmentGridControl
             // 
             this.subDepartmentGridControl.DataSource = this.subDepartmentTblBindingSource;
             this.subDepartmentGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.RelationName = "subDepartmentLevel";
+            gridLevelNode1.RelationName = "subDepartmentLevel";
             this.subDepartmentGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.subDepartmentGridControl.Location = new System.Drawing.Point(0, 27);
             this.subDepartmentGridControl.MainView = this.subDepartmentGridView;
             this.subDepartmentGridControl.Name = "subDepartmentGridControl";
             this.subDepartmentGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.sctRepositoryItemLookUpEdit,
             this.dptRepositoryItemLookUpEdit});
-            this.subDepartmentGridControl.Size = new System.Drawing.Size(910, 546);
+            this.subDepartmentGridControl.Size = new System.Drawing.Size(1122, 626);
             this.subDepartmentGridControl.TabIndex = 5;
             this.subDepartmentGridControl.UseEmbeddedNavigator = true;
             this.subDepartmentGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -143,14 +146,14 @@ namespace AssetManagement.AuxTables
             this.dptRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dptRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionOfDepartment", "معرف الدائرة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.dptRepositoryItemLookUpEdit.DataSource = this.departmentTblBindingSource;
-            this.dptRepositoryItemLookUpEdit.DisplayMember = "DepartmentName";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("معرف القسم", "معرف القسم", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("اسم القسم", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("الدائرة التي يتبع لها القسم", "الدائرة التي يتبع لها القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.dptRepositoryItemLookUpEdit.DataSource = this.departmentVwBindingSource;
+            this.dptRepositoryItemLookUpEdit.DisplayMember = "اسم القسم";
             this.dptRepositoryItemLookUpEdit.Name = "dptRepositoryItemLookUpEdit";
             this.dptRepositoryItemLookUpEdit.PopupWidth = 500;
-            this.dptRepositoryItemLookUpEdit.ValueMember = "ID";
+            this.dptRepositoryItemLookUpEdit.ValueMember = "معرف القسم";
             // 
             // departmentTblBindingSource
             // 
@@ -200,6 +203,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -212,6 +216,10 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // subDepartmentTblTableAdapter
+            // 
+            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
             // 
             // subDepartmentTblBindingNavigator
             // 
@@ -240,7 +248,7 @@ namespace AssetManagement.AuxTables
             this.subDepartmentTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.subDepartmentTblBindingNavigator.Name = "subDepartmentTblBindingNavigator";
             this.subDepartmentTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.subDepartmentTblBindingNavigator.Size = new System.Drawing.Size(910, 27);
+            this.subDepartmentTblBindingNavigator.Size = new System.Drawing.Size(1122, 27);
             this.subDepartmentTblBindingNavigator.TabIndex = 4;
             this.subDepartmentTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -339,15 +347,20 @@ namespace AssetManagement.AuxTables
             this.subDepartmentTblBindingNavigatorSaveItem.Text = "Save Data";
             this.subDepartmentTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.subDepartmentTblBindingNavigatorSaveItem_Click);
             // 
-            // subDepartmentTblTableAdapter
+            // departmentVwBindingSource
             // 
-            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
+            this.departmentVwBindingSource.DataMember = "DepartmentVw";
+            this.departmentVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentVwTableAdapter
+            // 
+            this.departmentVwTableAdapter.ClearBeforeFill = true;
             // 
             // ManageSubDepartmentTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 573);
+            this.ClientSize = new System.Drawing.Size(1122, 653);
             this.Controls.Add(this.subDepartmentGridControl);
             this.Controls.Add(this.subDepartmentTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -367,6 +380,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingNavigator)).EndInit();
             this.subDepartmentTblBindingNavigator.ResumeLayout(false);
             this.subDepartmentTblBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +414,7 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Columns.GridColumn colSubDepartmentName;
         private DevExpress.XtraGrid.Columns.GridColumn colMainDepartment;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit dptRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource departmentVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter departmentVwTableAdapter;
     }
 }

@@ -91,11 +91,15 @@ namespace AssetManagement.Assets
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstMv);
                 assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked == true;
+                assetToTransact.ItemsQuantity = assetToTransact.ItemsQuantity - Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value);
                 bool assetSold = transactionTypeLookUpEdit.Text == "بيع";
                 if (assetSold)
                 {
-                    assetToTransact.IsSold = true;
-                    assetToTransact.IsOutOfWork = true;
+                    if (assetToTransact.ItemsQuantity == Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value))
+                    {
+                        assetToTransact.IsSold = true;
+                        assetToTransact.IsOutOfWork = true;
+                    }
                     MainCategoryTbl assetMaCa = StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == assetToTransact.AssetMinorCategory).MainCategory);
                     if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fic1 => fic1.FinancialItemCategoryName == "واردات بيع أصول") == 0)
                     {
@@ -153,7 +157,9 @@ namespace AssetManagement.Assets
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
             assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل: {currSrchRes.StatusName}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
-            assetItemsQuantityNumericUpDown.Value = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currSrchRes.ID).ItemsQuantity;
+            assetCurrentItemsQuantityNumericUpDown.Value = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currSrchRes.ID).ItemsQuantity;
+            assetItemsQuantityToTransactNumericUpDown.Maximum = assetCurrentItemsQuantityNumericUpDown.Value;
+            assetItemsQuantityToTransactNumericUpDown.Value = 1;
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
