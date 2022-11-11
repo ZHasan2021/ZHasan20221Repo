@@ -54,11 +54,12 @@ namespace AssetManagement.Assets
             this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetTransactionPanel = new System.Windows.Forms.Panel();
+            this.assetCurrentItemsQuantityNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.qtyOutOfLabel = new System.Windows.Forms.Label();
             this.assetItemsQuantityLabel = new System.Windows.Forms.Label();
             this.assetItemsQuantityToTransactNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.currentPriceWithDestroyingLabel = new System.Windows.Forms.Label();
             this.currentPriceWithDestroyingNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.withDestroyingCheckBox = new System.Windows.Forms.CheckBox();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.moneyAmountCurrencyLabel = new System.Windows.Forms.Label();
             this.moneyAmountCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -86,8 +87,6 @@ namespace AssetManagement.Assets
             this.searchAssetBtn = new System.Windows.Forms.Button();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
-            this.qtyOutOfLabel = new System.Windows.Forms.Label();
-            this.assetCurrentItemsQuantityNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.moveAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
@@ -98,6 +97,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).BeginInit();
             this.assetTransactionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetCurrentItemsQuantityNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetItemsQuantityToTransactNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyLookUpEdit.Properties)).BeginInit();
@@ -107,7 +107,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetCurrentItemsQuantityNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // moveAssetGroupBox
@@ -336,7 +335,6 @@ namespace AssetManagement.Assets
             this.assetTransactionPanel.Controls.Add(this.assetItemsQuantityToTransactNumericUpDown);
             this.assetTransactionPanel.Controls.Add(this.currentPriceWithDestroyingLabel);
             this.assetTransactionPanel.Controls.Add(this.currentPriceWithDestroyingNumericUpDown);
-            this.assetTransactionPanel.Controls.Add(this.withDestroyingCheckBox);
             this.assetTransactionPanel.Controls.Add(this.manageCurrencyTblBtn);
             this.assetTransactionPanel.Controls.Add(this.moneyAmountCurrencyLabel);
             this.assetTransactionPanel.Controls.Add(this.moneyAmountCurrencyLookUpEdit);
@@ -357,6 +355,43 @@ namespace AssetManagement.Assets
             this.assetTransactionPanel.Size = new System.Drawing.Size(1270, 248);
             this.assetTransactionPanel.TabIndex = 607;
             this.assetTransactionPanel.Visible = false;
+            // 
+            // assetCurrentItemsQuantityNumericUpDown
+            // 
+            this.assetCurrentItemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCurrentItemsQuantityNumericUpDown.DecimalPlaces = 2;
+            this.assetCurrentItemsQuantityNumericUpDown.Enabled = false;
+            this.assetCurrentItemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assetCurrentItemsQuantityNumericUpDown.Location = new System.Drawing.Point(264, 176);
+            this.assetCurrentItemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.assetCurrentItemsQuantityNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.assetCurrentItemsQuantityNumericUpDown.Name = "assetCurrentItemsQuantityNumericUpDown";
+            this.assetCurrentItemsQuantityNumericUpDown.Size = new System.Drawing.Size(126, 28);
+            this.assetCurrentItemsQuantityNumericUpDown.TabIndex = 402;
+            this.assetCurrentItemsQuantityNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // qtyOutOfLabel
+            // 
+            this.qtyOutOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.qtyOutOfLabel.AutoSize = true;
+            this.qtyOutOfLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtyOutOfLabel.Location = new System.Drawing.Point(447, 180);
+            this.qtyOutOfLabel.Name = "qtyOutOfLabel";
+            this.qtyOutOfLabel.Size = new System.Drawing.Size(62, 21);
+            this.qtyOutOfLabel.TabIndex = 401;
+            this.qtyOutOfLabel.Text = "من أصل:";
             // 
             // assetItemsQuantityLabel
             // 
@@ -419,19 +454,6 @@ namespace AssetManagement.Assets
             this.currentPriceWithDestroyingNumericUpDown.Name = "currentPriceWithDestroyingNumericUpDown";
             this.currentPriceWithDestroyingNumericUpDown.Size = new System.Drawing.Size(188, 28);
             this.currentPriceWithDestroyingNumericUpDown.TabIndex = 280;
-            // 
-            // withDestroyingCheckBox
-            // 
-            this.withDestroyingCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.withDestroyingCheckBox.AutoSize = true;
-            this.withDestroyingCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.withDestroyingCheckBox.Location = new System.Drawing.Point(871, 78);
-            this.withDestroyingCheckBox.Name = "withDestroyingCheckBox";
-            this.withDestroyingCheckBox.Size = new System.Drawing.Size(86, 25);
-            this.withDestroyingCheckBox.TabIndex = 235;
-            this.withDestroyingCheckBox.Text = "مع إهلاك";
-            this.withDestroyingCheckBox.UseVisualStyleBackColor = true;
-            this.withDestroyingCheckBox.Visible = false;
             // 
             // manageCurrencyTblBtn
             // 
@@ -604,8 +626,9 @@ namespace AssetManagement.Assets
             this.transactionTypeLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.transactionTypeLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف نوع تصريف الأصل", 23, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeName", "اسم نوع تصريف الأصل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف نوع تصريف الأصل", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeName", "اسم نوع تصريف الأصل", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TransactionTypeDescription", "وصف نوع تصريف الأصل", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.transactionTypeLookUpEdit.Properties.DataSource = this.transactionTypeTblBindingSource;
             this.transactionTypeLookUpEdit.Properties.DisplayMember = "TransactionTypeName";
             this.transactionTypeLookUpEdit.Properties.PopupWidth = 500;
@@ -741,43 +764,6 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
             this.assetCodeTextBox.TabIndex = 102;
             // 
-            // qtyOutOfLabel
-            // 
-            this.qtyOutOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.qtyOutOfLabel.AutoSize = true;
-            this.qtyOutOfLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtyOutOfLabel.Location = new System.Drawing.Point(447, 180);
-            this.qtyOutOfLabel.Name = "qtyOutOfLabel";
-            this.qtyOutOfLabel.Size = new System.Drawing.Size(62, 21);
-            this.qtyOutOfLabel.TabIndex = 401;
-            this.qtyOutOfLabel.Text = "من أصل:";
-            // 
-            // assetCurrentItemsQuantityNumericUpDown
-            // 
-            this.assetCurrentItemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetCurrentItemsQuantityNumericUpDown.DecimalPlaces = 2;
-            this.assetCurrentItemsQuantityNumericUpDown.Enabled = false;
-            this.assetCurrentItemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetCurrentItemsQuantityNumericUpDown.Location = new System.Drawing.Point(264, 176);
-            this.assetCurrentItemsQuantityNumericUpDown.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.assetCurrentItemsQuantityNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.assetCurrentItemsQuantityNumericUpDown.Name = "assetCurrentItemsQuantityNumericUpDown";
-            this.assetCurrentItemsQuantityNumericUpDown.Size = new System.Drawing.Size(126, 28);
-            this.assetCurrentItemsQuantityNumericUpDown.TabIndex = 402;
-            this.assetCurrentItemsQuantityNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // TransacteAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -812,6 +798,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).EndInit();
             this.assetTransactionPanel.ResumeLayout(false);
             this.assetTransactionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assetCurrentItemsQuantityNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetItemsQuantityToTransactNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentPriceWithDestroyingNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyAmountCurrencyLookUpEdit.Properties)).EndInit();
@@ -821,7 +808,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetCurrentItemsQuantityNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -866,7 +852,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Panel assetTransactionPanel;
         private System.Windows.Forms.Label currentPriceWithDestroyingLabel;
         private System.Windows.Forms.NumericUpDown currentPriceWithDestroyingNumericUpDown;
-        private System.Windows.Forms.CheckBox withDestroyingCheckBox;
         private System.Windows.Forms.Button manageCurrencyTblBtn;
         private System.Windows.Forms.Label moneyAmountCurrencyLabel;
         private DevExpress.XtraEditors.LookUpEdit moneyAmountCurrencyLookUpEdit;

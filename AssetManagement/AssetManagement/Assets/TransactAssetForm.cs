@@ -15,6 +15,7 @@ namespace AssetManagement.Assets
     {
         IQueryable<AssetMoveVw> srchRes = null;
         AssetMoveVw currSrchRes = null;
+        AssetTbl assetToTransact = null;
 
         public TransacteAssetForm()
         {
@@ -75,7 +76,6 @@ namespace AssetManagement.Assets
 
             try
             {
-                AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
 
                 AssetTransactionTbl newAstMv = new AssetTransactionTbl()
                 {
@@ -86,7 +86,6 @@ namespace AssetManagement.Assets
                     MoneyAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                     MoneyAmountCurrency = (moneyAmountNumericUpDown.Value == 0) ? 1 : Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
                     GetAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked,
-                    WithDestroying = getAssetOutOfWorkCheckBox.Checked && withDestroyingCheckBox.Checked,
                     CurrentPriceWithDestroying = Convert.ToDouble(currentPriceWithDestroyingNumericUpDown.Value),
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstMv);
@@ -154,6 +153,7 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
                 return;
             }
+            assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
             assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل: {currSrchRes.StatusName}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
@@ -163,9 +163,20 @@ namespace AssetManagement.Assets
             assetTransactionGridControl.DataSource = assetTrs;
             moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
-            getAssetOutOfWorkCheckBox.Checked = withDestroyingCheckBox.Checked = false;
+            getAssetOutOfWorkCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
             moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
+            if (assetToTransact.IsOldOrNewAsset == "جديد")
+            {
+                currentPriceWithDestroyingNumericUpDown.Value = Convert.ToDecimal(StaticCode.CalcActualPriceForAsset(assetToTransact));
+                currentPriceWithDestroyingNumericUpDown.Enabled = false;
+            }
+            else
+            {
+                currentPriceWithDestroyingNumericUpDown.Value = 0;
+                currentPriceWithDestroyingNumericUpDown.Enabled = true;
+
+            }
         }
 
         private void assetTransactionTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

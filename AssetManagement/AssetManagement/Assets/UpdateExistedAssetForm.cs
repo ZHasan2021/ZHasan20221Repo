@@ -129,6 +129,7 @@ namespace AssetManagement.Assets
                 assetSpecificationsTextBox.Text = currSrchRes.AssetSpecifications;
                 purchaseDateDateEdit.EditValue = currSrchRes.PurchaseDate;
                 purchasePriceNumericUpDown.Value = Convert.ToDecimal(currSrchRes.PurchasePrice);
+                purchasePriceNumericUpDown.Enabled = StaticCode.activeUserRole.UpdatePurchasePriceForExistedAsset == true;
                 purchasePriceCurrencyLookUpEdit.EditValue = currSrchRes.PurchasePriceCurrency;
                 placeOfPresenceTextBox.Text = currSrchRes.PlaceOfPresence;
                 currentStatusLookUpEdit.EditValue = currSrchRes.CurrentStatus;

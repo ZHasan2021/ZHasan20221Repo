@@ -84,6 +84,10 @@ namespace AssetManagement.Finance
             this.tabFormControl1 = new DevExpress.XtraBars.TabFormControl();
             this.editFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.deleteFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.colجهةالإيراد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colجهةالإيرادالأخرى = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colصادرإلى = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colنوعالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -150,6 +154,10 @@ namespace AssetManagement.Finance
             this.colالوحدة,
             this.colتاريختحريرالسجل,
             this.colواردأمصادر,
+            this.colجهةالإيراد,
+            this.colجهةالإيرادالأخرى,
+            this.colنوعالصادر,
+            this.colصادرإلى,
             this.colالمبلغالوارد,
             this.colالمبلغالصادر,
             this.colالعملة,
@@ -251,7 +259,7 @@ namespace AssetManagement.Finance
             this.colالمبلغالوارد.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الوارد", "مجموع الوارد={0:0.##}")});
             this.colالمبلغالوارد.Visible = true;
-            this.colالمبلغالوارد.VisibleIndex = 7;
+            this.colالمبلغالوارد.VisibleIndex = 11;
             this.colالمبلغالوارد.Width = 150;
             // 
             // colالمبلغالصادر
@@ -262,7 +270,7 @@ namespace AssetManagement.Finance
             this.colالمبلغالصادر.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", "مجموع الصادر={0:0.##}")});
             this.colالمبلغالصادر.Visible = true;
-            this.colالمبلغالصادر.VisibleIndex = 8;
+            this.colالمبلغالصادر.VisibleIndex = 12;
             this.colالمبلغالصادر.Width = 150;
             // 
             // colالعملة
@@ -271,7 +279,7 @@ namespace AssetManagement.Finance
             this.colالعملة.MinWidth = 100;
             this.colالعملة.Name = "colالعملة";
             this.colالعملة.Visible = true;
-            this.colالعملة.VisibleIndex = 9;
+            this.colالعملة.VisibleIndex = 13;
             this.colالعملة.Width = 100;
             // 
             // colملاحظاتإضافية
@@ -280,7 +288,7 @@ namespace AssetManagement.Finance
             this.colملاحظاتإضافية.MinWidth = 200;
             this.colملاحظاتإضافية.Name = "colملاحظاتإضافية";
             this.colملاحظاتإضافية.Visible = true;
-            this.colملاحظاتإضافية.VisibleIndex = 10;
+            this.colملاحظاتإضافية.VisibleIndex = 14;
             this.colملاحظاتإضافية.Width = 200;
             // 
             // ficatRepositoryItemLookUpEdit
@@ -604,6 +612,42 @@ namespace AssetManagement.Finance
             this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
             this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
             // 
+            // colجهةالإيراد
+            // 
+            this.colجهةالإيراد.FieldName = "جهة الإيراد";
+            this.colجهةالإيراد.MinWidth = 150;
+            this.colجهةالإيراد.Name = "colجهةالإيراد";
+            this.colجهةالإيراد.Visible = true;
+            this.colجهةالإيراد.VisibleIndex = 7;
+            this.colجهةالإيراد.Width = 150;
+            // 
+            // colجهةالإيرادالأخرى
+            // 
+            this.colجهةالإيرادالأخرى.FieldName = "جهة الإيراد الأخرى";
+            this.colجهةالإيرادالأخرى.MinWidth = 150;
+            this.colجهةالإيرادالأخرى.Name = "colجهةالإيرادالأخرى";
+            this.colجهةالإيرادالأخرى.Visible = true;
+            this.colجهةالإيرادالأخرى.VisibleIndex = 8;
+            this.colجهةالإيرادالأخرى.Width = 150;
+            // 
+            // colصادرإلى
+            // 
+            this.colصادرإلى.FieldName = "صادر إلى";
+            this.colصادرإلى.MinWidth = 150;
+            this.colصادرإلى.Name = "colصادرإلى";
+            this.colصادرإلى.Visible = true;
+            this.colصادرإلى.VisibleIndex = 10;
+            this.colصادرإلى.Width = 150;
+            // 
+            // colنوعالصادر
+            // 
+            this.colنوعالصادر.FieldName = "نوع الصادر";
+            this.colنوعالصادر.MinWidth = 150;
+            this.colنوعالصادر.Name = "colنوعالصادر";
+            this.colنوعالصادر.Visible = true;
+            this.colنوعالصادر.VisibleIndex = 9;
+            this.colنوعالصادر.Width = 150;
+            // 
             // ManageFinancialItemTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -698,5 +742,9 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.TabFormControl tabFormControl1;
         private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colجهةالإيراد;
+        private DevExpress.XtraGrid.Columns.GridColumn colجهةالإيرادالأخرى;
+        private DevExpress.XtraGrid.Columns.GridColumn colنوعالصادر;
+        private DevExpress.XtraGrid.Columns.GridColumn colصادرإلى;
     }
 }

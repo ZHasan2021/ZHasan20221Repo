@@ -2352,8 +2352,6 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _GetAssetOutOfWork;
 		
-		private System.Nullable<bool> _WithDestroying;
-		
 		private System.Nullable<double> _CurrentPriceWithDestroying;
 		
 		private string _AssetTransactionUniqueKey;
@@ -2390,8 +2388,6 @@ namespace AssetManagement
     partial void OnMoneyAmountCurrencyChanged();
     partial void OnGetAssetOutOfWorkChanging(System.Nullable<bool> value);
     partial void OnGetAssetOutOfWorkChanged();
-    partial void OnWithDestroyingChanging(System.Nullable<bool> value);
-    partial void OnWithDestroyingChanged();
     partial void OnCurrentPriceWithDestroyingChanging(System.Nullable<double> value);
     partial void OnCurrentPriceWithDestroyingChanged();
     partial void OnAssetTransactionUniqueKeyChanging(string value);
@@ -2619,26 +2615,6 @@ namespace AssetManagement
 					this._GetAssetOutOfWork = value;
 					this.SendPropertyChanged("GetAssetOutOfWork");
 					this.OnGetAssetOutOfWorkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WithDestroying", DbType="Bit")]
-		public System.Nullable<bool> WithDestroying
-		{
-			get
-			{
-				return this._WithDestroying;
-			}
-			set
-			{
-				if ((this._WithDestroying != value))
-				{
-					this.OnWithDestroyingChanging(value);
-					this.SendPropertyChanging();
-					this._WithDestroying = value;
-					this.SendPropertyChanged("WithDestroying");
-					this.OnWithDestroyingChanged();
 				}
 			}
 		}
@@ -3513,6 +3489,14 @@ namespace AssetManagement
 		
 		private string _IncomingOrOutgoing;
 		
+		private string _IncomingFrom;
+		
+		private string _IncomingFromOther;
+		
+		private string _OutgoingType;
+		
+		private string _OutgoingTo;
+		
 		private double _IncomingAmount;
 		
 		private double _OutgoingAmount;
@@ -3555,6 +3539,14 @@ namespace AssetManagement
     partial void OnFinancialItemInsertionDateChanged();
     partial void OnIncomingOrOutgoingChanging(string value);
     partial void OnIncomingOrOutgoingChanged();
+    partial void OnIncomingFromChanging(string value);
+    partial void OnIncomingFromChanged();
+    partial void OnIncomingFromOtherChanging(string value);
+    partial void OnIncomingFromOtherChanged();
+    partial void OnOutgoingTypeChanging(string value);
+    partial void OnOutgoingTypeChanged();
+    partial void OnOutgoingToChanging(string value);
+    partial void OnOutgoingToChanged();
     partial void OnIncomingAmountChanging(double value);
     partial void OnIncomingAmountChanged();
     partial void OnOutgoingAmountChanging(double value);
@@ -3726,6 +3718,86 @@ namespace AssetManagement
 					this._IncomingOrOutgoing = value;
 					this.SendPropertyChanged("IncomingOrOutgoing");
 					this.OnIncomingOrOutgoingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingFrom", DbType="NVarChar(100)")]
+		public string IncomingFrom
+		{
+			get
+			{
+				return this._IncomingFrom;
+			}
+			set
+			{
+				if ((this._IncomingFrom != value))
+				{
+					this.OnIncomingFromChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingFrom = value;
+					this.SendPropertyChanged("IncomingFrom");
+					this.OnIncomingFromChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingFromOther", DbType="NVarChar(200)")]
+		public string IncomingFromOther
+		{
+			get
+			{
+				return this._IncomingFromOther;
+			}
+			set
+			{
+				if ((this._IncomingFromOther != value))
+				{
+					this.OnIncomingFromOtherChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingFromOther = value;
+					this.SendPropertyChanged("IncomingFromOther");
+					this.OnIncomingFromOtherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutgoingType", DbType="NVarChar(50)")]
+		public string OutgoingType
+		{
+			get
+			{
+				return this._OutgoingType;
+			}
+			set
+			{
+				if ((this._OutgoingType != value))
+				{
+					this.OnOutgoingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._OutgoingType = value;
+					this.SendPropertyChanged("OutgoingType");
+					this.OnOutgoingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutgoingTo", DbType="NVarChar(100)")]
+		public string OutgoingTo
+		{
+			get
+			{
+				return this._OutgoingTo;
+			}
+			set
+			{
+				if ((this._OutgoingTo != value))
+				{
+					this.OnOutgoingToChanging(value);
+					this.SendPropertyChanging();
+					this._OutgoingTo = value;
+					this.SendPropertyChanged("OutgoingTo");
+					this.OnOutgoingToChanged();
 				}
 			}
 		}
@@ -5665,6 +5737,8 @@ namespace AssetManagement
 		
 		private string _TransactionTypeName;
 		
+		private string _TransactionTypeDescription;
+		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
 		
     #region Extensibility Method Definitions
@@ -5675,6 +5749,8 @@ namespace AssetManagement
     partial void OnIDChanged();
     partial void OnTransactionTypeNameChanging(string value);
     partial void OnTransactionTypeNameChanged();
+    partial void OnTransactionTypeDescriptionChanging(string value);
+    partial void OnTransactionTypeDescriptionChanged();
     #endregion
 		
 		public TransactionTypeTbl()
@@ -5719,6 +5795,26 @@ namespace AssetManagement
 					this._TransactionTypeName = value;
 					this.SendPropertyChanged("TransactionTypeName");
 					this.OnTransactionTypeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionTypeDescription", DbType="NVarChar(300)")]
+		public string TransactionTypeDescription
+		{
+			get
+			{
+				return this._TransactionTypeDescription;
+			}
+			set
+			{
+				if ((this._TransactionTypeDescription != value))
+				{
+					this.OnTransactionTypeDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._TransactionTypeDescription = value;
+					this.SendPropertyChanged("TransactionTypeDescription");
+					this.OnTransactionTypeDescriptionChanged();
 				}
 			}
 		}
@@ -5786,6 +5882,8 @@ namespace AssetManagement
 		private System.Nullable<bool> _UpdateExistedAsset;
 		
 		private System.Nullable<bool> _UpdateSubDepartmentForExistedAsset;
+		
+		private System.Nullable<bool> _UpdatePurchasePriceForExistedAsset;
 		
 		private System.Nullable<bool> _DeleteAssetRecord;
 		
@@ -5897,6 +5995,8 @@ namespace AssetManagement
     partial void OnUpdateExistedAssetChanged();
     partial void OnUpdateSubDepartmentForExistedAssetChanging(System.Nullable<bool> value);
     partial void OnUpdateSubDepartmentForExistedAssetChanged();
+    partial void OnUpdatePurchasePriceForExistedAssetChanging(System.Nullable<bool> value);
+    partial void OnUpdatePurchasePriceForExistedAssetChanged();
     partial void OnDeleteAssetRecordChanging(System.Nullable<bool> value);
     partial void OnDeleteAssetRecordChanged();
     partial void OnViewAssetsReportsChanging(System.Nullable<bool> value);
@@ -6113,6 +6213,26 @@ namespace AssetManagement
 					this._UpdateSubDepartmentForExistedAsset = value;
 					this.SendPropertyChanged("UpdateSubDepartmentForExistedAsset");
 					this.OnUpdateSubDepartmentForExistedAssetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatePurchasePriceForExistedAsset", DbType="Bit")]
+		public System.Nullable<bool> UpdatePurchasePriceForExistedAsset
+		{
+			get
+			{
+				return this._UpdatePurchasePriceForExistedAsset;
+			}
+			set
+			{
+				if ((this._UpdatePurchasePriceForExistedAsset != value))
+				{
+					this.OnUpdatePurchasePriceForExistedAssetChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatePurchasePriceForExistedAsset = value;
+					this.SendPropertyChanged("UpdatePurchasePriceForExistedAsset");
+					this.OnUpdatePurchasePriceForExistedAssetChanged();
 				}
 			}
 		}
@@ -7107,7 +7227,7 @@ namespace AssetManagement
 		
 		private string _CustodianName;
 		
-		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
+		private System.Nullable<System.DateTime> _InsertedOn;
 		
 		public AssetMoveVw()
 		{
@@ -7273,18 +7393,18 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الإدخال
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> InsertedOn
 		{
 			get
 			{
-				return this._تاريخ_الإدخال;
+				return this._InsertedOn;
 			}
 			set
 			{
-				if ((this._تاريخ_الإدخال != value))
+				if ((this._InsertedOn != value))
 				{
-					this._تاريخ_الإدخال = value;
+					this._InsertedOn = value;
 				}
 			}
 		}
@@ -8806,6 +8926,14 @@ namespace AssetManagement
 		
 		private string _وارد_أم_صادر;
 		
+		private string _جهة_الإيراد;
+		
+		private string _جهة_الإيراد_الأخرى;
+		
+		private string _نوع_الصادر;
+		
+		private string _صادر_إلى;
+		
 		private double _المبلغ_الوارد;
 		
 		private double _المبلغ_الصادر;
@@ -8958,6 +9086,70 @@ namespace AssetManagement
 				if ((this._وارد_أم_صادر != value))
 				{
 					this._وارد_أم_صادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد]", Storage="_جهة_الإيراد", DbType="NVarChar(100)")]
+		public string جهة_الإيراد
+		{
+			get
+			{
+				return this._جهة_الإيراد;
+			}
+			set
+			{
+				if ((this._جهة_الإيراد != value))
+				{
+					this._جهة_الإيراد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد الأخرى]", Storage="_جهة_الإيراد_الأخرى", DbType="NVarChar(200)")]
+		public string جهة_الإيراد_الأخرى
+		{
+			get
+			{
+				return this._جهة_الإيراد_الأخرى;
+			}
+			set
+			{
+				if ((this._جهة_الإيراد_الأخرى != value))
+				{
+					this._جهة_الإيراد_الأخرى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نوع الصادر]", Storage="_نوع_الصادر", DbType="NVarChar(50)")]
+		public string نوع_الصادر
+		{
+			get
+			{
+				return this._نوع_الصادر;
+			}
+			set
+			{
+				if ((this._نوع_الصادر != value))
+				{
+					this._نوع_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[صادر إلى]", Storage="_صادر_إلى", DbType="NVarChar(100)")]
+		public string صادر_إلى
+		{
+			get
+			{
+				return this._صادر_إلى;
+			}
+			set
+			{
+				if ((this._صادر_إلى != value))
+				{
+					this._صادر_إلى = value;
 				}
 			}
 		}

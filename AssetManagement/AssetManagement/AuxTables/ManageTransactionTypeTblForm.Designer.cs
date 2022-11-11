@@ -54,6 +54,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.transactionTypeTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.colTransactionTypeDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -72,7 +73,7 @@ namespace AssetManagement.AuxTables
             this.transactionTypeGridControl.Location = new System.Drawing.Point(0, 27);
             this.transactionTypeGridControl.MainView = this.transactionTypeGridView;
             this.transactionTypeGridControl.Name = "transactionTypeGridControl";
-            this.transactionTypeGridControl.Size = new System.Drawing.Size(910, 546);
+            this.transactionTypeGridControl.Size = new System.Drawing.Size(1117, 652);
             this.transactionTypeGridControl.TabIndex = 5;
             this.transactionTypeGridControl.UseEmbeddedNavigator = true;
             this.transactionTypeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -92,23 +93,24 @@ namespace AssetManagement.AuxTables
             // 
             this.transactionTypeGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
-            this.colTransactionTypeName});
+            this.colTransactionTypeName,
+            this.colTransactionTypeDescription});
             this.transactionTypeGridView.GridControl = this.transactionTypeGridControl;
             this.transactionTypeGridView.Name = "transactionTypeGridView";
             // 
             // colID
             // 
-            this.colID.Caption = "معرف نمط تصريف الأصل";
+            this.colID.Caption = "معرف نوع تصريف الأصل";
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 80;
+            this.colID.MinWidth = 100;
             this.colID.Name = "colID";
             this.colID.Width = 80;
             // 
             // colTransactionTypeName
             // 
-            this.colTransactionTypeName.Caption = "اسم نمط تصريف الأصل";
+            this.colTransactionTypeName.Caption = "اسم نوع تصريف الأصل";
             this.colTransactionTypeName.FieldName = "TransactionTypeName";
-            this.colTransactionTypeName.MinWidth = 25;
+            this.colTransactionTypeName.MinWidth = 120;
             this.colTransactionTypeName.Name = "colTransactionTypeName";
             this.colTransactionTypeName.Visible = true;
             this.colTransactionTypeName.VisibleIndex = 0;
@@ -140,12 +142,15 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = this.transactionTypeTblTableAdapter;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
@@ -182,7 +187,7 @@ namespace AssetManagement.AuxTables
             this.transactionTypeTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.transactionTypeTblBindingNavigator.Name = "transactionTypeTblBindingNavigator";
             this.transactionTypeTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.transactionTypeTblBindingNavigator.Size = new System.Drawing.Size(910, 27);
+            this.transactionTypeTblBindingNavigator.Size = new System.Drawing.Size(1117, 27);
             this.transactionTypeTblBindingNavigator.TabIndex = 4;
             this.transactionTypeTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -281,11 +286,21 @@ namespace AssetManagement.AuxTables
             this.transactionTypeTblBindingNavigatorSaveItem.Text = "Save Data";
             this.transactionTypeTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.transactionTypeTblBindingNavigatorSaveItem_Click);
             // 
+            // colTransactionTypeDescription
+            // 
+            this.colTransactionTypeDescription.Caption = "وصف نوع تصريف الأصل";
+            this.colTransactionTypeDescription.FieldName = "TransactionTypeDescription";
+            this.colTransactionTypeDescription.MinWidth = 200;
+            this.colTransactionTypeDescription.Name = "colTransactionTypeDescription";
+            this.colTransactionTypeDescription.Visible = true;
+            this.colTransactionTypeDescription.VisibleIndex = 1;
+            this.colTransactionTypeDescription.Width = 200;
+            // 
             // ManageTransactionTypeTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 573);
+            this.ClientSize = new System.Drawing.Size(1117, 679);
             this.Controls.Add(this.transactionTypeGridControl);
             this.Controls.Add(this.transactionTypeTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -330,5 +345,6 @@ namespace AssetManagement.AuxTables
         private AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter transactionTypeTblTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colTransactionTypeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colTransactionTypeDescription;
     }
 }

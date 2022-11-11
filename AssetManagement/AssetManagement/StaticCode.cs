@@ -255,6 +255,18 @@ namespace AssetManagement
             string maxAssetIDForCurrUser_Str = maxAssetIDForCurrUser.ToString();
             return ($"{currUserPrefix}-{maxAssetIDForCurrUser_Str.PadLeft(7, '0')}");
         }
+
+        public static double CalcActualPriceForAsset(AssetTbl ast)
+        {
+            if (ast.PurchaseDate == null || ast.PurchasePrice == null)
+                return 0;
+            DateTime purchaseDate = Convert.ToDateTime(ast.PurchaseDate);
+            int monthsDiff = (DateTime.Today.Year * 12 + DateTime.Today.Month) - (purchaseDate.Year * 12 + purchaseDate.Month);
+            int yearsDiff = monthsDiff / 12;
+            double destRate = yearsDiff * mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == ast.AssetMinorCategory).DestructionRate;
+            double calcPrice = Convert.ToDouble(ast.PurchasePrice) * (1 - destRate);
+            return calcPrice;
+        }
         #endregion
 
         #region Login

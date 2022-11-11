@@ -95,7 +95,6 @@
       <Column Name="MoneyAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="MoneyAmountCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="GetAssetOutOfWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="WithDestroying" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CurrentPriceWithDestroying" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="AssetTransactionUniqueKey" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="AssetTbl_AssetTransactionTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
@@ -148,6 +147,10 @@
       <Column Name="FinancialItemDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="FinancialItemInsertionDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="IncomingOrOutgoing" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IncomingFrom" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IncomingFromOther" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="OutgoingType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OutgoingTo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="IncomingAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="OutgoingAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="FinancialItemCurrency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -252,6 +255,7 @@
     <Type Name="TransactionTypeTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TransactionTypeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionTypeDescription" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Association Name="TransactionTypeTbl_AssetTransactionTbl" Member="AssetTransactionTbls" ThisKey="ID" OtherKey="TransactionType" Type="AssetTransactionTbl" />
     </Type>
   </Table>
@@ -263,6 +267,7 @@
       <Column Name="ManageAssetTbl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UpdateSubDepartmentForExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UpdatePurchasePriceForExistedAsset" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteAssetRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewAssetsStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -324,7 +329,7 @@
       <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.SubDepartmentVw" Member="SubDepartmentVws">
@@ -435,6 +440,10 @@
       <Column Name="الوحدة" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="[تاريخ تحرير السجل]" Member="تاريخ_تحرير_السجل" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[وارد أم صادر]" Member="وارد_أم_صادر" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة الإيراد]" Member="جهة_الإيراد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[جهة الإيراد الأخرى]" Member="جهة_الإيراد_الأخرى" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[نوع الصادر]" Member="نوع_الصادر" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[صادر إلى]" Member="صادر_إلى" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="[المبلغ الوارد]" Member="المبلغ_الوارد" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[المبلغ الصادر]" Member="المبلغ_الصادر" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="العملة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
