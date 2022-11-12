@@ -153,8 +153,8 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
                 return;
             }
-            assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
             currSrchRes = StaticCode.mainDbContext.AssetMoveVws.Single(astm => astm.ID == Convert.ToInt32(searchResultsListBox.SelectedValue));
+            assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast => ast.ID == currSrchRes.ID);
             assetInfoTextBox.Text = $"الدائرة: {currSrchRes.SectionName}, القسم: {currSrchRes.DepartmentName}، الوحدة: {currSrchRes.SubDepartmentName}، الساحة: {currSrchRes.SquareName}،  صاحب العهدة: {currSrchRes.CustodianName}، فئة الأصل الرئيسية: {currSrchRes.MainCategoryName}، فئة الأصل الثانوية: {currSrchRes.MinorCategoryName}، حالة الأصل: {currSrchRes.StatusName}";
             var assetTrs = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             assetCurrentItemsQuantityNumericUpDown.Value = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currSrchRes.ID).ItemsQuantity;
@@ -202,8 +202,6 @@ namespace AssetManagement.Assets
 
         private void getAssetOutOfWorkCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            withDestroyingCheckBox.Visible = getAssetOutOfWorkCheckBox.Checked;
-            withDestroyingCheckBox.Checked = false;
         }
 
         private void assetMoveVwGridControl_Click(object sender, EventArgs e)
@@ -214,7 +212,7 @@ namespace AssetManagement.Assets
         private void transactionTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             getAssetOutOfWorkCheckBox.Visible = transactionTypeLookUpEdit.Text != "بيع";
-            getAssetOutOfWorkCheckBox.Checked = withDestroyingCheckBox.Checked = false;
+            getAssetOutOfWorkCheckBox.Checked = false;
         }
     }
 }

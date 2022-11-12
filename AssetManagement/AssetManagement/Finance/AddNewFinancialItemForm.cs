@@ -46,6 +46,16 @@ namespace AssetManagement.Finance
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                outgoingToDeptLookUpEdit.Visible = true;
+                outgoingToSubDeptLookUpEdit.Visible = false;
+            }
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                outgoingToSubDeptLookUpEdit.Visible = true;
+                outgoingToDeptLookUpEdit.Visible = false;
+            }
 
             if (updateExisted)
             {
@@ -57,6 +67,32 @@ namespace AssetManagement.Finance
                 financialItemInsertionDateDateEdit.EditValue = currFiIt.FinancialItemInsertionDate;
                 incomingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد";
                 outgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "صادر";
+                if (currFiIt.IncomingOrOutgoing == "وارد")
+                {
+                    incomingFromUpperLevelRadioButton.Checked = currFiIt.IncomingFrom == "من المستوى الأعلى";
+                    incomingFromOtherRadioButton.Checked = currFiIt.IncomingFrom == "أخرى";
+                    incomingFromOtherTextBox.Text = currFiIt.IncomingFromOther;
+                }
+                if (currFiIt.IncomingOrOutgoing == "صادر")
+                {
+                    directOutgoingRadioButton.Checked = currFiIt.OutgoingType == "صادرات مباشرة";
+                    relatedOutgoingRadioButton.Checked = currFiIt.OutgoingType == "صادرات معلقة";
+                    if (currFiIt.OutgoingType == "صادرات معلقة")
+                    {
+                        if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                        {
+                            outgoingToSubDeptLookUpEdit.Visible = true;
+                            outgoingToDeptLookUpEdit.Visible = false;
+                            outgoingToSubDeptLookUpEdit.Text = currFiIt.OutgoingTo;
+                        }
+                        if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                        {
+                            outgoingToDeptLookUpEdit.Visible = true;
+                            outgoingToSubDeptLookUpEdit.Visible = false;
+                            outgoingToDeptLookUpEdit.Text = currFiIt.OutgoingTo;
+                        }
+                    }
+                }
                 financialItemCategoryLookUpEdit.EditValue = currFiIt.FinancialItemCategory;
                 incomingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.IncomingAmount);
                 outgoingAmountNumericUpDown.Value = Convert.ToDecimal(currFiIt.OutgoingAmount);
@@ -64,6 +100,7 @@ namespace AssetManagement.Finance
                 additionalNotesTextBox.Text = currFiIt.AdditionalNotes;
                 this.Text = "تعديل سجل مالي موجود";
                 addNewFinancialItemBtn_OK.Text = "حفظ";
+                incomingOrOutgoingPanel.Enabled = false;
             }
             else
             {
@@ -157,15 +194,49 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "قم بتحديد طبيعة السجل المالي (صادر / وارد) أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (incomingRadioButton.Checked && incomingAmountNumericUpDown.Value == 0)
+            if (incomingRadioButton.Checked)
             {
-                mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
-                return;
+                if (incomingAmountNumericUpDown.Value == 0)
+                {
+                    mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (!(incomingFromUpperLevelRadioButton.Checked || incomingFromOtherRadioButton.Checked))
+                {
+                    mainAlertControl.Show(this, "اختر جهة الإيراد أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (incomingFromOtherRadioButton.Checked && incomingFromOtherTextBox.Text.Trim() == "")
+                {
+                    mainAlertControl.Show(this, "اكتب جهة الإيراد الأخرى أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
             }
-            if (outgoingRadioButton.Checked && outgoingAmountNumericUpDown.Value == 0)
+            if (outgoingRadioButton.Checked)
             {
-                mainAlertControl.Show(this, "اكتب المبلغ الصادر أولاً", StaticCode.ApplicationTitle);
-                return;
+                if (outgoingAmountNumericUpDown.Value == 0)
+                {
+                    mainAlertControl.Show(this, "اكتب المبلغ الصادر أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (!(directOutgoingRadioButton.Checked || relatedOutgoingRadioButton.Checked))
+                {
+                    mainAlertControl.Show(this, "اختر نوع الصادر أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (relatedOutgoingRadioButton.Checked)
+                {
+                    if (outgoingToSubDeptLookUpEdit.Visible && outgoingToSubDeptLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اختر الدائرة التي سيصدر إليها السجل المالي أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (outgoingToDeptLookUpEdit.Visible && outgoingToDeptLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اختر القسم التي سيصدر إليه السجل المالي أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                }
             }
             if (financialItemCurrencyLookUpEdit.EditValue == null)
             {
@@ -184,7 +255,22 @@ namespace AssetManagement.Finance
                 newFiIt.FinancialItemSubDept = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
                 newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
                 newFiIt.FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue);
-                newFiIt.IncomingOrOutgoing = (incomingRadioButton.Checked) ? "وارد" : "صادر";
+                if (incomingRadioButton.Checked)
+                {
+                    newFiIt.IncomingOrOutgoing = "وارد";
+                    newFiIt.IncomingFrom = (incomingFromUpperLevelRadioButton.Checked) ? "من المستوى الأعلى" : "أخرى";
+                    newFiIt.IncomingFromOther = (incomingFromUpperLevelRadioButton.Checked) ? "" : incomingFromOtherTextBox.Text.Trim();
+
+                }
+                if (outgoingRadioButton.Checked)
+                {
+                    newFiIt.IncomingOrOutgoing = "صادر";
+                    newFiIt.OutgoingType = (directOutgoingRadioButton.Checked) ? "صادرات مباشرة" : "صادرات معلقة";
+                    if (relatedOutgoingRadioButton.Checked)
+                    {
+                        newFiIt.OutgoingTo = (outgoingToDeptLookUpEdit.Visible) ? outgoingToDeptLookUpEdit.Text : outgoingToSubDeptLookUpEdit.Text;
+                    }
+                }
                 newFiIt.IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(incomingAmountNumericUpDown.Value) : 0;
                 newFiIt.OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(outgoingAmountNumericUpDown.Value);
                 newFiIt.FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue);
@@ -255,8 +341,8 @@ namespace AssetManagement.Finance
         private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
-            incomingAmountNumericUpDown.Enabled = true;
-            outgoingAmountNumericUpDown.Enabled = false;
+            incomingAmountNumericUpDown.Enabled = incomingFromPanel.Visible = true;
+            outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
         }
@@ -264,8 +350,8 @@ namespace AssetManagement.Finance
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
-            incomingAmountNumericUpDown.Enabled = false;
-            outgoingAmountNumericUpDown.Enabled = true;
+            incomingAmountNumericUpDown.Enabled = incomingFromPanel.Visible = false;
+            outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = true;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
         }
@@ -303,6 +389,30 @@ namespace AssetManagement.Finance
             catch
             {
 
+            }
+        }
+
+        private void incomingFromOtherRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            incomingFromOtherTextBox.Visible = incomingFromOtherRadioButton.Checked;
+            incomingFromOtherTextBox.Text = "";
+        }
+
+        private void relatedOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            relatedOutgoingLabel.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = relatedOutgoingRadioButton.Checked;
+            if (relatedOutgoingRadioButton.Checked)
+            {
+                if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                {
+                    outgoingToDeptLookUpEdit.Visible = true;
+                    outgoingToSubDeptLookUpEdit.Visible = false;
+                }
+                if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                {
+                    outgoingToDeptLookUpEdit.Visible = false;
+                    outgoingToSubDeptLookUpEdit.Visible = true;
+                }
             }
         }
     }
