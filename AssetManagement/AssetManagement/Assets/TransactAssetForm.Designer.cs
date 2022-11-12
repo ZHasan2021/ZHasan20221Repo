@@ -50,7 +50,6 @@ namespace AssetManagement.Assets
             this.moneyAmountCurrencyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.currencyTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.colGetAssetOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetTransactionPanel = new System.Windows.Forms.Panel();
@@ -162,7 +161,6 @@ namespace AssetManagement.Assets
             this.colMoneyAmount,
             this.colMoneyAmountCurrency,
             this.colGetAssetOutOfWork,
-            this.colWithDestroying,
             this.colCurrentPriceWithDestroying,
             this.colAssetTransactionUniqueKey});
             this.assetMoveVwGridView.GridControl = this.assetTransactionGridControl;
@@ -298,16 +296,6 @@ namespace AssetManagement.Assets
             this.colGetAssetOutOfWork.VisibleIndex = 5;
             this.colGetAssetOutOfWork.Width = 50;
             // 
-            // colWithDestroying
-            // 
-            this.colWithDestroying.Caption = "مع إهلاك";
-            this.colWithDestroying.FieldName = "WithDestroying";
-            this.colWithDestroying.MinWidth = 25;
-            this.colWithDestroying.Name = "colWithDestroying";
-            this.colWithDestroying.Visible = true;
-            this.colWithDestroying.VisibleIndex = 6;
-            this.colWithDestroying.Width = 50;
-            // 
             // colCurrentPriceWithDestroying
             // 
             this.colCurrentPriceWithDestroying.Caption = "القيمة الحالية مع الإهلاك";
@@ -315,7 +303,7 @@ namespace AssetManagement.Assets
             this.colCurrentPriceWithDestroying.MinWidth = 25;
             this.colCurrentPriceWithDestroying.Name = "colCurrentPriceWithDestroying";
             this.colCurrentPriceWithDestroying.Visible = true;
-            this.colCurrentPriceWithDestroying.VisibleIndex = 7;
+            this.colCurrentPriceWithDestroying.VisibleIndex = 6;
             this.colCurrentPriceWithDestroying.Width = 80;
             // 
             // colAssetTransactionUniqueKey
@@ -846,7 +834,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colMoneyAmountCurrency;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit moneyAmountCurrencyRepositoryItemLookUpEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colGetAssetOutOfWork;
-        private DevExpress.XtraGrid.Columns.GridColumn colWithDestroying;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrentPriceWithDestroying;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetTransactionUniqueKey;
         private System.Windows.Forms.Panel assetTransactionPanel;

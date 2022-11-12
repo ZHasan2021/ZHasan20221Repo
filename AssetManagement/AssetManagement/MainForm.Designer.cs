@@ -90,6 +90,7 @@ namespace AssetManagement
             this.activeUserBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.activeUserRoleBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.activeUserDeptBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.actionsStatusBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -116,8 +117,10 @@ namespace AssetManagement
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mainRibbonControl
@@ -185,10 +188,11 @@ namespace AssetManagement
             this.fromAssetsTransactionsFormBarButtonItem,
             this.activeUserBarStaticItem,
             this.activeUserRoleBarStaticItem,
-            this.activeUserDeptBarStaticItem});
+            this.activeUserDeptBarStaticItem,
+            this.actionsStatusBarStaticItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 82;
+            this.mainRibbonControl.MaxItemId = 83;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -738,6 +742,17 @@ namespace AssetManagement
             this.activeUserDeptBarStaticItem.Name = "activeUserDeptBarStaticItem";
             this.activeUserDeptBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // actionsStatusBarStaticItem
+            // 
+            this.actionsStatusBarStaticItem.Id = 82;
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.actionsStatusBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.actionsStatusBarStaticItem.Name = "actionsStatusBarStaticItem";
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -935,6 +950,7 @@ namespace AssetManagement
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserRoleBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserDeptBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.actionsStatusBarStaticItem);
             this.mainRibbonStatusBar.Location = new System.Drawing.Point(0, 951);
             this.mainRibbonStatusBar.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.mainRibbonStatusBar.Name = "mainRibbonStatusBar";
@@ -1025,7 +1041,7 @@ namespace AssetManagement
             // 
             // mainMemoEdit
             // 
-            this.mainMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMemoEdit.Dock = System.Windows.Forms.DockStyle.Left;
             this.mainMemoEdit.Location = new System.Drawing.Point(0, 283);
             this.mainMemoEdit.MenuManager = this.mainRibbonControl;
             this.mainMemoEdit.Name = "mainMemoEdit";
@@ -1033,7 +1049,7 @@ namespace AssetManagement
             this.mainMemoEdit.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.mainMemoEdit.Properties.Appearance.Options.UseFont = true;
             this.mainMemoEdit.Properties.Appearance.Options.UseForeColor = true;
-            this.mainMemoEdit.Size = new System.Drawing.Size(1485, 668);
+            this.mainMemoEdit.Size = new System.Drawing.Size(1175, 668);
             this.mainMemoEdit.TabIndex = 5;
             // 
             // barButtonItem1
@@ -1052,11 +1068,26 @@ namespace AssetManagement
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
+            // actionsStatusMemoEdit
+            // 
+            this.actionsStatusMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actionsStatusMemoEdit.Enabled = false;
+            this.actionsStatusMemoEdit.Location = new System.Drawing.Point(1175, 283);
+            this.actionsStatusMemoEdit.MenuManager = this.mainRibbonControl;
+            this.actionsStatusMemoEdit.Name = "actionsStatusMemoEdit";
+            this.actionsStatusMemoEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actionsStatusMemoEdit.Properties.Appearance.ForeColor = System.Drawing.Color.SkyBlue;
+            this.actionsStatusMemoEdit.Properties.Appearance.Options.UseFont = true;
+            this.actionsStatusMemoEdit.Properties.Appearance.Options.UseForeColor = true;
+            this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
+            this.actionsStatusMemoEdit.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 981);
+            this.Controls.Add(this.actionsStatusMemoEdit);
             this.Controls.Add(this.mainMemoEdit);
             this.Controls.Add(this.mainRibbonStatusBar);
             this.Controls.Add(this.mainRibbonControl);
@@ -1072,6 +1103,7 @@ namespace AssetManagement
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1164,6 +1196,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarStaticItem activeUserBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem activeUserRoleBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem activeUserDeptBarStaticItem;
+        private DevExpress.XtraBars.BarStaticItem actionsStatusBarStaticItem;
+        private DevExpress.XtraEditors.MemoEdit actionsStatusMemoEdit;
     }
 }
 

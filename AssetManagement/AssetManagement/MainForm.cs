@@ -424,7 +424,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
         {
-            mainMemoEdit.Text = "";
+            actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
             {
@@ -447,7 +447,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
             if (importingReport == null)
             {
-                mainMemoEdit.Text = errorMsgOut;
+                actionsStatusMemoEdit.Text = errorMsgOut;
                 mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
                 return;
             }
@@ -538,12 +538,75 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ImportAssetsFromExcel(sender, e, 4);
+            actionsStatusBarStaticItem.Caption = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook astWb = astEp.Workbook;
+            ExcelWorksheet astWs = astWb.Worksheets.First();
+            List<string> nonExistedAssets = new List<string>();
+            List<string> mvColumnsHeaders = astWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            int assetCodeCol = mvColumnsHeaders.IndexOf("معلومات الأصل") + 1;
+            int movedFieldCol = mvColumnsHeaders.IndexOf("الحقل المحدث بعملية النقل") + 1;
+            int mvFromCol = mvColumnsHeaders.IndexOf("من") + 1;
+            int mvToCol = mvColumnsHeaders.IndexOf("إلى") + 1;
+            int mvDateCol = mvColumnsHeaders.IndexOf("تاريخ النقل") + 1;
+
+            int addedRecordsCount = 0;
+            int existedRecordsCount = 0;
+
+            for (int iRow = 2; iRow <= astWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+                try
+                {
+                    string assetCodeVal = astWs.Cells[iRow, assetCodeCol].Value?.ToString();
+                    string movedFieldVal = astWs.Cells[iRow, movedFieldCol].Value?.ToString();
+                    string mvFromVal = astWs.Cells[iRow, mvFromCol].Value?.ToString();
+                    string mvToVal = astWs.Cells[iRow, mvToCol].Value?.ToString();
+                    DateTime mvDateVal =new DateTime(1899,12,30).AddDays( Convert.ToInt32(astWs.Cells[iRow, mvDateCol].Value?.ToString()));
+
+                    var existedAsset = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCodeVal);
+                    if (existedAsset == null || existedAsset.Count() == 0)
+                    {
+                        nonExistedAssets.Add(assetCodeVal);
+                        continue;
+                    }
+                    AssetTbl assetToAddMovement = existedAsset.First();
+                    var existedRecords = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv1 => asmv1.AssetID == assetToAddMovement.ID && asmv1.MovementDate == mvDateVal && asmv1.FieldChanged == movedFieldVal && asmv1.OldValue == mvFromVal && asmv1.NewValue == mvToVal);
+                    if (existedRecords.Count() > 0)
+                    {
+                        existedRecordsCount++;
+                        continue;
+                    }
+                    StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(new AssetMovementTbl()
+                    {
+                        AssetID = assetToAddMovement.ID,
+                        MovementDate = mvDateVal,
+                        FieldChanged = movedFieldVal,
+                        OldValue = mvFromVal,
+                        NewValue = mvToVal,
+                    });
+                    addedRecordsCount++;
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+
+            StaticCode.mainDbContext.SubmitChanges();
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات النقل المضافة ({addedRecordsCount})\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ImportAssetsFromExcel(sender, e, 5);
+            
         }
     }
 }
