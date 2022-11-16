@@ -46,14 +46,19 @@ namespace AssetManagement.Users
             this.userRoleRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.userRoleTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colPasswordUpdatedOn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserSection = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.sectionRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colUserDept = new DevExpress.XtraGrid.Columns.GridColumn();
             this.userDeptRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colUserPrefix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserNotes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.userRoleTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter();
             this.userTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserTblTableAdapter();
             this.userTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
@@ -71,11 +76,7 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.userTblBindingNavigatorManageUserRolesItem = new System.Windows.Forms.ToolStripButton();
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
-            this.colUserSection = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUserNotes = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.sectionRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.userTblBindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingSource)).BeginInit();
@@ -83,13 +84,13 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).BeginInit();
             this.userTblBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // minorCategoryGridView
@@ -105,14 +106,14 @@ namespace AssetManagement.Users
             gridLevelNode1.RelationName = "userLevel";
             this.userGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.userGridControl.Location = new System.Drawing.Point(0, 27);
+            this.userGridControl.Location = new System.Drawing.Point(0, 47);
             this.userGridControl.MainView = this.userGridView;
             this.userGridControl.Name = "userGridControl";
             this.userGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.userRoleRepositoryItemLookUpEdit,
             this.userDeptRepositoryItemLookUpEdit,
             this.sectionRepositoryItemLookUpEdit});
-            this.userGridControl.Size = new System.Drawing.Size(1274, 672);
+            this.userGridControl.Size = new System.Drawing.Size(1274, 652);
             this.userGridControl.TabIndex = 8;
             this.userGridControl.UseEmbeddedNavigator = true;
             this.userGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -143,6 +144,9 @@ namespace AssetManagement.Users
             this.colUserNotes});
             this.userGridView.GridControl = this.userGridControl;
             this.userGridView.Name = "userGridView";
+            this.userGridView.OptionsBehavior.Editable = false;
+            this.userGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.userGridView_RowClick);
+            this.userGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.userGridView_RowCellClick);
             // 
             // colID
             // 
@@ -209,6 +213,36 @@ namespace AssetManagement.Users
             this.colPasswordUpdatedOn.Name = "colPasswordUpdatedOn";
             this.colPasswordUpdatedOn.Width = 120;
             // 
+            // colUserSection
+            // 
+            this.colUserSection.Caption = "الدائرة";
+            this.colUserSection.ColumnEdit = this.sectionRepositoryItemLookUpEdit;
+            this.colUserSection.FieldName = "UserSection";
+            this.colUserSection.MinWidth = 150;
+            this.colUserSection.Name = "colUserSection";
+            this.colUserSection.Visible = true;
+            this.colUserSection.VisibleIndex = 3;
+            this.colUserSection.Width = 150;
+            // 
+            // sectionRepositoryItemLookUpEdit
+            // 
+            this.sectionRepositoryItemLookUpEdit.AutoHeight = false;
+            this.sectionRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.sectionRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.sectionRepositoryItemLookUpEdit.DataSource = this.sectionTblBindingSource;
+            this.sectionRepositoryItemLookUpEdit.DisplayMember = "SectionName";
+            this.sectionRepositoryItemLookUpEdit.Name = "sectionRepositoryItemLookUpEdit";
+            this.sectionRepositoryItemLookUpEdit.PopupWidth = 500;
+            this.sectionRepositoryItemLookUpEdit.ValueMember = "ID";
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // colUserDept
             // 
             this.colUserDept.Caption = "القسم";
@@ -249,6 +283,14 @@ namespace AssetManagement.Users
             this.colUserPrefix.Visible = true;
             this.colUserPrefix.VisibleIndex = 5;
             this.colUserPrefix.Width = 150;
+            // 
+            // colUserNotes
+            // 
+            this.colUserNotes.Caption = "ملاحظات";
+            this.colUserNotes.FieldName = "UserNotes";
+            this.colUserNotes.MinWidth = 200;
+            this.colUserNotes.Name = "colUserNotes";
+            this.colUserNotes.Width = 200;
             // 
             // departmentTblBindingSource
             // 
@@ -299,6 +341,10 @@ namespace AssetManagement.Users
             // 
             this.departmentTblTableAdapter.ClearBeforeFill = true;
             // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
             // userRoleTblTableAdapter
             // 
             this.userRoleTblTableAdapter.ClearBeforeFill = true;
@@ -309,11 +355,11 @@ namespace AssetManagement.Users
             // 
             // userTblBindingNavigator
             // 
-            this.userTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.userTblBindingNavigator.AddNewItem = null;
             this.userTblBindingNavigator.BindingSource = this.userTblBindingSource;
             this.userTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.userTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.userTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.userTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.userTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -327,7 +373,8 @@ namespace AssetManagement.Users
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.userTblBindingNavigatorSaveItem,
-            this.userTblBindingNavigatorManageUserRolesItem});
+            this.userTblBindingNavigatorManageUserRolesItem,
+            this.userTblBindingNavigatorEditItem});
             this.userTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.userTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.userTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -335,7 +382,7 @@ namespace AssetManagement.Users
             this.userTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userTblBindingNavigator.Name = "userTblBindingNavigator";
             this.userTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userTblBindingNavigator.Size = new System.Drawing.Size(1274, 27);
+            this.userTblBindingNavigator.Size = new System.Drawing.Size(1274, 47);
             this.userTblBindingNavigator.TabIndex = 6;
             this.userTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -345,13 +392,14 @@ namespace AssetManagement.Users
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 44);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -361,7 +409,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -370,7 +418,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -379,13 +427,13 @@ namespace AssetManagement.Users
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -400,7 +448,7 @@ namespace AssetManagement.Users
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -408,7 +456,7 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -417,20 +465,20 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
             // userTblBindingNavigatorSaveItem
             // 
             this.userTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.userTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("userTblBindingNavigatorSaveItem.Image")));
             this.userTblBindingNavigatorSaveItem.Name = "userTblBindingNavigatorSaveItem";
-            this.userTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.userTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(44, 44);
             this.userTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userTblBindingNavigatorSaveItem_Click);
             // 
@@ -440,7 +488,7 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorManageUserRolesItem.Image = global::AssetManagement.Properties.Resources._968279;
             this.userTblBindingNavigatorManageUserRolesItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.userTblBindingNavigatorManageUserRolesItem.Name = "userTblBindingNavigatorManageUserRolesItem";
-            this.userTblBindingNavigatorManageUserRolesItem.Size = new System.Drawing.Size(29, 24);
+            this.userTblBindingNavigatorManageUserRolesItem.Size = new System.Drawing.Size(44, 44);
             this.userTblBindingNavigatorManageUserRolesItem.Text = "toolStripButton1";
             this.userTblBindingNavigatorManageUserRolesItem.Click += new System.EventHandler(this.userTblBindingNavigatorManageUserRolesItem_Click);
             // 
@@ -448,47 +496,15 @@ namespace AssetManagement.Users
             // 
             this.departmentVwTableAdapter.ClearBeforeFill = true;
             // 
-            // colUserSection
+            // userTblBindingNavigatorEditItem
             // 
-            this.colUserSection.Caption = "الدائرة";
-            this.colUserSection.ColumnEdit = this.sectionRepositoryItemLookUpEdit;
-            this.colUserSection.FieldName = "UserSection";
-            this.colUserSection.MinWidth = 150;
-            this.colUserSection.Name = "colUserSection";
-            this.colUserSection.Visible = true;
-            this.colUserSection.VisibleIndex = 3;
-            this.colUserSection.Width = 150;
-            // 
-            // colUserNotes
-            // 
-            this.colUserNotes.Caption = "ملاحظات";
-            this.colUserNotes.FieldName = "UserNotes";
-            this.colUserNotes.MinWidth = 200;
-            this.colUserNotes.Name = "colUserNotes";
-            this.colUserNotes.Width = 200;
-            // 
-            // sectionRepositoryItemLookUpEdit
-            // 
-            this.sectionRepositoryItemLookUpEdit.AutoHeight = false;
-            this.sectionRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sectionRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.sectionRepositoryItemLookUpEdit.DataSource = this.sectionTblBindingSource;
-            this.sectionRepositoryItemLookUpEdit.DisplayMember = "SectionName";
-            this.sectionRepositoryItemLookUpEdit.Name = "sectionRepositoryItemLookUpEdit";
-            this.sectionRepositoryItemLookUpEdit.PopupWidth = 500;
-            this.sectionRepositoryItemLookUpEdit.ValueMember = "ID";
-            // 
-            // sectionTblBindingSource
-            // 
-            this.sectionTblBindingSource.DataMember = "SectionTbl";
-            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // sectionTblTableAdapter
-            // 
-            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            this.userTblBindingNavigatorEditItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.userTblBindingNavigatorEditItem.Image = global::AssetManagement.Properties.Resources._1573959;
+            this.userTblBindingNavigatorEditItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.userTblBindingNavigatorEditItem.Name = "userTblBindingNavigatorEditItem";
+            this.userTblBindingNavigatorEditItem.Size = new System.Drawing.Size(44, 44);
+            this.userTblBindingNavigatorEditItem.Text = "تعديل";
+            this.userTblBindingNavigatorEditItem.Click += new System.EventHandler(this.userTblBindingNavigatorEditItem_Click);
             // 
             // ManageUserTblForm
             // 
@@ -511,14 +527,14 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingNavigator)).EndInit();
             this.userTblBindingNavigator.ResumeLayout(false);
             this.userTblBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionRepositoryItemLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -567,5 +583,6 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colUserNotes;
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
+        private System.Windows.Forms.ToolStripButton userTblBindingNavigatorEditItem;
     }
 }

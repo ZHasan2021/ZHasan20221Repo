@@ -52,10 +52,18 @@ namespace AssetManagement.Users
             this.userDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.userSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.userSectionLabel = new System.Windows.Forms.Label();
+            this.manageSectionTblBtn = new System.Windows.Forms.Button();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSectionLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // userNameLabel
@@ -118,6 +126,7 @@ namespace AssetManagement.Users
             this.userRoleComboBox.Size = new System.Drawing.Size(261, 32);
             this.userRoleComboBox.TabIndex = 40;
             this.userRoleComboBox.ValueMember = "ID";
+            this.userRoleComboBox.SelectedIndexChanged += new System.EventHandler(this.userRoleComboBox_SelectedIndexChanged);
             // 
             // userRoleTblBindingSource
             // 
@@ -156,7 +165,7 @@ namespace AssetManagement.Users
             // 
             this.addNewUserBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
             this.addNewUserBtn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewUserBtn_Cancel.Location = new System.Drawing.Point(674, 277);
+            this.addNewUserBtn_Cancel.Location = new System.Drawing.Point(674, 331);
             this.addNewUserBtn_Cancel.Name = "addNewUserBtn_Cancel";
             this.addNewUserBtn_Cancel.Size = new System.Drawing.Size(152, 65);
             this.addNewUserBtn_Cancel.TabIndex = 205;
@@ -169,7 +178,7 @@ namespace AssetManagement.Users
             // 
             this.addNewUserBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
             this.addNewUserBtn_OK.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewUserBtn_OK.Location = new System.Drawing.Point(674, 186);
+            this.addNewUserBtn_OK.Location = new System.Drawing.Point(674, 240);
             this.addNewUserBtn_OK.Name = "addNewUserBtn_OK";
             this.addNewUserBtn_OK.Size = new System.Drawing.Size(152, 65);
             this.addNewUserBtn_OK.TabIndex = 200;
@@ -185,7 +194,7 @@ namespace AssetManagement.Users
             this.manageUserRoleTblBtn.Location = new System.Drawing.Point(513, 223);
             this.manageUserRoleTblBtn.Name = "manageUserRoleTblBtn";
             this.manageUserRoleTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageUserRoleTblBtn.TabIndex = 45;
+            this.manageUserRoleTblBtn.TabIndex = 41;
             this.manageUserRoleTblBtn.UseVisualStyleBackColor = true;
             this.manageUserRoleTblBtn.Click += new System.EventHandler(this.manageUserRoleTblBtn_Click);
             // 
@@ -201,14 +210,14 @@ namespace AssetManagement.Users
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AutoHeight = true;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // manageDepartmentTblBtn
             // 
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(513, 293);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(513, 363);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 60;
@@ -218,15 +227,15 @@ namespace AssetManagement.Users
             // userDeptLabel
             // 
             this.userDeptLabel.AutoSize = true;
-            this.userDeptLabel.Location = new System.Drawing.Point(33, 308);
+            this.userDeptLabel.Location = new System.Drawing.Point(33, 378);
             this.userDeptLabel.Name = "userDeptLabel";
             this.userDeptLabel.Size = new System.Drawing.Size(56, 24);
-            this.userDeptLabel.TabIndex = 50;
+            this.userDeptLabel.TabIndex = 55;
             this.userDeptLabel.Text = "القسم:";
             // 
             // userDeptLookUpEdit
             // 
-            this.userDeptLookUpEdit.Location = new System.Drawing.Point(190, 305);
+            this.userDeptLookUpEdit.Location = new System.Drawing.Point(190, 375);
             this.userDeptLookUpEdit.Name = "userDeptLookUpEdit";
             this.userDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -240,7 +249,7 @@ namespace AssetManagement.Users
             this.userDeptLookUpEdit.Properties.DisplayMember = "DepartmentName";
             this.userDeptLookUpEdit.Properties.ValueMember = "ID";
             this.userDeptLookUpEdit.Size = new System.Drawing.Size(261, 30);
-            this.userDeptLookUpEdit.TabIndex = 206;
+            this.userDeptLookUpEdit.TabIndex = 60;
             // 
             // departmentTblBindingSource
             // 
@@ -251,11 +260,86 @@ namespace AssetManagement.Users
             // 
             this.departmentTblTableAdapter.ClearBeforeFill = true;
             // 
+            // userSectionLookUpEdit
+            // 
+            this.userSectionLookUpEdit.Location = new System.Drawing.Point(190, 305);
+            this.userSectionLookUpEdit.Name = "userSectionLookUpEdit";
+            this.userSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.userSectionLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.userSectionLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.userSectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource;
+            this.userSectionLookUpEdit.Properties.DisplayMember = "SectionName";
+            this.userSectionLookUpEdit.Properties.ValueMember = "ID";
+            this.userSectionLookUpEdit.Size = new System.Drawing.Size(261, 30);
+            this.userSectionLookUpEdit.TabIndex = 50;
+            this.userSectionLookUpEdit.EditValueChanged += new System.EventHandler(this.userSectionLookUpEdit_EditValueChanged);
+            // 
+            // userSectionLabel
+            // 
+            this.userSectionLabel.AutoSize = true;
+            this.userSectionLabel.Location = new System.Drawing.Point(33, 308);
+            this.userSectionLabel.Name = "userSectionLabel";
+            this.userSectionLabel.Size = new System.Drawing.Size(56, 24);
+            this.userSectionLabel.TabIndex = 45;
+            this.userSectionLabel.Text = "الدائرة:";
+            // 
+            // manageSectionTblBtn
+            // 
+            this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(513, 293);
+            this.manageSectionTblBtn.Name = "manageSectionTblBtn";
+            this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageSectionTblBtn.TabIndex = 51;
+            this.manageSectionTblBtn.UseVisualStyleBackColor = true;
+            this.manageSectionTblBtn.Click += new System.EventHandler(this.manageSectionTblBtn_Click);
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = null;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = null;
+            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
+            this.tableAdapterManager.SquareTblTableAdapter = null;
+            this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = this.userRoleTblTableAdapter;
+            this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
             // AddNewUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 377);
+            this.ClientSize = new System.Drawing.Size(864, 457);
+            this.Controls.Add(this.manageSectionTblBtn);
+            this.Controls.Add(this.userSectionLookUpEdit);
+            this.Controls.Add(this.userSectionLabel);
             this.Controls.Add(this.userDeptLookUpEdit);
             this.Controls.Add(this.manageDepartmentTblBtn);
             this.Controls.Add(this.userDeptLabel);
@@ -285,6 +369,8 @@ namespace AssetManagement.Users
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSectionLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +399,11 @@ namespace AssetManagement.Users
         private DevExpress.XtraEditors.LookUpEdit userDeptLookUpEdit;
         private System.Windows.Forms.BindingSource departmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
+        private DevExpress.XtraEditors.LookUpEdit userSectionLookUpEdit;
+        private System.Windows.Forms.Label userSectionLabel;
+        private System.Windows.Forms.Button manageSectionTblBtn;
+        private System.Windows.Forms.BindingSource sectionTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
+        private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

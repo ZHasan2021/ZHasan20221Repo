@@ -12,7 +12,7 @@ namespace AssetManagement.Assets
 {
     public partial class MoveAssetForm : Form
     {
-        IQueryable<AssetMoveVw> srchRes = null;
+        IQueryable<AssetVw> srchRes = null;
         AssetMoveVw currSrchRes = null;
 
         public MoveAssetForm()
@@ -165,7 +165,7 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = false;
-            srchRes = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
+            srchRes = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
             if (srchRes.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);

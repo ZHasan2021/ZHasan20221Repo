@@ -140,6 +140,11 @@ namespace AssetManagement.Finance
             }
             catch
             {
+                if (decryptImportedFileCheckBox.Checked)
+                {
+                    if (File.Exists(importedExcelFilePath))
+                        File.Delete(importedExcelFilePath);
+                }
                 mainAlertControl.Show(this, "خطأ في الوصول إلى الملف، تأكد من سلامة الملف أولاً", StaticCode.ApplicationTitle);
             }
         }

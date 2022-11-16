@@ -69,9 +69,7 @@ namespace AssetManagement.Finance
                 outgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "صادر";
                 if (currFiIt.IncomingOrOutgoing == "وارد")
                 {
-                    incomingFromUpperLevelRadioButton.Checked = currFiIt.IncomingFrom == "من المستوى الأعلى";
-                    incomingFromOtherRadioButton.Checked = currFiIt.IncomingFrom == "أخرى";
-                    incomingFromOtherTextBox.Text = currFiIt.IncomingFromOther;
+                    incomingFromComboBox.Text = currFiIt.IncomingFrom;
                 }
                 if (currFiIt.IncomingOrOutgoing == "صادر")
                 {
@@ -201,14 +199,9 @@ namespace AssetManagement.Finance
                     mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
                     return;
                 }
-                if (!(incomingFromUpperLevelRadioButton.Checked || incomingFromOtherRadioButton.Checked))
+                if (incomingFromComboBox.Text == "")
                 {
                     mainAlertControl.Show(this, "اختر جهة الإيراد أولاً", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (incomingFromOtherRadioButton.Checked && incomingFromOtherTextBox.Text.Trim() == "")
-                {
-                    mainAlertControl.Show(this, "اكتب جهة الإيراد الأخرى أولاً", StaticCode.ApplicationTitle);
                     return;
                 }
             }
@@ -258,9 +251,7 @@ namespace AssetManagement.Finance
                 if (incomingRadioButton.Checked)
                 {
                     newFiIt.IncomingOrOutgoing = "وارد";
-                    newFiIt.IncomingFrom = (incomingFromUpperLevelRadioButton.Checked) ? "من المستوى الأعلى" : "أخرى";
-                    newFiIt.IncomingFromOther = (incomingFromUpperLevelRadioButton.Checked) ? "" : incomingFromOtherTextBox.Text.Trim();
-
+                    newFiIt.IncomingFrom = incomingFromComboBox.Text;
                 }
                 if (outgoingRadioButton.Checked)
                 {
@@ -341,7 +332,8 @@ namespace AssetManagement.Finance
         private void incomingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
-            incomingAmountNumericUpDown.Enabled = incomingFromPanel.Visible = true;
+            financialItemCategoryLookUpEdit.EditValue = null;
+            incomingAmountNumericUpDown.Enabled = incomingFromComboBox.Visible = true;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
@@ -350,7 +342,8 @@ namespace AssetManagement.Finance
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
-            incomingAmountNumericUpDown.Enabled = incomingFromPanel.Visible = false;
+            financialItemCategoryLookUpEdit.EditValue = null;
+            incomingAmountNumericUpDown.Enabled = incomingFromComboBox.Visible = false;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = true;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
@@ -368,8 +361,10 @@ namespace AssetManagement.Finance
                 return;
             try
             {
-                string fiCaDtl = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue)).FinancialItemCategoryDetails;
-                if (fiCaDtl.Contains("أصل") || fiCaDtl.Contains("أصول"))
+                FinancialItemCategoryTbl selectedFiCa = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue));
+                string fiCaNml = selectedFiCa.FinancialItemCategoryName;
+                string fiCaDtl = selectedFiCa.FinancialItemCategoryDetails;
+                if (fiCaNml.Contains("أصل") || fiCaNml.Contains("أصول") || fiCaDtl.Contains("أصل") || fiCaDtl.Contains("أصول"))
                 {
                     if (StaticCode.activeUserRole.AddNewAsset == true)
                     {
@@ -390,12 +385,6 @@ namespace AssetManagement.Finance
             {
 
             }
-        }
-
-        private void incomingFromOtherRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            incomingFromOtherTextBox.Visible = incomingFromOtherRadioButton.Checked;
-            incomingFromOtherTextBox.Text = "";
         }
 
         private void relatedOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)

@@ -12,6 +12,8 @@ namespace AssetManagement.Users
 {
     public partial class ManageUserTblForm : Form
     {
+        int currRow = -1;
+
         public ManageUserTblForm()
         {
             InitializeComponent();
@@ -56,6 +58,44 @@ namespace AssetManagement.Users
         {
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.Location = new Point(200, 200);
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            AddNewUserForm usrFrm = new AddNewUserForm();
+            usrFrm.ShowDialog();
+            this.userTblTableAdapter.Fill(this.assetMngDbDataSet.UserTbl);
+        }
+
+        private void userTblBindingNavigatorEditItem_Click(object sender, EventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم تعديل بياناته", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(userGridView.GetRowCellValue(currRow, colID));
+                AddNewUserForm usrFrm = new AddNewUserForm(currAssetID);
+                usrFrm.ShowDialog();
+                currRow = 0;
+                this.userTblTableAdapter.Fill(this.assetMngDbDataSet.UserTbl);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم تعديل بياناته", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void userGridView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            currRow = e.RowHandle;
+        }
+
+        private void userGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            currRow = e.RowHandle;
         }
     }
 }

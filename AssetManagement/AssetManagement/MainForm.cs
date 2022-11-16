@@ -42,7 +42,7 @@ namespace AssetManagement
                 activeUserDeptBarStaticItem.Caption = $"القسم الذي يتبع له الحساب النشط: ( {StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
             else
                 activeUserDeptBarStaticItem.Caption = "الحساب لا يتبع لقسم محدد";
-           mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
+            mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
             StaticCode.mainDbContext.SubmitChanges();
 
             addNewAssetBarButtonItem.Visibility = importAssetsFromExcelBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewAsset == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -539,7 +539,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             actionsStatusBarStaticItem.Caption = "";
-            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات نقل أصول" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
             {
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
@@ -569,7 +569,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     string movedFieldVal = astWs.Cells[iRow, movedFieldCol].Value?.ToString();
                     string mvFromVal = astWs.Cells[iRow, mvFromCol].Value?.ToString();
                     string mvToVal = astWs.Cells[iRow, mvToCol].Value?.ToString();
-                    DateTime mvDateVal =new DateTime(1899,12,30).AddDays( Convert.ToInt32(astWs.Cells[iRow, mvDateCol].Value?.ToString()));
+                    DateTime mvDateVal = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(astWs.Cells[iRow, mvDateCol].Value?.ToString()));
 
                     var existedAsset = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCodeVal);
                     if (existedAsset == null || existedAsset.Count() == 0)
@@ -606,7 +606,81 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+            actionsStatusBarStaticItem.Caption = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات تصريف أصول" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook astWb = astEp.Workbook;
+            ExcelWorksheet astWs = astWb.Worksheets.First();
+            List<string> nonExistedAssets = new List<string>();
+            List<string> mvColumnsHeaders = astWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            int assetCodeCol = mvColumnsHeaders.IndexOf("معلومات الأصل") + 1;
+            int trCategoryCol = mvColumnsHeaders.IndexOf("نوع التصريف") + 1;
+            int trSellPriceCol = mvColumnsHeaders.IndexOf("مبلغ البيع") + 1;
+            int trSellPriceCurrCol = mvColumnsHeaders.IndexOf("عملة مبلغ البيع") + 1;
+            int trGetOutOfWorkCol = mvColumnsHeaders.IndexOf("إخراج الأصل من الخدمة") + 1;
+            int trCurrPriceCol = mvColumnsHeaders.IndexOf("السعر الحالي مع الإهلاك") + 1;
+            int trNotesCol = mvColumnsHeaders.IndexOf("ملاحظات") + 1;
+            int trDateCol = mvColumnsHeaders.IndexOf("تاريخ التصريف") + 1;
+
+            int addedRecordsCount = 0;
+            int existedRecordsCount = 0;
+
+            for (int iRow = 2; iRow <= astWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+                try
+                {
+                    string assetCodeVal = astWs.Cells[iRow, assetCodeCol].Value?.ToString();
+                    string tmpVal = astWs.Cells[iRow, trCategoryCol].Value?.ToString();
+                    int trCategoryVal = StaticCode.mainDbContext.TransactionTypeTbls.Single(tt1 => tt1.TransactionTypeName == tmpVal).ID;
+                    double trSellPriceVal = Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
+                    tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString();
+                    int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
+                    bool trGetOutOfWorkVal = Convert.ToBoolean(astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString());
+                    double trCurrPriceVal = Convert.ToDouble(astWs.Cells[iRow, trCurrPriceCol].Value?.ToString());
+                    string trNotesVal = astWs.Cells[iRow, trNotesCol].Value?.ToString();
+                    DateTime mvDateVal = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(astWs.Cells[iRow, trDateCol].Value?.ToString()));
+
+                    var existedAsset = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCodeVal);
+                    if (existedAsset == null || existedAsset.Count() == 0)
+                    {
+                        nonExistedAssets.Add(assetCodeVal);
+                        continue;
+                    }
+                    AssetTbl assetToAddMovement = existedAsset.First();
+                    var existedRecords = StaticCode.mainDbContext.AssetTransactionTbls.Where(astr1 => astr1.AssetID == assetToAddMovement.ID && astr1.TransactionDate == mvDateVal && astr1.TransactionType == trCategoryVal && astr1.MoneyAmount == trSellPriceVal && astr1.GetAssetOutOfWork == trGetOutOfWorkVal);
+                    if (existedRecords.Count() > 0)
+                    {
+                        existedRecordsCount++;
+                        continue;
+                    }
+                    StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(new AssetTransactionTbl()
+                    {
+                        AssetID = assetToAddMovement.ID,
+                        TransactionDate = mvDateVal,
+                        TransactionType = trCategoryVal,
+                        GetAssetOutOfWork = trGetOutOfWorkVal,
+                        TransactionNotes = trNotesVal,
+                        CurrentPriceWithDestroying = trCurrPriceVal,
+                        MoneyAmount = trSellPriceVal,
+                        MoneyAmountCurrency = trSellPriceCurrVal,
+                    });
+                    addedRecordsCount++;
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+
+            StaticCode.mainDbContext.SubmitChanges();
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
         }
     }
 }

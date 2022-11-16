@@ -285,6 +285,7 @@ namespace AssetManagement.Assets
         {
             if (aggregateStatTypeBarEditItem.EditValue == null || byFieldBarEditItem.EditValue == null) return;
             Series series1 = mainChartControl.Series[0];
+            Series series2 = mainChartControl.Series[1];
             switch (aggregateStatTypeBarEditItem.EditValue.ToString())
             {
                 case "عدد الأصول":
@@ -294,14 +295,27 @@ namespace AssetManagement.Assets
                             var ggg = series1.View.DiagramType;
                             series1.ArgumentDataMember = "القسم";
                             series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            series1.Visible = true;
+                            series2.Visible = false;
                             break;
                         case "الفئة الرئيسية":
                             series1.ArgumentDataMember = "الفئة الرئيسية";
                             series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            series1.Visible = true;
+                            series2.Visible = false;
                             break;
                         case "الفئة الفرعية":
                             series1.ArgumentDataMember = "الفئة الفرعية";
                             series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            series1.Visible = true;
+                            series2.Visible = false;
+                            break;
+                        case "الفئة الرئيسية وحالة الأصل":
+                            series2.ArgumentDataMember = "الفئة الرئيسية";
+                            series2.ColorDataMember = "حالة الأصل الآنية";
+                            series2.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+                            series1.Visible = false;
+                            series2.Visible = true;
                             break;
                         default:
                             break;
@@ -313,14 +327,27 @@ namespace AssetManagement.Assets
                         case "القسم":
                             series1.ArgumentDataMember = "القسم";
                             series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            series1.Visible = true;
+                            series2.Visible = false;
                             break;
                         case "الفئة الرئيسية":
                             series1.ArgumentDataMember = "الفئة الرئيسية";
                             series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            series1.Visible = true;
+                            series2.Visible = false;
                             break;
                         case "الفئة الفرعية":
                             series1.ArgumentDataMember = "الفئة الفرعية";
                             series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            series1.Visible = true;
+                            series2.Visible = false;
+                            break;
+                        case "الفئة الرئيسية وحالة الأصل":
+                            series2.ArgumentDataMember = "الفئة الرئيسية";
+                            series2.ColorDataMember = "حالة الأصل الآنية";
+                            series2.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+                            series1.Visible = false;
+                            series2.Visible = true;
                             break;
                         default:
                             break;

@@ -114,6 +114,7 @@ namespace AssetManagement.Assets
             this.colالفئةالرئيسية = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالفئةالفرعية = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colمواصفاتالأصل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colتاريخالإدخال = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالموديل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاللون = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -149,7 +150,6 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colتاريخالإدخال = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -763,7 +763,7 @@ namespace AssetManagement.Assets
             this.searchBySectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchBySectionLookUpEdit.TabIndex = 110;
             this.searchBySectionLookUpEdit.Visible = false;
-            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionLookUpEdit_EditValueChanged);
+            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionCheckBox_CheckedChanged);
             // 
             // sectionTblBindingSource
             // 
@@ -790,7 +790,7 @@ namespace AssetManagement.Assets
             this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchByDepartmentLookUpEdit.TabIndex = 120;
             this.searchByDepartmentLookUpEdit.Visible = false;
-            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentLookUpEdit_EditValueChanged);
+            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
             // 
             // departmentTblBindingSource
             // 
@@ -1112,6 +1112,15 @@ namespace AssetManagement.Assets
             this.colمواصفاتالأصل.Visible = true;
             this.colمواصفاتالأصل.VisibleIndex = 8;
             this.colمواصفاتالأصل.Width = 200;
+            // 
+            // colتاريخالإدخال
+            // 
+            this.colتاريخالإدخال.FieldName = "تاريخ الإدخال";
+            this.colتاريخالإدخال.MinWidth = 120;
+            this.colتاريخالإدخال.Name = "colتاريخالإدخال";
+            this.colتاريخالإدخال.Visible = true;
+            this.colتاريخالإدخال.VisibleIndex = 35;
+            this.colتاريخالإدخال.Width = 120;
             // 
             // colالموديل
             // 
@@ -1463,15 +1472,6 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7.Name = "repositoryItemLookUpEdit7";
             this.repositoryItemLookUpEdit7.PopupWidth = 500;
             this.repositoryItemLookUpEdit7.ValueMember = "ID";
-            // 
-            // colتاريخالإدخال
-            // 
-            this.colتاريخالإدخال.FieldName = "تاريخ الإدخال";
-            this.colتاريخالإدخال.MinWidth = 120;
-            this.colتاريخالإدخال.Name = "colتاريخالإدخال";
-            this.colتاريخالإدخال.Visible = true;
-            this.colتاريخالإدخال.VisibleIndex = 35;
-            this.colتاريخالإدخال.Width = 120;
             // 
             // NewAssetInventoryForm
             // 

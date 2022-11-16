@@ -168,7 +168,7 @@ namespace AssetManagement.Assets
         {
             if (currRow < 0)
             {
-                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم تعديل بياناته", StaticCode.ApplicationTitle);
                 return;
             }
             try
@@ -182,7 +182,7 @@ namespace AssetManagement.Assets
             }
             catch
             {
-                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم تعديل بياناته", StaticCode.ApplicationTitle);
             }
         }
 
@@ -195,7 +195,7 @@ namespace AssetManagement.Assets
         {
             if (currRow < 0)
             {
-                mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
                 return;
             }
             try
@@ -209,7 +209,7 @@ namespace AssetManagement.Assets
             }
             catch
             {
-                mainAlertControl.Show(this, "اختر سجلاً واحداً ليتم عرض بطاقته", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
             }
         }
     }

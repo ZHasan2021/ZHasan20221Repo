@@ -277,7 +277,6 @@ C:\Users\ASUS\Dropbox\Assets management\AssetManagement\AssetManagement\obj\Debu
 C:\Users\ASUS\Dropbox\Assets management\AssetManagement\AssetManagement\obj\Debug\AssetManagement.AuxTables.AddNewMinorCategoryForm.resources
 C:\Users\ASUS\Dropbox\Assets management\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.MoveAssetForm.resources
 C:\Users\ASUS\Dropbox\Assets management\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.TransacteAssetForm.resources
-C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.csproj.AssemblyReference.cache
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsStatsForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsReports.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsXtraReport.resources
