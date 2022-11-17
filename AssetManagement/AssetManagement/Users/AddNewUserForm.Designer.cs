@@ -53,9 +53,9 @@ namespace AssetManagement.Users
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
             this.userSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userSectionLabel = new System.Windows.Forms.Label();
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
-            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
@@ -278,6 +278,11 @@ namespace AssetManagement.Users
             this.userSectionLookUpEdit.TabIndex = 50;
             this.userSectionLookUpEdit.EditValueChanged += new System.EventHandler(this.userSectionLookUpEdit_EditValueChanged);
             // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // userSectionLabel
             // 
             this.userSectionLabel.AutoSize = true;
@@ -297,11 +302,6 @@ namespace AssetManagement.Users
             this.manageSectionTblBtn.TabIndex = 51;
             this.manageSectionTblBtn.UseVisualStyleBackColor = true;
             this.manageSectionTblBtn.Click += new System.EventHandler(this.manageSectionTblBtn_Click);
-            // 
-            // sectionTblBindingSource
-            // 
-            this.sectionTblBindingSource.DataMember = "SectionTbl";
-            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // sectionTblTableAdapter
             // 
@@ -323,6 +323,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;

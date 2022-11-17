@@ -21,7 +21,6 @@ namespace AssetManagement.Options
         {
             this.MinimumSize = this.Size;
 
-            assetCodePrefixTextBox.Text = StaticCode.appOptions.AssetCodePrefix;
             assetLifeSpanThresholdToWarnNumericUpDown.Value = StaticCode.appOptions.AssetLifeSpanThresholdToWarn;
         }
 
@@ -29,7 +28,6 @@ namespace AssetManagement.Options
         {
             try
             {
-                StaticCode.appOptions.AssetCodePrefix = assetCodePrefixTextBox.Text.Trim();
                 StaticCode.appOptions.AssetLifeSpanThresholdToWarn = Convert.ToInt32(assetLifeSpanThresholdToWarnNumericUpDown.Value);
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);

@@ -31,8 +31,6 @@ namespace AssetManagement.Options
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
-            this.assetCodePrefixLabel = new System.Windows.Forms.Label();
-            this.assetCodePrefixTextBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
@@ -41,22 +39,6 @@ namespace AssetManagement.Options
             this.monthsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.assetLifeSpanThresholdToWarnNumericUpDown)).BeginInit();
             this.SuspendLayout();
-            // 
-            // assetCodePrefixLabel
-            // 
-            this.assetCodePrefixLabel.AutoSize = true;
-            this.assetCodePrefixLabel.Location = new System.Drawing.Point(46, 40);
-            this.assetCodePrefixLabel.Name = "assetCodePrefixLabel";
-            this.assetCodePrefixLabel.Size = new System.Drawing.Size(121, 24);
-            this.assetCodePrefixLabel.TabIndex = 0;
-            this.assetCodePrefixLabel.Text = "بادئة كود الأصل:";
-            // 
-            // assetCodePrefixTextBox
-            // 
-            this.assetCodePrefixTextBox.Location = new System.Drawing.Point(509, 36);
-            this.assetCodePrefixTextBox.Name = "assetCodePrefixTextBox";
-            this.assetCodePrefixTextBox.Size = new System.Drawing.Size(199, 32);
-            this.assetCodePrefixTextBox.TabIndex = 5;
             // 
             // cancelBtn
             // 
@@ -96,7 +78,7 @@ namespace AssetManagement.Options
             // 
             // assetLifeSpanThresholdToWarnNumericUpDown
             // 
-            this.assetLifeSpanThresholdToWarnNumericUpDown.Location = new System.Drawing.Point(509, 96);
+            this.assetLifeSpanThresholdToWarnNumericUpDown.Location = new System.Drawing.Point(509, 62);
             this.assetLifeSpanThresholdToWarnNumericUpDown.Name = "assetLifeSpanThresholdToWarnNumericUpDown";
             this.assetLifeSpanThresholdToWarnNumericUpDown.Size = new System.Drawing.Size(120, 32);
             this.assetLifeSpanThresholdToWarnNumericUpDown.TabIndex = 15;
@@ -104,7 +86,7 @@ namespace AssetManagement.Options
             // assetLifeSpanThresholdToWarnLabel
             // 
             this.assetLifeSpanThresholdToWarnLabel.AutoSize = true;
-            this.assetLifeSpanThresholdToWarnLabel.Location = new System.Drawing.Point(46, 100);
+            this.assetLifeSpanThresholdToWarnLabel.Location = new System.Drawing.Point(46, 66);
             this.assetLifeSpanThresholdToWarnLabel.Name = "assetLifeSpanThresholdToWarnLabel";
             this.assetLifeSpanThresholdToWarnLabel.Size = new System.Drawing.Size(440, 24);
             this.assetLifeSpanThresholdToWarnLabel.TabIndex = 10;
@@ -113,7 +95,7 @@ namespace AssetManagement.Options
             // monthsLabel
             // 
             this.monthsLabel.AutoSize = true;
-            this.monthsLabel.Location = new System.Drawing.Point(664, 100);
+            this.monthsLabel.Location = new System.Drawing.Point(664, 66);
             this.monthsLabel.Name = "monthsLabel";
             this.monthsLabel.Size = new System.Drawing.Size(44, 24);
             this.monthsLabel.TabIndex = 20;
@@ -131,8 +113,6 @@ namespace AssetManagement.Options
             this.Controls.Add(this.assetLifeSpanThresholdToWarnNumericUpDown);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
-            this.Controls.Add(this.assetCodePrefixTextBox);
-            this.Controls.Add(this.assetCodePrefixLabel);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -150,9 +130,6 @@ namespace AssetManagement.Options
         }
 
         #endregion
-
-        private System.Windows.Forms.Label assetCodePrefixLabel;
-        private System.Windows.Forms.TextBox assetCodePrefixTextBox;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;

@@ -30,6 +30,8 @@ namespace AssetManagement.Finance
 
         private void AddNewFinancialItemForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.OutgoingTypeTbl' table. You can move, or remove it, as needed.
+            this.outgoingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.OutgoingTypeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -46,16 +48,24 @@ namespace AssetManagement.Finance
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                outgoingToDeptLookUpEdit.Visible = true;
-                outgoingToSubDeptLookUpEdit.Visible = false;
-            }
-            if (StaticCode.activeUserRole.IsSectionIndependent != true)
-            {
-                outgoingToSubDeptLookUpEdit.Visible = true;
-                outgoingToDeptLookUpEdit.Visible = false;
-            }
+            //if (StaticCode.activeUserRole.IsSectionIndependent == true)
+            //{
+            //    outgoingToSectionLookUpEdit.Visible = true;
+            //    outgoingToDeptLookUpEdit.Visible =
+            //    outgoingToSubDeptLookUpEdit.Visible = false;
+            //}
+            //if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+            //{
+            //    outgoingToDeptLookUpEdit.Visible = true;
+            //    outgoingToSectionLookUpEdit.Visible =
+            //    outgoingToSubDeptLookUpEdit.Visible = false;
+            //}
+            //else
+            //{
+            //    outgoingToSubDeptLookUpEdit.Visible = true;
+            //    outgoingToSectionLookUpEdit.Visible =
+            //    outgoingToDeptLookUpEdit.Visible = false;
+            //}
 
             if (updateExisted)
             {
@@ -73,21 +83,20 @@ namespace AssetManagement.Finance
                 }
                 if (currFiIt.IncomingOrOutgoing == "صادر")
                 {
-                    directOutgoingRadioButton.Checked = currFiIt.OutgoingType == "صادرات مباشرة";
-                    relatedOutgoingRadioButton.Checked = currFiIt.OutgoingType == "صادرات معلقة";
+                    outgoingTypeLookUpEdit.Text = currFiIt.OutgoingType;
                     if (currFiIt.OutgoingType == "صادرات معلقة")
                     {
-                        if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                        if (StaticCode.activeUserRole.IsSectionIndependent == true)
                         {
-                            outgoingToSubDeptLookUpEdit.Visible = true;
-                            outgoingToDeptLookUpEdit.Visible = false;
-                            outgoingToSubDeptLookUpEdit.Text = currFiIt.OutgoingTo;
+                            outgoingToSectionLookUpEdit.Text = currFiIt.OutgoingTo;
                         }
-                        if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                        if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                         {
-                            outgoingToDeptLookUpEdit.Visible = true;
-                            outgoingToSubDeptLookUpEdit.Visible = false;
                             outgoingToDeptLookUpEdit.Text = currFiIt.OutgoingTo;
+                        }
+                        else
+                        {
+                            outgoingToSubDeptLookUpEdit.Text = currFiIt.OutgoingTo;
                         }
                     }
                 }
@@ -126,6 +135,19 @@ namespace AssetManagement.Finance
                     {
 
                     }
+                }
+
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+
+                }
+                else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                {
+                    outgoingToDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == StaticCode.activeUser.UserSection);
+                }
+                else
+                {
+                    outgoingToSubDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdt1 => sdt1.MainDepartment == StaticCode.activeUser.UserDept);
                 }
             }
         }
@@ -212,14 +234,14 @@ namespace AssetManagement.Finance
                     mainAlertControl.Show(this, "اكتب المبلغ الصادر أولاً", StaticCode.ApplicationTitle);
                     return;
                 }
-                if (!(directOutgoingRadioButton.Checked || relatedOutgoingRadioButton.Checked))
+                if (outgoingTypeLookUpEdit.EditValue == null)
                 {
                     mainAlertControl.Show(this, "اختر نوع الصادر أولاً", StaticCode.ApplicationTitle);
                     return;
                 }
-                if (relatedOutgoingRadioButton.Checked)
+                if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
                 {
-                    if (outgoingToSubDeptLookUpEdit.Visible && outgoingToSubDeptLookUpEdit.EditValue == null)
+                    if (outgoingToSectionLookUpEdit.Visible && outgoingToSectionLookUpEdit.EditValue == null)
                     {
                         mainAlertControl.Show(this, "اختر الدائرة التي سيصدر إليها السجل المالي أولاً", StaticCode.ApplicationTitle);
                         return;
@@ -227,6 +249,11 @@ namespace AssetManagement.Finance
                     if (outgoingToDeptLookUpEdit.Visible && outgoingToDeptLookUpEdit.EditValue == null)
                     {
                         mainAlertControl.Show(this, "اختر القسم التي سيصدر إليه السجل المالي أولاً", StaticCode.ApplicationTitle);
+                        return;
+                    }
+                    if (outgoingToSubDeptLookUpEdit.Visible && outgoingToSubDeptLookUpEdit.EditValue == null)
+                    {
+                        mainAlertControl.Show(this, "اختر الوحدة التي سيصدر إليها السجل المالي أولاً", StaticCode.ApplicationTitle);
                         return;
                     }
                 }
@@ -256,10 +283,15 @@ namespace AssetManagement.Finance
                 if (outgoingRadioButton.Checked)
                 {
                     newFiIt.IncomingOrOutgoing = "صادر";
-                    newFiIt.OutgoingType = (directOutgoingRadioButton.Checked) ? "صادرات مباشرة" : "صادرات معلقة";
-                    if (relatedOutgoingRadioButton.Checked)
+                    newFiIt.OutgoingType = outgoingTypeLookUpEdit.Text;
+                    if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
                     {
-                        newFiIt.OutgoingTo = (outgoingToDeptLookUpEdit.Visible) ? outgoingToDeptLookUpEdit.Text : outgoingToSubDeptLookUpEdit.Text;
+                        if (outgoingToSectionLookUpEdit.Visible)
+                            newFiIt.OutgoingTo = outgoingToSectionLookUpEdit.Text;
+                        if (outgoingToDeptLookUpEdit.Visible)
+                            newFiIt.OutgoingTo = outgoingToDeptLookUpEdit.Text;
+                        if (outgoingToSubDeptLookUpEdit.Visible)
+                            newFiIt.OutgoingTo = outgoingToSubDeptLookUpEdit.Text;
                     }
                 }
                 newFiIt.IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(incomingAmountNumericUpDown.Value) : 0;
@@ -387,22 +419,34 @@ namespace AssetManagement.Finance
             }
         }
 
-        private void relatedOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void outgoingTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            relatedOutgoingLabel.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = relatedOutgoingRadioButton.Checked;
-            if (relatedOutgoingRadioButton.Checked)
+            relatedOutgoingLabel.Visible = outgoingToSectionLookUpEdit.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = outgoingTypeLookUpEdit.Text == "صادرات معلقة";
+            if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
             {
-                if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
-                    outgoingToDeptLookUpEdit.Visible = true;
+                    outgoingToSectionLookUpEdit.Visible = true;
+                    outgoingToDeptLookUpEdit.Visible =
                     outgoingToSubDeptLookUpEdit.Visible = false;
                 }
-                if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                 {
-                    outgoingToDeptLookUpEdit.Visible = false;
+                    outgoingToDeptLookUpEdit.Visible = true;
+                    outgoingToSectionLookUpEdit.Visible =
+                    outgoingToSubDeptLookUpEdit.Visible = false;
+                }
+                else
+                {
                     outgoingToSubDeptLookUpEdit.Visible = true;
+                    outgoingToSectionLookUpEdit.Visible =
+                    outgoingToDeptLookUpEdit.Visible = false;
                 }
             }
+
+            outgoingToSectionLookUpEdit.EditValue =
+            outgoingToDeptLookUpEdit.EditValue =
+            outgoingToSubDeptLookUpEdit.EditValue = null;
         }
     }
 }

@@ -133,6 +133,7 @@ namespace AssetManagement.Assets
             this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupHeader5 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.table5 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -168,14 +169,8 @@ namespace AssetManagement.Assets
             this.tableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.panel2 = new DevExpress.XtraReports.UI.XRPanel();
-            this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter4 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.panel3 = new DevExpress.XtraReports.UI.XRPanel();
-            this.label11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.GroupFooter6 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.panel5 = new DevExpress.XtraReports.UI.XRPanel();
-            this.label17 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.panel6 = new DevExpress.XtraReports.UI.XRPanel();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
@@ -193,9 +188,7 @@ namespace AssetManagement.Assets
             this.GrandTotalData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GrandTotalBackground1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
-            this.GroupFooter3 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.label14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
@@ -351,7 +344,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraReports.UI.GroupField("القسم", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader3.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader3.HeightF = 67.2F;
-            this.GroupHeader3.Level = 2;
+            this.GroupHeader3.Level = 1;
             this.GroupHeader3.Name = "GroupHeader3";
             // 
             // table1
@@ -455,7 +448,7 @@ namespace AssetManagement.Assets
             // table4
             // 
             this.table4.Dpi = 96F;
-            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(582.9791F, 1.280005F);
+            this.table4.LocationFloat = new DevExpress.Utils.PointFloat(582.9791F, 11.28F);
             this.table4.Name = "table4";
             this.table4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow4});
@@ -501,6 +494,7 @@ namespace AssetManagement.Assets
             // 
             // GroupHeader5
             // 
+            this.GroupHeader5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.GroupHeader5.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLine2,
             this.table4,
@@ -509,14 +503,25 @@ namespace AssetManagement.Assets
             this.GroupHeader5.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("الفئة الرئيسية", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader5.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
-            this.GroupHeader5.HeightF = 63.2F;
-            this.GroupHeader5.Level = 3;
+            this.GroupHeader5.HeightF = 84.8F;
+            this.GroupHeader5.Level = 2;
             this.GroupHeader5.Name = "GroupHeader5";
+            this.GroupHeader5.StylePriority.UseBackColor = false;
+            // 
+            // xrLine2
+            // 
+            this.xrLine2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.DashDot;
+            this.xrLine2.Dpi = 96F;
+            this.xrLine2.LineWidth = 3F;
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(18.80005F, 58F);
+            this.xrLine2.Name = "xrLine2";
+            this.xrLine2.SizeF = new System.Drawing.SizeF(1032.2F, 5F);
+            this.xrLine2.StylePriority.UseBorderDashStyle = false;
             // 
             // table5
             // 
             this.table5.Dpi = 96F;
-            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(9.599999F, 0F);
+            this.table5.LocationFloat = new DevExpress.Utils.PointFloat(9.599999F, 10F);
             this.table5.Name = "table5";
             this.table5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow5});
@@ -568,7 +573,6 @@ namespace AssetManagement.Assets
             this.GroupHeader6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupHeader6.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader6.HeightF = 46.08F;
-            this.GroupHeader6.Level = 1;
             this.GroupHeader6.Name = "GroupHeader6";
             this.GroupHeader6.StylePriority.UseFont = false;
             // 
@@ -975,7 +979,8 @@ namespace AssetManagement.Assets
             this.label2});
             this.GroupFooter1.Dpi = 96F;
             this.GroupFooter1.GroupUnion = DevExpress.XtraReports.UI.GroupFooterUnion.WithLastDetail;
-            this.GroupFooter1.HeightF = 5.76F;
+            this.GroupFooter1.HeightF = 20.48003F;
+            this.GroupFooter1.Level = 1;
             this.GroupFooter1.Name = "GroupFooter1";
             this.GroupFooter1.Visible = false;
             // 
@@ -989,89 +994,24 @@ namespace AssetManagement.Assets
             this.label2.StyleName = "GroupFooterBackground3";
             this.label2.StylePriority.UseBorders = false;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label8});
-            this.panel2.Dpi = 96F;
-            this.panel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.panel2.Name = "panel2";
-            this.panel2.SizeF = new System.Drawing.SizeF(1026.24F, 54.28198F);
-            this.panel2.StyleName = "TotalBackground1";
-            // 
-            // label8
-            // 
-            this.label8.Dpi = 96F;
-            this.label8.LocationFloat = new DevExpress.Utils.PointFloat(0F, 28.59306F);
-            this.label8.Name = "label8";
-            this.label8.SizeF = new System.Drawing.SizeF(1026.24F, 14.64893F);
-            this.label8.StyleName = "TotalCaption1";
-            this.label8.StylePriority.UseTextAlignment = false;
-            this.label8.Text = "الدائرة [الدائرة]";
-            this.label8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
             // GroupFooter4
             // 
             this.GroupFooter4.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageBreak1,
             this.panel3});
             this.GroupFooter4.Dpi = 96F;
             this.GroupFooter4.HeightF = 54.28198F;
-            this.GroupFooter4.Level = 3;
+            this.GroupFooter4.Level = 2;
             this.GroupFooter4.Name = "GroupFooter4";
             this.GroupFooter4.Visible = false;
             // 
             // panel3
             // 
-            this.panel3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label11});
             this.panel3.Dpi = 96F;
             this.panel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.panel3.Name = "panel3";
             this.panel3.SizeF = new System.Drawing.SizeF(1026.24F, 54.28198F);
             this.panel3.StyleName = "TotalBackground1";
-            // 
-            // label11
-            // 
-            this.label11.Dpi = 96F;
-            this.label11.LocationFloat = new DevExpress.Utils.PointFloat(0F, 28.59306F);
-            this.label11.Name = "label11";
-            this.label11.SizeF = new System.Drawing.SizeF(1026.24F, 14.64893F);
-            this.label11.StyleName = "TotalCaption1";
-            this.label11.StylePriority.UseTextAlignment = false;
-            this.label11.Text = "القسم [القسم]";
-            this.label11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // GroupFooter6
-            // 
-            this.GroupFooter6.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.panel5});
-            this.GroupFooter6.Dpi = 96F;
-            this.GroupFooter6.HeightF = 54.28198F;
-            this.GroupFooter6.Level = 4;
-            this.GroupFooter6.Name = "GroupFooter6";
-            this.GroupFooter6.Visible = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label14,
-            this.label17});
-            this.panel5.Dpi = 96F;
-            this.panel5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.panel5.Name = "panel5";
-            this.panel5.SizeF = new System.Drawing.SizeF(1026.24F, 54.28198F);
-            this.panel5.StyleName = "TotalBackground1";
-            // 
-            // label17
-            // 
-            this.label17.Dpi = 96F;
-            this.label17.LocationFloat = new DevExpress.Utils.PointFloat(0F, 28.59306F);
-            this.label17.Name = "label17";
-            this.label17.SizeF = new System.Drawing.SizeF(1026.24F, 14.64893F);
-            this.label17.StyleName = "TotalCaption1";
-            this.label17.StylePriority.UseTextAlignment = false;
-            this.label17.Text = "الفئة الرئيسية [الفئة الرئيسية]";
-            this.label17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // ReportFooter
             // 
@@ -1390,36 +1330,11 @@ namespace AssetManagement.Assets
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 96F);
             // 
-            // xrLine2
+            // xrPageBreak1
             // 
-            this.xrLine2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.DashDot;
-            this.xrLine2.Dpi = 96F;
-            this.xrLine2.LineWidth = 3F;
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(18.80005F, 48F);
-            this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(1032.2F, 5F);
-            this.xrLine2.StylePriority.UseBorderDashStyle = false;
-            // 
-            // GroupFooter3
-            // 
-            this.GroupFooter3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.panel2});
-            this.GroupFooter3.Dpi = 96F;
-            this.GroupFooter3.HeightF = 54.28198F;
-            this.GroupFooter3.Level = 2;
-            this.GroupFooter3.Name = "GroupFooter3";
-            this.GroupFooter3.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.Dpi = 96F;
-            this.label14.LocationFloat = new DevExpress.Utils.PointFloat(4.959106E-05F, 13.94414F);
-            this.label14.Name = "label14";
-            this.label14.SizeF = new System.Drawing.SizeF(1026.24F, 14.64893F);
-            this.label14.StyleName = "TotalCaption1";
-            this.label14.StylePriority.UseTextAlignment = false;
-            this.label14.Text = "الفئة الفرعية [الفئة الفرعية]";
-            this.label14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrPageBreak1.Dpi = 96F;
+            this.xrPageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 30.23999F);
+            this.xrPageBreak1.Name = "xrPageBreak1";
             // 
             // AssetsXtraReport
             // 
@@ -1432,9 +1347,7 @@ namespace AssetManagement.Assets
             this.GroupHeader6,
             this.Detail,
             this.GroupFooter1,
-            this.GroupFooter3,
             this.GroupFooter4,
-            this.GroupFooter6,
             this.ReportFooter});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
@@ -1530,14 +1443,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraReports.UI.XRTableCell tableCell62;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
         private DevExpress.XtraReports.UI.XRLabel label2;
-        private DevExpress.XtraReports.UI.XRPanel panel2;
-        private DevExpress.XtraReports.UI.XRLabel label8;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter4;
         private DevExpress.XtraReports.UI.XRPanel panel3;
-        private DevExpress.XtraReports.UI.XRLabel label11;
-        private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter6;
-        private DevExpress.XtraReports.UI.XRPanel panel5;
-        private DevExpress.XtraReports.UI.XRLabel label17;
         private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
         private DevExpress.XtraReports.UI.XRPanel panel6;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
@@ -1567,7 +1474,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraReports.UI.XRTableRow tableRow1;
         private DevExpress.XtraReports.UI.XRTable table1;
         private DevExpress.XtraReports.UI.XRLine xrLine2;
-        private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter3;
-        private DevExpress.XtraReports.UI.XRLabel label14;
+        private DevExpress.XtraReports.UI.XRPageBreak xrPageBreak1;
     }
 }

@@ -127,14 +127,14 @@ namespace AssetManagement.Users
                 newUrs.Username = userNameTextBox.Text.Trim();
                 newUrs.Password = passwordTextBox.Text.Trim();
                 newUrs.UserRole = Convert.ToInt32(userRoleComboBox.SelectedValue);
-                if(userSectionLookUpEdit.Enabled)
-                newUrs.UserSection = Convert.ToInt32(userSectionLookUpEdit.EditValue);
+                if (userSectionLookUpEdit.Enabled)
+                    newUrs.UserSection = Convert.ToInt32(userSectionLookUpEdit.EditValue);
                 if (userDeptLookUpEdit.Enabled)
                     newUrs.UserDept = Convert.ToInt32(userDeptLookUpEdit.EditValue);
                 if (!updateExisted)
-                StaticCode.mainDbContext.UserTbls.InsertOnSubmit(newUrs);
+                    StaticCode.mainDbContext.UserTbls.InsertOnSubmit(newUrs);
                 StaticCode.mainDbContext.SubmitChanges();
-                mainAlertControl.Show(this, $"تم {((updateExisted)?"حفظ التعديلات": "إضافة الحساب")} بنجاح", StaticCode.ApplicationTitle);
+                mainAlertControl.Show(this, $"تم {((updateExisted) ? "حفظ التعديلات" : "إضافة الحساب")} بنجاح", StaticCode.ApplicationTitle);
             }
             catch
             {
@@ -164,9 +164,9 @@ namespace AssetManagement.Users
 
         private void userSectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            if(userSectionLookUpEdit.EditValue==null)
+            if (userSectionLookUpEdit.EditValue == null)
             {
-            userDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls;
+                userDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls;
                 return;
             }
             var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(userSectionLookUpEdit.EditValue));

@@ -72,6 +72,9 @@ namespace AssetManagement
     partial void InsertOptionsTbl(OptionsTbl instance);
     partial void UpdateOptionsTbl(OptionsTbl instance);
     partial void DeleteOptionsTbl(OptionsTbl instance);
+    partial void InsertOutgoingTypeTbl(OutgoingTypeTbl instance);
+    partial void UpdateOutgoingTypeTbl(OutgoingTypeTbl instance);
+    partial void DeleteOutgoingTypeTbl(OutgoingTypeTbl instance);
     partial void InsertSectionTbl(SectionTbl instance);
     partial void UpdateSectionTbl(SectionTbl instance);
     partial void DeleteSectionTbl(SectionTbl instance);
@@ -234,6 +237,14 @@ namespace AssetManagement
 			}
 		}
 		
+		public System.Data.Linq.Table<OutgoingTypeTbl> OutgoingTypeTbls
+		{
+			get
+			{
+				return this.GetTable<OutgoingTypeTbl>();
+			}
+		}
+		
 		public System.Data.Linq.Table<SectionTbl> SectionTbls
 		{
 			get
@@ -336,6 +347,18 @@ namespace AssetManagement
 			{
 				return this.GetTable<MinorCategoryVw>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSubDeptsOfActiveUser", IsComposable=true)]
+		public IQueryable<GetSubDeptsOfActiveUserResult> GetSubDeptsOfActiveUser()
+		{
+			return this.CreateMethodCallQuery<GetSubDeptsOfActiveUserResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MonthsToText", IsComposable=true)]
+		public string MonthsToText([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> months)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), months).ReturnValue));
 		}
 	}
 	
@@ -3491,8 +3514,6 @@ namespace AssetManagement
 		
 		private string _IncomingFrom;
 		
-		private string _IncomingFromOther;
-		
 		private string _OutgoingType;
 		
 		private string _OutgoingTo;
@@ -3541,8 +3562,6 @@ namespace AssetManagement
     partial void OnIncomingOrOutgoingChanged();
     partial void OnIncomingFromChanging(string value);
     partial void OnIncomingFromChanged();
-    partial void OnIncomingFromOtherChanging(string value);
-    partial void OnIncomingFromOtherChanged();
     partial void OnOutgoingTypeChanging(string value);
     partial void OnOutgoingTypeChanged();
     partial void OnOutgoingToChanging(string value);
@@ -3738,26 +3757,6 @@ namespace AssetManagement
 					this._IncomingFrom = value;
 					this.SendPropertyChanged("IncomingFrom");
 					this.OnIncomingFromChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingFromOther", DbType="NVarChar(200)")]
-		public string IncomingFromOther
-		{
-			get
-			{
-				return this._IncomingFromOther;
-			}
-			set
-			{
-				if ((this._IncomingFromOther != value))
-				{
-					this.OnIncomingFromOtherChanging(value);
-					this.SendPropertyChanging();
-					this._IncomingFromOther = value;
-					this.SendPropertyChanged("IncomingFromOther");
-					this.OnIncomingFromOtherChanged();
 				}
 			}
 		}
@@ -4980,8 +4979,6 @@ namespace AssetManagement
 		
 		private int _ID;
 		
-		private string _AssetCodePrefix;
-		
 		private System.Nullable<int> _ActiveUser;
 		
 		private int _AssetLifeSpanThresholdToWarn;
@@ -4996,8 +4993,6 @@ namespace AssetManagement
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnAssetCodePrefixChanging(string value);
-    partial void OnAssetCodePrefixChanged();
     partial void OnActiveUserChanging(System.Nullable<int> value);
     partial void OnActiveUserChanged();
     partial void OnAssetLifeSpanThresholdToWarnChanging(int value);
@@ -5029,26 +5024,6 @@ namespace AssetManagement
 					this._ID = value;
 					this.SendPropertyChanged("ID");
 					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetCodePrefix", DbType="NVarChar(50)")]
-		public string AssetCodePrefix
-		{
-			get
-			{
-				return this._AssetCodePrefix;
-			}
-			set
-			{
-				if ((this._AssetCodePrefix != value))
-				{
-					this.OnAssetCodePrefixChanging(value);
-					this.SendPropertyChanging();
-					this._AssetCodePrefix = value;
-					this.SendPropertyChanged("AssetCodePrefix");
-					this.OnAssetCodePrefixChanged();
 				}
 			}
 		}
@@ -5129,6 +5104,116 @@ namespace AssetManagement
 					this._ShiftSeconds = value;
 					this.SendPropertyChanged("ShiftSeconds");
 					this.OnShiftSecondsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutgoingTypeTbl")]
+	public partial class OutgoingTypeTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _OutgoingTypeName;
+		
+		private string _OutgoingTypeDescription;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnOutgoingTypeNameChanging(string value);
+    partial void OnOutgoingTypeNameChanged();
+    partial void OnOutgoingTypeDescriptionChanging(string value);
+    partial void OnOutgoingTypeDescriptionChanged();
+    #endregion
+		
+		public OutgoingTypeTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutgoingTypeName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string OutgoingTypeName
+		{
+			get
+			{
+				return this._OutgoingTypeName;
+			}
+			set
+			{
+				if ((this._OutgoingTypeName != value))
+				{
+					this.OnOutgoingTypeNameChanging(value);
+					this.SendPropertyChanging();
+					this._OutgoingTypeName = value;
+					this.SendPropertyChanged("OutgoingTypeName");
+					this.OnOutgoingTypeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutgoingTypeDescription", DbType="NVarChar(300)")]
+		public string OutgoingTypeDescription
+		{
+			get
+			{
+				return this._OutgoingTypeDescription;
+			}
+			set
+			{
+				if ((this._OutgoingTypeDescription != value))
+				{
+					this.OnOutgoingTypeDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._OutgoingTypeDescription = value;
+					this.SendPropertyChanged("OutgoingTypeDescription");
+					this.OnOutgoingTypeDescriptionChanged();
 				}
 			}
 		}
@@ -8928,8 +9013,6 @@ namespace AssetManagement
 		
 		private string _جهة_الإيراد;
 		
-		private string _جهة_الإيراد_الأخرى;
-		
 		private string _نوع_الصادر;
 		
 		private string _صادر_إلى;
@@ -9102,22 +9185,6 @@ namespace AssetManagement
 				if ((this._جهة_الإيراد != value))
 				{
 					this._جهة_الإيراد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد الأخرى]", Storage="_جهة_الإيراد_الأخرى", DbType="NVarChar(200)")]
-		public string جهة_الإيراد_الأخرى
-		{
-			get
-			{
-				return this._جهة_الإيراد_الأخرى;
-			}
-			set
-			{
-				if ((this._جهة_الإيراد_الأخرى != value))
-				{
-					this._جهة_الإيراد_الأخرى = value;
 				}
 			}
 		}
@@ -9349,6 +9416,32 @@ namespace AssetManagement
 				if ((this._معدل_الإهلاك != value))
 				{
 					this._معدل_الإهلاك = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetSubDeptsOfActiveUserResult
+	{
+		
+		private System.Nullable<int> _subDeptID;
+		
+		public GetSubDeptsOfActiveUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subDeptID", DbType="Int")]
+		public System.Nullable<int> subDeptID
+		{
+			get
+			{
+				return this._subDeptID;
+			}
+			set
+			{
+				if ((this._subDeptID != value))
+				{
+					this._subDeptID = value;
 				}
 			}
 		}

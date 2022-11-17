@@ -385,7 +385,7 @@ namespace AssetManagement.Assets
         /// 
         /// </summary>
         /// <param name="formNo">1 for normal, 2 for estates, 3 for vehicles</param>
-        private void ExportAssets(int formNo)
+        private void ExportAssets_Old(int formNo)
         {
             SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsInvPath.ShowDialog() != DialogResult.OK)
@@ -578,7 +578,7 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 cells.Value = "التاريخ";
             }
-            using (var cells = astWs.Cells[5, startCol3 + 9, 5, startCol3 + 9])
+            using (var cells = astWs.Cells[5, startCol3 + 9, 5, startCol3 + 10])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 12.0F;
@@ -669,6 +669,304 @@ namespace AssetManagement.Assets
                     currentRow++;
                     astCount++;
                 }
+            }
+
+            using (var cells = astWs.Cells[startRow + 1, 2, currentRow - 1, columnsWidths.Count + 1])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 11.0F;
+                cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            }
+
+            for (int iCol = astWs.Dimension.End.Column; iCol >= astWs.Dimension.Start.Column; iCol--)
+            {
+                if (astWs.Column(iCol).Hidden)
+                    astWs.DeleteColumn(iCol);
+            }
+            astEp.Save();
+
+            mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
+        }
+
+        private void ExportAssets(int formNo)
+        {
+            SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsInvPath.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            ExcelPackage astEp = new ExcelPackage(new System.IO.FileInfo(assetsInvPath.FileName));
+            ExcelWorkbook astWb = astEp.Workbook;
+            ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
+            astWs.View.RightToLeft = true;
+            List<int> columnsWidths = new List<int>() { 8, 15, 40, 8, 20, 25, 12, 15, 12, 12, 10, 10, 15, 15, 15, 12, 12, 15, 15, 15, 15, 20, 15, 12, 18, 15, 15, 15, 20, 15, 15, 15, 10, 25 };
+            List<string> columnsTitles = new List<string>()
+            {
+                "التسلسل",
+                "الرمز",
+                "البيان التفصيلي لمواصفات الأصل",
+                //"بيان تفصيلي للاصل ( النوع / الموديل / اللون / الرقم / الحجم / ..... )",
+                "العدد",
+                "اسم المالك",
+                "العنوان بالضبط",
+                "المستغل منه",
+                "مع من ورقة الملكية",
+                "نوع السيارة",
+                "رقم اللوحة",
+                "لونها",
+                "سنة الصنع",
+                "رقم الشاصيه",
+                "رقم الماكينة",
+                "المالك",
+                "تاريخ الشراء",
+                "قيمة الشراء",
+                "نوع العملة",
+                "الفئة الرئيسية",
+                "الفئة الفرعية",
+                "الساحة",
+                "مكان وجوده",
+                "العمر الافتراضي المتبقي",
+                "حالته الآنية",
+                "مدى الاستفاده الحالية منه",
+                "قيمته الفعلية الحالية",
+                "العملة",
+                "صاحب العهدة",
+                "إضافات أخرى",
+                "ما تم تصريفه",
+                "ما تم نقله",
+                "ما تم بيعه",
+                "معدل الإهلاك",
+                "ملاحظات",
+            };
+            List<int> hiddenCols = new List<int>() { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            if (formNo == 2)
+                hiddenCols = new List<int>() { 10, 11, 12, 13, 14, 15, 16 };
+            if (formNo == 3)
+                hiddenCols = new List<int>() { 6, 7, 8, 9 };
+            for (int col = 2; col <= columnsWidths.Count + 1; col++)
+            {
+                astWs.Columns[col].Width = columnsWidths[col - 2];
+                astWs.Cells[7, col].Value = columnsTitles[col - 2];
+                if (hiddenCols.IndexOf(col) > -1)
+                    astWs.Columns[col].Hidden = true;
+            }
+            astWs.Rows[7].Height = 30;
+            using (var cells = astWs.Cells[1, 4, 1, 18])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 16.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "بسم الله الرحمن الرحيم";
+            }
+            using (var cells = astWs.Cells[3, 2, 3, columnsWidths.Count + 1])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 16.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(221, 217, 196));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = $"الجرد السنوي للأصول الثابتة - {DateTime.Today.Year}";
+            }
+            using (var cells = astWs.Cells[5, 4])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "الدائرة";
+            }
+            int endCol = 18;
+            int startCol3 = 21;
+            if (formNo == 2)
+            {
+                endCol = 7;
+                startCol3 = 17;
+            }
+            if (formNo == 3)
+            {
+                endCol = 12;
+                startCol3 = 15;
+            }
+            int startCol2 = endCol + 1;
+            using (var cells = astWs.Cells[5, 5, 5, endCol])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                string sectionName = "";
+                if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
+                    sectionName = searchBySectionLookUpEdit.Text;
+                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
+                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
+                cells.Value = sectionName;
+            }
+            using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Style.Font.Bold = true;
+                cells.Merge = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "القسم";
+            }
+            using (var cells = astWs.Cells[5, startCol3, 5, startCol3 + 2])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                string deptName = "";
+                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
+                    deptName = searchByDepartmentLookUpEdit.Text;
+                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).DepartmentName;
+                cells.Value = deptName;
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Style.Font.Bold = true;
+                cells.Merge = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "الوحدة";
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 5, 5, startCol3 + 6])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentLookUpEdit.Text : "";
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 7, 5, startCol3 + 8])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Style.Font.Bold = true;
+                cells.Merge = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(197, 217, 241));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "التاريخ";
+            }
+            using (var cells = astWs.Cells[5, startCol3 + 9, 5, startCol3 + 10])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 12.0F;
+                cells.Merge = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
+                cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
+            }
+            int startRow = 7;
+            int currentRow = startRow;
+            using (var cells = astWs.Cells[currentRow, 2, currentRow, columnsWidths.Count + 1])
+            {
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 11.0F;
+                cells.Style.WrapText = true;
+                cells.Style.Font.Bold = true;
+                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(217, 217, 217));
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            }
+            if (assetsQry.Count() == 0)
+                return;
+
+            int astCount = 1;
+            currentRow++;
+            foreach (var oneAst in assetsQry)
+            {
+                Application.DoEvents();
+
+                List<object> oneRowData = new List<object>()
+                {
+                    astCount,
+                oneAst.AssetCode,
+                oneAst.AssetSpecifications,
+                oneAst.ItemsQuantity,
+                oneAst.OwnerName,
+                oneAst.EstateAddress,
+                oneAst.OfUsed,
+                oneAst.EstateOwnershipDocumentWith,
+                oneAst.Model,
+                oneAst.CarPanelNumber,
+                oneAst.Color,
+                oneAst.CarManufacturingYear,
+                oneAst.CarChassisNumber,
+                oneAst.CarEngineNumber,
+                oneAst.OwnerName,
+                oneAst.PurchaseDate?.ToShortDateString(),
+                     oneAst.PurchasePrice,
+                     StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName,
+                       StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica2 => mica2.ID == oneAst.AssetMinorCategory).MainCategory).MainCategoryName,
+                 StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName,
+                StaticCode.mainDbContext.SquareTbls.Single(sqr1 => sqr1.ID == oneAst.AssetSquare).SquareName,
+                 oneAst.PlaceOfPresence,
+                 $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر",
+                 StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName,
+                oneAst.BenefitPercentage,
+                 oneAst.ActualCurrentPrice,
+                    StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName,
+                oneAst.CustodianName,
+               oneAst.MoreDetails,
+               StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && astt1.GetAssetOutOfWork == true),
+                 StaticCode.mainDbContext.AssetMovementTbls.Count(astm1 => astm1.AssetID == oneAst.ID),
+                StaticCode.mainDbContext.AssetTransactionTbls.Count(astt1 => astt1.AssetID == oneAst.ID && StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).ToList().Contains(astt1.TransactionType)),
+                oneAst.DestructionRate,
+                oneAst.AssetNotes,
+            };
+
+                for (int iCo = 0; iCo < oneRowData.Count; iCo++)
+                    astWs.Cells[currentRow, iCo + 2].Value = oneRowData[iCo];
+
+                currentRow++;
+                astCount++;
             }
 
             using (var cells = astWs.Cells[startRow + 1, 2, currentRow - 1, columnsWidths.Count + 1])
