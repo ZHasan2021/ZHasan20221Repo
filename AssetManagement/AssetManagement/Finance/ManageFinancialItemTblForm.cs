@@ -18,6 +18,41 @@ namespace AssetManagement.Finance
             InitializeComponent();
         }
 
+        void UpdateTotals()
+        {
+            var incomingUSD = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "وارد");
+            double incomingUSD_Am = 0;
+            if (incomingUSD != null && incomingUSD.Count() > 0)
+                incomingUSD_Am = incomingUSD.Sum(fiv2 => fiv2.المبلغ_الوارد);
+            var incomingEUR = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "وارد");
+            double incomingEUR_Am = 0;
+            if (incomingEUR != null && incomingEUR.Count() > 0)
+                incomingEUR_Am = incomingEUR.Sum(fiv2 => fiv2.المبلغ_الوارد);
+            var incomingSYP = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "وارد");
+            double incomingSYP_Am = 0;
+            if (incomingSYP != null && incomingSYP.Count() > 0)
+                incomingSYP_Am = incomingSYP.Sum(fiv2 => fiv2.المبلغ_الوارد);
+            var outgoingUSD = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "صادر");
+            double outgoingUSD_Am = 0;
+            if (outgoingUSD != null && outgoingUSD.Count() > 0)
+                outgoingUSD_Am = outgoingUSD.Sum(fiv2 => fiv2.المبلغ_الصادر);
+            var outgoingEUR = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "صادر");
+            double outgoingEUR_Am = 0;
+            if (outgoingEUR != null && outgoingEUR.Count() > 0)
+                outgoingEUR_Am = outgoingEUR.Sum(fiv2 => fiv2.المبلغ_الصادر);
+            var outgoingSYP = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "صادر");
+            double outgoingSYP_Am = 0;
+            if (outgoingSYP != null && outgoingSYP.Count() > 0)
+                outgoingSYP_Am = outgoingSYP.Sum(fiv2 => fiv2.المبلغ_الصادر);
+
+            incomesInUSDToolStripStatusLabel.Text = $"مجموع الواردات بالدولار: {incomingUSD_Am}";
+            incomesInEURToolStripStatusLabel.Text = $"مجموع الواردات باليورو: {incomingEUR_Am}";
+            incomesInSYPToolStripStatusLabel.Text = $"مجموع الواردات بالليرة: {incomingSYP_Am}";
+            outgoingInUSDToolStripStatusLabel.Text = $"مجموع الصادرات بالدولار: {outgoingUSD_Am}";
+            outgoingInEURToolStripStatusLabel.Text = $"مجموع الصادرات باليورو: {outgoingEUR_Am}";
+            outgoingInSYPToolStripStatusLabel.Text = $"مجموع الصادرات بالليرة: {outgoingSYP_Am}";
+        }
+
         private void ManageFinancialItemTblForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemVw' table. You can move, or remove it, as needed.
@@ -40,6 +75,8 @@ namespace AssetManagement.Finance
             financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Remove.Visible = false;
             editFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             deleteFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteFinancialItemRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+
+            this.UpdateTotals();
 
             this.MinimumSize = this.Size;
         }
@@ -83,6 +120,7 @@ namespace AssetManagement.Finance
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
                 this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
+                this.UpdateTotals();
             }
             catch
             {
@@ -114,6 +152,11 @@ namespace AssetManagement.Finance
             {
                 mainAlertControl.Show(this, "اختر سطراً كاملاً ليتم تعديل بياناته", StaticCode.ApplicationTitle);
             }
+        }
+
+        private void mainTabFormControl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

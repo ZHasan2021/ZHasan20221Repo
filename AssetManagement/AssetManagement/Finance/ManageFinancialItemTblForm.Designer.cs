@@ -30,36 +30,14 @@ namespace AssetManagement.Finance
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageFinancialItemTblForm));
-            this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
             this.financialItemVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
-            this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colكودالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colاسمالبندالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colبيانالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالدائرة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colتاريختحريرالسجل = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colواردأمصادر = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colجهةالإيراد = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colنوعالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colصادرإلى = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالمبلغالوارد = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالمبلغالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالعملة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colملاحظاتإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ficatRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.financialItemCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.curRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.subdRpositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -84,29 +62,380 @@ namespace AssetManagement.Finance
             this.financialItemTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.financialItemVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter();
-            this.tabFormControl1 = new DevExpress.XtraBars.TabFormControl();
+            this.mainTabFormControl = new DevExpress.XtraBars.TabFormControl();
             this.editFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.deleteFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.totalsStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.incomesInUSDToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.incomesInEURToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.incomesInSYPToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.outgoingInUSDToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.outgoingInEURToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.outgoingInSYPToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
+            this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colكودالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالبندالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colبيانالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colتاريختحريرالسجل = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colواردأمصادر = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colجهةالإيراد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colنوعالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colصادرإلى = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالمبلغالوارد = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالمبلغالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالعملة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colملاحظاتإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ficatRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.curRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.subdRpositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingNavigator)).BeginInit();
             this.financialItemTblBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            this.totalsStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).BeginInit();
             this.SuspendLayout();
+            // 
+            // financialItemVwBindingSource
+            // 
+            this.financialItemVwBindingSource.DataMember = "FinancialItemVw";
+            this.financialItemVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // financialItemCategoryTblBindingSource1
+            // 
+            this.financialItemCategoryTblBindingSource1.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemTblBindingSource
+            // 
+            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
+            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemCategoryTblBindingSource
+            // 
+            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // mainAlertControl
+            // 
+            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
+            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.mainAlertControl.AppearanceText.Options.UseFont = true;
+            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
+            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = null;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
+            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = this.financialItemTblTableAdapter;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
+            this.tableAdapterManager.SectionTblTableAdapter = null;
+            this.tableAdapterManager.SquareTblTableAdapter = null;
+            this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = null;
+            this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // departmentTblTableAdapter
+            // 
+            this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // financialItemCategoryTblTableAdapter
+            // 
+            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // financialItemTblTableAdapter
+            // 
+            this.financialItemTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentTblTableAdapter
+            // 
+            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(44, 27);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // financialItemTblBindingNavigatorSaveItem
+            // 
+            this.financialItemTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.financialItemTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("financialItemTblBindingNavigatorSaveItem.Image")));
+            this.financialItemTblBindingNavigatorSaveItem.Name = "financialItemTblBindingNavigatorSaveItem";
+            this.financialItemTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.financialItemTblBindingNavigatorSaveItem.Text = "Save Data";
+            this.financialItemTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.financialItemTblBindingNavigatorSaveItem_Click);
+            // 
+            // financialItemTblBindingNavigator
+            // 
+            this.financialItemTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.financialItemTblBindingNavigator.BindingSource = this.financialItemTblBindingSource;
+            this.financialItemTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.financialItemTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.financialItemTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.financialItemTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.financialItemTblBindingNavigatorSaveItem});
+            this.financialItemTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.financialItemTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.financialItemTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.financialItemTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.financialItemTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.financialItemTblBindingNavigator.Name = "financialItemTblBindingNavigator";
+            this.financialItemTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1208, 27);
+            this.financialItemTblBindingNavigator.TabIndex = 4;
+            this.financialItemTblBindingNavigator.Text = "bindingNavigator1";
+            this.financialItemTblBindingNavigator.Visible = false;
+            // 
+            // financialItemVwTableAdapter
+            // 
+            this.financialItemVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // mainTabFormControl
+            // 
+            this.mainTabFormControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.editFinancialItemBarButtonItem,
+            this.deleteFinancialItemBarButtonItem});
+            this.mainTabFormControl.Location = new System.Drawing.Point(0, 0);
+            this.mainTabFormControl.Name = "mainTabFormControl";
+            this.mainTabFormControl.Size = new System.Drawing.Size(1385, 88);
+            this.mainTabFormControl.TabForm = this;
+            this.mainTabFormControl.TabIndex = 6;
+            this.mainTabFormControl.TabStop = false;
+            this.mainTabFormControl.TitleItemLinks.Add(this.editFinancialItemBarButtonItem);
+            this.mainTabFormControl.TitleItemLinks.Add(this.deleteFinancialItemBarButtonItem);
+            this.mainTabFormControl.Click += new System.EventHandler(this.mainTabFormControl_Click);
+            // 
+            // editFinancialItemBarButtonItem
+            // 
+            this.editFinancialItemBarButtonItem.Caption = "تحرير";
+            this.editFinancialItemBarButtonItem.Id = 0;
+            this.editFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editFinancialItemBarButtonItem.ImageOptions.SvgImage")));
+            this.editFinancialItemBarButtonItem.Name = "editFinancialItemBarButtonItem";
+            this.editFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editFinancialItemBarButtonItem_ItemClick);
+            // 
+            // deleteFinancialItemBarButtonItem
+            // 
+            this.deleteFinancialItemBarButtonItem.Caption = "حذف";
+            this.deleteFinancialItemBarButtonItem.Id = 0;
+            this.deleteFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteFinancialItemBarButtonItem.ImageOptions.SvgImage")));
+            this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
+            this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
+            // 
+            // totalsStatusStrip
+            // 
+            this.totalsStatusStrip.AutoSize = false;
+            this.totalsStatusStrip.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalsStatusStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.totalsStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.incomesInUSDToolStripStatusLabel,
+            this.incomesInEURToolStripStatusLabel,
+            this.incomesInSYPToolStripStatusLabel,
+            this.outgoingInUSDToolStripStatusLabel,
+            this.outgoingInEURToolStripStatusLabel,
+            this.outgoingInSYPToolStripStatusLabel});
+            this.totalsStatusStrip.Location = new System.Drawing.Point(0, 854);
+            this.totalsStatusStrip.Name = "totalsStatusStrip";
+            this.totalsStatusStrip.Size = new System.Drawing.Size(1385, 40);
+            this.totalsStatusStrip.TabIndex = 7;
+            this.totalsStatusStrip.Text = "statusStrip1";
+            // 
+            // incomesInUSDToolStripStatusLabel
+            // 
+            this.incomesInUSDToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.incomesInUSDToolStripStatusLabel.Name = "incomesInUSDToolStripStatusLabel";
+            this.incomesInUSDToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
+            // 
+            // incomesInEURToolStripStatusLabel
+            // 
+            this.incomesInEURToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.incomesInEURToolStripStatusLabel.Name = "incomesInEURToolStripStatusLabel";
+            this.incomesInEURToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
+            // 
+            // incomesInSYPToolStripStatusLabel
+            // 
+            this.incomesInSYPToolStripStatusLabel.BackColor = System.Drawing.Color.Silver;
+            this.incomesInSYPToolStripStatusLabel.Name = "incomesInSYPToolStripStatusLabel";
+            this.incomesInSYPToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
+            // 
+            // outgoingInUSDToolStripStatusLabel
+            // 
+            this.outgoingInUSDToolStripStatusLabel.BackColor = System.Drawing.Color.Gainsboro;
+            this.outgoingInUSDToolStripStatusLabel.Name = "outgoingInUSDToolStripStatusLabel";
+            this.outgoingInUSDToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
+            // 
+            // outgoingInEURToolStripStatusLabel
+            // 
+            this.outgoingInEURToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.outgoingInEURToolStripStatusLabel.Name = "outgoingInEURToolStripStatusLabel";
+            this.outgoingInEURToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
+            // 
+            // outgoingInSYPToolStripStatusLabel
+            // 
+            this.outgoingInSYPToolStripStatusLabel.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.outgoingInSYPToolStripStatusLabel.Name = "outgoingInSYPToolStripStatusLabel";
+            this.outgoingInSYPToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
             // 
             // financialItemCategoryGridControl
             // 
@@ -125,21 +454,11 @@ namespace AssetManagement.Finance
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
             this.subdRpositoryItemLookUpEdit});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1385, 806);
-            this.financialItemCategoryGridControl.TabIndex = 5;
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1385, 766);
+            this.financialItemCategoryGridControl.TabIndex = 8;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.financialItemGridView});
-            // 
-            // financialItemVwBindingSource
-            // 
-            this.financialItemVwBindingSource.DataMember = "FinancialItemVw";
-            this.financialItemVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // financialItemGridView
             // 
@@ -332,11 +651,6 @@ namespace AssetManagement.Finance
             this.ficatRepositoryItemLookUpEdit.PopupWidth = 437;
             this.ficatRepositoryItemLookUpEdit.ValueMember = "ID";
             // 
-            // financialItemCategoryTblBindingSource1
-            // 
-            this.financialItemCategoryTblBindingSource1.DataMember = "FinancialItemCategoryTbl";
-            this.financialItemCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
             // curRepositoryItemLookUpEdit
             // 
             this.curRepositoryItemLookUpEdit.AutoHeight = false;
@@ -350,11 +664,6 @@ namespace AssetManagement.Finance
             this.curRepositoryItemLookUpEdit.Name = "curRepositoryItemLookUpEdit";
             this.curRepositoryItemLookUpEdit.PopupWidth = 437;
             this.curRepositoryItemLookUpEdit.ValueMember = "ID";
-            // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // repositoryItemDateEdit1
             // 
@@ -380,11 +689,6 @@ namespace AssetManagement.Finance
             this.repositoryItemLookUpEdit3.PopupWidth = 437;
             this.repositoryItemLookUpEdit3.ValueMember = "ID";
             // 
-            // departmentTblBindingSource
-            // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // subdRpositoryItemLookUpEdit
             // 
             this.subdRpositoryItemLookUpEdit.AutoHeight = false;
@@ -400,279 +704,49 @@ namespace AssetManagement.Finance
             this.subdRpositoryItemLookUpEdit.PopupWidth = 437;
             this.subdRpositoryItemLookUpEdit.ValueMember = "ID";
             // 
-            // subDepartmentTblBindingSource
-            // 
-            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // financialItemTblBindingSource
-            // 
-            this.financialItemTblBindingSource.DataMember = "FinancialItemTbl";
-            this.financialItemTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // financialItemCategoryTblBindingSource
-            // 
-            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
-            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // mainAlertControl
-            // 
-            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
-            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.mainAlertControl.AppearanceText.Options.UseFont = true;
-            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
-            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
-            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
-            this.tableAdapterManager.AssetTblTableAdapter = null;
-            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
-            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
-            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
-            this.tableAdapterManager.FinancialItemTblTableAdapter = this.financialItemTblTableAdapter;
-            this.tableAdapterManager.ImportExportTblTableAdapter = null;
-            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
-            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
-            this.tableAdapterManager.ModelTblTableAdapter = null;
-            this.tableAdapterManager.OptionsTblTableAdapter = null;
-            this.tableAdapterManager.SectionTblTableAdapter = null;
-            this.tableAdapterManager.SquareTblTableAdapter = null;
-            this.tableAdapterManager.StatusTblTableAdapter = null;
-            this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
-            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRoleTblTableAdapter = null;
-            this.tableAdapterManager.UserTblTableAdapter = null;
-            // 
-            // currencyTblTableAdapter
-            // 
-            this.currencyTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // departmentTblTableAdapter
-            // 
-            this.departmentTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // financialItemCategoryTblTableAdapter
-            // 
-            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // financialItemTblTableAdapter
-            // 
-            this.financialItemTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // subDepartmentTblTableAdapter
-            // 
-            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(44, 27);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Visible = false;
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // financialItemTblBindingNavigatorSaveItem
-            // 
-            this.financialItemTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.financialItemTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("financialItemTblBindingNavigatorSaveItem.Image")));
-            this.financialItemTblBindingNavigatorSaveItem.Name = "financialItemTblBindingNavigatorSaveItem";
-            this.financialItemTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
-            this.financialItemTblBindingNavigatorSaveItem.Text = "Save Data";
-            this.financialItemTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.financialItemTblBindingNavigatorSaveItem_Click);
-            // 
-            // financialItemTblBindingNavigator
-            // 
-            this.financialItemTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.financialItemTblBindingNavigator.BindingSource = this.financialItemTblBindingSource;
-            this.financialItemTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.financialItemTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.financialItemTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.financialItemTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.financialItemTblBindingNavigatorSaveItem});
-            this.financialItemTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.financialItemTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.financialItemTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.financialItemTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.financialItemTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.financialItemTblBindingNavigator.Name = "financialItemTblBindingNavigator";
-            this.financialItemTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.financialItemTblBindingNavigator.Size = new System.Drawing.Size(1208, 27);
-            this.financialItemTblBindingNavigator.TabIndex = 4;
-            this.financialItemTblBindingNavigator.Text = "bindingNavigator1";
-            this.financialItemTblBindingNavigator.Visible = false;
-            // 
-            // financialItemVwTableAdapter
-            // 
-            this.financialItemVwTableAdapter.ClearBeforeFill = true;
-            // 
-            // tabFormControl1
-            // 
-            this.tabFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.editFinancialItemBarButtonItem,
-            this.deleteFinancialItemBarButtonItem});
-            this.tabFormControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabFormControl1.Name = "tabFormControl1";
-            this.tabFormControl1.Size = new System.Drawing.Size(1385, 88);
-            this.tabFormControl1.TabForm = this;
-            this.tabFormControl1.TabIndex = 6;
-            this.tabFormControl1.TabStop = false;
-            this.tabFormControl1.TitleItemLinks.Add(this.editFinancialItemBarButtonItem);
-            this.tabFormControl1.TitleItemLinks.Add(this.deleteFinancialItemBarButtonItem);
-            // 
-            // editFinancialItemBarButtonItem
-            // 
-            this.editFinancialItemBarButtonItem.Caption = "تحرير";
-            this.editFinancialItemBarButtonItem.Id = 0;
-            this.editFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editFinancialItemBarButtonItem.ImageOptions.SvgImage")));
-            this.editFinancialItemBarButtonItem.Name = "editFinancialItemBarButtonItem";
-            this.editFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editFinancialItemBarButtonItem_ItemClick);
-            // 
-            // deleteFinancialItemBarButtonItem
-            // 
-            this.deleteFinancialItemBarButtonItem.Caption = "حذف";
-            this.deleteFinancialItemBarButtonItem.Id = 0;
-            this.deleteFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteFinancialItemBarButtonItem.ImageOptions.SvgImage")));
-            this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
-            this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
-            // 
             // ManageFinancialItemTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.behaviorManager1.SetBehaviors(this, new DevExpress.Utils.Behaviors.Behavior[] {
+            ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.PersistenceBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.PersistenceBehaviorSourceForForm), null, DevExpress.Utils.Behaviors.Common.Storage.File, DevExpress.Utils.DefaultBoolean.Default))),
+            ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
-            this.Controls.Add(this.tabFormControl1);
+            this.Controls.Add(this.totalsStatusStrip);
+            this.Controls.Add(this.mainTabFormControl);
             this.Controls.Add(this.financialItemTblBindingNavigator);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TabFormControl = this.tabFormControl1;
+            this.TabFormControl = this.mainTabFormControl;
             this.Text = "إدارة جدول السجلات المالية";
             this.Load += new System.EventHandler(this.ManageFinancialItemTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingNavigator)).EndInit();
             this.financialItemTblBindingNavigator.ResumeLayout(false);
             this.financialItemTblBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            this.totalsStatusStrip.ResumeLayout(false);
+            this.totalsStatusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -681,8 +755,6 @@ namespace AssetManagement.Finance
         #endregion
         private AssetMngDbDataSet assetMngDbDataSet;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
-        private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingSource financialItemCategoryTblBindingSource;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -701,20 +773,23 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.BindingSource financialItemTblBindingSource;
         private AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter financialItemTblTableAdapter;
         private AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter financialItemCategoryTblTableAdapter;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit ficatRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource financialItemCategoryTblBindingSource1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit curRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource currencyTblBindingSource;
         private AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter currencyTblTableAdapter;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
         private System.Windows.Forms.BindingSource departmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit subdRpositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.BindingSource financialItemVwBindingSource;
         private AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter financialItemVwTableAdapter;
+        private DevExpress.XtraBars.TabFormControl mainTabFormControl;
+        private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private System.Windows.Forms.StatusStrip totalsStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel incomesInUSDToolStripStatusLabel;
+        private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colمعرفالسجلالمالي;
         private DevExpress.XtraGrid.Columns.GridColumn colكودالسجلالمالي;
         private DevExpress.XtraGrid.Columns.GridColumn colاسمالبندالمالي;
@@ -724,15 +799,22 @@ namespace AssetManagement.Finance
         private DevExpress.XtraGrid.Columns.GridColumn colالوحدة;
         private DevExpress.XtraGrid.Columns.GridColumn colتاريختحريرالسجل;
         private DevExpress.XtraGrid.Columns.GridColumn colواردأمصادر;
+        private DevExpress.XtraGrid.Columns.GridColumn colجهةالإيراد;
+        private DevExpress.XtraGrid.Columns.GridColumn colنوعالصادر;
+        private DevExpress.XtraGrid.Columns.GridColumn colصادرإلى;
         private DevExpress.XtraGrid.Columns.GridColumn colالمبلغالوارد;
         private DevExpress.XtraGrid.Columns.GridColumn colالمبلغالصادر;
         private DevExpress.XtraGrid.Columns.GridColumn colالعملة;
         private DevExpress.XtraGrid.Columns.GridColumn colملاحظاتإضافية;
-        private DevExpress.XtraBars.TabFormControl tabFormControl1;
-        private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
-        private DevExpress.XtraGrid.Columns.GridColumn colجهةالإيراد;
-        private DevExpress.XtraGrid.Columns.GridColumn colنوعالصادر;
-        private DevExpress.XtraGrid.Columns.GridColumn colصادرإلى;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit ficatRepositoryItemLookUpEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit curRepositoryItemLookUpEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit subdRpositoryItemLookUpEdit;
+        private System.Windows.Forms.ToolStripStatusLabel incomesInEURToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel incomesInSYPToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInUSDToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInEURToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInSYPToolStripStatusLabel;
     }
 }

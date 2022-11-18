@@ -1574,7 +1574,7 @@ namespace AssetManagement.Assets
             this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchByDepartmentLookUpEdit.TabIndex = 269;
             this.searchByDepartmentLookUpEdit.Visible = false;
-            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentLookUpEdit_EditValueChanged);
+            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
             // 
             // departmentTblBindingSource
             // 
@@ -1824,7 +1824,7 @@ namespace AssetManagement.Assets
             this.searchBySectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchBySectionLookUpEdit.TabIndex = 267;
             this.searchBySectionLookUpEdit.Visible = false;
-            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionLookUpEdit_EditValueChanged);
+            this.searchBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.searchBySectionCheckBox_CheckedChanged);
             // 
             // sectionTblBindingSource
             // 
