@@ -118,6 +118,8 @@ namespace AssetManagement
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.manageIncomingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -189,10 +191,12 @@ namespace AssetManagement
             this.activeUserBarStaticItem,
             this.activeUserRoleBarStaticItem,
             this.activeUserDeptBarStaticItem,
-            this.actionsStatusBarStaticItem});
+            this.actionsStatusBarStaticItem,
+            this.manageIncomingTypeTblBarButtonItem,
+            this.manageOutgoingTypeTblBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 83;
+            this.mainRibbonControl.MaxItemId = 86;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -861,6 +865,8 @@ namespace AssetManagement
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageTransactionTypeTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemCategoryTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageIncomingTypeTblBarButtonItem);
+            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageOutgoingTypeTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageModelTblBarButtonItem);
             this.auxTablesRibbonPageGroup.Name = "auxTablesRibbonPageGroup";
             this.auxTablesRibbonPageGroup.Text = "الجداول المساعدة";
@@ -1082,6 +1088,22 @@ namespace AssetManagement
             this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
             this.actionsStatusMemoEdit.TabIndex = 8;
             // 
+            // manageIncomingTypeTblBarButtonItem
+            // 
+            this.manageIncomingTypeTblBarButtonItem.Caption = "إدارة جدول جهات الإيراد";
+            this.manageIncomingTypeTblBarButtonItem.Id = 84;
+            this.manageIncomingTypeTblBarButtonItem.Name = "manageIncomingTypeTblBarButtonItem";
+            this.manageIncomingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageIncomingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageIncomingTypeTblBarButtonItem_ItemClick);
+            // 
+            // manageOutgoingTypeTblBarButtonItem
+            // 
+            this.manageOutgoingTypeTblBarButtonItem.Caption = "إدارة جدول أنواع الصادرات";
+            this.manageOutgoingTypeTblBarButtonItem.Id = 85;
+            this.manageOutgoingTypeTblBarButtonItem.Name = "manageOutgoingTypeTblBarButtonItem";
+            this.manageOutgoingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageOutgoingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageOutgoingTypeTblBarButtonItem_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1198,6 +1220,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarStaticItem activeUserDeptBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem actionsStatusBarStaticItem;
         private DevExpress.XtraEditors.MemoEdit actionsStatusMemoEdit;
+        private DevExpress.XtraBars.BarButtonItem manageIncomingTypeTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageOutgoingTypeTblBarButtonItem;
     }
 }
 

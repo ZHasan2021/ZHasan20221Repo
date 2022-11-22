@@ -97,11 +97,13 @@ namespace AssetManagement.Assets
             this.assetMoveVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetMoveVwTableAdapter();
             this.assetMovementTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetMovementTblTableAdapter();
             this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.viewAssetInformationBtn = new System.Windows.Forms.Button();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.moveAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
@@ -120,6 +122,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.toDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).BeginInit();
@@ -247,14 +250,14 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.assetMovementTblBindingNavigatorSaveItem});
-            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 394);
+            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 390);
             this.assetMovementTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetMovementTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.assetMovementTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.assetMovementTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.assetMovementTblBindingNavigator.Name = "assetMovementTblBindingNavigator";
             this.assetMovementTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.assetMovementTblBindingNavigator.Size = new System.Drawing.Size(1241, 27);
+            this.assetMovementTblBindingNavigator.Size = new System.Drawing.Size(1241, 31);
             this.assetMovementTblBindingNavigator.TabIndex = 303;
             this.assetMovementTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -264,13 +267,13 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -280,7 +283,7 @@ namespace AssetManagement.Assets
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -289,7 +292,7 @@ namespace AssetManagement.Assets
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -298,13 +301,13 @@ namespace AssetManagement.Assets
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -319,7 +322,7 @@ namespace AssetManagement.Assets
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -327,7 +330,7 @@ namespace AssetManagement.Assets
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -336,20 +339,20 @@ namespace AssetManagement.Assets
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // assetMovementTblBindingNavigatorSaveItem
             // 
             this.assetMovementTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.assetMovementTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("assetMovementTblBindingNavigatorSaveItem.Image")));
             this.assetMovementTblBindingNavigatorSaveItem.Name = "assetMovementTblBindingNavigatorSaveItem";
-            this.assetMovementTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
+            this.assetMovementTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.assetMovementTblBindingNavigatorSaveItem.Text = "Save Data";
             this.assetMovementTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.assetMovementTblBindingNavigatorSaveItem_Click);
             // 
@@ -752,6 +755,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -780,7 +784,7 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.DataSource = this.assetMoveVwBindingSource1;
+            this.searchResultsListBox.DataSource = this.assetMoveVwBindingSource;
             this.searchResultsListBox.DisplayMember = "AssetCode";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;
@@ -791,6 +795,11 @@ namespace AssetManagement.Assets
             this.searchResultsListBox.ValueMember = "ID";
             this.searchResultsListBox.Visible = false;
             this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetMoveVwBindingSource1
             // 
@@ -825,6 +834,10 @@ namespace AssetManagement.Assets
             this.assetTblBindingSource1.DataMember = "AssetTbl";
             this.assetTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
+            // assetVwTableAdapter
+            // 
+            this.assetVwTableAdapter.ClearBeforeFill = true;
+            // 
             // MoveAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -845,7 +858,7 @@ namespace AssetManagement.Assets
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "نقل أصل";
+            this.Text = " l k;mkmmwd";
             this.Load += new System.EventHandler(this.MoveAssetForm_Load);
             this.moveAssetGroupBox.ResumeLayout(false);
             this.moveAssetGroupBox.PerformLayout();
@@ -867,6 +880,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.toDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).EndInit();
@@ -948,5 +962,7 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.TextBox fromSubDepartmentTextBox;
         private System.Windows.Forms.Label fromSubDepartmentLabel;
+        private System.Windows.Forms.BindingSource assetVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
     }
 }

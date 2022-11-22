@@ -48,10 +48,15 @@ namespace AssetManagement.Assets
             this.customSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.searchAllRadioButton = new System.Windows.Forms.RadioButton();
             this.customSearchGroupBox = new System.Windows.Forms.GroupBox();
-            this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
-            this.searchBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchBySubDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.subDepartmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colمعرفالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالقسمالتابعةله = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرةالتييتبعلهاالقسم1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
             this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
             this.searchByInsertionDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
@@ -81,13 +86,19 @@ namespace AssetManagement.Assets
             this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchBySectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.searchByDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByMinorCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByMainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByDepartmentCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchByDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colمعرفالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرةالتييتبعلهاالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
@@ -150,13 +161,16 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemCalcEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
+            this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.customSearchGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.searchByInsertionDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
@@ -173,12 +187,15 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentSearchLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
@@ -361,8 +378,8 @@ namespace AssetManagement.Assets
             // customSearchGroupBox
             // 
             this.customSearchGroupBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentSearchLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentCheckBox);
-            this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchByInsertionDatePanel);
             this.customSearchGroupBox.Controls.Add(this.searchByInsertionDateCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchByStatusLookUpEdit);
@@ -381,10 +398,10 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Controls.Add(this.searchBySectionCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchBySquareLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchBySectionLookUpEdit);
-            this.customSearchGroupBox.Controls.Add(this.searchByDepartmentLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchByMinorCategoryLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchByMainCategoryLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchByDepartmentCheckBox);
+            this.customSearchGroupBox.Controls.Add(this.searchByDepartmentSearchLookUpEdit);
             this.customSearchGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.customSearchGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customSearchGroupBox.Location = new System.Drawing.Point(0, 121);
@@ -394,6 +411,80 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.TabStop = false;
             this.customSearchGroupBox.Text = "بحث مخصص";
             this.customSearchGroupBox.Visible = false;
+            // 
+            // searchBySubDepartmentSearchLookUpEdit
+            // 
+            this.searchBySubDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySubDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(802, 133);
+            this.searchBySubDepartmentSearchLookUpEdit.MenuManager = this.barManager1;
+            this.searchBySubDepartmentSearchLookUpEdit.Name = "searchBySubDepartmentSearchLookUpEdit";
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.DataSource = this.subDepartmentVwBindingSource;
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم الوحدة";
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.PopupView = this.gridView1;
+            this.searchBySubDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف الوحدة";
+            this.searchBySubDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchBySubDepartmentSearchLookUpEdit.TabIndex = 130;
+            this.searchBySubDepartmentSearchLookUpEdit.Visible = false;
+            // 
+            // subDepartmentVwBindingSource
+            // 
+            this.subDepartmentVwBindingSource.DataMember = "SubDepartmentVw";
+            this.subDepartmentVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colمعرفالوحدة,
+            this.colاسمالوحدة,
+            this.colالقسمالتابعةله,
+            this.colالدائرةالتييتبعلهاالقسم1});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colمعرفالوحدة
+            // 
+            this.colمعرفالوحدة.FieldName = "معرف الوحدة";
+            this.colمعرفالوحدة.MinWidth = 100;
+            this.colمعرفالوحدة.Name = "colمعرفالوحدة";
+            this.colمعرفالوحدة.Width = 100;
+            // 
+            // colاسمالوحدة
+            // 
+            this.colاسمالوحدة.FieldName = "اسم الوحدة";
+            this.colاسمالوحدة.MinWidth = 150;
+            this.colاسمالوحدة.Name = "colاسمالوحدة";
+            this.colاسمالوحدة.Visible = true;
+            this.colاسمالوحدة.VisibleIndex = 0;
+            this.colاسمالوحدة.Width = 150;
+            // 
+            // colالقسمالتابعةله
+            // 
+            this.colالقسمالتابعةله.FieldName = "القسم التابعة له";
+            this.colالقسمالتابعةله.MinWidth = 150;
+            this.colالقسمالتابعةله.Name = "colالقسمالتابعةله";
+            this.colالقسمالتابعةله.Visible = true;
+            this.colالقسمالتابعةله.VisibleIndex = 1;
+            this.colالقسمالتابعةله.Width = 150;
+            // 
+            // colالدائرةالتييتبعلهاالقسم1
+            // 
+            this.colالدائرةالتييتبعلهاالقسم1.FieldName = "الدائرة التي يتبع لها القسم";
+            this.colالدائرةالتييتبعلهاالقسم1.MinWidth = 150;
+            this.colالدائرةالتييتبعلهاالقسم1.Name = "colالدائرةالتييتبعلهاالقسم1";
+            this.colالدائرةالتييتبعلهاالقسم1.Visible = true;
+            this.colالدائرةالتييتبعلهاالقسم1.VisibleIndex = 2;
+            this.colالدائرةالتييتبعلهاالقسم1.Width = 150;
             // 
             // searchBySubDepartmentCheckBox
             // 
@@ -406,37 +497,6 @@ namespace AssetManagement.Assets
             this.searchBySubDepartmentCheckBox.Text = "حسب الوحدة:";
             this.searchBySubDepartmentCheckBox.UseVisualStyleBackColor = true;
             this.searchBySubDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchBySubDepartmentCheckBox_CheckedChanged);
-            // 
-            // searchBySubDepartmentLookUpEdit
-            // 
-            this.searchBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(802, 133);
-            this.searchBySubDepartmentLookUpEdit.Name = "searchBySubDepartmentLookUpEdit";
-            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.searchBySubDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchBySubDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.searchBySubDepartmentLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
-            this.searchBySubDepartmentLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
-            this.searchBySubDepartmentLookUpEdit.Properties.PopupWidth = 500;
-            this.searchBySubDepartmentLookUpEdit.Properties.ValueMember = "ID";
-            this.searchBySubDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchBySubDepartmentLookUpEdit.TabIndex = 130;
-            this.searchBySubDepartmentLookUpEdit.Visible = false;
-            // 
-            // subDepartmentTblBindingSource
-            // 
-            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // searchByInsertionDatePanel
             // 
@@ -770,33 +830,6 @@ namespace AssetManagement.Assets
             this.sectionTblBindingSource.DataMember = "SectionTbl";
             this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
-            // searchByDepartmentLookUpEdit
-            // 
-            this.searchByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(802, 83);
-            this.searchByDepartmentLookUpEdit.Name = "searchByDepartmentLookUpEdit";
-            this.searchByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.searchByDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchByDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionOfDepartment", "معرف الدائرة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.searchByDepartmentLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
-            this.searchByDepartmentLookUpEdit.Properties.DisplayMember = "DepartmentName";
-            this.searchByDepartmentLookUpEdit.Properties.PopupWidth = 500;
-            this.searchByDepartmentLookUpEdit.Properties.ValueMember = "ID";
-            this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.searchByDepartmentLookUpEdit.TabIndex = 120;
-            this.searchByDepartmentLookUpEdit.Visible = false;
-            this.searchByDepartmentLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
-            // 
-            // departmentTblBindingSource
-            // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // searchByMinorCategoryLookUpEdit
             // 
             this.searchByMinorCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -863,6 +896,76 @@ namespace AssetManagement.Assets
             this.searchByDepartmentCheckBox.Text = "حسب القسم:";
             this.searchByDepartmentCheckBox.UseVisualStyleBackColor = true;
             this.searchByDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
+            // 
+            // searchByDepartmentSearchLookUpEdit
+            // 
+            this.searchByDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(802, 83);
+            this.searchByDepartmentSearchLookUpEdit.MenuManager = this.barManager1;
+            this.searchByDepartmentSearchLookUpEdit.Name = "searchByDepartmentSearchLookUpEdit";
+            this.searchByDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchByDepartmentSearchLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByDepartmentSearchLookUpEdit.Properties.DataSource = this.departmentVwBindingSource;
+            this.searchByDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم القسم";
+            this.searchByDepartmentSearchLookUpEdit.Properties.PopupView = this.searchLookUpEdit1View;
+            this.searchByDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف القسم";
+            this.searchByDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchByDepartmentSearchLookUpEdit.TabIndex = 120;
+            this.searchByDepartmentSearchLookUpEdit.Visible = false;
+            this.searchByDepartmentSearchLookUpEdit.EditValueChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
+            // 
+            // departmentVwBindingSource
+            // 
+            this.departmentVwBindingSource.DataMember = "DepartmentVw";
+            this.departmentVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colمعرفالقسم,
+            this.colاسمالقسم,
+            this.colالدائرةالتييتبعلهاالقسم});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colمعرفالقسم
+            // 
+            this.colمعرفالقسم.FieldName = "معرف القسم";
+            this.colمعرفالقسم.MinWidth = 100;
+            this.colمعرفالقسم.Name = "colمعرفالقسم";
+            this.colمعرفالقسم.Width = 100;
+            // 
+            // colاسمالقسم
+            // 
+            this.colاسمالقسم.FieldName = "اسم القسم";
+            this.colاسمالقسم.MinWidth = 150;
+            this.colاسمالقسم.Name = "colاسمالقسم";
+            this.colاسمالقسم.Visible = true;
+            this.colاسمالقسم.VisibleIndex = 0;
+            this.colاسمالقسم.Width = 150;
+            // 
+            // colالدائرةالتييتبعلهاالقسم
+            // 
+            this.colالدائرةالتييتبعلهاالقسم.FieldName = "الدائرة التي يتبع لها القسم";
+            this.colالدائرةالتييتبعلهاالقسم.MinWidth = 150;
+            this.colالدائرةالتييتبعلهاالقسم.Name = "colالدائرةالتييتبعلهاالقسم";
+            this.colالدائرةالتييتبعلهاالقسم.Visible = true;
+            this.colالدائرةالتييتبعلهاالقسم.VisibleIndex = 1;
+            this.colالدائرةالتييتبعلهاالقسم.Width = 150;
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // departmentTblTableAdapter
             // 
@@ -933,6 +1036,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = this.statusTblTableAdapter;
@@ -1473,6 +1577,14 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7.PopupWidth = 500;
             this.repositoryItemLookUpEdit7.ValueMember = "ID";
             // 
+            // departmentVwTableAdapter
+            // 
+            this.departmentVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentVwTableAdapter
+            // 
+            this.subDepartmentVwTableAdapter.ClearBeforeFill = true;
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
@@ -1501,9 +1613,10 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.customSearchGroupBox.ResumeLayout(false);
             this.customSearchGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.searchByInsertionDatePanel.ResumeLayout(false);
             this.searchByInsertionDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1522,12 +1635,15 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.squareTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentSearchLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
@@ -1561,7 +1677,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.CheckBox searchBySectionCheckBox;
         private DevExpress.XtraEditors.LookUpEdit searchBySquareLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit searchBySectionLookUpEdit;
-        private DevExpress.XtraEditors.LookUpEdit searchByDepartmentLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit searchByMinorCategoryLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit searchByMainCategoryLookUpEdit;
         private AssetMngDbDataSet assetMngDbDataSet;
@@ -1614,7 +1729,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarButtonItem vehiclesexportBrButtonItem;
         private DevExpress.XtraEditors.DropDownButton searchAssetDropDownButton;
         private System.Windows.Forms.CheckBox searchBySubDepartmentCheckBox;
-        private DevExpress.XtraEditors.LookUpEdit searchBySubDepartmentLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
@@ -1668,5 +1782,20 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit7;
         private DevExpress.XtraGrid.Columns.GridColumn colتاريخالإدخال;
+        private System.Windows.Forms.BindingSource departmentVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter departmentVwTableAdapter;
+        private DevExpress.XtraEditors.SearchLookUpEdit searchByDepartmentSearchLookUpEdit;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم;
+        private DevExpress.XtraEditors.SearchLookUpEdit searchBySubDepartmentSearchLookUpEdit;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource subDepartmentVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter subDepartmentVwTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالوحدة;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
+        private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
+        private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
     }
 }

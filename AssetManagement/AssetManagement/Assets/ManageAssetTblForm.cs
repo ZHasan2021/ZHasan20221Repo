@@ -64,9 +64,14 @@ namespace AssetManagement.Assets
             {
                 List<int> IDsIncluded = customDS.Select(as1 => as1.ID).ToList();
                 string plusQry = "";
-                foreach (int oneID in IDsIncluded)
-                    plusQry += oneID + ", ";
-                plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                if (IDsIncluded.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in IDsIncluded)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
                 AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
                 for (int i = 0; i < customVw.Rows.Count; i++)
                 {
@@ -79,7 +84,8 @@ namespace AssetManagement.Assets
                     }
                     catch
                     {
-                        continue;
+                        this.assetVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                        return;
                     }
                 }
                 this.assetVwTableAdapter.FillByQuery(customVw, plusQry);

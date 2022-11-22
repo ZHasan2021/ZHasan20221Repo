@@ -138,7 +138,8 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            searchResultsListBox.DataSource = srchRes;
+            var srchRes_Mv = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
+            searchResultsListBox.DataSource = srchRes_Mv;
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
 
         }

@@ -60,6 +60,9 @@ namespace AssetManagement
     partial void InsertImportExportTbl(ImportExportTbl instance);
     partial void UpdateImportExportTbl(ImportExportTbl instance);
     partial void DeleteImportExportTbl(ImportExportTbl instance);
+    partial void InsertIncomingTypeTbl(IncomingTypeTbl instance);
+    partial void UpdateIncomingTypeTbl(IncomingTypeTbl instance);
+    partial void DeleteIncomingTypeTbl(IncomingTypeTbl instance);
     partial void InsertMainCategoryTbl(MainCategoryTbl instance);
     partial void UpdateMainCategoryTbl(MainCategoryTbl instance);
     partial void DeleteMainCategoryTbl(MainCategoryTbl instance);
@@ -202,6 +205,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<ImportExportTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<IncomingTypeTbl> IncomingTypeTbls
+		{
+			get
+			{
+				return this.GetTable<IncomingTypeTbl>();
 			}
 		}
 		
@@ -4448,6 +4459,116 @@ namespace AssetManagement
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IncomingTypeTbl")]
+	public partial class IncomingTypeTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _IncomingTypeName;
+		
+		private string _IncomingTypeDescription;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnIncomingTypeNameChanging(string value);
+    partial void OnIncomingTypeNameChanged();
+    partial void OnIncomingTypeDescriptionChanging(string value);
+    partial void OnIncomingTypeDescriptionChanged();
+    #endregion
+		
+		public IncomingTypeTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingTypeName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string IncomingTypeName
+		{
+			get
+			{
+				return this._IncomingTypeName;
+			}
+			set
+			{
+				if ((this._IncomingTypeName != value))
+				{
+					this.OnIncomingTypeNameChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingTypeName = value;
+					this.SendPropertyChanged("IncomingTypeName");
+					this.OnIncomingTypeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncomingTypeDescription", DbType="NVarChar(300)")]
+		public string IncomingTypeDescription
+		{
+			get
+			{
+				return this._IncomingTypeDescription;
+			}
+			set
+			{
+				if ((this._IncomingTypeDescription != value))
+				{
+					this.OnIncomingTypeDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._IncomingTypeDescription = value;
+					this.SendPropertyChanged("IncomingTypeDescription");
+					this.OnIncomingTypeDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MainCategoryTbl")]
 	public partial class MainCategoryTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6036,6 +6157,14 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ManageTransactionTypes;
 		
+		private System.Nullable<bool> _AddNewIncomingType;
+		
+		private System.Nullable<bool> _ManageIncomingTypes;
+		
+		private System.Nullable<bool> _AddNewOutgoingType;
+		
+		private System.Nullable<bool> _ManageOutgoingTypes;
+		
 		private System.Nullable<bool> _AddNewFinancialItem;
 		
 		private System.Nullable<bool> _ManageFinancialItems;
@@ -6148,6 +6277,14 @@ namespace AssetManagement
     partial void OnAddNewTransactionTypeChanged();
     partial void OnManageTransactionTypesChanging(System.Nullable<bool> value);
     partial void OnManageTransactionTypesChanged();
+    partial void OnAddNewIncomingTypeChanging(System.Nullable<bool> value);
+    partial void OnAddNewIncomingTypeChanged();
+    partial void OnManageIncomingTypesChanging(System.Nullable<bool> value);
+    partial void OnManageIncomingTypesChanged();
+    partial void OnAddNewOutgoingTypeChanging(System.Nullable<bool> value);
+    partial void OnAddNewOutgoingTypeChanged();
+    partial void OnManageOutgoingTypesChanging(System.Nullable<bool> value);
+    partial void OnManageOutgoingTypesChanged();
     partial void OnAddNewFinancialItemChanging(System.Nullable<bool> value);
     partial void OnAddNewFinancialItemChanged();
     partial void OnManageFinancialItemsChanging(System.Nullable<bool> value);
@@ -6978,6 +7115,86 @@ namespace AssetManagement
 					this._ManageTransactionTypes = value;
 					this.SendPropertyChanged("ManageTransactionTypes");
 					this.OnManageTransactionTypesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewIncomingType", DbType="Bit")]
+		public System.Nullable<bool> AddNewIncomingType
+		{
+			get
+			{
+				return this._AddNewIncomingType;
+			}
+			set
+			{
+				if ((this._AddNewIncomingType != value))
+				{
+					this.OnAddNewIncomingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewIncomingType = value;
+					this.SendPropertyChanged("AddNewIncomingType");
+					this.OnAddNewIncomingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageIncomingTypes", DbType="Bit")]
+		public System.Nullable<bool> ManageIncomingTypes
+		{
+			get
+			{
+				return this._ManageIncomingTypes;
+			}
+			set
+			{
+				if ((this._ManageIncomingTypes != value))
+				{
+					this.OnManageIncomingTypesChanging(value);
+					this.SendPropertyChanging();
+					this._ManageIncomingTypes = value;
+					this.SendPropertyChanged("ManageIncomingTypes");
+					this.OnManageIncomingTypesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewOutgoingType", DbType="Bit")]
+		public System.Nullable<bool> AddNewOutgoingType
+		{
+			get
+			{
+				return this._AddNewOutgoingType;
+			}
+			set
+			{
+				if ((this._AddNewOutgoingType != value))
+				{
+					this.OnAddNewOutgoingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewOutgoingType = value;
+					this.SendPropertyChanged("AddNewOutgoingType");
+					this.OnAddNewOutgoingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageOutgoingTypes", DbType="Bit")]
+		public System.Nullable<bool> ManageOutgoingTypes
+		{
+			get
+			{
+				return this._ManageOutgoingTypes;
+			}
+			set
+			{
+				if ((this._ManageOutgoingTypes != value))
+				{
+					this.OnManageOutgoingTypesChanging(value);
+					this.SendPropertyChanging();
+					this._ManageOutgoingTypes = value;
+					this.SendPropertyChanged("ManageOutgoingTypes");
+					this.OnManageOutgoingTypesChanged();
 				}
 			}
 		}

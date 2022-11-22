@@ -30,6 +30,8 @@ namespace AssetManagement.Finance
 
         private void AddNewFinancialItemForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.IncomingTypeTbl' table. You can move, or remove it, as needed.
+            this.incomingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.IncomingTypeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.OutgoingTypeTbl' table. You can move, or remove it, as needed.
             this.outgoingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.OutgoingTypeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
@@ -48,6 +50,8 @@ namespace AssetManagement.Finance
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
+            manageIncomingTypeBtn.Visible = StaticCode.activeUserRole.ManageIncomingTypes == true;
+            manageOutgoingTypeBtn.Visible = StaticCode.activeUserRole.ManageOutgoingTypes == true;
             //if (StaticCode.activeUserRole.IsSectionIndependent == true)
             //{
             //    outgoingToSectionLookUpEdit.Visible = true;
@@ -79,7 +83,7 @@ namespace AssetManagement.Finance
                 outgoingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "صادر";
                 if (currFiIt.IncomingOrOutgoing == "وارد")
                 {
-                    incomingFromComboBox.Text = currFiIt.IncomingFrom;
+                    incomingTypeLookUpEdit.Text = currFiIt.IncomingFrom;
                 }
                 if (currFiIt.IncomingOrOutgoing == "صادر")
                 {
@@ -221,7 +225,7 @@ namespace AssetManagement.Finance
                     mainAlertControl.Show(this, "اكتب المبلغ الوارد أولاً", StaticCode.ApplicationTitle);
                     return;
                 }
-                if (incomingFromComboBox.Text == "")
+                if (incomingTypeLookUpEdit.EditValue == null)
                 {
                     mainAlertControl.Show(this, "اختر جهة الإيراد أولاً", StaticCode.ApplicationTitle);
                     return;
@@ -278,7 +282,7 @@ namespace AssetManagement.Finance
                 if (incomingRadioButton.Checked)
                 {
                     newFiIt.IncomingOrOutgoing = "وارد";
-                    newFiIt.IncomingFrom = incomingFromComboBox.Text;
+                    newFiIt.IncomingFrom = incomingTypeLookUpEdit.Text;
                 }
                 if (outgoingRadioButton.Checked)
                 {
@@ -365,7 +369,7 @@ namespace AssetManagement.Finance
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
             financialItemCategoryLookUpEdit.EditValue = null;
-            incomingAmountNumericUpDown.Enabled = incomingFromComboBox.Visible = true;
+            incomingAmountNumericUpDown.Enabled = incomingFromLabel.Visible = incomingFromPanel.Visible = true;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
@@ -375,7 +379,7 @@ namespace AssetManagement.Finance
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
             financialItemCategoryLookUpEdit.EditValue = null;
-            incomingAmountNumericUpDown.Enabled = incomingFromComboBox.Visible = false;
+            incomingAmountNumericUpDown.Enabled = incomingFromLabel.Visible = incomingFromPanel.Visible = false;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = true;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
@@ -447,6 +451,18 @@ namespace AssetManagement.Finance
             outgoingToSectionLookUpEdit.EditValue =
             outgoingToDeptLookUpEdit.EditValue =
             outgoingToSubDeptLookUpEdit.EditValue = null;
+        }
+
+        private void manageOutgoingTypeBtn_Click(object sender, EventArgs e)
+        {
+            ManageOutgoingTypeTblForm ouTyFrm = new ManageOutgoingTypeTblForm();
+            ouTyFrm.ShowDialog();
+        }
+
+        private void manageIncomingTypeBtn_Click(object sender, EventArgs e)
+        {
+            ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();
+            inTyFrm.ShowDialog();
         }
     }
 }

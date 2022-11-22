@@ -182,9 +182,14 @@ namespace AssetManagement.Finance
             {
                 List<int> IDsIncluded = financialItemsFromToQry.Select(fii1 => fii1.ID).ToList();
                 string plusQry = "";
-                foreach (int oneID in IDsIncluded)
-                    plusQry += oneID + ", ";
-                plusQry = $" WHERE [معرف السجل المالي] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                if (IDsIncluded.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in IDsIncluded)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف السجل المالي] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
                 FinancialItemVwDataTable customVw = this.assetMngDbDataSet.FinancialItemVw;
                 for (int i = 0; i < customVw.Rows.Count; i++)
                 {
@@ -197,7 +202,8 @@ namespace AssetManagement.Finance
                     }
                     catch
                     {
-                        continue;
+                        this.financialItemVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                        return;
                     }
                 }
                 this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);

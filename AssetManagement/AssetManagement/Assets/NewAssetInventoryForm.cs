@@ -23,6 +23,10 @@ namespace AssetManagement.Assets
 
         private void NewAssetInventoryForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentVw' table. You can move, or remove it, as needed.
+            this.subDepartmentVwTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.
+            this.departmentVwTableAdapter.Fill(this.assetMngDbDataSet.DepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -60,8 +64,8 @@ namespace AssetManagement.Assets
                 try
                 {
                     searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
-                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
-                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                    searchByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentSearchLookUpEdit.Enabled = false;
                 }
                 catch
                 {
@@ -77,13 +81,38 @@ namespace AssetManagement.Assets
 
         private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            searchByDepartmentLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
             if (searchByDepartmentCheckBox.Checked)
             {
-                if (searchByDepartmentLookUpEdit.EditValue == null)
+                if (searchByDepartmentSearchLookUpEdit.EditValue == null)
                     return;
-                var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
-                searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+                List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).Select(subd2 => subd2.ID).ToList();
+                string plusQry = "";
+                if (subDeptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in subDeptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
             }
             else
             {
@@ -93,14 +122,37 @@ namespace AssetManagement.Assets
                         return;
                     var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
                     List<int> dptIds = deptItems.Select(dpt2 => dpt2.ID).ToList();
-                    var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment));
-                    int jj = subDeptItems.Count();
-                    searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+                    List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment)).Select(subd2 => subd2.ID).ToList();
+                    string plusQry = "";
+                    if (subDeptIDs.Count() == 0)
+                        plusQry = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in subDeptIDs)
+                            plusQry += oneID + ", ";
+                        plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                    }
+                    SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                    for (int i = 0; i < customVw.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                            return;
+                        }
+                    }
+                    this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
                 }
                 else
                 {
-                    searchBySubDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls;
-                    this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+                    this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
                 }
             }
         }
@@ -112,14 +164,38 @@ namespace AssetManagement.Assets
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
                     return;
-                var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
-                searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
-                searchBySubDepartmentLookUpEdit.EditValue = null;
+                List<int> deptIDs = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
+                string plusQry = "";
+                if (deptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in deptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (deptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                searchBySubDepartmentSearchLookUpEdit.EditValue = null;
             }
             else
             {
-                searchByDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls;
-                this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
+                this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
             }
         }
 
@@ -196,27 +272,29 @@ namespace AssetManagement.Assets
                 }
                 if (searchByDepartmentCheckBox.Checked)
                 {
-                    if (searchByDepartmentLookUpEdit.EditValue == null)
+                    if (searchByDepartmentSearchLookUpEdit.EditValue == null)
                     {
                         mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
                         return;
                     }
                     else
                     {
-                        List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
+                        var fff = searchByDepartmentSearchLookUpEdit.EditValue;
+
+                        List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
                         assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
                     }
                 }
                 if (searchBySubDepartmentCheckBox.Checked)
                 {
-                    if (searchBySubDepartmentLookUpEdit.EditValue == null)
+                    if (searchBySubDepartmentSearchLookUpEdit.EditValue == null)
                     {
                         mainAlertControl.Show(this, "حدد الوحدة أولاً", StaticCode.ApplicationTitle);
                         return;
                     }
                     else
                     {
-                        assetsQry = assetsQry.Where(ast => ast.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
+                        assetsQry = assetsQry.Where(ast => ast.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
                     }
                 }
                 if (searchBySquareCheckBox.Checked)
@@ -506,9 +584,9 @@ namespace AssetManagement.Assets
                 if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
                     sectionName = searchBySectionLookUpEdit.Text;
                 if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
                 if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
                 cells.Value = sectionName;
             }
             using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
@@ -535,9 +613,9 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 string deptName = "";
                 if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    deptName = searchByDepartmentLookUpEdit.Text;
+                    deptName = searchByDepartmentSearchLookUpEdit.Text;
                 if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).DepartmentName;
+                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).DepartmentName;
                 cells.Value = deptName;
             }
             using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
@@ -563,7 +641,7 @@ namespace AssetManagement.Assets
                 cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentLookUpEdit.Text : "";
+                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentSearchLookUpEdit.Text : "";
             }
             using (var cells = astWs.Cells[5, startCol3 + 7, 5, startCol3 + 8])
             {
@@ -817,9 +895,9 @@ namespace AssetManagement.Assets
                 if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
                     sectionName = searchBySectionLookUpEdit.Text;
                 if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
                 if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
+                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
                 cells.Value = sectionName;
             }
             using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
@@ -846,9 +924,9 @@ namespace AssetManagement.Assets
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                 string deptName = "";
                 if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    deptName = searchByDepartmentLookUpEdit.Text;
+                    deptName = searchByDepartmentSearchLookUpEdit.Text;
                 if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue)).MainDepartment).DepartmentName;
+                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).DepartmentName;
                 cells.Value = deptName;
             }
             using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
@@ -874,7 +952,7 @@ namespace AssetManagement.Assets
                 cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentLookUpEdit.Text : "";
+                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentSearchLookUpEdit.Text : "";
             }
             using (var cells = astWs.Cells[5, startCol3 + 7, 5, startCol3 + 8])
             {
@@ -1012,7 +1090,7 @@ namespace AssetManagement.Assets
 
         private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
+            searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
         }
     }
 }

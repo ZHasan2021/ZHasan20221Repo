@@ -317,6 +317,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssetMngDb.dbml</DependentUpon>
     </Compile>
+    <Compile Include="AssetMngDbDataSet.cs">
+      <DependentUpon>AssetMngDbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AssetMngDbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -400,6 +403,12 @@
     <Compile Include="Assets\UpdateExistedAssetForm.Designer.cs">
       <DependentUpon>UpdateExistedAssetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuxTables\ManageOutgoingTypeTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageOutgoingTypeTblForm.Designer.cs">
+      <DependentUpon>ManageOutgoingTypeTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuxTables\ManageMinorCategoryTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +420,12 @@
     </Compile>
     <Compile Include="AuxTables\ManageMainCategoryTblForm.Designer.cs">
       <DependentUpon>ManageMainCategoryTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuxTables\ManageIncomingTypeTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageIncomingTypeTblForm.Designer.cs">
+      <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AuxTables\ManageSubDepartmentTblForm.cs">
       <SubType>Form</SubType>
@@ -615,11 +630,17 @@
     <EmbeddedResource Include="Assets\UpdateExistedAssetForm.resx">
       <DependentUpon>UpdateExistedAssetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageOutgoingTypeTblForm.resx">
+      <DependentUpon>ManageOutgoingTypeTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageMinorCategoryTblForm.resx">
       <DependentUpon>ManageMinorCategoryTblForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageMainCategoryTblForm.resx">
       <DependentUpon>ManageMainCategoryTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageIncomingTypeTblForm.resx">
+      <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageSubDepartmentTblForm.resx">
       <DependentUpon>ManageSubDepartmentTblForm.cs</DependentUpon>

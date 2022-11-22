@@ -44,6 +44,7 @@ namespace AssetManagement.Users
             this.colManageAssetTbl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUpdateSubDepartmentForExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdatePurchasePriceForExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeleteAssetRecord = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colViewAssetsReports = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colViewAssetsStats = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -106,7 +107,10 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userRoleTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.colUpdatePurchasePriceForExistedAsset = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewIncomingType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAddNewOutgoingType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageIncomingTypes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colManageOutgoingTypes = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -184,6 +188,10 @@ namespace AssetManagement.Users
             this.colManageEstateAreaUnits,
             this.colAddNewTransactionType,
             this.colManageTransactionTypes,
+            this.colAddNewIncomingType,
+            this.colManageIncomingTypes,
+            this.colAddNewOutgoingType,
+            this.colManageOutgoingTypes,
             this.colAddNewFinancialItem,
             this.colManageFinancialItems,
             this.colUpdateExistedFinancialItem,
@@ -235,7 +243,7 @@ namespace AssetManagement.Users
             this.colManageAssetTbl.MinWidth = 150;
             this.colManageAssetTbl.Name = "colManageAssetTbl";
             this.colManageAssetTbl.Visible = true;
-            this.colManageAssetTbl.VisibleIndex = 49;
+            this.colManageAssetTbl.VisibleIndex = 53;
             this.colManageAssetTbl.Width = 150;
             // 
             // colUpdateExistedAsset
@@ -257,6 +265,16 @@ namespace AssetManagement.Users
             this.colUpdateSubDepartmentForExistedAsset.Visible = true;
             this.colUpdateSubDepartmentForExistedAsset.VisibleIndex = 3;
             this.colUpdateSubDepartmentForExistedAsset.Width = 200;
+            // 
+            // colUpdatePurchasePriceForExistedAsset
+            // 
+            this.colUpdatePurchasePriceForExistedAsset.Caption = "تعديل سعر الشراء لأصل موجود";
+            this.colUpdatePurchasePriceForExistedAsset.FieldName = "UpdatePurchasePriceForExistedAsset";
+            this.colUpdatePurchasePriceForExistedAsset.MinWidth = 200;
+            this.colUpdatePurchasePriceForExistedAsset.Name = "colUpdatePurchasePriceForExistedAsset";
+            this.colUpdatePurchasePriceForExistedAsset.Visible = true;
+            this.colUpdatePurchasePriceForExistedAsset.VisibleIndex = 4;
+            this.colUpdatePurchasePriceForExistedAsset.Width = 200;
             // 
             // colDeleteAssetRecord
             // 
@@ -595,7 +613,7 @@ namespace AssetManagement.Users
             this.colAddNewFinancialItem.MinWidth = 150;
             this.colAddNewFinancialItem.Name = "colAddNewFinancialItem";
             this.colAddNewFinancialItem.Visible = true;
-            this.colAddNewFinancialItem.VisibleIndex = 38;
+            this.colAddNewFinancialItem.VisibleIndex = 42;
             this.colAddNewFinancialItem.Width = 150;
             // 
             // colManageFinancialItems
@@ -605,7 +623,7 @@ namespace AssetManagement.Users
             this.colManageFinancialItems.MinWidth = 150;
             this.colManageFinancialItems.Name = "colManageFinancialItems";
             this.colManageFinancialItems.Visible = true;
-            this.colManageFinancialItems.VisibleIndex = 39;
+            this.colManageFinancialItems.VisibleIndex = 43;
             this.colManageFinancialItems.Width = 150;
             // 
             // colUpdateExistedFinancialItem
@@ -615,7 +633,7 @@ namespace AssetManagement.Users
             this.colUpdateExistedFinancialItem.MinWidth = 150;
             this.colUpdateExistedFinancialItem.Name = "colUpdateExistedFinancialItem";
             this.colUpdateExistedFinancialItem.Visible = true;
-            this.colUpdateExistedFinancialItem.VisibleIndex = 40;
+            this.colUpdateExistedFinancialItem.VisibleIndex = 44;
             this.colUpdateExistedFinancialItem.Width = 150;
             // 
             // colDeleteFinancialItemRecord
@@ -625,7 +643,7 @@ namespace AssetManagement.Users
             this.colDeleteFinancialItemRecord.MinWidth = 150;
             this.colDeleteFinancialItemRecord.Name = "colDeleteFinancialItemRecord";
             this.colDeleteFinancialItemRecord.Visible = true;
-            this.colDeleteFinancialItemRecord.VisibleIndex = 41;
+            this.colDeleteFinancialItemRecord.VisibleIndex = 45;
             this.colDeleteFinancialItemRecord.Width = 150;
             // 
             // colViewFinancialReports
@@ -635,7 +653,7 @@ namespace AssetManagement.Users
             this.colViewFinancialReports.MinWidth = 150;
             this.colViewFinancialReports.Name = "colViewFinancialReports";
             this.colViewFinancialReports.Visible = true;
-            this.colViewFinancialReports.VisibleIndex = 42;
+            this.colViewFinancialReports.VisibleIndex = 46;
             this.colViewFinancialReports.Width = 150;
             // 
             // colAddNewFinancialItemCategory
@@ -645,7 +663,7 @@ namespace AssetManagement.Users
             this.colAddNewFinancialItemCategory.MinWidth = 150;
             this.colAddNewFinancialItemCategory.Name = "colAddNewFinancialItemCategory";
             this.colAddNewFinancialItemCategory.Visible = true;
-            this.colAddNewFinancialItemCategory.VisibleIndex = 43;
+            this.colAddNewFinancialItemCategory.VisibleIndex = 47;
             this.colAddNewFinancialItemCategory.Width = 150;
             // 
             // colManageFinancialItemCategories
@@ -655,7 +673,7 @@ namespace AssetManagement.Users
             this.colManageFinancialItemCategories.MinWidth = 150;
             this.colManageFinancialItemCategories.Name = "colManageFinancialItemCategories";
             this.colManageFinancialItemCategories.Visible = true;
-            this.colManageFinancialItemCategories.VisibleIndex = 44;
+            this.colManageFinancialItemCategories.VisibleIndex = 48;
             this.colManageFinancialItemCategories.Width = 150;
             // 
             // colSetDateAndTime
@@ -665,7 +683,7 @@ namespace AssetManagement.Users
             this.colSetDateAndTime.MinWidth = 150;
             this.colSetDateAndTime.Name = "colSetDateAndTime";
             this.colSetDateAndTime.Visible = true;
-            this.colSetDateAndTime.VisibleIndex = 45;
+            this.colSetDateAndTime.VisibleIndex = 49;
             this.colSetDateAndTime.Width = 150;
             // 
             // colBackupDb
@@ -675,7 +693,7 @@ namespace AssetManagement.Users
             this.colBackupDb.MinWidth = 150;
             this.colBackupDb.Name = "colBackupDb";
             this.colBackupDb.Visible = true;
-            this.colBackupDb.VisibleIndex = 46;
+            this.colBackupDb.VisibleIndex = 50;
             this.colBackupDb.Width = 150;
             // 
             // colRestoreDb
@@ -685,7 +703,7 @@ namespace AssetManagement.Users
             this.colRestoreDb.MinWidth = 150;
             this.colRestoreDb.Name = "colRestoreDb";
             this.colRestoreDb.Visible = true;
-            this.colRestoreDb.VisibleIndex = 47;
+            this.colRestoreDb.VisibleIndex = 51;
             this.colRestoreDb.Width = 150;
             // 
             // colCreateAssetsReports
@@ -695,7 +713,7 @@ namespace AssetManagement.Users
             this.colCreateAssetsReports.MinWidth = 150;
             this.colCreateAssetsReports.Name = "colCreateAssetsReports";
             this.colCreateAssetsReports.Visible = true;
-            this.colCreateAssetsReports.VisibleIndex = 48;
+            this.colCreateAssetsReports.VisibleIndex = 52;
             this.colCreateAssetsReports.Width = 150;
             // 
             // colIsSectionIndependent
@@ -705,7 +723,7 @@ namespace AssetManagement.Users
             this.colIsSectionIndependent.MinWidth = 150;
             this.colIsSectionIndependent.Name = "colIsSectionIndependent";
             this.colIsSectionIndependent.Visible = true;
-            this.colIsSectionIndependent.VisibleIndex = 50;
+            this.colIsSectionIndependent.VisibleIndex = 54;
             this.colIsSectionIndependent.Width = 150;
             // 
             // colIsDepartmentIndependent
@@ -715,7 +733,7 @@ namespace AssetManagement.Users
             this.colIsDepartmentIndependent.MinWidth = 150;
             this.colIsDepartmentIndependent.Name = "colIsDepartmentIndependent";
             this.colIsDepartmentIndependent.Visible = true;
-            this.colIsDepartmentIndependent.VisibleIndex = 51;
+            this.colIsDepartmentIndependent.VisibleIndex = 55;
             this.colIsDepartmentIndependent.Width = 150;
             // 
             // mainAlertControl
@@ -745,10 +763,12 @@ namespace AssetManagement.Users
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -888,15 +908,45 @@ namespace AssetManagement.Users
             this.userRoleTblBindingNavigatorSaveItem.Text = "Save Data";
             this.userRoleTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.userRoleTblBindingNavigatorSaveItem_Click);
             // 
-            // colUpdatePurchasePriceForExistedAsset
+            // colAddNewIncomingType
             // 
-            this.colUpdatePurchasePriceForExistedAsset.Caption = "تعديل سعر الشراء لأصل موجود";
-            this.colUpdatePurchasePriceForExistedAsset.FieldName = "UpdatePurchasePriceForExistedAsset";
-            this.colUpdatePurchasePriceForExistedAsset.MinWidth = 200;
-            this.colUpdatePurchasePriceForExistedAsset.Name = "colUpdatePurchasePriceForExistedAsset";
-            this.colUpdatePurchasePriceForExistedAsset.Visible = true;
-            this.colUpdatePurchasePriceForExistedAsset.VisibleIndex = 4;
-            this.colUpdatePurchasePriceForExistedAsset.Width = 200;
+            this.colAddNewIncomingType.Caption = "إضافة جهة إيراد جديدة";
+            this.colAddNewIncomingType.FieldName = "AddNewIncomingType";
+            this.colAddNewIncomingType.MinWidth = 150;
+            this.colAddNewIncomingType.Name = "colAddNewIncomingType";
+            this.colAddNewIncomingType.Visible = true;
+            this.colAddNewIncomingType.VisibleIndex = 38;
+            this.colAddNewIncomingType.Width = 150;
+            // 
+            // colAddNewOutgoingType
+            // 
+            this.colAddNewOutgoingType.Caption = "إضافة نوع صادر جديد";
+            this.colAddNewOutgoingType.FieldName = "AddNewOutgoingType";
+            this.colAddNewOutgoingType.MinWidth = 150;
+            this.colAddNewOutgoingType.Name = "colAddNewOutgoingType";
+            this.colAddNewOutgoingType.Visible = true;
+            this.colAddNewOutgoingType.VisibleIndex = 40;
+            this.colAddNewOutgoingType.Width = 150;
+            // 
+            // colManageIncomingTypes
+            // 
+            this.colManageIncomingTypes.Caption = "إدارة جدول جهات الإيراد";
+            this.colManageIncomingTypes.FieldName = "ManageIncomingTypes";
+            this.colManageIncomingTypes.MinWidth = 150;
+            this.colManageIncomingTypes.Name = "colManageIncomingTypes";
+            this.colManageIncomingTypes.Visible = true;
+            this.colManageIncomingTypes.VisibleIndex = 39;
+            this.colManageIncomingTypes.Width = 150;
+            // 
+            // colManageOutgoingTypes
+            // 
+            this.colManageOutgoingTypes.Caption = "إدارة جدول أنواع الصادرات";
+            this.colManageOutgoingTypes.FieldName = "ManageOutgoingTypes";
+            this.colManageOutgoingTypes.MinWidth = 150;
+            this.colManageOutgoingTypes.Name = "colManageOutgoingTypes";
+            this.colManageOutgoingTypes.Visible = true;
+            this.colManageOutgoingTypes.VisibleIndex = 41;
+            this.colManageOutgoingTypes.Width = 150;
             // 
             // ManageUserRoleTblForm
             // 
@@ -998,5 +1048,9 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colIsDepartmentIndependent;
         private DevExpress.XtraGrid.Columns.GridColumn colIsSectionIndependent;
         private DevExpress.XtraGrid.Columns.GridColumn colUpdatePurchasePriceForExistedAsset;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewIncomingType;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageIncomingTypes;
+        private DevExpress.XtraGrid.Columns.GridColumn colAddNewOutgoingType;
+        private DevExpress.XtraGrid.Columns.GridColumn colManageOutgoingTypes;
     }
 }

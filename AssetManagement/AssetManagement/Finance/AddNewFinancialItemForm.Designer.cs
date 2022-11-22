@@ -34,10 +34,7 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLabel = new System.Windows.Forms.Label();
             this.manageFinancialItemCategoryTblBtn = new System.Windows.Forms.Button();
             this.financialItemCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.financialItemInsertionDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.financialItemInsertionDateLabel = new System.Windows.Forms.Label();
             this.incomingOrOutgoingPanel = new System.Windows.Forms.Panel();
@@ -47,28 +44,19 @@ namespace AssetManagement.Finance
             this.financialItemDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.incomingAmountLabel = new System.Windows.Forms.Label();
             this.financialItemCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.incomingAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
-            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.addNewFinancialItemBtn_Cancel = new System.Windows.Forms.Button();
             this.addNewFinancialItemBtn_OK = new System.Windows.Forms.Button();
             this.additionalNotesTextBox = new System.Windows.Forms.TextBox();
             this.additionalNotesLabel = new System.Windows.Forms.Label();
             this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
-            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
-            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
-            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
             this.financialItemSubDeptLabel = new System.Windows.Forms.Label();
             this.financialItemSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
             this.financialItemSectionLabel = new System.Windows.Forms.Label();
             this.financialItemSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemDeptLabel = new System.Windows.Forms.Label();
             this.financialItemDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.addNewAssetBtn = new System.Windows.Forms.Button();
@@ -76,44 +64,65 @@ namespace AssetManagement.Finance
             this.outgoingAmountLabel = new System.Windows.Forms.Label();
             this.outgoingToPanel = new System.Windows.Forms.Panel();
             this.outgoingTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.outgoingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.relatedOutgoingLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.outgoingToSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.subDepartmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.outgoingToDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.departmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.sectionTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.incomingFromComboBox = new System.Windows.Forms.ComboBox();
-            this.outgoingTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.OutgoingTypeTblTableAdapter();
             this.outgoingToSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.outgoingToDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.outgoingToSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.incomingFromLabel = new System.Windows.Forms.Label();
+            this.incomingTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.manageOutgoingTypeBtn = new System.Windows.Forms.Button();
+            this.incomingFromPanel = new System.Windows.Forms.Panel();
+            this.manageIncomingTypeBtn = new System.Windows.Forms.Button();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.outgoingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sectionTblBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.subDepartmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.incomingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
+            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.incomingTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.IncomingTypeTblTableAdapter();
+            this.outgoingTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.OutgoingTypeTblTableAdapter();
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
+            this.sectionTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties)).BeginInit();
             this.incomingOrOutgoingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomingAmountNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSectionLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingAmountNumericUpDown)).BeginInit();
             this.outgoingToPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingToSubDeptLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingToDeptLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingToSectionLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingToDeptLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingToSubDeptLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeLookUpEdit.Properties)).BeginInit();
+            this.incomingFromPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemCategoryLabel
@@ -159,16 +168,6 @@ namespace AssetManagement.Finance
             this.financialItemCategoryLookUpEdit.TabIndex = 205;
             this.financialItemCategoryLookUpEdit.EditValueChanged += new System.EventHandler(this.financialItemCategoryLookUpEdit_EditValueChanged);
             // 
-            // financialItemCategoryTblBindingSource
-            // 
-            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
-            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -183,10 +182,6 @@ namespace AssetManagement.Finance
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
-            // 
-            // financialItemCategoryTblTableAdapter
-            // 
-            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
             // financialItemInsertionDateDateEdit
             // 
@@ -293,11 +288,6 @@ namespace AssetManagement.Finance
             this.financialItemCurrencyLookUpEdit.Size = new System.Drawing.Size(217, 30);
             this.financialItemCurrencyLookUpEdit.TabIndex = 320;
             // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // incomingAmountNumericUpDown
             // 
             this.incomingAmountNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -323,10 +313,6 @@ namespace AssetManagement.Finance
             this.manageCurrencyTblBtn.TabIndex = 106;
             this.manageCurrencyTblBtn.UseVisualStyleBackColor = true;
             this.manageCurrencyTblBtn.Click += new System.EventHandler(this.manageCurrencyTblBtn_Click);
-            // 
-            // currencyTblTableAdapter
-            // 
-            this.currencyTblTableAdapter.ClearBeforeFill = true;
             // 
             // addNewFinancialItemBtn_Cancel
             // 
@@ -384,49 +370,6 @@ namespace AssetManagement.Finance
             this.manageDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageDepartmentTblBtn.Click += new System.EventHandler(this.manageDepartmentTblBtn_Click);
             // 
-            // departmentTblBindingSource
-            // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // departmentTblTableAdapter
-            // 
-            this.departmentTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
-            this.tableAdapterManager.AssetTblTableAdapter = null;
-            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
-            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
-            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
-            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
-            this.tableAdapterManager.ImportExportTblTableAdapter = null;
-            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
-            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
-            this.tableAdapterManager.ModelTblTableAdapter = null;
-            this.tableAdapterManager.OptionsTblTableAdapter = null;
-            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
-            this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
-            this.tableAdapterManager.SquareTblTableAdapter = null;
-            this.tableAdapterManager.StatusTblTableAdapter = null;
-            this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
-            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRoleTblTableAdapter = null;
-            this.tableAdapterManager.UserTblTableAdapter = null;
-            // 
-            // sectionTblTableAdapter
-            // 
-            this.sectionTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // subDepartmentTblTableAdapter
-            // 
-            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
-            // 
             // manageSubDepartmentTblBtn
             // 
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -469,11 +412,6 @@ namespace AssetManagement.Finance
             this.financialItemSubDeptLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemSubDeptLookUpEdit.TabIndex = 235;
             // 
-            // subDepartmentTblBindingSource
-            // 
-            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // manageSectionTblBtn
             // 
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -515,11 +453,6 @@ namespace AssetManagement.Finance
             this.financialItemSectionLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemSectionLookUpEdit.TabIndex = 215;
             this.financialItemSectionLookUpEdit.EditValueChanged += new System.EventHandler(this.financialItemSectionLookUpEdit_EditValueChanged);
-            // 
-            // sectionTblBindingSource
-            // 
-            this.sectionTblBindingSource.DataMember = "SectionTbl";
-            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // financialItemDeptLabel
             // 
@@ -596,13 +529,14 @@ namespace AssetManagement.Finance
             // 
             this.outgoingToPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.outgoingToPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.outgoingToPanel.Controls.Add(this.manageIncomingTypeBtn);
             this.outgoingToPanel.Controls.Add(this.outgoingTypeLookUpEdit);
             this.outgoingToPanel.Controls.Add(this.relatedOutgoingLabel);
             this.outgoingToPanel.Controls.Add(this.label1);
             this.outgoingToPanel.Controls.Add(this.outgoingToSectionLookUpEdit);
             this.outgoingToPanel.Controls.Add(this.outgoingToDeptLookUpEdit);
             this.outgoingToPanel.Controls.Add(this.outgoingToSubDeptLookUpEdit);
-            this.outgoingToPanel.Location = new System.Drawing.Point(358, 31);
+            this.outgoingToPanel.Location = new System.Drawing.Point(353, 31);
             this.outgoingToPanel.Name = "outgoingToPanel";
             this.outgoingToPanel.Size = new System.Drawing.Size(839, 62);
             this.outgoingToPanel.TabIndex = 100;
@@ -611,7 +545,7 @@ namespace AssetManagement.Finance
             // outgoingTypeLookUpEdit
             // 
             this.outgoingTypeLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.outgoingTypeLookUpEdit.Location = new System.Drawing.Point(408, 16);
+            this.outgoingTypeLookUpEdit.Location = new System.Drawing.Point(446, 16);
             this.outgoingTypeLookUpEdit.Name = "outgoingTypeLookUpEdit";
             this.outgoingTypeLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outgoingTypeLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -625,21 +559,16 @@ namespace AssetManagement.Finance
             this.outgoingTypeLookUpEdit.Properties.DisplayMember = "OutgoingTypeName";
             this.outgoingTypeLookUpEdit.Properties.PopupWidth = 800;
             this.outgoingTypeLookUpEdit.Properties.ValueMember = "ID";
-            this.outgoingTypeLookUpEdit.Size = new System.Drawing.Size(321, 30);
+            this.outgoingTypeLookUpEdit.Size = new System.Drawing.Size(283, 30);
             this.outgoingTypeLookUpEdit.TabIndex = 110;
             this.outgoingTypeLookUpEdit.EditValueChanged += new System.EventHandler(this.outgoingTypeLookUpEdit_EditValueChanged);
-            // 
-            // outgoingTypeTblBindingSource
-            // 
-            this.outgoingTypeTblBindingSource.DataMember = "OutgoingTypeTbl";
-            this.outgoingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // relatedOutgoingLabel
             // 
             this.relatedOutgoingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.relatedOutgoingLabel.AutoSize = true;
             this.relatedOutgoingLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.relatedOutgoingLabel.Location = new System.Drawing.Point(308, 19);
+            this.relatedOutgoingLabel.Location = new System.Drawing.Point(288, 19);
             this.relatedOutgoingLabel.Name = "relatedOutgoingLabel";
             this.relatedOutgoingLabel.Size = new System.Drawing.Size(72, 24);
             this.relatedOutgoingLabel.TabIndex = 120;
@@ -656,36 +585,30 @@ namespace AssetManagement.Finance
             this.label1.TabIndex = 105;
             this.label1.Text = "نوع الصادر:";
             // 
-            // outgoingToSubDeptLookUpEdit
+            // outgoingToSectionLookUpEdit
             // 
-            this.outgoingToSubDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.outgoingToSubDeptLookUpEdit.Location = new System.Drawing.Point(40, 16);
-            this.outgoingToSubDeptLookUpEdit.Name = "outgoingToSubDeptLookUpEdit";
-            this.outgoingToSubDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outgoingToSubDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.outgoingToSubDeptLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.outgoingToSectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.outgoingToSectionLookUpEdit.Location = new System.Drawing.Point(29, 16);
+            this.outgoingToSectionLookUpEdit.Name = "outgoingToSectionLookUpEdit";
+            this.outgoingToSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outgoingToSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.outgoingToSectionLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.outgoingToSubDeptLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.outgoingToSubDeptLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource1;
-            this.outgoingToSubDeptLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
-            this.outgoingToSubDeptLookUpEdit.Properties.PopupWidth = 500;
-            this.outgoingToSubDeptLookUpEdit.Properties.ValueMember = "ID";
-            this.outgoingToSubDeptLookUpEdit.Size = new System.Drawing.Size(249, 30);
-            this.outgoingToSubDeptLookUpEdit.TabIndex = 135;
-            this.outgoingToSubDeptLookUpEdit.Visible = false;
-            // 
-            // subDepartmentTblBindingSource1
-            // 
-            this.subDepartmentTblBindingSource1.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            this.outgoingToSectionLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.outgoingToSectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource2;
+            this.outgoingToSectionLookUpEdit.Properties.DisplayMember = "SectionName";
+            this.outgoingToSectionLookUpEdit.Properties.PopupWidth = 500;
+            this.outgoingToSectionLookUpEdit.Properties.ValueMember = "ID";
+            this.outgoingToSectionLookUpEdit.Size = new System.Drawing.Size(249, 30);
+            this.outgoingToSectionLookUpEdit.TabIndex = 125;
+            this.outgoingToSectionLookUpEdit.Visible = false;
             // 
             // outgoingToDeptLookUpEdit
             // 
             this.outgoingToDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.outgoingToDeptLookUpEdit.Location = new System.Drawing.Point(40, 16);
+            this.outgoingToDeptLookUpEdit.Location = new System.Drawing.Point(29, 16);
             this.outgoingToDeptLookUpEdit.Name = "outgoingToDeptLookUpEdit";
             this.outgoingToDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outgoingToDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -703,56 +626,206 @@ namespace AssetManagement.Finance
             this.outgoingToDeptLookUpEdit.TabIndex = 130;
             this.outgoingToDeptLookUpEdit.Visible = false;
             // 
-            // departmentTblBindingSource1
+            // outgoingToSubDeptLookUpEdit
             // 
-            this.departmentTblBindingSource1.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
-            // sectionTblBindingSource1
-            // 
-            this.sectionTblBindingSource1.DataMember = "SectionTbl";
-            this.sectionTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
-            // incomingFromComboBox
-            // 
-            this.incomingFromComboBox.FormattingEnabled = true;
-            this.incomingFromComboBox.Items.AddRange(new object[] {
-            "من المستوى الأعلى",
-            "أخرى"});
-            this.incomingFromComboBox.Location = new System.Drawing.Point(363, 46);
-            this.incomingFromComboBox.Name = "incomingFromComboBox";
-            this.incomingFromComboBox.Size = new System.Drawing.Size(306, 32);
-            this.incomingFromComboBox.TabIndex = 50;
-            this.incomingFromComboBox.Visible = false;
-            // 
-            // outgoingTypeTblTableAdapter
-            // 
-            this.outgoingTypeTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // outgoingToSectionLookUpEdit
-            // 
-            this.outgoingToSectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.outgoingToSectionLookUpEdit.Location = new System.Drawing.Point(40, 16);
-            this.outgoingToSectionLookUpEdit.Name = "outgoingToSectionLookUpEdit";
-            this.outgoingToSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outgoingToSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.outgoingToSectionLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.outgoingToSubDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.outgoingToSubDeptLookUpEdit.Location = new System.Drawing.Point(29, 16);
+            this.outgoingToSubDeptLookUpEdit.Name = "outgoingToSubDeptLookUpEdit";
+            this.outgoingToSubDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outgoingToSubDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.outgoingToSubDeptLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.outgoingToSectionLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.outgoingToSectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource2;
-            this.outgoingToSectionLookUpEdit.Properties.DisplayMember = "SectionName";
-            this.outgoingToSectionLookUpEdit.Properties.PopupWidth = 500;
-            this.outgoingToSectionLookUpEdit.Properties.ValueMember = "ID";
-            this.outgoingToSectionLookUpEdit.Size = new System.Drawing.Size(249, 30);
-            this.outgoingToSectionLookUpEdit.TabIndex = 125;
-            this.outgoingToSectionLookUpEdit.Visible = false;
+            this.outgoingToSubDeptLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.outgoingToSubDeptLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource1;
+            this.outgoingToSubDeptLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
+            this.outgoingToSubDeptLookUpEdit.Properties.PopupWidth = 500;
+            this.outgoingToSubDeptLookUpEdit.Properties.ValueMember = "ID";
+            this.outgoingToSubDeptLookUpEdit.Size = new System.Drawing.Size(249, 30);
+            this.outgoingToSubDeptLookUpEdit.TabIndex = 135;
+            this.outgoingToSubDeptLookUpEdit.Visible = false;
+            // 
+            // incomingFromLabel
+            // 
+            this.incomingFromLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.incomingFromLabel.AutoSize = true;
+            this.incomingFromLabel.Location = new System.Drawing.Point(736, 18);
+            this.incomingFromLabel.Name = "incomingFromLabel";
+            this.incomingFromLabel.Size = new System.Drawing.Size(86, 24);
+            this.incomingFromLabel.TabIndex = 55;
+            this.incomingFromLabel.Text = "جهة الإيراد:";
+            // 
+            // incomingTypeLookUpEdit
+            // 
+            this.incomingTypeLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.incomingTypeLookUpEdit.Location = new System.Drawing.Point(446, 15);
+            this.incomingTypeLookUpEdit.Name = "incomingTypeLookUpEdit";
+            this.incomingTypeLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.incomingTypeLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.incomingTypeLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.incomingTypeLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف جهة الإيراد", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IncomingTypeName", "اسم جهة الإيراد", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IncomingTypeDescription", "وضف جهة الإيراد", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.incomingTypeLookUpEdit.Properties.DataSource = this.incomingTypeTblBindingSource;
+            this.incomingTypeLookUpEdit.Properties.DisplayMember = "IncomingTypeName";
+            this.incomingTypeLookUpEdit.Properties.PopupWidth = 500;
+            this.incomingTypeLookUpEdit.Properties.ValueMember = "ID";
+            this.incomingTypeLookUpEdit.Size = new System.Drawing.Size(283, 30);
+            this.incomingTypeLookUpEdit.TabIndex = 60;
+            // 
+            // manageOutgoingTypeBtn
+            // 
+            this.manageOutgoingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageOutgoingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageOutgoingTypeBtn.Location = new System.Drawing.Point(369, 3);
+            this.manageOutgoingTypeBtn.Name = "manageOutgoingTypeBtn";
+            this.manageOutgoingTypeBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageOutgoingTypeBtn.TabIndex = 65;
+            this.manageOutgoingTypeBtn.UseVisualStyleBackColor = true;
+            this.manageOutgoingTypeBtn.Click += new System.EventHandler(this.manageOutgoingTypeBtn_Click);
+            // 
+            // incomingFromPanel
+            // 
+            this.incomingFromPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.incomingFromPanel.BackColor = System.Drawing.Color.Bisque;
+            this.incomingFromPanel.Controls.Add(this.incomingFromLabel);
+            this.incomingFromPanel.Controls.Add(this.manageOutgoingTypeBtn);
+            this.incomingFromPanel.Controls.Add(this.incomingTypeLookUpEdit);
+            this.incomingFromPanel.Location = new System.Drawing.Point(353, 31);
+            this.incomingFromPanel.Name = "incomingFromPanel";
+            this.incomingFromPanel.Size = new System.Drawing.Size(839, 62);
+            this.incomingFromPanel.TabIndex = 50;
+            this.incomingFromPanel.Visible = false;
+            // 
+            // manageIncomingTypeBtn
+            // 
+            this.manageIncomingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageIncomingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageIncomingTypeBtn.Location = new System.Drawing.Point(369, 3);
+            this.manageIncomingTypeBtn.Name = "manageIncomingTypeBtn";
+            this.manageIncomingTypeBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageIncomingTypeBtn.TabIndex = 115;
+            this.manageIncomingTypeBtn.UseVisualStyleBackColor = true;
+            this.manageIncomingTypeBtn.Click += new System.EventHandler(this.manageIncomingTypeBtn_Click);
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemCategoryTblBindingSource
+            // 
+            this.financialItemCategoryTblBindingSource.DataMember = "FinancialItemCategoryTbl";
+            this.financialItemCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // outgoingTypeTblBindingSource
+            // 
+            this.outgoingTypeTblBindingSource.DataMember = "OutgoingTypeTbl";
+            this.outgoingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // sectionTblBindingSource2
             // 
             this.sectionTblBindingSource2.DataMember = "SectionTbl";
             this.sectionTblBindingSource2.DataSource = this.assetMngDbDataSet;
+            // 
+            // departmentTblBindingSource1
+            // 
+            this.departmentTblBindingSource1.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // subDepartmentTblBindingSource1
+            // 
+            this.subDepartmentTblBindingSource1.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // incomingTypeTblBindingSource
+            // 
+            this.incomingTypeTblBindingSource.DataMember = "IncomingTypeTbl";
+            this.incomingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // financialItemCategoryTblTableAdapter
+            // 
+            this.financialItemCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // departmentTblTableAdapter
+            // 
+            this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AssetMovementTblTableAdapter = null;
+            this.tableAdapterManager.AssetTblTableAdapter = null;
+            this.tableAdapterManager.AssetTransactionTblTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
+            this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
+            this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
+            this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = this.incomingTypeTblTableAdapter;
+            this.tableAdapterManager.MainCategoryTblTableAdapter = null;
+            this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = this.outgoingTypeTblTableAdapter;
+            this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
+            this.tableAdapterManager.SquareTblTableAdapter = null;
+            this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
+            this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRoleTblTableAdapter = null;
+            this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // incomingTypeTblTableAdapter
+            // 
+            this.incomingTypeTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // outgoingTypeTblTableAdapter
+            // 
+            this.outgoingTypeTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentTblTableAdapter
+            // 
+            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // sectionTblBindingSource1
+            // 
+            this.sectionTblBindingSource1.DataMember = "SectionTbl";
+            this.sectionTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
             // AddNewFinancialItemForm
             // 
@@ -790,7 +863,7 @@ namespace AssetManagement.Finance
             this.Controls.Add(this.financialItemCategoryLookUpEdit);
             this.Controls.Add(this.financialItemCategoryLabel);
             this.Controls.Add(this.outgoingToPanel);
-            this.Controls.Add(this.incomingFromComboBox);
+            this.Controls.Add(this.incomingFromPanel);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -802,33 +875,37 @@ namespace AssetManagement.Finance
             this.Text = "إضافة سجل مالي جديد";
             this.Load += new System.EventHandler(this.AddNewFinancialItemForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemInsertionDateDateEdit.Properties)).EndInit();
             this.incomingOrOutgoingPanel.ResumeLayout(false);
             this.incomingOrOutgoingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomingAmountNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSectionLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingAmountNumericUpDown)).EndInit();
             this.outgoingToPanel.ResumeLayout(false);
             this.outgoingToPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingToSubDeptLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outgoingToDeptLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingToSectionLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingToDeptLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingToSubDeptLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeLookUpEdit.Properties)).EndInit();
+            this.incomingFromPanel.ResumeLayout(false);
+            this.incomingFromPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -887,11 +964,17 @@ namespace AssetManagement.Finance
         private DevExpress.XtraEditors.LookUpEdit outgoingToDeptLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit outgoingToSubDeptLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource1;
-        private System.Windows.Forms.ComboBox incomingFromComboBox;
         private DevExpress.XtraEditors.LookUpEdit outgoingTypeLookUpEdit;
         private System.Windows.Forms.BindingSource outgoingTypeTblBindingSource;
         private AssetMngDbDataSetTableAdapters.OutgoingTypeTblTableAdapter outgoingTypeTblTableAdapter;
         private DevExpress.XtraEditors.LookUpEdit outgoingToSectionLookUpEdit;
         private System.Windows.Forms.BindingSource sectionTblBindingSource2;
+        private System.Windows.Forms.Label incomingFromLabel;
+        private DevExpress.XtraEditors.LookUpEdit incomingTypeLookUpEdit;
+        private System.Windows.Forms.BindingSource incomingTypeTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.IncomingTypeTblTableAdapter incomingTypeTblTableAdapter;
+        private System.Windows.Forms.Button manageIncomingTypeBtn;
+        private System.Windows.Forms.Button manageOutgoingTypeBtn;
+        private System.Windows.Forms.Panel incomingFromPanel;
     }
 }

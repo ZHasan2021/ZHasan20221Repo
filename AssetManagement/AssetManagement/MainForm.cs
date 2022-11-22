@@ -81,6 +81,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItemCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageIncomingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageIncomingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageOutgoingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageOutgoingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void UpdateAssetToDestructLabel()
@@ -681,6 +683,18 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
+        }
+
+        private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();
+            inTyFrm.ShowDialog();
+        }
+
+        private void manageOutgoingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageOutgoingTypeTblForm ouTyFrm = new ManageOutgoingTypeTblForm();
+            ouTyFrm.ShowDialog();
         }
     }
 }

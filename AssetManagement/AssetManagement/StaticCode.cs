@@ -233,6 +233,46 @@ namespace AssetManagement
         //    int returnValue = this.Adapter.Fill(dataTable);
         //    return returnValue;
         //}
+
+        //public virtual int FillByQuery(AssetMngDbDataSet.DepartmentVwDataTable dataTable, string whereQuery)
+        //{
+        //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+        //    if (whereIndex == -1)
+        //    {
+        //        this.CommandCollection[0].CommandText += whereQuery;
+        //    }
+        //    else
+        //    {
+        //        this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+        //    }
+        //    this.Adapter.SelectCommand = this.CommandCollection[0];
+        //    if ((this.ClearBeforeFill == true))
+        //    {
+        //        dataTable.Clear();
+        //    }
+        //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+        //}
+
+        //public virtual int FillByQuery(AssetMngDbDataSet.SubDepartmentVwDataTable dataTable, string whereQuery)
+        //{
+        //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+        //    if (whereIndex == -1)
+        //    {
+        //        this.CommandCollection[0].CommandText += whereQuery;
+        //    }
+        //    else
+        //    {
+        //        this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+        //    }
+        //    this.Adapter.SelectCommand = this.CommandCollection[0];
+        //    if ((this.ClearBeforeFill == true))
+        //    {
+        //        dataTable.Clear();
+        //    }
+        //    int returnValue = this.Adapter.Fill(dataTable);
+        //    return returnValue;
+        //}
         #endregion
 
         #region Assets
@@ -1040,5 +1080,10 @@ namespace AssetManagement
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
         #endregion
+    }
+
+    public static class Extensions
+    {
+
     }
 }
