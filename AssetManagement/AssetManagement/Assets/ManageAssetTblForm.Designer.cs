@@ -54,6 +54,7 @@ namespace AssetManagement.Assets
             this.exportToExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.showAssetCardBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.editDataBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -121,7 +122,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
-            this.deleteAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -327,6 +327,14 @@ namespace AssetManagement.Assets
             this.editDataBarButtonItem.Name = "editDataBarButtonItem";
             this.editDataBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editDataBarButtonItem_ItemClick);
             // 
+            // deleteAssetBarButtonItem
+            // 
+            this.deleteAssetBarButtonItem.Caption = "حذف";
+            this.deleteAssetBarButtonItem.Id = 4;
+            this.deleteAssetBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteAssetBarButtonItem.ImageOptions.SvgImage")));
+            this.deleteAssetBarButtonItem.Name = "deleteAssetBarButtonItem";
+            this.deleteAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteAssetBarButtonItem_ItemClick);
+            // 
             // mainTimer
             // 
             this.mainTimer.Enabled = true;
@@ -468,6 +476,7 @@ namespace AssetManagement.Assets
             this.assetGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
             this.assetGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
             this.assetGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.assetTblGridView_SelectionChanged);
+            this.assetGridView.DoubleClick += new System.EventHandler(this.assetGridView_DoubleClick);
             // 
             // colمعرفالأصل
             // 
@@ -953,10 +962,12 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = this.statusTblTableAdapter;
@@ -973,14 +984,6 @@ namespace AssetManagement.Assets
             // statusTblTableAdapter
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // deleteAssetBarButtonItem
-            // 
-            this.deleteAssetBarButtonItem.Caption = "حذف";
-            this.deleteAssetBarButtonItem.Id = 4;
-            this.deleteAssetBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteAssetBarButtonItem.ImageOptions.SvgImage")));
-            this.deleteAssetBarButtonItem.Name = "deleteAssetBarButtonItem";
-            this.deleteAssetBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteAssetBarButtonItem_ItemClick);
             // 
             // ManageAssetTblForm
             // 

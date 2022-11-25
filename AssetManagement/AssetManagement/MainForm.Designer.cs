@@ -91,6 +91,8 @@ namespace AssetManagement
             this.activeUserRoleBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.activeUserDeptBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.actionsStatusBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.manageIncomingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -118,8 +120,6 @@ namespace AssetManagement
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.manageIncomingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -757,6 +757,24 @@ namespace AssetManagement
             this.actionsStatusBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
             this.actionsStatusBarStaticItem.Name = "actionsStatusBarStaticItem";
             // 
+            // manageIncomingTypeTblBarButtonItem
+            // 
+            this.manageIncomingTypeTblBarButtonItem.Caption = "إدارة جدول جهات الإيراد";
+            this.manageIncomingTypeTblBarButtonItem.Id = 84;
+            this.manageIncomingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2556744;
+            this.manageIncomingTypeTblBarButtonItem.Name = "manageIncomingTypeTblBarButtonItem";
+            this.manageIncomingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageIncomingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageIncomingTypeTblBarButtonItem_ItemClick);
+            // 
+            // manageOutgoingTypeTblBarButtonItem
+            // 
+            this.manageOutgoingTypeTblBarButtonItem.Caption = "إدارة جدول أنواع الصادرات";
+            this.manageOutgoingTypeTblBarButtonItem.Id = 85;
+            this.manageOutgoingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._6701075;
+            this.manageOutgoingTypeTblBarButtonItem.Name = "manageOutgoingTypeTblBarButtonItem";
+            this.manageOutgoingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageOutgoingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageOutgoingTypeTblBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -1087,22 +1105,6 @@ namespace AssetManagement
             this.actionsStatusMemoEdit.Properties.Appearance.Options.UseForeColor = true;
             this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
             this.actionsStatusMemoEdit.TabIndex = 8;
-            // 
-            // manageIncomingTypeTblBarButtonItem
-            // 
-            this.manageIncomingTypeTblBarButtonItem.Caption = "إدارة جدول جهات الإيراد";
-            this.manageIncomingTypeTblBarButtonItem.Id = 84;
-            this.manageIncomingTypeTblBarButtonItem.Name = "manageIncomingTypeTblBarButtonItem";
-            this.manageIncomingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.manageIncomingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageIncomingTypeTblBarButtonItem_ItemClick);
-            // 
-            // manageOutgoingTypeTblBarButtonItem
-            // 
-            this.manageOutgoingTypeTblBarButtonItem.Caption = "إدارة جدول أنواع الصادرات";
-            this.manageOutgoingTypeTblBarButtonItem.Id = 85;
-            this.manageOutgoingTypeTblBarButtonItem.Name = "manageOutgoingTypeTblBarButtonItem";
-            this.manageOutgoingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.manageOutgoingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageOutgoingTypeTblBarButtonItem_ItemClick);
             // 
             // MainForm
             // 

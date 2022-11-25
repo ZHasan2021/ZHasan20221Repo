@@ -218,5 +218,10 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
             }
         }
+
+        private void assetGridView_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

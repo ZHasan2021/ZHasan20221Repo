@@ -107,11 +107,11 @@ namespace AssetManagement.Assets
                     correctPictureBox1.Visible = incorrectPictureBox1.Visible = false;
                     if (assetCodeTextBox.Text.Trim() == "")
                         errorMsg += "كود الأصل فارغ\r\n";
-                    if (assetSectionLookUpEdit.EditValue == null)
+                    if (assetSectionLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true)
                         errorMsg += "لم يتم تحديد الدائرة\r\n";
-                    if (assetDeptLookUpEdit.EditValue == null)
+                    if (assetDeptLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
                         errorMsg += "لم يتم تحديد القسم\r\n";
-                    if (assetSubDeptLookUpEdit.EditValue == null)
+                    if (assetSubDeptLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
                         errorMsg += "لم يتم تحديد الوحدة\r\n";
                     if (assetSquareLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الساحة\r\n";
@@ -178,16 +178,56 @@ namespace AssetManagement.Assets
 
             try
             {
+                int assetSubD = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue);
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+                    var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == StaticCode.PMName && sdptv1.القسم_التابعة_له == StaticCode.PMName && sdptv1.الدائرة_التي_يتبع_لها_القسم == StaticCode.PMName);
+                    if (qry_PM == null || qry_PM.Count() == 0)
+                    {
+                        SectionTbl newPM_Sec = new SectionTbl() { SectionName = StaticCode.PMName };
+                        StaticCode.mainDbContext.SectionTbls.InsertOnSubmit(newPM_Sec);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = StaticCode.PMName, SectionOfDepartment = newPM_Sec.ID };
+                        StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = StaticCode.PMName, MainDepartment = newPM_Dpt.ID };
+                        StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        assetSubD = newPM_SDpt.ID;
+                    }
+                    else
+                    {
+                        assetSubD = qry_PM.First().معرف_الوحدة;
+                    }
+                }
+                else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                {
+                    var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == assetSectionLookUpEdit.Text);
+                    if (qry_PM == null || qry_PM.Count() == 0)
+                    {
+                        DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(assetSectionLookUpEdit.EditValue) };
+                        StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
+                        StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        assetSubD = newPM_SDpt.ID;
+                    }
+                    else
+                    {
+                        assetSubD = qry_PM.First().معرف_الوحدة;
+                    }
+                }
+
                 AssetTbl newAssetRecord = new AssetTbl()
                 {
-                    //AssetCode = ((StaticCode.appOptions.AssetCodePrefix == "") ? "" : StaticCode.appOptions.AssetCodePrefix + "-") + assetCodeTextBox.Text.Trim(),
                     AssetCode = assetCodeTextBox.Text.Trim(),
                     IsOldOrNewAsset = (isNewAssetRadioButton.Checked) ? "جديد" : "قديم",
                     AssetMinorCategory = Convert.ToInt32(minorCategoryLookUpEdit.EditValue),
                     ItemsQuantity = Convert.ToInt32(itemsQuantityNumericUpDown.Value),
                     DestructionRate = Convert.ToDouble(destructionRateNumericUpDown.Value),
                     LifeSpanInMonths = Convert.ToInt32(lifeSpanInMonthsNumericUpDown.Value),
-                    AssetSubDepartment = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue),
+                    AssetSubDepartment = assetSubD,
                     AssetSquare = Convert.ToInt32(assetSquareLookUpEdit.EditValue),
                     AssetSpecifications = assetSpecificationsTextBox.Text.Trim(),
                     Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text,
@@ -223,7 +263,7 @@ namespace AssetManagement.Assets
                 {
                     StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(new FinancialItemTbl()
                     {
-                        FinancialItemSubDept = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue),
+                        FinancialItemSubDept = assetSubD,
                         FinancialItemCategory = Convert.ToInt32(assetFinancialItemCategoryLookUpEdit.EditValue),
                         FinancialItemInsertionDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue),
                         IncomingOrOutgoing = "صادر",

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.AuxTables
 {
@@ -22,6 +23,8 @@ namespace AssetManagement.AuxTables
 
         private void ManageAssetMovementTblForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
+            this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw_All' table. You can move, or remove it, as needed.
             this.assetVw_AllTableAdapter.Fill(this.assetMngDbDataSet.AssetVw_All);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
@@ -78,11 +81,47 @@ namespace AssetManagement.AuxTables
         private void assetMovementGridView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             currRow = e.RowHandle;
+            ShowAssetCard();
         }
 
         private void assetMovementGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             currRow = e.RowHandle;
+            ShowAssetCard();
+        }
+
+        void ShowAssetCard()
+        {
+            assetVwGridControl.Visible = false;
+            if (currRow < 0)
+            {
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetMovementGridView.GetRowCellValue(currRow, colAssetID));
+                string plusQry = $" WHERE [معرف الأصل] = ({currAssetID});";
+                AssetVw_AllDataTable customVw = this.assetMngDbDataSet.AssetVw_All;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (currAssetID != Convert.ToInt32(oneRowItemArray[0]))
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                this.assetVw_AllTableAdapter.FillByQuery(customVw, plusQry);
+                assetVwGridControl.Visible = true;
+            }
+            catch
+            {
+            }
         }
     }
 }

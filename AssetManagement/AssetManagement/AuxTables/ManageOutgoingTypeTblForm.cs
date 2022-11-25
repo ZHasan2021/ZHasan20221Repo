@@ -19,18 +19,18 @@ namespace AssetManagement.AuxTables
 
         private void ManageOutgoingTypeTblForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.IncomingTypeTbl' table. You can move, or remove it, as needed.
-            this.incomingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.IncomingTypeTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.OutgoingTypeTbl' table. You can move, or remove it, as needed.
+            this.outgoingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.OutgoingTypeTbl);
 
-            incomingTypeGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewSquare == true;
+            outgoingTypeGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewSquare == true;
 
             this.MinimumSize = this.Size;
         }
 
-        private void incomingTypeTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void outgoingTypeTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.incomingTypeTblBindingSource.EndEdit();
+            this.outgoingTypeTblBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
         }

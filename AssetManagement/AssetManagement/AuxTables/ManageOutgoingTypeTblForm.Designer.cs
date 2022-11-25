@@ -30,19 +30,16 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageIncomingTypeTblForm));
-            this.incomingTypeGridControl = new DevExpress.XtraGrid.GridControl();
-            this.incomingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageOutgoingTypeTblForm));
+            this.outgoingTypeGridControl = new DevExpress.XtraGrid.GridControl();
+            this.outgoingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
-            this.incomingTypeGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIncomingTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIncomingTypeDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.outgoingTypeGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.incomingTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.IncomingTypeTblTableAdapter();
-            this.incomingTypeTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.outgoingTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.OutgoingTypeTblTableAdapter();
+            this.outgoingTypeTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -54,77 +51,52 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.incomingTypeTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingSource)).BeginInit();
+            this.outgoingTypeTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOutgoingTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOutgoingTypeDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingNavigator)).BeginInit();
-            this.incomingTypeTblBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingNavigator)).BeginInit();
+            this.outgoingTypeTblBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // incomingTypeGridControl
+            // outgoingTypeGridControl
             // 
-            this.incomingTypeGridControl.DataSource = this.incomingTypeTblBindingSource;
-            this.incomingTypeGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.RelationName = "incomingTypeLevel";
-            this.incomingTypeGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
-            this.incomingTypeGridControl.Location = new System.Drawing.Point(0, 47);
-            this.incomingTypeGridControl.MainView = this.incomingTypeGridView;
-            this.incomingTypeGridControl.Name = "incomingTypeGridControl";
-            this.incomingTypeGridControl.Size = new System.Drawing.Size(910, 526);
-            this.incomingTypeGridControl.TabIndex = 5;
-            this.incomingTypeGridControl.UseEmbeddedNavigator = true;
-            this.incomingTypeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.incomingTypeGridView});
+            this.outgoingTypeGridControl.DataSource = this.outgoingTypeTblBindingSource;
+            this.outgoingTypeGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridLevelNode1.RelationName = "outgoingTypeLevel";
+            this.outgoingTypeGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.outgoingTypeGridControl.Location = new System.Drawing.Point(0, 47);
+            this.outgoingTypeGridControl.MainView = this.outgoingTypeGridView;
+            this.outgoingTypeGridControl.Name = "outgoingTypeGridControl";
+            this.outgoingTypeGridControl.Size = new System.Drawing.Size(910, 526);
+            this.outgoingTypeGridControl.TabIndex = 5;
+            this.outgoingTypeGridControl.UseEmbeddedNavigator = true;
+            this.outgoingTypeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.outgoingTypeGridView});
             // 
-            // incomingTypeTblBindingSource
+            // outgoingTypeTblBindingSource
             // 
-            this.incomingTypeTblBindingSource.DataMember = "IncomingTypeTbl";
-            this.incomingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            this.outgoingTypeTblBindingSource.DataMember = "OutgoingTypeTbl";
+            this.outgoingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetMngDbDataSet
             // 
             this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
             this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // incomingTypeGridView
+            // outgoingTypeGridView
             // 
-            this.incomingTypeGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.outgoingTypeGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
-            this.colIncomingTypeName,
-            this.colIncomingTypeDescription});
-            this.incomingTypeGridView.GridControl = this.incomingTypeGridControl;
-            this.incomingTypeGridView.Name = "incomingTypeGridView";
-            // 
-            // colID
-            // 
-            this.colID.Caption = "معرف جهة الإيراد";
-            this.colID.FieldName = "ID";
-            this.colID.MinWidth = 100;
-            this.colID.Name = "colID";
-            this.colID.Width = 100;
-            // 
-            // colIncomingTypeName
-            // 
-            this.colIncomingTypeName.Caption = "اسم جهة الإيراد";
-            this.colIncomingTypeName.FieldName = "IncomingTypeName";
-            this.colIncomingTypeName.MinWidth = 150;
-            this.colIncomingTypeName.Name = "colIncomingTypeName";
-            this.colIncomingTypeName.Visible = true;
-            this.colIncomingTypeName.VisibleIndex = 0;
-            this.colIncomingTypeName.Width = 150;
-            // 
-            // colIncomingTypeDescription
-            // 
-            this.colIncomingTypeDescription.Caption = "وصف جهة الإيراد";
-            this.colIncomingTypeDescription.FieldName = "IncomingTypeDescription";
-            this.colIncomingTypeDescription.MinWidth = 200;
-            this.colIncomingTypeDescription.Name = "colIncomingTypeDescription";
-            this.colIncomingTypeDescription.Visible = true;
-            this.colIncomingTypeDescription.VisibleIndex = 1;
-            this.colIncomingTypeDescription.Width = 200;
+            this.colOutgoingTypeName,
+            this.colOutgoingTypeDescription});
+            this.outgoingTypeGridView.GridControl = this.outgoingTypeGridControl;
+            this.outgoingTypeGridView.Name = "outgoingTypeGridView";
             // 
             // mainAlertControl
             // 
@@ -153,12 +125,12 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
-            this.tableAdapterManager.IncomingTypeTblTableAdapter = this.incomingTypeTblTableAdapter;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
-            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = this.outgoingTypeTblTableAdapter;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -168,18 +140,18 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
-            // incomingTypeTblTableAdapter
+            // outgoingTypeTblTableAdapter
             // 
-            this.incomingTypeTblTableAdapter.ClearBeforeFill = true;
+            this.outgoingTypeTblTableAdapter.ClearBeforeFill = true;
             // 
-            // incomingTypeTblBindingNavigator
+            // outgoingTypeTblBindingNavigator
             // 
-            this.incomingTypeTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.incomingTypeTblBindingNavigator.BindingSource = this.incomingTypeTblBindingSource;
-            this.incomingTypeTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.incomingTypeTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.incomingTypeTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.incomingTypeTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.outgoingTypeTblBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.outgoingTypeTblBindingNavigator.BindingSource = this.outgoingTypeTblBindingSource;
+            this.outgoingTypeTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.outgoingTypeTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.outgoingTypeTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.outgoingTypeTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -191,17 +163,17 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.incomingTypeTblBindingNavigatorSaveItem});
-            this.incomingTypeTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.incomingTypeTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.incomingTypeTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.incomingTypeTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.incomingTypeTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.incomingTypeTblBindingNavigator.Name = "incomingTypeTblBindingNavigator";
-            this.incomingTypeTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.incomingTypeTblBindingNavigator.Size = new System.Drawing.Size(910, 47);
-            this.incomingTypeTblBindingNavigator.TabIndex = 4;
-            this.incomingTypeTblBindingNavigator.Text = "bindingNavigator1";
+            this.outgoingTypeTblBindingNavigatorSaveItem});
+            this.outgoingTypeTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.outgoingTypeTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.outgoingTypeTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.outgoingTypeTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.outgoingTypeTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.outgoingTypeTblBindingNavigator.Name = "outgoingTypeTblBindingNavigator";
+            this.outgoingTypeTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.outgoingTypeTblBindingNavigator.Size = new System.Drawing.Size(910, 47);
+            this.outgoingTypeTblBindingNavigator.TabIndex = 4;
+            this.outgoingTypeTblBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -289,36 +261,64 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
-            // incomingTypeTblBindingNavigatorSaveItem
+            // outgoingTypeTblBindingNavigatorSaveItem
             // 
-            this.incomingTypeTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.incomingTypeTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("incomingTypeTblBindingNavigatorSaveItem.Image")));
-            this.incomingTypeTblBindingNavigatorSaveItem.Name = "incomingTypeTblBindingNavigatorSaveItem";
-            this.incomingTypeTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(44, 44);
-            this.incomingTypeTblBindingNavigatorSaveItem.Text = "Save Data";
-            this.incomingTypeTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.incomingTypeTblBindingNavigatorSaveItem_Click);
+            this.outgoingTypeTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.outgoingTypeTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("outgoingTypeTblBindingNavigatorSaveItem.Image")));
+            this.outgoingTypeTblBindingNavigatorSaveItem.Name = "outgoingTypeTblBindingNavigatorSaveItem";
+            this.outgoingTypeTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(44, 44);
+            this.outgoingTypeTblBindingNavigatorSaveItem.Text = "Save Data";
+            this.outgoingTypeTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.outgoingTypeTblBindingNavigatorSaveItem_Click);
             // 
-            // ManageIncomingTypeTblForm
+            // colID
+            // 
+            this.colID.Caption = "معرف نوع الصادر";
+            this.colID.FieldName = "ID";
+            this.colID.MinWidth = 100;
+            this.colID.Name = "colID";
+            this.colID.Width = 100;
+            // 
+            // colOutgoingTypeName
+            // 
+            this.colOutgoingTypeName.Caption = "اسم نوع الصادر";
+            this.colOutgoingTypeName.FieldName = "OutgoingTypeName";
+            this.colOutgoingTypeName.MinWidth = 150;
+            this.colOutgoingTypeName.Name = "colOutgoingTypeName";
+            this.colOutgoingTypeName.Visible = true;
+            this.colOutgoingTypeName.VisibleIndex = 0;
+            this.colOutgoingTypeName.Width = 150;
+            // 
+            // colOutgoingTypeDescription
+            // 
+            this.colOutgoingTypeDescription.Caption = "وصف نوع الصادر";
+            this.colOutgoingTypeDescription.FieldName = "OutgoingTypeDescription";
+            this.colOutgoingTypeDescription.MinWidth = 200;
+            this.colOutgoingTypeDescription.Name = "colOutgoingTypeDescription";
+            this.colOutgoingTypeDescription.Visible = true;
+            this.colOutgoingTypeDescription.VisibleIndex = 1;
+            this.colOutgoingTypeDescription.Width = 1000;
+            // 
+            // ManageOutgoingTypeTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 573);
-            this.Controls.Add(this.incomingTypeGridControl);
-            this.Controls.Add(this.incomingTypeTblBindingNavigator);
+            this.Controls.Add(this.outgoingTypeGridControl);
+            this.Controls.Add(this.outgoingTypeTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ManageIncomingTypeTblForm";
+            this.Name = "ManageOutgoingTypeTblForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "إدارة جدول جهات الإيراد";
+            this.Text = "إدارة جدول أنواع الصادرات";
             this.Load += new System.EventHandler(this.ManageOutgoingTypeTblForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingNavigator)).EndInit();
-            this.incomingTypeTblBindingNavigator.ResumeLayout(false);
-            this.incomingTypeTblBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outgoingTypeTblBindingNavigator)).EndInit();
+            this.outgoingTypeTblBindingNavigator.ResumeLayout(false);
+            this.outgoingTypeTblBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,7 +328,7 @@ namespace AssetManagement.AuxTables
         private AssetMngDbDataSet assetMngDbDataSet;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator incomingTypeTblBindingNavigator;
+        private System.Windows.Forms.BindingNavigator outgoingTypeTblBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -340,13 +340,13 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton incomingTypeTblBindingNavigatorSaveItem;
-        private DevExpress.XtraGrid.GridControl incomingTypeGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView incomingTypeGridView;
-        private System.Windows.Forms.BindingSource incomingTypeTblBindingSource;
-        private AssetMngDbDataSetTableAdapters.IncomingTypeTblTableAdapter incomingTypeTblTableAdapter;
+        private System.Windows.Forms.ToolStripButton outgoingTypeTblBindingNavigatorSaveItem;
+        private DevExpress.XtraGrid.GridControl outgoingTypeGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView outgoingTypeGridView;
+        private System.Windows.Forms.BindingSource outgoingTypeTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.OutgoingTypeTblTableAdapter outgoingTypeTblTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colIncomingTypeName;
-        private DevExpress.XtraGrid.Columns.GridColumn colIncomingTypeDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn colOutgoingTypeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colOutgoingTypeDescription;
     }
 }

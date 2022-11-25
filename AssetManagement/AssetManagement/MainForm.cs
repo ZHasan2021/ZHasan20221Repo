@@ -554,13 +554,39 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             List<string> nonExistedAssets = new List<string>();
             List<string> mvColumnsHeaders = astWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
             int assetCodeCol = mvColumnsHeaders.IndexOf("معلومات الأصل") + 1;
+            if (assetCodeCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int movedFieldCol = mvColumnsHeaders.IndexOf("الحقل المحدث بعملية النقل") + 1;
+            if (movedFieldCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (الحقل المحدث بعملية النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int mvFromCol = mvColumnsHeaders.IndexOf("من") + 1;
+            if (mvFromCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (القيمة الحالية) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int mvToCol = mvColumnsHeaders.IndexOf("إلى") + 1;
+            if (mvToCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (القيمة الجديدة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int mvDateCol = mvColumnsHeaders.IndexOf("تاريخ النقل") + 1;
+            if (mvDateCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (تاريخ النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
 
             int addedRecordsCount = 0;
             int existedRecordsCount = 0;
+            int notAddedRecordsCount = 0;
 
             for (int iRow = 2; iRow <= astWs.Dimension.End.Row; iRow++)
             {
@@ -598,12 +624,13 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 }
                 catch
                 {
+                    notAddedRecordsCount++;
                     continue;
                 }
             }
 
             StaticCode.mainDbContext.SubmitChanges();
-            actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات النقل المضافة ({addedRecordsCount})\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات النقل المضافة ({addedRecordsCount})\r\n4- عدد السجلات غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -622,16 +649,57 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             List<string> nonExistedAssets = new List<string>();
             List<string> mvColumnsHeaders = astWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
             int assetCodeCol = mvColumnsHeaders.IndexOf("معلومات الأصل") + 1;
+            if (assetCodeCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trCategoryCol = mvColumnsHeaders.IndexOf("نوع التصريف") + 1;
+            if (trCategoryCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (نوع التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trSellPriceCol = mvColumnsHeaders.IndexOf("مبلغ البيع") + 1;
+            if (trSellPriceCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trSellPriceCurrCol = mvColumnsHeaders.IndexOf("عملة مبلغ البيع") + 1;
+            if (trSellPriceCurrCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (عملة مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trGetOutOfWorkCol = mvColumnsHeaders.IndexOf("إخراج الأصل من الخدمة") + 1;
+            if (trGetOutOfWorkCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (إخراج الأصل من الخدمة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trCurrPriceCol = mvColumnsHeaders.IndexOf("السعر الحالي مع الإهلاك") + 1;
+            if (trCurrPriceCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (السعر الحالي مع الإهلاك) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trNotesCol = mvColumnsHeaders.IndexOf("ملاحظات") + 1;
+            if (trNotesCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (ملاحظات) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trDateCol = mvColumnsHeaders.IndexOf("تاريخ التصريف") + 1;
+            if (trDateCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (تاريخ التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
 
             int addedRecordsCount = 0;
             int existedRecordsCount = 0;
+            int notAddedRecordsCount = 0;
 
             for (int iRow = 2; iRow <= astWs.Dimension.End.Row; iRow++)
             {
@@ -641,10 +709,10 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     string assetCodeVal = astWs.Cells[iRow, assetCodeCol].Value?.ToString();
                     string tmpVal = astWs.Cells[iRow, trCategoryCol].Value?.ToString();
                     int trCategoryVal = StaticCode.mainDbContext.TransactionTypeTbls.Single(tt1 => tt1.TransactionTypeName == tmpVal).ID;
-                    double trSellPriceVal = Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
+                    double trSellPriceVal = (astWs.Cells[iRow, trSellPriceCol].Value?.ToString() == "") ? 0 : Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
                     tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString();
                     int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
-                    bool trGetOutOfWorkVal = Convert.ToBoolean(astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString());
+                    bool trGetOutOfWorkVal = (astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString() == "") ? false : Convert.ToBoolean(astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString());
                     double trCurrPriceVal = Convert.ToDouble(astWs.Cells[iRow, trCurrPriceCol].Value?.ToString());
                     string trNotesVal = astWs.Cells[iRow, trNotesCol].Value?.ToString();
                     DateTime mvDateVal = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(astWs.Cells[iRow, trDateCol].Value?.ToString()));
@@ -675,14 +743,15 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     });
                     addedRecordsCount++;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    notAddedRecordsCount++;
                     continue;
                 }
             }
 
             StaticCode.mainDbContext.SubmitChanges();
-            actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n4- عدد السجلات غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
         }
 
         private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
