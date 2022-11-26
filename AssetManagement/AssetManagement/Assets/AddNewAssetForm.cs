@@ -16,7 +16,7 @@ namespace AssetManagement.Assets
         double assetDesRate = 0;
         int assetProdAge = 0;
 
-        public static bool AssetAdded = false;
+        public bool AssetAdded = false;
 
         public AddNewAssetForm()
         {

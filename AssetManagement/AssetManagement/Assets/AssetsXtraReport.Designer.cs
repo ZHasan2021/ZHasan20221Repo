@@ -170,6 +170,7 @@ namespace AssetManagement.Assets
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter4 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.xrPageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.panel3 = new DevExpress.XtraReports.UI.XRPanel();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.panel6 = new DevExpress.XtraReports.UI.XRPanel();
@@ -188,7 +189,7 @@ namespace AssetManagement.Assets
             this.GrandTotalData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GrandTotalBackground1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrPageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
+            this.xrPageBreak2 = new DevExpress.XtraReports.UI.XRPageBreak();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
@@ -976,6 +977,7 @@ namespace AssetManagement.Assets
             // GroupFooter1
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageBreak2,
             this.label2});
             this.GroupFooter1.Dpi = 96F;
             this.GroupFooter1.GroupUnion = DevExpress.XtraReports.UI.GroupFooterUnion.WithLastDetail;
@@ -1004,6 +1006,12 @@ namespace AssetManagement.Assets
             this.GroupFooter4.Level = 2;
             this.GroupFooter4.Name = "GroupFooter4";
             this.GroupFooter4.Visible = false;
+            // 
+            // xrPageBreak1
+            // 
+            this.xrPageBreak1.Dpi = 96F;
+            this.xrPageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 30.23999F);
+            this.xrPageBreak1.Name = "xrPageBreak1";
             // 
             // panel3
             // 
@@ -1330,11 +1338,11 @@ namespace AssetManagement.Assets
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 96F);
             // 
-            // xrPageBreak1
+            // xrPageBreak2
             // 
-            this.xrPageBreak1.Dpi = 96F;
-            this.xrPageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 30.23999F);
-            this.xrPageBreak1.Name = "xrPageBreak1";
+            this.xrPageBreak2.Dpi = 96F;
+            this.xrPageBreak2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 18.48003F);
+            this.xrPageBreak2.Name = "xrPageBreak2";
             // 
             // AssetsXtraReport
             // 
@@ -1475,5 +1483,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraReports.UI.XRTable table1;
         private DevExpress.XtraReports.UI.XRLine xrLine2;
         private DevExpress.XtraReports.UI.XRPageBreak xrPageBreak1;
+        private DevExpress.XtraReports.UI.XRPageBreak xrPageBreak2;
     }
 }

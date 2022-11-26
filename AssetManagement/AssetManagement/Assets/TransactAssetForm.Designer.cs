@@ -83,9 +83,12 @@ namespace AssetManagement.Assets
             this.transactionTypeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.TransactionTypeTblTableAdapter();
             this.viewAssetInformationBtn = new System.Windows.Forms.Button();
             this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchAssetBtn = new System.Windows.Forms.Button();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
+            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.moveAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
@@ -106,6 +109,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // moveAssetGroupBox
@@ -155,6 +159,7 @@ namespace AssetManagement.Assets
             this.colAssetID,
             this.colTransactionType,
             this.colTransactionDate,
+            this.colQuantityTransacted,
             this.colTransactionNotes,
             this.colTransactionMadeOn,
             this.colTransactionMadeBy,
@@ -228,7 +233,7 @@ namespace AssetManagement.Assets
             this.colTransactionNotes.MinWidth = 25;
             this.colTransactionNotes.Name = "colTransactionNotes";
             this.colTransactionNotes.Visible = true;
-            this.colTransactionNotes.VisibleIndex = 2;
+            this.colTransactionNotes.VisibleIndex = 3;
             this.colTransactionNotes.Width = 200;
             // 
             // colTransactionMadeOn
@@ -254,7 +259,7 @@ namespace AssetManagement.Assets
             this.colMoneyAmount.MinWidth = 25;
             this.colMoneyAmount.Name = "colMoneyAmount";
             this.colMoneyAmount.Visible = true;
-            this.colMoneyAmount.VisibleIndex = 3;
+            this.colMoneyAmount.VisibleIndex = 4;
             this.colMoneyAmount.Width = 80;
             // 
             // colMoneyAmountCurrency
@@ -265,7 +270,7 @@ namespace AssetManagement.Assets
             this.colMoneyAmountCurrency.MinWidth = 25;
             this.colMoneyAmountCurrency.Name = "colMoneyAmountCurrency";
             this.colMoneyAmountCurrency.Visible = true;
-            this.colMoneyAmountCurrency.VisibleIndex = 4;
+            this.colMoneyAmountCurrency.VisibleIndex = 5;
             this.colMoneyAmountCurrency.Width = 120;
             // 
             // moneyAmountCurrencyRepositoryItemLookUpEdit
@@ -293,7 +298,7 @@ namespace AssetManagement.Assets
             this.colGetAssetOutOfWork.MinWidth = 25;
             this.colGetAssetOutOfWork.Name = "colGetAssetOutOfWork";
             this.colGetAssetOutOfWork.Visible = true;
-            this.colGetAssetOutOfWork.VisibleIndex = 5;
+            this.colGetAssetOutOfWork.VisibleIndex = 6;
             this.colGetAssetOutOfWork.Width = 50;
             // 
             // colCurrentPriceWithDestroying
@@ -303,7 +308,7 @@ namespace AssetManagement.Assets
             this.colCurrentPriceWithDestroying.MinWidth = 25;
             this.colCurrentPriceWithDestroying.Name = "colCurrentPriceWithDestroying";
             this.colCurrentPriceWithDestroying.Visible = true;
-            this.colCurrentPriceWithDestroying.VisibleIndex = 6;
+            this.colCurrentPriceWithDestroying.VisibleIndex = 7;
             this.colCurrentPriceWithDestroying.Width = 80;
             // 
             // colAssetTransactionUniqueKey
@@ -668,10 +673,12 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -709,16 +716,22 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.DataSource = this.assetVwBindingSource;
+            this.searchResultsListBox.DisplayMember = "كود الأصل";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;
             this.searchResultsListBox.Location = new System.Drawing.Point(598, 25);
             this.searchResultsListBox.Name = "searchResultsListBox";
             this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
             this.searchResultsListBox.TabIndex = 104;
-            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.ValueMember = "معرف الأصل";
             this.searchResultsListBox.Visible = false;
             this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
+            // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // searchAssetBtn
             // 
@@ -751,6 +764,20 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox.Name = "assetCodeTextBox";
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);
             this.assetCodeTextBox.TabIndex = 102;
+            // 
+            // assetVwTableAdapter
+            // 
+            this.assetVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // colQuantityTransacted
+            // 
+            this.colQuantityTransacted.Caption = "العدد";
+            this.colQuantityTransacted.FieldName = "QuantityTransacted";
+            this.colQuantityTransacted.MinWidth = 100;
+            this.colQuantityTransacted.Name = "colQuantityTransacted";
+            this.colQuantityTransacted.Visible = true;
+            this.colQuantityTransacted.VisibleIndex = 2;
+            this.colQuantityTransacted.Width = 100;
             // 
             // TransacteAssetForm
             // 
@@ -796,6 +823,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -857,5 +885,8 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.NumericUpDown assetItemsQuantityToTransactNumericUpDown;
         private System.Windows.Forms.NumericUpDown assetCurrentItemsQuantityNumericUpDown;
         private System.Windows.Forms.Label qtyOutOfLabel;
+        private System.Windows.Forms.BindingSource assetVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantityTransacted;
     }
 }

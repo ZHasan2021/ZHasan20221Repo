@@ -2374,6 +2374,8 @@ namespace AssetManagement
 		
 		private System.DateTime _TransactionDate;
 		
+		private int _QuantityTransacted;
+		
 		private string _TransactionNotes;
 		
 		private System.Nullable<System.DateTime> _TransactionMadeOn;
@@ -2410,6 +2412,8 @@ namespace AssetManagement
     partial void OnTransactionTypeChanged();
     partial void OnTransactionDateChanging(System.DateTime value);
     partial void OnTransactionDateChanged();
+    partial void OnQuantityTransactedChanging(int value);
+    partial void OnQuantityTransactedChanged();
     partial void OnTransactionNotesChanging(string value);
     partial void OnTransactionNotesChanged();
     partial void OnTransactionMadeOnChanging(System.Nullable<System.DateTime> value);
@@ -2521,6 +2525,26 @@ namespace AssetManagement
 					this._TransactionDate = value;
 					this.SendPropertyChanged("TransactionDate");
 					this.OnTransactionDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantityTransacted", DbType="Int NOT NULL")]
+		public int QuantityTransacted
+		{
+			get
+			{
+				return this._QuantityTransacted;
+			}
+			set
+			{
+				if ((this._QuantityTransacted != value))
+				{
+					this.OnQuantityTransactedChanging(value);
+					this.SendPropertyChanging();
+					this._QuantityTransacted = value;
+					this.SendPropertyChanged("QuantityTransacted");
+					this.OnQuantityTransactedChanged();
 				}
 			}
 		}

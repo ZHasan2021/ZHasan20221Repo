@@ -89,6 +89,7 @@
       <Column Name="AssetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TransactionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TransactionDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="QuantityTransacted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TransactionNotes" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="TransactionMadeOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TransactionMadeBy" Type="System.Int32" DbType="Int" CanBeNull="true" />

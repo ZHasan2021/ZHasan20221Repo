@@ -146,7 +146,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AssetsXtraReport repFrm = new AssetsXtraReport();
+            AssetsXtraReport2 repFrm = new AssetsXtraReport2();
             repFrm.ShowPreviewDialog();
         }
 
@@ -660,6 +660,12 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 mainAlertControl.Show(this, "عمود (نوع التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
                 return;
             }
+            int trQuantityCol = mvColumnsHeaders.IndexOf("العدد") + 1;
+            if (trQuantityCol == 0)
+            {
+                mainAlertControl.Show(this, "عمود (العدد) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                return;
+            }
             int trSellPriceCol = mvColumnsHeaders.IndexOf("مبلغ البيع") + 1;
             if (trSellPriceCol == 0)
             {
@@ -700,6 +706,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             int addedRecordsCount = 0;
             int existedRecordsCount = 0;
             int notAddedRecordsCount = 0;
+            List<AssetTransactionTbl> importedRecords = new List<AssetTransactionTbl>();
 
             for (int iRow = 2; iRow <= astWs.Dimension.End.Row; iRow++)
             {
@@ -709,8 +716,24 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     string assetCodeVal = astWs.Cells[iRow, assetCodeCol].Value?.ToString();
                     string tmpVal = astWs.Cells[iRow, trCategoryCol].Value?.ToString();
                     int trCategoryVal = StaticCode.mainDbContext.TransactionTypeTbls.Single(tt1 => tt1.TransactionTypeName == tmpVal).ID;
+                    double trQuantityVal = (astWs.Cells[iRow, trQuantityCol].Value?.ToString() == "") ? 0 : Convert.ToInt32(astWs.Cells[iRow, trQuantityCol].Value?.ToString());
+                    if (trQuantityVal <= 0)
+                    {
+                        MessageBox.Show($"العدد في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد");
+                        return;
+                    }
                     double trSellPriceVal = (astWs.Cells[iRow, trSellPriceCol].Value?.ToString() == "") ? 0 : Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
-                    tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString();
+                    if (trSellPriceVal <= 0)
+                    {
+                        MessageBox.Show($"السعر في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد");
+                        return;
+                    }
+                    tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString().Trim();
+                    if (!StaticCode.mainDbContext.CurrencyTbls.Any(cu2 => cu2.CurrencyName == tmpVal))
+                    {
+                        MessageBox.Show($"العملة في السطر رقم {iRow} غير موجودة في جدول العملات، لا يمكن المتابعة في الاستيراد");
+                        return;
+                    }
                     int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
                     bool trGetOutOfWorkVal = (astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString() == "") ? false : Convert.ToBoolean(astWs.Cells[iRow, trGetOutOfWorkCol].Value?.ToString());
                     double trCurrPriceVal = Convert.ToDouble(astWs.Cells[iRow, trCurrPriceCol].Value?.ToString());
@@ -730,7 +753,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                         existedRecordsCount++;
                         continue;
                     }
-                    StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(new AssetTransactionTbl()
+                    importedRecords.Add(new AssetTransactionTbl()
                     {
                         AssetID = assetToAddMovement.ID,
                         TransactionDate = mvDateVal,
@@ -743,13 +766,14 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     });
                     addedRecordsCount++;
                 }
-                catch (Exception ex)
+                catch
                 {
                     notAddedRecordsCount++;
                     continue;
                 }
             }
 
+            StaticCode.mainDbContext.AssetTransactionTbls.InsertAllOnSubmit(importedRecords);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n4- عدد السجلات غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
         }

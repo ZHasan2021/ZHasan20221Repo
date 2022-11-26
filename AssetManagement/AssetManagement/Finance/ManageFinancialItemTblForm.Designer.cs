@@ -186,6 +186,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = this.financialItemTblTableAdapter;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -598,24 +599,24 @@ namespace AssetManagement.Finance
             // colالمبلغالوارد
             // 
             this.colالمبلغالوارد.FieldName = "المبلغ الوارد";
-            this.colالمبلغالوارد.MinWidth = 120;
+            this.colالمبلغالوارد.MinWidth = 200;
             this.colالمبلغالوارد.Name = "colالمبلغالوارد";
             this.colالمبلغالوارد.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الوارد", "مجموع الوارد={0:0.##}")});
             this.colالمبلغالوارد.Visible = true;
             this.colالمبلغالوارد.VisibleIndex = 10;
-            this.colالمبلغالوارد.Width = 120;
+            this.colالمبلغالوارد.Width = 200;
             // 
             // colالمبلغالصادر
             // 
             this.colالمبلغالصادر.FieldName = "المبلغ الصادر";
-            this.colالمبلغالصادر.MinWidth = 120;
+            this.colالمبلغالصادر.MinWidth = 200;
             this.colالمبلغالصادر.Name = "colالمبلغالصادر";
             this.colالمبلغالصادر.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", "مجموع الصادر={0:0.##}")});
             this.colالمبلغالصادر.Visible = true;
             this.colالمبلغالصادر.VisibleIndex = 11;
-            this.colالمبلغالصادر.Width = 120;
+            this.colالمبلغالصادر.Width = 200;
             // 
             // colالعملة
             // 

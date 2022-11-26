@@ -361,6 +361,12 @@
     <Compile Include="Assets\AssetsXtraReport.Designer.cs">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assets\AssetsXtraReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Assets\AssetsXtraReport2.Designer.cs">
+      <DependentUpon>AssetsXtraReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assets\CustomAssetsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -605,6 +611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetsXtraReport.resx">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\AssetsXtraReport2.resx">
+      <DependentUpon>AssetsXtraReport2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\DeleteAssetForm.resx">
       <DependentUpon>DeleteAssetForm.cs</DependentUpon>

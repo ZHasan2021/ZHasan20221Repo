@@ -751,6 +751,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -784,15 +785,15 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.DataSource = this.assetMoveVwBindingSource;
-            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.DataSource = this.assetVwBindingSource;
+            this.searchResultsListBox.DisplayMember = "كود الأصل";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;
             this.searchResultsListBox.Location = new System.Drawing.Point(552, 25);
             this.searchResultsListBox.Name = "searchResultsListBox";
             this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
             this.searchResultsListBox.TabIndex = 70;
-            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.ValueMember = "معرف الأصل";
             this.searchResultsListBox.Visible = false;
             this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
             // 

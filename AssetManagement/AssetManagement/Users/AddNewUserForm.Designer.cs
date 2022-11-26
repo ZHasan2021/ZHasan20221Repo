@@ -58,6 +58,8 @@ namespace AssetManagement.Users
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.userPrefixTextBox = new System.Windows.Forms.TextBox();
+            this.userPrefixLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.userRoleTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDeptLookUpEdit.Properties)).BeginInit();
@@ -69,7 +71,7 @@ namespace AssetManagement.Users
             // userNameLabel
             // 
             this.userNameLabel.AutoSize = true;
-            this.userNameLabel.Location = new System.Drawing.Point(33, 28);
+            this.userNameLabel.Location = new System.Drawing.Point(33, 20);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(117, 24);
             this.userNameLabel.TabIndex = 0;
@@ -77,14 +79,14 @@ namespace AssetManagement.Users
             // 
             // userNameTextBox
             // 
-            this.userNameTextBox.Location = new System.Drawing.Point(190, 24);
+            this.userNameTextBox.Location = new System.Drawing.Point(190, 16);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(261, 32);
             this.userNameTextBox.TabIndex = 5;
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(190, 94);
+            this.passwordTextBox.Location = new System.Drawing.Point(190, 76);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '_';
             this.passwordTextBox.Size = new System.Drawing.Size(261, 32);
@@ -93,7 +95,7 @@ namespace AssetManagement.Users
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(33, 98);
+            this.passwordLabel.Location = new System.Drawing.Point(33, 80);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(90, 24);
             this.passwordLabel.TabIndex = 10;
@@ -101,7 +103,7 @@ namespace AssetManagement.Users
             // 
             // confirmPasswordTextBox
             // 
-            this.confirmPasswordTextBox.Location = new System.Drawing.Point(190, 164);
+            this.confirmPasswordTextBox.Location = new System.Drawing.Point(190, 136);
             this.confirmPasswordTextBox.Name = "confirmPasswordTextBox";
             this.confirmPasswordTextBox.PasswordChar = '_';
             this.confirmPasswordTextBox.Size = new System.Drawing.Size(261, 32);
@@ -110,7 +112,7 @@ namespace AssetManagement.Users
             // confirmPasswordLabel
             // 
             this.confirmPasswordLabel.AutoSize = true;
-            this.confirmPasswordLabel.Location = new System.Drawing.Point(33, 168);
+            this.confirmPasswordLabel.Location = new System.Drawing.Point(33, 140);
             this.confirmPasswordLabel.Name = "confirmPasswordLabel";
             this.confirmPasswordLabel.Size = new System.Drawing.Size(128, 24);
             this.confirmPasswordLabel.TabIndex = 20;
@@ -121,7 +123,7 @@ namespace AssetManagement.Users
             this.userRoleComboBox.DataSource = this.userRoleTblBindingSource;
             this.userRoleComboBox.DisplayMember = "RoleName";
             this.userRoleComboBox.FormattingEnabled = true;
-            this.userRoleComboBox.Location = new System.Drawing.Point(190, 234);
+            this.userRoleComboBox.Location = new System.Drawing.Point(190, 196);
             this.userRoleComboBox.Name = "userRoleComboBox";
             this.userRoleComboBox.Size = new System.Drawing.Size(261, 32);
             this.userRoleComboBox.TabIndex = 40;
@@ -141,7 +143,7 @@ namespace AssetManagement.Users
             // userRoleLabel
             // 
             this.userRoleLabel.AutoSize = true;
-            this.userRoleLabel.Location = new System.Drawing.Point(33, 238);
+            this.userRoleLabel.Location = new System.Drawing.Point(33, 200);
             this.userRoleLabel.Name = "userRoleLabel";
             this.userRoleLabel.Size = new System.Drawing.Size(99, 24);
             this.userRoleLabel.TabIndex = 35;
@@ -154,7 +156,7 @@ namespace AssetManagement.Users
             // showHidePasswordBtn
             // 
             this.showHidePasswordBtn.Image = global::AssetManagement.Properties.Resources._2072009;
-            this.showHidePasswordBtn.Location = new System.Drawing.Point(513, 120);
+            this.showHidePasswordBtn.Location = new System.Drawing.Point(513, 92);
             this.showHidePasswordBtn.Name = "showHidePasswordBtn";
             this.showHidePasswordBtn.Size = new System.Drawing.Size(55, 55);
             this.showHidePasswordBtn.TabIndex = 30;
@@ -191,7 +193,7 @@ namespace AssetManagement.Users
             // 
             this.manageUserRoleTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageUserRoleTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageUserRoleTblBtn.Location = new System.Drawing.Point(513, 223);
+            this.manageUserRoleTblBtn.Location = new System.Drawing.Point(513, 185);
             this.manageUserRoleTblBtn.Name = "manageUserRoleTblBtn";
             this.manageUserRoleTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageUserRoleTblBtn.TabIndex = 41;
@@ -217,7 +219,7 @@ namespace AssetManagement.Users
             // 
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(513, 363);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(513, 305);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 60;
@@ -227,7 +229,7 @@ namespace AssetManagement.Users
             // userDeptLabel
             // 
             this.userDeptLabel.AutoSize = true;
-            this.userDeptLabel.Location = new System.Drawing.Point(33, 378);
+            this.userDeptLabel.Location = new System.Drawing.Point(33, 320);
             this.userDeptLabel.Name = "userDeptLabel";
             this.userDeptLabel.Size = new System.Drawing.Size(56, 24);
             this.userDeptLabel.TabIndex = 55;
@@ -235,7 +237,7 @@ namespace AssetManagement.Users
             // 
             // userDeptLookUpEdit
             // 
-            this.userDeptLookUpEdit.Location = new System.Drawing.Point(190, 375);
+            this.userDeptLookUpEdit.Location = new System.Drawing.Point(190, 317);
             this.userDeptLookUpEdit.Name = "userDeptLookUpEdit";
             this.userDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -262,7 +264,7 @@ namespace AssetManagement.Users
             // 
             // userSectionLookUpEdit
             // 
-            this.userSectionLookUpEdit.Location = new System.Drawing.Point(190, 305);
+            this.userSectionLookUpEdit.Location = new System.Drawing.Point(190, 257);
             this.userSectionLookUpEdit.Name = "userSectionLookUpEdit";
             this.userSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -286,7 +288,7 @@ namespace AssetManagement.Users
             // userSectionLabel
             // 
             this.userSectionLabel.AutoSize = true;
-            this.userSectionLabel.Location = new System.Drawing.Point(33, 308);
+            this.userSectionLabel.Location = new System.Drawing.Point(33, 260);
             this.userSectionLabel.Name = "userSectionLabel";
             this.userSectionLabel.Size = new System.Drawing.Size(56, 24);
             this.userSectionLabel.TabIndex = 45;
@@ -296,7 +298,7 @@ namespace AssetManagement.Users
             // 
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(513, 293);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(513, 245);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSectionTblBtn.TabIndex = 51;
@@ -319,6 +321,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -333,11 +336,29 @@ namespace AssetManagement.Users
             this.tableAdapterManager.UserRoleTblTableAdapter = this.userRoleTblTableAdapter;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
+            // userPrefixTextBox
+            // 
+            this.userPrefixTextBox.Location = new System.Drawing.Point(190, 376);
+            this.userPrefixTextBox.Name = "userPrefixTextBox";
+            this.userPrefixTextBox.Size = new System.Drawing.Size(261, 32);
+            this.userPrefixTextBox.TabIndex = 70;
+            // 
+            // userPrefixLabel
+            // 
+            this.userPrefixLabel.AutoSize = true;
+            this.userPrefixLabel.Location = new System.Drawing.Point(33, 380);
+            this.userPrefixLabel.Name = "userPrefixLabel";
+            this.userPrefixLabel.Size = new System.Drawing.Size(122, 24);
+            this.userPrefixLabel.TabIndex = 65;
+            this.userPrefixLabel.Text = "بادئة المستخدم:";
+            // 
             // AddNewUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 457);
+            this.Controls.Add(this.userPrefixTextBox);
+            this.Controls.Add(this.userPrefixLabel);
             this.Controls.Add(this.manageSectionTblBtn);
             this.Controls.Add(this.userSectionLookUpEdit);
             this.Controls.Add(this.userSectionLabel);
@@ -406,5 +427,7 @@ namespace AssetManagement.Users
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.TextBox userPrefixTextBox;
+        private System.Windows.Forms.Label userPrefixLabel;
     }
 }

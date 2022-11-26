@@ -50,7 +50,9 @@ namespace AssetManagement.Users
                 userRoleComboBox.SelectedValue = existedUser.UserRole;
                 userSectionLookUpEdit.EditValue = existedUser.UserSection;
                 userDeptLookUpEdit.EditValue = existedUser.UserDept;
+                userPrefixTextBox.Text = existedUser.UserPrefix;
 
+                this.Text = "تعديل حساب موجود";
                 addNewUserBtn_OK.Text = "حفظ";
             }
         }
@@ -131,6 +133,7 @@ namespace AssetManagement.Users
                     newUrs.UserSection = Convert.ToInt32(userSectionLookUpEdit.EditValue);
                 if (userDeptLookUpEdit.Enabled)
                     newUrs.UserDept = Convert.ToInt32(userDeptLookUpEdit.EditValue);
+                newUrs.UserPrefix = userPrefixTextBox.Text.Trim();
                 if (!updateExisted)
                     StaticCode.mainDbContext.UserTbls.InsertOnSubmit(newUrs);
                 StaticCode.mainDbContext.SubmitChanges();

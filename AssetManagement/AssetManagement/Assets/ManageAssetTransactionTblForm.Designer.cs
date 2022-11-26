@@ -39,7 +39,7 @@ namespace AssetManagement.AuxTables
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.astRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.trtyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,6 +54,7 @@ namespace AssetManagement.AuxTables
             this.colGetAssetOutOfWork = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrentPriceWithDestroying = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetTransactionUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
@@ -150,18 +151,19 @@ namespace AssetManagement.AuxTables
             this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
+            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trtyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).BeginInit();
             this.assetTransactionTblBindingNavigator.SuspendLayout();
@@ -203,7 +205,6 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // assetTransactionGridControl
@@ -243,6 +244,7 @@ namespace AssetManagement.AuxTables
             this.colAssetID,
             this.colTransactionType,
             this.colTransactionDate,
+            this.colQuantityTransacted,
             this.colTransactionNotes,
             this.colTransactionMadeOn,
             this.colTransactionMadeBy,
@@ -328,10 +330,10 @@ namespace AssetManagement.AuxTables
             this.astRepositoryItemLookUpEdit.PopupWidth = 800;
             this.astRepositoryItemLookUpEdit.ValueMember = "ID";
             // 
-            // assetVwAllBindingSource
+            // assetTblBindingSource
             // 
-            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
-            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
+            this.assetTblBindingSource.DataMember = "AssetTbl";
+            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // colTransactionType
             // 
@@ -380,7 +382,7 @@ namespace AssetManagement.AuxTables
             this.colTransactionNotes.MinWidth = 150;
             this.colTransactionNotes.Name = "colTransactionNotes";
             this.colTransactionNotes.Visible = true;
-            this.colTransactionNotes.VisibleIndex = 3;
+            this.colTransactionNotes.VisibleIndex = 4;
             this.colTransactionNotes.Width = 150;
             // 
             // colTransactionMadeOn
@@ -406,7 +408,7 @@ namespace AssetManagement.AuxTables
             this.colMoneyAmount.MinWidth = 100;
             this.colMoneyAmount.Name = "colMoneyAmount";
             this.colMoneyAmount.Visible = true;
-            this.colMoneyAmount.VisibleIndex = 4;
+            this.colMoneyAmount.VisibleIndex = 5;
             this.colMoneyAmount.Width = 100;
             // 
             // colMoneyAmountCurrency
@@ -417,7 +419,7 @@ namespace AssetManagement.AuxTables
             this.colMoneyAmountCurrency.MinWidth = 100;
             this.colMoneyAmountCurrency.Name = "colMoneyAmountCurrency";
             this.colMoneyAmountCurrency.Visible = true;
-            this.colMoneyAmountCurrency.VisibleIndex = 5;
+            this.colMoneyAmountCurrency.VisibleIndex = 6;
             this.colMoneyAmountCurrency.Width = 100;
             // 
             // currRepositoryItemLookUpEdit
@@ -446,7 +448,7 @@ namespace AssetManagement.AuxTables
             this.colGetAssetOutOfWork.MinWidth = 100;
             this.colGetAssetOutOfWork.Name = "colGetAssetOutOfWork";
             this.colGetAssetOutOfWork.Visible = true;
-            this.colGetAssetOutOfWork.VisibleIndex = 6;
+            this.colGetAssetOutOfWork.VisibleIndex = 7;
             this.colGetAssetOutOfWork.Width = 100;
             // 
             // colCurrentPriceWithDestroying
@@ -456,7 +458,7 @@ namespace AssetManagement.AuxTables
             this.colCurrentPriceWithDestroying.MinWidth = 100;
             this.colCurrentPriceWithDestroying.Name = "colCurrentPriceWithDestroying";
             this.colCurrentPriceWithDestroying.Visible = true;
-            this.colCurrentPriceWithDestroying.VisibleIndex = 7;
+            this.colCurrentPriceWithDestroying.VisibleIndex = 8;
             this.colCurrentPriceWithDestroying.Width = 100;
             // 
             // colAssetTransactionUniqueKey
@@ -466,6 +468,11 @@ namespace AssetManagement.AuxTables
             this.colAssetTransactionUniqueKey.MinWidth = 120;
             this.colAssetTransactionUniqueKey.Name = "colAssetTransactionUniqueKey";
             this.colAssetTransactionUniqueKey.Width = 94;
+            // 
+            // assetVwAllBindingSource
+            // 
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetVwBindingSource
             // 
@@ -1358,14 +1365,19 @@ namespace AssetManagement.AuxTables
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل});
             this.layoutViewCard1.Name = "layoutViewCard1";
             // 
-            // assetTblBindingSource
-            // 
-            this.assetTblBindingSource.DataMember = "AssetTbl";
-            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // assetTblTableAdapter
             // 
             this.assetTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // colQuantityTransacted
+            // 
+            this.colQuantityTransacted.Caption = "العدد";
+            this.colQuantityTransacted.FieldName = "QuantityTransacted";
+            this.colQuantityTransacted.MinWidth = 100;
+            this.colQuantityTransacted.Name = "colQuantityTransacted";
+            this.colQuantityTransacted.Visible = true;
+            this.colQuantityTransacted.VisibleIndex = 3;
+            this.colQuantityTransacted.Width = 100;
             // 
             // ManageAssetTransactionTblForm
             // 
@@ -1387,11 +1399,12 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trtyRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingNavigator)).EndInit();
             this.assetTransactionTblBindingNavigator.ResumeLayout(false);
@@ -1434,7 +1447,6 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1561,5 +1573,6 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantityTransacted;
     }
 }

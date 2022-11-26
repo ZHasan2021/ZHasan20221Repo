@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -167,16 +168,33 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = false;
+
             srchRes = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
             if (srchRes.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            var srchRes_Mv = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
-            searchResultsListBox.DataSource = srchRes_Mv;
-            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
+            var srchRes_Mv = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
+            string plusQry = $" WHERE [كود الأصل] LIKE '%{assetCodeTextBox.Text.Trim()}%';";
+            AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+            for (int i = 0; i < customVw.Rows.Count; i++)
+            {
+                try
+                {
+                    var oneRow = customVw.Rows[i];
+                    object[] oneRowItemArray = oneRow.ItemArray;
+                    if (srchRes_Mv.Select(astv2 => astv2.معرف_الأصل).Contains(Convert.ToInt32(oneRowItemArray[0])))
+                        customVw.Rows.Remove(oneRow);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
 
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
         }
 
         private void viewAssetInformationBtn_Click(object sender, EventArgs e)

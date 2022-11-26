@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -24,6 +25,8 @@ namespace AssetManagement.Assets
 
         private void TransacteAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
+            this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.TransactionTypeTbl' table. You can move, or remove it, as needed.
@@ -76,24 +79,27 @@ namespace AssetManagement.Assets
 
             try
             {
-
-                AssetTransactionTbl newAstMv = new AssetTransactionTbl()
+                AssetTransactionTbl newAstTr = new AssetTransactionTbl()
                 {
                     AssetID = assetToTransact.ID,
                     TransactionType = Convert.ToInt32(transactionTypeLookUpEdit.EditValue),
                     TransactionDate = Convert.ToDateTime(assetTransactionDateDateEdit.EditValue),
+                    QuantityTransacted = Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value),
                     TransactionNotes = assetNotesTextBox.Text.Trim(),
                     MoneyAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                     MoneyAmountCurrency = (moneyAmountNumericUpDown.Value == 0) ? 1 : Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
                     GetAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked,
                     CurrentPriceWithDestroying = Convert.ToDouble(currentPriceWithDestroyingNumericUpDown.Value),
                 };
-                StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstMv);
+                StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstTr);
                 assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked == true;
                 assetToTransact.ItemsQuantity = assetToTransact.ItemsQuantity - Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value);
                 bool assetSold = transactionTypeLookUpEdit.Text == "بيع";
                 if (assetToTransact.ItemsQuantity == Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value))
+                {
                     assetToTransact.IsOutOfWork = true;
+                    newAstTr.GetAssetOutOfWork = true;
+                }
                 if (assetSold)
                 {
                     assetToTransact.IsSold = true;
@@ -132,14 +138,32 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = false;
+
             srchRes = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
             if (srchRes.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            var srchRes_Mv = StaticCode.mainDbContext.AssetMoveVws.Where(ast => ast.AssetCode.Contains(assetCodeTextBox.Text.Trim()));
-            searchResultsListBox.DataSource = srchRes_Mv;
+            var srchRes_Mv = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
+            string plusQry = $" WHERE [كود الأصل] LIKE '%{assetCodeTextBox.Text.Trim()}%';";
+            AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+            for (int i = 0; i < customVw.Rows.Count; i++)
+            {
+                try
+                {
+                    var oneRow = customVw.Rows[i];
+                    object[] oneRowItemArray = oneRow.ItemArray;
+                    if (srchRes_Mv.Select(astv2 => astv2.معرف_الأصل).Contains(Convert.ToInt32(oneRowItemArray[0])))
+                        customVw.Rows.Remove(oneRow);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
 
         }
