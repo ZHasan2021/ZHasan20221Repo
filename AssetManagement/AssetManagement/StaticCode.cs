@@ -560,7 +560,7 @@ namespace AssetManagement
             return unknownMinorCategories;
         }
 
-        public static List<string> ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out string errorMsg)
+        public static string ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out string errorMsg)
         {
             AssetMngDbDataContext tmpMainDbContext = new AssetMngDbDataContext();
             errorMsg = "";
@@ -573,10 +573,16 @@ namespace AssetManagement
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+            List<string> assetsCodes = srcExcelWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> newCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => !assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
+            List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
+            int existedAssetsCount = existedCodes.Count();
+            int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
             string sectionName = srcExcelWs.Cells[5, 5].Value?.ToString().Trim();
             string departmentName = srcExcelWs.Cells[5, (formNo == 3) ? 11 : 10].Value?.ToString().Trim();
             string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString().Trim();
             var existedSubDept = tmpMainDbContext.SubDepartmentVws.Where(sdpt1 => sdpt1.اسم_الوحدة == subDepartmentName && sdpt1.القسم_التابعة_له == departmentName && sdpt1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+
             if (existedSubDept == null || existedSubDept.Count() == 0)
             {
                 errorMsg = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو غير تابعة لبعضها إدارياً حسب الجداول";
@@ -646,7 +652,7 @@ namespace AssetManagement
                     if (srcExcelWs.Cells[rowStartNo, 7 + formShift].Value != null)
                     {
                         newAsset.PurchasePrice = Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 7 + formShift].Value);
-                        if(!tmpMainDbContext.CurrencyTbls.Any(cu1=>cu1.CurrencyName== srcExcelWs.Cells[rowStartNo, 8 + formShift].Value.ToString().Trim()))
+                        if (!tmpMainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, 8 + formShift].Value.ToString().Trim()))
                         {
                             errorMsg = $"عملة الشراء في السطر {rowStartNo} ليست صحيحة";
                             tmpMainDbContext.Dispose();
@@ -671,25 +677,25 @@ namespace AssetManagement
                     }
                     newAsset.AssetSquare = tmpMainDbContext.SquareTbls.Single(sq1 => sq1.SquareName == srcExcelWs.Cells[rowStartNo, 11 + formShift].Value.ToString()).ID;
                     newAsset.PlaceOfPresence = srcExcelWs.Cells[rowStartNo, 12 + formShift].Value?.ToString();
-                    if (!tmpMainDbContext.StatusTbls.Any(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 14 + formShift].Value.ToString().Trim()))
+                    if (!tmpMainDbContext.StatusTbls.Any(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 13 + formShift].Value.ToString().Trim()))
                     {
                         errorMsg = $"حالة الأصل في السطر {rowStartNo} ليست صحيحة";
                         tmpMainDbContext.Dispose();
                         return null;
                     }
-                    newAsset.CurrentStatus = tmpMainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 14 + formShift].Value.ToString().Trim()).ID;
-                    newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, 15 + formShift].Value?.ToString();
-                    newAsset.ActualCurrentPrice = Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 16 + formShift].Value);
-                    if (!tmpMainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, 17 + formShift].Value.ToString().Trim()))
+                    newAsset.CurrentStatus = tmpMainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, 13 + formShift].Value.ToString().Trim()).ID;
+                    newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, 14 + formShift].Value?.ToString();
+                    newAsset.ActualCurrentPrice = Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 15 + formShift].Value);
+                    if (!tmpMainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, 16 + formShift].Value.ToString().Trim()))
                     {
                         errorMsg = $"عملة السعر الفعلي الحالي في السطر {rowStartNo} ليست صحيحة";
                         tmpMainDbContext.Dispose();
                         return null;
                     }
-                    newAsset.ActualCurrentPriceCurrency = tmpMainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, 17 + formShift].Value.ToString()).ID;
-                    newAsset.CustodianName = srcExcelWs.Cells[rowStartNo, 18 + formShift].Value?.ToString();
+                    newAsset.ActualCurrentPriceCurrency = tmpMainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, 16 + formShift].Value.ToString()).ID;
+                    newAsset.CustodianName = srcExcelWs.Cells[rowStartNo, 17 + formShift].Value?.ToString();
                     newAsset.DestructionRate = existedMiCa.First().معدل_الإهلاك;
-                    newAsset.MoreDetails = srcExcelWs.Cells[rowStartNo, 19 + formShift].Value?.ToString();
+                    newAsset.MoreDetails = srcExcelWs.Cells[rowStartNo, 18 + formShift].Value?.ToString();
                     newAsset.AssetNotes = srcExcelWs.Cells[rowStartNo, 24 + formShift].Value?.ToString();
                     rowStartNo++;
 
@@ -699,7 +705,7 @@ namespace AssetManagement
                 catch (Exception)
                 {
                     errorMsg = $"إحدى القيم في السطر {rowStartNo} ليست صحيحة";
-                tmpMainDbContext.Dispose();
+                    tmpMainDbContext.Dispose();
                     return null;
                 }
             }
@@ -712,12 +718,31 @@ namespace AssetManagement
                     tmp += oneItem + "\r\n";
                 }
                 errorMsg = $"هناك بعض الفئات الرئيسية والفرعية غير موجودة في الجداول أو لا تتبع لبعضها، وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها أو تعديلها";
-            }
-            if(errorMsg=="")
-            tmpMainDbContext.SubmitChanges();
-            else
                 tmpMainDbContext.Dispose();
-            return unknownMinorCategories;
+                return null;
+            }
+            string newCodesStr = "";
+            foreach (string oneN in newCodes)
+                newCodesStr += oneN + " , ";
+            newCodesStr = newCodesStr.Trim().Trim(',').Trim();
+            string existedCodesStr = "";
+            foreach (string oneN in existedCodes)
+                existedCodesStr += oneN + " , ";
+            existedCodesStr = existedCodesStr.Trim().Trim(',').Trim();
+            string importNotes = $"1- الأصول المضافة({newAssetsCount}):\r\n{newCodesStr}\r\n2- الأصول التي تم تعديلها({((updateExistedAssets) ? existedAssetsCount : 0)}):\r\n{((updateExistedAssets) ? existedCodesStr : "(لا يوجد)")}";
+            ImportExportTbl newImport = new ImportExportTbl()
+            {
+                ActionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
+                ImportOrExport = "استيراد",
+                ActionBySection = sectionName,
+                ActionByDepartment = departmentName,
+                ActionBySubDepartment = subDepartmentName,
+                TablesExported = "أصول - النموذج العام",
+                ActionNotes = importNotes,
+            };
+            tmpMainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
+            tmpMainDbContext.SubmitChanges();
+            return "Done!";
         }
 
         public static List<string> ImportFinancialItemsFromExcel(string fiItsFilePath, out int errorCat)

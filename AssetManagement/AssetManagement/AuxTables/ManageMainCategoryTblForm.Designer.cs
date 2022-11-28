@@ -72,10 +72,10 @@ namespace AssetManagement.AuxTables
             gridLevelNode1.RelationName = "mainCategoryLevel";
             this.mainCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.mainCategoryGridControl.Location = new System.Drawing.Point(0, 31);
+            this.mainCategoryGridControl.Location = new System.Drawing.Point(0, 47);
             this.mainCategoryGridControl.MainView = this.mainCategoryGridView;
             this.mainCategoryGridControl.Name = "mainCategoryGridControl";
-            this.mainCategoryGridControl.Size = new System.Drawing.Size(1180, 639);
+            this.mainCategoryGridControl.Size = new System.Drawing.Size(1180, 623);
             this.mainCategoryGridControl.TabIndex = 5;
             this.mainCategoryGridControl.UseEmbeddedNavigator = true;
             this.mainCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -155,10 +155,12 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -177,7 +179,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(64, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(84, 44);
             this.bindingNavigatorMoveFirstItem.Text = "الأول";
             // 
             // bindingNavigatorMovePreviousItem
@@ -185,13 +187,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(75, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(95, 44);
             this.bindingNavigatorMovePreviousItem.Text = "السابق";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -206,21 +208,21 @@ namespace AssetManagement.AuxTables
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 44);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorMoveNextItem
             // 
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(69, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(89, 44);
             this.bindingNavigatorMoveNextItem.Text = "التالي";
             // 
             // bindingNavigatorMoveLastItem
@@ -228,20 +230,20 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(66, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(86, 44);
             this.bindingNavigatorMoveLastItem.Text = "الأخير";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorAddNewItem
             // 
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(106, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(126, 44);
             this.bindingNavigatorAddNewItem.Text = "إضافة جديد";
             // 
             // bindingNavigatorDeleteItem
@@ -249,14 +251,14 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(65, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(85, 44);
             this.bindingNavigatorDeleteItem.Text = "حذف";
             // 
             // mainCategoryTblBindingNavigatorSaveItem
             // 
             this.mainCategoryTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("mainCategoryTblBindingNavigatorSaveItem.Image")));
             this.mainCategoryTblBindingNavigatorSaveItem.Name = "mainCategoryTblBindingNavigatorSaveItem";
-            this.mainCategoryTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(123, 28);
+            this.mainCategoryTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(143, 44);
             this.mainCategoryTblBindingNavigatorSaveItem.Text = "حفظ التغييرات";
             this.mainCategoryTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.mainCategoryTblBindingNavigatorSaveItem_Click);
             // 
@@ -266,7 +268,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblBindingNavigator.BindingSource = this.mainCategoryTblBindingSource;
             this.mainCategoryTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.mainCategoryTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.mainCategoryTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mainCategoryTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.mainCategoryTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -289,7 +291,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.mainCategoryTblBindingNavigator.Name = "mainCategoryTblBindingNavigator";
             this.mainCategoryTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.mainCategoryTblBindingNavigator.Size = new System.Drawing.Size(1180, 31);
+            this.mainCategoryTblBindingNavigator.Size = new System.Drawing.Size(1180, 47);
             this.mainCategoryTblBindingNavigator.TabIndex = 4;
             this.mainCategoryTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -298,7 +300,7 @@ namespace AssetManagement.AuxTables
             this.manageMinorCategoryTblToolStripButton.Image = global::AssetManagement.Properties.Resources._228050;
             this.manageMinorCategoryTblToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.manageMinorCategoryTblToolStripButton.Name = "manageMinorCategoryTblToolStripButton";
-            this.manageMinorCategoryTblToolStripButton.Size = new System.Drawing.Size(193, 28);
+            this.manageMinorCategoryTblToolStripButton.Size = new System.Drawing.Size(213, 44);
             this.manageMinorCategoryTblToolStripButton.Text = "إدارة جدول الفئات الفرعية";
             this.manageMinorCategoryTblToolStripButton.Click += new System.EventHandler(this.manageMinorCategoryTblToolStripButton_Click);
             // 
@@ -307,7 +309,7 @@ namespace AssetManagement.AuxTables
             this.addAllMicaToFicaToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("addAllMicaToFicaToolStripButton.Image")));
             this.addAllMicaToFicaToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addAllMicaToFicaToolStripButton.Name = "addAllMicaToFicaToolStripButton";
-            this.addAllMicaToFicaToolStripButton.Size = new System.Drawing.Size(243, 28);
+            this.addAllMicaToFicaToolStripButton.Size = new System.Drawing.Size(263, 44);
             this.addAllMicaToFicaToolStripButton.Text = "إضافة الفئات الرئيسية كبنود مالية";
             this.addAllMicaToFicaToolStripButton.Click += new System.EventHandler(this.addAllMicaToFicaToolStripButton_Click);
             // 

@@ -254,6 +254,10 @@ namespace AssetManagement.Assets
             assetGridControl.Visible = false;
             exportToExcelDropDownButton.Enabled = false;
             assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
+            if (excludeOutOfWorkAssetsCheckBox.Checked)
+                assetsQry = assetsQry.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
+            if (excludeSoldAssetsCheckBox.Checked)
+                assetsQry = assetsQry.Where(ast1 => ast1.IsSold == null || ast1.IsSold != true);
             if (customSearchRadioButton.Checked)
             {
                 if (searchBySectionCheckBox.Checked)
@@ -782,7 +786,16 @@ namespace AssetManagement.Assets
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
             astWs.View.RightToLeft = true;
-            List<int> columnsWidths = new List<int>() { 8, 15, 40, 8, 20, 25, 12, 15, 12, 12, 10, 10, 15, 15, 15, 12, 12, 15, 15, 15, 15, 20, 15, 12, 18, 15, 15, 15, 20, 15, 15, 15, 10, 25 };
+            List<int> columnsWidths = new List<int>()
+            {
+                8, 15, 40, 8, 20,
+                25, 12, 15, 12, 12,
+                10, 10, 15, 15, 15,
+                12, 12, 15, 15, 15,
+                15, 20, 12, 18, 15,
+                15, 15, 20, 15, 15,
+                15, 15, 10, 25
+            };
             List<string> columnsTitles = new List<string>()
             {
                 "التسلسل",
@@ -791,33 +804,45 @@ namespace AssetManagement.Assets
                 //"بيان تفصيلي للاصل ( النوع / الموديل / اللون / الرقم / الحجم / ..... )",
                 "العدد",
                 "اسم المالك",
+
+
                 "العنوان بالضبط",
                 "المستغل منه",
                 "مع من ورقة الملكية",
                 "نوع السيارة",
                 "رقم اللوحة",
+
+
                 "لونها",
                 "سنة الصنع",
                 "رقم الشاصيه",
                 "رقم الماكينة",
                 "المالك",
+
+
                 "تاريخ الشراء",
                 "قيمة الشراء",
                 "نوع العملة",
                 "الفئة الرئيسية",
                 "الفئة الفرعية",
+
+
                 "الساحة",
                 "مكان وجوده",
-                "العمر الافتراضي المتبقي",
                 "حالته الآنية",
                 "مدى الاستفاده الحالية منه",
                 "قيمته الفعلية الحالية",
+
+
                 "العملة",
                 "صاحب العهدة",
                 "إضافات أخرى",
                 "ما تم تصريفه",
                 "ما تم نقله",
+
+
                 "ما تم بيعه",
+                "العمر الافتراضي المتبقي",
                 "معدل الإهلاك",
                 "ملاحظات",
             };
@@ -1002,6 +1027,15 @@ namespace AssetManagement.Assets
             {
                 Application.DoEvents();
 
+                var assetTrans = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt1 => astt1.AssetID == oneAst.ID);
+                var assetTrans_Sell = assetTrans.Where(astt1 => StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).Contains(astt1.TransactionType));
+                var assetTrans_Tasreef = assetTrans.Where(astt1 => StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "تصريف").Select(tt1 => tt1.ID).Contains(astt1.TransactionType));
+                var assetMvs = StaticCode.mainDbContext.AssetMovementTbls.Where(astm1 => astm1.AssetID == oneAst.ID);
+                int assetTransCount = (assetTrans == null || assetTrans.Count() == 0) ? 0 : assetTrans.Sum(ast1 => ast1.QuantityTransacted);
+                int assetTrans_SellCount = (assetTrans_Sell == null || assetTrans_Sell.Count() == 0) ? 0 : assetTrans_Sell.Sum(ast1 => ast1.QuantityTransacted);
+                int assetTrans_TasreefCount = (assetTrans_Tasreef == null || assetTrans_Tasreef.Count() == 0) ? 0 : assetTrans_Tasreef.Sum(ast1 => ast1.QuantityTransacted);
+                int assetMvsCount = (assetMvs == null || assetMvs.Count() == 0) ? 0 : assetMvs.Count();
+
                 List<object> oneRowData = new List<object>()
                 {
                     astCount,
@@ -1026,20 +1060,19 @@ namespace AssetManagement.Assets
                     StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName,
                     StaticCode.mainDbContext.SquareTbls.Single(sqr1 => sqr1.ID == oneAst.AssetSquare).SquareName,
                      oneAst.PlaceOfPresence,
-                     $"{(int)oneAst.LifeSpanInMonths / 12} سنوات و {(int)oneAst.LifeSpanInMonths % 12} أشهر",
                      StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName,
                     oneAst.BenefitPercentage,
                     oneAst.ActualCurrentPrice,
                     StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName,
                     oneAst.CustodianName,
                     oneAst.MoreDetails,
-                    StaticCode.mainDbContext.AssetTransactionTbls.Where(astt1 => astt1.AssetID == oneAst.ID && astt1.GetAssetOutOfWork == true).Sum(astt2=>astt2.QuantityTransacted),
-                    StaticCode.mainDbContext.AssetMovementTbls.Count(astm1 => astm1.AssetID == oneAst.ID),
-                    StaticCode.mainDbContext.AssetTransactionTbls.Where(astt1 => astt1.AssetID == oneAst.ID && StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).ToList().Contains(astt1.TransactionType)).Sum(astt2=>astt2.QuantityTransacted),
+                    assetTrans_TasreefCount,
+                    assetMvsCount,
+                    assetTrans_SellCount,
+                     StaticCode.mainDbContext.AssetVws.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
                     oneAst.DestructionRate,
                     oneAst.AssetNotes,
                 };
-
                 for (int iCo = 0; iCo < oneRowData.Count; iCo++)
                     astWs.Cells[currentRow, iCo + 2].Value = oneRowData[iCo];
 

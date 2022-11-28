@@ -102,7 +102,8 @@ namespace AssetManagement.Assets
                 }
                 if (assetSold)
                 {
-                    assetToTransact.IsSold = true;
+                    if (assetToTransact.ItemsQuantity == Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value))
+                        assetToTransact.IsSold = true;
                     MainCategoryTbl assetMaCa = StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == assetToTransact.AssetMinorCategory).MainCategory);
                     if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fic1 => fic1.FinancialItemCategoryName == "واردات بيع أصول") == 0)
                     {
@@ -119,7 +120,7 @@ namespace AssetManagement.Assets
                         OutgoingAmount = 0,
                         FinancialItemCurrency = Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
                         AdditionalNotes = assetNotesTextBox.Text.Trim(),
-                        FinancialItemDescription = $"بيع الأصل الذي يحمل الكود {assetToTransact.AssetCode}"
+                        FinancialItemDescription = $"بيع الأصل الذي يحمل الكود {assetToTransact.AssetCode} العدد  {assetItemsQuantityToTransactNumericUpDown.Value}"
                     });
                 }
                 assetToTransact.AssetNotes = assetNotesTextBox.Text.Trim();

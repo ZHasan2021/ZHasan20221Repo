@@ -336,7 +336,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 200);
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Black;
             e.AlertForm.StartPosition = FormStartPosition.Manual;
@@ -437,16 +437,18 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
-            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8).Select(cl2 => cl2.Value?.ToString()).ToList();
             List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             bool updateExistedAssets = false;
-            if (existedCodes.Count() > 0)
+            int existedAssetsCount = existedCodes.Count();
+            int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
+            if (existedAssetsCount > 0)
             {
                 updateExistedAssets = MessageBox.Show("هناك بعض الأصول موجودة مسبقاً في سجلات الأصول، هل تريد تحديث معلوماتها؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
 
             string errorMsgOut = "";
-            List<string> importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
+            string importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
             if (importingReport == null)
             {
                 actionsStatusMemoEdit.Text = errorMsgOut;
@@ -455,7 +457,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             }
             else
             {
-                mainAlertControl.Show(this, "تم استيراد الأصول بنجاح، راجع إدارة سجلات الأصول للتأكد من ذلك", StaticCode.ApplicationTitle);
+                actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة {newAssetsCount}\r\n2- عدد الأصول المحدثة {((updateExistedAssets) ? existedAssetsCount : 0)}\r\n---------------";
+                mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
                 return;
             }
         }
@@ -547,6 +550,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
             }
+            actionsStatusMemoEdit.Text = "";
 
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
@@ -630,7 +634,20 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             }
 
             StaticCode.mainDbContext.SubmitChanges();
-            actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات النقل المضافة ({addedRecordsCount})\r\n4- عدد السجلات غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
+            string importNotes = $"1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات النقل المضافة ({addedRecordsCount})\r\n4- عدد سجلات النقل غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})";
+            ImportExportTbl newImport = new ImportExportTbl()
+            {
+                ActionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
+                ImportOrExport = "استيراد",
+                ActionBySection = (StaticCode.activeUser.UserSection == null) ? "" : StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == Convert.ToInt32(StaticCode.activeUser.UserSection)).SectionName,
+                ActionByDepartment = (StaticCode.activeUser.UserDept == null) ? "" : StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(StaticCode.activeUser.UserDept)).DepartmentName,
+                ActionBySubDepartment = "",
+                TablesExported = "سجلات نقل أصول",
+                ActionNotes = importNotes,
+            };
+            StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
+            StaticCode.mainDbContext.SubmitChanges();
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -642,6 +659,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
             }
+            actionsStatusMemoEdit.Text = "";
 
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
@@ -719,19 +737,19 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     double trQuantityVal = (astWs.Cells[iRow, trQuantityCol].Value?.ToString() == "") ? 0 : Convert.ToInt32(astWs.Cells[iRow, trQuantityCol].Value?.ToString());
                     if (trQuantityVal <= 0)
                     {
-                        MessageBox.Show($"العدد في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد");
+                        mainAlertControl.Show(this, $"العدد في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
                         return;
                     }
                     double trSellPriceVal = (astWs.Cells[iRow, trSellPriceCol].Value?.ToString() == "") ? 0 : Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
                     if (trSellPriceVal <= 0)
                     {
-                        MessageBox.Show($"السعر في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد");
+                        mainAlertControl.Show(this, $"السعر في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
                         return;
                     }
                     tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString().Trim();
                     if (!StaticCode.mainDbContext.CurrencyTbls.Any(cu2 => cu2.CurrencyName == tmpVal))
                     {
-                        MessageBox.Show($"العملة في السطر رقم {iRow} غير موجودة في جدول العملات، لا يمكن المتابعة في الاستيراد");
+                        mainAlertControl.Show(this, $"العملة في السطر رقم {iRow} غير موجودة في جدول العملات، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
                         return;
                     }
                     int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
@@ -774,8 +792,20 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             }
 
             StaticCode.mainDbContext.AssetTransactionTbls.InsertAllOnSubmit(importedRecords);
+            string importNotes = $"1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n4- عدد سجلات التصريف غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})";
+            ImportExportTbl newImport = new ImportExportTbl()
+            {
+                ActionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
+                ImportOrExport = "استيراد",
+                ActionBySection = (StaticCode.activeUser.UserSection == null) ? "" : StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == Convert.ToInt32(StaticCode.activeUser.UserSection)).SectionName,
+                ActionByDepartment = (StaticCode.activeUser.UserDept == null) ? "" : StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(StaticCode.activeUser.UserDept)).DepartmentName,
+                ActionBySubDepartment = "",
+                TablesExported = "سجلات تصريف أصول",
+                ActionNotes = importNotes,
+            };
+            StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
-            actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})\r\n2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})\r\n3- عدد سجلات التصريف المضافة ({addedRecordsCount})\r\n4- عدد السجلات غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount})\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
+            actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
         }
 
         private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

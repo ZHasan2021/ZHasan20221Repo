@@ -39,6 +39,7 @@ namespace AssetManagement.AuxTables
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colImportOrExport = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTablesExported = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionBySection = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionByDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActionBySubDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,7 +65,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.importExportTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.colTablesExported = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.importExportGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importExportTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -81,12 +81,12 @@ namespace AssetManagement.AuxTables
             gridLevelNode1.RelationName = "importExportLevel";
             this.importExportGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.importExportGridControl.Location = new System.Drawing.Point(0, 31);
+            this.importExportGridControl.Location = new System.Drawing.Point(0, 47);
             this.importExportGridControl.MainView = this.importExportGridView;
             this.importExportGridControl.Name = "importExportGridControl";
             this.importExportGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.sctRepositoryItemLookUpEdit});
-            this.importExportGridControl.Size = new System.Drawing.Size(1130, 624);
+            this.importExportGridControl.Size = new System.Drawing.Size(1130, 608);
             this.importExportGridControl.TabIndex = 5;
             this.importExportGridControl.UseEmbeddedNavigator = true;
             this.importExportGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -119,12 +119,13 @@ namespace AssetManagement.AuxTables
             this.colActionNotes});
             this.importExportGridView.GridControl = this.importExportGridControl;
             this.importExportGridView.Name = "importExportGridView";
+            this.importExportGridView.OptionsView.RowAutoHeight = true;
             // 
             // colID
             // 
             this.colID.Caption = "معرف السجل";
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 25;
+            this.colID.MinWidth = 100;
             this.colID.Name = "colID";
             this.colID.Width = 80;
             // 
@@ -132,7 +133,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colImportOrExport.Caption = "استيراد أم تصدير";
             this.colImportOrExport.FieldName = "ImportOrExport";
-            this.colImportOrExport.MinWidth = 25;
+            this.colImportOrExport.MinWidth = 100;
             this.colImportOrExport.Name = "colImportOrExport";
             this.colImportOrExport.Visible = true;
             this.colImportOrExport.VisibleIndex = 0;
@@ -142,17 +143,27 @@ namespace AssetManagement.AuxTables
             // 
             this.colActionDate.Caption = "تاريخ العملية";
             this.colActionDate.FieldName = "ActionDate";
-            this.colActionDate.MinWidth = 25;
+            this.colActionDate.MinWidth = 100;
             this.colActionDate.Name = "colActionDate";
             this.colActionDate.Visible = true;
             this.colActionDate.VisibleIndex = 1;
             this.colActionDate.Width = 100;
             // 
+            // colTablesExported
+            // 
+            this.colTablesExported.Caption = "الجداول المصدرة";
+            this.colTablesExported.FieldName = "TablesExported";
+            this.colTablesExported.MinWidth = 150;
+            this.colTablesExported.Name = "colTablesExported";
+            this.colTablesExported.Visible = true;
+            this.colTablesExported.VisibleIndex = 2;
+            this.colTablesExported.Width = 150;
+            // 
             // colActionBySection
             // 
             this.colActionBySection.Caption = "اسم الدائرة";
             this.colActionBySection.FieldName = "ActionBySection";
-            this.colActionBySection.MinWidth = 25;
+            this.colActionBySection.MinWidth = 150;
             this.colActionBySection.Name = "colActionBySection";
             this.colActionBySection.Visible = true;
             this.colActionBySection.VisibleIndex = 3;
@@ -162,7 +173,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colActionByDepartment.Caption = "اسم القسم";
             this.colActionByDepartment.FieldName = "ActionByDepartment";
-            this.colActionByDepartment.MinWidth = 25;
+            this.colActionByDepartment.MinWidth = 150;
             this.colActionByDepartment.Name = "colActionByDepartment";
             this.colActionByDepartment.Visible = true;
             this.colActionByDepartment.VisibleIndex = 4;
@@ -172,7 +183,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colActionBySubDepartment.Caption = "اسم الوحدة";
             this.colActionBySubDepartment.FieldName = "ActionBySubDepartment";
-            this.colActionBySubDepartment.MinWidth = 25;
+            this.colActionBySubDepartment.MinWidth = 150;
             this.colActionBySubDepartment.Name = "colActionBySubDepartment";
             this.colActionBySubDepartment.Visible = true;
             this.colActionBySubDepartment.VisibleIndex = 5;
@@ -182,7 +193,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colInsertedOn.Caption = "تاريخ إضافة السجل";
             this.colInsertedOn.FieldName = "InsertedOn";
-            this.colInsertedOn.MinWidth = 25;
+            this.colInsertedOn.MinWidth = 100;
             this.colInsertedOn.Name = "colInsertedOn";
             this.colInsertedOn.Width = 100;
             // 
@@ -190,7 +201,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colLastModifiedOn.Caption = "تاريخ آخر تعديل";
             this.colLastModifiedOn.FieldName = "LastModifiedOn";
-            this.colLastModifiedOn.MinWidth = 25;
+            this.colLastModifiedOn.MinWidth = 100;
             this.colLastModifiedOn.Name = "colLastModifiedOn";
             this.colLastModifiedOn.Width = 100;
             // 
@@ -198,7 +209,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colInsertedBy.Caption = "المستخدم الذي قام بالإضافة";
             this.colInsertedBy.FieldName = "InsertedBy";
-            this.colInsertedBy.MinWidth = 25;
+            this.colInsertedBy.MinWidth = 100;
             this.colInsertedBy.Name = "colInsertedBy";
             this.colInsertedBy.Width = 100;
             // 
@@ -206,7 +217,7 @@ namespace AssetManagement.AuxTables
             // 
             this.colLastModifiedBy.Caption = "المستخدم الذي قام بالتعديل";
             this.colLastModifiedBy.FieldName = "LastModifiedBy";
-            this.colLastModifiedBy.MinWidth = 25;
+            this.colLastModifiedBy.MinWidth = 100;
             this.colLastModifiedBy.Name = "colLastModifiedBy";
             this.colLastModifiedBy.Width = 100;
             // 
@@ -214,11 +225,11 @@ namespace AssetManagement.AuxTables
             // 
             this.colActionNotes.Caption = "ملاحظات";
             this.colActionNotes.FieldName = "ActionNotes";
-            this.colActionNotes.MinWidth = 25;
+            this.colActionNotes.MinWidth = 300;
             this.colActionNotes.Name = "colActionNotes";
             this.colActionNotes.Visible = true;
             this.colActionNotes.VisibleIndex = 6;
-            this.colActionNotes.Width = 200;
+            this.colActionNotes.Width = 300;
             // 
             // sctRepositoryItemLookUpEdit
             // 
@@ -260,10 +271,12 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = this.importExportTblTableAdapter;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
@@ -283,7 +296,7 @@ namespace AssetManagement.AuxTables
             this.importExportTblBindingNavigator.BindingSource = this.importExportTblBindingSource;
             this.importExportTblBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.importExportTblBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.importExportTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.importExportTblBindingNavigator.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.importExportTblBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -304,7 +317,7 @@ namespace AssetManagement.AuxTables
             this.importExportTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.importExportTblBindingNavigator.Name = "importExportTblBindingNavigator";
             this.importExportTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.importExportTblBindingNavigator.Size = new System.Drawing.Size(1130, 31);
+            this.importExportTblBindingNavigator.Size = new System.Drawing.Size(1130, 47);
             this.importExportTblBindingNavigator.TabIndex = 4;
             this.importExportTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -314,13 +327,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 44);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -330,7 +343,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -339,7 +352,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -348,13 +361,13 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -369,7 +382,7 @@ namespace AssetManagement.AuxTables
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 47);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -377,7 +390,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -386,33 +399,23 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(44, 44);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
             // importExportTblBindingNavigatorSaveItem
             // 
             this.importExportTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.importExportTblBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("importExportTblBindingNavigatorSaveItem.Image")));
             this.importExportTblBindingNavigatorSaveItem.Name = "importExportTblBindingNavigatorSaveItem";
-            this.importExportTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.importExportTblBindingNavigatorSaveItem.Size = new System.Drawing.Size(44, 44);
             this.importExportTblBindingNavigatorSaveItem.Text = "Save Data";
             this.importExportTblBindingNavigatorSaveItem.Visible = false;
             this.importExportTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.importExportTblBindingNavigatorSaveItem_Click);
-            // 
-            // colTablesExported
-            // 
-            this.colTablesExported.Caption = "الجداول المصدرة";
-            this.colTablesExported.FieldName = "TablesExported";
-            this.colTablesExported.MinWidth = 100;
-            this.colTablesExported.Name = "colTablesExported";
-            this.colTablesExported.Visible = true;
-            this.colTablesExported.VisibleIndex = 2;
-            this.colTablesExported.Width = 100;
             // 
             // ManageImportExportTblForm
             // 

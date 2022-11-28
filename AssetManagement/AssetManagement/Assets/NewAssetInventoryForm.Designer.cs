@@ -163,6 +163,8 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
+            this.excludeOutOfWorkAssetsCheckBox = new System.Windows.Forms.CheckBox();
+            this.excludeSoldAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -229,6 +231,8 @@ namespace AssetManagement.Assets
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.excludeSoldAssetsCheckBox);
+            this.panel1.Controls.Add(this.excludeOutOfWorkAssetsCheckBox);
             this.panel1.Controls.Add(this.searchAssetDropDownButton);
             this.panel1.Controls.Add(this.exportToExcelDropDownButton);
             this.panel1.Controls.Add(this.customSearchRadioButton);
@@ -236,7 +240,7 @@ namespace AssetManagement.Assets
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1258, 101);
+            this.panel1.Size = new System.Drawing.Size(1258, 111);
             this.panel1.TabIndex = 0;
             // 
             // searchAssetDropDownButton
@@ -245,7 +249,7 @@ namespace AssetManagement.Assets
             this.searchAssetDropDownButton.Location = new System.Drawing.Point(276, 11);
             this.searchAssetDropDownButton.Name = "searchAssetDropDownButton";
             this.searchAssetDropDownButton.Size = new System.Drawing.Size(163, 73);
-            this.searchAssetDropDownButton.TabIndex = 507;
+            this.searchAssetDropDownButton.TabIndex = 500;
             this.searchAssetDropDownButton.Text = "بحث";
             this.searchAssetDropDownButton.Click += new System.EventHandler(this.searchAssetDropDownButton_Click);
             // 
@@ -258,7 +262,7 @@ namespace AssetManagement.Assets
             this.exportToExcelDropDownButton.MenuManager = this.barManager1;
             this.exportToExcelDropDownButton.Name = "exportToExcelDropDownButton";
             this.exportToExcelDropDownButton.Size = new System.Drawing.Size(163, 73);
-            this.exportToExcelDropDownButton.TabIndex = 506;
+            this.exportToExcelDropDownButton.TabIndex = 525;
             this.exportToExcelDropDownButton.Text = "تصدير الجرد";
             this.exportToExcelDropDownButton.Click += new System.EventHandler(this.exportToExcelDropDownButton_Click);
             // 
@@ -404,7 +408,7 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Controls.Add(this.searchByDepartmentSearchLookUpEdit);
             this.customSearchGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.customSearchGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 121);
+            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 131);
             this.customSearchGroupBox.Name = "customSearchGroupBox";
             this.customSearchGroupBox.Size = new System.Drawing.Size(1258, 418);
             this.customSearchGroupBox.TabIndex = 100;
@@ -1032,6 +1036,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
@@ -1065,7 +1070,7 @@ namespace AssetManagement.Assets
             this.assetGridControl.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.assetGridControl.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.assetGridControl.Location = new System.Drawing.Point(0, 552);
+            this.assetGridControl.Location = new System.Drawing.Point(0, 555);
             this.assetGridControl.MainView = this.assetGridView;
             this.assetGridControl.Name = "assetGridControl";
             this.assetGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -1078,7 +1083,7 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit6,
             this.repositoryItemCalcEdit1,
             this.repositoryItemLookUpEdit7});
-            this.assetGridControl.Size = new System.Drawing.Size(1258, 204);
+            this.assetGridControl.Size = new System.Drawing.Size(1258, 201);
             this.assetGridControl.TabIndex = 611;
             this.assetGridControl.UseEmbeddedNavigator = true;
             this.assetGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1585,6 +1590,30 @@ namespace AssetManagement.Assets
             // 
             this.subDepartmentVwTableAdapter.ClearBeforeFill = true;
             // 
+            // excludeOutOfWorkAssetsCheckBox
+            // 
+            this.excludeOutOfWorkAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.excludeOutOfWorkAssetsCheckBox.AutoSize = true;
+            this.excludeOutOfWorkAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeOutOfWorkAssetsCheckBox.Location = new System.Drawing.Point(929, 68);
+            this.excludeOutOfWorkAssetsCheckBox.Name = "excludeOutOfWorkAssetsCheckBox";
+            this.excludeOutOfWorkAssetsCheckBox.Size = new System.Drawing.Size(178, 25);
+            this.excludeOutOfWorkAssetsCheckBox.TabIndex = 15;
+            this.excludeOutOfWorkAssetsCheckBox.Text = "استثناء ما خرج من الخدمة";
+            this.excludeOutOfWorkAssetsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // excludeSoldAssetsCheckBox
+            // 
+            this.excludeSoldAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.excludeSoldAssetsCheckBox.AutoSize = true;
+            this.excludeSoldAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeSoldAssetsCheckBox.Location = new System.Drawing.Point(802, 68);
+            this.excludeSoldAssetsCheckBox.Name = "excludeSoldAssetsCheckBox";
+            this.excludeSoldAssetsCheckBox.Size = new System.Drawing.Size(107, 25);
+            this.excludeSoldAssetsCheckBox.TabIndex = 20;
+            this.excludeSoldAssetsCheckBox.Text = "استثناء المباع";
+            this.excludeSoldAssetsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
@@ -1797,5 +1826,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
         private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
         private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
+        private System.Windows.Forms.CheckBox excludeSoldAssetsCheckBox;
+        private System.Windows.Forms.CheckBox excludeOutOfWorkAssetsCheckBox;
     }
 }

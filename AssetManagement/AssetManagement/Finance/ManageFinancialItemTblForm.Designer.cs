@@ -518,11 +518,11 @@ namespace AssetManagement.Finance
             // colبيانالسجلالمالي
             // 
             this.colبيانالسجلالمالي.FieldName = "بيان السجل المالي";
-            this.colبيانالسجلالمالي.MinWidth = 200;
+            this.colبيانالسجلالمالي.MinWidth = 250;
             this.colبيانالسجلالمالي.Name = "colبيانالسجلالمالي";
             this.colبيانالسجلالمالي.Visible = true;
             this.colبيانالسجلالمالي.VisibleIndex = 1;
-            this.colبيانالسجلالمالي.Width = 200;
+            this.colبيانالسجلالمالي.Width = 250;
             // 
             // colالدائرة
             // 
