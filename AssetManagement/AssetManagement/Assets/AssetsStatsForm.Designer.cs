@@ -34,8 +34,6 @@ namespace AssetManagement.Assets
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
             DevExpress.XtraCharts.UI.ChartControlCommandGalleryItemGroup2DColumn chartControlCommandGalleryItemGroup2DColumn1 = new DevExpress.XtraCharts.UI.ChartControlCommandGalleryItemGroup2DColumn();
             DevExpress.XtraCharts.UI.CreateBarChartItem createBarChartItem1 = new DevExpress.XtraCharts.UI.CreateBarChartItem();
             DevExpress.XtraCharts.UI.CreateFullStackedBarChartItem createFullStackedBarChartItem1 = new DevExpress.XtraCharts.UI.CreateFullStackedBarChartItem();
@@ -282,6 +280,9 @@ namespace AssetManagement.Assets
             this.minorCategoryVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter();
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
+            this.secondFieldBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.byField2BarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
@@ -290,8 +291,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown2)).BeginInit();
@@ -334,6 +333,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // assetVwBindingSource
@@ -424,16 +424,9 @@ namespace AssetManagement.Assets
             series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
             sideBySideBarSeriesView1.ColorEach = true;
             series1.View = sideBySideBarSeriesView1;
-            series1.Visible = false;
-            series2.ArgumentDataMember = "الفئة الرئيسية";
-            series2.ColorDataMember = "حالة الأصل الآنية";
-            series2.Name = "Series 2";
-            series2.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
-            series2.View = stackedBarSeriesView1;
             this.mainChartControl.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1,
-        series2};
-            this.mainChartControl.Size = new System.Drawing.Size(1269, 630);
+        series1};
+            this.mainChartControl.Size = new System.Drawing.Size(1060, 527);
             this.mainChartControl.TabIndex = 2;
             // 
             // ribbonControl1
@@ -485,9 +478,11 @@ namespace AssetManagement.Assets
             this.addHorizontalConstantLineBarItem1,
             this.aggregateStatTypeBarEditItem,
             this.byFieldBarEditItem,
-            this.viewStatsBarButtonItem});
+            this.viewStatsBarButtonItem,
+            this.secondFieldBarCheckItem,
+            this.byField2BarEditItem});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 45;
+            this.ribbonControl1.MaxItemId = 49;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartRibbonPageCategory1});
@@ -498,8 +493,9 @@ namespace AssetManagement.Assets
             this.selectPeriodRepositoryItemComboBox1,
             this.aggregateStatTypeRepositoryItemComboBox,
             this.byFieldRepositoryItemComboBox,
-            this.repositoryItemComboBox1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1295, 183);
+            this.repositoryItemComboBox1,
+            this.repositoryItemComboBox2});
+            this.ribbonControl1.Size = new System.Drawing.Size(1086, 183);
             // 
             // createBarBaseItem1
             // 
@@ -951,8 +947,7 @@ namespace AssetManagement.Assets
             this.selectSeriesRepositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.selectSeriesRepositoryItemComboBox1.Items.AddRange(new object[] {
-            "Series 1",
-            "Series 2"});
+            "Series 1"});
             this.selectSeriesRepositoryItemComboBox1.Name = "selectSeriesRepositoryItemComboBox1";
             this.selectSeriesRepositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
@@ -1156,7 +1151,7 @@ namespace AssetManagement.Assets
             // 
             // byFieldBarEditItem
             // 
-            this.byFieldBarEditItem.Caption = "حسب الحقل";
+            this.byFieldBarEditItem.Caption = "حسب الحقل:";
             this.byFieldBarEditItem.Edit = this.byFieldRepositoryItemComboBox;
             this.byFieldBarEditItem.EditWidth = 200;
             this.byFieldBarEditItem.Id = 42;
@@ -1174,13 +1169,10 @@ namespace AssetManagement.Assets
             this.byFieldRepositoryItemComboBox.Items.AddRange(new object[] {
             "الفئة الرئيسية",
             "الفئة الفرعية",
-            "القسم",
             "الدائرة",
+            "القسم",
             "الساحة",
-            "حالة الأصل",
-            "الفئة الرئيسية وحالة الأصل",
-            "الفئة الفرعية وحالة الأصل",
-            "القسم وحالة الأصل"});
+            "حالة الأصل الآنية"});
             this.byFieldRepositoryItemComboBox.Name = "byFieldRepositoryItemComboBox";
             // 
             // viewStatsBarButtonItem
@@ -1212,8 +1204,10 @@ namespace AssetManagement.Assets
             // 
             // statTypeRibbonPageGroup
             // 
-            this.statTypeRibbonPageGroup.ItemLinks.Add(this.aggregateStatTypeBarEditItem);
             this.statTypeRibbonPageGroup.ItemLinks.Add(this.byFieldBarEditItem);
+            this.statTypeRibbonPageGroup.ItemLinks.Add(this.secondFieldBarCheckItem);
+            this.statTypeRibbonPageGroup.ItemLinks.Add(this.byField2BarEditItem);
+            this.statTypeRibbonPageGroup.ItemLinks.Add(this.aggregateStatTypeBarEditItem);
             this.statTypeRibbonPageGroup.ItemLinks.Add(this.viewStatsBarButtonItem);
             this.statTypeRibbonPageGroup.Name = "statTypeRibbonPageGroup";
             this.statTypeRibbonPageGroup.Text = "الحقول والقيم";
@@ -1408,7 +1402,7 @@ namespace AssetManagement.Assets
             this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.hideContainerLeft.Location = new System.Drawing.Point(0, 183);
             this.hideContainerLeft.Name = "hideContainerLeft";
-            this.hideContainerLeft.Size = new System.Drawing.Size(26, 630);
+            this.hideContainerLeft.Size = new System.Drawing.Size(26, 527);
             // 
             // customizeStatDockPanel
             // 
@@ -1860,11 +1854,47 @@ namespace AssetManagement.Assets
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
+            // secondFieldBarCheckItem
+            // 
+            this.secondFieldBarCheckItem.Caption = "حقل إضافي";
+            this.secondFieldBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.AfterText;
+            this.secondFieldBarCheckItem.Id = 45;
+            this.secondFieldBarCheckItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondFieldBarCheckItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.secondFieldBarCheckItem.Name = "secondFieldBarCheckItem";
+            this.secondFieldBarCheckItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.secondFieldBarCheckItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.secondFieldBarCheckItem_CheckedChanged);
+            // 
+            // byField2BarEditItem
+            // 
+            this.byField2BarEditItem.Caption = "الحقل الإضافي:";
+            this.byField2BarEditItem.Edit = this.repositoryItemComboBox2;
+            this.byField2BarEditItem.EditWidth = 200;
+            this.byField2BarEditItem.Id = 48;
+            this.byField2BarEditItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.byField2BarEditItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.byField2BarEditItem.Name = "byField2BarEditItem";
+            this.byField2BarEditItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox2.Items.AddRange(new object[] {
+            "الفئة الرئيسية",
+            "الفئة الفرعية",
+            "الدائرة",
+            "القسم",
+            "الساحة",
+            "حالة الأصل الآنية"});
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            // 
             // AssetsStatsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 813);
+            this.ClientSize = new System.Drawing.Size(1086, 710);
             this.Controls.Add(this.mainChartControl);
             this.Controls.Add(this.hideContainerLeft);
             this.Controls.Add(this.ribbonControl1);
@@ -1884,8 +1914,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainChartControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown1)).EndInit();
@@ -1932,6 +1960,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2063,5 +2092,8 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.CheckBox outOfWorkCheckBox;
         private System.Windows.Forms.CheckBox soldAssetsCheckBox;
         private DevExpress.XtraBars.BarButtonItem viewStatsBarButtonItem;
+        private DevExpress.XtraBars.BarCheckItem secondFieldBarCheckItem;
+        private DevExpress.XtraBars.BarEditItem byField2BarEditItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
     }
 }

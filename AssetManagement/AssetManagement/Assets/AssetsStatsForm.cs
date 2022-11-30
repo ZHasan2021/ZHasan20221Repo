@@ -319,79 +319,164 @@ namespace AssetManagement.Assets
         /// <param name="e"></param>
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (aggregateStatTypeBarEditItem.EditValue == null || byFieldBarEditItem.EditValue == null) return;
-            Series series1 = mainChartControl.Series[0];
-            Series series2 = mainChartControl.Series[1];
-            switch (aggregateStatTypeBarEditItem.EditValue.ToString())
+            if (byFieldBarEditItem.EditValue == null)
             {
-                case "عدد الأصول":
-                    switch (byFieldBarEditItem.EditValue.ToString())
-                    {
-                        case "القسم":
-                            var ggg = series1.View.DiagramType;
-                            series1.ArgumentDataMember = "القسم";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الرئيسية":
-                            series1.ArgumentDataMember = "الفئة الرئيسية";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الفرعية":
-                            series1.ArgumentDataMember = "الفئة الفرعية";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الرئيسية وحالة الأصل":
-                            series2.ArgumentDataMember = "الفئة الرئيسية";
-                            series2.ColorDataMember = "حالة الأصل الآنية";
-                            series2.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
-                            series1.Visible = false;
-                            series2.Visible = true;
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case "مجموع مبالغ الشراء":
-                    switch (byFieldBarEditItem.EditValue.ToString())
-                    {
-                        case "القسم":
-                            series1.ArgumentDataMember = "القسم";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الرئيسية":
-                            series1.ArgumentDataMember = "الفئة الرئيسية";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الفرعية":
-                            series1.ArgumentDataMember = "الفئة الفرعية";
-                            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
-                            series1.Visible = true;
-                            series2.Visible = false;
-                            break;
-                        case "الفئة الرئيسية وحالة الأصل":
-                            series2.ArgumentDataMember = "الفئة الرئيسية";
-                            series2.ColorDataMember = "حالة الأصل الآنية";
-                            series2.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
-                            series1.Visible = false;
-                            series2.Visible = true;
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                default:
-                    break;
+                mainAlertControl.Show(this, "اختر حقل الإحصائية أولاً", StaticCode.ApplicationTitle);
+                return;
             }
+            if (secondFieldBarCheckItem.Checked && byField2BarEditItem.EditValue == null)
+            {
+                mainAlertControl.Show(this, "اختر حقل الإحصائية الثاني أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (aggregateStatTypeBarEditItem.EditValue == null)
+            {
+                mainAlertControl.Show(this, "اختر الدالة التجميعية أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
+            mainChartControl.Series.Clear();
+
+            if(secondFieldBarCheckItem.Checked)
+            {
+                mainChartControl.SeriesTemplate.ChangeView(ViewType.StackedBar);
+                mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), "العدد");
+
+                // Enable series point labels, specify their text pattern and position:
+                mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                mainChartControl.SeriesTemplate.Label.TextPattern = "{A}:{V}";
+                ((BarSeriesLabel)mainChartControl.SeriesTemplate.Label).Position = BarSeriesLabelPosition.Center;
+
+                // Customize series view settings (for example, bar width):
+                StackedBarSeriesView view = (StackedBarSeriesView)mainChartControl.SeriesTemplate.View;
+                view.BarWidth = 0.8;
+
+                // Disable minor tickmarks on the x-axis:
+                XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
+                diagram.AxisX.Tickmarks.MinorVisible = false;
+
+                // Specify legend settings:
+                mainChartControl.Legend.MarkerMode = LegendMarkerMode.CheckBoxAndMarker;
+                mainChartControl.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
+                mainChartControl.Legend.AlignmentVertical = LegendAlignmentVertical.TopOutside;
+            }
+            else
+            {
+                mainChartControl.SeriesTemplate.ChangeView(ViewType.Bar);
+                mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.ValueDataMembers.AddRange("العدد");
+                //mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), "العدد");
+
+                // Enable series point labels, specify their text pattern and position:
+                mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                mainChartControl.SeriesTemplate.Label.TextPattern = "${A}:{V}";
+                ((BarSeriesLabel)mainChartControl.SeriesTemplate.Label).Position = BarSeriesLabelPosition.Center;
+
+                // Customize series view settings (for example, bar width):
+                BarSeriesView view = (BarSeriesView)mainChartControl.SeriesTemplate.View;
+                view.AggregateFunction = SeriesAggregateFunction.Sum;
+                view.BarWidth = 0.8;
+
+                // Disable minor tickmarks on the x-axis:
+                XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
+                diagram.AxisX.Tickmarks.MinorVisible = false;
+
+                // Specify legend settings:
+                mainChartControl.Legend.MarkerMode = LegendMarkerMode.CheckBoxAndMarker;
+                mainChartControl.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
+                mainChartControl.Legend.AlignmentVertical = LegendAlignmentVertical.TopOutside;
+            }
+
+            //Series series1 = mainChartControl.Series[0];
+            //switch (aggregateStatTypeBarEditItem.EditValue.ToString())
+            //{
+            //    case "عدد الأصول":
+            //        switch (byFieldBarEditItem.EditValue.ToString())
+            //        {
+            //            case "القسم":
+            //                series1.ArgumentDataMember = "القسم";
+            //                series1.QualitativeSummaryOptions.SummaryFunction = "SUM([العدد])";
+            //                series1.Visible = true;
+            //                break;
+            //            case "الفئة الرئيسية":
+            //                series1.ArgumentDataMember = "الفئة الرئيسية";
+            //                series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+            //                series1.Visible = true;
+            //                break;
+            //            case "الفئة الفرعية":
+            //                series1.ArgumentDataMember = "الفئة الفرعية";
+            //                series1.QualitativeSummaryOptions.SummaryFunction = "COUNT()";
+            //                series1.Visible = true;
+            //                break;
+            //            case "الفئة الرئيسية وحالة الأصل":
+            //                mainChartControl.SeriesTemplate.ChangeView(ViewType.StackedBar);
+            //                mainChartControl.SeriesTemplate.SeriesDataMember = "الفئة الرئيسية";
+            //                mainChartControl.SeriesTemplate.SetDataMembers("حالة الأصل الآنية", "العدد");
+
+            //                // Enable series point labels, specify their text pattern and position:
+            //                mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            //                mainChartControl.SeriesTemplate.Label.TextPattern = "${V}";
+            //                ((BarSeriesLabel)mainChartControl.SeriesTemplate.Label).Position = BarSeriesLabelPosition.Center;
+
+            //                // Customize series view settings (for example, bar width):
+            //                StackedBarSeriesView view = (StackedBarSeriesView)mainChartControl.SeriesTemplate.View;
+            //                view.BarWidth = 0.8;
+
+            //                // Disable minor tickmarks on the x-axis:
+            //                XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
+            //                diagram.AxisX.Tickmarks.MinorVisible = false;
+
+            //                // Specify legend settings:
+            //                mainChartControl.Legend.MarkerMode = LegendMarkerMode.CheckBoxAndMarker;
+            //                mainChartControl.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
+            //                mainChartControl.Legend.AlignmentVertical = LegendAlignmentVertical.TopOutside;
+
+            //                series1.Visible = false;
+            //                break;
+            //            default:
+            //                break;
+            //        }
+            //        break;
+            //case "مجموع مبالغ الشراء":
+            //    switch (byFieldBarEditItem.EditValue.ToString())
+            //    {
+            //        case "القسم":
+            //            series1.ArgumentDataMember = "القسم";
+            //            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+            //            series1.Visible = true;
+            //            series2.Visible = false;
+            //            break;
+            //        case "الفئة الرئيسية":
+            //            series1.ArgumentDataMember = "الفئة الرئيسية";
+            //            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+            //            series1.Visible = true;
+            //            series2.Visible = false;
+            //            break;
+            //        case "الفئة الفرعية":
+            //            series1.ArgumentDataMember = "الفئة الفرعية";
+            //            series1.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+            //            series1.Visible = true;
+            //            series2.Visible = false;
+            //            break;
+            //        case "الفئة الرئيسية وحالة الأصل":
+            //            series2.ArgumentDataMember = "الفئة الرئيسية";
+            //            series2.ColorDataMember = "حالة الأصل الآنية";
+            //            series2.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+            //            series1.Visible = false;
+            //            series2.Visible = true;
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //    break;
+            //    default:
+            //        break;
+            //}
+
+            mainChartControl.Titles.Clear();
+            ChartTitle mainTitle = new ChartTitle() { Alignment = StringAlignment.Center, Font = new Font("Sakkal Majalla", 16.0F), Text = $"إجمالي {aggregateStatTypeBarEditItem.EditValue.ToString()} حسب {byFieldBarEditItem.EditValue.ToString()}" };
+            mainChartControl.Titles.Add(mainTitle);
         }
 
         private void searchBySectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
@@ -402,6 +487,11 @@ namespace AssetManagement.Assets
         private void searchByDepartmentLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void secondFieldBarCheckItem_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            byField2BarEditItem.Visibility = (secondFieldBarCheckItem.Checked) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
         }
     }
 }
