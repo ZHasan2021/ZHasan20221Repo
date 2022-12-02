@@ -75,7 +75,7 @@ namespace AssetManagement
             importDataBarButtonItem.Visibility = (StaticCode.activeUserRole.ImportAllData == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageImportExportTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageImportExportTbl == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             viewReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            viewStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            viewStatsBarButtonItem.Visibility = financialItemsStatsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewAssetsStats == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewFinancialItemBarButtonItem.Visibility =
 importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -496,8 +496,13 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 }
                 if (errorCat == 2)
                 {
-                    mainMemoEdit.Text = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً";
-                    mainAlertControl.Show(this, "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو لا غير تابعة لبعضها إدارياً", StaticCode.ApplicationTitle);
+                    string errorCat2Msg = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة في سجلات الدوائر والأقسام والوحدات (كلها أو بعضها) أو غير تابعة لبعضها إدارياً";
+                    if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                        errorCat2Msg = "الدائرة في ملف الإكسل غير موجودة في سجلات الدوائر";
+                    else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                        errorCat2Msg = "الدائرة والقسم في ملف الإكسل غير موجودة في سجلات الدوائر والأقسام (كلها أو بعضها) أو غير تابعة لبعضها إدارياً";
+                    mainMemoEdit.Text = errorCat2Msg;
+                    mainAlertControl.Show(this, errorCat2Msg, StaticCode.ApplicationTitle);
                     return;
                 }
                 if (errorCat == 3)
@@ -818,6 +823,11 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
         {
             ManageOutgoingTypeTblForm ouTyFrm = new ManageOutgoingTypeTblForm();
             ouTyFrm.ShowDialog();
+        }
+
+        private void financialItemsStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

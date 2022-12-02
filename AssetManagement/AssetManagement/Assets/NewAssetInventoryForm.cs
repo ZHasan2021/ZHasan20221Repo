@@ -254,10 +254,6 @@ namespace AssetManagement.Assets
             assetGridControl.Visible = false;
             exportToExcelDropDownButton.Enabled = false;
             assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
-            if (excludeOutOfWorkAssetsCheckBox.Checked)
-                assetsQry = assetsQry.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
-            if (excludeSoldAssetsCheckBox.Checked)
-                assetsQry = assetsQry.Where(ast1 => ast1.IsSold == null || ast1.IsSold != true);
             if (customSearchRadioButton.Checked)
             {
                 if (searchBySectionCheckBox.Checked)
@@ -425,6 +421,8 @@ namespace AssetManagement.Assets
                     assetsQry = assetsQry.Where(ast => ast.InsertedOn != null && ast.InsertedOn >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.InsertedOn <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
                 }
             }
+
+            //var assetsQry_Vw=StaticCode.mainDbContext.AssetVws.Where()
 
             assetGridControl.Visible =
             exportToExcelDropDownButton.Enabled = assetsQry.Count() > 0;
@@ -1018,12 +1016,18 @@ namespace AssetManagement.Assets
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             }
-            if (assetsQry.Count() == 0)
+            var assetsQry_Export = assetsQry;
+            if (excludeOutOfWorkAssetsCheckBox.Checked)
+                assetsQry_Export = assetsQry_Export.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
+            if (excludeSoldAssetsCheckBox.Checked)
+                assetsQry_Export = assetsQry_Export.Where(ast1 => ast1.IsSold == null || ast1.IsSold != true);
+
+            if (assetsQry_Export.Count() == 0)
                 return;
 
             int astCount = 1;
             currentRow++;
-            foreach (var oneAst in assetsQry)
+            foreach (var oneAst in assetsQry_Export)
             {
                 Application.DoEvents();
 
@@ -1069,7 +1073,7 @@ namespace AssetManagement.Assets
                     assetTrans_TasreefCount,
                     assetMvsCount,
                     assetTrans_SellCount,
-                     StaticCode.mainDbContext.AssetVws.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
+                     StaticCode.mainDbContext.AssetVw_Alls.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
                     oneAst.DestructionRate,
                     oneAst.AssetNotes,
                 };

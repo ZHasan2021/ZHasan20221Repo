@@ -35,11 +35,15 @@ namespace AssetManagement.Assets
             this.assetInformationGroupBox = new System.Windows.Forms.GroupBox();
             this.assetInfoTabControl = new System.Windows.Forms.TabControl();
             this.assetInfoTabPage1 = new System.Windows.Forms.TabPage();
+            this.modelLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.modelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.manageModelTblBtn = new System.Windows.Forms.Button();
+            this.colorComboBox = new System.Windows.Forms.ComboBox();
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
             this.assetSubDeptLabel = new System.Windows.Forms.Label();
             this.assetSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
@@ -138,17 +142,17 @@ namespace AssetManagement.Assets
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.modelLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.manageModelTblBtn = new System.Windows.Forms.Button();
-            this.colorComboBox = new System.Windows.Forms.ComboBox();
-            this.modelTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.assetInformationGroupBox.SuspendLayout();
             this.assetInfoTabControl.SuspendLayout();
             this.assetInfoTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
@@ -177,8 +181,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -278,6 +281,76 @@ namespace AssetManagement.Assets
             this.assetInfoTabPage1.Text = "1";
             this.assetInfoTabPage1.UseVisualStyleBackColor = true;
             // 
+            // modelLookUpEdit
+            // 
+            this.modelLookUpEdit.Location = new System.Drawing.Point(329, 366);
+            this.modelLookUpEdit.Name = "modelLookUpEdit";
+            this.modelLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.modelLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.modelLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموديل", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameEn", "اسم الموديل إنكليزي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameAr", "اسم الموديل عربي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelImg", "شعار الموديل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.modelLookUpEdit.Properties.DataSource = this.modelTblBindingSource;
+            this.modelLookUpEdit.Properties.DisplayMember = "ModelNameEn";
+            this.modelLookUpEdit.Properties.PopupWidth = 500;
+            this.modelLookUpEdit.Properties.ValueMember = "ID";
+            this.modelLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.modelLookUpEdit.TabIndex = 270;
+            // 
+            // modelTblBindingSource
+            // 
+            this.modelTblBindingSource.DataMember = "ModelTbl";
+            this.modelTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // manageModelTblBtn
+            // 
+            this.manageModelTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageModelTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageModelTblBtn.Location = new System.Drawing.Point(243, 353);
+            this.manageModelTblBtn.Name = "manageModelTblBtn";
+            this.manageModelTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageModelTblBtn.TabIndex = 271;
+            this.manageModelTblBtn.UseVisualStyleBackColor = true;
+            this.manageModelTblBtn.Click += new System.EventHandler(this.manageModelTblBtn_Click);
+            // 
+            // colorComboBox
+            // 
+            this.colorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.colorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.colorComboBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colorComboBox.FormattingEnabled = true;
+            this.colorComboBox.Items.AddRange(new object[] {
+            "أبيض",
+            "أسود",
+            "أحمر",
+            "أزرق",
+            "أصفر",
+            "أخضر",
+            "بني",
+            "فضي",
+            "رمادي",
+            "ذهبي",
+            "أزرق غامق",
+            "أحمر غامق",
+            "أحمر فاتح",
+            "أزرق فاتح",
+            "كحلي",
+            "عسلي",
+            "بيج"});
+            this.colorComboBox.Location = new System.Drawing.Point(329, 416);
+            this.colorComboBox.Name = "colorComboBox";
+            this.colorComboBox.Size = new System.Drawing.Size(234, 29);
+            this.colorComboBox.TabIndex = 280;
+            // 
             // manageSubDepartmentTblBtn
             // 
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -325,11 +398,6 @@ namespace AssetManagement.Assets
             // 
             this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
             this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // isNewOrOldAssetPanel
             // 
@@ -1254,15 +1322,15 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
-            this.searchResultsListBox.DataSource = this.assetTblBindingSource;
-            this.searchResultsListBox.DisplayMember = "AssetCode";
+            this.searchResultsListBox.DataSource = this.assetVwBindingSource;
+            this.searchResultsListBox.DisplayMember = "كود الأصل";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;
             this.searchResultsListBox.Location = new System.Drawing.Point(576, 33);
             this.searchResultsListBox.Name = "searchResultsListBox";
             this.searchResultsListBox.Size = new System.Drawing.Size(440, 124);
             this.searchResultsListBox.TabIndex = 55;
-            this.searchResultsListBox.ValueMember = "ID";
+            this.searchResultsListBox.ValueMember = "معرف الأصل";
             this.searchResultsListBox.Visible = false;
             this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
             // 
@@ -1383,10 +1451,12 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = this.modelTblTableAdapter;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = this.statusTblTableAdapter;
@@ -1396,74 +1466,18 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
-            // modelLookUpEdit
-            // 
-            this.modelLookUpEdit.Location = new System.Drawing.Point(329, 366);
-            this.modelLookUpEdit.Name = "modelLookUpEdit";
-            this.modelLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.modelLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.modelLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الموديل", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameEn", "اسم الموديل إنكليزي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelNameAr", "اسم الموديل عربي", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ModelImg", "شعار الموديل", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.modelLookUpEdit.Properties.DataSource = this.modelTblBindingSource;
-            this.modelLookUpEdit.Properties.DisplayMember = "ModelNameEn";
-            this.modelLookUpEdit.Properties.PopupWidth = 500;
-            this.modelLookUpEdit.Properties.ValueMember = "ID";
-            this.modelLookUpEdit.Size = new System.Drawing.Size(234, 28);
-            this.modelLookUpEdit.TabIndex = 270;
-            // 
-            // manageModelTblBtn
-            // 
-            this.manageModelTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageModelTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageModelTblBtn.Location = new System.Drawing.Point(243, 353);
-            this.manageModelTblBtn.Name = "manageModelTblBtn";
-            this.manageModelTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageModelTblBtn.TabIndex = 271;
-            this.manageModelTblBtn.UseVisualStyleBackColor = true;
-            this.manageModelTblBtn.Click += new System.EventHandler(this.manageModelTblBtn_Click);
-            // 
-            // colorComboBox
-            // 
-            this.colorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.colorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.colorComboBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorComboBox.FormattingEnabled = true;
-            this.colorComboBox.Items.AddRange(new object[] {
-            "أبيض",
-            "أسود",
-            "أحمر",
-            "أزرق",
-            "أصفر",
-            "أخضر",
-            "بني",
-            "فضي",
-            "رمادي",
-            "ذهبي",
-            "أزرق غامق",
-            "أحمر غامق",
-            "أحمر فاتح",
-            "أزرق فاتح",
-            "كحلي",
-            "عسلي",
-            "بيج"});
-            this.colorComboBox.Location = new System.Drawing.Point(329, 416);
-            this.colorComboBox.Name = "colorComboBox";
-            this.colorComboBox.Size = new System.Drawing.Size(234, 29);
-            this.colorComboBox.TabIndex = 280;
-            // 
-            // modelTblBindingSource
-            // 
-            this.modelTblBindingSource.DataMember = "ModelTbl";
-            this.modelTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // modelTblTableAdapter
             // 
             this.modelTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetVwTableAdapter
+            // 
+            this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
             // UpdateExistedAssetForm
             // 
@@ -1491,9 +1505,11 @@ namespace AssetManagement.Assets
             this.assetInfoTabControl.ResumeLayout(false);
             this.assetInfoTabPage1.ResumeLayout(false);
             this.assetInfoTabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).EndInit();
@@ -1524,8 +1540,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1645,5 +1660,7 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.ComboBox colorComboBox;
         private System.Windows.Forms.BindingSource modelTblBindingSource;
         private AssetMngDbDataSetTableAdapters.ModelTblTableAdapter modelTblTableAdapter;
+        private System.Windows.Forms.BindingSource assetVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
     }
 }

@@ -9,12 +9,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
     public partial class UpdateExistedAssetForm : Form
     {
-        IQueryable<AssetTbl> srchRes = null;
+        IQueryable<AssetVw> srchRes = null;
         AssetTbl currSrchRes = null;
         double assetDesRate = 0;
         int assetProdAge = 0;
@@ -33,6 +34,8 @@ namespace AssetManagement.Assets
 
         private void UpdateExistedAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
+            this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.ModelTbl' table. You can move, or remove it, as needed.
             this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -70,8 +73,8 @@ namespace AssetManagement.Assets
             {
                 try
                 {
-                    srchRes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.ID == preLoadedAssetID);
-                    currSrchRes = srchRes.First();
+                    srchRes = StaticCode.mainDbContext.AssetVws.Where(astv1 => astv1.معرف_الأصل == preLoadedAssetID);
+                    currSrchRes = StaticCode.mainDbContext.AssetTbls.Single(ast2 => ast2.ID == preLoadedAssetID);
                     assetCodeToSearchTextBox.Text = currSrchRes.AssetCode;
                     searchAssetBtn_Click(sender, e);
                     searchResultsListBox.SelectedIndex = 0;
@@ -93,13 +96,32 @@ namespace AssetManagement.Assets
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = false;
-            srchRes = StaticCode.mainDbContext.AssetTbls.Where(ast => ast.AssetCode.Contains(assetCodeToSearchTextBox.Text.Trim()));
+
+            srchRes = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeToSearchTextBox.Text.Trim()));
             if (srchRes.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا يوجد أصل يحتوي على الكود الذي أدخلته ولو حتى بشكل جزئي", StaticCode.ApplicationTitle);
                 return;
             }
-            searchResultsListBox.DataSource = srchRes;
+            var srchRes_Mv = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeToSearchTextBox.Text.Trim()));
+            string plusQry = $" WHERE [كود الأصل] LIKE '%{assetCodeToSearchTextBox.Text.Trim()}%';";
+            AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+            for (int i = 0; i < customVw.Rows.Count; i++)
+            {
+                try
+                {
+                    var oneRow = customVw.Rows[i];
+                    object[] oneRowItemArray = oneRow.ItemArray;
+                    if (srchRes_Mv.Select(astv2 => astv2.معرف_الأصل).Contains(Convert.ToInt32(oneRowItemArray[0])))
+                        customVw.Rows.Remove(oneRow);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+
             searchResultsListBox.Visible = viewAssetInformationBtn.Visible = true;
 
         }

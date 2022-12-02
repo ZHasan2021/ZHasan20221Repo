@@ -760,6 +760,23 @@ namespace AssetManagement
             string departmentName = srcExcelWs.Cells[2, 3].Value?.ToString().Replace("القسم:", "").Trim();
             string subDepartmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("الوحدة:", "").Trim();
             var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+            if (StaticCode.activeUserRole.IsSectionIndependent == true)
+            {
+                if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
+                {
+                    errorCat = 2;
+                    return null;
+                }
+            }
+            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+            {
+                if (!StaticCode.mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم== sectionName))
+                {
+                    errorCat = 2;
+                    return null;
+                }
+            }
+
             if (existedSubDept == null || existedSubDept.Count() == 0)
             {
                 errorCat = 2;

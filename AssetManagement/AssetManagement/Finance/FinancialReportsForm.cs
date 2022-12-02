@@ -129,6 +129,12 @@ namespace AssetManagement.Finance
                     }
                 }
             }
+            if (searchByCurrencyCheckBox.Checked && searchByCurrencyLookUpEdit.EditValue == null)
+            {
+                MessageBox.Show("اختر العملة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر العملة أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
 
             financialItemsFromToQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
             if (searchBySectionRadioButton.Checked)
@@ -170,8 +176,12 @@ namespace AssetManagement.Finance
                 }
                 financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
+            if (searchByCurrencyCheckBox.Checked)
+            {
+                financialItemsFromToQry = financialItemsFromToQry.Where(fi => fi.FinancialItemCurrency == Convert.ToInt32(searchByCurrencyLookUpEdit.EditValue));
+            }
             bool resultsFound = financialItemsFromToQry != null && financialItemsFromToQry.Count() > 0;
-            exportFinancialReportToExcelDropDownButton.Enabled = financialItemTblPanel.Visible = resultsFound;
+            exportFinancialReportToExcelDropDownButton.Enabled = financialReportTabControl.Visible = resultsFound;
             if (!resultsFound)
             {
                 mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
@@ -394,12 +404,23 @@ namespace AssetManagement.Finance
             ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
             sdptFrm.ShowDialog();
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
-
         }
 
         private void moneySummaryPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void searchByCurrencyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByCurrencyLookUpEdit.Visible = manageCurrencyTblBtn.Visible = searchByCurrencyCheckBox.Checked;
+        }
+
+        private void manageCurrencyTblBtn_Click(object sender, EventArgs e)
+        {
+            ManageCurrencyTblForm curFrm = new ManageCurrencyTblForm();
+            curFrm.ShowDialog();
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
         }
     }
 }

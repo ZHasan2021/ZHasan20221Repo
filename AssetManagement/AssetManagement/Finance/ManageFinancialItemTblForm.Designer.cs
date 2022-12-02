@@ -31,6 +31,11 @@ namespace AssetManagement.Finance
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageFinancialItemTblForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
             this.financialItemVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -73,6 +78,11 @@ namespace AssetManagement.Finance
             this.outgoingInUSDToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.outgoingInEURToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.outgoingInSYPToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.totalsDataGridView = new System.Windows.Forms.DataGridView();
+            this.colFiCurrency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalIncoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalOutgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalRecycled = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
             this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -109,6 +119,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.totalsStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
@@ -438,6 +449,84 @@ namespace AssetManagement.Finance
             this.outgoingInSYPToolStripStatusLabel.Name = "outgoingInSYPToolStripStatusLabel";
             this.outgoingInSYPToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
             // 
+            // totalsDataGridView
+            // 
+            this.totalsDataGridView.AllowUserToAddRows = false;
+            this.totalsDataGridView.AllowUserToDeleteRows = false;
+            this.totalsDataGridView.ColumnHeadersHeight = 55;
+            this.totalsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.totalsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colFiCurrency,
+            this.colTotalIncoming,
+            this.colTotalOutgoing,
+            this.colTotalRecycled});
+            this.totalsDataGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.totalsDataGridView.Location = new System.Drawing.Point(0, 88);
+            this.totalsDataGridView.MultiSelect = false;
+            this.totalsDataGridView.Name = "totalsDataGridView";
+            this.totalsDataGridView.ReadOnly = true;
+            this.totalsDataGridView.RowHeadersVisible = false;
+            this.totalsDataGridView.RowHeadersWidth = 51;
+            this.totalsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.totalsDataGridView.RowTemplate.Height = 24;
+            this.totalsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.totalsDataGridView.Size = new System.Drawing.Size(463, 766);
+            this.totalsDataGridView.TabIndex = 8;
+            // 
+            // colFiCurrency
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.colFiCurrency.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colFiCurrency.HeaderText = "العملة";
+            this.colFiCurrency.MinimumWidth = 6;
+            this.colFiCurrency.Name = "colFiCurrency";
+            this.colFiCurrency.ReadOnly = true;
+            this.colFiCurrency.Width = 110;
+            // 
+            // colTotalIncoming
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = "-";
+            this.colTotalIncoming.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colTotalIncoming.HeaderText = "إجمالي الوارد";
+            this.colTotalIncoming.MinimumWidth = 6;
+            this.colTotalIncoming.Name = "colTotalIncoming";
+            this.colTotalIncoming.ReadOnly = true;
+            this.colTotalIncoming.Width = 125;
+            // 
+            // colTotalOutgoing
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "-";
+            this.colTotalOutgoing.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colTotalOutgoing.HeaderText = "إجمالي الصادر";
+            this.colTotalOutgoing.MinimumWidth = 6;
+            this.colTotalOutgoing.Name = "colTotalOutgoing";
+            this.colTotalOutgoing.ReadOnly = true;
+            this.colTotalOutgoing.Width = 125;
+            // 
+            // colTotalRecycled
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "-";
+            this.colTotalRecycled.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colTotalRecycled.HeaderText = "إجمالي المدور";
+            this.colTotalRecycled.MinimumWidth = 6;
+            this.colTotalRecycled.Name = "colTotalRecycled";
+            this.colTotalRecycled.ReadOnly = true;
+            this.colTotalRecycled.Width = 125;
+            // 
             // financialItemCategoryGridControl
             // 
             this.financialItemCategoryGridControl.DataSource = this.financialItemVwBindingSource;
@@ -446,7 +535,7 @@ namespace AssetManagement.Finance
             gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(0, 88);
+            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(463, 88);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
             this.financialItemCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -455,8 +544,8 @@ namespace AssetManagement.Finance
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
             this.subdRpositoryItemLookUpEdit});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(1385, 766);
-            this.financialItemCategoryGridControl.TabIndex = 8;
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(922, 766);
+            this.financialItemCategoryGridControl.TabIndex = 9;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.financialItemGridView});
@@ -601,8 +690,6 @@ namespace AssetManagement.Finance
             this.colالمبلغالوارد.FieldName = "المبلغ الوارد";
             this.colالمبلغالوارد.MinWidth = 200;
             this.colالمبلغالوارد.Name = "colالمبلغالوارد";
-            this.colالمبلغالوارد.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الوارد", "مجموع الوارد={0:0.##}")});
             this.colالمبلغالوارد.Visible = true;
             this.colالمبلغالوارد.VisibleIndex = 10;
             this.colالمبلغالوارد.Width = 200;
@@ -612,8 +699,6 @@ namespace AssetManagement.Finance
             this.colالمبلغالصادر.FieldName = "المبلغ الصادر";
             this.colالمبلغالصادر.MinWidth = 200;
             this.colالمبلغالصادر.Name = "colالمبلغالصادر";
-            this.colالمبلغالصادر.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", "مجموع الصادر={0:0.##}")});
             this.colالمبلغالصادر.Visible = true;
             this.colالمبلغالصادر.VisibleIndex = 11;
             this.colالمبلغالصادر.Width = 200;
@@ -714,6 +799,7 @@ namespace AssetManagement.Finance
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
+            this.Controls.Add(this.totalsDataGridView);
             this.Controls.Add(this.totalsStatusStrip);
             this.Controls.Add(this.mainTabFormControl);
             this.Controls.Add(this.financialItemTblBindingNavigator);
@@ -740,6 +826,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.totalsStatusStrip.ResumeLayout(false);
             this.totalsStatusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
@@ -789,6 +876,11 @@ namespace AssetManagement.Finance
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private System.Windows.Forms.StatusStrip totalsStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel incomesInUSDToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel incomesInEURToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel incomesInSYPToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInUSDToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInEURToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel outgoingInSYPToolStripStatusLabel;
         private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colمعرفالسجلالمالي;
@@ -812,10 +904,10 @@ namespace AssetManagement.Finance
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit subdRpositoryItemLookUpEdit;
-        private System.Windows.Forms.ToolStripStatusLabel incomesInEURToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel incomesInSYPToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInUSDToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInEURToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInSYPToolStripStatusLabel;
+        private System.Windows.Forms.DataGridView totalsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFiCurrency;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalIncoming;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalOutgoing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalRecycled;
     }
 }

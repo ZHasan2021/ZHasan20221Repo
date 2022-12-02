@@ -336,11 +336,12 @@ namespace AssetManagement.Assets
             }
             mainChartControl.Series.Clear();
 
-            if(secondFieldBarCheckItem.Checked)
+            if (secondFieldBarCheckItem.Checked)
             {
                 mainChartControl.SeriesTemplate.ChangeView(ViewType.StackedBar);
                 mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
-                mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), "العدد");
+                //mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), aggregateStatTypeBarEditItem.EditValue.ToString().Replace("عدد الأصول", "العدد").Replace("مجموع مبالغ الشراء", "سعر الشراء"));
 
                 // Enable series point labels, specify their text pattern and position:
                 mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
@@ -349,11 +350,12 @@ namespace AssetManagement.Assets
 
                 // Customize series view settings (for example, bar width):
                 StackedBarSeriesView view = (StackedBarSeriesView)mainChartControl.SeriesTemplate.View;
-                view.BarWidth = 0.8;
+                view.BarWidth = 0.7;
 
                 // Disable minor tickmarks on the x-axis:
                 XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
                 diagram.AxisX.Tickmarks.MinorVisible = false;
+                diagram.Rotated = true;
 
                 // Specify legend settings:
                 mainChartControl.Legend.MarkerMode = LegendMarkerMode.CheckBoxAndMarker;
@@ -365,7 +367,7 @@ namespace AssetManagement.Assets
                 mainChartControl.SeriesTemplate.ChangeView(ViewType.Bar);
                 mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
                 mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
-                mainChartControl.SeriesTemplate.ValueDataMembers.AddRange("العدد");
+                mainChartControl.SeriesTemplate.ValueDataMembers.AddRange(aggregateStatTypeBarEditItem.EditValue.ToString().Replace("عدد الأصول", "العدد").Replace("مجموع مبالغ الشراء", "سعر الشراء"));
                 //mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), "العدد");
 
                 // Enable series point labels, specify their text pattern and position:
@@ -376,11 +378,12 @@ namespace AssetManagement.Assets
                 // Customize series view settings (for example, bar width):
                 BarSeriesView view = (BarSeriesView)mainChartControl.SeriesTemplate.View;
                 view.AggregateFunction = SeriesAggregateFunction.Sum;
-                view.BarWidth = 0.8;
+                view.BarWidth = 0.7;
 
                 // Disable minor tickmarks on the x-axis:
                 XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
                 diagram.AxisX.Tickmarks.MinorVisible = false;
+                diagram.Rotated = true;
 
                 // Specify legend settings:
                 mainChartControl.Legend.MarkerMode = LegendMarkerMode.CheckBoxAndMarker;

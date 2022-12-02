@@ -51,6 +51,32 @@ namespace AssetManagement.Finance
             outgoingInUSDToolStripStatusLabel.Text = $"مجموع الصادرات بالدولار: {outgoingUSD_Am}";
             outgoingInEURToolStripStatusLabel.Text = $"مجموع الصادرات باليورو: {outgoingEUR_Am}";
             outgoingInSYPToolStripStatusLabel.Text = $"مجموع الصادرات بالليرة: {outgoingSYP_Am}";
+
+            totalsDataGridView.Rows.Clear();
+            List<string> currenciesList = StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName).ToList();
+            foreach (string oneCu in currenciesList)
+            {
+                if (!StaticCode.mainDbContext.FinancialItemVws.Any(fiv1 => fiv1.العملة == oneCu))
+                    continue;
+                var incomingCu = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "وارد");
+                double incomingCu_Am = 0;
+                if (incomingCu != null && incomingCu.Count() > 0)
+                    incomingCu_Am = incomingCu.Sum(fiv2 => fiv2.المبلغ_الوارد);
+                var incomingCuPrevMonth = incomingCu.Where(fi1 => fi1.تاريخ_تحرير_السجل.AddMonths(1).Month == DateTime.Today.Month && fi1.تاريخ_تحرير_السجل.AddMonths(1).Year == DateTime.Today.Year);
+                double incomingCuPrevMonth_Am = 0;
+                if (incomingCuPrevMonth != null && incomingCuPrevMonth.Count() > 0)
+                    incomingCuPrevMonth_Am = incomingCuPrevMonth.Sum(fiv2 => fiv2.المبلغ_الوارد);
+                var outgoingCu = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "صادر");
+                double outgoingCu_Am = 0;
+                if (outgoingCu != null && outgoingCu.Count() > 0)
+                    outgoingCu_Am = outgoingCu.Sum(fiv2 => fiv2.المبلغ_الصادر);
+                var outgoingCuPrevMonth = outgoingCu.Where(fi1 => fi1.تاريخ_تحرير_السجل.AddMonths(1).Month == DateTime.Today.Month && fi1.تاريخ_تحرير_السجل.AddMonths(1).Year == DateTime.Today.Year);
+                double outgoingCuPrevMonth_Am = 0;
+                if (outgoingCuPrevMonth != null && outgoingCuPrevMonth.Count() > 0)
+                    outgoingCuPrevMonth_Am = outgoingCuPrevMonth.Sum(fiv2 => fiv2.المبلغ_الصادر);
+                double recycledCu_Am = incomingCuPrevMonth_Am - outgoingCuPrevMonth_Am;
+                totalsDataGridView.Rows.Add(new object[] { oneCu, incomingCu_Am, outgoingCu_Am, recycledCu_Am });
+            }
         }
 
         private void ManageFinancialItemTblForm_Load(object sender, EventArgs e)
