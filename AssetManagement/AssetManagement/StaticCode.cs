@@ -745,13 +745,11 @@ namespace AssetManagement
             return "Done!";
         }
 
-        public static List<string> ImportFinancialItemsFromExcel(string fiItsFilePath, out int errorCat)
+        public static string ImportFinancialItemsFromExcel_Old(string fiItsFilePath)
         {
-            errorCat = 0;
             if (!File.Exists(fiItsFilePath))
             {
-                errorCat = 1;
-                return null;
+                return ("مسار الملف غير صحيح");
             }
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(fiItsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
@@ -759,28 +757,26 @@ namespace AssetManagement
             string sectionName = srcExcelWs.Cells[2, 1].Value?.ToString().Replace("الدائرة:", "").Trim();
             string departmentName = srcExcelWs.Cells[2, 3].Value?.ToString().Replace("القسم:", "").Trim();
             string subDepartmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("الوحدة:", "").Trim();
-            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
-            if (StaticCode.activeUserRole.IsSectionIndependent == true)
+            if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
             {
-                if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
-                {
-                    errorCat = 2;
-                    return null;
-                }
+                return ("الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
+                    );
             }
-            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+            if (!StaticCode.mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName))
             {
-                if (!StaticCode.mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم== sectionName))
+                if (StaticCode.activeUserRole.IsSectionIndependent != true)
                 {
-                    errorCat = 2;
-                    return null;
+                    return ("القسم المضمن في ملف الإكسل غير موجودة في سجلات الأقسام أو لا يتبع للدائرة المضمنة في ملف الإكسل ذاته");
                 }
             }
 
+            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
             if (existedSubDept == null || existedSubDept.Count() == 0)
             {
-                errorCat = 2;
-                return null;
+                if (StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                {
+                    return ("الوحدة المضمنة في ملف الإكسل غير موجودة في سجلات الوحدات أو لا تتبع للقسم والدائرة المضمنين في ملف الإكسل ذاته");
+                }
             }
             List<string> unknownMinorCategories = new List<string>();
             List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
@@ -827,18 +823,123 @@ namespace AssetManagement
                     }
                     rowStartNo++;
                 }
-                StaticCode.mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
-                StaticCode.mainDbContext.SubmitChanges();
             }
             catch
             {
-                errorCat = 3;
-                return null;
+                return ("ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد");
             }
 
             if (unknownMinorCategories.Count() > 0)
-                errorCat = 4;
-            return unknownMinorCategories;
+            {
+                string tmp = "";
+                foreach (string oneItem in unknownMinorCategories)
+                {
+                    tmp += oneItem + "\r\n";
+                }
+                return ($"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها");
+            }
+            StaticCode.mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
+            StaticCode.mainDbContext.SubmitChanges();
+            return "Done!";
+        }
+
+        public static string ImportFinancialItemsFromExcel(string fiItsFilePath)
+        {
+            if (!File.Exists(fiItsFilePath))
+            {
+                return ("مسار الملف غير صحيح");
+            }
+            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(fiItsFilePath));
+            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
+            ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+            string sectionName = srcExcelWs.Cells[2, 1].Value?.ToString().Replace("الدائرة:", "").Trim();
+            string departmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("القسم:", "").Trim();
+            string subDepartmentName = srcExcelWs.Cells[2, 7].Value?.ToString().Replace("الوحدة:", "").Trim();
+            if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
+            {
+                return ("الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
+                    );
+            }
+            if (!StaticCode.mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName))
+            {
+                if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                {
+                    return ("القسم المضمن في ملف الإكسل غير موجودة في سجلات الأقسام أو لا يتبع للدائرة المضمنة في ملف الإكسل ذاته");
+                }
+            }
+
+            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+            if (existedSubDept == null || existedSubDept.Count() == 0)
+            {
+                if (StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                {
+                    return ("الوحدة المضمنة في ملف الإكسل غير موجودة في سجلات الوحدات أو لا تتبع للقسم والدائرة المضمنين في ملف الإكسل ذاته");
+                }
+            }
+            List<string> unknownMinorCategories = new List<string>();
+            List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
+            try
+            {
+                //if(!StaticCode.mainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName.Contains("دولار")))
+                int usdDollarCurrID = StaticCode.mainDbContext.CurrencyTbls.Where(cu1 => cu1.CurrencyName.Contains("دولار")).First().ID;
+                int rowStartNo = 5;
+                bool isIncoming = true;
+                while (rowStartNo <= srcExcelWs.Dimension.End.Row)
+                {
+                    Application.DoEvents();
+
+                    if (srcExcelWs.Cells[rowStartNo, 1].Value?.ToString() == "ثانياً : المصاريف :")
+                    {
+                        isIncoming = false;
+                        rowStartNo++;
+                    }
+                    if (srcExcelWs.Cells[rowStartNo, 5].Value == null || srcExcelWs.Cells[rowStartNo, 5].Value?.ToString() == "")
+                    {
+                        rowStartNo++;
+                        continue;
+                    }
+                    string fiItCatName = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString().Split(':')[0].ToString();
+                    var existedFiItCat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == fiItCatName);
+                    if (existedFiItCat.Count() != 1)
+                    {
+                        unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {fiItCatName}");
+                    }
+                    else
+                    {
+                        FinancialItemTbl newFinancialItem = new FinancialItemTbl()
+                        {
+                            FinancialItemCategory = existedFiItCat.First().ID,
+                            FinancialItemDescription = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString(),
+                            FinancialItemSubDept = existedSubDept.First().معرف_الوحدة,
+                            FinancialItemInsertionDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 4].Value),
+                            FinancialItemCurrency = usdDollarCurrID,
+                            IncomingAmount = (isIncoming) ? Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 1].Value) : 0,
+                            IncomingOrOutgoing = (isIncoming) ? "وارد" : "صادر",
+                            OutgoingAmount = (isIncoming) ? 0 : Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 2].Value),
+                            AdditionalNotes = "",
+                        };
+                        importedAssets.Add(newFinancialItem);
+                    }
+                    rowStartNo++;
+                }
+            }
+            catch
+            {
+                return ("ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد");
+            }
+
+            if (unknownMinorCategories.Count() > 0)
+            {
+                string tmp = "";
+                foreach (string oneItem in unknownMinorCategories)
+                {
+                    tmp += oneItem + "\r\n";
+                }
+                return ($"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها");
+            }
+            StaticCode.mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
+            StaticCode.mainDbContext.SubmitChanges();
+            return "Done!";
         }
         #endregion
 
@@ -1139,6 +1240,7 @@ namespace AssetManagement
         #region Finance
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
+        public static string FinancialReportPath2 = $"{FinanceFolder}financial blank report2.xlsx";
         #endregion
     }
 

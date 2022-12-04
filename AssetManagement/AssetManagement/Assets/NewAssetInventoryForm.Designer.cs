@@ -33,7 +33,6 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewAssetInventoryForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.excludeSoldAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.excludeOutOfWorkAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
@@ -231,7 +230,6 @@ namespace AssetManagement.Assets
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.excludeSoldAssetsCheckBox);
             this.panel1.Controls.Add(this.excludeOutOfWorkAssetsCheckBox);
             this.panel1.Controls.Add(this.searchAssetDropDownButton);
             this.panel1.Controls.Add(this.exportToExcelDropDownButton);
@@ -242,18 +240,6 @@ namespace AssetManagement.Assets
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1258, 111);
             this.panel1.TabIndex = 0;
-            // 
-            // excludeSoldAssetsCheckBox
-            // 
-            this.excludeSoldAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.excludeSoldAssetsCheckBox.AutoSize = true;
-            this.excludeSoldAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excludeSoldAssetsCheckBox.Location = new System.Drawing.Point(96, 68);
-            this.excludeSoldAssetsCheckBox.Name = "excludeSoldAssetsCheckBox";
-            this.excludeSoldAssetsCheckBox.Size = new System.Drawing.Size(107, 25);
-            this.excludeSoldAssetsCheckBox.TabIndex = 535;
-            this.excludeSoldAssetsCheckBox.Text = "استثناء المباع";
-            this.excludeSoldAssetsCheckBox.UseVisualStyleBackColor = true;
             // 
             // excludeOutOfWorkAssetsCheckBox
             // 
@@ -1826,7 +1812,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
         private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
         private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
-        private System.Windows.Forms.CheckBox excludeSoldAssetsCheckBox;
         private System.Windows.Forms.CheckBox excludeOutOfWorkAssetsCheckBox;
     }
 }

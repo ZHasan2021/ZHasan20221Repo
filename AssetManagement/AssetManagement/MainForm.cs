@@ -484,44 +484,11 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                 return;
             }
 
-            int errorCat = -1;
-            List<string> importingReport = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName, out errorCat);
-            if (importingReport == null)
+            string errorMsg = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName);
+            if (errorMsg != "Done!")
             {
-                if (errorCat == 1)
-                {
-                    mainMemoEdit.Text = "مسار الملف غير صحيح";
-                    mainAlertControl.Show(this, "مسار الملف غير صحيح", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (errorCat == 2)
-                {
-                    string errorCat2Msg = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة في سجلات الدوائر والأقسام والوحدات (كلها أو بعضها) أو غير تابعة لبعضها إدارياً";
-                    if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                        errorCat2Msg = "الدائرة في ملف الإكسل غير موجودة في سجلات الدوائر";
-                    else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                        errorCat2Msg = "الدائرة والقسم في ملف الإكسل غير موجودة في سجلات الدوائر والأقسام (كلها أو بعضها) أو غير تابعة لبعضها إدارياً";
-                    mainMemoEdit.Text = errorCat2Msg;
-                    mainAlertControl.Show(this, errorCat2Msg, StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (errorCat == 3)
-                {
-                    mainMemoEdit.Text = "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد";
-                    mainAlertControl.Show(this, "ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد", StaticCode.ApplicationTitle);
-                    return;
-                }
-            }
-            if (errorCat == 4 && importingReport.Count() > 0)
-            {
-                string tmp = "";
-                foreach (string oneItem in importingReport)
-                {
-                    tmp += oneItem + "\r\n";
-                }
-                string importingReportStr = $"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها";
-                mainMemoEdit.Text = importingReportStr;
-                mainAlertControl.Show(this, "لم يتم استيراد الأصول", StaticCode.ApplicationTitle);
+                mainMemoEdit.Text = errorMsg;
+                mainAlertControl.Show(this, errorMsg, StaticCode.ApplicationTitle);
                 return;
             }
             else

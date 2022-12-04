@@ -76,6 +76,11 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اكتب مبلغ البيع أو الشراء أولاً", StaticCode.ApplicationTitle);
                 return;
             }
+            if (assetItemsQuantityToTransactNumericUpDown.Value < assetCurrentItemsQuantityNumericUpDown.Value && getAssetOutOfWorkCheckBox.Checked)
+            {
+                mainAlertControl.Show(this, "لا يمكن إخراج الأصل من الخدمة لأن العدد المطلوب تصريفه أقل من العدد الكلي للأصل", StaticCode.ApplicationTitle);
+                return;
+            }
 
             try
             {
@@ -129,6 +134,7 @@ namespace AssetManagement.Assets
                 this.assetTransactionTblBindingSource.EndEdit();
                 assetTransactionGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == assetToTransact_MVw.ID);
                 mainAlertControl.Show(this, $"تم تصريف الأصل وإضافة سجل تصريف بنجاح{((assetSold) ? " وإضافة سجل مالي خاص ببيع الأصل" : "")}", StaticCode.ApplicationTitle);
+                searchResultsListBox.Visible = viewAssetInformationBtn.Visible = false;
             }
             catch
             {
@@ -138,7 +144,7 @@ namespace AssetManagement.Assets
 
         private void searchAssetBtn_Click(object sender, EventArgs e)
         {
-            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = false;
+            searchResultsListBox.Visible = viewAssetInformationBtn.Visible = transactAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = false;
 
             srchRes = StaticCode.mainDbContext.AssetVws.Where(ast => ast.كود_الأصل.Contains(assetCodeTextBox.Text.Trim()));
             if (srchRes.Count() == 0)
@@ -171,7 +177,7 @@ namespace AssetManagement.Assets
 
         private void viewAssetInformationBtn_Click(object sender, EventArgs e)
         {
-            moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = false;
+            transactAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = false;
             if (searchResultsListBox.SelectedIndex == -1)
             {
                 mainAlertControl.Show(this, "اختر أحد الكودات في القائمة لاستعراض معلوماته", StaticCode.ApplicationTitle);
@@ -185,7 +191,7 @@ namespace AssetManagement.Assets
             assetItemsQuantityToTransactNumericUpDown.Maximum = assetCurrentItemsQuantityNumericUpDown.Value;
             assetItemsQuantityToTransactNumericUpDown.Value = 1;
             assetTransactionGridControl.DataSource = assetTrs;
-            moveAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
+            transactAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
             getAssetOutOfWorkCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
@@ -235,8 +241,16 @@ namespace AssetManagement.Assets
 
         private void transactionTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            getAssetOutOfWorkCheckBox.Enabled = transactionTypeLookUpEdit.Text != "بيع";
-            getAssetOutOfWorkCheckBox.Checked = false;
+            //getAssetOutOfWorkCheckBox.Enabled = transactionTypeLookUpEdit.Text != "بيع";
+            //getAssetOutOfWorkCheckBox.Checked = false;
+        }
+
+        private void assetItemsQuantityToTransactNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (assetItemsQuantityToTransactNumericUpDown.Value == assetCurrentItemsQuantityNumericUpDown.Value)
+            {
+                getAssetOutOfWorkCheckBox.Checked = true;
+            }
         }
     }
 }

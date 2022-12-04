@@ -279,7 +279,7 @@ namespace AssetManagement.Finance
             }
         }
 
-        private void exportFinancialReportToExcelDropDownButton_Click(object sender, EventArgs e)
+        private void exportFinancialReportToExcelDropDownButton_Click_Old(object sender, EventArgs e)
         {
             SaveFileDialog financialReportSFD = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (financialReportSFD.ShowDialog() != DialogResult.OK)
@@ -288,19 +288,21 @@ namespace AssetManagement.Finance
                 return;
             }
             string targetPath = financialReportSFD.FileName;
-            if (!File.Exists(StaticCode.FinancialReportPath))
+            if (!File.Exists(StaticCode.FinancialReportPath2))
             {
                 mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
                 MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            File.Copy(StaticCode.FinancialReportPath, targetPath, true);
+            File.Copy(StaticCode.FinancialReportPath2, targetPath, true);
             ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
+            string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
+            string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
             fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
             fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 4,2,5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
             int startRow = 5;
             foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
@@ -336,6 +338,106 @@ namespace AssetManagement.Finance
             foreach (string oneMaCa in mainCategoriesNames)
             {
                 fiRpWs.Cells[macaStartRow, 7].Value = oneMaCa;
+                macaStartRow++;
+            }
+            fiRpEp.Save();
+            mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
+            MessageBox.Show("تم التصدير بنجاح", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void exportFinancialReportToExcelDropDownButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog financialReportSFD = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (financialReportSFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+            string targetPath = financialReportSFD.FileName;
+            if (!File.Exists(StaticCode.FinancialReportPath2))
+            {
+                mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
+                MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            File.Copy(StaticCode.FinancialReportPath2, targetPath, true);
+            ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
+            ExcelWorkbook fiRpWb = fiRpEp.Workbook;
+            ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
+            ExcelWorksheet listsWs = fiRpWb.Worksheets["Lists"];
+
+            int ficaRowStart = 3;
+            int curRowStart = 96;
+            int curRowStart2 = 3;
+            int curColStart = 12;
+            foreach(FinancialItemCategoryTbl oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls)
+            {
+                listsWs.Cells[ficaRowStart, 3].Value = oneFiCa.FinancialItemCategoryName;
+                listsWs.Cells[ficaRowStart, 4].Value = oneFiCa.FinancialItemCategoryDetails;
+                ficaRowStart++;
+            }
+            foreach (CurrencyTbl oneCu in StaticCode.mainDbContext.CurrencyTbls)
+            {
+                fiRpWs.Cells[curRowStart, 1].Value =
+                listsWs.Cells[curRowStart2, 9].Value =
+                fiRpWs.Cells[4, curColStart].Value =
+                fiRpWs.Cells[14, curColStart].Value =
+                fiRpWs.Cells[60, curColStart].Value =
+                fiRpWs.Cells[68, curColStart].Value =
+                fiRpWs.Cells[81, curColStart].Value =
+                fiRpWs.Cells[88, curColStart].Value = oneCu.CurrencyName;
+                curRowStart++;
+                curRowStart2++;
+                curColStart++;
+            }
+            for (int iCol = 19; iCol >= curColStart; iCol--)
+                fiRpWs.DeleteColumn(iCol);
+
+            string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
+            string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
+            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
+            int startRow = 5;
+            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
+            {
+                Application.DoEvents();
+                fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
+                fiRpWs.Cells[startRow, 3].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
+                fiRpWs.Cells[startRow, 4].Value = oneFiRp.IncomingFrom;
+                fiRpWs.Cells[startRow, 7].Value = oneFiRp.FinancialItemDescription;
+                fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
+                fiRpWs.Cells[startRow, 9].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
+                startRow++;
+            }
+            using (var cells = fiRpWs.Cells[startRow, 1, startRow, 9])
+            {
+                cells.Merge = true;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Font.Color.SetColor(Color.FromArgb(31, 73, 125));
+                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(242, 220, 219));
+                cells.Value = "ثانياً : المصاريف :";
+            }
+            startRow++;
+            foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "صادر"))
+            {
+                Application.DoEvents();
+                fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;
+                fiRpWs.Cells[startRow, 3].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
+                fiRpWs.Cells[startRow, 5].Value = oneFiRp.OutgoingType;
+                fiRpWs.Cells[startRow, 6].Value = oneFiRp.OutgoingTo;
+                fiRpWs.Cells[startRow, 7].Value = oneFiRp.FinancialItemDescription;
+                fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
+                fiRpWs.Cells[startRow, 9].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
+                startRow++;
+            }
+            List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
+            int macaStartRow = 70;
+            int macaStartCol = 11;
+            foreach (string oneMaCa in mainCategoriesNames)
+            {
+                fiRpWs.Cells[macaStartRow, macaStartCol].Value = oneMaCa;
                 macaStartRow++;
             }
             fiRpEp.Save();

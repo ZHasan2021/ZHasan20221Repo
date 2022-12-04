@@ -1019,8 +1019,6 @@ namespace AssetManagement.Assets
             var assetsQry_Export = assetsQry;
             if (excludeOutOfWorkAssetsCheckBox.Checked)
                 assetsQry_Export = assetsQry_Export.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
-            if (excludeSoldAssetsCheckBox.Checked)
-                assetsQry_Export = assetsQry_Export.Where(ast1 => ast1.IsSold == null || ast1.IsSold != true);
 
             if (assetsQry_Export.Count() == 0)
                 return;

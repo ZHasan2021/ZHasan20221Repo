@@ -31,7 +31,7 @@ namespace AssetManagement.Assets
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransacteAssetForm));
-            this.moveAssetGroupBox = new System.Windows.Forms.GroupBox();
+            this.transactAssetGroupBox = new System.Windows.Forms.GroupBox();
             this.assetTransactionGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetTransactionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -42,6 +42,7 @@ namespace AssetManagement.Assets
             this.transactionTypeRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.transactionTypeTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.colTransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionNotes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionMadeOn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionMadeBy = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -88,8 +89,7 @@ namespace AssetManagement.Assets
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.moveAssetGroupBox.SuspendLayout();
+            this.transactAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -112,20 +112,20 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // moveAssetGroupBox
+            // transactAssetGroupBox
             // 
-            this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveAssetGroupBox.Controls.Add(this.assetTransactionGridControl);
-            this.moveAssetGroupBox.Controls.Add(this.assetTransactionPanel);
-            this.moveAssetGroupBox.Controls.Add(this.assetInfoTextBox);
-            this.moveAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 168);
-            this.moveAssetGroupBox.Name = "moveAssetGroupBox";
-            this.moveAssetGroupBox.Size = new System.Drawing.Size(1276, 633);
-            this.moveAssetGroupBox.TabIndex = 100;
-            this.moveAssetGroupBox.TabStop = false;
-            this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
-            this.moveAssetGroupBox.Visible = false;
+            this.transactAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.transactAssetGroupBox.Controls.Add(this.assetTransactionGridControl);
+            this.transactAssetGroupBox.Controls.Add(this.assetTransactionPanel);
+            this.transactAssetGroupBox.Controls.Add(this.assetInfoTextBox);
+            this.transactAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.transactAssetGroupBox.Location = new System.Drawing.Point(0, 168);
+            this.transactAssetGroupBox.Name = "transactAssetGroupBox";
+            this.transactAssetGroupBox.Size = new System.Drawing.Size(1276, 633);
+            this.transactAssetGroupBox.TabIndex = 100;
+            this.transactAssetGroupBox.TabStop = false;
+            this.transactAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
+            this.transactAssetGroupBox.Visible = false;
             // 
             // assetTransactionGridControl
             // 
@@ -225,6 +225,16 @@ namespace AssetManagement.Assets
             this.colTransactionDate.Visible = true;
             this.colTransactionDate.VisibleIndex = 1;
             this.colTransactionDate.Width = 72;
+            // 
+            // colQuantityTransacted
+            // 
+            this.colQuantityTransacted.Caption = "العدد";
+            this.colQuantityTransacted.FieldName = "QuantityTransacted";
+            this.colQuantityTransacted.MinWidth = 100;
+            this.colQuantityTransacted.Name = "colQuantityTransacted";
+            this.colQuantityTransacted.Visible = true;
+            this.colQuantityTransacted.VisibleIndex = 2;
+            this.colQuantityTransacted.Width = 100;
             // 
             // colTransactionNotes
             // 
@@ -421,6 +431,7 @@ namespace AssetManagement.Assets
             0,
             0,
             0});
+            this.assetItemsQuantityToTransactNumericUpDown.ValueChanged += new System.EventHandler(this.assetItemsQuantityToTransactNumericUpDown_ValueChanged);
             // 
             // currentPriceWithDestroyingLabel
             // 
@@ -769,16 +780,6 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
-            // colQuantityTransacted
-            // 
-            this.colQuantityTransacted.Caption = "العدد";
-            this.colQuantityTransacted.FieldName = "QuantityTransacted";
-            this.colQuantityTransacted.MinWidth = 100;
-            this.colQuantityTransacted.Name = "colQuantityTransacted";
-            this.colQuantityTransacted.Visible = true;
-            this.colQuantityTransacted.VisibleIndex = 2;
-            this.colQuantityTransacted.Width = 100;
-            // 
             // TransacteAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -790,7 +791,7 @@ namespace AssetManagement.Assets
             this.Controls.Add(this.searchAssetBtn);
             this.Controls.Add(this.assetCodeLabel);
             this.Controls.Add(this.assetCodeTextBox);
-            this.Controls.Add(this.moveAssetGroupBox);
+            this.Controls.Add(this.transactAssetGroupBox);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -801,8 +802,8 @@ namespace AssetManagement.Assets
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تصريف أصل";
             this.Load += new System.EventHandler(this.TransacteAssetForm_Load);
-            this.moveAssetGroupBox.ResumeLayout(false);
-            this.moveAssetGroupBox.PerformLayout();
+            this.transactAssetGroupBox.ResumeLayout(false);
+            this.transactAssetGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -830,7 +831,7 @@ namespace AssetManagement.Assets
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox moveAssetGroupBox;
+        private System.Windows.Forms.GroupBox transactAssetGroupBox;
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private AssetMngDbDataSet assetMngDbDataSet;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
