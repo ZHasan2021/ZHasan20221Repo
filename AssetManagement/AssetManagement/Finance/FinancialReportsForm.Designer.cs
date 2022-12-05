@@ -78,16 +78,6 @@ namespace AssetManagement.Finance
             this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
             this.financialReportTabControl = new System.Windows.Forms.TabControl();
             this.detailedFiguresTabPage = new System.Windows.Forms.TabPage();
-            this.aggFiguesTabPage = new System.Windows.Forms.TabPage();
-            this.financialItemTblPanel = new System.Windows.Forms.Panel();
-            this.subLevelTotalsTreeView = new System.Windows.Forms.TreeView();
-            this.moneySummaryPanel = new System.Windows.Forms.Panel();
-            this.totalCycledNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.totalCycledLabel = new System.Windows.Forms.Label();
-            this.totalOutcomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.totalOutcomesLabel = new System.Windows.Forms.Label();
-            this.totalIncomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.totalIncomesLabel = new System.Windows.Forms.Label();
             this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
             this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -111,6 +101,16 @@ namespace AssetManagement.Finance
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.subdRpositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.financialItemTblPanel = new System.Windows.Forms.Panel();
+            this.moneySummaryPanel = new System.Windows.Forms.Panel();
+            this.subLevelTotalsTreeView = new System.Windows.Forms.TreeView();
+            this.totalCycledNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.totalCycledLabel = new System.Windows.Forms.Label();
+            this.totalOutcomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.totalOutcomesLabel = new System.Windows.Forms.Label();
+            this.totalIncomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.totalIncomesLabel = new System.Windows.Forms.Label();
+            this.aggFiguesTabPage = new System.Windows.Forms.TabPage();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.searchByCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.searchByCurrencyCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,11 +136,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource1)).BeginInit();
             this.financialReportTabControl.SuspendLayout();
             this.detailedFiguresTabPage.SuspendLayout();
-            this.financialItemTblPanel.SuspendLayout();
-            this.moneySummaryPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
@@ -149,6 +144,11 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).BeginInit();
+            this.financialItemTblPanel.SuspendLayout();
+            this.moneySummaryPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -385,13 +385,11 @@ namespace AssetManagement.Finance
             // 
             this.searchAllRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAllRadioButton.AutoSize = true;
-            this.searchAllRadioButton.Checked = true;
             this.searchAllRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchAllRadioButton.Location = new System.Drawing.Point(30, 15);
             this.searchAllRadioButton.Name = "searchAllRadioButton";
             this.searchAllRadioButton.Size = new System.Drawing.Size(144, 25);
             this.searchAllRadioButton.TabIndex = 15;
-            this.searchAllRadioButton.TabStop = true;
             this.searchAllRadioButton.Text = "كل السجلات المالية";
             this.searchAllRadioButton.UseVisualStyleBackColor = true;
             this.searchAllRadioButton.CheckedChanged += new System.EventHandler(this.searchInDeptRadioButton_CheckedChanged);
@@ -623,131 +621,6 @@ namespace AssetManagement.Finance
             this.detailedFiguresTabPage.TabIndex = 0;
             this.detailedFiguresTabPage.Text = "الأرقام التفصيلية";
             this.detailedFiguresTabPage.UseVisualStyleBackColor = true;
-            // 
-            // aggFiguesTabPage
-            // 
-            this.aggFiguesTabPage.Location = new System.Drawing.Point(4, 33);
-            this.aggFiguesTabPage.Name = "aggFiguesTabPage";
-            this.aggFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.aggFiguesTabPage.Size = new System.Drawing.Size(728, 700);
-            this.aggFiguesTabPage.TabIndex = 1;
-            this.aggFiguesTabPage.Text = "الأرقام الإجمالية";
-            this.aggFiguesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // financialItemTblPanel
-            // 
-            this.financialItemTblPanel.Controls.Add(this.moneySummaryPanel);
-            this.financialItemTblPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.financialItemTblPanel.Location = new System.Drawing.Point(3, 3);
-            this.financialItemTblPanel.Name = "financialItemTblPanel";
-            this.financialItemTblPanel.Size = new System.Drawing.Size(722, 319);
-            this.financialItemTblPanel.TabIndex = 652;
-            this.financialItemTblPanel.Visible = false;
-            // 
-            // subLevelTotalsTreeView
-            // 
-            this.subLevelTotalsTreeView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.subLevelTotalsTreeView.Location = new System.Drawing.Point(0, 0);
-            this.subLevelTotalsTreeView.Name = "subLevelTotalsTreeView";
-            this.subLevelTotalsTreeView.RightToLeftLayout = true;
-            this.subLevelTotalsTreeView.Size = new System.Drawing.Size(391, 313);
-            this.subLevelTotalsTreeView.TabIndex = 700;
-            // 
-            // moneySummaryPanel
-            // 
-            this.moneySummaryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.moneySummaryPanel.Controls.Add(this.subLevelTotalsTreeView);
-            this.moneySummaryPanel.Controls.Add(this.totalCycledNumericUpDown);
-            this.moneySummaryPanel.Controls.Add(this.totalCycledLabel);
-            this.moneySummaryPanel.Controls.Add(this.totalOutcomesNumericUpDown);
-            this.moneySummaryPanel.Controls.Add(this.totalOutcomesLabel);
-            this.moneySummaryPanel.Controls.Add(this.totalIncomesNumericUpDown);
-            this.moneySummaryPanel.Controls.Add(this.totalIncomesLabel);
-            this.moneySummaryPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.moneySummaryPanel.Location = new System.Drawing.Point(0, 0);
-            this.moneySummaryPanel.Name = "moneySummaryPanel";
-            this.moneySummaryPanel.Size = new System.Drawing.Size(722, 313);
-            this.moneySummaryPanel.TabIndex = 652;
-            // 
-            // totalCycledNumericUpDown
-            // 
-            this.totalCycledNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalCycledNumericUpDown.DecimalPlaces = 2;
-            this.totalCycledNumericUpDown.Enabled = false;
-            this.totalCycledNumericUpDown.Location = new System.Drawing.Point(420, 116);
-            this.totalCycledNumericUpDown.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
-            0,
-            0});
-            this.totalCycledNumericUpDown.Minimum = new decimal(new int[] {
-            -727379968,
-            232,
-            0,
-            -2147483648});
-            this.totalCycledNumericUpDown.Name = "totalCycledNumericUpDown";
-            this.totalCycledNumericUpDown.Size = new System.Drawing.Size(153, 32);
-            this.totalCycledNumericUpDown.TabIndex = 680;
-            // 
-            // totalCycledLabel
-            // 
-            this.totalCycledLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalCycledLabel.AutoSize = true;
-            this.totalCycledLabel.Location = new System.Drawing.Point(590, 120);
-            this.totalCycledLabel.Name = "totalCycledLabel";
-            this.totalCycledLabel.Size = new System.Drawing.Size(109, 24);
-            this.totalCycledLabel.TabIndex = 675;
-            this.totalCycledLabel.Text = "الرصيد المدور:";
-            // 
-            // totalOutcomesNumericUpDown
-            // 
-            this.totalOutcomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalOutcomesNumericUpDown.DecimalPlaces = 2;
-            this.totalOutcomesNumericUpDown.Enabled = false;
-            this.totalOutcomesNumericUpDown.Location = new System.Drawing.Point(420, 66);
-            this.totalOutcomesNumericUpDown.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
-            0,
-            0});
-            this.totalOutcomesNumericUpDown.Name = "totalOutcomesNumericUpDown";
-            this.totalOutcomesNumericUpDown.Size = new System.Drawing.Size(153, 32);
-            this.totalOutcomesNumericUpDown.TabIndex = 670;
-            // 
-            // totalOutcomesLabel
-            // 
-            this.totalOutcomesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalOutcomesLabel.AutoSize = true;
-            this.totalOutcomesLabel.Location = new System.Drawing.Point(591, 70);
-            this.totalOutcomesLabel.Name = "totalOutcomesLabel";
-            this.totalOutcomesLabel.Size = new System.Drawing.Size(108, 24);
-            this.totalOutcomesLabel.TabIndex = 665;
-            this.totalOutcomesLabel.Text = "إجمالي الصادر:";
-            // 
-            // totalIncomesNumericUpDown
-            // 
-            this.totalIncomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalIncomesNumericUpDown.DecimalPlaces = 2;
-            this.totalIncomesNumericUpDown.Enabled = false;
-            this.totalIncomesNumericUpDown.Location = new System.Drawing.Point(420, 16);
-            this.totalIncomesNumericUpDown.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
-            0,
-            0});
-            this.totalIncomesNumericUpDown.Name = "totalIncomesNumericUpDown";
-            this.totalIncomesNumericUpDown.Size = new System.Drawing.Size(153, 32);
-            this.totalIncomesNumericUpDown.TabIndex = 660;
-            // 
-            // totalIncomesLabel
-            // 
-            this.totalIncomesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalIncomesLabel.AutoSize = true;
-            this.totalIncomesLabel.Location = new System.Drawing.Point(602, 20);
-            this.totalIncomesLabel.Name = "totalIncomesLabel";
-            this.totalIncomesLabel.Size = new System.Drawing.Size(97, 24);
-            this.totalIncomesLabel.TabIndex = 655;
-            this.totalIncomesLabel.Text = "إجمالي الوارد:";
             // 
             // financialItemCategoryGridControl
             // 
@@ -1009,6 +882,131 @@ namespace AssetManagement.Finance
             this.subdRpositoryItemLookUpEdit.PopupWidth = 437;
             this.subdRpositoryItemLookUpEdit.ValueMember = "ID";
             // 
+            // financialItemTblPanel
+            // 
+            this.financialItemTblPanel.Controls.Add(this.moneySummaryPanel);
+            this.financialItemTblPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.financialItemTblPanel.Location = new System.Drawing.Point(3, 3);
+            this.financialItemTblPanel.Name = "financialItemTblPanel";
+            this.financialItemTblPanel.Size = new System.Drawing.Size(722, 319);
+            this.financialItemTblPanel.TabIndex = 652;
+            this.financialItemTblPanel.Visible = false;
+            // 
+            // moneySummaryPanel
+            // 
+            this.moneySummaryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.moneySummaryPanel.Controls.Add(this.subLevelTotalsTreeView);
+            this.moneySummaryPanel.Controls.Add(this.totalCycledNumericUpDown);
+            this.moneySummaryPanel.Controls.Add(this.totalCycledLabel);
+            this.moneySummaryPanel.Controls.Add(this.totalOutcomesNumericUpDown);
+            this.moneySummaryPanel.Controls.Add(this.totalOutcomesLabel);
+            this.moneySummaryPanel.Controls.Add(this.totalIncomesNumericUpDown);
+            this.moneySummaryPanel.Controls.Add(this.totalIncomesLabel);
+            this.moneySummaryPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.moneySummaryPanel.Location = new System.Drawing.Point(0, 0);
+            this.moneySummaryPanel.Name = "moneySummaryPanel";
+            this.moneySummaryPanel.Size = new System.Drawing.Size(722, 313);
+            this.moneySummaryPanel.TabIndex = 652;
+            // 
+            // subLevelTotalsTreeView
+            // 
+            this.subLevelTotalsTreeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.subLevelTotalsTreeView.Location = new System.Drawing.Point(0, 0);
+            this.subLevelTotalsTreeView.Name = "subLevelTotalsTreeView";
+            this.subLevelTotalsTreeView.RightToLeftLayout = true;
+            this.subLevelTotalsTreeView.Size = new System.Drawing.Size(391, 313);
+            this.subLevelTotalsTreeView.TabIndex = 700;
+            // 
+            // totalCycledNumericUpDown
+            // 
+            this.totalCycledNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalCycledNumericUpDown.DecimalPlaces = 2;
+            this.totalCycledNumericUpDown.Enabled = false;
+            this.totalCycledNumericUpDown.Location = new System.Drawing.Point(420, 116);
+            this.totalCycledNumericUpDown.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+            this.totalCycledNumericUpDown.Minimum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            -2147483648});
+            this.totalCycledNumericUpDown.Name = "totalCycledNumericUpDown";
+            this.totalCycledNumericUpDown.Size = new System.Drawing.Size(153, 32);
+            this.totalCycledNumericUpDown.TabIndex = 680;
+            // 
+            // totalCycledLabel
+            // 
+            this.totalCycledLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalCycledLabel.AutoSize = true;
+            this.totalCycledLabel.Location = new System.Drawing.Point(590, 120);
+            this.totalCycledLabel.Name = "totalCycledLabel";
+            this.totalCycledLabel.Size = new System.Drawing.Size(109, 24);
+            this.totalCycledLabel.TabIndex = 675;
+            this.totalCycledLabel.Text = "الرصيد المدور:";
+            // 
+            // totalOutcomesNumericUpDown
+            // 
+            this.totalOutcomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalOutcomesNumericUpDown.DecimalPlaces = 2;
+            this.totalOutcomesNumericUpDown.Enabled = false;
+            this.totalOutcomesNumericUpDown.Location = new System.Drawing.Point(420, 66);
+            this.totalOutcomesNumericUpDown.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+            this.totalOutcomesNumericUpDown.Name = "totalOutcomesNumericUpDown";
+            this.totalOutcomesNumericUpDown.Size = new System.Drawing.Size(153, 32);
+            this.totalOutcomesNumericUpDown.TabIndex = 670;
+            // 
+            // totalOutcomesLabel
+            // 
+            this.totalOutcomesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalOutcomesLabel.AutoSize = true;
+            this.totalOutcomesLabel.Location = new System.Drawing.Point(591, 70);
+            this.totalOutcomesLabel.Name = "totalOutcomesLabel";
+            this.totalOutcomesLabel.Size = new System.Drawing.Size(108, 24);
+            this.totalOutcomesLabel.TabIndex = 665;
+            this.totalOutcomesLabel.Text = "إجمالي الصادر:";
+            // 
+            // totalIncomesNumericUpDown
+            // 
+            this.totalIncomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalIncomesNumericUpDown.DecimalPlaces = 2;
+            this.totalIncomesNumericUpDown.Enabled = false;
+            this.totalIncomesNumericUpDown.Location = new System.Drawing.Point(420, 16);
+            this.totalIncomesNumericUpDown.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+            this.totalIncomesNumericUpDown.Name = "totalIncomesNumericUpDown";
+            this.totalIncomesNumericUpDown.Size = new System.Drawing.Size(153, 32);
+            this.totalIncomesNumericUpDown.TabIndex = 660;
+            // 
+            // totalIncomesLabel
+            // 
+            this.totalIncomesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalIncomesLabel.AutoSize = true;
+            this.totalIncomesLabel.Location = new System.Drawing.Point(602, 20);
+            this.totalIncomesLabel.Name = "totalIncomesLabel";
+            this.totalIncomesLabel.Size = new System.Drawing.Size(97, 24);
+            this.totalIncomesLabel.TabIndex = 655;
+            this.totalIncomesLabel.Text = "إجمالي الوارد:";
+            // 
+            // aggFiguesTabPage
+            // 
+            this.aggFiguesTabPage.Location = new System.Drawing.Point(4, 33);
+            this.aggFiguesTabPage.Name = "aggFiguesTabPage";
+            this.aggFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.aggFiguesTabPage.Size = new System.Drawing.Size(728, 700);
+            this.aggFiguesTabPage.TabIndex = 1;
+            this.aggFiguesTabPage.Text = "الأرقام الإجمالية";
+            this.aggFiguesTabPage.UseVisualStyleBackColor = true;
+            // 
             // manageCurrencyTblBtn
             // 
             this.manageCurrencyTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1111,12 +1109,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource1)).EndInit();
             this.financialReportTabControl.ResumeLayout(false);
             this.detailedFiguresTabPage.ResumeLayout(false);
-            this.financialItemTblPanel.ResumeLayout(false);
-            this.moneySummaryPanel.ResumeLayout(false);
-            this.moneySummaryPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
@@ -1125,6 +1117,12 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subdRpositoryItemLookUpEdit)).EndInit();
+            this.financialItemTblPanel.ResumeLayout(false);
+            this.moneySummaryPanel.ResumeLayout(false);
+            this.moneySummaryPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

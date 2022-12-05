@@ -145,7 +145,7 @@ namespace AssetManagement.Finance
                 cardVwFrm.ShowDialog();
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
-                this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
+                //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
                 this.UpdateTotals();
             }
             catch

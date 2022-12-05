@@ -94,7 +94,7 @@ namespace AssetManagement.Assets
         }
 
         /// <summary>
-        /// 
+        /// 2- Validate the fields
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -165,7 +165,7 @@ namespace AssetManagement.Assets
         }
 
         /// <summary>
-        /// 
+        /// 1- Add the asset
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -179,43 +179,49 @@ namespace AssetManagement.Assets
             try
             {
                 int assetSubD = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue);
-                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                if (assetSectionLookUpEdit.EditValue == null)
                 {
-                    var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == StaticCode.PMName && sdptv1.القسم_التابعة_له == StaticCode.PMName && sdptv1.الدائرة_التي_يتبع_لها_القسم == StaticCode.PMName);
-                    if (qry_PM == null || qry_PM.Count() == 0)
+                    if (StaticCode.activeUserRole.IsSectionIndependent == true)
                     {
-                        SectionTbl newPM_Sec = new SectionTbl() { SectionName = StaticCode.PMName };
-                        StaticCode.mainDbContext.SectionTbls.InsertOnSubmit(newPM_Sec);
-                        StaticCode.mainDbContext.SubmitChanges();
-                        DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = StaticCode.PMName, SectionOfDepartment = newPM_Sec.ID };
-                        StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
-                        StaticCode.mainDbContext.SubmitChanges();
-                        SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = StaticCode.PMName, MainDepartment = newPM_Dpt.ID };
-                        StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
-                        StaticCode.mainDbContext.SubmitChanges();
-                        assetSubD = newPM_SDpt.ID;
-                    }
-                    else
-                    {
-                        assetSubD = qry_PM.First().معرف_الوحدة;
+                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == StaticCode.PMName && sdptv1.القسم_التابعة_له == StaticCode.PMName && sdptv1.الدائرة_التي_يتبع_لها_القسم == StaticCode.PMName);
+                        if (qry_PM == null || qry_PM.Count() == 0)
+                        {
+                            SectionTbl newPM_Sec = new SectionTbl() { SectionName = StaticCode.PMName };
+                            StaticCode.mainDbContext.SectionTbls.InsertOnSubmit(newPM_Sec);
+                            StaticCode.mainDbContext.SubmitChanges();
+                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = StaticCode.PMName, SectionOfDepartment = newPM_Sec.ID };
+                            StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
+                            StaticCode.mainDbContext.SubmitChanges();
+                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = StaticCode.PMName, MainDepartment = newPM_Dpt.ID };
+                            StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
+                            StaticCode.mainDbContext.SubmitChanges();
+                            assetSubD = newPM_SDpt.ID;
+                        }
+                        else
+                        {
+                            assetSubD = qry_PM.First().معرف_الوحدة;
+                        }
                     }
                 }
-                else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                else if (assetDeptLookUpEdit.EditValue == null)
                 {
-                    var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == assetSectionLookUpEdit.Text);
-                    if (qry_PM == null || qry_PM.Count() == 0)
+                    if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                     {
-                        DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(assetSectionLookUpEdit.EditValue) };
-                        StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
-                        StaticCode.mainDbContext.SubmitChanges();
-                        SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
-                        StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
-                        StaticCode.mainDbContext.SubmitChanges();
-                        assetSubD = newPM_SDpt.ID;
-                    }
-                    else
-                    {
-                        assetSubD = qry_PM.First().معرف_الوحدة;
+                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == assetSectionLookUpEdit.Text);
+                        if (qry_PM == null || qry_PM.Count() == 0)
+                        {
+                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(assetSectionLookUpEdit.EditValue) };
+                            StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
+                            StaticCode.mainDbContext.SubmitChanges();
+                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
+                            StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
+                            StaticCode.mainDbContext.SubmitChanges();
+                            assetSubD = newPM_SDpt.ID;
+                        }
+                        else
+                        {
+                            assetSubD = qry_PM.First().معرف_الوحدة;
+                        }
                     }
                 }
 

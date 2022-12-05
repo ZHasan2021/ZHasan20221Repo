@@ -1,5 +1,5 @@
 ﻿<XtraSerializer version="1.0" application="ManageFinancialItemTblForm">
-  <property name="RestoreBounds">@3,X=173@2,Y=49@4,Width=1189@3,Height=718</property>
-  <property name="WindowState">Normal</property>
+  <property name="RestoreBounds">@3,X=173@2,Y=49@4,Width=1203@3,Height=725</property>
+  <property name="WindowState">Maximized</property>
   <property name="MaximizedScreen" />
 </XtraSerializer>

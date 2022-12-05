@@ -51,6 +51,7 @@ namespace AssetManagement.Finance
             {
                 try
                 {
+                    searchAllRadioButton.Checked = searchAllRadioButton.Enabled = false;
                     searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
                     searchBySectionLookUpEdit.Enabled = false;
                 }
@@ -63,6 +64,7 @@ namespace AssetManagement.Finance
             {
                 try
                 {
+                    searchAllRadioButton.Checked = searchAllRadioButton.Enabled = searchBySectionRadioButton.Checked = searchBySectionRadioButton.Enabled = false;
                     searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
                     searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
                     searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
@@ -87,6 +89,12 @@ namespace AssetManagement.Finance
         /// <param name="e"></param>
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
+            if (!(searchAllRadioButton.Checked || searchBySectionRadioButton.Checked || searchByDepartmentRadioButton.Checked || searchBySubDepartmentRadioButton.Checked))
+            {
+                MessageBox.Show("اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainAlertControl.Show(this, "اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
             if (searchBySectionRadioButton.Checked && searchBySectionLookUpEdit.EditValue == null)
             {
                 MessageBox.Show("اختر الدائرة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -302,7 +310,7 @@ namespace AssetManagement.Finance
             string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
             fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
             fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 4,2,5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
             int startRow = 5;
             foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
@@ -369,7 +377,7 @@ namespace AssetManagement.Finance
             int curRowStart = 96;
             int curRowStart2 = 3;
             int curColStart = 12;
-            foreach(FinancialItemCategoryTbl oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls)
+            foreach (FinancialItemCategoryTbl oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls)
             {
                 listsWs.Cells[ficaRowStart, 3].Value = oneFiCa.FinancialItemCategoryName;
                 listsWs.Cells[ficaRowStart, 4].Value = oneFiCa.FinancialItemCategoryDetails;
@@ -393,10 +401,12 @@ namespace AssetManagement.Finance
                 fiRpWs.DeleteColumn(iCol);
 
             string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
+            string departmentVal = (StaticCode.activeUserRole.IsDepartmentIndependent != true) ? $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}" : "";
+            string subDepartmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true) ? $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}" : "";
+            fiRpWs.Cells[2, 1, 2, 3].Value = sectionVal;
+            fiRpWs.Cells[2, 4, 2, 6].Value = departmentVal;
+            fiRpWs.Cells[2, 7].Value = subDepartmentVal;
+            fiRpWs.Cells[2, 8, 2, 9].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
             int startRow = 5;
             foreach (FinancialItemTbl oneFiRp in financialItemsFromToQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {

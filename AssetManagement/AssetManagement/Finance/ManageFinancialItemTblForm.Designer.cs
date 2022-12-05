@@ -472,7 +472,7 @@ namespace AssetManagement.Finance
             this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.totalsDataGridView.RowTemplate.Height = 24;
             this.totalsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.totalsDataGridView.Size = new System.Drawing.Size(463, 766);
+            this.totalsDataGridView.Size = new System.Drawing.Size(572, 766);
             this.totalsDataGridView.TabIndex = 8;
             // 
             // colFiCurrency
@@ -535,7 +535,7 @@ namespace AssetManagement.Finance
             gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(463, 88);
+            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(572, 88);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
             this.financialItemCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -544,7 +544,7 @@ namespace AssetManagement.Finance
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
             this.subdRpositoryItemLookUpEdit});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(922, 766);
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(813, 766);
             this.financialItemCategoryGridControl.TabIndex = 9;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
