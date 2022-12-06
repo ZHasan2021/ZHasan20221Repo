@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using OfficeOpenXml.DataValidation;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
@@ -1097,6 +1098,41 @@ namespace AssetManagement.Assets
                 if (astWs.Column(iCol).Hidden)
                     astWs.DeleteColumn(iCol);
             }
+
+            int curr1Col = 8;
+            int curr2Col = 16;
+            int statusCol = 13;
+            if (formNo == 2)
+            {
+                curr1Col = 12;
+                curr2Col = 20;
+             statusCol = 17;
+            }
+            if (formNo == 3)
+            {
+                curr1Col = 15;
+                curr2Col = 23;
+             statusCol = 20;
+            }
+            var curr1DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr1Col, startRow + assetsQry_Export.Count(), curr1Col).ToString());
+            var curr2DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr2Col, startRow + assetsQry_Export.Count(), curr2Col).ToString());
+            var statusDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, statusCol, startRow + assetsQry_Export.Count(), statusCol).ToString());
+            curr1DataValidtion.ShowErrorMessage = curr2DataValidtion.ShowErrorMessage = statusDataValidtion.ShowErrorMessage = true;
+            curr1DataValidtion.ErrorStyle = curr2DataValidtion.ErrorStyle = statusDataValidtion.ErrorStyle = ExcelDataValidationWarningStyle.stop;
+            curr1DataValidtion.ErrorTitle = curr2DataValidtion.ErrorTitle = "خطأ في قيمة العملة المدخلة";
+            statusDataValidtion.ErrorTitle =  "خطأ في قيمة حالة الأصل المدخلة";
+            curr1DataValidtion.Error = curr2DataValidtion.Error = "اختر العملة من القائمة";
+            statusDataValidtion.Error =  "اختر حالة الأصل من القائمة";
+            foreach(string oneCurr in StaticCode.mainDbContext.CurrencyTbls.Select(cu1=>cu1.CurrencyName))
+            {
+                curr1DataValidtion.Formula.Values.Add(oneCurr);
+                curr2DataValidtion.Formula.Values.Add(oneCurr);
+            }
+            foreach (string oneSta in StaticCode.mainDbContext.StatusTbls.Select(stu1 => stu1.StatusName))
+            {
+                statusDataValidtion.Formula.Values.Add(oneSta);
+            }
+
             astEp.Save();
 
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);

@@ -72,6 +72,9 @@ namespace AssetManagement
     partial void InsertModelTbl(ModelTbl instance);
     partial void UpdateModelTbl(ModelTbl instance);
     partial void DeleteModelTbl(ModelTbl instance);
+    partial void InsertNumberingTbl(NumberingTbl instance);
+    partial void UpdateNumberingTbl(NumberingTbl instance);
+    partial void DeleteNumberingTbl(NumberingTbl instance);
     partial void InsertOptionsTbl(OptionsTbl instance);
     partial void UpdateOptionsTbl(OptionsTbl instance);
     partial void DeleteOptionsTbl(OptionsTbl instance);
@@ -237,6 +240,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<ModelTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<NumberingTbl> NumberingTbls
+		{
+			get
+			{
+				return this.GetTable<NumberingTbl>();
 			}
 		}
 		
@@ -5116,6 +5127,164 @@ namespace AssetManagement
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NumberingTbl")]
+	public partial class NumberingTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _NumberToSay;
+		
+		private string _Days;
+		
+		private string _Months;
+		
+		private string _Years;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNumberToSayChanging(int value);
+    partial void OnNumberToSayChanged();
+    partial void OnDaysChanging(string value);
+    partial void OnDaysChanged();
+    partial void OnMonthsChanging(string value);
+    partial void OnMonthsChanged();
+    partial void OnYearsChanging(string value);
+    partial void OnYearsChanged();
+    #endregion
+		
+		public NumberingTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberToSay", DbType="Int NOT NULL")]
+		public int NumberToSay
+		{
+			get
+			{
+				return this._NumberToSay;
+			}
+			set
+			{
+				if ((this._NumberToSay != value))
+				{
+					this.OnNumberToSayChanging(value);
+					this.SendPropertyChanging();
+					this._NumberToSay = value;
+					this.SendPropertyChanged("NumberToSay");
+					this.OnNumberToSayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Days", DbType="NVarChar(50)")]
+		public string Days
+		{
+			get
+			{
+				return this._Days;
+			}
+			set
+			{
+				if ((this._Days != value))
+				{
+					this.OnDaysChanging(value);
+					this.SendPropertyChanging();
+					this._Days = value;
+					this.SendPropertyChanged("Days");
+					this.OnDaysChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Months", DbType="NVarChar(50)")]
+		public string Months
+		{
+			get
+			{
+				return this._Months;
+			}
+			set
+			{
+				if ((this._Months != value))
+				{
+					this.OnMonthsChanging(value);
+					this.SendPropertyChanging();
+					this._Months = value;
+					this.SendPropertyChanged("Months");
+					this.OnMonthsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Years", DbType="NVarChar(50)")]
+		public string Years
+		{
+			get
+			{
+				return this._Years;
+			}
+			set
+			{
+				if ((this._Years != value))
+				{
+					this.OnYearsChanging(value);
+					this.SendPropertyChanging();
+					this._Years = value;
+					this.SendPropertyChanged("Years");
+					this.OnYearsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OptionsTbl")]
 	public partial class OptionsTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6199,6 +6368,8 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ViewFinancialReports;
 		
+		private System.Nullable<bool> _ViewFinancialItemsStats;
+		
 		private System.Nullable<bool> _AddNewFinancialItemCategory;
 		
 		private System.Nullable<bool> _ManageFinancialItemCategories;
@@ -6319,6 +6490,8 @@ namespace AssetManagement
     partial void OnDeleteFinancialItemRecordChanged();
     partial void OnViewFinancialReportsChanging(System.Nullable<bool> value);
     partial void OnViewFinancialReportsChanged();
+    partial void OnViewFinancialItemsStatsChanging(System.Nullable<bool> value);
+    partial void OnViewFinancialItemsStatsChanged();
     partial void OnAddNewFinancialItemCategoryChanging(System.Nullable<bool> value);
     partial void OnAddNewFinancialItemCategoryChanged();
     partial void OnManageFinancialItemCategoriesChanging(System.Nullable<bool> value);
@@ -7319,6 +7492,26 @@ namespace AssetManagement
 					this._ViewFinancialReports = value;
 					this.SendPropertyChanged("ViewFinancialReports");
 					this.OnViewFinancialReportsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewFinancialItemsStats", DbType="Bit")]
+		public System.Nullable<bool> ViewFinancialItemsStats
+		{
+			get
+			{
+				return this._ViewFinancialItemsStats;
+			}
+			set
+			{
+				if ((this._ViewFinancialItemsStats != value))
+				{
+					this.OnViewFinancialItemsStatsChanging(value);
+					this.SendPropertyChanging();
+					this._ViewFinancialItemsStats = value;
+					this.SendPropertyChanged("ViewFinancialItemsStats");
+					this.OnViewFinancialItemsStatsChanged();
 				}
 			}
 		}

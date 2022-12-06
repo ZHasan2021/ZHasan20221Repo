@@ -274,6 +274,7 @@ namespace AssetManagement
         //    }
         //    int returnValue = this.Adapter.Fill(dataTable);
         //    return returnValue;
+        //}
         #endregion
 
         #region Assets
@@ -942,15 +943,25 @@ namespace AssetManagement
                         isIncoming = false;
                         rowStartNo++;
                     }
-                    if (srcExcelWs.Cells[rowStartNo, 9].Value != null && srcExcelWs.Cells[rowStartNo, 9].Value.ToString().Contains("مدور"))
+                    string curVal = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString();
+                    string incomingFromVal = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString();
+                    string outgoingTypeVal = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString();
+                    string outgoingToVal = srcExcelWs.Cells[rowStartNo, 6].Value?.ToString();
+                    string ficaVal = srcExcelWs.Cells[rowStartNo, 9].Value?.ToString();
+                    if (isIncoming)
+                    {
+                        if (incomingFromVal == "من المستوى الأعلى")
+                        {
+                        }
+                    }
+                    if (ficaVal != null && ficaVal.Contains("مدور"))
                     {
                         rowStartNo++;
                         continue;
                     }
-                    string curVal = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString();
                     if (!StaticCode.mainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == curVal))
                     {
-                        if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 2].Value?.ToString()) && String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 8].Value?.ToString()) && String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 9].Value?.ToString()))
+                        if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 2].Value?.ToString()) && String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 8].Value?.ToString()) && String.IsNullOrEmpty(ficaVal))
                         {
                             rowStartNo++;
                             continue;
@@ -958,22 +969,21 @@ namespace AssetManagement
                         return ($"العملة في السطر {rowStartNo} غير موجودة في جداول العملات");
                     }
                     int currID = StaticCode.mainDbContext.CurrencyTbls.Where(cu1 => cu1.CurrencyName == curVal).First().ID;
-                    string fiItCatName = srcExcelWs.Cells[rowStartNo, 9].Value?.ToString();
-                    if (!StaticCode.mainDbContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == fiItCatName))
+                    if (!StaticCode.mainDbContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == ficaVal))
                     {
-                        unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {fiItCatName}");
+                        unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {ficaVal}");
                         continue;
                         //return ($"البند المالي في السطر {rowStartNo} غير موجودة في جداول البنود المالية");
                     }
-                    var existedFiItCat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == fiItCatName);
+                    var existedFiItCat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == ficaVal);
 
                     FinancialItemTbl newFinancialItem = new FinancialItemTbl()
                     {
                         FinancialItemCategory = existedFiItCat.First().ID,
                         FinancialItemDescription = srcExcelWs.Cells[rowStartNo, 7].Value?.ToString(),
-                        IncomingFrom = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString(),
-                        OutgoingType = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString(),
-                        OutgoingTo = srcExcelWs.Cells[rowStartNo, 6].Value?.ToString(),
+                        IncomingFrom = incomingFromVal,
+                        OutgoingType = outgoingTypeVal,
+                        OutgoingTo = outgoingToVal,
                         FinancialItemSubDept = assetSubD,
                         FinancialItemInsertionDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 8].Value),
                         FinancialItemCurrency = currID,
@@ -1304,6 +1314,7 @@ namespace AssetManagement
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
         public static string FinancialReportPath2 = $"{FinanceFolder}financial blank report2.xlsx";
+        public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
         #endregion
     }
 

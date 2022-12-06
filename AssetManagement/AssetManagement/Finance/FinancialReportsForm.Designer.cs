@@ -111,6 +111,7 @@ namespace AssetManagement.Finance
             this.totalIncomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.totalIncomesLabel = new System.Windows.Forms.Label();
             this.aggFiguesTabPage = new System.Windows.Forms.TabPage();
+            this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.searchByCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.searchByCurrencyCheckBox = new System.Windows.Forms.CheckBox();
@@ -149,6 +150,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).BeginInit();
+            this.aggFiguesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -999,6 +1001,7 @@ namespace AssetManagement.Finance
             // 
             // aggFiguesTabPage
             // 
+            this.aggFiguesTabPage.Controls.Add(this.spreadsheetControl1);
             this.aggFiguesTabPage.Location = new System.Drawing.Point(4, 33);
             this.aggFiguesTabPage.Name = "aggFiguesTabPage";
             this.aggFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1006,6 +1009,16 @@ namespace AssetManagement.Finance
             this.aggFiguesTabPage.TabIndex = 1;
             this.aggFiguesTabPage.Text = "الأرقام الإجمالية";
             this.aggFiguesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // spreadsheetControl1
+            // 
+            this.spreadsheetControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.spreadsheetControl1.Location = new System.Drawing.Point(3, 3);
+            this.spreadsheetControl1.Name = "spreadsheetControl1";
+            this.spreadsheetControl1.ReadOnly = true;
+            this.spreadsheetControl1.Size = new System.Drawing.Size(722, 608);
+            this.spreadsheetControl1.TabIndex = 0;
+            this.spreadsheetControl1.Text = "spreadsheetControl1";
             // 
             // manageCurrencyTblBtn
             // 
@@ -1123,6 +1136,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).EndInit();
+            this.aggFiguesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1213,5 +1227,6 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.Button manageCurrencyTblBtn;
         private DevExpress.XtraEditors.LookUpEdit searchByCurrencyLookUpEdit;
         private System.Windows.Forms.CheckBox searchByCurrencyCheckBox;
+        private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl1;
     }
 }

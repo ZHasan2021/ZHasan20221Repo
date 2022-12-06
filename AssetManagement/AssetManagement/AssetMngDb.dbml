@@ -216,6 +216,15 @@
       <Column Name="ModelImg" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
+  <Table Name="dbo.NumberingTbl" Member="NumberingTbls">
+    <Type Name="NumberingTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NumberToSay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Days" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Months" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Years" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.OptionsTbl" Member="OptionsTbls">
     <Type Name="OptionsTbl">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -323,6 +332,7 @@
       <Column Name="UpdateExistedFinancialItem" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="DeleteFinancialItemRecord" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ViewFinancialReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ViewFinancialItemsStats" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AddNewFinancialItemCategory" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ManageFinancialItemCategories" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="SetDateAndTime" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
