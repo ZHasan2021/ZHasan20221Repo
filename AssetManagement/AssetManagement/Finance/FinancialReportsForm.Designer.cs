@@ -110,7 +110,7 @@ namespace AssetManagement.Finance
             this.totalOutcomesLabel = new System.Windows.Forms.Label();
             this.totalIncomesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.totalIncomesLabel = new System.Windows.Forms.Label();
-            this.aggFiguesTabPage = new System.Windows.Forms.TabPage();
+            this.subLevelFiguesTabPage = new System.Windows.Forms.TabPage();
             this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.searchByCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -150,7 +150,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).BeginInit();
-            this.aggFiguesTabPage.SuspendLayout();
+            this.subLevelFiguesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -455,6 +455,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -601,9 +602,9 @@ namespace AssetManagement.Finance
             // 
             // financialReportTabControl
             // 
+            this.financialReportTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.financialReportTabControl.Controls.Add(this.detailedFiguresTabPage);
-            this.financialReportTabControl.Controls.Add(this.aggFiguesTabPage);
-            this.financialReportTabControl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.financialReportTabControl.Controls.Add(this.subLevelFiguesTabPage);
             this.financialReportTabControl.Location = new System.Drawing.Point(574, 0);
             this.financialReportTabControl.Name = "financialReportTabControl";
             this.financialReportTabControl.RightToLeftLayout = true;
@@ -999,16 +1000,16 @@ namespace AssetManagement.Finance
             this.totalIncomesLabel.TabIndex = 655;
             this.totalIncomesLabel.Text = "إجمالي الوارد:";
             // 
-            // aggFiguesTabPage
+            // subLevelFiguesTabPage
             // 
-            this.aggFiguesTabPage.Controls.Add(this.spreadsheetControl1);
-            this.aggFiguesTabPage.Location = new System.Drawing.Point(4, 33);
-            this.aggFiguesTabPage.Name = "aggFiguesTabPage";
-            this.aggFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.aggFiguesTabPage.Size = new System.Drawing.Size(728, 700);
-            this.aggFiguesTabPage.TabIndex = 1;
-            this.aggFiguesTabPage.Text = "الأرقام الإجمالية";
-            this.aggFiguesTabPage.UseVisualStyleBackColor = true;
+            this.subLevelFiguesTabPage.Controls.Add(this.spreadsheetControl1);
+            this.subLevelFiguesTabPage.Location = new System.Drawing.Point(4, 33);
+            this.subLevelFiguesTabPage.Name = "subLevelFiguesTabPage";
+            this.subLevelFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.subLevelFiguesTabPage.Size = new System.Drawing.Size(728, 700);
+            this.subLevelFiguesTabPage.TabIndex = 1;
+            this.subLevelFiguesTabPage.Text = "إحصائيات المستوى الإداري التابع له";
+            this.subLevelFiguesTabPage.UseVisualStyleBackColor = true;
             // 
             // spreadsheetControl1
             // 
@@ -1136,7 +1137,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.totalCycledNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalOutcomesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalIncomesNumericUpDown)).EndInit();
-            this.aggFiguesTabPage.ResumeLayout(false);
+            this.subLevelFiguesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1200,7 +1201,7 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.Label totalOutcomesLabel;
         private System.Windows.Forms.NumericUpDown totalIncomesNumericUpDown;
         private System.Windows.Forms.Label totalIncomesLabel;
-        private System.Windows.Forms.TabPage aggFiguesTabPage;
+        private System.Windows.Forms.TabPage subLevelFiguesTabPage;
         private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colمعرفالسجلالمالي;

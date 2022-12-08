@@ -1099,31 +1099,46 @@ namespace AssetManagement.Assets
                     astWs.DeleteColumn(iCol);
             }
 
-            int curr1Col = 8;
-            int curr2Col = 16;
-            int statusCol = 13;
+            int shiftOfFormNo = 0;
             if (formNo == 2)
-            {
-                curr1Col = 12;
-                curr2Col = 20;
-             statusCol = 17;
-            }
+                shiftOfFormNo = 4;
             if (formNo == 3)
-            {
-                curr1Col = 15;
-                curr2Col = 23;
-             statusCol = 20;
-            }
+                shiftOfFormNo = 7;
+            int curr1Col = 8 + shiftOfFormNo;
+            int curr2Col = 16 + shiftOfFormNo;
+            int statusCol = 13 + shiftOfFormNo;
+            int macaCol = 9 + shiftOfFormNo;
+            int micaCol = 10 + shiftOfFormNo;
+            int squCol = 11 + shiftOfFormNo;
             var curr1DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr1Col, startRow + assetsQry_Export.Count(), curr1Col).ToString());
             var curr2DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr2Col, startRow + assetsQry_Export.Count(), curr2Col).ToString());
             var statusDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, statusCol, startRow + assetsQry_Export.Count(), statusCol).ToString());
-            curr1DataValidtion.ShowErrorMessage = curr2DataValidtion.ShowErrorMessage = statusDataValidtion.ShowErrorMessage = true;
-            curr1DataValidtion.ErrorStyle = curr2DataValidtion.ErrorStyle = statusDataValidtion.ErrorStyle = ExcelDataValidationWarningStyle.stop;
+            var macaDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, macaCol, startRow + assetsQry_Export.Count(), macaCol).ToString());
+            var micaDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, micaCol, startRow + assetsQry_Export.Count(), micaCol).ToString());
+            var squareDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, squCol, startRow + assetsQry_Export.Count(), squCol).ToString());
+            curr1DataValidtion.ShowErrorMessage =
+                curr2DataValidtion.ShowErrorMessage =
+                statusDataValidtion.ShowErrorMessage =
+                macaDataValidtion.ShowErrorMessage =
+                micaDataValidtion.ShowErrorMessage =
+                squareDataValidtion.ShowErrorMessage = true;
+            curr1DataValidtion.ErrorStyle =
+                curr2DataValidtion.ErrorStyle =
+                statusDataValidtion.ErrorStyle =
+                macaDataValidtion.ErrorStyle =
+                micaDataValidtion.ErrorStyle =
+                squareDataValidtion.ErrorStyle = ExcelDataValidationWarningStyle.stop;
             curr1DataValidtion.ErrorTitle = curr2DataValidtion.ErrorTitle = "خطأ في قيمة العملة المدخلة";
-            statusDataValidtion.ErrorTitle =  "خطأ في قيمة حالة الأصل المدخلة";
+            statusDataValidtion.ErrorTitle = "خطأ في قيمة حالة الأصل المدخلة";
+            macaDataValidtion.ErrorTitle = "خطأ في قيمة الفئة الرئيسية المدخلة";
+            micaDataValidtion.ErrorTitle = "خطأ في قيمة الفئة الفرعية المدخلة";
+            squareDataValidtion.ErrorTitle = "خطأ في قيمة الساحة المدخلة";
             curr1DataValidtion.Error = curr2DataValidtion.Error = "اختر العملة من القائمة";
-            statusDataValidtion.Error =  "اختر حالة الأصل من القائمة";
-            foreach(string oneCurr in StaticCode.mainDbContext.CurrencyTbls.Select(cu1=>cu1.CurrencyName))
+            statusDataValidtion.Error = "اختر حالة الأصل من القائمة";
+            macaDataValidtion.Error = "اختر الفئة الرئيسية من القائمة";
+            micaDataValidtion.Error = "اختر الفئة الفرعية من القائمة";
+            squareDataValidtion.Error = "اختر الساحة من القائمة";
+            foreach (string oneCurr in StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName))
             {
                 curr1DataValidtion.Formula.Values.Add(oneCurr);
                 curr2DataValidtion.Formula.Values.Add(oneCurr);
@@ -1131,6 +1146,18 @@ namespace AssetManagement.Assets
             foreach (string oneSta in StaticCode.mainDbContext.StatusTbls.Select(stu1 => stu1.StatusName))
             {
                 statusDataValidtion.Formula.Values.Add(oneSta);
+            }
+            foreach (string oneMaCa in StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName))
+            {
+                macaDataValidtion.Formula.Values.Add(oneMaCa);
+            }
+            foreach (string oneMiCa in StaticCode.mainDbContext.MinorCategoryTbls.Select(mica1 => mica1.MinorCategoryName))
+            {
+                micaDataValidtion.Formula.Values.Add(oneMiCa);
+            }
+            foreach (string oneSqu in StaticCode.mainDbContext.SquareTbls.Select(squ1 => squ1.SquareName))
+            {
+                squareDataValidtion.Formula.Values.Add(oneSqu);
             }
 
             astEp.Save();
