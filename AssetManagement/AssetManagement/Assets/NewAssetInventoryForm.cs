@@ -423,8 +423,6 @@ namespace AssetManagement.Assets
                 }
             }
 
-            //var assetsQry_Vw=StaticCode.mainDbContext.AssetVws.Where()
-
             assetGridControl.Visible =
             exportToExcelDropDownButton.Enabled = assetsQry.Count() > 0;
             if (assetsQry.Count() == 0)
@@ -462,10 +460,6 @@ namespace AssetManagement.Assets
             ExportAssets(1);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="formNo">1 for normal, 2 for estates, 3 for vehicles</param>
         private void ExportAssets_Old(int formNo)
         {
             SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
@@ -772,6 +766,10 @@ namespace AssetManagement.Assets
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="formNo">1 for normal, 2 for estates, 3 for vehicles</param>
         private void ExportAssets(int formNo)
         {
             SaveFileDialog assetsInvPath = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
@@ -787,69 +785,67 @@ namespace AssetManagement.Assets
             astWs.View.RightToLeft = true;
             List<int> columnsWidths = new List<int>()
             {
-                8, 15, 40, 8, 20,
-                25, 12, 15, 12, 12,
-                10, 10, 15, 15, 15,
+                8, 15, 20, 20, 40,
+                10, 12, 15, 12, 12,
+                10, 10, 18, 15, 15,
                 12, 12, 15, 15, 15,
                 15, 20, 12, 18, 15,
-                15, 15, 20, 15, 15,
-                15, 15, 10, 25
+                15, 15, 12, 12, 18,
+                10, 25
             };
             List<string> columnsTitles = new List<string>()
             {
                 "التسلسل",
                 "الرمز",
+                "الفئة الرئيسية",
+                "الفئة الفرعية",
                 "البيان التفصيلي لمواصفات الأصل",
                 //"بيان تفصيلي للاصل ( النوع / الموديل / اللون / الرقم / الحجم / ..... )",
+                
+                
                 "العدد",
                 "اسم المالك",
-
-
                 "العنوان بالضبط",
                 "المستغل منه",
                 "مع من ورقة الملكية",
+
+
                 "نوع السيارة",
                 "رقم اللوحة",
-
-
                 "لونها",
                 "سنة الصنع",
                 "رقم الشاصيه",
+
+
                 "رقم الماكينة",
                 "المالك",
-
-
                 "تاريخ الشراء",
                 "قيمة الشراء",
                 "نوع العملة",
-                "الفئة الرئيسية",
-                "الفئة الفرعية",
 
 
+                "قيمته الفعلية الحالية",
                 "الساحة",
                 "مكان وجوده",
                 "حالته الآنية",
                 "مدى الاستفاده الحالية منه",
-                "قيمته الفعلية الحالية",
 
 
-                "العملة",
                 "صاحب العهدة",
                 "إضافات أخرى",
                 "ما تم تصريفه",
                 "ما تم نقله",
-
-
-                "ما تم بيعه",
                 "العمر الافتراضي المتبقي",
+
+
                 "معدل الإهلاك",
                 "ملاحظات",
             };
-            List<int> hiddenCols = new List<int>() { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            List<int> hiddenCols = new List<int>() { 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
             if (formNo == 2)
-                hiddenCols = new List<int>() { 10, 11, 12, 13, 14, 15, 16 };
+                hiddenCols = new List<int>() { 12, 13, 14, 15, 16, 17, 18 };
             if (formNo == 3)
-                hiddenCols = new List<int>() { 6, 7, 8, 9 };
+                hiddenCols = new List<int>() { 8, 9, 10, 11 };
             for (int col = 2; col <= columnsWidths.Count + 1; col++)
             {
                 astWs.Columns[col].Width = columnsWidths[col - 2];
@@ -906,6 +902,24 @@ namespace AssetManagement.Assets
                 startCol3 = 15;
             }
             int startCol2 = endCol + 1;
+            string sectionOfSearch = "";
+            string departmentOfSearch = "";
+            string subDepartmentOfSearch = "";
+            if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
+            {
+                sectionOfSearch = searchBySectionLookUpEdit.Text;
+            }
+            else if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
+            {
+                sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Where(dptv1 => dptv1.اسم_القسم == searchByDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
+                departmentOfSearch = searchByDepartmentSearchLookUpEdit.Text;
+            }
+            else if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+            {
+                sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
+                departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().القسم_التابعة_له;
+                subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+            }
             using (var cells = astWs.Cells[5, 5, 5, endCol])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
@@ -915,14 +929,7 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                string sectionName = "";
-                if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
-                    sectionName = searchBySectionLookUpEdit.Text;
-                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).SectionOfDepartment).SectionName;
-                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    sectionName = StaticCode.mainDbContext.SectionTbls.Single(sc1 => sc1.ID == StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).SectionOfDepartment).SectionName;
-                cells.Value = sectionName;
+                cells.Value = sectionOfSearch;
             }
             using (var cells = astWs.Cells[5, startCol2, 5, startCol2 + 1])
             {
@@ -946,12 +953,7 @@ namespace AssetManagement.Assets
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Double;
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                string deptName = "";
-                if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-                    deptName = searchByDepartmentSearchLookUpEdit.Text;
-                if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-                    deptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).MainDepartment).DepartmentName;
-                cells.Value = deptName;
+                cells.Value = departmentOfSearch;
             }
             using (var cells = astWs.Cells[5, startCol3 + 3, 5, startCol3 + 4])
             {
@@ -976,7 +978,7 @@ namespace AssetManagement.Assets
                 cells.Value = DateTime.Today.ToString("dd-MM-yyyy");
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Value = (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentSearchLookUpEdit.Text : "";
+                cells.Value = subDepartmentOfSearch;
             }
             using (var cells = astWs.Cells[5, startCol3 + 7, 5, startCol3 + 8])
             {
@@ -1017,13 +1019,14 @@ namespace AssetManagement.Assets
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             }
-            var assetsQry_Export = assetsQry;
-            if (excludeOutOfWorkAssetsCheckBox.Checked)
-                assetsQry_Export = assetsQry_Export.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
+            var assetsQry_Export = assetsQry.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
+            if (includeOutOfWorkAssetsCheckBox.Checked)
+                assetsQry_Export = assetsQry;
 
             if (assetsQry_Export.Count() == 0)
                 return;
 
+            #region Fill the rows
             int astCount = 1;
             currentRow++;
             foreach (var oneAst in assetsQry_Export)
@@ -1031,11 +1034,9 @@ namespace AssetManagement.Assets
                 Application.DoEvents();
 
                 var assetTrans = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt1 => astt1.AssetID == oneAst.ID);
-                var assetTrans_Sell = assetTrans.Where(astt1 => StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "بيع").Select(tt1 => tt1.ID).Contains(astt1.TransactionType));
                 var assetTrans_Tasreef = assetTrans.Where(astt1 => StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "تصريف").Select(tt1 => tt1.ID).Contains(astt1.TransactionType));
                 var assetMvs = StaticCode.mainDbContext.AssetMovementTbls.Where(astm1 => astm1.AssetID == oneAst.ID);
                 int assetTransCount = (assetTrans == null || assetTrans.Count() == 0) ? 0 : assetTrans.Sum(ast1 => ast1.QuantityTransacted);
-                int assetTrans_SellCount = (assetTrans_Sell == null || assetTrans_Sell.Count() == 0) ? 0 : assetTrans_Sell.Sum(ast1 => ast1.QuantityTransacted);
                 int assetTrans_TasreefCount = (assetTrans_Tasreef == null || assetTrans_Tasreef.Count() == 0) ? 0 : assetTrans_Tasreef.Sum(ast1 => ast1.QuantityTransacted);
                 int assetMvsCount = (assetMvs == null || assetMvs.Count() == 0) ? 0 : assetMvs.Count();
 
@@ -1043,6 +1044,8 @@ namespace AssetManagement.Assets
                 {
                     astCount,
                     oneAst.AssetCode,
+                    StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica2 => mica2.ID == oneAst.AssetMinorCategory).MainCategory).MainCategoryName,
+                    StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName,
                     oneAst.AssetSpecifications,
                     oneAst.ItemsQuantity,
                     oneAst.OwnerName,
@@ -1059,19 +1062,15 @@ namespace AssetManagement.Assets
                     oneAst.PurchaseDate?.ToShortDateString(),
                     oneAst.PurchasePrice,
                     StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.PurchasePriceCurrency).CurrencyName,
-                    StaticCode.mainDbContext.MainCategoryTbls.Single(maca1 => maca1.ID == StaticCode.mainDbContext.MinorCategoryTbls.Single(mica2 => mica2.ID == oneAst.AssetMinorCategory).MainCategory).MainCategoryName,
-                    StaticCode.mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == oneAst.AssetMinorCategory).MinorCategoryName,
+                    oneAst.ActualCurrentPrice,
                     StaticCode.mainDbContext.SquareTbls.Single(sqr1 => sqr1.ID == oneAst.AssetSquare).SquareName,
                      oneAst.PlaceOfPresence,
                      StaticCode.mainDbContext.StatusTbls.Single(cur => cur.ID == oneAst.CurrentStatus).StatusName,
                     oneAst.BenefitPercentage,
-                    oneAst.ActualCurrentPrice,
-                    StaticCode.mainDbContext.CurrencyTbls.Single(cur => cur.ID == oneAst.ActualCurrentPriceCurrency).CurrencyName,
                     oneAst.CustodianName,
                     oneAst.MoreDetails,
                     assetTrans_TasreefCount,
                     assetMvsCount,
-                    assetTrans_SellCount,
                      StaticCode.mainDbContext.AssetVw_Alls.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
                     oneAst.DestructionRate,
                     oneAst.AssetNotes,
@@ -1098,7 +1097,9 @@ namespace AssetManagement.Assets
                 if (astWs.Column(iCol).Hidden)
                     astWs.DeleteColumn(iCol);
             }
+            #endregion
 
+            #region Data validation rules
             int shiftOfFormNo = 0;
             if (formNo == 2)
                 shiftOfFormNo = 4;
@@ -1159,6 +1160,16 @@ namespace AssetManagement.Assets
             {
                 squareDataValidtion.Formula.Values.Add(oneSqu);
             }
+            #endregion
+
+            #region Conditional formatting rules
+            ExcelAddress _formatRangeAddress = new ExcelAddress($"$B${startRow + 1}:$V${startRow + assetsQry_Export.Count()}");
+            string _statement = "=$G8=0";
+            var _cond4 = astWs.ConditionalFormatting.AddExpression(_formatRangeAddress);
+            _cond4.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            _cond4.Style.Fill.BackgroundColor.Color = Color.FromArgb(180, 198, 230);
+            _cond4.Formula = _statement;
+            #endregion
 
             astEp.Save();
 

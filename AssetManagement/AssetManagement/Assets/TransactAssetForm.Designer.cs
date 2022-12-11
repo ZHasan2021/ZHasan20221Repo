@@ -89,6 +89,7 @@ namespace AssetManagement.Assets
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.actAsDesctructionCheckBox = new System.Windows.Forms.CheckBox();
             this.transactAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
@@ -332,6 +333,7 @@ namespace AssetManagement.Assets
             // assetTransactionPanel
             // 
             this.assetTransactionPanel.BackColor = System.Drawing.Color.PeachPuff;
+            this.assetTransactionPanel.Controls.Add(this.actAsDesctructionCheckBox);
             this.assetTransactionPanel.Controls.Add(this.assetCurrentItemsQuantityNumericUpDown);
             this.assetTransactionPanel.Controls.Add(this.qtyOutOfLabel);
             this.assetTransactionPanel.Controls.Add(this.assetItemsQuantityLabel);
@@ -688,6 +690,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
@@ -779,6 +782,19 @@ namespace AssetManagement.Assets
             // assetVwTableAdapter
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // actAsDesctructionCheckBox
+            // 
+            this.actAsDesctructionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.actAsDesctructionCheckBox.AutoSize = true;
+            this.actAsDesctructionCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actAsDesctructionCheckBox.Location = new System.Drawing.Point(871, 78);
+            this.actAsDesctructionCheckBox.Name = "actAsDesctructionCheckBox";
+            this.actAsDesctructionCheckBox.Size = new System.Drawing.Size(164, 25);
+            this.actAsDesctructionCheckBox.TabIndex = 403;
+            this.actAsDesctructionCheckBox.Text = "معاملة التصريف كإهلاك";
+            this.actAsDesctructionCheckBox.UseVisualStyleBackColor = true;
+            this.actAsDesctructionCheckBox.CheckedChanged += new System.EventHandler(this.actAsDesctructionCheckBox_CheckedChanged);
             // 
             // TransacteAssetForm
             // 
@@ -889,5 +905,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.BindingSource assetVwBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colQuantityTransacted;
+        private System.Windows.Forms.CheckBox actAsDesctructionCheckBox;
     }
 }

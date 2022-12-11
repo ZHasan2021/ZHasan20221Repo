@@ -477,7 +477,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            mainMemoEdit.Text = "";
+            actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
             {
@@ -488,7 +488,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             string errorMsg = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName);
             if (errorMsg != "Done!")
             {
-                mainMemoEdit.Text = errorMsg;
+                actionsStatusMemoEdit.Text = errorMsg;
                 mainAlertControl.Show(this, errorMsg, StaticCode.ApplicationTitle);
                 return;
             }

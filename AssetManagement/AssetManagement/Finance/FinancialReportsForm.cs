@@ -29,6 +29,10 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentVw' table. You can move, or remove it, as needed.
+            this.subDepartmentVwTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.
+            this.departmentVwTableAdapter.Fill(this.assetMngDbDataSet.DepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemVw' table. You can move, or remove it, as needed.
             this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -65,10 +69,10 @@ namespace AssetManagement.Finance
             {
                 try
                 {
-                    searchAllRadioButton.Checked = searchAllRadioButton.Enabled = searchBySectionRadioButton.Checked = searchBySectionRadioButton.Enabled = false;
+                    searchAllRadioButton.Checked = searchAllRadioButton.Enabled = searchBySectionCheckBox.Checked = searchBySectionCheckBox.Enabled = false;
                     searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
-                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
-                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                    searchByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionLookUpEdit.Enabled = searchByDepartmentSearchLookUpEdit.Enabled = false;
                 }
                 catch
                 {
@@ -91,30 +95,13 @@ namespace AssetManagement.Finance
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
             #region Set and apply the financial items query
-            if (!(searchAllRadioButton.Checked || searchBySectionRadioButton.Checked || searchByDepartmentRadioButton.Checked || searchBySubDepartmentRadioButton.Checked))
+            if (!(searchAllRadioButton.Checked || searchBySectionCheckBox.Checked || searchByDepartmentCheckBox.Checked || searchBySubDepartmentCheckBox.Checked))
             {
                 mainAlertControl.Show(this, "اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle);
                 MessageBox.Show("اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (searchBySectionRadioButton.Checked && searchBySectionLookUpEdit.EditValue == null)
-            {
-                mainAlertControl.Show(this, "اختر الدائرة أولاً", StaticCode.ApplicationTitle);
-                MessageBox.Show("اختر الدائرة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (searchByDepartmentRadioButton.Checked && searchByDepartmentLookUpEdit.EditValue == null)
-            {
-                mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
-                MessageBox.Show("اختر القسم أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (searchBySubDepartmentRadioButton.Checked && searchBySubDepartmentLookUpEdit.EditValue == null)
-            {
-                mainAlertControl.Show(this, "اختر الوحدة أولاً", StaticCode.ApplicationTitle);
-                MessageBox.Show("اختر الوحدة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
             if (searchWithinPeriodCheckBox.Checked)
             {
                 if (fromToRadioButton.Checked)
@@ -147,23 +134,47 @@ namespace AssetManagement.Finance
             }
 
             financialItemsQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
-            if (searchBySectionRadioButton.Checked)
+            if (searchBySectionCheckBox.Checked)
             {
-                levelID = Convert.ToInt32(searchBySectionLookUpEdit.EditValue);
-                List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
-                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                if (searchBySectionLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الدائرة أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    levelID = Convert.ToInt32(searchBySectionLookUpEdit.EditValue);
+                    List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
+                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
+                    financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                }
             }
-            if (searchByDepartmentRadioButton.Checked)
+            if (searchByDepartmentCheckBox.Checked)
             {
-                levelID = Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue);
-                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
-                financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                if (searchByDepartmentSearchLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    levelID = Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue);
+                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
+                    financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                }
             }
-            if (searchBySubDepartmentRadioButton.Checked)
+            if (searchBySubDepartmentCheckBox.Checked)
             {
-                levelID = Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue);
-                financialItemsQry = financialItemsQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
+                if (searchBySubDepartmentSearchLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الوحدة أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    levelID = Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue);
+                    financialItemsQry = financialItemsQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
+                }
             }
             if (searchWithinPeriodCheckBox.Checked)
             {
@@ -274,7 +285,7 @@ namespace AssetManagement.Finance
                         }
                         break;
                     case 2:
-                        var subLevelQuery3 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => sdpt1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+                        var subLevelQuery3 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => sdpt1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue));
                         foreach (SubDepartmentTbl oneItem in subLevelQuery3)
                         {
                             Application.DoEvents();
@@ -318,6 +329,7 @@ namespace AssetManagement.Finance
                 ExcelWorkbook totalsWb = totalsEp.Workbook;
                 ExcelWorksheet totalsWs = totalsWb.Worksheets.Add(sheet_Title_Name);
                 totalsWs.View.ShowGridLines = false;
+                totalsWs.View.RightToLeft = true;
                 totalsWs.Column(2).Width =
                 totalsWs.Column(5).Width = 13;
                 totalsWs.Column(3).Width = 47;
@@ -380,7 +392,7 @@ namespace AssetManagement.Finance
                                 cells.Value = "جهة الإيراد";
                             }
                             incomingRow++;
-                            var incomingSubLevelQry = financialItemsQryVw.Where(fiv2 => fiv2.وارد_أم_صادر == "وارد" && fiv2.الدائرة == oneItem);
+                            var incomingSubLevelQry = financialItemsQryVw.Where(fiv2 => fiv2.وارد_أم_صادر == "وارد" && fiv2.الدائرة == oneItem).OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
                             double totalIncomingSubLevel = (incomingSubLevelQry.Any()) ? incomingSubLevelQry.Sum(fiv3 => fiv3.المبلغ_الوارد) : 0;
                             foreach (var oneSubItem in incomingSubLevelQry)
                             {
@@ -461,7 +473,7 @@ namespace AssetManagement.Finance
                                 cells.Value = "صادر إلى";
                             }
                             outgoingRow++;
-                            var outgoingSubLevelQry = financialItemsQryVw.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.الدائرة == oneItem);
+                            var outgoingSubLevelQry = financialItemsQryVw.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.الدائرة == oneItem).OrderByDescending(fiv22 => fiv22.نوع_الصادر);
                             double totalOutgoingSubLevel = (outgoingSubLevelQry.Any()) ? outgoingSubLevelQry.Sum(fiv3 => fiv3.المبلغ_الصادر) : 0;
                             foreach (var oneSubItem in outgoingSubLevelQry)
                             {
@@ -507,8 +519,9 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                                 cells.Value = totalOutgoingSubLevel;
                             }
-                            using (var cells = totalsWs.Cells[outgoingRow, 6])
+                            using (var cells = totalsWs.Cells[outgoingRow, 6, outgoingRow, 7])
                             {
+                                cells.Merge = true;
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
@@ -585,9 +598,9 @@ namespace AssetManagement.Finance
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
             string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
             string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionRadioButton.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentCheckBox.Checked) ? searchByDepartmentSearchLookUpEdit.Text : "الكل")}";
+            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentSearchLookUpEdit.Text : "الكل")}";
             int startRow = 5;
             foreach (FinancialItemTbl oneFiRp in financialItemsQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
@@ -677,9 +690,27 @@ namespace AssetManagement.Finance
             for (int iCol = 19; iCol >= curColStart; iCol--)
                 fiRpWs.DeleteColumn(iCol);
 
-            string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            string departmentVal = (StaticCode.activeUserRole.IsDepartmentIndependent != true) ? $"القسم: {((searchByDepartmentRadioButton.Checked) ? searchByDepartmentLookUpEdit.Text : "الكل")}" : "";
-            string subDepartmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true) ? $"الوحدة: {((searchBySubDepartmentRadioButton.Checked) ? searchBySubDepartmentLookUpEdit.Text : "الكل")}" : "";
+            string sectionOfSearch = "";
+            string departmentOfSearch = "";
+            string subDepartmentOfSearch = "";
+            if (searchBySectionCheckBox.Checked)
+            {
+                sectionOfSearch = searchBySectionLookUpEdit.Text;
+            }
+            else if (searchByDepartmentCheckBox.Checked)
+            {
+                sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Where(dptv1 => dptv1.اسم_القسم == searchByDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
+                departmentOfSearch = searchByDepartmentSearchLookUpEdit.Text;
+            }
+            else if (searchBySubDepartmentCheckBox.Checked)
+            {
+                sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
+                departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().القسم_التابعة_له;
+                subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+            }
+            string sectionVal = $"الدائرة: {sectionOfSearch}";
+            string departmentVal = $"القسم: {departmentOfSearch}";
+            string subDepartmentVal = $"الوحدة: {subDepartmentOfSearch}";
             fiRpWs.Cells[2, 1, 2, 3].Value = sectionVal;
             fiRpWs.Cells[2, 4, 2, 6].Value = departmentVal;
             fiRpWs.Cells[2, 7].Value = subDepartmentVal;
@@ -690,7 +721,7 @@ namespace AssetManagement.Finance
                 Application.DoEvents();
                 fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
                 fiRpWs.Cells[startRow, 3].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
-                fiRpWs.Cells[startRow, 4].Value = oneFiRp.IncomingFrom;
+                fiRpWs.Cells[startRow, 4].Value = oneFiRp.IncomingFrom?.Trim();
                 fiRpWs.Cells[startRow, 7].Value = oneFiRp.FinancialItemDescription;
                 fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
                 fiRpWs.Cells[startRow, 9].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
@@ -712,8 +743,8 @@ namespace AssetManagement.Finance
                 Application.DoEvents();
                 fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;
                 fiRpWs.Cells[startRow, 3].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
-                fiRpWs.Cells[startRow, 5].Value = oneFiRp.OutgoingType;
-                fiRpWs.Cells[startRow, 6].Value = oneFiRp.OutgoingTo;
+                fiRpWs.Cells[startRow, 5].Value = oneFiRp.OutgoingType?.Trim();
+                fiRpWs.Cells[startRow, 6].Value = oneFiRp.OutgoingTo?.Trim();
                 fiRpWs.Cells[startRow, 7].Value = oneFiRp.FinancialItemDescription;
                 fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
                 fiRpWs.Cells[startRow, 9].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
@@ -741,27 +772,27 @@ namespace AssetManagement.Finance
 
         private void searchInDeptRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            searchBySectionLookUpEdit.Visible = searchBySectionRadioButton.Checked;
-            searchByDepartmentLookUpEdit.Visible = searchByDepartmentRadioButton.Checked;
-            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentRadioButton.Checked;
-            manageSectionTblBtn.Visible = searchBySectionRadioButton.Checked && StaticCode.activeUserRole.ManageSections == true;
-            manageDepartmentTblBtn.Visible = searchByDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageDepartments == true;
-            manageSubDepartmentTblBtn.Visible = searchBySubDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
+            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
+            manageSectionTblBtn.Visible = searchBySectionCheckBox.Checked && StaticCode.activeUserRole.ManageSections == true;
+            manageDepartmentTblBtn.Visible = searchByDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageDepartments == true;
+            manageSubDepartmentTblBtn.Visible = searchBySubDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
             if (searchAllRadioButton.Checked)
             {
                 levelSelected = 0;
                 levelID = 0;
             }
-            if (searchBySectionRadioButton.Checked)
+            if (searchBySectionCheckBox.Checked)
             {
                 levelSelected = 1;
             }
-            if (searchByDepartmentRadioButton.Checked)
+            if (searchByDepartmentCheckBox.Checked)
             {
                 levelSelected = 2;
                 levelID = 0;
             }
-            if (searchBySubDepartmentRadioButton.Checked)
+            if (searchBySubDepartmentCheckBox.Checked)
             {
                 levelSelected = 3;
                 levelID = 0;
@@ -810,6 +841,131 @@ namespace AssetManagement.Finance
             ManageCurrencyTblForm curFrm = new ManageCurrencyTblForm();
             curFrm.ShowDialog();
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
+        }
+
+        private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            if (searchByDepartmentCheckBox.Checked)
+            {
+                if (searchByDepartmentSearchLookUpEdit.EditValue == null)
+                    return;
+                List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).Select(subd2 => subd2.ID).ToList();
+                string plusQry = "";
+                if (subDeptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in subDeptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
+            else
+            {
+                if (searchBySectionCheckBox.Checked)
+                {
+                    if (searchBySectionLookUpEdit.EditValue == null)
+                        return;
+                    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                    List<int> dptIds = deptItems.Select(dpt2 => dpt2.ID).ToList();
+                    List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment)).Select(subd2 => subd2.ID).ToList();
+                    string plusQry = "";
+                    if (subDeptIDs.Count() == 0)
+                        plusQry = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in subDeptIDs)
+                            plusQry += oneID + ", ";
+                        plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                    }
+                    SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                    for (int i = 0; i < customVw.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                            return;
+                        }
+                    }
+                    this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                }
+                else
+                {
+                    this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                }
+            }
+        }
+
+        private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                    return;
+                List<int> deptIDs = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
+                string plusQry = "";
+                if (deptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in deptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (deptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                searchBySubDepartmentSearchLookUpEdit.EditValue = null;
+            }
+            else
+            {
+                this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+            }
+        }
+
+        private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
         }
     }
 }

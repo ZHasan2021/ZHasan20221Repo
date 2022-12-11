@@ -104,6 +104,10 @@ namespace AssetManagement.Assets
             this.viewAssetInformationBtn = new System.Windows.Forms.Button();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.toPlaceOfPresenceCheckBox = new System.Windows.Forms.CheckBox();
+            this.toPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
+            this.fromPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
+            this.fromPlaceOfPresenceLabel = new System.Windows.Forms.Label();
             this.moveAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
@@ -149,6 +153,10 @@ namespace AssetManagement.Assets
             // moveAssetGroupBox
             // 
             this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveAssetGroupBox.Controls.Add(this.toPlaceOfPresenceCheckBox);
+            this.moveAssetGroupBox.Controls.Add(this.toPlaceOfPresenceTextBox);
+            this.moveAssetGroupBox.Controls.Add(this.fromPlaceOfPresenceTextBox);
+            this.moveAssetGroupBox.Controls.Add(this.fromPlaceOfPresenceLabel);
             this.moveAssetGroupBox.Controls.Add(this.fromSubDepartmentTextBox);
             this.moveAssetGroupBox.Controls.Add(this.fromSubDepartmentLabel);
             this.moveAssetGroupBox.Controls.Add(this.toSubDepartmentLookUpEdit);
@@ -175,9 +183,9 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Controls.Add(this.fromDepartmentLabel);
             this.moveAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.moveAssetGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 193);
+            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 180);
             this.moveAssetGroupBox.Name = "moveAssetGroupBox";
-            this.moveAssetGroupBox.Size = new System.Drawing.Size(1247, 652);
+            this.moveAssetGroupBox.Size = new System.Drawing.Size(1247, 703);
             this.moveAssetGroupBox.TabIndex = 100;
             this.moveAssetGroupBox.TabStop = false;
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
@@ -185,7 +193,7 @@ namespace AssetManagement.Assets
             // 
             // fromSubDepartmentTextBox
             // 
-            this.fromSubDepartmentTextBox.Location = new System.Drawing.Point(836, 180);
+            this.fromSubDepartmentTextBox.Location = new System.Drawing.Point(825, 166);
             this.fromSubDepartmentTextBox.Name = "fromSubDepartmentTextBox";
             this.fromSubDepartmentTextBox.ReadOnly = true;
             this.fromSubDepartmentTextBox.Size = new System.Drawing.Size(261, 28);
@@ -194,7 +202,7 @@ namespace AssetManagement.Assets
             // fromSubDepartmentLabel
             // 
             this.fromSubDepartmentLabel.AutoSize = true;
-            this.fromSubDepartmentLabel.Location = new System.Drawing.Point(1120, 184);
+            this.fromSubDepartmentLabel.Location = new System.Drawing.Point(1134, 170);
             this.fromSubDepartmentLabel.Name = "fromSubDepartmentLabel";
             this.fromSubDepartmentLabel.Size = new System.Drawing.Size(74, 21);
             this.fromSubDepartmentLabel.TabIndex = 125;
@@ -202,7 +210,7 @@ namespace AssetManagement.Assets
             // 
             // toSubDepartmentLookUpEdit
             // 
-            this.toSubDepartmentLookUpEdit.Location = new System.Drawing.Point(243, 179);
+            this.toSubDepartmentLookUpEdit.Location = new System.Drawing.Point(243, 165);
             this.toSubDepartmentLookUpEdit.Name = "toSubDepartmentLookUpEdit";
             this.toSubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toSubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -250,14 +258,14 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.assetMovementTblBindingNavigatorSaveItem});
-            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 390);
+            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 445);
             this.assetMovementTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetMovementTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.assetMovementTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.assetMovementTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.assetMovementTblBindingNavigator.Name = "assetMovementTblBindingNavigator";
             this.assetMovementTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.assetMovementTblBindingNavigator.Size = new System.Drawing.Size(1241, 31);
+            this.assetMovementTblBindingNavigator.Size = new System.Drawing.Size(1241, 27);
             this.assetMovementTblBindingNavigator.TabIndex = 303;
             this.assetMovementTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -267,7 +275,7 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
@@ -360,7 +368,7 @@ namespace AssetManagement.Assets
             // 
             this.assetMoveVwGridControl.DataSource = this.assetMovementTblBindingSource;
             this.assetMoveVwGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 421);
+            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 472);
             this.assetMoveVwGridControl.MainView = this.assetMoveVwGridView;
             this.assetMoveVwGridControl.Name = "assetMoveVwGridControl";
             this.assetMoveVwGridControl.Size = new System.Drawing.Size(1241, 228);
@@ -480,7 +488,7 @@ namespace AssetManagement.Assets
             // toCustodianNameCheckBox
             // 
             this.toCustodianNameCheckBox.AutoSize = true;
-            this.toCustodianNameCheckBox.Location = new System.Drawing.Point(622, 282);
+            this.toCustodianNameCheckBox.Location = new System.Drawing.Point(622, 268);
             this.toCustodianNameCheckBox.Name = "toCustodianNameCheckBox";
             this.toCustodianNameCheckBox.Size = new System.Drawing.Size(91, 25);
             this.toCustodianNameCheckBox.TabIndex = 230;
@@ -491,7 +499,7 @@ namespace AssetManagement.Assets
             // toSquareCheckBox
             // 
             this.toSquareCheckBox.AutoSize = true;
-            this.toSquareCheckBox.Location = new System.Drawing.Point(619, 232);
+            this.toSquareCheckBox.Location = new System.Drawing.Point(619, 218);
             this.toSquareCheckBox.Name = "toSquareCheckBox";
             this.toSquareCheckBox.Size = new System.Drawing.Size(94, 25);
             this.toSquareCheckBox.TabIndex = 220;
@@ -502,7 +510,7 @@ namespace AssetManagement.Assets
             // toSectionDepartmentSubDepartmentCheckBox
             // 
             this.toSectionDepartmentSubDepartmentCheckBox.AutoSize = true;
-            this.toSectionDepartmentSubDepartmentCheckBox.Location = new System.Drawing.Point(537, 82);
+            this.toSectionDepartmentSubDepartmentCheckBox.Location = new System.Drawing.Point(537, 68);
             this.toSectionDepartmentSubDepartmentCheckBox.Name = "toSectionDepartmentSubDepartmentCheckBox";
             this.toSectionDepartmentSubDepartmentCheckBox.Size = new System.Drawing.Size(176, 25);
             this.toSectionDepartmentSubDepartmentCheckBox.TabIndex = 200;
@@ -513,7 +521,7 @@ namespace AssetManagement.Assets
             // assetMovementDateLabel
             // 
             this.assetMovementDateLabel.AutoSize = true;
-            this.assetMovementDateLabel.Location = new System.Drawing.Point(1115, 334);
+            this.assetMovementDateLabel.Location = new System.Drawing.Point(1129, 370);
             this.assetMovementDateLabel.Name = "assetMovementDateLabel";
             this.assetMovementDateLabel.Size = new System.Drawing.Size(79, 21);
             this.assetMovementDateLabel.TabIndex = 155;
@@ -522,7 +530,7 @@ namespace AssetManagement.Assets
             // assetMovementDateDateEdit
             // 
             this.assetMovementDateDateEdit.EditValue = null;
-            this.assetMovementDateDateEdit.Location = new System.Drawing.Point(838, 329);
+            this.assetMovementDateDateEdit.Location = new System.Drawing.Point(827, 365);
             this.assetMovementDateDateEdit.Name = "assetMovementDateDateEdit";
             this.assetMovementDateDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetMovementDateDateEdit.Properties.Appearance.Options.UseFont = true;
@@ -537,7 +545,7 @@ namespace AssetManagement.Assets
             // 
             this.assetMoveBtn.Image = global::AssetManagement.Properties.Resources._1592276;
             this.assetMoveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.assetMoveBtn.Location = new System.Drawing.Point(25, 295);
+            this.assetMoveBtn.Location = new System.Drawing.Point(12, 351);
             this.assetMoveBtn.Name = "assetMoveBtn";
             this.assetMoveBtn.Size = new System.Drawing.Size(163, 74);
             this.assetMoveBtn.TabIndex = 400;
@@ -548,7 +556,7 @@ namespace AssetManagement.Assets
             // 
             // fromSquareTextBox
             // 
-            this.fromSquareTextBox.Location = new System.Drawing.Point(836, 230);
+            this.fromSquareTextBox.Location = new System.Drawing.Point(825, 216);
             this.fromSquareTextBox.Name = "fromSquareTextBox";
             this.fromSquareTextBox.ReadOnly = true;
             this.fromSquareTextBox.Size = new System.Drawing.Size(261, 28);
@@ -556,7 +564,7 @@ namespace AssetManagement.Assets
             // 
             // fromSectionTextBox
             // 
-            this.fromSectionTextBox.Location = new System.Drawing.Point(836, 80);
+            this.fromSectionTextBox.Location = new System.Drawing.Point(825, 66);
             this.fromSectionTextBox.Name = "fromSectionTextBox";
             this.fromSectionTextBox.ReadOnly = true;
             this.fromSectionTextBox.Size = new System.Drawing.Size(261, 28);
@@ -564,7 +572,7 @@ namespace AssetManagement.Assets
             // 
             // fromDepartmentTextBox
             // 
-            this.fromDepartmentTextBox.Location = new System.Drawing.Point(836, 130);
+            this.fromDepartmentTextBox.Location = new System.Drawing.Point(825, 116);
             this.fromDepartmentTextBox.Name = "fromDepartmentTextBox";
             this.fromDepartmentTextBox.ReadOnly = true;
             this.fromDepartmentTextBox.Size = new System.Drawing.Size(261, 28);
@@ -572,7 +580,7 @@ namespace AssetManagement.Assets
             // 
             // toCustodianNameTextBox
             // 
-            this.toCustodianNameTextBox.Location = new System.Drawing.Point(243, 280);
+            this.toCustodianNameTextBox.Location = new System.Drawing.Point(243, 266);
             this.toCustodianNameTextBox.Name = "toCustodianNameTextBox";
             this.toCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
             this.toCustodianNameTextBox.TabIndex = 235;
@@ -580,7 +588,7 @@ namespace AssetManagement.Assets
             // 
             // fromCustodianNameTextBox
             // 
-            this.fromCustodianNameTextBox.Location = new System.Drawing.Point(836, 280);
+            this.fromCustodianNameTextBox.Location = new System.Drawing.Point(825, 266);
             this.fromCustodianNameTextBox.Name = "fromCustodianNameTextBox";
             this.fromCustodianNameTextBox.ReadOnly = true;
             this.fromCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
@@ -589,7 +597,7 @@ namespace AssetManagement.Assets
             // fromCustodianNameLabel
             // 
             this.fromCustodianNameLabel.AutoSize = true;
-            this.fromCustodianNameLabel.Location = new System.Drawing.Point(1129, 284);
+            this.fromCustodianNameLabel.Location = new System.Drawing.Point(1143, 270);
             this.fromCustodianNameLabel.Name = "fromCustodianNameLabel";
             this.fromCustodianNameLabel.Size = new System.Drawing.Size(65, 21);
             this.fromCustodianNameLabel.TabIndex = 145;
@@ -597,7 +605,7 @@ namespace AssetManagement.Assets
             // 
             // toSquareLookUpEdit
             // 
-            this.toSquareLookUpEdit.Location = new System.Drawing.Point(243, 229);
+            this.toSquareLookUpEdit.Location = new System.Drawing.Point(243, 215);
             this.toSquareLookUpEdit.Name = "toSquareLookUpEdit";
             this.toSquareLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toSquareLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -622,7 +630,7 @@ namespace AssetManagement.Assets
             // 
             // toSectionLookUpEdit
             // 
-            this.toSectionLookUpEdit.Location = new System.Drawing.Point(243, 79);
+            this.toSectionLookUpEdit.Location = new System.Drawing.Point(243, 65);
             this.toSectionLookUpEdit.Name = "toSectionLookUpEdit";
             this.toSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toSectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -647,7 +655,7 @@ namespace AssetManagement.Assets
             // 
             // toDepartmentLookUpEdit
             // 
-            this.toDepartmentLookUpEdit.Location = new System.Drawing.Point(243, 129);
+            this.toDepartmentLookUpEdit.Location = new System.Drawing.Point(243, 115);
             this.toDepartmentLookUpEdit.Name = "toDepartmentLookUpEdit";
             this.toDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -674,7 +682,7 @@ namespace AssetManagement.Assets
             // fromSquareLabel
             // 
             this.fromSquareLabel.AutoSize = true;
-            this.fromSquareLabel.Location = new System.Drawing.Point(1119, 234);
+            this.fromSquareLabel.Location = new System.Drawing.Point(1133, 220);
             this.fromSquareLabel.Name = "fromSquareLabel";
             this.fromSquareLabel.Size = new System.Drawing.Size(75, 21);
             this.fromSquareLabel.TabIndex = 135;
@@ -683,7 +691,7 @@ namespace AssetManagement.Assets
             // fromSectionLabel
             // 
             this.fromSectionLabel.AutoSize = true;
-            this.fromSectionLabel.Location = new System.Drawing.Point(1124, 84);
+            this.fromSectionLabel.Location = new System.Drawing.Point(1138, 70);
             this.fromSectionLabel.Name = "fromSectionLabel";
             this.fromSectionLabel.Size = new System.Drawing.Size(70, 21);
             this.fromSectionLabel.TabIndex = 105;
@@ -692,7 +700,7 @@ namespace AssetManagement.Assets
             // fromDepartmentLabel
             // 
             this.fromDepartmentLabel.AutoSize = true;
-            this.fromDepartmentLabel.Location = new System.Drawing.Point(1124, 134);
+            this.fromDepartmentLabel.Location = new System.Drawing.Point(1138, 120);
             this.fromDepartmentLabel.Name = "fromDepartmentLabel";
             this.fromDepartmentLabel.Size = new System.Drawing.Size(70, 21);
             this.fromDepartmentLabel.TabIndex = 115;
@@ -755,6 +763,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -839,12 +848,48 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
+            // toPlaceOfPresenceCheckBox
+            // 
+            this.toPlaceOfPresenceCheckBox.AutoSize = true;
+            this.toPlaceOfPresenceCheckBox.Location = new System.Drawing.Point(588, 318);
+            this.toPlaceOfPresenceCheckBox.Name = "toPlaceOfPresenceCheckBox";
+            this.toPlaceOfPresenceCheckBox.Size = new System.Drawing.Size(125, 25);
+            this.toPlaceOfPresenceCheckBox.TabIndex = 403;
+            this.toPlaceOfPresenceCheckBox.Text = "إلى مكان التواجد:";
+            this.toPlaceOfPresenceCheckBox.UseVisualStyleBackColor = true;
+            this.toPlaceOfPresenceCheckBox.CheckedChanged += new System.EventHandler(this.toPlaceOfPresenceCheckBox_CheckedChanged);
+            // 
+            // toPlaceOfPresenceTextBox
+            // 
+            this.toPlaceOfPresenceTextBox.Location = new System.Drawing.Point(243, 316);
+            this.toPlaceOfPresenceTextBox.Name = "toPlaceOfPresenceTextBox";
+            this.toPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
+            this.toPlaceOfPresenceTextBox.TabIndex = 404;
+            this.toPlaceOfPresenceTextBox.Visible = false;
+            // 
+            // fromPlaceOfPresenceTextBox
+            // 
+            this.fromPlaceOfPresenceTextBox.Location = new System.Drawing.Point(825, 316);
+            this.fromPlaceOfPresenceTextBox.Name = "fromPlaceOfPresenceTextBox";
+            this.fromPlaceOfPresenceTextBox.ReadOnly = true;
+            this.fromPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
+            this.fromPlaceOfPresenceTextBox.TabIndex = 402;
+            // 
+            // fromPlaceOfPresenceLabel
+            // 
+            this.fromPlaceOfPresenceLabel.AutoSize = true;
+            this.fromPlaceOfPresenceLabel.Location = new System.Drawing.Point(1102, 320);
+            this.fromPlaceOfPresenceLabel.Name = "fromPlaceOfPresenceLabel";
+            this.fromPlaceOfPresenceLabel.Size = new System.Drawing.Size(106, 21);
+            this.fromPlaceOfPresenceLabel.TabIndex = 401;
+            this.fromPlaceOfPresenceLabel.Text = "من مكان التواجد:";
+            // 
             // MoveAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1247, 845);
+            this.ClientSize = new System.Drawing.Size(1247, 883);
             this.Controls.Add(this.viewAssetInformationBtn);
             this.Controls.Add(this.searchResultsListBox);
             this.Controls.Add(this.moveAssetGroupBox);
@@ -859,7 +904,7 @@ namespace AssetManagement.Assets
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " l k;mkmmwd";
+            this.Text = "نقل أصل";
             this.Load += new System.EventHandler(this.MoveAssetForm_Load);
             this.moveAssetGroupBox.ResumeLayout(false);
             this.moveAssetGroupBox.PerformLayout();
@@ -965,5 +1010,9 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Label fromSubDepartmentLabel;
         private System.Windows.Forms.BindingSource assetVwBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
+        private System.Windows.Forms.CheckBox toPlaceOfPresenceCheckBox;
+        private System.Windows.Forms.TextBox toPlaceOfPresenceTextBox;
+        private System.Windows.Forms.TextBox fromPlaceOfPresenceTextBox;
+        private System.Windows.Forms.Label fromPlaceOfPresenceLabel;
     }
 }

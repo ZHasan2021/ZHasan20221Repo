@@ -45,10 +45,15 @@ namespace AssetManagement.Assets
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 200);
             e.AlertForm.Location = new Point(500, 400);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void assetMoveBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من إدخالاتك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -83,6 +88,11 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر اسم صاحب العهدة المنقول إليه أولاً", StaticCode.ApplicationTitle);
                 return;
             }
+            if (toPlaceOfPresenceCheckBox.Checked && toPlaceOfPresenceTextBox.Text.Trim() == "")
+            {
+                mainAlertControl.Show(this, "اختر اسم مكان التواجد المنقول إليه أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
             if (assetMovementDateDateEdit.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر تاريخ النقل أولاً", StaticCode.ApplicationTitle);
@@ -98,6 +108,8 @@ namespace AssetManagement.Assets
                     assetToMove.AssetSquare = Convert.ToInt32(toSquareLookUpEdit.EditValue);
                 if (toCustodianNameCheckBox.Checked)
                     assetToMove.CustodianName = toCustodianNameTextBox.Text.Trim();
+                if (toPlaceOfPresenceCheckBox.Checked)
+                    assetToMove.PlaceOfPresence = toPlaceOfPresenceTextBox.Text.Trim();
 
                 if (toSectionDepartmentSubDepartmentCheckBox.Checked)
                 {
@@ -153,11 +165,24 @@ namespace AssetManagement.Assets
                     };
                     StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(newAstMv);
                 }
+                if (toPlaceOfPresenceCheckBox.Checked)
+                {
+                    AssetMovementTbl newAstMv = new AssetMovementTbl()
+                    {
+                        AssetID = assetToMove.ID,
+                        FieldChanged = "مكان التواجد",
+                        OldValue = fromPlaceOfPresenceTextBox.Text.Trim(),
+                        NewValue = toPlaceOfPresenceTextBox.Text.Trim(),
+                        MovementDate = Convert.ToDateTime(assetMovementDateDateEdit.EditValue),
+                    };
+                    StaticCode.mainDbContext.AssetMovementTbls.InsertOnSubmit(newAstMv);
+                }
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
                 this.assetMoveVwBindingSource.EndEdit();
                 assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
                 mainAlertControl.Show(this, "تم نقل الأصل وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
+                searchResultsListBox.Visible = viewAssetInformationBtn.Visible = false;
             }
             catch
             {
@@ -212,9 +237,12 @@ namespace AssetManagement.Assets
             fromSubDepartmentTextBox.Text = currSrchRes.SubDepartmentName;
             fromSquareTextBox.Text = currSrchRes.SquareName;
             fromCustodianNameTextBox.Text = currSrchRes.CustodianName;
+            fromPlaceOfPresenceTextBox.Text = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currSrchRes.ID).PlaceOfPresence;
             assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
             moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = true;
-            toSectionDepartmentSubDepartmentCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = false;
+            toSectionDepartmentSubDepartmentCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = toPlaceOfPresenceCheckBox.Checked = false;
+            toSectionLookUpEdit.EditValue = toDepartmentLookUpEdit.EditValue = toSubDepartmentLookUpEdit.EditValue = toSquareLookUpEdit.EditValue = assetMovementDateDateEdit.EditValue = null;
+            toCustodianNameTextBox.Text = toPlaceOfPresenceTextBox.Text = "";
         }
 
         private void toDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -255,6 +283,11 @@ namespace AssetManagement.Assets
             toDepartmentLookUpEdit.Properties.DataSource = deptItems;
             toDepartmentLookUpEdit_EditValueChanged(sender, e);
             toSubDepartmentLookUpEdit.EditValue = null;
+        }
+
+        private void toPlaceOfPresenceCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            toPlaceOfPresenceTextBox.Visible = toPlaceOfPresenceCheckBox.Checked;
         }
     }
 }

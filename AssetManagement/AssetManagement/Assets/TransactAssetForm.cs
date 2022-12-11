@@ -40,7 +40,7 @@ namespace AssetManagement.Assets
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 200);
             e.AlertForm.Location = new Point(500, 400);
         }
 
@@ -76,7 +76,7 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اكتب مبلغ البيع أو الشراء أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (assetItemsQuantityToTransactNumericUpDown.Value < assetCurrentItemsQuantityNumericUpDown.Value && getAssetOutOfWorkCheckBox.Checked)
+            if (assetItemsQuantityToTransactNumericUpDown.Value < assetCurrentItemsQuantityNumericUpDown.Value && getAssetOutOfWorkCheckBox.Checked && !actAsDesctructionCheckBox.Checked)
             {
                 mainAlertControl.Show(this, "لا يمكن إخراج الأصل من الخدمة لأن العدد المطلوب تصريفه أقل من العدد الكلي للأصل", StaticCode.ApplicationTitle);
                 return;
@@ -97,14 +97,8 @@ namespace AssetManagement.Assets
                     CurrentPriceWithDestroying = Convert.ToDouble(currentPriceWithDestroyingNumericUpDown.Value),
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstTr);
-                assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked == true;
-                assetToTransact.ItemsQuantity = assetToTransact.ItemsQuantity - Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value);
+
                 bool assetSold = transactionTypeLookUpEdit.Text == "بيع";
-                if (assetToTransact.ItemsQuantity == Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value))
-                {
-                    assetToTransact.IsOutOfWork = true;
-                    newAstTr.GetAssetOutOfWork = true;
-                }
                 if (assetSold)
                 {
                     if (assetToTransact.ItemsQuantity == Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value))
@@ -123,12 +117,18 @@ namespace AssetManagement.Assets
                         IncomingOrOutgoing = "وارد",
                         IncomingAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                         OutgoingAmount = 0,
+                        OutgoingTo = "",
+                        OutgoingType = "",
+                        IncomingFrom = "أخرى",
                         FinancialItemCurrency = Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
                         AdditionalNotes = assetNotesTextBox.Text.Trim(),
                         FinancialItemDescription = $"بيع الأصل الذي يحمل الكود {assetToTransact.AssetCode} العدد  {assetItemsQuantityToTransactNumericUpDown.Value}"
                     });
                 }
-                assetToTransact.AssetNotes = assetNotesTextBox.Text.Trim();
+                assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked;
+                if (!actAsDesctructionCheckBox.Checked)
+                    assetToTransact.ItemsQuantity = assetToTransact.ItemsQuantity - Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value);
+                assetToTransact.AssetNotes += $"[تم {transactionTypeLookUpEdit.Text} ({assetItemsQuantityToTransactNumericUpDown.Value}) من الأصل] {assetNotesTextBox.Text.Trim()}";
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
                 this.assetTransactionTblBindingSource.EndEdit();
@@ -193,7 +193,7 @@ namespace AssetManagement.Assets
             assetTransactionGridControl.DataSource = assetTrs;
             transactAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
-            getAssetOutOfWorkCheckBox.Checked = false;
+            getAssetOutOfWorkCheckBox.Checked = actAsDesctructionCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
             moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
             if (assetToTransact.IsOldOrNewAsset == "جديد")
@@ -205,8 +205,8 @@ namespace AssetManagement.Assets
             {
                 currentPriceWithDestroyingNumericUpDown.Value = 0;
                 currentPriceWithDestroyingNumericUpDown.Enabled = true;
-
             }
+            assetItemsQuantityToTransactNumericUpDown_ValueChanged(sender, e);
         }
 
         private void assetTransactionTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -241,15 +241,34 @@ namespace AssetManagement.Assets
 
         private void transactionTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-            //getAssetOutOfWorkCheckBox.Enabled = transactionTypeLookUpEdit.Text != "بيع";
-            //getAssetOutOfWorkCheckBox.Checked = false;
+
         }
 
         private void assetItemsQuantityToTransactNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (assetItemsQuantityToTransactNumericUpDown.Value == assetCurrentItemsQuantityNumericUpDown.Value)
+            if (actAsDesctructionCheckBox.Checked)
             {
-                getAssetOutOfWorkCheckBox.Checked = true;
+                getAssetOutOfWorkCheckBox.Checked = false;
+                getAssetOutOfWorkCheckBox.Enabled = true;
+            }
+            else
+            {
+                getAssetOutOfWorkCheckBox.Checked = assetItemsQuantityToTransactNumericUpDown.Value == assetCurrentItemsQuantityNumericUpDown.Value;
+                getAssetOutOfWorkCheckBox.Enabled = assetItemsQuantityToTransactNumericUpDown.Value != assetCurrentItemsQuantityNumericUpDown.Value;
+            }
+        }
+
+        private void actAsDesctructionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (actAsDesctructionCheckBox.Checked)
+            {
+                assetItemsQuantityToTransactNumericUpDown.Value = assetCurrentItemsQuantityNumericUpDown.Value;
+                assetItemsQuantityToTransactNumericUpDown.Enabled = false;
+            }
+            else
+            {
+                assetItemsQuantityToTransactNumericUpDown.Value = 1;
+                assetItemsQuantityToTransactNumericUpDown.Enabled = true;
             }
         }
     }

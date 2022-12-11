@@ -33,7 +33,7 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewAssetInventoryForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.excludeOutOfWorkAssetsCheckBox = new System.Windows.Forms.CheckBox();
+            this.includeOutOfWorkAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportToExcelPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -230,7 +230,7 @@ namespace AssetManagement.Assets
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.excludeOutOfWorkAssetsCheckBox);
+            this.panel1.Controls.Add(this.includeOutOfWorkAssetsCheckBox);
             this.panel1.Controls.Add(this.searchAssetDropDownButton);
             this.panel1.Controls.Add(this.exportToExcelDropDownButton);
             this.panel1.Controls.Add(this.customSearchRadioButton);
@@ -241,17 +241,17 @@ namespace AssetManagement.Assets
             this.panel1.Size = new System.Drawing.Size(1258, 111);
             this.panel1.TabIndex = 0;
             // 
-            // excludeOutOfWorkAssetsCheckBox
+            // includeOutOfWorkAssetsCheckBox
             // 
-            this.excludeOutOfWorkAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.excludeOutOfWorkAssetsCheckBox.AutoSize = true;
-            this.excludeOutOfWorkAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excludeOutOfWorkAssetsCheckBox.Location = new System.Drawing.Point(25, 20);
-            this.excludeOutOfWorkAssetsCheckBox.Name = "excludeOutOfWorkAssetsCheckBox";
-            this.excludeOutOfWorkAssetsCheckBox.Size = new System.Drawing.Size(178, 25);
-            this.excludeOutOfWorkAssetsCheckBox.TabIndex = 530;
-            this.excludeOutOfWorkAssetsCheckBox.Text = "استثناء ما خرج من الخدمة";
-            this.excludeOutOfWorkAssetsCheckBox.UseVisualStyleBackColor = true;
+            this.includeOutOfWorkAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.includeOutOfWorkAssetsCheckBox.AutoSize = true;
+            this.includeOutOfWorkAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.includeOutOfWorkAssetsCheckBox.Location = new System.Drawing.Point(26, 20);
+            this.includeOutOfWorkAssetsCheckBox.Name = "includeOutOfWorkAssetsCheckBox";
+            this.includeOutOfWorkAssetsCheckBox.Size = new System.Drawing.Size(177, 25);
+            this.includeOutOfWorkAssetsCheckBox.TabIndex = 530;
+            this.includeOutOfWorkAssetsCheckBox.Text = "تضمين ما خرج من الخدمة";
+            this.includeOutOfWorkAssetsCheckBox.UseVisualStyleBackColor = true;
             // 
             // searchAssetDropDownButton
             // 
@@ -1050,6 +1050,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -1812,6 +1813,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
         private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
         private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
-        private System.Windows.Forms.CheckBox excludeOutOfWorkAssetsCheckBox;
+        private System.Windows.Forms.CheckBox includeOutOfWorkAssetsCheckBox;
     }
 }
