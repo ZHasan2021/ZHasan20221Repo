@@ -18,29 +18,30 @@ namespace AssetManagement.Finance
             InitializeComponent();
         }
 
-        void UpdateTotals()
+        void UpdateTotals(IQueryable<FinancialItemVw> qryToGetTotals)
         {
-            var incomingUSD = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "وارد");
+            //StaticCode.mainDbContext.FinancialItemVws
+            var incomingUSD = qryToGetTotals.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "وارد");
             double incomingUSD_Am = 0;
             if (incomingUSD != null && incomingUSD.Count() > 0)
                 incomingUSD_Am = incomingUSD.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var incomingEUR = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "وارد");
+            var incomingEUR = qryToGetTotals.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "وارد");
             double incomingEUR_Am = 0;
             if (incomingEUR != null && incomingEUR.Count() > 0)
                 incomingEUR_Am = incomingEUR.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var incomingSYP = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "وارد");
+            var incomingSYP = qryToGetTotals.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "وارد");
             double incomingSYP_Am = 0;
             if (incomingSYP != null && incomingSYP.Count() > 0)
                 incomingSYP_Am = incomingSYP.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var outgoingUSD = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "صادر");
+            var outgoingUSD = qryToGetTotals.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "صادر");
             double outgoingUSD_Am = 0;
             if (outgoingUSD != null && outgoingUSD.Count() > 0)
                 outgoingUSD_Am = outgoingUSD.Sum(fiv2 => fiv2.المبلغ_الصادر);
-            var outgoingEUR = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "صادر");
+            var outgoingEUR = qryToGetTotals.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "صادر");
             double outgoingEUR_Am = 0;
             if (outgoingEUR != null && outgoingEUR.Count() > 0)
                 outgoingEUR_Am = outgoingEUR.Sum(fiv2 => fiv2.المبلغ_الصادر);
-            var outgoingSYP = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "صادر");
+            var outgoingSYP = qryToGetTotals.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "صادر");
             double outgoingSYP_Am = 0;
             if (outgoingSYP != null && outgoingSYP.Count() > 0)
                 outgoingSYP_Am = outgoingSYP.Sum(fiv2 => fiv2.المبلغ_الصادر);
@@ -56,9 +57,9 @@ namespace AssetManagement.Finance
             List<string> currenciesList = StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName).ToList();
             foreach (string oneCu in currenciesList)
             {
-                if (!StaticCode.mainDbContext.FinancialItemVws.Any(fiv1 => fiv1.العملة == oneCu))
+                if (!qryToGetTotals.Any(fiv1 => fiv1.العملة == oneCu))
                     continue;
-                var incomingCu = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "وارد");
+                var incomingCu = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "وارد");
                 double incomingCu_Am = 0;
                 if (incomingCu != null && incomingCu.Count() > 0)
                     incomingCu_Am = incomingCu.Sum(fiv2 => fiv2.المبلغ_الوارد);
@@ -66,7 +67,7 @@ namespace AssetManagement.Finance
                 double incomingCuPrevMonth_Am = 0;
                 if (incomingCuPrevMonth != null && incomingCuPrevMonth.Count() > 0)
                     incomingCuPrevMonth_Am = incomingCuPrevMonth.Sum(fiv2 => fiv2.المبلغ_الوارد);
-                var outgoingCu = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "صادر");
+                var outgoingCu = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "صادر");
                 double outgoingCu_Am = 0;
                 if (outgoingCu != null && outgoingCu.Count() > 0)
                     outgoingCu_Am = outgoingCu.Sum(fiv2 => fiv2.المبلغ_الصادر);
@@ -77,6 +78,17 @@ namespace AssetManagement.Finance
                 double recycledCu_Am = incomingCuPrevMonth_Am - outgoingCuPrevMonth_Am;
                 totalsDataGridView.Rows.Add(new object[] { oneCu, incomingCu_Am, outgoingCu_Am, recycledCu_Am });
             }
+        }
+
+        void UpdateTotalsAsFiltered()
+        {
+            List<int> IDsVisible = new List<int>();
+            for (int i = 0; i < financialItemGridView.RowCount; i++)
+            {
+                IDsVisible.Add(Convert.ToInt32(financialItemGridView.GetRowCellValue(i, colمعرفالسجلالمالي)));
+            }
+            var fiVAsFiltered = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => IDsVisible.Contains(fiv1.معرف_السجل_المالي));
+            UpdateTotals(fiVAsFiltered);
         }
 
         private void ManageFinancialItemTblForm_Load(object sender, EventArgs e)
@@ -102,7 +114,7 @@ namespace AssetManagement.Finance
             editFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.UpdateExistedFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             deleteFinancialItemBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteFinancialItemRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
 
-            this.UpdateTotals();
+            this.UpdateTotals(StaticCode.mainDbContext.FinancialItemVws);
 
             this.MinimumSize = this.Size;
         }
@@ -146,7 +158,7 @@ namespace AssetManagement.Finance
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
                 //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
-                this.UpdateTotals();
+                this.UpdateTotalsAsFiltered();
             }
             catch
             {
@@ -183,6 +195,11 @@ namespace AssetManagement.Finance
         private void mainTabFormControl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void financialItemGridView_ColumnFilterChanged(object sender, EventArgs e)
+        {
+            UpdateTotalsAsFiltered();
         }
     }
 }

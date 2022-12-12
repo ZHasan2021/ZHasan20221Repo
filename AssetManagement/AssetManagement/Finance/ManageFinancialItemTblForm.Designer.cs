@@ -509,6 +509,7 @@ namespace AssetManagement.Finance
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colتاريختحريرالسجل, DevExpress.Data.ColumnSortOrder.Descending)});
             this.financialItemGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.financialItemGridView_RowClick);
             this.financialItemGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.financialItemGridView_RowCellClick);
+            this.financialItemGridView.ColumnFilterChanged += new System.EventHandler(this.financialItemGridView_ColumnFilterChanged);
             // 
             // colمعرفالسجلالمالي
             // 
@@ -845,9 +846,9 @@ namespace AssetManagement.Finance
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
-            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsDockPanel);
             this.Controls.Add(this.mainTabFormControl);
+            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsStatusStrip);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
