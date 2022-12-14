@@ -19,7 +19,7 @@ namespace AssetManagement.Assets
 {
     public partial class AssetsStatsForm : Form
     {
-        IQueryable<AssetTbl> assetsQry = null;
+        IQueryable<AssetVw> assetsQry = null;
         public AssetsStatsForm()
         {
             InitializeComponent();
@@ -27,6 +27,8 @@ namespace AssetManagement.Assets
 
         private void AssetsStatsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.MinorCategoryTbl' table. You can move, or remove it, as needed.
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.MinorCategoryVw' table. You can move, or remove it, as needed.
@@ -159,7 +161,7 @@ namespace AssetManagement.Assets
         private void searchAssetDropDownButton_Click(object sender, EventArgs e)
         {
             mainChartControl.Visible = false;
-            assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
+            assetsQry = from ast in StaticCode.mainDbContext.AssetVws select ast;
             if (searchBySectionCheckBox.Checked)
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
@@ -169,9 +171,7 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                    assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
+                    assetsQry = assetsQry.Where(astv1 => astv1.الدائرة == searchBySectionLookUpEdit.Text);
                 }
             }
             if (searchByDepartmentCheckBox.Checked)
@@ -183,8 +183,7 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
-                    assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
+                    assetsQry = assetsQry.Where(astv1 => astv1.القسم == searchByDepartmentLookUpEdit.Text);
                 }
             }
             if (searchBySubDepartmentCheckBox.Checked)
@@ -196,7 +195,7 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    assetsQry = assetsQry.Where(ast => ast.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue));
+                    assetsQry = assetsQry.Where(astv1 => astv1.الوحدة == searchBySubDepartmentCheckBox.Text);
                 }
             }
             if (searchByMainCategoryCheckBox.Checked)
@@ -208,8 +207,7 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    List<int> minorQry = (from minorCat in StaticCode.mainDbContext.MinorCategoryTbls where minorCat.MainCategory == Convert.ToInt32(searchByMainCategoryLookUpEdit.EditValue) select minorCat.ID).ToList();
-                    assetsQry = from qry in assetsQry where minorQry.Contains(qry.AssetMinorCategory) select qry;
+                    assetsQry = assetsQry.Where(astv1 => astv1.الفئة_الرئيسية == searchByMainCategoryLookUpEdit.Text);
                 }
             }
             if (searchByMinorCategoryCheckBox.Checked)
@@ -221,7 +219,19 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    assetsQry = assetsQry.Where(ast => ast.AssetMinorCategory == Convert.ToInt32(searchByMinorCategoryLookUpEdit.EditValue));
+                    assetsQry = assetsQry.Where(astv1 => astv1.الفئة_الفرعية == searchByMinorCategoryLookUpEdit.Text);
+                }
+            }
+            if (searchByCurrencyCheckBox.Checked)
+            {
+                if (searchByCurrencyLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد عملة سعر الشراء أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    assetsQry = assetsQry.Where(astv1 => astv1.عملة_سعر_الشراء == searchByCurrencyLookUpEdit.Text);
                 }
             }
             if (searchByPurchaseDateCheckBox.Checked)
@@ -241,7 +251,7 @@ namespace AssetManagement.Assets
                     mainAlertControl.Show(this, "بداية تاريخ الشراء أحدث من نهاية تاريخ الشراء", StaticCode.ApplicationTitle);
                     return;
                 }
-                assetsQry = assetsQry.Where(ast => ast.PurchaseDate != null && ast.PurchaseDate >= Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) && ast.PurchaseDate <= Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue));
+                assetsQry = assetsQry.Where(ast => ast.تاريخ_الشراء != null && ast.تاريخ_الشراء >= Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) && ast.تاريخ_الشراء <= Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue));
             }
             if (searchByInsertionDateCheckBox.Checked)
             {
@@ -260,15 +270,7 @@ namespace AssetManagement.Assets
                     mainAlertControl.Show(this, "بداية تاريخ الإدخال أحدث من نهاية تاريخ الإدخال", StaticCode.ApplicationTitle);
                     return;
                 }
-                assetsQry = assetsQry.Where(ast => ast.InsertedOn != null && ast.InsertedOn >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.InsertedOn <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
-            }
-            if (soldAssetsCheckBox.Checked)
-            {
-                assetsQry = assetsQry.Where(ast => ast.IsSold == true);
-            }
-            if (outOfWorkCheckBox.Checked)
-            {
-                assetsQry = assetsQry.Where(ast => ast.IsOutOfWork == true);
+                assetsQry = assetsQry.Where(ast => ast.تاريخ_الإدخال != null && ast.تاريخ_الإدخال >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.تاريخ_الإدخال <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
             }
 
             mainChartControl.Visible = assetsQry.Count() > 0;
@@ -278,7 +280,7 @@ namespace AssetManagement.Assets
             }
             else
             {
-                List<int> IDsIncluded = assetsQry.Select(as1 => as1.ID).ToList();
+                List<int> IDsIncluded = assetsQry.Select(as1 => as1.معرف_الأصل).ToList();
                 string plusQry = "";
                 foreach (int oneID in IDsIncluded)
                     plusQry += oneID + ", ";
@@ -340,12 +342,12 @@ namespace AssetManagement.Assets
             {
                 mainChartControl.SeriesTemplate.ChangeView(ViewType.StackedBar);
                 mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
-                //mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
                 mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), aggregateStatTypeBarEditItem.EditValue.ToString().Replace("عدد الأصول", "العدد").Replace("مجموع مبالغ الشراء", "سعر الشراء"));
 
                 // Enable series point labels, specify their text pattern and position:
                 mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-                mainChartControl.SeriesTemplate.Label.TextPattern = "{A}:{V}";
+                mainChartControl.SeriesTemplate.Label.TextPattern = "{A}:{G}";
                 ((BarSeriesLabel)mainChartControl.SeriesTemplate.Label).Position = BarSeriesLabelPosition.Center;
 
                 // Customize series view settings (for example, bar width):
@@ -354,6 +356,8 @@ namespace AssetManagement.Assets
 
                 // Disable minor tickmarks on the x-axis:
                 XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
+                diagram.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                diagram.AxisX.Title.Text = byField2BarEditItem.EditValue.ToString();
                 diagram.AxisX.Tickmarks.MinorVisible = false;
                 diagram.Rotated = true;
 
@@ -366,19 +370,18 @@ namespace AssetManagement.Assets
             {
                 mainChartControl.SeriesTemplate.ChangeView(ViewType.Bar);
                 mainChartControl.SeriesTemplate.SeriesDataMember = byFieldBarEditItem.EditValue.ToString();
-                mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
-                mainChartControl.SeriesTemplate.ValueDataMembers.AddRange(aggregateStatTypeBarEditItem.EditValue.ToString().Replace("عدد الأصول", "العدد").Replace("مجموع مبالغ الشراء", "سعر الشراء"));
-                //mainChartControl.SeriesTemplate.SetDataMembers(byField2BarEditItem.EditValue.ToString(), "العدد");
+                //mainChartControl.SeriesTemplate.ArgumentDataMember = byFieldBarEditItem.EditValue.ToString();
+                mainChartControl.SeriesTemplate.SetDataMembers(byFieldBarEditItem.EditValue.ToString(), aggregateStatTypeBarEditItem.EditValue.ToString().Replace("عدد الأصول", "العدد").Replace("مجموع مبالغ الشراء", "سعر الشراء"));
 
                 // Enable series point labels, specify their text pattern and position:
                 mainChartControl.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-                mainChartControl.SeriesTemplate.Label.TextPattern = "${A}:{V}";
+                mainChartControl.SeriesTemplate.Label.TextPattern = ((aggregateStatTypeBarEditItem.EditValue.ToString() == "عدد الأصول") ? "" : "$") + "{A}:{V}";
                 ((BarSeriesLabel)mainChartControl.SeriesTemplate.Label).Position = BarSeriesLabelPosition.Center;
 
                 // Customize series view settings (for example, bar width):
                 BarSeriesView view = (BarSeriesView)mainChartControl.SeriesTemplate.View;
                 view.AggregateFunction = SeriesAggregateFunction.Sum;
-                view.BarWidth = 0.7;
+                view.BarWidth = 3.0;
 
                 // Disable minor tickmarks on the x-axis:
                 XYDiagram diagram = (XYDiagram)mainChartControl.Diagram;
@@ -477,6 +480,7 @@ namespace AssetManagement.Assets
             //        break;
             //}
 
+            mainChartControl.Visible = true;
             mainChartControl.Titles.Clear();
             ChartTitle mainTitle = new ChartTitle() { Alignment = StringAlignment.Center, Font = new Font("Sakkal Majalla", 16.0F), Text = $"إجمالي {aggregateStatTypeBarEditItem.EditValue.ToString()} حسب {byFieldBarEditItem.EditValue.ToString()}" };
             mainChartControl.Titles.Add(mainTitle);
@@ -495,6 +499,11 @@ namespace AssetManagement.Assets
         private void secondFieldBarCheckItem_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             byField2BarEditItem.Visibility = (secondFieldBarCheckItem.Checked) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+
+        private void searchByCurrencyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByCurrencyLookUpEdit.Visible = searchByCurrencyCheckBox.Checked;
         }
     }
 }

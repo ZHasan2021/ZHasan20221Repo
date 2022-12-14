@@ -460,6 +460,12 @@
     <Compile Include="Finance\AddNewFinancialItemForm.Designer.cs">
       <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Finance\FinancialStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\FinancialStatsForm.Designer.cs">
+      <DependentUpon>FinancialStatsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Finance\FinancialReportsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -659,6 +665,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Finance\AddNewFinancialItemForm.resx">
       <DependentUpon>AddNewFinancialItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finance\FinancialStatsForm.resx">
+      <DependentUpon>FinancialStatsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Finance\FinancialReportsForm.resx">
       <DependentUpon>FinancialReportsForm.cs</DependentUpon>

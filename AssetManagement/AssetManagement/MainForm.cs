@@ -795,7 +795,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void financialItemsStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            FinancialStatsForm fistFrm = new FinancialStatsForm();
+            fistFrm.ShowDialog();
         }
     }
 }

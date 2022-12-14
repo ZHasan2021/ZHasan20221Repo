@@ -76,10 +76,16 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اكتب مبلغ البيع أو الشراء أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (assetItemsQuantityToTransactNumericUpDown.Value < assetCurrentItemsQuantityNumericUpDown.Value && getAssetOutOfWorkCheckBox.Checked && !actAsDesctructionCheckBox.Checked)
+            if (assetItemsQuantityToTransactNumericUpDown.Value < assetCurrentItemsQuantityNumericUpDown.Value && getAssetOutOfWorkCheckBox.Checked)
             {
                 mainAlertControl.Show(this, "لا يمكن إخراج الأصل من الخدمة لأن العدد المطلوب تصريفه أقل من العدد الكلي للأصل", StaticCode.ApplicationTitle);
                 return;
+            }
+
+            bool getAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked;
+            if (transactionTypeLookUpEdit.Text == "إهلاك")
+            {
+                getAssetOutOfWork = MessageBox.Show("هل تريد إخراج الأصل من الخدمة؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
 
             try
@@ -93,7 +99,7 @@ namespace AssetManagement.Assets
                     TransactionNotes = assetNotesTextBox.Text.Trim(),
                     MoneyAmount = Convert.ToDouble(moneyAmountNumericUpDown.Value),
                     MoneyAmountCurrency = (moneyAmountNumericUpDown.Value == 0) ? 1 : Convert.ToInt32(moneyAmountCurrencyLookUpEdit.EditValue),
-                    GetAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked,
+                    GetAssetOutOfWork = getAssetOutOfWork,
                     CurrentPriceWithDestroying = Convert.ToDouble(currentPriceWithDestroyingNumericUpDown.Value),
                 };
                 StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(newAstTr);
@@ -125,9 +131,11 @@ namespace AssetManagement.Assets
                         FinancialItemDescription = $"بيع الأصل الذي يحمل الكود {assetToTransact.AssetCode} العدد  {assetItemsQuantityToTransactNumericUpDown.Value}"
                     });
                 }
-                assetToTransact.IsOutOfWork = getAssetOutOfWorkCheckBox.Checked;
-                if (!actAsDesctructionCheckBox.Checked)
+                assetToTransact.IsOutOfWork = getAssetOutOfWork;
+                if (transactionTypeLookUpEdit.Text != "إهلاك")
                     assetToTransact.ItemsQuantity = assetToTransact.ItemsQuantity - Convert.ToInt32(assetItemsQuantityToTransactNumericUpDown.Value);
+                if (getAssetOutOfWork)
+                    assetToTransact.ItemsQuantity = 0;
                 assetToTransact.AssetNotes += $"[تم {transactionTypeLookUpEdit.Text} ({assetItemsQuantityToTransactNumericUpDown.Value}) من الأصل] {assetNotesTextBox.Text.Trim()}";
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
@@ -193,7 +201,7 @@ namespace AssetManagement.Assets
             assetTransactionGridControl.DataSource = assetTrs;
             transactAssetGroupBox.Visible = assetTransactionGridControl.Visible = assetTransactionPanel.Visible = true;
             assetTransactionDateDateEdit.EditValue = transactionTypeLookUpEdit.EditValue = moneyAmountCurrencyLookUpEdit.EditValue = null;
-            getAssetOutOfWorkCheckBox.Checked = actAsDesctructionCheckBox.Checked = false;
+            getAssetOutOfWorkCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
             moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
             if (assetToTransact.IsOldOrNewAsset == "جديد")
@@ -241,26 +249,9 @@ namespace AssetManagement.Assets
 
         private void transactionTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void assetItemsQuantityToTransactNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            if (actAsDesctructionCheckBox.Checked)
-            {
-                getAssetOutOfWorkCheckBox.Checked = false;
-                getAssetOutOfWorkCheckBox.Enabled = true;
-            }
-            else
-            {
-                getAssetOutOfWorkCheckBox.Checked = assetItemsQuantityToTransactNumericUpDown.Value == assetCurrentItemsQuantityNumericUpDown.Value;
-                getAssetOutOfWorkCheckBox.Enabled = assetItemsQuantityToTransactNumericUpDown.Value != assetCurrentItemsQuantityNumericUpDown.Value;
-            }
-        }
-
-        private void actAsDesctructionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (actAsDesctructionCheckBox.Checked)
+            if (transactionTypeLookUpEdit.EditValue == null)
+                return;
+            if (transactionTypeLookUpEdit.Text == "إهلاك")
             {
                 assetItemsQuantityToTransactNumericUpDown.Value = assetCurrentItemsQuantityNumericUpDown.Value;
                 assetItemsQuantityToTransactNumericUpDown.Enabled = false;
@@ -269,6 +260,20 @@ namespace AssetManagement.Assets
             {
                 assetItemsQuantityToTransactNumericUpDown.Value = 1;
                 assetItemsQuantityToTransactNumericUpDown.Enabled = true;
+            }
+        }
+
+        private void assetItemsQuantityToTransactNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (transactionTypeLookUpEdit.EditValue != null && transactionTypeLookUpEdit.Text == "إهلاك")
+            {
+                getAssetOutOfWorkCheckBox.Checked = false;
+                getAssetOutOfWorkCheckBox.Enabled = true;
+            }
+            else
+            {
+                getAssetOutOfWorkCheckBox.Checked = assetItemsQuantityToTransactNumericUpDown.Value == assetCurrentItemsQuantityNumericUpDown.Value;
+                getAssetOutOfWorkCheckBox.Enabled = assetItemsQuantityToTransactNumericUpDown.Value != assetCurrentItemsQuantityNumericUpDown.Value;
             }
         }
     }

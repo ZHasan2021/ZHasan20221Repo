@@ -52,21 +52,20 @@ namespace AssetManagement.Assets
             {
                 try
                 {
-                    searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
-                    searchBySectionLookUpEdit.Enabled = false;
-                }
-                catch
-                {
-
-                }
-            }
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                try
-                {
-                    searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
-                    searchByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
-                    searchBySectionLookUpEdit.Enabled = searchByDepartmentSearchLookUpEdit.Enabled = false;
+                    if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                    {
+                        searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                        searchBySectionCheckBox.Checked = true;
+                        searchBySectionLookUpEdit.Enabled = searchBySectionCheckBox.Enabled = false;
+                    }
+                    else
+                    {
+                        searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(StaticCode.activeUser.UserDept)).SectionOfDepartment;
+                        searchBySectionCheckBox.Checked = true;
+                        searchByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                        searchByDepartmentCheckBox.Checked = true;
+                        searchBySectionLookUpEdit.Enabled = searchBySectionCheckBox.Enabled = searchByDepartmentSearchLookUpEdit.Enabled = searchByDepartmentCheckBox.Enabled = false;
+                    }
                 }
                 catch
                 {
@@ -779,6 +778,7 @@ namespace AssetManagement.Assets
                 return;
             }
 
+            #region Fill the headers
             ExcelPackage astEp = new ExcelPackage(new System.IO.FileInfo(assetsInvPath.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.Add("جرد الأصول");
@@ -1019,6 +1019,8 @@ namespace AssetManagement.Assets
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             }
+            #endregion
+
             var assetsQry_Export = assetsQry.Where(ast1 => ast1.IsOutOfWork == null || ast1.IsOutOfWork != true);
             if (includeOutOfWorkAssetsCheckBox.Checked)
                 assetsQry_Export = assetsQry;
@@ -1069,7 +1071,7 @@ namespace AssetManagement.Assets
                     oneAst.BenefitPercentage,
                     oneAst.CustodianName,
                     oneAst.MoreDetails,
-                    assetTrans_TasreefCount,
+                    assetTransCount,
                     assetMvsCount,
                      StaticCode.mainDbContext.AssetVw_Alls.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
                     oneAst.DestructionRate,

@@ -44,6 +44,7 @@ namespace AssetManagement
             appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
             activeUserRole = mainDbContext.UserRoleTbls.Single(usrrl => usrrl.ID == activeUser.UserRole);
         }
+
         public static bool BackupDb(string backupName)
         {
             try
@@ -406,7 +407,7 @@ namespace AssetManagement
                         sqlcomm.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     continue;
                 }
@@ -575,7 +576,7 @@ namespace AssetManagement
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
             int headersRow = 7;
-            int startRow = 8;
+            int startRow = headersRow + 1;
             int assetCodeColumn = 3;
             int mainCatColumn = 4;
             int minorCatColumn = 5;
@@ -824,7 +825,7 @@ namespace AssetManagement
                     if (!existedAsset)
                         tmpMainDbContext.AssetTbls.InsertOnSubmit(newAsset);
                 }
-                catch (Exception ex)
+                catch
                 {
                     errorMsg = $"إحدى القيم في السطر {rowStartNo} ليست صحيحة";
                     tmpMainDbContext.Dispose();
