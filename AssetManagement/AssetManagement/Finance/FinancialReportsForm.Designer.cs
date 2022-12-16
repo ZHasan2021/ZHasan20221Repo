@@ -924,14 +924,15 @@ namespace AssetManagement.Finance
             // 
             // subLevelFiguesTabPage
             // 
+            this.subLevelFiguesTabPage.BackColor = System.Drawing.Color.Tomato;
             this.subLevelFiguesTabPage.Controls.Add(this.spreadsheetControl1);
             this.subLevelFiguesTabPage.Location = new System.Drawing.Point(4, 33);
             this.subLevelFiguesTabPage.Name = "subLevelFiguesTabPage";
             this.subLevelFiguesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.subLevelFiguesTabPage.Size = new System.Drawing.Size(728, 700);
+            this.subLevelFiguesTabPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.subLevelFiguesTabPage.Size = new System.Drawing.Size(771, 700);
             this.subLevelFiguesTabPage.TabIndex = 1;
             this.subLevelFiguesTabPage.Text = "إحصائيات المستوى الإداري التابع له";
-            this.subLevelFiguesTabPage.UseVisualStyleBackColor = true;
             // 
             // spreadsheetControl1
             // 
@@ -939,7 +940,7 @@ namespace AssetManagement.Finance
             this.spreadsheetControl1.Location = new System.Drawing.Point(3, 3);
             this.spreadsheetControl1.Name = "spreadsheetControl1";
             this.spreadsheetControl1.ReadOnly = true;
-            this.spreadsheetControl1.Size = new System.Drawing.Size(722, 694);
+            this.spreadsheetControl1.Size = new System.Drawing.Size(765, 694);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
             // 

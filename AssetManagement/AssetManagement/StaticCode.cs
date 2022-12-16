@@ -163,20 +163,6 @@ namespace AssetManagement
         /// <param name="levelID"></param>
         /// <param name="levelRank">1 for sections, 2 for departments, and 3 for sub-departments</param>
         /// <returns></returns>
-        public static List<double> GetCycledToMonth(IQueryable<FinancialItemTbl> fiQry, int newYear, int newMonth, int levelID, int levelRank)
-        {
-            DateTime firstDayInNewMonth = new DateTime(newYear, newMonth, 1);
-            DateTime lastDayInOldMonth = firstDayInNewMonth.AddDays(-1);
-            DateTime firstDayInOldMonth = new DateTime(lastDayInOldMonth.Year, lastDayInOldMonth.Month, 1);
-            var fiQryCycled = fiQry.Where(fii5 => fii5.FinancialItemInsertionDate >= firstDayInOldMonth && fii5.FinancialItemInsertionDate <= lastDayInOldMonth);
-
-            double incomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
-            double outcomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
-            double incomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
-            double outcomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
-            double cycled = incomes2 - outcomes2;
-            return new List<double>() { incomes, outcomes, cycled };
-        }
         //public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         //{
         //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -1477,11 +1463,60 @@ namespace AssetManagement
         public static string FinancialReportPath2 = $"{FinanceFolder}financial blank report2.xlsx";
         public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
         public static string SubLevelTotalsOutPath = $"{FinanceFolder}SubLevelTotalsOutForm.xlsx";
+
+        public static List<double> GetCycledToMonth(IQueryable<FinancialItemTbl> fiQry, int newYear, int newMonth)
+        {
+            var fiQryCycled = fiQry.Where(fii5 => fii5.FinancialItemInsertionDate.AddMonths(1).Month == newMonth && fii5.FinancialItemInsertionDate.AddMonths(1).Year == newYear);
+
+            double incomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
+            double outcomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
+            double incomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
+            double outcomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
+            double cycled = incomes2 - outcomes2;
+            return new List<double>() { incomes, outcomes, cycled };
+        }
+
+        public static double CalcRecycledOfFinancialItems(IQueryable<FinancialItemVw> fivQry)
+        {
+            if (fivQry == null || fivQry.Count() == 0)
+                return 0;
+            DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
+            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
+            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
+            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
+            double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
+            double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
+            return recycled_Am;
+        }
+
+        public static double CalcRecycledOfFinancialItems(IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
+            return (CalcRecycledOfFinancialItems(fivQry));
+        }
         #endregion
     }
 
     public static class Extensions
     {
-
+        public static double CalcRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
+        {
+            if (fivQry == null || fivQry.Count() == 0)
+                return 0;
+            DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
+            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
+            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
+            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
+            double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
+            double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
+            return recycled_Am;
+        }
+        public static double CalcRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
+            return (fivQry.CalcRecycledOfFinancialItems());
+        }
     }
 }

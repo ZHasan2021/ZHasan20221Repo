@@ -91,6 +91,8 @@ namespace AssetManagement.Assets
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetVw_AllTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter();
             this.transactAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
@@ -113,6 +115,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // transactAssetGroupBox
@@ -245,6 +248,7 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LastModifiedOn", "Last Modified On", 106, DevExpress.Utils.FormatType.DateTime, "dd-MM-yyyy", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("InsertedBy", "Inserted By", 75, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LastModifiedBy", "Last Modified By", 103, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.astRepositoryItemLookUpEdit.DataSource = this.assetVwAllBindingSource;
             this.astRepositoryItemLookUpEdit.DisplayMember = "AssetCode";
             this.astRepositoryItemLookUpEdit.Name = "astRepositoryItemLookUpEdit";
             this.astRepositoryItemLookUpEdit.PopupWidth = 800;
@@ -848,6 +852,15 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
+            // assetVwAllBindingSource
+            // 
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetVw_AllTableAdapter
+            // 
+            this.assetVw_AllTableAdapter.ClearBeforeFill = true;
+            // 
             // TransacteAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -894,6 +907,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -959,5 +973,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colGetAssetOutOfWork;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrentPriceWithDestroying;
         private DevExpress.XtraGrid.Columns.GridColumn colAssetTransactionUniqueKey;
+        private System.Windows.Forms.BindingSource assetVwAllBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter assetVw_AllTableAdapter;
     }
 }

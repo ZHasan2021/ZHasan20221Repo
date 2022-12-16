@@ -25,6 +25,8 @@ namespace AssetManagement.Assets
 
         private void TransacteAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw_All' table. You can move, or remove it, as needed.
+            this.assetVw_AllTableAdapter.Fill(this.assetMngDbDataSet.AssetVw_All);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
@@ -85,7 +87,24 @@ namespace AssetManagement.Assets
             bool getAssetOutOfWork = getAssetOutOfWorkCheckBox.Checked;
             if (transactionTypeLookUpEdit.Text == "إهلاك")
             {
-                getAssetOutOfWork = MessageBox.Show("هل تريد إخراج الأصل من الخدمة؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                var alreadyIhlakQry = StaticCode.mainDbContext.AssetTransactionTbls.Where(astt1 => astt1.AssetID == assetToTransact.ID && astt1.TransactionType == Convert.ToInt32(transactionTypeLookUpEdit.EditValue));
+                if (alreadyIhlakQry.Any())
+                {
+                    if (MessageBox.Show("تم إهلاك نفس الأصل مسبقاً دون إخراجه من الخدمة ولا يمكنك المتابعة في إجراء التصريف إذا لم تقم بإخراجه من الخدمة، هل تريد ذلك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    {
+                        mainAlertControl.Show(this, StaticCode.ApplicationTitle, "تم الإلغاء");
+                        MessageBox.Show("تم الإلغاء", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        getAssetOutOfWork = true;
+                    }
+                }
+                else
+                {
+                    getAssetOutOfWork = MessageBox.Show("هل تريد إخراج الأصل من الخدمة؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                }
             }
 
             try
