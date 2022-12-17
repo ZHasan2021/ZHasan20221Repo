@@ -1462,7 +1462,7 @@ namespace AssetManagement
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
         public static string FinancialReportPath2 = $"{FinanceFolder}financial blank report2.xlsx";
         public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
-        public static string SubLevelTotalsOutPath = $"{FinanceFolder}SubLevelTotalsOutForm.xlsx";
+        public static string SubLevelTotalsOutPath = $"{FinanceFolder}التقرير المالي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
 
         public static List<double> GetCycledToMonth(IQueryable<FinancialItemTbl> fiQry, int newYear, int newMonth)
         {
@@ -1517,6 +1517,34 @@ namespace AssetManagement
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
             return (fivQry.CalcRecycledOfFinancialItems());
+        }
+
+        public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
+        {
+            if (!fivQry.Any() || !fivQry.Any(fivi => fivi.وارد_أم_صادر == "وارد"))
+                return 0;
+            return (fivQry.Where(fivi => fivi.وارد_أم_صادر == "وارد").Sum(fivi2 => fivi2.المبلغ_الوارد));
+        }
+
+        public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
+            return (fivQry.CalcIncomingOfFinancialItems());
+        }
+
+        public static double CalcOutgoingOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
+        {
+            if (!fivQry.Any() || !fivQry.Any(fivo => fivo.وارد_أم_صادر == "صادر"))
+                return 0;
+            return (fivQry.Where(fivo => fivo.وارد_أم_صادر == "صادر").Sum(fivo2 => fivo2.المبلغ_الصادر));
+        }
+
+        public static double CalcOutgoingOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivo => includedIDs.Contains(fivo.معرف_السجل_المالي));
+            return (fivQry.CalcOutgoingOfFinancialItems());
         }
     }
 }
