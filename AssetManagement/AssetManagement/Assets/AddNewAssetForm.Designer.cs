@@ -831,6 +831,7 @@ namespace AssetManagement.Assets
             this.actualCurrentPriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.actualCurrentPriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 30);
             this.actualCurrentPriceCurrencyLookUpEdit.TabIndex = 225;
+            this.actualCurrentPriceCurrencyLookUpEdit.Visible = false;
             // 
             // currencyTblBindingSource
             // 
@@ -859,6 +860,7 @@ namespace AssetManagement.Assets
             this.purchasePriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.purchasePriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 30);
             this.purchasePriceCurrencyLookUpEdit.TabIndex = 190;
+            this.purchasePriceCurrencyLookUpEdit.EditValueChanged += new System.EventHandler(this.purchasePriceCurrencyLookUpEdit_EditValueChanged);
             // 
             // actualCurrentPriceLabel
             // 
@@ -1532,10 +1534,13 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = this.modelTblTableAdapter;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = this.statusTblTableAdapter;

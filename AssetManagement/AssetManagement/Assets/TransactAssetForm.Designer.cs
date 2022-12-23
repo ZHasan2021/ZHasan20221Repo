@@ -40,6 +40,7 @@ namespace AssetManagement.Assets
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.astRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colTransactionType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.trtyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -91,7 +92,6 @@ namespace AssetManagement.Assets
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVw_AllTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter();
             this.transactAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
@@ -99,6 +99,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trtyRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currRepositoryItemLookUpEdit)).BeginInit();
@@ -115,7 +116,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // transactAssetGroupBox
@@ -249,10 +249,15 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("InsertedBy", "Inserted By", 75, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LastModifiedBy", "Last Modified By", 103, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.astRepositoryItemLookUpEdit.DataSource = this.assetVwAllBindingSource;
-            this.astRepositoryItemLookUpEdit.DisplayMember = "AssetCode";
+            this.astRepositoryItemLookUpEdit.DisplayMember = "كود الأصل";
             this.astRepositoryItemLookUpEdit.Name = "astRepositoryItemLookUpEdit";
             this.astRepositoryItemLookUpEdit.PopupWidth = 800;
-            this.astRepositoryItemLookUpEdit.ValueMember = "ID";
+            this.astRepositoryItemLookUpEdit.ValueMember = "معرف الأصل";
+            // 
+            // assetVwAllBindingSource
+            // 
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // colTransactionType
             // 
@@ -430,7 +435,6 @@ namespace AssetManagement.Assets
             // 
             // assetCurrentItemsQuantityNumericUpDown
             // 
-            this.assetCurrentItemsQuantityNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCurrentItemsQuantityNumericUpDown.DecimalPlaces = 2;
             this.assetCurrentItemsQuantityNumericUpDown.Enabled = false;
             this.assetCurrentItemsQuantityNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -456,7 +460,6 @@ namespace AssetManagement.Assets
             // 
             // qtyOutOfLabel
             // 
-            this.qtyOutOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.qtyOutOfLabel.AutoSize = true;
             this.qtyOutOfLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qtyOutOfLabel.Location = new System.Drawing.Point(447, 180);
@@ -467,7 +470,6 @@ namespace AssetManagement.Assets
             // 
             // assetItemsQuantityLabel
             // 
-            this.assetItemsQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetItemsQuantityLabel.AutoSize = true;
             this.assetItemsQuantityLabel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetItemsQuantityLabel.Location = new System.Drawing.Point(688, 180);
@@ -478,7 +480,6 @@ namespace AssetManagement.Assets
             // 
             // assetItemsQuantityToTransactNumericUpDown
             // 
-            this.assetItemsQuantityToTransactNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetItemsQuantityToTransactNumericUpDown.DecimalPlaces = 2;
             this.assetItemsQuantityToTransactNumericUpDown.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetItemsQuantityToTransactNumericUpDown.Location = new System.Drawing.Point(538, 176);
@@ -852,11 +853,6 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
-            // assetVwAllBindingSource
-            // 
-            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
-            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // assetVw_AllTableAdapter
             // 
             this.assetVw_AllTableAdapter.ClearBeforeFill = true;
@@ -876,7 +872,6 @@ namespace AssetManagement.Assets
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
             this.Name = "TransacteAssetForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
@@ -890,6 +885,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trtyRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currRepositoryItemLookUpEdit)).EndInit();
@@ -907,7 +903,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.transactionTypeTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

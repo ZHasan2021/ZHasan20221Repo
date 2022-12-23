@@ -131,6 +131,7 @@ namespace AssetManagement.Finance
             this.mainDockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.searchDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -175,6 +176,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.mainDockManager)).BeginInit();
             this.searchDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
+            this.searchXtraScrollableControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -283,7 +285,7 @@ namespace AssetManagement.Finance
             // 
             this.searchFinancialItemDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchFinancialItemDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchFinancialItemDropDownButton.Location = new System.Drawing.Point(316, 625);
+            this.searchFinancialItemDropDownButton.Location = new System.Drawing.Point(317, 616);
             this.searchFinancialItemDropDownButton.Name = "searchFinancialItemDropDownButton";
             this.searchFinancialItemDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.searchFinancialItemDropDownButton.TabIndex = 300;
@@ -295,7 +297,7 @@ namespace AssetManagement.Finance
             this.exportFinancialReportToExcelDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.exportFinancialReportToExcelDropDownButton.Enabled = false;
             this.exportFinancialReportToExcelDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.exportFinancialReportToExcelDropDownButton.Location = new System.Drawing.Point(96, 625);
+            this.exportFinancialReportToExcelDropDownButton.Location = new System.Drawing.Point(97, 616);
             this.exportFinancialReportToExcelDropDownButton.Name = "exportFinancialReportToExcelDropDownButton";
             this.exportFinancialReportToExcelDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.exportFinancialReportToExcelDropDownButton.TabIndex = 350;
@@ -387,7 +389,7 @@ namespace AssetManagement.Finance
             this.searchWithinPeriodPanel.Controls.Add(this.monthlyRadioButton);
             this.searchWithinPeriodPanel.Controls.Add(this.annualRadioButton);
             this.searchWithinPeriodPanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchWithinPeriodPanel.Location = new System.Drawing.Point(44, 273);
+            this.searchWithinPeriodPanel.Location = new System.Drawing.Point(45, 264);
             this.searchWithinPeriodPanel.Name = "searchWithinPeriodPanel";
             this.searchWithinPeriodPanel.Size = new System.Drawing.Size(459, 285);
             this.searchWithinPeriodPanel.TabIndex = 55;
@@ -398,7 +400,7 @@ namespace AssetManagement.Finance
             this.searchAllRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAllRadioButton.AutoSize = true;
             this.searchAllRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchAllRadioButton.Location = new System.Drawing.Point(359, 20);
+            this.searchAllRadioButton.Location = new System.Drawing.Point(360, 11);
             this.searchAllRadioButton.Name = "searchAllRadioButton";
             this.searchAllRadioButton.Size = new System.Drawing.Size(144, 25);
             this.searchAllRadioButton.TabIndex = 15;
@@ -411,7 +413,7 @@ namespace AssetManagement.Finance
             this.searchWithinPeriodCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchWithinPeriodCheckBox.AutoSize = true;
             this.searchWithinPeriodCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchWithinPeriodCheckBox.Location = new System.Drawing.Point(338, 240);
+            this.searchWithinPeriodCheckBox.Location = new System.Drawing.Point(339, 231);
             this.searchWithinPeriodCheckBox.Name = "searchWithinPeriodCheckBox";
             this.searchWithinPeriodCheckBox.Size = new System.Drawing.Size(165, 25);
             this.searchWithinPeriodCheckBox.TabIndex = 50;
@@ -469,7 +471,7 @@ namespace AssetManagement.Finance
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(25, 60);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(26, 51);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSectionTblBtn.TabIndex = 26;
@@ -501,7 +503,7 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSubDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(25, 170);
+            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(26, 161);
             this.manageSubDepartmentTblBtn.Name = "manageSubDepartmentTblBtn";
             this.manageSubDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageSubDepartmentTblBtn.TabIndex = 46;
@@ -514,7 +516,7 @@ namespace AssetManagement.Finance
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(25, 115);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(26, 106);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageDepartmentTblBtn.TabIndex = 36;
@@ -949,7 +951,7 @@ namespace AssetManagement.Finance
             this.manageCurrencyTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageCurrencyTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(25, 566);
+            this.manageCurrencyTblBtn.Location = new System.Drawing.Point(26, 557);
             this.manageCurrencyTblBtn.Name = "manageCurrencyTblBtn";
             this.manageCurrencyTblBtn.Size = new System.Drawing.Size(55, 55);
             this.manageCurrencyTblBtn.TabIndex = 116;
@@ -960,7 +962,7 @@ namespace AssetManagement.Finance
             // searchByCurrencyLookUpEdit
             // 
             this.searchByCurrencyLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByCurrencyLookUpEdit.Location = new System.Drawing.Point(109, 579);
+            this.searchByCurrencyLookUpEdit.Location = new System.Drawing.Point(110, 570);
             this.searchByCurrencyLookUpEdit.Name = "searchByCurrencyLookUpEdit";
             this.searchByCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -982,7 +984,7 @@ namespace AssetManagement.Finance
             this.searchByCurrencyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByCurrencyCheckBox.AutoSize = true;
             this.searchByCurrencyCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchByCurrencyCheckBox.Location = new System.Drawing.Point(363, 581);
+            this.searchByCurrencyCheckBox.Location = new System.Drawing.Point(364, 572);
             this.searchByCurrencyCheckBox.Name = "searchByCurrencyCheckBox";
             this.searchByCurrencyCheckBox.Size = new System.Drawing.Size(140, 25);
             this.searchByCurrencyCheckBox.TabIndex = 110;
@@ -993,7 +995,7 @@ namespace AssetManagement.Finance
             // searchBySubDepartmentSearchLookUpEdit
             // 
             this.searchBySubDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySubDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(113, 183);
+            this.searchBySubDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(114, 174);
             this.searchBySubDepartmentSearchLookUpEdit.Name = "searchBySubDepartmentSearchLookUpEdit";
             this.searchBySubDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySubDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -1063,7 +1065,7 @@ namespace AssetManagement.Finance
             this.searchBySubDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBySubDepartmentCheckBox.AutoSize = true;
             this.searchBySubDepartmentCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBySubDepartmentCheckBox.Location = new System.Drawing.Point(388, 185);
+            this.searchBySubDepartmentCheckBox.Location = new System.Drawing.Point(389, 176);
             this.searchBySubDepartmentCheckBox.Name = "searchBySubDepartmentCheckBox";
             this.searchBySubDepartmentCheckBox.Size = new System.Drawing.Size(115, 25);
             this.searchBySubDepartmentCheckBox.TabIndex = 356;
@@ -1076,7 +1078,7 @@ namespace AssetManagement.Finance
             this.searchBySectionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBySectionCheckBox.AutoSize = true;
             this.searchBySectionCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBySectionCheckBox.Location = new System.Drawing.Point(392, 75);
+            this.searchBySectionCheckBox.Location = new System.Drawing.Point(393, 66);
             this.searchBySectionCheckBox.Name = "searchBySectionCheckBox";
             this.searchBySectionCheckBox.Size = new System.Drawing.Size(111, 25);
             this.searchBySectionCheckBox.TabIndex = 352;
@@ -1087,7 +1089,7 @@ namespace AssetManagement.Finance
             // searchBySectionLookUpEdit
             // 
             this.searchBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(113, 73);
+            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(114, 64);
             this.searchBySectionLookUpEdit.Name = "searchBySectionLookUpEdit";
             this.searchBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -1110,7 +1112,7 @@ namespace AssetManagement.Finance
             this.searchByDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchByDepartmentCheckBox.AutoSize = true;
             this.searchByDepartmentCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchByDepartmentCheckBox.Location = new System.Drawing.Point(392, 130);
+            this.searchByDepartmentCheckBox.Location = new System.Drawing.Point(393, 121);
             this.searchByDepartmentCheckBox.Name = "searchByDepartmentCheckBox";
             this.searchByDepartmentCheckBox.Size = new System.Drawing.Size(111, 25);
             this.searchByDepartmentCheckBox.TabIndex = 354;
@@ -1121,7 +1123,7 @@ namespace AssetManagement.Finance
             // searchByDepartmentSearchLookUpEdit
             // 
             this.searchByDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(113, 128);
+            this.searchByDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(114, 119);
             this.searchByDepartmentSearchLookUpEdit.Name = "searchByDepartmentSearchLookUpEdit";
             this.searchByDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchByDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -1208,37 +1210,49 @@ namespace AssetManagement.Finance
             // 
             this.searchDockPanel.Controls.Add(this.dockPanel1_Container);
             this.searchDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.searchDockPanel.FloatVertical = true;
             this.searchDockPanel.ID = new System.Guid("744195c2-9d4c-46eb-a922-3bd8a5375383");
             this.searchDockPanel.Location = new System.Drawing.Point(0, 0);
             this.searchDockPanel.Name = "searchDockPanel";
             this.searchDockPanel.Options.ShowCloseButton = false;
             this.searchDockPanel.OriginalSize = new System.Drawing.Size(531, 200);
             this.searchDockPanel.Size = new System.Drawing.Size(531, 737);
+            this.searchDockPanel.TabsScroll = true;
             this.searchDockPanel.Text = "بحث ضمن السجلات المالية";
             // 
             // dockPanel1_Container
             // 
-            this.dockPanel1_Container.Controls.Add(this.manageCurrencyTblBtn);
-            this.dockPanel1_Container.Controls.Add(this.searchBySubDepartmentSearchLookUpEdit);
-            this.dockPanel1_Container.Controls.Add(this.searchAllRadioButton);
-            this.dockPanel1_Container.Controls.Add(this.searchBySubDepartmentCheckBox);
-            this.dockPanel1_Container.Controls.Add(this.exportFinancialReportToExcelDropDownButton);
-            this.dockPanel1_Container.Controls.Add(this.searchBySectionCheckBox);
-            this.dockPanel1_Container.Controls.Add(this.searchFinancialItemDropDownButton);
-            this.dockPanel1_Container.Controls.Add(this.searchBySectionLookUpEdit);
-            this.dockPanel1_Container.Controls.Add(this.searchWithinPeriodPanel);
-            this.dockPanel1_Container.Controls.Add(this.searchByDepartmentCheckBox);
-            this.dockPanel1_Container.Controls.Add(this.searchWithinPeriodCheckBox);
-            this.dockPanel1_Container.Controls.Add(this.searchByDepartmentSearchLookUpEdit);
-            this.dockPanel1_Container.Controls.Add(this.manageSectionTblBtn);
-            this.dockPanel1_Container.Controls.Add(this.searchByCurrencyCheckBox);
-            this.dockPanel1_Container.Controls.Add(this.manageSubDepartmentTblBtn);
-            this.dockPanel1_Container.Controls.Add(this.manageDepartmentTblBtn);
-            this.dockPanel1_Container.Controls.Add(this.searchByCurrencyLookUpEdit);
+            this.dockPanel1_Container.Controls.Add(this.searchXtraScrollableControl);
             this.dockPanel1_Container.Location = new System.Drawing.Point(6, 32);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
             this.dockPanel1_Container.Size = new System.Drawing.Size(521, 701);
             this.dockPanel1_Container.TabIndex = 0;
+            // 
+            // searchXtraScrollableControl
+            // 
+            this.searchXtraScrollableControl.AllowTouchScroll = true;
+            this.searchXtraScrollableControl.Controls.Add(this.manageCurrencyTblBtn);
+            this.searchXtraScrollableControl.Controls.Add(this.searchBySubDepartmentSearchLookUpEdit);
+            this.searchXtraScrollableControl.Controls.Add(this.searchAllRadioButton);
+            this.searchXtraScrollableControl.Controls.Add(this.searchBySubDepartmentCheckBox);
+            this.searchXtraScrollableControl.Controls.Add(this.exportFinancialReportToExcelDropDownButton);
+            this.searchXtraScrollableControl.Controls.Add(this.searchBySectionCheckBox);
+            this.searchXtraScrollableControl.Controls.Add(this.searchFinancialItemDropDownButton);
+            this.searchXtraScrollableControl.Controls.Add(this.searchBySectionLookUpEdit);
+            this.searchXtraScrollableControl.Controls.Add(this.searchWithinPeriodPanel);
+            this.searchXtraScrollableControl.Controls.Add(this.searchByDepartmentCheckBox);
+            this.searchXtraScrollableControl.Controls.Add(this.searchWithinPeriodCheckBox);
+            this.searchXtraScrollableControl.Controls.Add(this.searchByDepartmentSearchLookUpEdit);
+            this.searchXtraScrollableControl.Controls.Add(this.manageSectionTblBtn);
+            this.searchXtraScrollableControl.Controls.Add(this.searchByCurrencyCheckBox);
+            this.searchXtraScrollableControl.Controls.Add(this.manageSubDepartmentTblBtn);
+            this.searchXtraScrollableControl.Controls.Add(this.manageDepartmentTblBtn);
+            this.searchXtraScrollableControl.Controls.Add(this.searchByCurrencyLookUpEdit);
+            this.searchXtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchXtraScrollableControl.Location = new System.Drawing.Point(0, 0);
+            this.searchXtraScrollableControl.Name = "searchXtraScrollableControl";
+            this.searchXtraScrollableControl.Size = new System.Drawing.Size(521, 701);
+            this.searchXtraScrollableControl.TabIndex = 358;
             // 
             // FinancialReportsForm
             // 
@@ -1303,7 +1317,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.mainDockManager)).EndInit();
             this.searchDockPanel.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
-            this.dockPanel1_Container.PerformLayout();
+            this.searchXtraScrollableControl.ResumeLayout(false);
+            this.searchXtraScrollableControl.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1409,5 +1424,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.Docking.DockManager mainDockManager;
         private DevExpress.XtraBars.Docking.DockPanel searchDockPanel;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private DevExpress.XtraEditors.XtraScrollableControl searchXtraScrollableControl;
     }
 }

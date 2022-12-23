@@ -346,11 +346,11 @@
     <Compile Include="Assets\AssetCardViewForm.Designer.cs">
       <DependentUpon>AssetCardViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Assets\AssetsStatsForm2.cs">
+    <Compile Include="Assets\AssetsStatsForm3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Assets\AssetsStatsForm2.Designer.cs">
-      <DependentUpon>AssetsStatsForm2.cs</DependentUpon>
+    <Compile Include="Assets\AssetsStatsForm3.Designer.cs">
+      <DependentUpon>AssetsStatsForm3.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\AssetsToDestructForm.cs">
       <SubType>Form</SubType>
@@ -399,6 +399,12 @@
     </Compile>
     <Compile Include="Assets\ManageAssetMovementTblForm.Designer.cs">
       <DependentUpon>ManageAssetMovementTblForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MoveAllAssetsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assets\MoveAllAssetsForm.Designer.cs">
+      <DependentUpon>MoveAllAssetsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\NewAssetInventoryForm.cs">
       <SubType>Form</SubType>
@@ -615,8 +621,8 @@
     <EmbeddedResource Include="Assets\AssetsStatsForm.resx">
       <DependentUpon>AssetsStatsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Assets\AssetsStatsForm2.resx">
-      <DependentUpon>AssetsStatsForm2.cs</DependentUpon>
+    <EmbeddedResource Include="Assets\AssetsStatsForm3.resx">
+      <DependentUpon>AssetsStatsForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetsXtraReport.resx">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>
@@ -641,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\ManageAssetMovementTblForm.resx">
       <DependentUpon>ManageAssetMovementTblForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\MoveAllAssetsForm.resx">
+      <DependentUpon>MoveAllAssetsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\NewAssetInventoryForm.resx">
       <DependentUpon>NewAssetInventoryForm.cs</DependentUpon>
@@ -782,6 +791,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\8270940.png" />
     <None Include="Resources\4415406.png" />
     <None Include="Resources\6701075.png" />
     <None Include="Resources\2556744.png" />

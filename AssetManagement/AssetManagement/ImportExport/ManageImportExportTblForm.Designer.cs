@@ -133,11 +133,11 @@ namespace AssetManagement.AuxTables
             // 
             this.colImportOrExport.Caption = "استيراد أم تصدير";
             this.colImportOrExport.FieldName = "ImportOrExport";
-            this.colImportOrExport.MinWidth = 100;
+            this.colImportOrExport.MinWidth = 150;
             this.colImportOrExport.Name = "colImportOrExport";
             this.colImportOrExport.Visible = true;
             this.colImportOrExport.VisibleIndex = 0;
-            this.colImportOrExport.Width = 100;
+            this.colImportOrExport.Width = 150;
             // 
             // colActionDate
             // 
@@ -151,13 +151,13 @@ namespace AssetManagement.AuxTables
             // 
             // colTablesExported
             // 
-            this.colTablesExported.Caption = "الجداول المصدرة";
+            this.colTablesExported.Caption = "الجداول المصدرة أو المستوردة";
             this.colTablesExported.FieldName = "TablesExported";
-            this.colTablesExported.MinWidth = 150;
+            this.colTablesExported.MinWidth = 200;
             this.colTablesExported.Name = "colTablesExported";
             this.colTablesExported.Visible = true;
             this.colTablesExported.VisibleIndex = 2;
-            this.colTablesExported.Width = 150;
+            this.colTablesExported.Width = 200;
             // 
             // colActionBySection
             // 
@@ -275,6 +275,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;

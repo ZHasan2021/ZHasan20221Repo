@@ -1203,5 +1203,11 @@ namespace AssetManagement.Assets
         {
             searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
         }
+
+        private void moveAllAssetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MoveAllAssetsForm mvAllFrm = new MoveAllAssetsForm(assetsQry);
+            mvAllFrm.ShowDialog();
+        }
     }
 }

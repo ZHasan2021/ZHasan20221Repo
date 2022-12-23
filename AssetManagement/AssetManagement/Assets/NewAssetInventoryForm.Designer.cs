@@ -164,6 +164,8 @@ namespace AssetManagement.Assets
             this.repositoryItemLookUpEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
+            this.searchResultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.moveAllAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -211,6 +213,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
+            this.searchResultsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -243,7 +246,6 @@ namespace AssetManagement.Assets
             // 
             // includeOutOfWorkAssetsCheckBox
             // 
-            this.includeOutOfWorkAssetsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.includeOutOfWorkAssetsCheckBox.AutoSize = true;
             this.includeOutOfWorkAssetsCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.includeOutOfWorkAssetsCheckBox.Location = new System.Drawing.Point(26, 20);
@@ -1601,12 +1603,29 @@ namespace AssetManagement.Assets
             // 
             this.subDepartmentVwTableAdapter.ClearBeforeFill = true;
             // 
+            // searchResultsContextMenuStrip
+            // 
+            this.searchResultsContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.searchResultsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveAllAssetsToolStripMenuItem});
+            this.searchResultsContextMenuStrip.Name = "searchResultsContextMenuStrip";
+            this.searchResultsContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.searchResultsContextMenuStrip.Size = new System.Drawing.Size(211, 56);
+            // 
+            // moveAllAssetsToolStripMenuItem
+            // 
+            this.moveAllAssetsToolStripMenuItem.Name = "moveAllAssetsToolStripMenuItem";
+            this.moveAllAssetsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.moveAllAssetsToolStripMenuItem.Text = "نقل الكل";
+            this.moveAllAssetsToolStripMenuItem.Click += new System.EventHandler(this.moveAllAssetsToolStripMenuItem_Click);
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1258, 756);
+            this.ContextMenuStrip = this.searchResultsContextMenuStrip;
             this.Controls.Add(this.assetGridControl);
             this.Controls.Add(this.customSearchGroupBox);
             this.Controls.Add(this.panel1);
@@ -1674,6 +1693,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
+            this.searchResultsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1814,5 +1834,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
         private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
         private System.Windows.Forms.CheckBox includeOutOfWorkAssetsCheckBox;
+        private System.Windows.Forms.ContextMenuStrip searchResultsContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem moveAllAssetsToolStripMenuItem;
     }
 }

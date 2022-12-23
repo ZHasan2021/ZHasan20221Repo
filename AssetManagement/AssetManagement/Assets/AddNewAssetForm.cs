@@ -460,5 +460,10 @@ namespace AssetManagement.Assets
             assetFinancialItemCategoryLabel.Visible = assetFinancialItemCategoryLookUpEdit.Visible = isNewAssetRadioButton.Checked;
             manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
         }
+
+        private void purchasePriceCurrencyLookUpEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            actualCurrentPriceCurrencyLookUpEdit.EditValue = purchasePriceCurrencyLookUpEdit.EditValue;
+        }
     }
 }

@@ -34,6 +34,10 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.moveAssetGroupBox = new System.Windows.Forms.GroupBox();
+            this.toPlaceOfPresenceCheckBox = new System.Windows.Forms.CheckBox();
+            this.toPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
+            this.fromPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
+            this.fromPlaceOfPresenceLabel = new System.Windows.Forms.Label();
             this.fromSubDepartmentTextBox = new System.Windows.Forms.TextBox();
             this.fromSubDepartmentLabel = new System.Windows.Forms.Label();
             this.toSubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -104,10 +108,6 @@ namespace AssetManagement.Assets
             this.viewAssetInformationBtn = new System.Windows.Forms.Button();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.toPlaceOfPresenceCheckBox = new System.Windows.Forms.CheckBox();
-            this.toPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
-            this.fromPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
-            this.fromPlaceOfPresenceLabel = new System.Windows.Forms.Label();
             this.moveAssetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
@@ -191,8 +191,47 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
             this.moveAssetGroupBox.Visible = false;
             // 
+            // toPlaceOfPresenceCheckBox
+            // 
+            this.toPlaceOfPresenceCheckBox.AutoSize = true;
+            this.toPlaceOfPresenceCheckBox.Location = new System.Drawing.Point(588, 318);
+            this.toPlaceOfPresenceCheckBox.Name = "toPlaceOfPresenceCheckBox";
+            this.toPlaceOfPresenceCheckBox.Size = new System.Drawing.Size(125, 25);
+            this.toPlaceOfPresenceCheckBox.TabIndex = 403;
+            this.toPlaceOfPresenceCheckBox.Text = "إلى مكان التواجد:";
+            this.toPlaceOfPresenceCheckBox.UseVisualStyleBackColor = true;
+            this.toPlaceOfPresenceCheckBox.CheckedChanged += new System.EventHandler(this.toPlaceOfPresenceCheckBox_CheckedChanged);
+            // 
+            // toPlaceOfPresenceTextBox
+            // 
+            this.toPlaceOfPresenceTextBox.Location = new System.Drawing.Point(243, 316);
+            this.toPlaceOfPresenceTextBox.Name = "toPlaceOfPresenceTextBox";
+            this.toPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
+            this.toPlaceOfPresenceTextBox.TabIndex = 404;
+            this.toPlaceOfPresenceTextBox.Visible = false;
+            // 
+            // fromPlaceOfPresenceTextBox
+            // 
+            this.fromPlaceOfPresenceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fromPlaceOfPresenceTextBox.Location = new System.Drawing.Point(825, 316);
+            this.fromPlaceOfPresenceTextBox.Name = "fromPlaceOfPresenceTextBox";
+            this.fromPlaceOfPresenceTextBox.ReadOnly = true;
+            this.fromPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
+            this.fromPlaceOfPresenceTextBox.TabIndex = 402;
+            // 
+            // fromPlaceOfPresenceLabel
+            // 
+            this.fromPlaceOfPresenceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fromPlaceOfPresenceLabel.AutoSize = true;
+            this.fromPlaceOfPresenceLabel.Location = new System.Drawing.Point(1102, 320);
+            this.fromPlaceOfPresenceLabel.Name = "fromPlaceOfPresenceLabel";
+            this.fromPlaceOfPresenceLabel.Size = new System.Drawing.Size(106, 21);
+            this.fromPlaceOfPresenceLabel.TabIndex = 401;
+            this.fromPlaceOfPresenceLabel.Text = "من مكان التواجد:";
+            // 
             // fromSubDepartmentTextBox
             // 
+            this.fromSubDepartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSubDepartmentTextBox.Location = new System.Drawing.Point(825, 166);
             this.fromSubDepartmentTextBox.Name = "fromSubDepartmentTextBox";
             this.fromSubDepartmentTextBox.ReadOnly = true;
@@ -201,6 +240,7 @@ namespace AssetManagement.Assets
             // 
             // fromSubDepartmentLabel
             // 
+            this.fromSubDepartmentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSubDepartmentLabel.AutoSize = true;
             this.fromSubDepartmentLabel.Location = new System.Drawing.Point(1134, 170);
             this.fromSubDepartmentLabel.Name = "fromSubDepartmentLabel";
@@ -520,6 +560,7 @@ namespace AssetManagement.Assets
             // 
             // assetMovementDateLabel
             // 
+            this.assetMovementDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetMovementDateLabel.AutoSize = true;
             this.assetMovementDateLabel.Location = new System.Drawing.Point(1129, 370);
             this.assetMovementDateLabel.Name = "assetMovementDateLabel";
@@ -529,6 +570,7 @@ namespace AssetManagement.Assets
             // 
             // assetMovementDateDateEdit
             // 
+            this.assetMovementDateDateEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetMovementDateDateEdit.EditValue = null;
             this.assetMovementDateDateEdit.Location = new System.Drawing.Point(827, 365);
             this.assetMovementDateDateEdit.Name = "assetMovementDateDateEdit";
@@ -556,6 +598,7 @@ namespace AssetManagement.Assets
             // 
             // fromSquareTextBox
             // 
+            this.fromSquareTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSquareTextBox.Location = new System.Drawing.Point(825, 216);
             this.fromSquareTextBox.Name = "fromSquareTextBox";
             this.fromSquareTextBox.ReadOnly = true;
@@ -564,6 +607,7 @@ namespace AssetManagement.Assets
             // 
             // fromSectionTextBox
             // 
+            this.fromSectionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSectionTextBox.Location = new System.Drawing.Point(825, 66);
             this.fromSectionTextBox.Name = "fromSectionTextBox";
             this.fromSectionTextBox.ReadOnly = true;
@@ -572,6 +616,7 @@ namespace AssetManagement.Assets
             // 
             // fromDepartmentTextBox
             // 
+            this.fromDepartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDepartmentTextBox.Location = new System.Drawing.Point(825, 116);
             this.fromDepartmentTextBox.Name = "fromDepartmentTextBox";
             this.fromDepartmentTextBox.ReadOnly = true;
@@ -588,6 +633,7 @@ namespace AssetManagement.Assets
             // 
             // fromCustodianNameTextBox
             // 
+            this.fromCustodianNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromCustodianNameTextBox.Location = new System.Drawing.Point(825, 266);
             this.fromCustodianNameTextBox.Name = "fromCustodianNameTextBox";
             this.fromCustodianNameTextBox.ReadOnly = true;
@@ -596,6 +642,7 @@ namespace AssetManagement.Assets
             // 
             // fromCustodianNameLabel
             // 
+            this.fromCustodianNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromCustodianNameLabel.AutoSize = true;
             this.fromCustodianNameLabel.Location = new System.Drawing.Point(1143, 270);
             this.fromCustodianNameLabel.Name = "fromCustodianNameLabel";
@@ -681,6 +728,7 @@ namespace AssetManagement.Assets
             // 
             // fromSquareLabel
             // 
+            this.fromSquareLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSquareLabel.AutoSize = true;
             this.fromSquareLabel.Location = new System.Drawing.Point(1133, 220);
             this.fromSquareLabel.Name = "fromSquareLabel";
@@ -690,6 +738,7 @@ namespace AssetManagement.Assets
             // 
             // fromSectionLabel
             // 
+            this.fromSectionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromSectionLabel.AutoSize = true;
             this.fromSectionLabel.Location = new System.Drawing.Point(1138, 70);
             this.fromSectionLabel.Name = "fromSectionLabel";
@@ -699,6 +748,7 @@ namespace AssetManagement.Assets
             // 
             // fromDepartmentLabel
             // 
+            this.fromDepartmentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDepartmentLabel.AutoSize = true;
             this.fromDepartmentLabel.Location = new System.Drawing.Point(1138, 120);
             this.fromDepartmentLabel.Name = "fromDepartmentLabel";
@@ -848,42 +898,6 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
-            // toPlaceOfPresenceCheckBox
-            // 
-            this.toPlaceOfPresenceCheckBox.AutoSize = true;
-            this.toPlaceOfPresenceCheckBox.Location = new System.Drawing.Point(588, 318);
-            this.toPlaceOfPresenceCheckBox.Name = "toPlaceOfPresenceCheckBox";
-            this.toPlaceOfPresenceCheckBox.Size = new System.Drawing.Size(125, 25);
-            this.toPlaceOfPresenceCheckBox.TabIndex = 403;
-            this.toPlaceOfPresenceCheckBox.Text = "إلى مكان التواجد:";
-            this.toPlaceOfPresenceCheckBox.UseVisualStyleBackColor = true;
-            this.toPlaceOfPresenceCheckBox.CheckedChanged += new System.EventHandler(this.toPlaceOfPresenceCheckBox_CheckedChanged);
-            // 
-            // toPlaceOfPresenceTextBox
-            // 
-            this.toPlaceOfPresenceTextBox.Location = new System.Drawing.Point(243, 316);
-            this.toPlaceOfPresenceTextBox.Name = "toPlaceOfPresenceTextBox";
-            this.toPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
-            this.toPlaceOfPresenceTextBox.TabIndex = 404;
-            this.toPlaceOfPresenceTextBox.Visible = false;
-            // 
-            // fromPlaceOfPresenceTextBox
-            // 
-            this.fromPlaceOfPresenceTextBox.Location = new System.Drawing.Point(825, 316);
-            this.fromPlaceOfPresenceTextBox.Name = "fromPlaceOfPresenceTextBox";
-            this.fromPlaceOfPresenceTextBox.ReadOnly = true;
-            this.fromPlaceOfPresenceTextBox.Size = new System.Drawing.Size(261, 28);
-            this.fromPlaceOfPresenceTextBox.TabIndex = 402;
-            // 
-            // fromPlaceOfPresenceLabel
-            // 
-            this.fromPlaceOfPresenceLabel.AutoSize = true;
-            this.fromPlaceOfPresenceLabel.Location = new System.Drawing.Point(1102, 320);
-            this.fromPlaceOfPresenceLabel.Name = "fromPlaceOfPresenceLabel";
-            this.fromPlaceOfPresenceLabel.Size = new System.Drawing.Size(106, 21);
-            this.fromPlaceOfPresenceLabel.TabIndex = 401;
-            this.fromPlaceOfPresenceLabel.Text = "من مكان التواجد:";
-            // 
             // MoveAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -899,7 +913,6 @@ namespace AssetManagement.Assets
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
             this.Name = "MoveAssetForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

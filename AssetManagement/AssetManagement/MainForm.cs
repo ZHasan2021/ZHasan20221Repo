@@ -202,7 +202,7 @@ namespace AssetManagement
 
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AssetsStatsForm statFrm = new AssetsStatsForm();
+            AssetsStatsForm3 statFrm = new AssetsStatsForm3();
             statFrm.ShowDialog();
         }
 

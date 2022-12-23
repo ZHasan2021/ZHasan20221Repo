@@ -1023,7 +1023,7 @@ namespace AssetManagement.Finance
                 detailedFinancialReportWs.Column(2).Width = 15;
                 detailedFinancialReportWs.Column(3).Width = 18;
                 detailedFinancialReportWs.Column(4).Width = 34;
-                detailedFinancialReportWs.Column(5).Width = 26;
+                detailedFinancialReportWs.Column(5).Width = 38;
                 detailedFinancialReportWs.Column(6).Width = 47;
                 detailedFinancialReportWs.Column(8).Width = 20;
                 detailedFinancialReportWs.Column(9).Width = 20;
@@ -1262,12 +1262,12 @@ namespace AssetManagement.Finance
                             }
                             foreach (string oneDpt in depts)
                             {
-                            Application.DoEvents();
+                                Application.DoEvents();
                                 using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 2, allRecycledRow, 3])
                                 {
                                     cells.Style.Font.Name = "Calibri";
                                     cells.Style.Font.Size = 11.0F;
-                                cells.Style.Font.Bold = true;
+                                    cells.Style.Font.Bold = true;
                                     cells.Merge = true;
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
@@ -1300,7 +1300,7 @@ namespace AssetManagement.Finance
                                 cells.Value = "ملخص مختصر لإيرادات وصادرات الدائرة وتفرعاتها";
                             }
                             figuresRow++;
-                            using(var cells = detailedFinancialReportWs.Cells[figuresRow, 2])
+                            using (var cells = detailedFinancialReportWs.Cells[figuresRow, 2])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 14.0F;
@@ -1311,7 +1311,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value ="";
+                                cells.Value = "";
                             }
                             using (var cells = detailedFinancialReportWs.Cells[figuresRow, 3])
                             {
@@ -1360,7 +1360,7 @@ namespace AssetManagement.Finance
                                 {
                                     cells.Style.Font.Name = "Calibri";
                                     cells.Style.Font.Size = 11.0F;
-                                cells.Style.Font.Bold = true;
+                                    cells.Style.Font.Bold = true;
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
@@ -1395,7 +1395,7 @@ namespace AssetManagement.Finance
                                 }
                                 figuresRow++;
                             }
-                            figuresRow +=  3;
+                            figuresRow += 3;
                             #endregion
 
                             #region Direct outgoing of sub-level in detail
@@ -1735,6 +1735,8 @@ namespace AssetManagement.Finance
 
         private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (searchByDepartmentCheckBox.Checked)
+                searchAllRadioButton.Checked = false;
             searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
             if (searchByDepartmentCheckBox.Checked)
             {
@@ -1813,6 +1815,8 @@ namespace AssetManagement.Finance
 
         private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (searchBySectionCheckBox.Checked)
+                searchAllRadioButton.Checked = false;
             searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
             if (searchBySectionCheckBox.Checked)
             {
@@ -1855,6 +1859,8 @@ namespace AssetManagement.Finance
 
         private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (searchBySubDepartmentCheckBox.Checked)
+                searchAllRadioButton.Checked = false;
             searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
         }
     }
