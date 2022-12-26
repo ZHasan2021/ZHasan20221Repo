@@ -30,7 +30,7 @@ namespace AssetManagement.Finance
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinancialReportsForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.toDateDateEdit = new DevExpress.XtraEditors.DateEdit();
@@ -111,11 +111,6 @@ namespace AssetManagement.Finance
             this.searchByCurrencyCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySubDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.subDepartmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colمعرفالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colاسمالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالقسمالتابعةله = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالدائرةالتييتبعلهاالقسم1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySectionCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -132,6 +127,14 @@ namespace AssetManagement.Finance
             this.searchDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.exportFinancialReportToExcelPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.exportStandardFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.exportDetailedFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -168,7 +171,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentSearchLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
@@ -177,6 +179,8 @@ namespace AssetManagement.Finance
             this.searchDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             this.searchXtraScrollableControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -295,6 +299,7 @@ namespace AssetManagement.Finance
             // exportFinancialReportToExcelDropDownButton
             // 
             this.exportFinancialReportToExcelDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportFinancialReportToExcelDropDownButton.DropDownControl = this.exportFinancialReportToExcelPopupMenu;
             this.exportFinancialReportToExcelDropDownButton.Enabled = false;
             this.exportFinancialReportToExcelDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
             this.exportFinancialReportToExcelDropDownButton.Location = new System.Drawing.Point(97, 616);
@@ -554,9 +559,9 @@ namespace AssetManagement.Finance
             this.financialItemCategoryGridControl.DataSource = this.financialItemVwBindingSource;
             this.financialItemCategoryGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
-            gridLevelNode1.RelationName = "financialItemLevel";
+            gridLevelNode2.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.financialItemCategoryGridControl.Location = new System.Drawing.Point(3, 322);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
@@ -940,6 +945,7 @@ namespace AssetManagement.Finance
             // 
             this.spreadsheetControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spreadsheetControl1.Location = new System.Drawing.Point(3, 3);
+            this.spreadsheetControl1.MenuManager = this.barManager1;
             this.spreadsheetControl1.Name = "spreadsheetControl1";
             this.spreadsheetControl1.ReadOnly = true;
             this.spreadsheetControl1.Size = new System.Drawing.Size(765, 694);
@@ -1003,7 +1009,6 @@ namespace AssetManagement.Finance
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchBySubDepartmentSearchLookUpEdit.Properties.DataSource = this.subDepartmentVwBindingSource;
             this.searchBySubDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم الوحدة";
-            this.searchBySubDepartmentSearchLookUpEdit.Properties.PopupView = this.gridView1;
             this.searchBySubDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف الوحدة";
             this.searchBySubDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchBySubDepartmentSearchLookUpEdit.TabIndex = 357;
@@ -1013,52 +1018,6 @@ namespace AssetManagement.Finance
             // 
             this.subDepartmentVwBindingSource.DataMember = "SubDepartmentVw";
             this.subDepartmentVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colمعرفالوحدة,
-            this.colاسمالوحدة,
-            this.colالقسمالتابعةله,
-            this.colالدائرةالتييتبعلهاالقسم1});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // colمعرفالوحدة
-            // 
-            this.colمعرفالوحدة.FieldName = "معرف الوحدة";
-            this.colمعرفالوحدة.MinWidth = 100;
-            this.colمعرفالوحدة.Name = "colمعرفالوحدة";
-            this.colمعرفالوحدة.Width = 100;
-            // 
-            // colاسمالوحدة
-            // 
-            this.colاسمالوحدة.FieldName = "اسم الوحدة";
-            this.colاسمالوحدة.MinWidth = 150;
-            this.colاسمالوحدة.Name = "colاسمالوحدة";
-            this.colاسمالوحدة.Visible = true;
-            this.colاسمالوحدة.VisibleIndex = 0;
-            this.colاسمالوحدة.Width = 150;
-            // 
-            // colالقسمالتابعةله
-            // 
-            this.colالقسمالتابعةله.FieldName = "القسم التابعة له";
-            this.colالقسمالتابعةله.MinWidth = 150;
-            this.colالقسمالتابعةله.Name = "colالقسمالتابعةله";
-            this.colالقسمالتابعةله.Visible = true;
-            this.colالقسمالتابعةله.VisibleIndex = 1;
-            this.colالقسمالتابعةله.Width = 150;
-            // 
-            // colالدائرةالتييتبعلهاالقسم1
-            // 
-            this.colالدائرةالتييتبعلهاالقسم1.FieldName = "الدائرة التي يتبع لها القسم";
-            this.colالدائرةالتييتبعلهاالقسم1.MinWidth = 150;
-            this.colالدائرةالتييتبعلهاالقسم1.Name = "colالدائرةالتييتبعلهاالقسم1";
-            this.colالدائرةالتييتبعلهاالقسم1.Visible = true;
-            this.colالدائرةالتييتبعلهاالقسم1.VisibleIndex = 2;
-            this.colالدائرةالتييتبعلهاالقسم1.Width = 150;
             // 
             // searchBySubDepartmentCheckBox
             // 
@@ -1254,6 +1213,72 @@ namespace AssetManagement.Finance
             this.searchXtraScrollableControl.Size = new System.Drawing.Size(521, 701);
             this.searchXtraScrollableControl.TabIndex = 358;
             // 
+            // exportFinancialReportToExcelPopupMenu
+            // 
+            this.exportFinancialReportToExcelPopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportStandardFormBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportDetailedFormBarButtonItem)});
+            this.exportFinancialReportToExcelPopupMenu.Manager = this.barManager1;
+            this.exportFinancialReportToExcelPopupMenu.Name = "exportFinancialReportToExcelPopupMenu";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.exportStandardFormBarButtonItem,
+            this.exportDetailedFormBarButtonItem});
+            this.barManager1.MaxItemId = 2;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1310, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 737);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1310, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 737);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1310, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 737);
+            // 
+            // exportStandardFormBarButtonItem
+            // 
+            this.exportStandardFormBarButtonItem.Caption = "تصدير النموذج المعياري";
+            this.exportStandardFormBarButtonItem.Id = 0;
+            this.exportStandardFormBarButtonItem.Name = "exportStandardFormBarButtonItem";
+            this.exportStandardFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportStandardFormBarButtonItem_ItemClick);
+            // 
+            // exportDetailedFormBarButtonItem
+            // 
+            this.exportDetailedFormBarButtonItem.Caption = "تصدير الملف التفصيلي";
+            this.exportDetailedFormBarButtonItem.Id = 1;
+            this.exportDetailedFormBarButtonItem.Name = "exportDetailedFormBarButtonItem";
+            this.exportDetailedFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportDetailedFormBarButtonItem_ItemClick);
+            // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -1261,6 +1286,10 @@ namespace AssetManagement.Finance
             this.ClientSize = new System.Drawing.Size(1310, 737);
             this.Controls.Add(this.financialReportTabControl);
             this.Controls.Add(this.searchDockPanel);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1309,7 +1338,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentSearchLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
@@ -1319,7 +1347,10 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.ResumeLayout(false);
             this.searchXtraScrollableControl.ResumeLayout(false);
             this.searchXtraScrollableControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1403,11 +1434,6 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.CheckBox searchByCurrencyCheckBox;
         private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl1;
         private DevExpress.XtraEditors.SearchLookUpEdit searchBySubDepartmentSearchLookUpEdit;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالوحدة;
-        private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
-        private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
-        private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
         private System.Windows.Forms.CheckBox searchBySubDepartmentCheckBox;
         private System.Windows.Forms.CheckBox searchBySectionCheckBox;
         private DevExpress.XtraEditors.LookUpEdit searchBySectionLookUpEdit;
@@ -1425,5 +1451,13 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.Docking.DockPanel searchDockPanel;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private DevExpress.XtraEditors.XtraScrollableControl searchXtraScrollableControl;
+        private DevExpress.XtraBars.PopupMenu exportFinancialReportToExcelPopupMenu;
+        private DevExpress.XtraBars.BarButtonItem exportStandardFormBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem exportDetailedFormBarButtonItem;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }

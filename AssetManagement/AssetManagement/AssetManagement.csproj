@@ -352,12 +352,6 @@
     <Compile Include="Assets\AssetsStatsForm3.Designer.cs">
       <DependentUpon>AssetsStatsForm3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Assets\AssetsToDestructForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Assets\AssetsToDestructForm.Designer.cs">
-      <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Assets\AssetsXtraReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -635,9 +629,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetCardViewForm.resx">
       <DependentUpon>AssetCardViewForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\AssetsToDestructForm.resx">
-      <DependentUpon>AssetsToDestructForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\CustomAssetsForm.resx">
       <DependentUpon>CustomAssetsForm.cs</DependentUpon>

@@ -94,6 +94,7 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.financialItemsStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.destructedAssetsBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -118,8 +119,6 @@ namespace AssetManagement
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
@@ -195,10 +194,11 @@ namespace AssetManagement
             this.actionsStatusBarStaticItem,
             this.manageIncomingTypeTblBarButtonItem,
             this.manageOutgoingTypeTblBarButtonItem,
-            this.financialItemsStatsBarButtonItem});
+            this.financialItemsStatsBarButtonItem,
+            this.destructedAssetsBarStaticItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 87;
+            this.mainRibbonControl.MaxItemId = 88;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -603,7 +603,7 @@ namespace AssetManagement
             this.assetsToDestructBarStaticItem.Id = 56;
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
             this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
@@ -785,6 +785,18 @@ namespace AssetManagement
             this.financialItemsStatsBarButtonItem.Name = "financialItemsStatsBarButtonItem";
             this.financialItemsStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.financialItemsStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.financialItemsStatsBarButtonItem_ItemClick);
+            // 
+            // destructedAssetsBarStaticItem
+            // 
+            this.destructedAssetsBarStaticItem.Id = 87;
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.destructedAssetsBarStaticItem.Name = "destructedAssetsBarStaticItem";
+            this.destructedAssetsBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.destructedAssetsBarStaticItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -983,8 +995,10 @@ namespace AssetManagement
             this.mainRibbonStatusBar.ItemLinks.Add(this.appDateBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.appTimeBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.destructedAssetsBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserRoleBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserDeptBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.actionsStatusBarStaticItem);
             this.mainRibbonStatusBar.Location = new System.Drawing.Point(0, 951);
@@ -1089,22 +1103,6 @@ namespace AssetManagement
             this.mainMemoEdit.Properties.Appearance.Options.UseForeColor = true;
             this.mainMemoEdit.Size = new System.Drawing.Size(1175, 668);
             this.mainMemoEdit.TabIndex = 5;
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "استيراد بيانات أصول";
-            this.barButtonItem1.Id = 63;
-            this.barButtonItem1.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "استيراد بيانات أصول";
-            this.barButtonItem2.Id = 63;
-            this.barButtonItem2.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643517;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // actionsStatusMemoEdit
             // 
@@ -1227,8 +1225,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem fromGeneralFormBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem fromEstatesFormBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem fromVehiclesFormBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem fromAssetsMovementsFormBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem fromAssetsTransactionsFormBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem activeUserBarStaticItem;
@@ -1239,6 +1235,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageIncomingTypeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageOutgoingTypeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem financialItemsStatsBarButtonItem;
+        private DevExpress.XtraBars.BarStaticItem destructedAssetsBarStaticItem;
     }
 }
 

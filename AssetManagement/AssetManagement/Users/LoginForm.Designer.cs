@@ -87,6 +87,7 @@ namespace AssetManagement.Users
             this.loginAlertControl.AppearanceText.Options.UseFont = true;
             this.loginAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.loginAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.loginAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.loginAlertControl_FormLoad);
             // 
             // closeBtn
             // 

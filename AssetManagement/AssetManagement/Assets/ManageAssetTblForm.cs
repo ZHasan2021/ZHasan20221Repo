@@ -16,15 +16,17 @@ namespace AssetManagement.Assets
     {
         int currRow = -1;
         IQueryable<AssetTbl> customDS = null;
+        string optionalFormTitle = "";
         public ManageAssetTblForm()
         {
             InitializeComponent();
         }
 
-        public ManageAssetTblForm(IQueryable<AssetTbl> customDS)
+        public ManageAssetTblForm(IQueryable<AssetTbl> customDS, string formTitle = "")
         {
             InitializeComponent();
             this.customDS = customDS;
+            optionalFormTitle = formTitle;
         }
 
         private void ManageAssetTblForm_Load(object sender, EventArgs e)
@@ -89,6 +91,11 @@ namespace AssetManagement.Assets
                     }
                 }
                 this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
+            if (optionalFormTitle != "")
+            {
+                this.Text = optionalFormTitle;
+                destructBarButtonItem.Visibility = destructAllBarButtonItem.Visibility = getAssetsOutOfWorkBarCheckItem.Visibility = (StaticCode.activeUserRole.AddNewAssetTransaction == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             }
         }
 
@@ -222,6 +229,91 @@ namespace AssetManagement.Assets
         private void assetGridView_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void destructBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("هل أنت متأكد من ذلك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            var ihlakTrnsType = StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "إهلاك");
+            if (!ihlakTrnsType.Any())
+            {
+                mainAlertControl.Show(this, "نوع التصريف (إهلاك) غير موجود في جدول أنواع التصريف، قم بإضافته أولاً لكي تستطيع المتابعة في عملية التصريف الحالية", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            try
+            {
+                AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل)));
+                StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(new AssetTransactionTbl()
+                {
+                    AssetID = assetToTransact.ID,
+                    TransactionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
+                    TransactionType = ihlakTrnsType.First().ID,
+                    GetAssetOutOfWork = getAssetsOutOfWorkBarCheckItem.Checked,
+                    MoneyAmount = 0,
+                    MoneyAmountCurrency = 1,
+                    CurrentPriceWithDestroying = 0,
+                    QuantityTransacted = assetToTransact.ItemsQuantity,
+                    TransactionNotes = $"تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل",
+                });
+                assetToTransact.IsOutOfWork = getAssetsOutOfWorkBarCheckItem.Checked;
+                if (getAssetsOutOfWorkBarCheckItem.Checked)
+                    assetToTransact.ItemsQuantity = 0;
+                assetToTransact.AssetNotes += $"[تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل]";
+                StaticCode.mainDbContext.SubmitChanges();
+                mainAlertControl.Show(this, "تم إهلاك الأصل" + ((getAssetsOutOfWorkBarCheckItem.Checked) ? " وإخراجه من الخدمة" : ""), StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "لم يتم إهلاك الأصل", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void destructAllBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("هل أنت متأكد من ذلك؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            var ihlakTrnsType = StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "إهلاك");
+            if (!ihlakTrnsType.Any())
+            {
+                mainAlertControl.Show(this, "نوع التصريف (إهلاك) غير موجود في جدول أنواع التصريف، قم بإضافته أولاً لكي تستطيع المتابعة في عملية التصريف الحالية", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            try
+            {
+                for (int i = 0; i < assetGridView.RowCount; i++)
+                {
+                    Application.DoEvents();
+
+                    AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetGridView.GetRowCellValue(i, colمعرفالأصل)));
+                    StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(new AssetTransactionTbl()
+                    {
+                        AssetID = assetToTransact.ID,
+                        TransactionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
+                        TransactionType = ihlakTrnsType.First().ID,
+                        GetAssetOutOfWork = getAssetsOutOfWorkBarCheckItem.Checked,
+                        MoneyAmount = 0,
+                        MoneyAmountCurrency = 1,
+                        CurrentPriceWithDestroying = 0,
+                        QuantityTransacted = assetToTransact.ItemsQuantity,
+                        TransactionNotes = $"تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل",
+                    });
+                    assetToTransact.IsOutOfWork = getAssetsOutOfWorkBarCheckItem.Checked;
+                    if (getAssetsOutOfWorkBarCheckItem.Checked)
+                        assetToTransact.ItemsQuantity = 0;
+                    assetToTransact.AssetNotes += $"[تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل]";
+                }
+                StaticCode.mainDbContext.SubmitChanges();
+                mainAlertControl.Show(this, $"تم إهلاك ({assetGridView.RowCount}) أصل / أصول {((getAssetsOutOfWorkBarCheckItem.Checked) ? " وإخراجها من الخدمة" : "")}", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "لم يتم إهلاك الأصول", StaticCode.ApplicationTitle);
+            }
         }
     }
 }

@@ -41,7 +41,6 @@ namespace AssetManagement.Assets
             this.estatesExportBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.vehiclesexportBrButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -52,11 +51,6 @@ namespace AssetManagement.Assets
             this.searchBySubDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.subDepartmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colمعرفالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colاسمالوحدة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالقسمالتابعةله = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colالدائرةالتييتبعلهاالقسم1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
             this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
@@ -108,8 +102,6 @@ namespace AssetManagement.Assets
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.bar2 = new DevExpress.XtraBars.Bar();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -129,7 +121,6 @@ namespace AssetManagement.Assets
             this.colتاريخالإدخال = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالموديل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاللون = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colتاريخالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colعملةسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -149,7 +140,6 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colرقملوحةالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -173,7 +163,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.searchByInsertionDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
@@ -239,7 +228,7 @@ namespace AssetManagement.Assets
             this.panel1.Controls.Add(this.customSearchRadioButton);
             this.panel1.Controls.Add(this.searchAllRadioButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 20);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1258, 111);
             this.panel1.TabIndex = 0;
@@ -310,8 +299,6 @@ namespace AssetManagement.Assets
             // 
             // barManager1
             // 
-            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -323,21 +310,13 @@ namespace AssetManagement.Assets
             this.vehiclesexportBrButtonItem});
             this.barManager1.MaxItemId = 9;
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Custom 2";
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar3.Text = "Custom 2";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1258, 20);
+            this.barDockControlTop.Size = new System.Drawing.Size(1258, 0);
             // 
             // barDockControlBottom
             // 
@@ -351,17 +330,17 @@ namespace AssetManagement.Assets
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 736);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 756);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1258, 20);
+            this.barDockControlRight.Location = new System.Drawing.Point(1258, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 736);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 756);
             // 
             // customSearchRadioButton
             // 
@@ -420,7 +399,7 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Controls.Add(this.searchByDepartmentSearchLookUpEdit);
             this.customSearchGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.customSearchGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 131);
+            this.customSearchGroupBox.Location = new System.Drawing.Point(0, 111);
             this.customSearchGroupBox.Name = "customSearchGroupBox";
             this.customSearchGroupBox.Size = new System.Drawing.Size(1258, 418);
             this.customSearchGroupBox.TabIndex = 100;
@@ -440,7 +419,6 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchBySubDepartmentSearchLookUpEdit.Properties.DataSource = this.subDepartmentVwBindingSource;
             this.searchBySubDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم الوحدة";
-            this.searchBySubDepartmentSearchLookUpEdit.Properties.PopupView = this.gridView1;
             this.searchBySubDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف الوحدة";
             this.searchBySubDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchBySubDepartmentSearchLookUpEdit.TabIndex = 130;
@@ -455,52 +433,6 @@ namespace AssetManagement.Assets
             // 
             this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
             this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colمعرفالوحدة,
-            this.colاسمالوحدة,
-            this.colالقسمالتابعةله,
-            this.colالدائرةالتييتبعلهاالقسم1});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // colمعرفالوحدة
-            // 
-            this.colمعرفالوحدة.FieldName = "معرف الوحدة";
-            this.colمعرفالوحدة.MinWidth = 100;
-            this.colمعرفالوحدة.Name = "colمعرفالوحدة";
-            this.colمعرفالوحدة.Width = 100;
-            // 
-            // colاسمالوحدة
-            // 
-            this.colاسمالوحدة.FieldName = "اسم الوحدة";
-            this.colاسمالوحدة.MinWidth = 150;
-            this.colاسمالوحدة.Name = "colاسمالوحدة";
-            this.colاسمالوحدة.Visible = true;
-            this.colاسمالوحدة.VisibleIndex = 0;
-            this.colاسمالوحدة.Width = 150;
-            // 
-            // colالقسمالتابعةله
-            // 
-            this.colالقسمالتابعةله.FieldName = "القسم التابعة له";
-            this.colالقسمالتابعةله.MinWidth = 150;
-            this.colالقسمالتابعةله.Name = "colالقسمالتابعةله";
-            this.colالقسمالتابعةله.Visible = true;
-            this.colالقسمالتابعةله.VisibleIndex = 1;
-            this.colالقسمالتابعةله.Width = 150;
-            // 
-            // colالدائرةالتييتبعلهاالقسم1
-            // 
-            this.colالدائرةالتييتبعلهاالقسم1.FieldName = "الدائرة التي يتبع لها القسم";
-            this.colالدائرةالتييتبعلهاالقسم1.MinWidth = 150;
-            this.colالدائرةالتييتبعلهاالقسم1.Name = "colالدائرةالتييتبعلهاالقسم1";
-            this.colالدائرةالتييتبعلهاالقسم1.Visible = true;
-            this.colالدائرةالتييتبعلهاالقسم1.VisibleIndex = 2;
-            this.colالدائرةالتييتبعلهاالقسم1.Width = 150;
             // 
             // searchBySubDepartmentCheckBox
             // 
@@ -1016,22 +948,6 @@ namespace AssetManagement.Assets
             // 
             this.assetTblTableAdapter.ClearBeforeFill = true;
             // 
-            // bar1
-            // 
-            this.bar1.BarName = "Custom 2";
-            this.bar1.DockCol = 0;
-            this.bar1.DockRow = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.Text = "Custom 2";
-            // 
-            // bar2
-            // 
-            this.bar2.BarName = "Custom 2";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.Text = "Custom 2";
-            // 
             // subDepartmentTblTableAdapter
             // 
             this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
@@ -1119,7 +1035,6 @@ namespace AssetManagement.Assets
             this.colتاريخالإدخال,
             this.colالموديل,
             this.colاللون,
-            this.gridColumn1,
             this.colتاريخالشراء,
             this.colسعرالشراء,
             this.colعملةسعرالشراء,
@@ -1139,7 +1054,6 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار,
             this.colرقملوحةالمركبة,
             this.colسنةصنعالمركبة,
-            this.gridColumn2,
             this.colرقمالمحركللمركبة,
             this.colمعدلالإهلاكللأصل,
             this.colالعمرالافتراضيالمتبقيللأصل});
@@ -1241,7 +1155,7 @@ namespace AssetManagement.Assets
             this.colتاريخالإدخال.MinWidth = 120;
             this.colتاريخالإدخال.Name = "colتاريخالإدخال";
             this.colتاريخالإدخال.Visible = true;
-            this.colتاريخالإدخال.VisibleIndex = 35;
+            this.colتاريخالإدخال.VisibleIndex = 33;
             this.colتاريخالإدخال.Width = 120;
             // 
             // colالموديل
@@ -1262,22 +1176,13 @@ namespace AssetManagement.Assets
             this.colاللون.VisibleIndex = 10;
             this.colاللون.Width = 94;
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.FieldName = "الحجم / السعة";
-            this.gridColumn1.MinWidth = 80;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 11;
-            this.gridColumn1.Width = 94;
-            // 
             // colتاريخالشراء
             // 
             this.colتاريخالشراء.FieldName = "تاريخ الشراء";
             this.colتاريخالشراء.MinWidth = 80;
             this.colتاريخالشراء.Name = "colتاريخالشراء";
             this.colتاريخالشراء.Visible = true;
-            this.colتاريخالشراء.VisibleIndex = 12;
+            this.colتاريخالشراء.VisibleIndex = 11;
             this.colتاريخالشراء.Width = 94;
             // 
             // colسعرالشراء
@@ -1286,7 +1191,7 @@ namespace AssetManagement.Assets
             this.colسعرالشراء.MinWidth = 80;
             this.colسعرالشراء.Name = "colسعرالشراء";
             this.colسعرالشراء.Visible = true;
-            this.colسعرالشراء.VisibleIndex = 13;
+            this.colسعرالشراء.VisibleIndex = 12;
             this.colسعرالشراء.Width = 94;
             // 
             // colعملةسعرالشراء
@@ -1295,7 +1200,7 @@ namespace AssetManagement.Assets
             this.colعملةسعرالشراء.MinWidth = 80;
             this.colعملةسعرالشراء.Name = "colعملةسعرالشراء";
             this.colعملةسعرالشراء.Visible = true;
-            this.colعملةسعرالشراء.VisibleIndex = 14;
+            this.colعملةسعرالشراء.VisibleIndex = 13;
             this.colعملةسعرالشراء.Width = 94;
             // 
             // colمكانالتواجد
@@ -1304,7 +1209,7 @@ namespace AssetManagement.Assets
             this.colمكانالتواجد.MinWidth = 150;
             this.colمكانالتواجد.Name = "colمكانالتواجد";
             this.colمكانالتواجد.Visible = true;
-            this.colمكانالتواجد.VisibleIndex = 15;
+            this.colمكانالتواجد.VisibleIndex = 14;
             this.colمكانالتواجد.Width = 150;
             // 
             // colحالةالأصلالآنية
@@ -1313,7 +1218,7 @@ namespace AssetManagement.Assets
             this.colحالةالأصلالآنية.MinWidth = 80;
             this.colحالةالأصلالآنية.Name = "colحالةالأصلالآنية";
             this.colحالةالأصلالآنية.Visible = true;
-            this.colحالةالأصلالآنية.VisibleIndex = 16;
+            this.colحالةالأصلالآنية.VisibleIndex = 15;
             this.colحالةالأصلالآنية.Width = 94;
             // 
             // colنسبةالاستفادةمنه
@@ -1322,7 +1227,7 @@ namespace AssetManagement.Assets
             this.colنسبةالاستفادةمنه.MinWidth = 120;
             this.colنسبةالاستفادةمنه.Name = "colنسبةالاستفادةمنه";
             this.colنسبةالاستفادةمنه.Visible = true;
-            this.colنسبةالاستفادةمنه.VisibleIndex = 17;
+            this.colنسبةالاستفادةمنه.VisibleIndex = 16;
             this.colنسبةالاستفادةمنه.Width = 120;
             // 
             // colالسعرالفعليالحالي
@@ -1331,7 +1236,7 @@ namespace AssetManagement.Assets
             this.colالسعرالفعليالحالي.MinWidth = 80;
             this.colالسعرالفعليالحالي.Name = "colالسعرالفعليالحالي";
             this.colالسعرالفعليالحالي.Visible = true;
-            this.colالسعرالفعليالحالي.VisibleIndex = 18;
+            this.colالسعرالفعليالحالي.VisibleIndex = 17;
             this.colالسعرالفعليالحالي.Width = 94;
             // 
             // colعملةالسعرالفعليالحالي
@@ -1340,7 +1245,7 @@ namespace AssetManagement.Assets
             this.colعملةالسعرالفعليالحالي.MinWidth = 80;
             this.colعملةالسعرالفعليالحالي.Name = "colعملةالسعرالفعليالحالي";
             this.colعملةالسعرالفعليالحالي.Visible = true;
-            this.colعملةالسعرالفعليالحالي.VisibleIndex = 19;
+            this.colعملةالسعرالفعليالحالي.VisibleIndex = 18;
             this.colعملةالسعرالفعليالحالي.Width = 94;
             // 
             // colاسمصاحبالعهدة
@@ -1349,7 +1254,7 @@ namespace AssetManagement.Assets
             this.colاسمصاحبالعهدة.MinWidth = 120;
             this.colاسمصاحبالعهدة.Name = "colاسمصاحبالعهدة";
             this.colاسمصاحبالعهدة.Visible = true;
-            this.colاسمصاحبالعهدة.VisibleIndex = 20;
+            this.colاسمصاحبالعهدة.VisibleIndex = 19;
             this.colاسمصاحبالعهدة.Width = 120;
             // 
             // colتفاصيلإضافية
@@ -1358,7 +1263,7 @@ namespace AssetManagement.Assets
             this.colتفاصيلإضافية.MinWidth = 150;
             this.colتفاصيلإضافية.Name = "colتفاصيلإضافية";
             this.colتفاصيلإضافية.Visible = true;
-            this.colتفاصيلإضافية.VisibleIndex = 21;
+            this.colتفاصيلإضافية.VisibleIndex = 20;
             this.colتفاصيلإضافية.Width = 150;
             // 
             // colملاحظاتأخرى
@@ -1367,7 +1272,7 @@ namespace AssetManagement.Assets
             this.colملاحظاتأخرى.MinWidth = 150;
             this.colملاحظاتأخرى.Name = "colملاحظاتأخرى";
             this.colملاحظاتأخرى.Visible = true;
-            this.colملاحظاتأخرى.VisibleIndex = 22;
+            this.colملاحظاتأخرى.VisibleIndex = 21;
             this.colملاحظاتأخرى.Width = 150;
             // 
             // colعنوانالعقار
@@ -1376,7 +1281,7 @@ namespace AssetManagement.Assets
             this.colعنوانالعقار.MinWidth = 150;
             this.colعنوانالعقار.Name = "colعنوانالعقار";
             this.colعنوانالعقار.Visible = true;
-            this.colعنوانالعقار.VisibleIndex = 23;
+            this.colعنوانالعقار.VisibleIndex = 22;
             this.colعنوانالعقار.Width = 150;
             // 
             // colاسمالمالك
@@ -1385,7 +1290,7 @@ namespace AssetManagement.Assets
             this.colاسمالمالك.MinWidth = 120;
             this.colاسمالمالك.Name = "colاسمالمالك";
             this.colاسمالمالك.Visible = true;
-            this.colاسمالمالك.VisibleIndex = 24;
+            this.colاسمالمالك.VisibleIndex = 23;
             this.colاسمالمالك.Width = 120;
             // 
             // colالمستغلمنه
@@ -1394,7 +1299,7 @@ namespace AssetManagement.Assets
             this.colالمستغلمنه.MinWidth = 100;
             this.colالمستغلمنه.Name = "colالمستغلمنه";
             this.colالمستغلمنه.Visible = true;
-            this.colالمستغلمنه.VisibleIndex = 25;
+            this.colالمستغلمنه.VisibleIndex = 24;
             this.colالمستغلمنه.Width = 100;
             // 
             // colمعمنورقةالملكية
@@ -1403,7 +1308,7 @@ namespace AssetManagement.Assets
             this.colمعمنورقةالملكية.MinWidth = 120;
             this.colمعمنورقةالملكية.Name = "colمعمنورقةالملكية";
             this.colمعمنورقةالملكية.Visible = true;
-            this.colمعمنورقةالملكية.VisibleIndex = 26;
+            this.colمعمنورقةالملكية.VisibleIndex = 25;
             this.colمعمنورقةالملكية.Width = 120;
             // 
             // colمساحةالعقار
@@ -1412,7 +1317,7 @@ namespace AssetManagement.Assets
             this.colمساحةالعقار.MinWidth = 80;
             this.colمساحةالعقار.Name = "colمساحةالعقار";
             this.colمساحةالعقار.Visible = true;
-            this.colمساحةالعقار.VisibleIndex = 27;
+            this.colمساحةالعقار.VisibleIndex = 26;
             this.colمساحةالعقار.Width = 94;
             // 
             // colوحدةمساحةالعقار
@@ -1421,7 +1326,7 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار.MinWidth = 80;
             this.colوحدةمساحةالعقار.Name = "colوحدةمساحةالعقار";
             this.colوحدةمساحةالعقار.Visible = true;
-            this.colوحدةمساحةالعقار.VisibleIndex = 28;
+            this.colوحدةمساحةالعقار.VisibleIndex = 27;
             this.colوحدةمساحةالعقار.Width = 94;
             // 
             // colرقملوحةالمركبة
@@ -1430,7 +1335,7 @@ namespace AssetManagement.Assets
             this.colرقملوحةالمركبة.MinWidth = 100;
             this.colرقملوحةالمركبة.Name = "colرقملوحةالمركبة";
             this.colرقملوحةالمركبة.Visible = true;
-            this.colرقملوحةالمركبة.VisibleIndex = 29;
+            this.colرقملوحةالمركبة.VisibleIndex = 28;
             this.colرقملوحةالمركبة.Width = 100;
             // 
             // colسنةصنعالمركبة
@@ -1439,17 +1344,8 @@ namespace AssetManagement.Assets
             this.colسنةصنعالمركبة.MinWidth = 80;
             this.colسنةصنعالمركبة.Name = "colسنةصنعالمركبة";
             this.colسنةصنعالمركبة.Visible = true;
-            this.colسنةصنعالمركبة.VisibleIndex = 30;
+            this.colسنةصنعالمركبة.VisibleIndex = 29;
             this.colسنةصنعالمركبة.Width = 94;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
-            this.gridColumn2.MinWidth = 120;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 31;
-            this.gridColumn2.Width = 120;
             // 
             // colرقمالمحركللمركبة
             // 
@@ -1457,7 +1353,7 @@ namespace AssetManagement.Assets
             this.colرقمالمحركللمركبة.MinWidth = 120;
             this.colرقمالمحركللمركبة.Name = "colرقمالمحركللمركبة";
             this.colرقمالمحركللمركبة.Visible = true;
-            this.colرقمالمحركللمركبة.VisibleIndex = 32;
+            this.colرقمالمحركللمركبة.VisibleIndex = 30;
             this.colرقمالمحركللمركبة.Width = 1000;
             // 
             // colمعدلالإهلاكللأصل
@@ -1466,7 +1362,7 @@ namespace AssetManagement.Assets
             this.colمعدلالإهلاكللأصل.MinWidth = 80;
             this.colمعدلالإهلاكللأصل.Name = "colمعدلالإهلاكللأصل";
             this.colمعدلالإهلاكللأصل.Visible = true;
-            this.colمعدلالإهلاكللأصل.VisibleIndex = 33;
+            this.colمعدلالإهلاكللأصل.VisibleIndex = 31;
             this.colمعدلالإهلاكللأصل.Width = 94;
             // 
             // colالعمرالافتراضيالمتبقيللأصل
@@ -1475,7 +1371,7 @@ namespace AssetManagement.Assets
             this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 150;
             this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
             this.colالعمرالافتراضيالمتبقيللأصل.Visible = true;
-            this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 34;
+            this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 32;
             this.colالعمرالافتراضيالمتبقيللأصل.Width = 150;
             // 
             // repositoryItemLookUpEdit1
@@ -1610,12 +1506,12 @@ namespace AssetManagement.Assets
             this.moveAllAssetsToolStripMenuItem});
             this.searchResultsContextMenuStrip.Name = "searchResultsContextMenuStrip";
             this.searchResultsContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.searchResultsContextMenuStrip.Size = new System.Drawing.Size(211, 56);
+            this.searchResultsContextMenuStrip.Size = new System.Drawing.Size(133, 28);
             // 
             // moveAllAssetsToolStripMenuItem
             // 
             this.moveAllAssetsToolStripMenuItem.Name = "moveAllAssetsToolStripMenuItem";
-            this.moveAllAssetsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.moveAllAssetsToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.moveAllAssetsToolStripMenuItem.Text = "نقل الكل";
             this.moveAllAssetsToolStripMenuItem.Click += new System.EventHandler(this.moveAllAssetsToolStripMenuItem_Click);
             // 
@@ -1651,7 +1547,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.searchByInsertionDatePanel.ResumeLayout(false);
             this.searchByInsertionDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1756,9 +1651,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.PopupMenu exportToExcelPopupMenu;
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.Bar bar3;
-        private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraEditors.DropDownButton exportToExcelDropDownButton;
         private DevExpress.XtraBars.BarButtonItem allAssetsExportBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem estatesExportBarButtonItem;
@@ -1784,7 +1676,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colمواصفاتالأصل;
         private DevExpress.XtraGrid.Columns.GridColumn colالموديل;
         private DevExpress.XtraGrid.Columns.GridColumn colاللون;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn colتاريخالشراء;
         private DevExpress.XtraGrid.Columns.GridColumn colسعرالشراء;
         private DevExpress.XtraGrid.Columns.GridColumn colعملةسعرالشراء;
@@ -1804,7 +1695,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colوحدةمساحةالعقار;
         private DevExpress.XtraGrid.Columns.GridColumn colرقملوحةالمركبة;
         private DevExpress.XtraGrid.Columns.GridColumn colسنةصنعالمركبة;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn colرقمالمحركللمركبة;
         private DevExpress.XtraGrid.Columns.GridColumn colمعدلالإهلاكللأصل;
         private DevExpress.XtraGrid.Columns.GridColumn colالعمرالافتراضيالمتبقيللأصل;
@@ -1826,13 +1716,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colاسمالقسم;
         private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم;
         private DevExpress.XtraEditors.SearchLookUpEdit searchBySubDepartmentSearchLookUpEdit;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource subDepartmentVwBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter subDepartmentVwTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالوحدة;
-        private DevExpress.XtraGrid.Columns.GridColumn colاسمالوحدة;
-        private DevExpress.XtraGrid.Columns.GridColumn colالقسمالتابعةله;
-        private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم1;
         private System.Windows.Forms.CheckBox includeOutOfWorkAssetsCheckBox;
         private System.Windows.Forms.ContextMenuStrip searchResultsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem moveAllAssetsToolStripMenuItem;

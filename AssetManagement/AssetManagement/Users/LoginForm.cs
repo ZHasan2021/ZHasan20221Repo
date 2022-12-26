@@ -60,5 +60,11 @@ namespace AssetManagement.Users
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void loginAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 200);
+            e.AlertForm.Location = new Point(200, 200);
+        }
     }
 }

@@ -137,14 +137,6 @@ namespace AssetManagement
             }
         }
 
-        public static IQueryable<AssetTbl> GetAssetsToDestruct()
-        {
-            ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
-            mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
-            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.LifeSpanInMonths >= 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1);
-            return res;
-        }
-
         public static void ExecuteProcedure(string procName)
         {
             SqlConnection sqlConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
@@ -265,6 +257,22 @@ namespace AssetManagement
         #endregion
 
         #region Assets
+        public static IQueryable<AssetTbl> GetAssetsToDestruct()
+        {
+            ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
+            mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.IsOutOfWork != true && ast.IsSold != true && ast.LifeSpanInMonths > 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1);
+            return res;
+        }
+
+        public static IQueryable<AssetTbl> GetDestructedWithoutTransactionAssets()
+        {
+            ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
+            mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.IsOutOfWork != true && ast.IsSold != true && ast.LifeSpanInMonths <= 0 && StaticCode.mainDbContext.AssetTransactionTbls.Count(astt2 => astt2.TransactionType == StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "إهلاك").First().ID && astt2.AssetID == ast.ID) == 0).Select(ast1 => ast1);
+            return res;
+        }
+
         public static string GetTheNewAssetCode()
         {
             string currUserPrefix = activeUser.UserPrefix;
@@ -1506,12 +1514,13 @@ namespace AssetManagement
                 return 0;
             DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
             var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
-            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
+            double incomingLastMonth_Am = (fivQry.Any()) ? fivQry.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
             var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
             double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
             double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
             return recycled_Am;
         }
+
         public static double CalcRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
         {
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();

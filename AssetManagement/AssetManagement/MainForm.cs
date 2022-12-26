@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,6 +27,7 @@ namespace AssetManagement
     public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         IQueryable<AssetTbl> assetsToDestructList = null;
+        IQueryable<AssetTbl> destructedAssetsList = null;
 
         public MainForm()
         {
@@ -38,7 +40,8 @@ namespace AssetManagement
             this.MinimumSize = this.Size;
 
             ApplyUserRolesOnInterface();
-            UpdateAssetToDestructLabel();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -127,11 +130,32 @@ namespace AssetManagement
         {
             ImportForm impFrm = new ImportForm();
             impFrm.ShowDialog();
-            UpdateAssetToDestructLabel();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
         #endregion
 
         #region Assets
+        private void UpdateAssetsToDestructLabel()
+        {
+            assetsToDestructList = StaticCode.GetAssetsToDestruct();
+            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count()})";
+        }
+
+        private void UpdateDestructedAssetsLabel()
+        {
+            destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
+            destructedAssetsBarStaticItem.Visibility = (destructedAssetsList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            destructedAssetsBarStaticItem.Caption = $"عدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها: ({destructedAssetsList.Count()})";
+            //int countToPrompt = destructedAssetsList.Count();
+            //if (countToPrompt>0)
+            //{
+            //    Thread.Sleep(1000);
+            //    destructedAssetsBarStaticItem_ItemClick(this, null);
+            //}
+        }
+
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AddNewAssetForm newAsstFrm = new AddNewAssetForm();
@@ -144,7 +168,8 @@ namespace AssetManagement
         {
             CustomAssetsForm cuFrm = new CustomAssetsForm();
             cuFrm.ShowDialog();
-            UpdateAssetToDestructLabel();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void addNewAssetMovementBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -208,9 +233,18 @@ namespace AssetManagement
 
         private void assetsToDestructBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AssetsToDestructForm desFrm = new AssetsToDestructForm(assetsToDestructList);
+            ManageAssetTblForm desFrm = new ManageAssetTblForm(assetsToDestructList, "الأصول التي سينتهي عمرها الإنتاجي");
             desFrm.ShowDialog();
-            UpdateAssetToDestructLabel();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
+        }
+
+        private void destructedAssetsBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageAssetTblForm desFrm = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
+            desFrm.ShowDialog();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -516,7 +550,8 @@ namespace AssetManagement
         {
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
-            UpdateAssetToDestructLabel();
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
         #endregion
 
@@ -775,13 +810,6 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageIncomingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageIncomingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageOutgoingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageOutgoingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-        }
-
-        private void UpdateAssetToDestructLabel()
-        {
-            assetsToDestructList = StaticCode.GetAssetsToDestruct();
-            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count()})";
         }
 
         private void addNewUserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
