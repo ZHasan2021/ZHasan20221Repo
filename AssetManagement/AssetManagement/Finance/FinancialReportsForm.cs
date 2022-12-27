@@ -95,11 +95,14 @@ namespace AssetManagement.Finance
         /// <param name="e"></param>
         private void searchFinancialItemDropDownButton_Click(object sender, EventArgs e)
         {
+            progressPanel1.Visible = true;
+
             #region Set and apply the financial items query
             if (!(searchAllRadioButton.Checked || searchBySectionCheckBox.Checked || searchByDepartmentCheckBox.Checked || searchBySubDepartmentCheckBox.Checked))
             {
                 mainAlertControl.Show(this, "اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle);
                 MessageBox.Show("اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                progressPanel1.Visible = false;
                 return;
             }
 
@@ -111,18 +114,21 @@ namespace AssetManagement.Finance
                     {
                         mainAlertControl.Show(this, "اكتب تاريخ البداية", StaticCode.ApplicationTitle);
                         MessageBox.Show("اكتب تاريخ البداية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        progressPanel1.Visible = false;
                         return;
                     }
                     if (toDateDateEdit.EditValue == null)
                     {
                         mainAlertControl.Show(this, "اكتب تاريخ النهاية", StaticCode.ApplicationTitle);
                         MessageBox.Show("اكتب تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        progressPanel1.Visible = false;
                         return;
                     }
                     if (Convert.ToDateTime(fromDateDateEdit.EditValue) > Convert.ToDateTime(toDateDateEdit.EditValue))
                     {
                         mainAlertControl.Show(this, "تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle);
                         MessageBox.Show("تاريخ البداية أحدث من تاريخ النهاية", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        progressPanel1.Visible = false;
                         return;
                     }
                 }
@@ -131,6 +137,7 @@ namespace AssetManagement.Finance
             {
                 mainAlertControl.Show(this, "اختر العملة أولاً", StaticCode.ApplicationTitle);
                 MessageBox.Show("اختر العملة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                progressPanel1.Visible = false;
                 return;
             }
 
@@ -140,6 +147,7 @@ namespace AssetManagement.Finance
                 if (searchBySectionLookUpEdit.EditValue == null)
                 {
                     mainAlertControl.Show(this, "حدد الدائرة أولاً", StaticCode.ApplicationTitle);
+                    progressPanel1.Visible = false;
                     return;
                 }
                 else
@@ -155,6 +163,7 @@ namespace AssetManagement.Finance
                 if (searchByDepartmentSearchLookUpEdit.EditValue == null)
                 {
                     mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
+                    progressPanel1.Visible = false;
                     return;
                 }
                 else
@@ -169,6 +178,7 @@ namespace AssetManagement.Finance
                 if (searchBySubDepartmentSearchLookUpEdit.EditValue == null)
                 {
                     mainAlertControl.Show(this, "حدد الوحدة أولاً", StaticCode.ApplicationTitle);
+                    progressPanel1.Visible = false;
                     return;
                 }
                 else
@@ -210,6 +220,7 @@ namespace AssetManagement.Finance
             {
                 mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
                 MessageBox.Show("لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                progressPanel1.Visible = false;
                 return;
             }
             else
@@ -239,6 +250,7 @@ namespace AssetManagement.Finance
                     catch
                     {
                         this.financialItemVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                        progressPanel1.Visible = false;
                         return;
                     }
                 }
@@ -340,7 +352,6 @@ namespace AssetManagement.Finance
                         sheet_Title_Name1_short = "عام وحدات";
                         fiSubLevel = 3;
                     }
-                    sheet_Title_Name1 += " - " + oneCurr;
                     sheet_Title_Name1_short += " - " + oneCurr;
                     ExcelWorksheet generalFinancialReportWs = financialReport_SubLevelsWb.Worksheets.Add(sheet_Title_Name1_short);
                     generalFinancialReportWs.View.ShowGridLines = false;
@@ -567,7 +578,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                    cells.Value = financialItemsQryVw_SubLevel.CalcRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw_SubLevel.CalcHeadRecycledOfFinancialItems();
                                 }
                                 using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                                 {
@@ -785,7 +796,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                    cells.Value = financialItemsQryVw_SubLevel.CalcRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw_SubLevel.CalcHeadRecycledOfFinancialItems();
                                 }
                                 using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                                 {
@@ -999,7 +1010,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                    cells.Value = financialItemsQryVw_SubLevel.CalcRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw_SubLevel.CalcHeadRecycledOfFinancialItems();
                                 }
                                 using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                                 {
@@ -1098,9 +1109,9 @@ namespace AssetManagement.Finance
                                 var outgoingSubLevelQry = financialItemsQryVw_OneItem.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر").OrderByDescending(fiv22 => fiv22.نوع_الصادر);
                                 double totalOutgoingSubLevel = (outgoingSubLevelQry.Any()) ? outgoingSubLevelQry.Sum(fiv3 => fiv3.المبلغ_الصادر) : 0;
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
-                                double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcRecycledOfFinancialItems();
+                                double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
                                 var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.القسم == "إدارة " + oneItem);
-                                double totalRecycledSubLevel_Head = financialItemsQryVw_OneItem_Head.CalcRecycledOfFinancialItems();
+                                double totalRecycledSubLevel_Head = financialItemsQryVw_OneItem_Head.CalcHeadRecycledOfFinancialItems();
 
                                 int figuresRow = startRow;
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow, 2])
@@ -1271,7 +1282,7 @@ namespace AssetManagement.Finance
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                    cells.Value = financialItemsQryVw_OneItem.CalcRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw_OneItem.CalcHeadRecycledOfFinancialItems();
                                 }
                                 foreach (string oneDpt in depts)
                                 {
@@ -1294,7 +1305,7 @@ namespace AssetManagement.Finance
                                         cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                         cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                         cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                        cells.Value = financialItemsQryVw_OneItem.Where(fvd1 => fvd1.القسم == oneDpt).CalcRecycledOfFinancialItems();
+                                        cells.Value = financialItemsQryVw_OneItem.Where(fvd1 => fvd1.القسم == oneDpt).CalcHeadRecycledOfFinancialItems();
                                     }
                                     allRecycledRow++;
                                 }
@@ -1461,7 +1472,7 @@ namespace AssetManagement.Finance
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw.Where(fvd1 => fvd1.الدائرة == oneSct).CalcRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw.Where(fvd1 => fvd1.الدائرة == oneSct).CalcHeadRecycledOfFinancialItems();
                                 }
                                 startRow++;
                             }
@@ -1515,7 +1526,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = financialItemsQryVw.CalcRecycledOfFinancialItems();
+                                cells.Value = financialItemsQryVw.CalcHeadRecycledOfFinancialItems();
                             }
                             startRow++;
                             #endregion
@@ -1536,6 +1547,7 @@ namespace AssetManagement.Finance
                 spreadsheetControl1.ActiveWorksheet.ActiveView.ShowRightToLeft = true;
                 #endregion
 
+                progressPanel1.Visible = false;
                 mainAlertControl.Show(this, StaticCode.ApplicationTitle, "النتائج جاهزة");
             }
         }

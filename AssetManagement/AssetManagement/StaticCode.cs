@@ -261,7 +261,8 @@ namespace AssetManagement
         {
             ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
             mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
-            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.IsOutOfWork != true && ast.IsSold != true && ast.LifeSpanInMonths > 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1);
+            var availableAssets = mainDbContext.AssetVws;
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => availableAssets.Select(asv1 => asv1.معرف_الأصل).ToList().Contains(ast.ID) && ast.LifeSpanInMonths > 0 && ast.LifeSpanInMonths <= appOptions.AssetLifeSpanThresholdToWarn).Select(ast1 => ast1);
             return res;
         }
 
@@ -269,7 +270,8 @@ namespace AssetManagement
         {
             ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
             mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
-            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.IsOutOfWork != true && ast.IsSold != true && ast.LifeSpanInMonths <= 0 && StaticCode.mainDbContext.AssetTransactionTbls.Count(astt2 => astt2.TransactionType == StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "إهلاك").First().ID && astt2.AssetID == ast.ID) == 0).Select(ast1 => ast1);
+            var availableAssets = mainDbContext.AssetVws;
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => availableAssets.Select(asv1 => asv1.معرف_الأصل).ToList().Contains(ast.ID) && ast.LifeSpanInMonths <= 0 && StaticCode.mainDbContext.AssetTransactionTbls.Count(astt2 => astt2.TransactionType == StaticCode.mainDbContext.TransactionTypeTbls.Where(tt1 => tt1.TransactionTypeName == "إهلاك").First().ID && astt2.AssetID == ast.ID) == 0).Select(ast1 => ast1);
             return res;
         }
 
@@ -1508,24 +1510,44 @@ namespace AssetManagement
 
     public static class Extensions
     {
-        public static double CalcRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
+        public static double CalcHeadRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
         {
             if (fivQry == null || fivQry.Count() == 0)
                 return 0;
             DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
-            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
-            double incomingLastMonth_Am = (fivQry.Any()) ? fivQry.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
+            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" /*&& fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/);
+            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
+            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" /*&& fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/);
             double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
             double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
             return recycled_Am;
         }
 
-        public static double CalcRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
+        public static double CalcHeadRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
         {
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
-            return (fivQry.CalcRecycledOfFinancialItems());
+            return (fivQry.CalcHeadRecycledOfFinancialItems());
+        }
+
+        public static double CalcWholeRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
+        {
+            if (fivQry == null || fivQry.Count() == 0)
+                return 0;
+            DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
+            var incoming_All = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد");
+            double incoming_All_Am = (incoming_All.Any()) ? incoming_All.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
+            var outgoing_Direct = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.نوع_الصادر == "صادرات مباشرة");
+            double outgoing_Direct_Am = (outgoing_Direct.Any()) ? outgoing_Direct.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
+            double recycled_Am = incoming_All_Am - outgoing_Direct_Am;
+            return recycled_Am;
+        }
+
+        public static double CalcWholeRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
+            return (fivQry.CalcWholeRecycledOfFinancialItems());
         }
 
         public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)

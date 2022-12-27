@@ -42,6 +42,12 @@ namespace AssetManagement
             ApplyUserRolesOnInterface();
             UpdateAssetsToDestructLabel();
             UpdateDestructedAssetsLabel();
+            if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
+            {
+                Thread.Sleep(1000);
+                MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                destructedAssetsBarStaticItem_ItemClick(this, null);
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -148,12 +154,6 @@ namespace AssetManagement
             destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
             destructedAssetsBarStaticItem.Visibility = (destructedAssetsList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             destructedAssetsBarStaticItem.Caption = $"عدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها: ({destructedAssetsList.Count()})";
-            //int countToPrompt = destructedAssetsList.Count();
-            //if (countToPrompt>0)
-            //{
-            //    Thread.Sleep(1000);
-            //    destructedAssetsBarStaticItem_ItemClick(this, null);
-            //}
         }
 
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -835,6 +835,14 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             if (logResult == DialogResult.OK)
             {
                 ApplyUserRolesOnInterface();
+                UpdateAssetsToDestructLabel();
+                UpdateDestructedAssetsLabel();
+                if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
+                {
+                    Thread.Sleep(1000);
+                    MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    destructedAssetsBarStaticItem_ItemClick(this, null);
+                }
             }
         }
 

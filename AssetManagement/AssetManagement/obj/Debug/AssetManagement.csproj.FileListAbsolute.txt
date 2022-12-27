@@ -739,3 +739,4 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debu
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.FinancialStatsForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsStatsForm3.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.MoveAllAssetsForm.resources
+C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.csproj.AssemblyReference.cache

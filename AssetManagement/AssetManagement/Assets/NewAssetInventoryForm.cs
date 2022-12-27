@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -777,6 +778,8 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
             }
+            if (File.Exists(assetsInvPath.FileName))
+                File.Delete(assetsInvPath.FileName);
 
             #region Fill the headers
             ExcelPackage astEp = new ExcelPackage(new System.IO.FileInfo(assetsInvPath.FileName));
@@ -1107,36 +1110,32 @@ namespace AssetManagement.Assets
                 shiftOfFormNo = 4;
             if (formNo == 3)
                 shiftOfFormNo = 7;
-            int curr1Col = 8 + shiftOfFormNo;
-            int curr2Col = 16 + shiftOfFormNo;
-            int statusCol = 13 + shiftOfFormNo;
-            int macaCol = 9 + shiftOfFormNo;
-            int micaCol = 10 + shiftOfFormNo;
-            int squCol = 11 + shiftOfFormNo;
+            int macaCol = 4;
+            int micaCol = 5;
+            int curr1Col = 10 + shiftOfFormNo;
+            int squCol = 12 + shiftOfFormNo;
+            int statusCol = 14 + shiftOfFormNo;
             var curr1DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr1Col, startRow + assetsQry_Export.Count(), curr1Col).ToString());
-            var curr2DataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, curr2Col, startRow + assetsQry_Export.Count(), curr2Col).ToString());
             var statusDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, statusCol, startRow + assetsQry_Export.Count(), statusCol).ToString());
             var macaDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, macaCol, startRow + assetsQry_Export.Count(), macaCol).ToString());
             var micaDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, micaCol, startRow + assetsQry_Export.Count(), micaCol).ToString());
             var squareDataValidtion = astWs.DataValidations.AddListValidation(new ExcelAddress(startRow + 1, squCol, startRow + assetsQry_Export.Count(), squCol).ToString());
             curr1DataValidtion.ShowErrorMessage =
-                curr2DataValidtion.ShowErrorMessage =
                 statusDataValidtion.ShowErrorMessage =
                 macaDataValidtion.ShowErrorMessage =
                 micaDataValidtion.ShowErrorMessage =
                 squareDataValidtion.ShowErrorMessage = true;
             curr1DataValidtion.ErrorStyle =
-                curr2DataValidtion.ErrorStyle =
                 statusDataValidtion.ErrorStyle =
                 macaDataValidtion.ErrorStyle =
                 micaDataValidtion.ErrorStyle =
                 squareDataValidtion.ErrorStyle = ExcelDataValidationWarningStyle.stop;
-            curr1DataValidtion.ErrorTitle = curr2DataValidtion.ErrorTitle = "خطأ في قيمة العملة المدخلة";
+            curr1DataValidtion.ErrorTitle = "خطأ في قيمة العملة المدخلة";
             statusDataValidtion.ErrorTitle = "خطأ في قيمة حالة الأصل المدخلة";
             macaDataValidtion.ErrorTitle = "خطأ في قيمة الفئة الرئيسية المدخلة";
             micaDataValidtion.ErrorTitle = "خطأ في قيمة الفئة الفرعية المدخلة";
             squareDataValidtion.ErrorTitle = "خطأ في قيمة الساحة المدخلة";
-            curr1DataValidtion.Error = curr2DataValidtion.Error = "اختر العملة من القائمة";
+            curr1DataValidtion.Error = "اختر العملة من القائمة";
             statusDataValidtion.Error = "اختر حالة الأصل من القائمة";
             macaDataValidtion.Error = "اختر الفئة الرئيسية من القائمة";
             micaDataValidtion.Error = "اختر الفئة الفرعية من القائمة";
@@ -1144,7 +1143,6 @@ namespace AssetManagement.Assets
             foreach (string oneCurr in StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName))
             {
                 curr1DataValidtion.Formula.Values.Add(oneCurr);
-                curr2DataValidtion.Formula.Values.Add(oneCurr);
             }
             foreach (string oneSta in StaticCode.mainDbContext.StatusTbls.Select(stu1 => stu1.StatusName))
             {

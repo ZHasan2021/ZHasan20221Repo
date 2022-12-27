@@ -30,7 +30,7 @@ namespace AssetManagement.Finance
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinancialReportsForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.toDateDateEdit = new DevExpress.XtraEditors.DateEdit();
@@ -47,6 +47,14 @@ namespace AssetManagement.Finance
             this.financialItemTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemTblTableAdapter();
             this.searchFinancialItemDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportFinancialReportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
+            this.exportFinancialReportToExcelPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.exportStandardFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.exportDetailedFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.fromToPanel = new System.Windows.Forms.Panel();
@@ -127,14 +135,7 @@ namespace AssetManagement.Finance
             this.searchDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.exportFinancialReportToExcelPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.exportStandardFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.exportDetailedFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -146,6 +147,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.fromToPanel.SuspendLayout();
             this.searchWithinPeriodPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
@@ -179,8 +182,6 @@ namespace AssetManagement.Finance
             this.searchDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             this.searchXtraScrollableControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -308,6 +309,72 @@ namespace AssetManagement.Finance
             this.exportFinancialReportToExcelDropDownButton.TabIndex = 350;
             this.exportFinancialReportToExcelDropDownButton.Text = "تصدير الجرد";
             this.exportFinancialReportToExcelDropDownButton.Click += new System.EventHandler(this.exportFinancialReportToExcelDropDownButton_Click);
+            // 
+            // exportFinancialReportToExcelPopupMenu
+            // 
+            this.exportFinancialReportToExcelPopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportStandardFormBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportDetailedFormBarButtonItem)});
+            this.exportFinancialReportToExcelPopupMenu.Manager = this.barManager1;
+            this.exportFinancialReportToExcelPopupMenu.Name = "exportFinancialReportToExcelPopupMenu";
+            // 
+            // exportStandardFormBarButtonItem
+            // 
+            this.exportStandardFormBarButtonItem.Caption = "تصدير النموذج المعياري";
+            this.exportStandardFormBarButtonItem.Id = 0;
+            this.exportStandardFormBarButtonItem.Name = "exportStandardFormBarButtonItem";
+            this.exportStandardFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportStandardFormBarButtonItem_ItemClick);
+            // 
+            // exportDetailedFormBarButtonItem
+            // 
+            this.exportDetailedFormBarButtonItem.Caption = "تصدير الملف التفصيلي";
+            this.exportDetailedFormBarButtonItem.Id = 1;
+            this.exportDetailedFormBarButtonItem.Name = "exportDetailedFormBarButtonItem";
+            this.exportDetailedFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportDetailedFormBarButtonItem_ItemClick);
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.exportStandardFormBarButtonItem,
+            this.exportDetailedFormBarButtonItem});
+            this.barManager1.MaxItemId = 2;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1310, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 737);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1310, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 737);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1310, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 737);
             // 
             // financialItemCategoryTblTableAdapter
             // 
@@ -559,9 +626,9 @@ namespace AssetManagement.Finance
             this.financialItemCategoryGridControl.DataSource = this.financialItemVwBindingSource;
             this.financialItemCategoryGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.financialItemCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
-            gridLevelNode2.RelationName = "financialItemLevel";
+            gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.financialItemCategoryGridControl.Location = new System.Drawing.Point(3, 322);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
@@ -1190,6 +1257,7 @@ namespace AssetManagement.Finance
             // searchXtraScrollableControl
             // 
             this.searchXtraScrollableControl.AllowTouchScroll = true;
+            this.searchXtraScrollableControl.Controls.Add(this.progressPanel1);
             this.searchXtraScrollableControl.Controls.Add(this.manageCurrencyTblBtn);
             this.searchXtraScrollableControl.Controls.Add(this.searchBySubDepartmentSearchLookUpEdit);
             this.searchXtraScrollableControl.Controls.Add(this.searchAllRadioButton);
@@ -1213,71 +1281,26 @@ namespace AssetManagement.Finance
             this.searchXtraScrollableControl.Size = new System.Drawing.Size(521, 701);
             this.searchXtraScrollableControl.TabIndex = 358;
             // 
-            // exportFinancialReportToExcelPopupMenu
+            // progressPanel1
             // 
-            this.exportFinancialReportToExcelPopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.exportStandardFormBarButtonItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.exportDetailedFormBarButtonItem)});
-            this.exportFinancialReportToExcelPopupMenu.Manager = this.barManager1;
-            this.exportFinancialReportToExcelPopupMenu.Name = "exportFinancialReportToExcelPopupMenu";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.exportStandardFormBarButtonItem,
-            this.exportDetailedFormBarButtonItem});
-            this.barManager1.MaxItemId = 2;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1310, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 737);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1310, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 737);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1310, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 737);
-            // 
-            // exportStandardFormBarButtonItem
-            // 
-            this.exportStandardFormBarButtonItem.Caption = "تصدير النموذج المعياري";
-            this.exportStandardFormBarButtonItem.Id = 0;
-            this.exportStandardFormBarButtonItem.Name = "exportStandardFormBarButtonItem";
-            this.exportStandardFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportStandardFormBarButtonItem_ItemClick);
-            // 
-            // exportDetailedFormBarButtonItem
-            // 
-            this.exportDetailedFormBarButtonItem.Caption = "تصدير الملف التفصيلي";
-            this.exportDetailedFormBarButtonItem.Id = 1;
-            this.exportDetailedFormBarButtonItem.Name = "exportDetailedFormBarButtonItem";
-            this.exportDetailedFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportDetailedFormBarButtonItem_ItemClick);
+            this.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.progressPanel1.Appearance.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.Appearance.Options.UseBackColor = true;
+            this.progressPanel1.Appearance.Options.UseFont = true;
+            this.progressPanel1.AppearanceCaption.Font = new System.Drawing.Font("Sakkal Majalla", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
+            this.progressPanel1.AppearanceCaption.Options.UseFont = true;
+            this.progressPanel1.AppearanceCaption.Options.UseForeColor = true;
+            this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.AppearanceDescription.Options.UseFont = true;
+            this.progressPanel1.Caption = "جار إعداد التقارير المالية";
+            this.progressPanel1.Description = "الرجاء الانتظار";
+            this.progressPanel1.Location = new System.Drawing.Point(-145, 242);
+            this.progressPanel1.Name = "progressPanel1";
+            this.progressPanel1.Size = new System.Drawing.Size(384, 177);
+            this.progressPanel1.TabIndex = 400;
+            this.progressPanel1.Text = "جار إعداد التقارير المالية";
+            this.progressPanel1.Visible = false;
             // 
             // FinancialReportsForm
             // 
@@ -1310,6 +1333,8 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.fromToPanel.ResumeLayout(false);
             this.fromToPanel.PerformLayout();
             this.searchWithinPeriodPanel.ResumeLayout(false);
@@ -1347,8 +1372,6 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.ResumeLayout(false);
             this.searchXtraScrollableControl.ResumeLayout(false);
             this.searchXtraScrollableControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.exportFinancialReportToExcelPopupMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1459,5 +1482,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
     }
 }
