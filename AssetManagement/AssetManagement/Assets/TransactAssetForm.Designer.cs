@@ -786,6 +786,7 @@ namespace AssetManagement.Assets
             // 
             // viewAssetInformationBtn
             // 
+            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.viewAssetInformationBtn.Location = new System.Drawing.Point(1085, 53);
@@ -800,6 +801,7 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
+            this.searchResultsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchResultsListBox.DataSource = this.assetVwBindingSource;
             this.searchResultsListBox.DisplayMember = "كود الأصل";
             this.searchResultsListBox.FormattingEnabled = true;
@@ -819,7 +821,6 @@ namespace AssetManagement.Assets
             // 
             // searchAssetBtn
             // 
-            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
             this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.searchAssetBtn.Location = new System.Drawing.Point(225, 78);
@@ -833,7 +834,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeLabel
             // 
-            this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeLabel.AutoSize = true;
             this.assetCodeLabel.Location = new System.Drawing.Point(57, 29);
             this.assetCodeLabel.Name = "assetCodeLabel";
@@ -843,7 +843,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeTextBox
             // 
-            this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeTextBox.Location = new System.Drawing.Point(185, 25);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);

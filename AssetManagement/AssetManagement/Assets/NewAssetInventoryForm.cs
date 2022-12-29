@@ -457,6 +457,7 @@ namespace AssetManagement.Assets
 
         private void exportToExcelDropDownButton_Click(object sender, EventArgs e)
         {
+            exportToExcelDropDownButton.ShowDropDown();
             //ExportAssets(1);
         }
 

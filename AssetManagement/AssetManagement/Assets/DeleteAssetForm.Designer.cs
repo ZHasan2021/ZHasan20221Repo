@@ -246,12 +246,18 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
+            this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
+            this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = this.squareTblTableAdapter;
             this.tableAdapterManager.StatusTblTableAdapter = null;
+            this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
@@ -272,6 +278,7 @@ namespace AssetManagement.Assets
             // 
             // viewAssetInformationBtn
             // 
+            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.viewAssetInformationBtn.Location = new System.Drawing.Point(996, 60);
@@ -286,6 +293,7 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
+            this.searchResultsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchResultsListBox.DisplayMember = "AssetCode";
             this.searchResultsListBox.FormattingEnabled = true;
             this.searchResultsListBox.ItemHeight = 24;
@@ -299,7 +307,6 @@ namespace AssetManagement.Assets
             // 
             // searchAssetBtn
             // 
-            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
             this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.searchAssetBtn.Location = new System.Drawing.Point(207, 75);
@@ -313,7 +320,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeLabel
             // 
-            this.assetCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeLabel.AutoSize = true;
             this.assetCodeLabel.Location = new System.Drawing.Point(39, 26);
             this.assetCodeLabel.Name = "assetCodeLabel";
@@ -323,7 +329,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeTextBox
             // 
-            this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeTextBox.Location = new System.Drawing.Point(167, 22);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
             this.assetCodeTextBox.Size = new System.Drawing.Size(288, 32);

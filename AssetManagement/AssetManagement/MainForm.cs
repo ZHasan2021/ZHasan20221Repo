@@ -81,45 +81,6 @@ namespace AssetManagement
         #endregion
 
         #region Import/Export
-        private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
-        {
-            actionsStatusMemoEdit.Text = "";
-            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
-            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
-            {
-                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
-                return;
-            }
-
-            ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
-            ExcelWorkbook astWb = astEp.Workbook;
-            ExcelWorksheet astWs = astWb.Worksheets.First();
-            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8).Select(cl2 => cl2.Value?.ToString()).ToList();
-            List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
-            bool updateExistedAssets = false;
-            int existedAssetsCount = existedCodes.Count();
-            int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
-            if (existedAssetsCount > 0)
-            {
-                updateExistedAssets = MessageBox.Show("هناك بعض الأصول موجودة مسبقاً في سجلات الأصول، هل تريد تحديث معلوماتها؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
-            }
-
-            string errorMsgOut = "";
-            string importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
-            if (importingReport == null)
-            {
-                actionsStatusMemoEdit.Text = errorMsgOut;
-                mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
-                return;
-            }
-            else
-            {
-                actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة {newAssetsCount}\r\n2- عدد الأصول المحدثة {((updateExistedAssets) ? existedAssetsCount : 0)}\r\n---------------";
-                mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
-                return;
-            }
-        }
-
         private void manageImportExportTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageImportExportTblForm ieFrm = new ManageImportExportTblForm();
@@ -528,6 +489,50 @@ namespace AssetManagement
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
         }
+
+        private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook astWb = astEp.Workbook;
+            ExcelWorksheet astWs = astWb.Worksheets.First();
+            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
+            List<string> existedCodes_ImportExcel = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode) && ast1.AddingMethod == "Import/Excel").Select(ast2 => ast2.AssetCode).ToList();
+            List<string> existedCodes_UserForm = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode) && ast1.AddingMethod == "UserForm").Select(ast2 => ast2.AssetCode).ToList();
+            bool updateExistedAssets = false;
+            int existedAssetsCount = existedCodes.Count();
+            int existedAssetsCount_ImportExcel = existedCodes_ImportExcel.Count();
+            int existedAssetsCount_UserForm = existedCodes_UserForm.Count();
+            int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
+            if (existedAssetsCount_UserForm > 0)
+            {
+                updateExistedAssets = MessageBox.Show("هناك بعض الأصول موجودة مسبقاً في سجلات الأصول، هل تريد تحديث معلوماتها؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            }
+
+            string errorMsgOut = "";
+            string importingReport = StaticCode.ImportAssetsFromExcel(assetsFileOFD.FileName, formNo, updateExistedAssets, out errorMsgOut);
+            if (importingReport == null)
+            {
+                actionsStatusMemoEdit.Text = errorMsgOut;
+                mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
+                return;
+            }
+            else
+            {
+                actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة ({newAssetsCount})\r\n2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})\r\n3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel})\r\n---------------";
+                mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
+                return;
+            }
+        }
+
         #endregion
 
         #region Options

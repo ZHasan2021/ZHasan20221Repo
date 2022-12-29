@@ -608,17 +608,6 @@ namespace AssetManagement
             int existedAssetsCount = existedCodes.Count();
             int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
 
-            //string sectionName = srcExcelWs.Cells[5, 5].Value?.ToString().Trim();
-            //string departmentName = srcExcelWs.Cells[5, (formNo == 3) ? 11 : 10].Value?.ToString().Trim();
-            //string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString().Trim();
-            //var existedSubDept = tmpMainDbContext.SubDepartmentVws.Where(sdpt1 => sdpt1.اسم_الوحدة == subDepartmentName && sdpt1.القسم_التابعة_له == departmentName && sdpt1.الدائرة_التي_يتبع_لها_القسم == sectionName);
-
-            //if (existedSubDept == null || existedSubDept.Count() == 0)
-            //{
-            //    errorMsg = "الدائرة والقسم والوحدة في ملف الإكسل غير موجودة أو غير تابعة لبعضها إدارياً حسب الجداول";
-            //    tmpMainDbContext.Dispose();
-            //    return null;
-            //}
             string sectionName = srcExcelWs.Cells[5, 5].Value?.ToString().Replace("الدائرة:", "").Trim();
             string departmentName = srcExcelWs.Cells[5, (formNo == 3) ? 11 : 10].Value?.ToString().Trim();
             string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString().Trim();
@@ -730,6 +719,11 @@ namespace AssetManagement
                             continue;
                         }
                         newAsset = tmpMainDbContext.AssetTbls.Single(ast2 => ast2.AssetCode == astCode);
+                        if (newAsset.AddingMethod == "Import/Excel")
+                        {
+                            rowStartNo++;
+                            continue;
+                        }
                     }
                     else
                     {
@@ -819,7 +813,10 @@ namespace AssetManagement
                     newAsset.AssetNotes = srcExcelWs.Cells[rowStartNo, notesColumn + formShift].Value?.ToString();
                     rowStartNo++;
                     if (!existedAsset)
+                    {
+                        newAsset.AddingMethod = "Import/Excel";
                         tmpMainDbContext.AssetTbls.InsertOnSubmit(newAsset);
+                    }
                 }
                 catch
                 {
@@ -861,104 +858,6 @@ namespace AssetManagement
             };
             tmpMainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             tmpMainDbContext.SubmitChanges();
-            return "Done!";
-        }
-
-        public static string ImportFinancialItemsFromExcel_Old(string fiItsFilePath)
-        {
-            if (!File.Exists(fiItsFilePath))
-            {
-                return ("مسار الملف غير صحيح");
-            }
-            ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(fiItsFilePath));
-            ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
-            ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
-            string sectionName = srcExcelWs.Cells[2, 1].Value?.ToString().Replace("الدائرة:", "").Trim();
-            string departmentName = srcExcelWs.Cells[2, 3].Value?.ToString().Replace("القسم:", "").Trim();
-            string subDepartmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("الوحدة:", "").Trim();
-            if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
-            {
-                return ("الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
-                    );
-            }
-            if (!StaticCode.mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName))
-            {
-                if (StaticCode.activeUserRole.IsSectionIndependent != true)
-                {
-                    return ("القسم المضمن في ملف الإكسل غير موجودة في سجلات الأقسام أو لا يتبع للدائرة المضمنة في ملف الإكسل ذاته");
-                }
-            }
-
-            var existedSubDept = StaticCode.mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
-            if (existedSubDept == null || existedSubDept.Count() == 0)
-            {
-                if (StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
-                {
-                    return ("الوحدة المضمنة في ملف الإكسل غير موجودة في سجلات الوحدات أو لا تتبع للقسم والدائرة المضمنين في ملف الإكسل ذاته");
-                }
-            }
-            List<string> unknownMinorCategories = new List<string>();
-            List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
-            try
-            {
-                int usdDollarCurrID = StaticCode.mainDbContext.CurrencyTbls.Where(cu1 => cu1.CurrencyName.Contains("دولار")).First().ID;
-                int rowStartNo = 5;
-                bool isIncoming = true;
-                while (rowStartNo <= srcExcelWs.Dimension.End.Row)
-                {
-                    Application.DoEvents();
-
-                    if (srcExcelWs.Cells[rowStartNo, 1].Value?.ToString() == "ثانياً : المصاريف :")
-                    {
-                        isIncoming = false;
-                        rowStartNo++;
-                    }
-                    if (srcExcelWs.Cells[rowStartNo, 5].Value == null || srcExcelWs.Cells[rowStartNo, 5].Value?.ToString() == "")
-                    {
-                        rowStartNo++;
-                        continue;
-                    }
-                    string fiItCatName = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString().Split(':')[0].ToString();
-                    var existedFiItCat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == fiItCatName);
-                    if (existedFiItCat.Count() != 1)
-                    {
-                        unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {fiItCatName}");
-                    }
-                    else
-                    {
-                        FinancialItemTbl newFinancialItem = new FinancialItemTbl()
-                        {
-                            FinancialItemCategory = existedFiItCat.First().ID,
-                            FinancialItemDescription = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString(),
-                            FinancialItemSubDept = existedSubDept.First().معرف_الوحدة,
-                            FinancialItemInsertionDate = Convert.ToDateTime(srcExcelWs.Cells[rowStartNo, 4].Value),
-                            FinancialItemCurrency = usdDollarCurrID,
-                            IncomingAmount = (isIncoming) ? Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 1].Value) : 0,
-                            IncomingOrOutgoing = (isIncoming) ? "وارد" : "صادر",
-                            OutgoingAmount = (isIncoming) ? 0 : Convert.ToDouble(srcExcelWs.Cells[rowStartNo, 2].Value),
-                            AdditionalNotes = "",
-                        };
-                        importedAssets.Add(newFinancialItem);
-                    }
-                    rowStartNo++;
-                }
-            }
-            catch
-            {
-                return ("ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد");
-            }
-
-            if (unknownMinorCategories.Count() > 0)
-            {
-                string tmp = "";
-                foreach (string oneItem in unknownMinorCategories)
-                {
-                    tmp += oneItem + "\r\n";
-                }
-                return ($"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها");
-            }
-            StaticCode.mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
-            StaticCode.mainDbContext.SubmitChanges();
             return "Done!";
         }
 
@@ -1515,9 +1414,9 @@ namespace AssetManagement
             if (fivQry == null || fivQry.Count() == 0)
                 return 0;
             DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
-            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" /*&& fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/);
+            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" /*&& fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/).OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
             double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" /*&& fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/);
+            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" /*&& fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/).OrderByDescending(fiv22 => fiv22.نوع_الصادر);
             double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
             double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
             return recycled_Am;
@@ -1535,9 +1434,9 @@ namespace AssetManagement
             if (fivQry == null || fivQry.Count() == 0)
                 return 0;
             DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
-            var incoming_All = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد");
+            var incoming_All = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد").OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
             double incoming_All_Am = (incoming_All.Any()) ? incoming_All.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoing_Direct = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.نوع_الصادر == "صادرات مباشرة");
+            var outgoing_Direct = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.نوع_الصادر == "صادرات مباشرة").OrderByDescending(fiv22 => fiv22.نوع_الصادر);
             double outgoing_Direct_Am = (outgoing_Direct.Any()) ? outgoing_Direct.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
             double recycled_Am = incoming_All_Am - outgoing_Direct_Am;
             return recycled_Am;
@@ -1554,7 +1453,7 @@ namespace AssetManagement
         {
             if (!fivQry.Any() || !fivQry.Any(fivi => fivi.وارد_أم_صادر == "وارد"))
                 return 0;
-            return (fivQry.Where(fivi => fivi.وارد_أم_صادر == "وارد").Sum(fivi2 => fivi2.المبلغ_الوارد));
+            return (fivQry.Where(fivi => fivi.وارد_أم_صادر == "وارد").OrderByDescending(fiv22 => fiv22.جهة_الإيراد).Sum(fivi2 => fivi2.المبلغ_الوارد));
         }
 
         public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
@@ -1568,7 +1467,7 @@ namespace AssetManagement
         {
             if (!fivQry.Any() || !fivQry.Any(fivo => fivo.وارد_أم_صادر == "صادر"))
                 return 0;
-            return (fivQry.Where(fivo => fivo.وارد_أم_صادر == "صادر").Sum(fivo2 => fivo2.المبلغ_الصادر));
+            return (fivQry.Where(fivo => fivo.وارد_أم_صادر == "صادر").OrderByDescending(fiv22 => fiv22.نوع_الصادر).Sum(fivo2 => fivo2.المبلغ_الصادر));
         }
 
         public static double CalcOutgoingOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)

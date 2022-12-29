@@ -125,6 +125,7 @@ namespace AssetManagement.Assets
             this.moreDetailsTextBox = new System.Windows.Forms.TextBox();
             this.moreDetailsLabel = new System.Windows.Forms.Label();
             this.searchResultsListBox = new System.Windows.Forms.ListBox();
+            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetCodeToSearchLabel = new System.Windows.Forms.Label();
             this.assetCodeToSearchTextBox = new System.Windows.Forms.TextBox();
@@ -143,7 +144,6 @@ namespace AssetManagement.Assets
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
-            this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.assetInformationGroupBox.SuspendLayout();
             this.assetInfoTabControl.SuspendLayout();
@@ -180,8 +180,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -1322,6 +1322,7 @@ namespace AssetManagement.Assets
             // 
             // searchResultsListBox
             // 
+            this.searchResultsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchResultsListBox.DataSource = this.assetVwBindingSource;
             this.searchResultsListBox.DisplayMember = "كود الأصل";
             this.searchResultsListBox.FormattingEnabled = true;
@@ -1334,6 +1335,11 @@ namespace AssetManagement.Assets
             this.searchResultsListBox.Visible = false;
             this.searchResultsListBox.DoubleClick += new System.EventHandler(this.viewAssetInformationBtn_Click);
             // 
+            // assetVwBindingSource
+            // 
+            this.assetVwBindingSource.DataMember = "AssetVw";
+            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // assetTblBindingSource
             // 
             this.assetTblBindingSource.DataMember = "AssetTbl";
@@ -1341,7 +1347,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeToSearchLabel
             // 
-            this.assetCodeToSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeToSearchLabel.AutoSize = true;
             this.assetCodeToSearchLabel.Location = new System.Drawing.Point(67, 37);
             this.assetCodeToSearchLabel.Name = "assetCodeToSearchLabel";
@@ -1351,7 +1356,6 @@ namespace AssetManagement.Assets
             // 
             // assetCodeToSearchTextBox
             // 
-            this.assetCodeToSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.assetCodeToSearchTextBox.Location = new System.Drawing.Point(195, 33);
             this.assetCodeToSearchTextBox.Name = "assetCodeToSearchTextBox";
             this.assetCodeToSearchTextBox.Size = new System.Drawing.Size(288, 32);
@@ -1359,7 +1363,6 @@ namespace AssetManagement.Assets
             // 
             // searchAssetBtn
             // 
-            this.searchAssetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchAssetBtn.Image = global::AssetManagement.Properties.Resources._2719309;
             this.searchAssetBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.searchAssetBtn.Location = new System.Drawing.Point(243, 84);
@@ -1373,6 +1376,7 @@ namespace AssetManagement.Assets
             // 
             // viewAssetInformationBtn
             // 
+            this.viewAssetInformationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.viewAssetInformationBtn.Image = global::AssetManagement.Properties.Resources._8341961;
             this.viewAssetInformationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.viewAssetInformationBtn.Location = new System.Drawing.Point(1072, 16);
@@ -1455,6 +1459,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = this.minorCategoryTblTableAdapter;
             this.tableAdapterManager.ModelTblTableAdapter = this.modelTblTableAdapter;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -1469,11 +1474,6 @@ namespace AssetManagement.Assets
             // modelTblTableAdapter
             // 
             this.modelTblTableAdapter.ClearBeforeFill = true;
-            // 
-            // assetVwBindingSource
-            // 
-            this.assetVwBindingSource.DataMember = "AssetVw";
-            this.assetVwBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // assetVwTableAdapter
             // 
@@ -1539,8 +1539,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

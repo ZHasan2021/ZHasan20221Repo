@@ -96,6 +96,9 @@ namespace AssetManagement
     partial void InsertTransactionTypeTbl(TransactionTypeTbl instance);
     partial void UpdateTransactionTypeTbl(TransactionTypeTbl instance);
     partial void DeleteTransactionTypeTbl(TransactionTypeTbl instance);
+    partial void InsertUserLoginTbl(UserLoginTbl instance);
+    partial void UpdateUserLoginTbl(UserLoginTbl instance);
+    partial void DeleteUserLoginTbl(UserLoginTbl instance);
     partial void InsertUserRoleTbl(UserRoleTbl instance);
     partial void UpdateUserRoleTbl(UserRoleTbl instance);
     partial void DeleteUserRoleTbl(UserRoleTbl instance);
@@ -304,6 +307,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<TransactionTypeTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserLoginTbl> UserLoginTbls
+		{
+			get
+			{
+				return this.GetTable<UserLoginTbl>();
 			}
 		}
 		
@@ -748,6 +759,8 @@ namespace AssetManagement
 		
 		private EntitySet<AssetTransactionTbl> _AssetTransactionTbls;
 		
+		private EntitySet<UserLoginTbl> _UserLoginTbls;
+		
 		private EntityRef<DepartmentTbl> _DepartmentTbl;
 		
 		private EntityRef<UserRoleTbl> _UserRoleTbl;
@@ -780,6 +793,7 @@ namespace AssetManagement
 		{
 			this._AssetMovementTbls = new EntitySet<AssetMovementTbl>(new Action<AssetMovementTbl>(this.attach_AssetMovementTbls), new Action<AssetMovementTbl>(this.detach_AssetMovementTbls));
 			this._AssetTransactionTbls = new EntitySet<AssetTransactionTbl>(new Action<AssetTransactionTbl>(this.attach_AssetTransactionTbls), new Action<AssetTransactionTbl>(this.detach_AssetTransactionTbls));
+			this._UserLoginTbls = new EntitySet<UserLoginTbl>(new Action<UserLoginTbl>(this.attach_UserLoginTbls), new Action<UserLoginTbl>(this.detach_UserLoginTbls));
 			this._DepartmentTbl = default(EntityRef<DepartmentTbl>);
 			this._UserRoleTbl = default(EntityRef<UserRoleTbl>);
 			OnCreated();
@@ -999,6 +1013,19 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_UserLoginTbl", Storage="_UserLoginTbls", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserLoginTbl> UserLoginTbls
+		{
+			get
+			{
+				return this._UserLoginTbls;
+			}
+			set
+			{
+				this._UserLoginTbls.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DepartmentTbl_UserTbl", Storage="_DepartmentTbl", ThisKey="UserDept", OtherKey="ID", IsForeignKey=true)]
 		public DepartmentTbl DepartmentTbl
 		{
@@ -1110,6 +1137,18 @@ namespace AssetManagement
 			this.SendPropertyChanging();
 			entity.UserTbl = null;
 		}
+		
+		private void attach_UserLoginTbls(UserLoginTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserTbl = this;
+		}
+		
+		private void detach_UserLoginTbls(UserLoginTbl entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserTbl = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetTbl")]
@@ -1197,6 +1236,8 @@ namespace AssetManagement
 		private System.Nullable<int> _InsertedBy;
 		
 		private System.Nullable<int> _LastModifiedBy;
+		
+		private string _AddingMethod;
 		
 		private EntitySet<AssetMovementTbl> _AssetMovementTbls;
 		
@@ -1296,6 +1337,8 @@ namespace AssetManagement
     partial void OnInsertedByChanged();
     partial void OnLastModifiedByChanging(System.Nullable<int> value);
     partial void OnLastModifiedByChanged();
+    partial void OnAddingMethodChanging(string value);
+    partial void OnAddingMethodChanged();
     #endregion
 		
 		public AssetTbl()
@@ -2126,6 +2169,26 @@ namespace AssetManagement
 					this._LastModifiedBy = value;
 					this.SendPropertyChanged("LastModifiedBy");
 					this.OnLastModifiedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddingMethod", DbType="NVarChar(50)")]
+		public string AddingMethod
+		{
+			get
+			{
+				return this._AddingMethod;
+			}
+			set
+			{
+				if ((this._AddingMethod != value))
+				{
+					this.OnAddingMethodChanging(value);
+					this.SendPropertyChanging();
+					this._AddingMethod = value;
+					this.SendPropertyChanged("AddingMethod");
+					this.OnAddingMethodChanged();
 				}
 			}
 		}
@@ -6261,6 +6324,181 @@ namespace AssetManagement
 		{
 			this.SendPropertyChanging();
 			entity.TransactionTypeTbl = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserLoginTbl")]
+	public partial class UserLoginTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _UserID;
+		
+		private System.DateTime _LoggedInAt;
+		
+		private System.Nullable<System.DateTime> _LoggedOutAt;
+		
+		private EntityRef<UserTbl> _UserTbl;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnLoggedInAtChanging(System.DateTime value);
+    partial void OnLoggedInAtChanged();
+    partial void OnLoggedOutAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnLoggedOutAtChanged();
+    #endregion
+		
+		public UserLoginTbl()
+		{
+			this._UserTbl = default(EntityRef<UserTbl>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._UserTbl.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoggedInAt", DbType="DateTime NOT NULL")]
+		public System.DateTime LoggedInAt
+		{
+			get
+			{
+				return this._LoggedInAt;
+			}
+			set
+			{
+				if ((this._LoggedInAt != value))
+				{
+					this.OnLoggedInAtChanging(value);
+					this.SendPropertyChanging();
+					this._LoggedInAt = value;
+					this.SendPropertyChanged("LoggedInAt");
+					this.OnLoggedInAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoggedOutAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LoggedOutAt
+		{
+			get
+			{
+				return this._LoggedOutAt;
+			}
+			set
+			{
+				if ((this._LoggedOutAt != value))
+				{
+					this.OnLoggedOutAtChanging(value);
+					this.SendPropertyChanging();
+					this._LoggedOutAt = value;
+					this.SendPropertyChanged("LoggedOutAt");
+					this.OnLoggedOutAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserTbl_UserLoginTbl", Storage="_UserTbl", ThisKey="UserID", OtherKey="ID", IsForeignKey=true)]
+		public UserTbl UserTbl
+		{
+			get
+			{
+				return this._UserTbl.Entity;
+			}
+			set
+			{
+				UserTbl previousValue = this._UserTbl.Entity;
+				if (((previousValue != value) 
+							|| (this._UserTbl.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserTbl.Entity = null;
+						previousValue.UserLoginTbls.Remove(this);
+					}
+					this._UserTbl.Entity = value;
+					if ((value != null))
+					{
+						value.UserLoginTbls.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("UserTbl");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

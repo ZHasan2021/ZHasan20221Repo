@@ -330,6 +330,7 @@ namespace AssetManagement.Finance
                 {
                     newFiIt.IncomingOrOutgoing = "وارد";
                     newFiIt.IncomingFrom = incomingTypeLookUpEdit.Text;
+                    newFiIt.OutgoingType = newFiIt.OutgoingTo = "";
                 }
                 if (outgoingRadioButton.Checked)
                 {
@@ -344,6 +345,7 @@ namespace AssetManagement.Finance
                         if (outgoingToSubDeptLookUpEdit.Visible)
                             newFiIt.OutgoingTo = outgoingToSubDeptLookUpEdit.Text;
                     }
+                    newFiIt.IncomingFrom = "";
                 }
                 newFiIt.IncomingAmount = (incomingRadioButton.Checked) ? Convert.ToDouble(incomingAmountNumericUpDown.Value) : 0;
                 newFiIt.OutgoingAmount = (incomingRadioButton.Checked) ? 0 : Convert.ToDouble(outgoingAmountNumericUpDown.Value);

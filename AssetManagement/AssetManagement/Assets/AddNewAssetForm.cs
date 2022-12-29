@@ -261,6 +261,7 @@ namespace AssetManagement.Assets
                     CarEngineNumber = carEngineNumberTextBox.Text.Trim(),
                     IsSold = false,
                     IsOutOfWork = false,
+                    AddingMethod = "UserForm",
                 };
                 if (purchaseDateDateEdit.EditValue != null)
                     newAssetRecord.PurchaseDate = Convert.ToDateTime(purchaseDateDateEdit.EditValue);
