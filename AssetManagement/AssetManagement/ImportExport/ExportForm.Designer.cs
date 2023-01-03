@@ -33,7 +33,6 @@ namespace AssetManagement.Finance
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
-            this.exportBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
@@ -42,7 +41,6 @@ namespace AssetManagement.Finance
             this.exportBySubDepartmentRadioButton = new System.Windows.Forms.RadioButton();
             this.exportBySectionRadioButton = new System.Windows.Forms.RadioButton();
             this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
-            this.exportByDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.exportByDepartmentRadioButton = new System.Windows.Forms.RadioButton();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
@@ -52,21 +50,34 @@ namespace AssetManagement.Finance
             this.exportData_Cancel = new System.Windows.Forms.Button();
             this.exportData_OK = new System.Windows.Forms.Button();
             this.encryptExportedFileCheckBox = new System.Windows.Forms.CheckBox();
-            this.unknownImportRadioButton = new System.Windows.Forms.RadioButton();
+            this.unknownExportRadioButton = new System.Windows.Forms.RadioButton();
             this.notesLabel = new System.Windows.Forms.Label();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.tablesExportedPanel = new System.Windows.Forms.Panel();
             this.exportAssetsAndFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportFinancialItemsRadioButton = new System.Windows.Forms.RadioButton();
             this.exportAssetsRadioButton = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentLookUpEdit.Properties)).BeginInit();
+            this.exportBySubDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.subDepartmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.exportByDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.departmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colمعرفالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colاسمالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالدائرةالتييتبعلهاالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
+            this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             this.tablesExportedPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentSearchLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentSearchLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -89,34 +100,13 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSubDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(477, 213);
+            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(477, 215);
             this.manageSubDepartmentTblBtn.Name = "manageSubDepartmentTblBtn";
             this.manageSubDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageSubDepartmentTblBtn.TabIndex = 51;
+            this.manageSubDepartmentTblBtn.TabIndex = 76;
             this.manageSubDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageSubDepartmentTblBtn.Visible = false;
             this.manageSubDepartmentTblBtn.Click += new System.EventHandler(this.manageSubDepartmentTblBtn_Click);
-            // 
-            // exportBySubDepartmentLookUpEdit
-            // 
-            this.exportBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(217, 226);
-            this.exportBySubDepartmentLookUpEdit.Name = "exportBySubDepartmentLookUpEdit";
-            this.exportBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.exportBySubDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.exportBySubDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.exportBySubDepartmentLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
-            this.exportBySubDepartmentLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
-            this.exportBySubDepartmentLookUpEdit.Properties.PopupWidth = 500;
-            this.exportBySubDepartmentLookUpEdit.Properties.ValueMember = "ID";
-            this.exportBySubDepartmentLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportBySubDepartmentLookUpEdit.TabIndex = 50;
-            this.exportBySubDepartmentLookUpEdit.Visible = false;
             // 
             // subDepartmentTblBindingSource
             // 
@@ -133,10 +123,10 @@ namespace AssetManagement.Finance
             this.manageSectionTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageSectionTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSectionTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSectionTblBtn.Location = new System.Drawing.Point(477, 93);
+            this.manageSectionTblBtn.Location = new System.Drawing.Point(477, 95);
             this.manageSectionTblBtn.Name = "manageSectionTblBtn";
             this.manageSectionTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageSectionTblBtn.TabIndex = 31;
+            this.manageSectionTblBtn.TabIndex = 56;
             this.manageSectionTblBtn.UseVisualStyleBackColor = true;
             this.manageSectionTblBtn.Visible = false;
             this.manageSectionTblBtn.Click += new System.EventHandler(this.manageSectionTblBtn_Click);
@@ -144,7 +134,7 @@ namespace AssetManagement.Finance
             // exportBySectionLookUpEdit
             // 
             this.exportBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBySectionLookUpEdit.Location = new System.Drawing.Point(217, 106);
+            this.exportBySectionLookUpEdit.Location = new System.Drawing.Point(217, 108);
             this.exportBySectionLookUpEdit.Name = "exportBySectionLookUpEdit";
             this.exportBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
@@ -158,8 +148,9 @@ namespace AssetManagement.Finance
             this.exportBySectionLookUpEdit.Properties.PopupWidth = 500;
             this.exportBySectionLookUpEdit.Properties.ValueMember = "ID";
             this.exportBySectionLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportBySectionLookUpEdit.TabIndex = 30;
+            this.exportBySectionLookUpEdit.TabIndex = 55;
             this.exportBySectionLookUpEdit.Visible = false;
+            this.exportBySectionLookUpEdit.EditValueChanged += new System.EventHandler(this.exportBySectionRadioButton_CheckedChanged);
             // 
             // sectionTblBindingSource
             // 
@@ -170,59 +161,38 @@ namespace AssetManagement.Finance
             // 
             this.exportBySubDepartmentRadioButton.AutoSize = true;
             this.exportBySubDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBySubDepartmentRadioButton.Location = new System.Drawing.Point(32, 228);
+            this.exportBySubDepartmentRadioButton.Location = new System.Drawing.Point(32, 230);
             this.exportBySubDepartmentRadioButton.Name = "exportBySubDepartmentRadioButton";
             this.exportBySubDepartmentRadioButton.Size = new System.Drawing.Size(132, 25);
             this.exportBySubDepartmentRadioButton.TabIndex = 70;
             this.exportBySubDepartmentRadioButton.Text = "ضمن وحدة معينة";
             this.exportBySubDepartmentRadioButton.UseVisualStyleBackColor = true;
-            this.exportBySubDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
+            this.exportBySubDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.exportBySubDepartmentRadioButton_CheckedChanged);
             // 
             // exportBySectionRadioButton
             // 
             this.exportBySectionRadioButton.AutoSize = true;
             this.exportBySectionRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBySectionRadioButton.Location = new System.Drawing.Point(32, 108);
+            this.exportBySectionRadioButton.Location = new System.Drawing.Point(32, 110);
             this.exportBySectionRadioButton.Name = "exportBySectionRadioButton";
             this.exportBySectionRadioButton.Size = new System.Drawing.Size(128, 25);
             this.exportBySectionRadioButton.TabIndex = 50;
             this.exportBySectionRadioButton.Text = "ضمن دائرة معينة";
             this.exportBySectionRadioButton.UseVisualStyleBackColor = true;
-            this.exportBySectionRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
+            this.exportBySectionRadioButton.CheckedChanged += new System.EventHandler(this.exportBySectionRadioButton_CheckedChanged);
             // 
             // manageDepartmentTblBtn
             // 
             this.manageDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manageDepartmentTblBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(477, 153);
+            this.manageDepartmentTblBtn.Location = new System.Drawing.Point(477, 155);
             this.manageDepartmentTblBtn.Name = "manageDepartmentTblBtn";
             this.manageDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageDepartmentTblBtn.TabIndex = 41;
+            this.manageDepartmentTblBtn.TabIndex = 66;
             this.manageDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageDepartmentTblBtn.Visible = false;
             this.manageDepartmentTblBtn.Click += new System.EventHandler(this.manageDepartmentTblBtn_Click);
-            // 
-            // exportByDepartmentLookUpEdit
-            // 
-            this.exportByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportByDepartmentLookUpEdit.Location = new System.Drawing.Point(217, 166);
-            this.exportByDepartmentLookUpEdit.Name = "exportByDepartmentLookUpEdit";
-            this.exportByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.exportByDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.exportByDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentHQ", "مقر القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.exportByDepartmentLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
-            this.exportByDepartmentLookUpEdit.Properties.DisplayMember = "DepartmentName";
-            this.exportByDepartmentLookUpEdit.Properties.PopupWidth = 500;
-            this.exportByDepartmentLookUpEdit.Properties.ValueMember = "ID";
-            this.exportByDepartmentLookUpEdit.Size = new System.Drawing.Size(243, 28);
-            this.exportByDepartmentLookUpEdit.TabIndex = 40;
-            this.exportByDepartmentLookUpEdit.Visible = false;
             // 
             // departmentTblBindingSource
             // 
@@ -233,13 +203,13 @@ namespace AssetManagement.Finance
             // 
             this.exportByDepartmentRadioButton.AutoSize = true;
             this.exportByDepartmentRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportByDepartmentRadioButton.Location = new System.Drawing.Point(32, 168);
+            this.exportByDepartmentRadioButton.Location = new System.Drawing.Point(32, 170);
             this.exportByDepartmentRadioButton.Name = "exportByDepartmentRadioButton";
             this.exportByDepartmentRadioButton.Size = new System.Drawing.Size(124, 25);
             this.exportByDepartmentRadioButton.TabIndex = 60;
             this.exportByDepartmentRadioButton.Text = "ضمن قسم معين";
             this.exportByDepartmentRadioButton.UseVisualStyleBackColor = true;
-            this.exportByDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.importBySectionRadioButton_CheckedChanged);
+            this.exportByDepartmentRadioButton.CheckedChanged += new System.EventHandler(this.exportByDepartmentRadioButton_CheckedChanged);
             // 
             // sectionTblTableAdapter
             // 
@@ -265,16 +235,20 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -315,18 +289,18 @@ namespace AssetManagement.Finance
             this.encryptExportedFileCheckBox.Text = "تشفير ملف التصدير";
             this.encryptExportedFileCheckBox.UseVisualStyleBackColor = true;
             // 
-            // unknownImportRadioButton
+            // unknownExportRadioButton
             // 
-            this.unknownImportRadioButton.AutoSize = true;
-            this.unknownImportRadioButton.Checked = true;
-            this.unknownImportRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unknownImportRadioButton.Location = new System.Drawing.Point(32, 288);
-            this.unknownImportRadioButton.Name = "unknownImportRadioButton";
-            this.unknownImportRadioButton.Size = new System.Drawing.Size(86, 25);
-            this.unknownImportRadioButton.TabIndex = 80;
-            this.unknownImportRadioButton.TabStop = true;
-            this.unknownImportRadioButton.Text = "غير محدد";
-            this.unknownImportRadioButton.UseVisualStyleBackColor = true;
+            this.unknownExportRadioButton.AutoSize = true;
+            this.unknownExportRadioButton.Checked = true;
+            this.unknownExportRadioButton.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unknownExportRadioButton.Location = new System.Drawing.Point(32, 290);
+            this.unknownExportRadioButton.Name = "unknownExportRadioButton";
+            this.unknownExportRadioButton.Size = new System.Drawing.Size(86, 25);
+            this.unknownExportRadioButton.TabIndex = 80;
+            this.unknownExportRadioButton.TabStop = true;
+            this.unknownExportRadioButton.Text = "غير محدد";
+            this.unknownExportRadioButton.UseVisualStyleBackColor = true;
             // 
             // notesLabel
             // 
@@ -342,7 +316,7 @@ namespace AssetManagement.Finance
             this.notesTextBox.Location = new System.Drawing.Point(173, 401);
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.Size = new System.Drawing.Size(315, 81);
+            this.notesTextBox.Size = new System.Drawing.Size(481, 81);
             this.notesTextBox.TabIndex = 95;
             // 
             // tablesExportedPanel
@@ -390,6 +364,94 @@ namespace AssetManagement.Finance
             this.exportAssetsRadioButton.UseVisualStyleBackColor = true;
             this.exportAssetsRadioButton.CheckedChanged += new System.EventHandler(this.exportAssetsRadioButton_CheckedChanged);
             // 
+            // exportBySubDepartmentSearchLookUpEdit
+            // 
+            this.exportBySubDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportBySubDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(217, 228);
+            this.exportBySubDepartmentSearchLookUpEdit.Name = "exportBySubDepartmentSearchLookUpEdit";
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.DataSource = this.subDepartmentVwBindingSource;
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم الوحدة";
+            this.exportBySubDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف الوحدة";
+            this.exportBySubDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(243, 28);
+            this.exportBySubDepartmentSearchLookUpEdit.TabIndex = 75;
+            this.exportBySubDepartmentSearchLookUpEdit.Visible = false;
+            // 
+            // subDepartmentVwBindingSource
+            // 
+            this.subDepartmentVwBindingSource.DataMember = "SubDepartmentVw";
+            this.subDepartmentVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // exportByDepartmentSearchLookUpEdit
+            // 
+            this.exportByDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportByDepartmentSearchLookUpEdit.Location = new System.Drawing.Point(217, 168);
+            this.exportByDepartmentSearchLookUpEdit.Name = "exportByDepartmentSearchLookUpEdit";
+            this.exportByDepartmentSearchLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportByDepartmentSearchLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.exportByDepartmentSearchLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.exportByDepartmentSearchLookUpEdit.Properties.DataSource = this.departmentVwBindingSource;
+            this.exportByDepartmentSearchLookUpEdit.Properties.DisplayMember = "اسم القسم";
+            this.exportByDepartmentSearchLookUpEdit.Properties.PopupView = this.searchLookUpEdit1View;
+            this.exportByDepartmentSearchLookUpEdit.Properties.ValueMember = "معرف القسم";
+            this.exportByDepartmentSearchLookUpEdit.Size = new System.Drawing.Size(243, 28);
+            this.exportByDepartmentSearchLookUpEdit.TabIndex = 65;
+            this.exportByDepartmentSearchLookUpEdit.Visible = false;
+            this.exportByDepartmentSearchLookUpEdit.EditValueChanged += new System.EventHandler(this.exportByDepartmentRadioButton_CheckedChanged);
+            // 
+            // departmentVwBindingSource
+            // 
+            this.departmentVwBindingSource.DataMember = "DepartmentVw";
+            this.departmentVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colمعرفالقسم,
+            this.colاسمالقسم,
+            this.colالدائرةالتييتبعلهاالقسم});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colمعرفالقسم
+            // 
+            this.colمعرفالقسم.FieldName = "معرف القسم";
+            this.colمعرفالقسم.MinWidth = 100;
+            this.colمعرفالقسم.Name = "colمعرفالقسم";
+            this.colمعرفالقسم.Width = 100;
+            // 
+            // colاسمالقسم
+            // 
+            this.colاسمالقسم.FieldName = "اسم القسم";
+            this.colاسمالقسم.MinWidth = 150;
+            this.colاسمالقسم.Name = "colاسمالقسم";
+            this.colاسمالقسم.Visible = true;
+            this.colاسمالقسم.VisibleIndex = 0;
+            this.colاسمالقسم.Width = 150;
+            // 
+            // colالدائرةالتييتبعلهاالقسم
+            // 
+            this.colالدائرةالتييتبعلهاالقسم.FieldName = "الدائرة التي يتبع لها القسم";
+            this.colالدائرةالتييتبعلهاالقسم.MinWidth = 150;
+            this.colالدائرةالتييتبعلهاالقسم.Name = "colالدائرةالتييتبعلهاالقسم";
+            this.colالدائرةالتييتبعلهاالقسم.Visible = true;
+            this.colالدائرةالتييتبعلهاالقسم.VisibleIndex = 1;
+            this.colالدائرةالتييتبعلهاالقسم.Width = 150;
+            // 
+            // departmentVwTableAdapter
+            // 
+            this.departmentVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentVwTableAdapter
+            // 
+            this.subDepartmentVwTableAdapter.ClearBeforeFill = true;
+            // 
             // ExportForm
             // 
             this.AcceptButton = this.exportData_OK;
@@ -397,21 +459,21 @@ namespace AssetManagement.Finance
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.exportData_Cancel;
             this.ClientSize = new System.Drawing.Size(1007, 517);
+            this.Controls.Add(this.exportBySubDepartmentSearchLookUpEdit);
+            this.Controls.Add(this.exportByDepartmentSearchLookUpEdit);
             this.Controls.Add(this.tablesExportedPanel);
             this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.notesLabel);
-            this.Controls.Add(this.unknownImportRadioButton);
+            this.Controls.Add(this.unknownExportRadioButton);
             this.Controls.Add(this.encryptExportedFileCheckBox);
             this.Controls.Add(this.exportData_Cancel);
             this.Controls.Add(this.exportData_OK);
             this.Controls.Add(this.manageSubDepartmentTblBtn);
-            this.Controls.Add(this.exportBySubDepartmentLookUpEdit);
             this.Controls.Add(this.manageSectionTblBtn);
             this.Controls.Add(this.exportBySectionLookUpEdit);
             this.Controls.Add(this.exportBySubDepartmentRadioButton);
             this.Controls.Add(this.exportBySectionRadioButton);
             this.Controls.Add(this.manageDepartmentTblBtn);
-            this.Controls.Add(this.exportByDepartmentLookUpEdit);
             this.Controls.Add(this.exportByDepartmentRadioButton);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -423,15 +485,18 @@ namespace AssetManagement.Finance
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تصدير بيانات";
             this.Load += new System.EventHandler(this.ExportForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             this.tablesExportedPanel.ResumeLayout(false);
             this.tablesExportedPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exportBySubDepartmentSearchLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exportByDepartmentSearchLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,13 +506,11 @@ namespace AssetManagement.Finance
 
         private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private System.Windows.Forms.Button manageSubDepartmentTblBtn;
-        private DevExpress.XtraEditors.LookUpEdit exportBySubDepartmentLookUpEdit;
         private System.Windows.Forms.Button manageSectionTblBtn;
         private DevExpress.XtraEditors.LookUpEdit exportBySectionLookUpEdit;
         private System.Windows.Forms.RadioButton exportBySubDepartmentRadioButton;
         private System.Windows.Forms.RadioButton exportBySectionRadioButton;
         private System.Windows.Forms.Button manageDepartmentTblBtn;
-        private DevExpress.XtraEditors.LookUpEdit exportByDepartmentLookUpEdit;
         private System.Windows.Forms.RadioButton exportByDepartmentRadioButton;
         private AssetMngDbDataSet assetMngDbDataSet;
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
@@ -460,12 +523,22 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.Button exportData_Cancel;
         private System.Windows.Forms.Button exportData_OK;
         private System.Windows.Forms.CheckBox encryptExportedFileCheckBox;
-        private System.Windows.Forms.RadioButton unknownImportRadioButton;
+        private System.Windows.Forms.RadioButton unknownExportRadioButton;
         private System.Windows.Forms.Label notesLabel;
         private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Panel tablesExportedPanel;
         private System.Windows.Forms.RadioButton exportAssetsAndFinancialItemsRadioButton;
         private System.Windows.Forms.RadioButton exportFinancialItemsRadioButton;
         private System.Windows.Forms.RadioButton exportAssetsRadioButton;
+        private DevExpress.XtraEditors.SearchLookUpEdit exportBySubDepartmentSearchLookUpEdit;
+        private DevExpress.XtraEditors.SearchLookUpEdit exportByDepartmentSearchLookUpEdit;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn colمعرفالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colاسمالقسم;
+        private DevExpress.XtraGrid.Columns.GridColumn colالدائرةالتييتبعلهاالقسم;
+        private System.Windows.Forms.BindingSource departmentVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter departmentVwTableAdapter;
+        private System.Windows.Forms.BindingSource subDepartmentVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter subDepartmentVwTableAdapter;
     }
 }

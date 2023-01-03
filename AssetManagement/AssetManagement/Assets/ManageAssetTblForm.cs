@@ -17,6 +17,42 @@ namespace AssetManagement.Assets
         int currRow = -1;
         IQueryable<AssetTbl> customDS = null;
         string optionalFormTitle = "";
+        IQueryable<AssetTbl> filteredAssets = null;
+
+        void LoadAssets()
+        {
+            if (customDS != null)
+            {
+                List<int> IDsIncluded = customDS.Select(as1 => as1.ID).ToList();
+                string plusQry = "";
+                if (IDsIncluded.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in IDsIncluded)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.assetVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                        return;
+                    }
+                }
+                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
+        }
+
         public ManageAssetTblForm()
         {
             InitializeComponent();
@@ -62,41 +98,16 @@ namespace AssetManagement.Assets
             assetGridControl.EmbeddedNavigator.Buttons.Remove.Visible = StaticCode.activeUserRole.DeleteAssetRecord == true;
             assetGridControl.EmbeddedNavigator.Buttons.Append.Visible = false;
             saveChangesBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            if (customDS != null)
-            {
-                List<int> IDsIncluded = customDS.Select(as1 => as1.ID).ToList();
-                string plusQry = "";
-                if (IDsIncluded.Count() == 0)
-                    plusQry = " WHERE 1 > 2;";
-                else
-                {
-                    foreach (int oneID in IDsIncluded)
-                        plusQry += oneID + ", ";
-                    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
-                }
-                AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
-                for (int i = 0; i < customVw.Rows.Count; i++)
-                {
-                    try
-                    {
-                        var oneRow = customVw.Rows[i];
-                        object[] oneRowItemArray = oneRow.ItemArray;
-                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
-                            customVw.Rows.Remove(oneRow);
-                    }
-                    catch
-                    {
-                        this.assetVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
-                        return;
-                    }
-                }
-                this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
-            }
+            moveAllBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAssetMovement == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            LoadAssets();
             if (optionalFormTitle != "")
             {
                 this.Text = optionalFormTitle;
                 destructBarButtonItem.Visibility = destructAllBarButtonItem.Visibility = getAssetsOutOfWorkBarCheckItem.Visibility = (StaticCode.activeUserRole.AddNewAssetTransaction == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+                moveAllBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
+
+            assetGridView_ColumnFilterChanged(sender, e);
         }
 
         private void assetGridView_AfterPrintRow(object sender, DevExpress.XtraGrid.Views.Printing.PrintRowEventArgs e)
@@ -314,6 +325,23 @@ namespace AssetManagement.Assets
             {
                 mainAlertControl.Show(this, "لم يتم إهلاك الأصول", StaticCode.ApplicationTitle);
             }
+        }
+
+        private void moveAllBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MoveAllAssetsForm mvAllFrm = new MoveAllAssetsForm(filteredAssets);
+            mvAllFrm.ShowDialog();
+            LoadAssets();
+        }
+
+        private void assetGridView_ColumnFilterChanged(object sender, EventArgs e)
+        {
+            List<int> IDsVisible = new List<int>();
+            for (int i = 0; i < assetGridView.RowCount; i++)
+            {
+                IDsVisible.Add(Convert.ToInt32(assetGridView.GetRowCellValue(i, colمعرفالأصل)));
+            }
+            filteredAssets = StaticCode.mainDbContext.AssetTbls.Where(asv1 => IDsVisible.Contains(asv1.ID));
         }
     }
 }

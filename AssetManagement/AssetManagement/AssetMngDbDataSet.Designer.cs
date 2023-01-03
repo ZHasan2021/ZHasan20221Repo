@@ -2862,10 +2862,10 @@ namespace AssetManagement {
                 this.columnالعدد.AllowDBNull = false;
                 this.columnالدائرة.AllowDBNull = false;
                 this.columnالدائرة.MaxLength = 200;
-                this.columnالقسم.AllowDBNull = false;
-                this.columnالقسم.MaxLength = 100;
-                this.columnالوحدة.AllowDBNull = false;
-                this.columnالوحدة.MaxLength = 100;
+                this.columnالقسم.ReadOnly = true;
+                this.columnالقسم.MaxLength = 4000;
+                this.columnالوحدة.ReadOnly = true;
+                this.columnالوحدة.MaxLength = 4000;
                 this.columnالساحة.MaxLength = 100;
                 this.columnالفئة_الرئيسية.AllowDBNull = false;
                 this.columnالفئة_الرئيسية.MaxLength = 200;
@@ -3705,10 +3705,10 @@ namespace AssetManagement {
                 this.columnالعدد.AllowDBNull = false;
                 this.columnالدائرة.AllowDBNull = false;
                 this.columnالدائرة.MaxLength = 200;
-                this.columnالقسم.AllowDBNull = false;
-                this.columnالقسم.MaxLength = 100;
-                this.columnالوحدة.AllowDBNull = false;
-                this.columnالوحدة.MaxLength = 100;
+                this.columnالقسم.ReadOnly = true;
+                this.columnالقسم.MaxLength = 4000;
+                this.columnالوحدة.ReadOnly = true;
+                this.columnالوحدة.MaxLength = 4000;
                 this.columnالساحة.MaxLength = 100;
                 this.columnالفئة_الرئيسية.AllowDBNull = false;
                 this.columnالفئة_الرئيسية.MaxLength = 200;
@@ -4520,10 +4520,10 @@ namespace AssetManagement {
                 this.columnبيان_السجل_المالي.MaxLength = 300;
                 this.columnالدائرة.AllowDBNull = false;
                 this.columnالدائرة.MaxLength = 200;
-                this.columnالقسم.AllowDBNull = false;
-                this.columnالقسم.MaxLength = 100;
-                this.columnالوحدة.AllowDBNull = false;
-                this.columnالوحدة.MaxLength = 100;
+                this.columnالقسم.ReadOnly = true;
+                this.columnالقسم.MaxLength = 4000;
+                this.columnالوحدة.ReadOnly = true;
+                this.columnالوحدة.MaxLength = 4000;
                 this.columnتاريخ_تحرير_السجل.AllowDBNull = false;
                 this.columnوارد_أم_صادر.AllowDBNull = false;
                 this.columnوارد_أم_صادر.MaxLength = 10;
@@ -10841,6 +10841,8 @@ namespace AssetManagement {
             
             private global::System.Data.DataColumn columnShiftSeconds;
             
+            private global::System.Data.DataColumn columnMngAbbr;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public OptionsTblDataTable() {
@@ -10916,6 +10918,14 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn MngAbbrColumn {
+                get {
+                    return this.columnMngAbbr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -10951,14 +10961,15 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public OptionsTblRow AddOptionsTblRow(int ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds) {
+            public OptionsTblRow AddOptionsTblRow(int ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, string MngAbbr) {
                 OptionsTblRow rowOptionsTblRow = ((OptionsTblRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ActiveUser,
                         AssetLifeSpanThresholdToWarn,
                         ShiftDays,
-                        ShiftSeconds};
+                        ShiftSeconds,
+                        MngAbbr};
                 rowOptionsTblRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOptionsTblRow);
                 return rowOptionsTblRow;
@@ -10993,6 +11004,7 @@ namespace AssetManagement {
                 this.columnAssetLifeSpanThresholdToWarn = base.Columns["AssetLifeSpanThresholdToWarn"];
                 this.columnShiftDays = base.Columns["ShiftDays"];
                 this.columnShiftSeconds = base.Columns["ShiftSeconds"];
+                this.columnMngAbbr = base.Columns["MngAbbr"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11008,6 +11020,8 @@ namespace AssetManagement {
                 base.Columns.Add(this.columnShiftDays);
                 this.columnShiftSeconds = new global::System.Data.DataColumn("ShiftSeconds", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnShiftSeconds);
+                this.columnMngAbbr = new global::System.Data.DataColumn("MngAbbr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMngAbbr);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -11019,6 +11033,8 @@ namespace AssetManagement {
                 this.columnAssetLifeSpanThresholdToWarn.AllowDBNull = false;
                 this.columnShiftDays.AllowDBNull = false;
                 this.columnShiftSeconds.AllowDBNull = false;
+                this.columnMngAbbr.AllowDBNull = false;
+                this.columnMngAbbr.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14633,7 +14649,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string القسم {
                 get {
-                    return ((string)(this[this.tableAssetVw.القسمColumn]));
+                    try {
+                        return ((string)(this[this.tableAssetVw.القسمColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'القسم\' in table \'AssetVw\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableAssetVw.القسمColumn] = value;
@@ -14644,7 +14665,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string الوحدة {
                 get {
-                    return ((string)(this[this.tableAssetVw.الوحدةColumn]));
+                    try {
+                        return ((string)(this[this.tableAssetVw.الوحدةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الوحدة\' in table \'AssetVw\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableAssetVw.الوحدةColumn] = value;
@@ -15133,6 +15159,30 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالقسمNull() {
+                return this.IsNull(this.tableAssetVw.القسمColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالقسمNull() {
+                this[this.tableAssetVw.القسمColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالوحدةNull() {
+                return this.IsNull(this.tableAssetVw.الوحدةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالوحدةNull() {
+                this[this.tableAssetVw.الوحدةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsالساحةNull() {
                 return this.IsNull(this.tableAssetVw.الساحةColumn);
             }
@@ -15499,7 +15549,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string القسم {
                 get {
-                    return ((string)(this[this.tableAssetVw_All.القسمColumn]));
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.القسمColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'القسم\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableAssetVw_All.القسمColumn] = value;
@@ -15510,7 +15565,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string الوحدة {
                 get {
-                    return ((string)(this[this.tableAssetVw_All.الوحدةColumn]));
+                    try {
+                        return ((string)(this[this.tableAssetVw_All.الوحدةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الوحدة\' in table \'AssetVw_All\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableAssetVw_All.الوحدةColumn] = value;
@@ -16000,6 +16060,30 @@ namespace AssetManagement {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالقسمNull() {
+                return this.IsNull(this.tableAssetVw_All.القسمColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالقسمNull() {
+                this[this.tableAssetVw_All.القسمColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالوحدةNull() {
+                return this.IsNull(this.tableAssetVw_All.الوحدةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالوحدةNull() {
+                this[this.tableAssetVw_All.الوحدةColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsالساحةNull() {
                 return this.IsNull(this.tableAssetVw_All.الساحةColumn);
             }
@@ -16435,7 +16519,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string القسم {
                 get {
-                    return ((string)(this[this.tableFinancialItemVw.القسمColumn]));
+                    try {
+                        return ((string)(this[this.tableFinancialItemVw.القسمColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'القسم\' in table \'FinancialItemVw\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableFinancialItemVw.القسمColumn] = value;
@@ -16446,7 +16535,12 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string الوحدة {
                 get {
-                    return ((string)(this[this.tableFinancialItemVw.الوحدةColumn]));
+                    try {
+                        return ((string)(this[this.tableFinancialItemVw.الوحدةColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'الوحدة\' in table \'FinancialItemVw\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableFinancialItemVw.الوحدةColumn] = value;
@@ -16611,6 +16705,30 @@ namespace AssetManagement {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setبيان_السجل_الماليNull() {
                 this[this.tableFinancialItemVw.بيان_السجل_الماليColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالقسمNull() {
+                return this.IsNull(this.tableFinancialItemVw.القسمColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالقسمNull() {
+                this[this.tableFinancialItemVw.القسمColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsالوحدةNull() {
+                return this.IsNull(this.tableFinancialItemVw.الوحدةColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetالوحدةNull() {
+                this[this.tableFinancialItemVw.الوحدةColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20152,6 +20270,17 @@ namespace AssetManagement {
                 }
                 set {
                     this[this.tableOptionsTbl.ShiftSecondsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string MngAbbr {
+                get {
+                    return ((string)(this[this.tableOptionsTbl.MngAbbrColumn]));
+                }
+                set {
+                    this[this.tableOptionsTbl.MngAbbrColumn] = value;
                 }
             }
             
@@ -24543,6 +24672,7 @@ namespace AssetManagement.AssetMngDbDataSetTableAdapters {
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
+
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -33043,10 +33173,11 @@ SELECT ID, NumberToSay, Days, Months, Years FROM NumberingTbl WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("AssetLifeSpanThresholdToWarn", "AssetLifeSpanThresholdToWarn");
             tableMapping.ColumnMappings.Add("ShiftDays", "ShiftDays");
             tableMapping.ColumnMappings.Add("ShiftSeconds", "ShiftSeconds");
+            tableMapping.ColumnMappings.Add("MngAbbr", "MngAbbr");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[OptionsTbl] WHERE (([ID] = @Original_ID) AND ((@IsNull_ActiveUser = 1 AND [ActiveUser] IS NULL) OR ([ActiveUser] = @Original_ActiveUser)) AND ([AssetLifeSpanThresholdToWarn] = @Original_AssetLifeSpanThresholdToWarn) AND ([ShiftDays] = @Original_ShiftDays) AND ([ShiftSeconds] = @Original_ShiftSeconds))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[OptionsTbl] WHERE (([ID] = @Original_ID) AND ((@IsNull_ActiveUser = 1 AND [ActiveUser] IS NULL) OR ([ActiveUser] = @Original_ActiveUser)) AND ([AssetLifeSpanThresholdToWarn] = @Original_AssetLifeSpanThresholdToWarn) AND ([ShiftDays] = @Original_ShiftDays) AND ([ShiftSeconds] = @Original_ShiftSeconds) AND ([MngAbbr] = @Original_MngAbbr))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActiveUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActiveUser", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -33054,30 +33185,34 @@ SELECT ID, NumberToSay, Days, Months, Years FROM NumberingTbl WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetLifeSpanThresholdToWarn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetLifeSpanThresholdToWarn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShiftDays", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftDays", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShiftSeconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftSeconds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MngAbbr", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MngAbbr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[OptionsTbl] ([ActiveUser], [AssetLifeSpanThresholdToWarn], [ShiftDays], [ShiftSeconds]) VALUES (@ActiveUser, @AssetLifeSpanThresholdToWarn, @ShiftDays, @ShiftSeconds);
-SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FROM OptionsTbl WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[OptionsTbl] ([ActiveUser], [AssetLifeSpanThresholdToWarn], [ShiftDays], [ShiftSeconds], [MngAbbr]) VALUES (@ActiveUser, @AssetLifeSpanThresholdToWarn, @ShiftDays, @ShiftSeconds, @MngAbbr);
+SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds, MngAbbr FROM OptionsTbl WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActiveUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActiveUser", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetLifeSpanThresholdToWarn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetLifeSpanThresholdToWarn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShiftDays", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftDays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShiftSeconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftSeconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MngAbbr", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MngAbbr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[OptionsTbl] SET [ActiveUser] = @ActiveUser, [AssetLifeSpanThresholdToWarn] = @AssetLifeSpanThresholdToWarn, [ShiftDays] = @ShiftDays, [ShiftSeconds] = @ShiftSeconds WHERE (([ID] = @Original_ID) AND ((@IsNull_ActiveUser = 1 AND [ActiveUser] IS NULL) OR ([ActiveUser] = @Original_ActiveUser)) AND ([AssetLifeSpanThresholdToWarn] = @Original_AssetLifeSpanThresholdToWarn) AND ([ShiftDays] = @Original_ShiftDays) AND ([ShiftSeconds] = @Original_ShiftSeconds));
-SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FROM OptionsTbl WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[OptionsTbl] SET [ActiveUser] = @ActiveUser, [AssetLifeSpanThresholdToWarn] = @AssetLifeSpanThresholdToWarn, [ShiftDays] = @ShiftDays, [ShiftSeconds] = @ShiftSeconds, [MngAbbr] = @MngAbbr WHERE (([ID] = @Original_ID) AND ((@IsNull_ActiveUser = 1 AND [ActiveUser] IS NULL) OR ([ActiveUser] = @Original_ActiveUser)) AND ([AssetLifeSpanThresholdToWarn] = @Original_AssetLifeSpanThresholdToWarn) AND ([ShiftDays] = @Original_ShiftDays) AND ([ShiftSeconds] = @Original_ShiftSeconds) AND ([MngAbbr] = @Original_MngAbbr));
+SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds, MngAbbr FROM OptionsTbl WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ActiveUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActiveUser", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssetLifeSpanThresholdToWarn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetLifeSpanThresholdToWarn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShiftDays", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftDays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ShiftSeconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftSeconds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MngAbbr", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MngAbbr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ActiveUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActiveUser", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ActiveUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ActiveUser", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssetLifeSpanThresholdToWarn", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssetLifeSpanThresholdToWarn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShiftDays", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftDays", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ShiftSeconds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ShiftSeconds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MngAbbr", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MngAbbr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -33094,8 +33229,8 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FROM" +
-                " dbo.OptionsTbl";
+            this._commandCollection[0].CommandText = "SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds, Mng" +
+                "Abbr FROM dbo.OptionsTbl";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -33156,7 +33291,7 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds) {
+        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds, string Original_MngAbbr) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_ActiveUser.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -33169,6 +33304,12 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_AssetLifeSpanThresholdToWarn));
             this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ShiftDays));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_ShiftSeconds));
+            if ((Original_MngAbbr == null)) {
+                throw new global::System.ArgumentNullException("Original_MngAbbr");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_MngAbbr));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -33189,7 +33330,7 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds) {
+        public virtual int Insert(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, string MngAbbr) {
             if ((ActiveUser.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ActiveUser.Value));
             }
@@ -33199,6 +33340,12 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(AssetLifeSpanThresholdToWarn));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(ShiftDays));
             this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ShiftSeconds));
+            if ((MngAbbr == null)) {
+                throw new global::System.ArgumentNullException("MngAbbr");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(MngAbbr));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -33219,7 +33366,7 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds, int ID) {
+        public virtual int Update(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, string MngAbbr, int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds, string Original_MngAbbr, int ID) {
             if ((ActiveUser.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ActiveUser.Value));
             }
@@ -33229,19 +33376,31 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(AssetLifeSpanThresholdToWarn));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(ShiftDays));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ShiftSeconds));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID));
-            if ((Original_ActiveUser.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ActiveUser.Value));
+            if ((MngAbbr == null)) {
+                throw new global::System.ArgumentNullException("MngAbbr");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(MngAbbr));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_AssetLifeSpanThresholdToWarn));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ShiftDays));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ShiftSeconds));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
+            if ((Original_ActiveUser.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ActiveUser.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_AssetLifeSpanThresholdToWarn));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ShiftDays));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ShiftSeconds));
+            if ((Original_MngAbbr == null)) {
+                throw new global::System.ArgumentNullException("Original_MngAbbr");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_MngAbbr));
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -33262,8 +33421,8 @@ SELECT ID, ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds FRO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds) {
-            return this.Update(ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds, Original_ID, Original_ActiveUser, Original_AssetLifeSpanThresholdToWarn, Original_ShiftDays, Original_ShiftSeconds, Original_ID);
+        public virtual int Update(global::System.Nullable<int> ActiveUser, int AssetLifeSpanThresholdToWarn, int ShiftDays, int ShiftSeconds, string MngAbbr, int Original_ID, global::System.Nullable<int> Original_ActiveUser, int Original_AssetLifeSpanThresholdToWarn, int Original_ShiftDays, int Original_ShiftSeconds, string Original_MngAbbr) {
+            return this.Update(ActiveUser, AssetLifeSpanThresholdToWarn, ShiftDays, ShiftSeconds, MngAbbr, Original_ID, Original_ActiveUser, Original_AssetLifeSpanThresholdToWarn, Original_ShiftDays, Original_ShiftSeconds, Original_MngAbbr, Original_ID);
         }
     }
     

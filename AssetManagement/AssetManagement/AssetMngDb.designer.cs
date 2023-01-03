@@ -5364,6 +5364,8 @@ namespace AssetManagement
 		
 		private int _ShiftSeconds;
 		
+		private string _MngAbbr;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5378,6 +5380,8 @@ namespace AssetManagement
     partial void OnShiftDaysChanged();
     partial void OnShiftSecondsChanging(int value);
     partial void OnShiftSecondsChanged();
+    partial void OnMngAbbrChanging(string value);
+    partial void OnMngAbbrChanged();
     #endregion
 		
 		public OptionsTbl()
@@ -5481,6 +5485,26 @@ namespace AssetManagement
 					this._ShiftSeconds = value;
 					this.SendPropertyChanged("ShiftSeconds");
 					this.OnShiftSecondsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MngAbbr", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string MngAbbr
+		{
+			get
+			{
+				return this._MngAbbr;
+			}
+			set
+			{
+				if ((this._MngAbbr != value))
+				{
+					this.OnMngAbbrChanging(value);
+					this.SendPropertyChanging();
+					this._MngAbbr = value;
+					this.SendPropertyChanged("MngAbbr");
+					this.OnMngAbbrChanged();
 				}
 			}
 		}
@@ -8394,7 +8418,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
 		public string القسم
 		{
 			get
@@ -8410,7 +8434,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
 		public string الوحدة
 		{
 			get
@@ -9069,7 +9093,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
 		public string القسم
 		{
 			get
@@ -9085,7 +9109,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
 		public string الوحدة
 		{
 			get
@@ -9781,7 +9805,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
 		public string القسم
 		{
 			get
@@ -9797,7 +9821,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
 		public string الوحدة
 		{
 			get

@@ -159,6 +159,7 @@ namespace AssetManagement.Finance
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
                 //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
                 this.UpdateTotalsAsFiltered();
+                mainAlertControl.Show(this, "تم تعديل السجل المالي", StaticCode.ApplicationTitle);
             }
             catch
             {
@@ -183,7 +184,8 @@ namespace AssetManagement.Finance
                 StaticCode.mainDbContext.SubmitChanges();
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
-                this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
+                //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
+                UpdateTotalsAsFiltered();
                 mainAlertControl.Show(this, "تم حذف السجل المالي", StaticCode.ApplicationTitle);
             }
             catch

@@ -73,6 +73,8 @@ namespace AssetManagement.Assets
 
                 }
             }
+
+            moveAllDropDownButton.Visible = moveAllAssetsToolStripMenuItem.Visible = StaticCode.activeUserRole.AddNewAssetMovement == true;
         }
 
         private void searchAllRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -253,8 +255,8 @@ namespace AssetManagement.Assets
         private void searchAssetDropDownButton_Click(object sender, EventArgs e)
         {
             assetGridControl.Visible = false;
-            exportToExcelDropDownButton.Enabled = false;
-            assetsQry = from ast in StaticCode.mainDbContext.AssetTbls select ast;
+            exportToExcelDropDownButton.Enabled = moveAllDropDownButton.Enabled = false;
+            assetsQry = from ast in StaticCode.mainDbContext.AssetTbls where (from asv in StaticCode.mainDbContext.AssetVws select asv.معرف_الأصل).Contains(ast.ID) == true select ast;
             if (customSearchRadioButton.Checked)
             {
                 if (searchBySectionCheckBox.Checked)
@@ -424,7 +426,7 @@ namespace AssetManagement.Assets
             }
 
             assetGridControl.Visible =
-            exportToExcelDropDownButton.Enabled = assetsQry.Count() > 0;
+            exportToExcelDropDownButton.Enabled = moveAllDropDownButton.Enabled = assetsQry.Count() > 0;
             if (assetsQry.Count() == 0)
             {
                 mainAlertControl.Show(this, "لا توجد نتائج", StaticCode.ApplicationTitle);
@@ -452,6 +454,7 @@ namespace AssetManagement.Assets
                     }
                 }
                 this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+                moveAllDropDownButton.Text = $"نقل ({assetsQry.Count()}) أصل/أصول";
             }
         }
 
@@ -1077,7 +1080,7 @@ namespace AssetManagement.Assets
                     oneAst.MoreDetails,
                     assetTransCount,
                     assetMvsCount,
-                     StaticCode.mainDbContext.AssetVw_Alls.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
+                     "", //StaticCode.mainDbContext.AssetVw_Alls.Single(astv1=>astv1.معرف_الأصل==oneAst.ID).العمر_الافتراضي_المتبقي_للأصل.Trim('-'),
                     oneAst.DestructionRate,
                     oneAst.AssetNotes,
                 };
@@ -1207,6 +1210,11 @@ namespace AssetManagement.Assets
         {
             MoveAllAssetsForm mvAllFrm = new MoveAllAssetsForm(assetsQry);
             mvAllFrm.ShowDialog();
+        }
+
+        private void moveAllDropDownButton_Click(object sender, EventArgs e)
+        {
+            moveAllAssetsToolStripMenuItem_Click(sender, e);
         }
     }
 }

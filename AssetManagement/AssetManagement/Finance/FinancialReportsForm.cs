@@ -1108,8 +1108,6 @@ namespace AssetManagement.Finance
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
-                                var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.القسم == "إدارة " + oneItem);
-                                double totalRecycledSubLevel_Head = financialItemsQryVw_OneItem_Head.CalcHeadRecycledOfFinancialItems();
 
                                 int figuresRow = startRow;
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow, 2])
@@ -1169,7 +1167,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                    cells.Value = totalRecycledSubLevel_Head;
+                                    cells.Value = totalRecycledSubLevel;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 3])
                                 {
@@ -1191,7 +1189,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo1 => fvo1.المبلغ_الصادر) : 0;
+                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo1 => fvo1.المبلغ_الصادر + fvo1.المبلغ_الوارد) : 0;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -1567,7 +1565,7 @@ namespace AssetManagement.Finance
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
-                                var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "إدارة " + oneItem2);
+                                var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "");
                                 double totalRecycledSubLevel_Head = financialItemsQryVw_OneItem_Head.CalcHeadRecycledOfFinancialItems();
 
                                 int figuresRow = startRow;
@@ -1650,7 +1648,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo1 => fvo1.المبلغ_الصادر) : 0;
+                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo2 => fvo2.المبلغ_الصادر + fvo2.المبلغ_الوارد) : 0;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -2026,7 +2024,7 @@ namespace AssetManagement.Finance
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
-                                var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "إدارة " + oneItem3);
+                                var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "");
                                 double totalRecycledSubLevel_Head = financialItemsQryVw_OneItem_Head.CalcHeadRecycledOfFinancialItems();
 
                                 int figuresRow = startRow;
@@ -2109,7 +2107,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo1 => fvo1.المبلغ_الصادر) : 0;
+                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo3 => fvo3.المبلغ_الصادر + fvo3.المبلغ_الوارد) : 0;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -2719,6 +2717,50 @@ namespace AssetManagement.Finance
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
         }
 
+        private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (searchBySectionCheckBox.Checked)
+                searchAllRadioButton.Checked = false;
+            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                    return;
+                List<int> deptIDs = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
+                string plusQry = "";
+                if (deptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in deptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (deptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                searchBySubDepartmentSearchLookUpEdit.EditValue = null;
+            }
+            else
+            {
+                this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+            }
+        }
+
         private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (searchByDepartmentCheckBox.Checked)
@@ -2796,50 +2838,6 @@ namespace AssetManagement.Finance
                 {
                     this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
                 }
-            }
-        }
-
-        private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (searchBySectionCheckBox.Checked)
-                searchAllRadioButton.Checked = false;
-            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
-            if (searchBySectionCheckBox.Checked)
-            {
-                if (searchBySectionLookUpEdit.EditValue == null)
-                    return;
-                List<int> deptIDs = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
-                string plusQry = "";
-                if (deptIDs.Count() == 0)
-                    plusQry = " WHERE 1 > 2;";
-                else
-                {
-                    foreach (int oneID in deptIDs)
-                        plusQry += oneID + ", ";
-                    plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
-                }
-                DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
-                for (int i = 0; i < customVw.Rows.Count; i++)
-                {
-                    try
-                    {
-                        var oneRow = customVw.Rows[i];
-                        object[] oneRowItemArray = oneRow.ItemArray;
-                        if (deptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
-                            customVw.Rows.Remove(oneRow);
-                    }
-                    catch
-                    {
-                        this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
-                        return;
-                    }
-                }
-                this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
-                searchBySubDepartmentSearchLookUpEdit.EditValue = null;
-            }
-            else
-            {
-                this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
             }
         }
 

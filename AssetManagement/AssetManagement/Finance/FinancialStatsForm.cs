@@ -361,13 +361,13 @@ namespace AssetManagement.Assets
                 // Customize series view settings (for example, bar width):
                 BarSeriesView view = (BarSeriesView)mainChartControl.SeriesTemplate.View;
                 view.AggregateFunction = SeriesAggregateFunction.Sum;
-                switch(aggregateStatTypeBarEditItem.EditValue.ToString())
+                switch (aggregateStatTypeBarEditItem.EditValue.ToString())
                 {
                     case "عدد السجلات المالية":
-                view.AggregateFunction = SeriesAggregateFunction.Count;
+                        view.AggregateFunction = SeriesAggregateFunction.Count;
                         break;
                     case "مجموع المبالغ":
-                view.AggregateFunction = SeriesAggregateFunction.Sum;
+                        view.AggregateFunction = SeriesAggregateFunction.Sum;
                         break;
                     default:
                         break;

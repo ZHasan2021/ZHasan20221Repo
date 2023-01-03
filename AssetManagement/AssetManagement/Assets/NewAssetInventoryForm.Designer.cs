@@ -33,6 +33,7 @@ namespace AssetManagement.Assets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewAssetInventoryForm));
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.moveAllDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.includeOutOfWorkAssetsCheckBox = new System.Windows.Forms.CheckBox();
             this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.exportToExcelDropDownButton = new DevExpress.XtraEditors.DropDownButton();
@@ -222,6 +223,7 @@ namespace AssetManagement.Assets
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.moveAllDropDownButton);
             this.panel1.Controls.Add(this.includeOutOfWorkAssetsCheckBox);
             this.panel1.Controls.Add(this.searchAssetDropDownButton);
             this.panel1.Controls.Add(this.exportToExcelDropDownButton);
@@ -232,6 +234,17 @@ namespace AssetManagement.Assets
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1258, 111);
             this.panel1.TabIndex = 0;
+            // 
+            // moveAllDropDownButton
+            // 
+            this.moveAllDropDownButton.Enabled = false;
+            this.moveAllDropDownButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dropDownButton1.ImageOptions.SvgImage")));
+            this.moveAllDropDownButton.Location = new System.Drawing.Point(401, 20);
+            this.moveAllDropDownButton.Name = "moveAllDropDownButton";
+            this.moveAllDropDownButton.Size = new System.Drawing.Size(163, 73);
+            this.moveAllDropDownButton.TabIndex = 510;
+            this.moveAllDropDownButton.Text = "نقل";
+            this.moveAllDropDownButton.Click += new System.EventHandler(this.moveAllDropDownButton_Click);
             // 
             // includeOutOfWorkAssetsCheckBox
             // 
@@ -247,7 +260,7 @@ namespace AssetManagement.Assets
             // searchAssetDropDownButton
             // 
             this.searchAssetDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
-            this.searchAssetDropDownButton.Location = new System.Drawing.Point(438, 20);
+            this.searchAssetDropDownButton.Location = new System.Drawing.Point(579, 20);
             this.searchAssetDropDownButton.Name = "searchAssetDropDownButton";
             this.searchAssetDropDownButton.Size = new System.Drawing.Size(163, 73);
             this.searchAssetDropDownButton.TabIndex = 500;
@@ -263,7 +276,7 @@ namespace AssetManagement.Assets
             this.exportToExcelDropDownButton.MenuManager = this.barManager1;
             this.exportToExcelDropDownButton.Name = "exportToExcelDropDownButton";
             this.exportToExcelDropDownButton.Size = new System.Drawing.Size(163, 73);
-            this.exportToExcelDropDownButton.TabIndex = 525;
+            this.exportToExcelDropDownButton.TabIndex = 520;
             this.exportToExcelDropDownButton.Text = "تصدير الجرد";
             this.exportToExcelDropDownButton.Click += new System.EventHandler(this.exportToExcelDropDownButton_Click);
             // 
@@ -977,6 +990,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -1721,5 +1735,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.CheckBox includeOutOfWorkAssetsCheckBox;
         private System.Windows.Forms.ContextMenuStrip searchResultsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem moveAllAssetsToolStripMenuItem;
+        private DevExpress.XtraEditors.DropDownButton moveAllDropDownButton;
     }
 }

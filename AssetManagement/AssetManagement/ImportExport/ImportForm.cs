@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Finance
 {
@@ -21,6 +22,10 @@ namespace AssetManagement.Finance
 
         private void ImportForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentVw' table. You can move, or remove it, as needed.
+            this.subDepartmentVwTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.
+            this.departmentVwTableAdapter.Fill(this.assetMngDbDataSet.DepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
@@ -28,6 +33,37 @@ namespace AssetManagement.Finance
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                try
+                {
+                    unknownImportRadioButton.Checked = unknownImportRadioButton.Enabled = importBySectionRadioButton.Checked = importBySectionRadioButton.Enabled = false;
+                    importBySectionLookUpEdit.Enabled = false;
+                    importBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                    importByDepartmentRadioButton_CheckedChanged(sender, e);
+                    importBySectionLookUpEdit.Visible = true;
+                }
+                catch
+                {
+
+                }
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                try
+                {
+                    unknownImportRadioButton.Checked = unknownImportRadioButton.Enabled = importBySectionRadioButton.Checked = importBySectionRadioButton.Enabled = importByDepartmentRadioButton.Checked = importByDepartmentRadioButton.Enabled = false;
+                    importBySectionLookUpEdit.Enabled = importByDepartmentSearchLookUpEdit.Enabled = false;
+                    importBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
+                    importByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    importBySectionLookUpEdit.Visible = importByDepartmentSearchLookUpEdit.Visible = true;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -39,10 +75,128 @@ namespace AssetManagement.Finance
         private void importBySectionRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             importBySectionLookUpEdit.Visible = importBySectionRadioButton.Checked;
-            importByDepartmentLookUpEdit.Visible = importByDepartmentRadioButton.Checked;
-            importBySubDepartmentLookUpEdit.Visible = importBySubDepartmentRadioButton.Checked;
+            if (importBySectionRadioButton.Checked || !importBySectionLookUpEdit.Enabled)
+            {
+                if (importBySectionLookUpEdit.EditValue == null)
+                    return;
+                List<int> deptIDs = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(importBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
+                string plusQry = "";
+                if (deptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in deptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (deptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                importBySubDepartmentSearchLookUpEdit.EditValue = null;
+            }
+            else
+            {
+                this.departmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.DepartmentVw, " WHERE 1 < 2;");
+            }
             manageSectionTblBtn.Visible = importBySectionRadioButton.Checked && StaticCode.activeUserRole.ManageSections == true;
+        }
+
+        private void importByDepartmentRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            importByDepartmentSearchLookUpEdit.Visible = importByDepartmentRadioButton.Checked;
+            if (importByDepartmentRadioButton.Checked || !importByDepartmentSearchLookUpEdit.Enabled)
+            {
+                if (importByDepartmentSearchLookUpEdit.EditValue == null)
+                    return;
+                List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(importByDepartmentSearchLookUpEdit.EditValue)).Select(subd2 => subd2.ID).ToList();
+                string plusQry = "";
+                if (subDeptIDs.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in subDeptIDs)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                        return;
+                    }
+                }
+                this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
+            else
+            {
+                if (importBySectionRadioButton.Checked || !importBySectionLookUpEdit.Enabled)
+                {
+                    if (importBySectionLookUpEdit.EditValue == null)
+                        return;
+                    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(importBySectionLookUpEdit.EditValue));
+                    List<int> dptIds = deptItems.Select(dpt2 => dpt2.ID).ToList();
+                    List<int> subDeptIDs = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment)).Select(subd2 => subd2.ID).ToList();
+                    string plusQry = "";
+                    if (subDeptIDs.Count() == 0)
+                        plusQry = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in subDeptIDs)
+                            plusQry += oneID + ", ";
+                        plusQry = $" WHERE [معرف الوحدة] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                    }
+                    SubDepartmentVwDataTable customVw = this.assetMngDbDataSet.SubDepartmentVw;
+                    for (int i = 0; i < customVw.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (subDeptIDs.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                            return;
+                        }
+                    }
+                    this.subDepartmentVwTableAdapter.FillByQuery(customVw, plusQry);
+                }
+                else
+                {
+                    this.subDepartmentVwTableAdapter.FillByQuery(this.assetMngDbDataSet.SubDepartmentVw, " WHERE 1 < 2;");
+                }
+            }
             manageDepartmentTblBtn.Visible = importByDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageDepartments == true;
+        }
+
+        private void importBySubDepartmentRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            importBySubDepartmentSearchLookUpEdit.Visible = importBySubDepartmentRadioButton.Checked;
             manageSubDepartmentTblBtn.Visible = importBySubDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
         }
 
@@ -75,12 +229,12 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "اختر الدائرة أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (importByDepartmentRadioButton.Checked && importByDepartmentLookUpEdit.EditValue == null)
+            if (importByDepartmentRadioButton.Checked && importByDepartmentSearchLookUpEdit.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (importBySubDepartmentRadioButton.Checked && importBySubDepartmentLookUpEdit.EditValue == null)
+            if (importBySubDepartmentRadioButton.Checked && importBySubDepartmentSearchLookUpEdit.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر الوحدة أولاً", StaticCode.ApplicationTitle);
                 return;
@@ -116,15 +270,25 @@ namespace AssetManagement.Finance
                     }
                 }
 
-                StaticCode.ImportDataFromExcel(importedExcelFilePath);
+                List<int> subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Select(sdp1 => sdp1.ID).ToList();
+                if (importBySubDepartmentRadioButton.Checked)
+                    subDeptList.Add(Convert.ToInt32(importBySectionLookUpEdit.EditValue));
+                else if (importByDepartmentRadioButton.Checked)
+                    subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(importByDepartmentSearchLookUpEdit.EditValue)).Select(subd2 => subd2.ID).ToList();
+                else if (importBySectionRadioButton.Checked)
+                {
+                    List<int> deptList = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(importBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
+                    subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => deptList.Contains(subd1.MainDepartment)).Select(subd2 => subd2.ID).ToList();
+                }
+                StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList);
 
                 ImportExportTbl newImport = new ImportExportTbl()
                 {
                     ActionDate = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays),
                     ImportOrExport = "استيراد",
-                    ActionByDepartment = (importByDepartmentRadioButton.Checked) ? importByDepartmentLookUpEdit.Text : "",
+                    ActionByDepartment = (importByDepartmentRadioButton.Checked) ? importByDepartmentSearchLookUpEdit.Text : "",
                     ActionBySection = (importBySectionRadioButton.Checked) ? importBySectionLookUpEdit.Text : "",
-                    ActionBySubDepartment = (importBySubDepartmentRadioButton.Checked) ? importBySubDepartmentLookUpEdit.Text : "",
+                    ActionBySubDepartment = (importBySubDepartmentRadioButton.Checked) ? importBySubDepartmentSearchLookUpEdit.Text : "",
                     ActionNotes = notesTextBox.Text.Trim(),
                 };
                 StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);

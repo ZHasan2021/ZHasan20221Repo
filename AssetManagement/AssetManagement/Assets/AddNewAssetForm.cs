@@ -207,13 +207,13 @@ namespace AssetManagement.Assets
                 {
                     if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                     {
-                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == ("إدارة " + assetSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == assetSectionLookUpEdit.Text);
+                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == (StaticCode.MngAbbr + assetSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == (StaticCode.MngAbbr + assetSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == assetSectionLookUpEdit.Text);
                         if (qry_PM == null || qry_PM.Count() == 0)
                         {
-                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(assetSectionLookUpEdit.EditValue) };
+                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = (StaticCode.MngAbbr + assetSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(assetSectionLookUpEdit.EditValue) };
                             StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
                             StaticCode.mainDbContext.SubmitChanges();
-                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = ("إدارة " + assetSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
+                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = (StaticCode.MngAbbr + assetSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
                             StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
                             StaticCode.mainDbContext.SubmitChanges();
                             assetSubD = newPM_SDpt.ID;

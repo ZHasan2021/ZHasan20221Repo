@@ -52,24 +52,6 @@ namespace AssetManagement.Finance
             manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageIncomingTypeBtn.Visible = StaticCode.activeUserRole.ManageIncomingTypes == true;
             manageOutgoingTypeBtn.Visible = StaticCode.activeUserRole.ManageOutgoingTypes == true;
-            //if (StaticCode.activeUserRole.IsSectionIndependent == true)
-            //{
-            //    outgoingToSectionLookUpEdit.Visible = true;
-            //    outgoingToDeptLookUpEdit.Visible =
-            //    outgoingToSubDeptLookUpEdit.Visible = false;
-            //}
-            //if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-            //{
-            //    outgoingToDeptLookUpEdit.Visible = true;
-            //    outgoingToSectionLookUpEdit.Visible =
-            //    outgoingToSubDeptLookUpEdit.Visible = false;
-            //}
-            //else
-            //{
-            //    outgoingToSubDeptLookUpEdit.Visible = true;
-            //    outgoingToSectionLookUpEdit.Visible =
-            //    outgoingToDeptLookUpEdit.Visible = false;
-            //}
 
             if (updateExisted)
             {
@@ -301,13 +283,13 @@ namespace AssetManagement.Finance
                 {
                     if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                     {
-                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == ("إدارة " + financialItemSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == ("إدارة " + financialItemSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == financialItemSectionLookUpEdit.Text);
+                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == financialItemSectionLookUpEdit.Text);
                         if (qry_PM == null || qry_PM.Count() == 0)
                         {
-                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = ("إدارة " + financialItemSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(financialItemSectionLookUpEdit.EditValue) };
+                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(financialItemSectionLookUpEdit.EditValue) };
                             StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
                             StaticCode.mainDbContext.SubmitChanges();
-                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = ("إدارة " + financialItemSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
+                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
                             StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
                             StaticCode.mainDbContext.SubmitChanges();
                             assetSubD = newPM_SDpt.ID;
@@ -422,6 +404,27 @@ namespace AssetManagement.Finance
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
+
+            financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = true;
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                financialItemSectionLookUpEdit.Enabled = false;
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
+            }
+            if (incomingRadioButton.Checked)
+            {
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+                    financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
+                }
+                if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                {
+                    financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
+                }
+            }
         }
 
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -432,6 +435,7 @@ namespace AssetManagement.Finance
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = true;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
+            outgoingTypeLookUpEdit_EditValueChanged(sender, e);
         }
 
         private void incomingOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -475,6 +479,15 @@ namespace AssetManagement.Finance
         private void outgoingTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             relatedOutgoingLabel.Visible = outgoingToSectionLookUpEdit.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = outgoingTypeLookUpEdit.Text == "صادرات معلقة";
+            financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = true;
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                financialItemSectionLookUpEdit.Enabled = false;
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
+            }
             if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
             {
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
@@ -494,6 +507,14 @@ namespace AssetManagement.Finance
                     outgoingToSubDeptLookUpEdit.Visible = true;
                     outgoingToSectionLookUpEdit.Visible =
                     outgoingToDeptLookUpEdit.Visible = false;
+                }
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+                    financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
+                }
+                if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                {
+                    financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
                 }
             }
 

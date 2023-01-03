@@ -58,6 +58,7 @@ namespace AssetManagement.Assets
             this.destructBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.destructAllBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.getAssetsOutOfWorkBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.moveAllBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -249,6 +250,7 @@ namespace AssetManagement.Assets
             this.toolbarFormControl1.TitleItemLinks.Add(this.destructBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.destructAllBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.getAssetsOutOfWorkBarCheckItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.moveAllBarButtonItem);
             this.toolbarFormControl1.ToolbarForm = this;
             this.toolbarFormControl1.Click += new System.EventHandler(this.toolbarFormControl1_Click);
             // 
@@ -267,8 +269,9 @@ namespace AssetManagement.Assets
             this.deleteAssetBarButtonItem,
             this.destructBarButtonItem,
             this.destructAllBarButtonItem,
-            this.getAssetsOutOfWorkBarCheckItem});
-            this.toolbarFormManager2.MaxItemId = 8;
+            this.getAssetsOutOfWorkBarCheckItem,
+            this.moveAllBarButtonItem});
+            this.toolbarFormManager2.MaxItemId = 9;
             // 
             // barDockControl1
             // 
@@ -348,6 +351,7 @@ namespace AssetManagement.Assets
             // 
             this.destructBarButtonItem.Caption = "إهلاك الأصل المحدد";
             this.destructBarButtonItem.Id = 5;
+            this.destructBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("destructBarButtonItem.ImageOptions.SvgImage")));
             this.destructBarButtonItem.Name = "destructBarButtonItem";
             this.destructBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.destructBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.destructBarButtonItem_ItemClick);
@@ -356,6 +360,7 @@ namespace AssetManagement.Assets
             // 
             this.destructAllBarButtonItem.Caption = "إهلاك كل الأصول في الجدول";
             this.destructAllBarButtonItem.Id = 6;
+            this.destructAllBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("destructAllBarButtonItem.ImageOptions.SvgImage")));
             this.destructAllBarButtonItem.Name = "destructAllBarButtonItem";
             this.destructAllBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.destructAllBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.destructAllBarButtonItem_ItemClick);
@@ -367,6 +372,14 @@ namespace AssetManagement.Assets
             this.getAssetsOutOfWorkBarCheckItem.Id = 7;
             this.getAssetsOutOfWorkBarCheckItem.Name = "getAssetsOutOfWorkBarCheckItem";
             this.getAssetsOutOfWorkBarCheckItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // moveAllBarButtonItem
+            // 
+            this.moveAllBarButtonItem.Caption = "نقل الكل";
+            this.moveAllBarButtonItem.Id = 8;
+            this.moveAllBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("moveAllBarButtonItem.ImageOptions.SvgImage")));
+            this.moveAllBarButtonItem.Name = "moveAllBarButtonItem";
+            this.moveAllBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.moveAllBarButtonItem_ItemClick);
             // 
             // mainTimer
             // 
@@ -509,6 +522,7 @@ namespace AssetManagement.Assets
             this.assetGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
             this.assetGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
             this.assetGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.assetTblGridView_SelectionChanged);
+            this.assetGridView.ColumnFilterChanged += new System.EventHandler(this.assetGridView_ColumnFilterChanged);
             this.assetGridView.DoubleClick += new System.EventHandler(this.assetGridView_DoubleClick);
             // 
             // colمعرفالأصل
@@ -1008,6 +1022,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -1171,5 +1186,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarButtonItem destructBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem destructAllBarButtonItem;
         private DevExpress.XtraBars.BarCheckItem getAssetsOutOfWorkBarCheckItem;
+        private DevExpress.XtraBars.BarButtonItem moveAllBarButtonItem;
     }
 }

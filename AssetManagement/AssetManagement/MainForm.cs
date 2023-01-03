@@ -28,6 +28,7 @@ namespace AssetManagement
     {
         IQueryable<AssetTbl> assetsToDestructList = null;
         IQueryable<AssetTbl> destructedAssetsList = null;
+        int delaySeconds = 0;
 
         public MainForm()
         {
@@ -41,13 +42,6 @@ namespace AssetManagement
 
             ApplyUserRolesOnInterface();
             UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
-            if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
-            {
-                Thread.Sleep(1000);
-                MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                destructedAssetsBarStaticItem_ItemClick(this, null);
-            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -68,6 +62,19 @@ namespace AssetManagement
         {
             appDateBarStaticItem.Caption = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays).ToString("dddd, MMMM dd, yyyy");
             appTimeBarStaticItem.Caption = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds).ToLongTimeString();
+            if (delaySeconds != -5)
+                delaySeconds++;
+            if (delaySeconds > 1)
+            {
+                delaySeconds = -5;
+                UpdateDestructedAssetsLabel();
+                if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
+                {
+                    Thread.Sleep(1000);
+                    MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    destructedAssetsBarStaticItem_ItemClick(this, null);
+                }
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -211,16 +218,22 @@ namespace AssetManagement
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 1);
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 2);
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 3);
+            UpdateAssetsToDestructLabel();
+            UpdateDestructedAssetsLabel();
         }
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
