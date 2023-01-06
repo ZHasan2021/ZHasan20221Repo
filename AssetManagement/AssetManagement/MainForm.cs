@@ -121,7 +121,7 @@ namespace AssetManagement
         {
             destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
             destructedAssetsBarStaticItem.Visibility = (destructedAssetsList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            destructedAssetsBarStaticItem.Caption = $"عدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها: ({destructedAssetsList.Count()})";
+            destructedAssetsBarStaticItem.Caption = $"أصول انتهى عمرها الإنتاجي دون تصريف: ({destructedAssetsList.Count()})";
         }
 
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -780,12 +780,28 @@ namespace AssetManagement
         {
             StaticCode.AssignDbParams();
 
-            activeUserBarStaticItem.Caption = $"المستخدم النشط: ( {StaticCode.activeUser.Username})";
-            activeUserRoleBarStaticItem.Caption = $"نوع الحساب النشط: ( {StaticCode.activeUserRole.RoleName})";
-            if (StaticCode.activeUser.UserDept != null)
-                activeUserDeptBarStaticItem.Caption = $"القسم الذي يتبع له الحساب النشط: ( {StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
+            activeUserBarStaticItem.Caption = $"المستخدم النشط: ({StaticCode.activeUser.Username})";
+            activeUserRoleBarStaticItem.Caption = $"({StaticCode.activeUserRole.RoleName})";
+            if (StaticCode.activeUser.UserSection != null)
+            {
+                activeUserSectionBarStaticItem.Caption = $"دائرة: ({StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName})";
+                activeUserSectionBarStaticItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
             else
+            {
+                activeUserSectionBarStaticItem.Caption = "الحساب لا يتبع لدائرة محددة";
+                activeUserSectionBarStaticItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+            if (StaticCode.activeUser.UserDept != null)
+            {
+                activeUserDeptBarStaticItem.Caption = $"قسم: ({StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).DepartmentName})";
+                activeUserDeptBarStaticItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
                 activeUserDeptBarStaticItem.Caption = "الحساب لا يتبع لقسم محدد";
+                activeUserDeptBarStaticItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             mainMemoEdit.EditValue = StaticCode.activeUser.UserNotes;
             StaticCode.mainDbContext.SubmitChanges();
 

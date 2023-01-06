@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -25,6 +26,10 @@ namespace AssetManagement.Assets
 
         private void CustomAssetsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentVw' table. You can move, or remove it, as needed.
+            this.subDepartmentVwTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.
+            this.departmentVwTableAdapter.Fill(this.assetMngDbDataSet.DepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
             this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
@@ -47,7 +52,63 @@ namespace AssetManagement.Assets
                 try
                 {
                     searchBySectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
-                    searchBySectionLookUpEdit.Enabled = false;
+                    searchBySectionRadioButton.Enabled = searchBySectionLookUpEdit.Enabled = false;
+
+                    List<int> IDsIncluded = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == StaticCode.activeUser.UserSection).Select(dpt2 => dpt2.ID).ToList();
+                    string plusQry = "";
+                    if (IDsIncluded.Count() == 0)
+                        plusQry = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in IDsIncluded)
+                            plusQry += oneID + ", ";
+                        plusQry = $" WHERE [معرف القسم] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                    }
+                    DepartmentVwDataTable customVw = this.assetMngDbDataSet.DepartmentVw;
+                    for (int i = 0; i < customVw.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.departmentVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                            return;
+                        }
+                    }
+                    this.departmentVwTableAdapter.FillByQuery(customVw, plusQry);
+
+                    List<int> IDsIncluded2 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => IDsIncluded.Contains(sdpt1.MainDepartment)).Select(sdpt2 => sdpt2.ID).ToList();
+                    string plusQry2 = "";
+                    if (IDsIncluded2.Count() == 0)
+                        plusQry2 = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in IDsIncluded2)
+                            plusQry2 += oneID + ", ";
+                        plusQry2 = $" WHERE [معرف الوحدة] IN ({ plusQry2.Trim().Trim(',').Trim()});";
+                    }
+                    SubDepartmentVwDataTable customVw2 = this.assetMngDbDataSet.SubDepartmentVw;
+                    for (int i = 0; i < customVw2.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw2.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (IDsIncluded2.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw2.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.subDepartmentVwTableAdapter.FillByQuery(customVw2, " WHERE 1 > 2;");
+                            return;
+                        }
+                    }
+                    this.subDepartmentVwTableAdapter.FillByQuery(customVw2, plusQry2);
                 }
                 catch
                 {
@@ -59,9 +120,36 @@ namespace AssetManagement.Assets
                 try
                 {
                     searchBySectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.activeUser.UserDept).SectionOfDepartment;
-                    searchByDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
-                    searchBySubDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdp1 => sdp1.MainDepartment == StaticCode.activeUser.UserDept);
-                    searchBySectionLookUpEdit.Enabled = searchByDepartmentLookUpEdit.Enabled = false;
+                    searchByDepartmentSearchLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    searchBySectionRadioButton.Enabled = searchBySectionLookUpEdit.Enabled = searchByDepartmentRadioButton.Enabled = searchByDepartmentSearchLookUpEdit.Enabled = false;
+
+                    List<int> IDsIncluded2 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => sdpt1.MainDepartment == StaticCode.activeUser.UserDept).Select(sdpt2 => sdpt2.ID).ToList();
+                    string plusQry2 = "";
+                    if (IDsIncluded2.Count() == 0)
+                        plusQry2 = " WHERE 1 > 2;";
+                    else
+                    {
+                        foreach (int oneID in IDsIncluded2)
+                            plusQry2 += oneID + ", ";
+                        plusQry2 = $" WHERE [معرف الوحدة] IN ({ plusQry2.Trim().Trim(',').Trim()});";
+                    }
+                    SubDepartmentVwDataTable customVw2 = this.assetMngDbDataSet.SubDepartmentVw;
+                    for (int i = 0; i < customVw2.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            var oneRow = customVw2.Rows[i];
+                            object[] oneRowItemArray = oneRow.ItemArray;
+                            if (IDsIncluded2.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                                customVw2.Rows.Remove(oneRow);
+                        }
+                        catch
+                        {
+                            this.subDepartmentVwTableAdapter.FillByQuery(customVw2, " WHERE 1 > 2;");
+                            return;
+                        }
+                    }
+                    this.subDepartmentVwTableAdapter.FillByQuery(customVw2, plusQry2);
                 }
                 catch
                 {
@@ -79,8 +167,8 @@ namespace AssetManagement.Assets
         private void searchInDeptRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             searchBySectionLookUpEdit.Visible = searchBySectionRadioButton.Checked;
-            searchByDepartmentLookUpEdit.Visible = searchByDepartmentRadioButton.Checked;
-            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentRadioButton.Checked;
+            searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentRadioButton.Checked;
+            searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentRadioButton.Checked;
             manageSectionTblBtn.Visible = searchBySectionRadioButton.Checked && StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = searchByDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageDepartments == true;
             manageSubDepartmentTblBtn.Visible = searchBySubDepartmentRadioButton.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
@@ -116,13 +204,13 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر الدائرة أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (searchByDepartmentRadioButton.Checked && searchByDepartmentLookUpEdit.EditValue == null)
+            if (searchByDepartmentRadioButton.Checked && searchByDepartmentSearchLookUpEdit.EditValue == null)
             {
                 MessageBox.Show("اختر القسم أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (searchBySubDepartmentRadioButton.Checked && searchBySubDepartmentLookUpEdit.EditValue == null)
+            if (searchBySubDepartmentRadioButton.Checked && searchBySubDepartmentSearchLookUpEdit.EditValue == null)
             {
                 MessageBox.Show("اختر الوحدة أولاً", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mainAlertControl.Show(this, "اختر الوحدة أولاً", StaticCode.ApplicationTitle);
@@ -138,12 +226,12 @@ namespace AssetManagement.Assets
             }
             if (searchByDepartmentRadioButton.Checked)
             {
-                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue) select sdep1.ID).ToList();
+                List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
                 assetsQry = from qry in assetsQry where sdptQry.Contains(qry.AssetSubDepartment) select qry;
             }
             if (searchBySubDepartmentRadioButton.Checked)
             {
-                assetsQry = from qry in assetsQry where qry.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentLookUpEdit.EditValue) select qry;
+                assetsQry = from qry in assetsQry where qry.AssetSubDepartment == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue) select qry;
             }
             bool resultsFound = assetsQry != null && assetsQry.Count() > 0;
             if (!resultsFound)

@@ -156,7 +156,6 @@ namespace AssetManagement.Assets
                 placeOfPresenceTextBox.Text = currSrchRes.PlaceOfPresence;
                 currentStatusLookUpEdit.EditValue = currSrchRes.CurrentStatus;
                 actualCurrentPriceNumericUpDown.Value = Convert.ToDecimal(currSrchRes.ActualCurrentPrice);
-                actualCurrentPriceCurrencyLookUpEdit.EditValue = currSrchRes.ActualCurrentPriceCurrency;
                 modelLookUpEdit.Text = currSrchRes.Model;
                 colorComboBox.Text = currSrchRes.Color;
                 volumeTextBox.Text = currSrchRes.Volume;
@@ -277,7 +276,7 @@ namespace AssetManagement.Assets
                 currSrchRes.PlaceOfPresence = placeOfPresenceTextBox.Text.Trim();
                 currSrchRes.CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue);
                 currSrchRes.ActualCurrentPrice = Convert.ToDouble(actualCurrentPriceNumericUpDown.Value);
-                currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(actualCurrentPriceCurrencyLookUpEdit.EditValue);
+                currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue);
                 currSrchRes.Model = modelLookUpEdit.Text;
                 currSrchRes.Color = colorComboBox.Text;
                 currSrchRes.Volume = volumeTextBox.Text.Trim();

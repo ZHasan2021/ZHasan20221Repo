@@ -1431,15 +1431,7 @@ namespace AssetManagement
     {
         public static double CalcHeadRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
         {
-            if (fivQry == null || fivQry.Count() == 0)
-                return 0;
-            DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
-            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" /*&& fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/).OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
-            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" /*&& fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year*/).OrderByDescending(fiv22 => fiv22.نوع_الصادر);
-            double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
-            double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
-            return recycled_Am;
+            return fivQry.CalcIncomingOfFinancialItems() - fivQry.CalcOutgoingOfFinancialItems();
         }
 
         public static double CalcHeadRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
@@ -1451,15 +1443,7 @@ namespace AssetManagement
 
         public static double CalcWholeRecycledOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
         {
-            if (fivQry == null || fivQry.Count() == 0)
-                return 0;
-            DateTime today1 = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays);
-            var incoming_All = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد").OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
-            double incoming_All_Am = (incoming_All.Any()) ? incoming_All.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoing_Direct = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.نوع_الصادر == "صادرات مباشرة").OrderByDescending(fiv22 => fiv22.نوع_الصادر);
-            double outgoing_Direct_Am = (outgoing_Direct.Any()) ? outgoing_Direct.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
-            double recycled_Am = incoming_All_Am - outgoing_Direct_Am;
-            return recycled_Am;
+            return fivQry.CalcIncomingOfFinancialItems() - fivQry.CalcOutgoingOfFinancialItems();
         }
 
         public static double CalcWholeRecycledOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)

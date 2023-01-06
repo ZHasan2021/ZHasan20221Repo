@@ -20,63 +20,19 @@ namespace AssetManagement.Finance
 
         void UpdateTotals(IQueryable<FinancialItemVw> qryToGetTotals)
         {
-            //StaticCode.mainDbContext.FinancialItemVws
-            var incomingUSD = qryToGetTotals.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "وارد");
-            double incomingUSD_Am = 0;
-            if (incomingUSD != null && incomingUSD.Count() > 0)
-                incomingUSD_Am = incomingUSD.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var incomingEUR = qryToGetTotals.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "وارد");
-            double incomingEUR_Am = 0;
-            if (incomingEUR != null && incomingEUR.Count() > 0)
-                incomingEUR_Am = incomingEUR.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var incomingSYP = qryToGetTotals.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "وارد");
-            double incomingSYP_Am = 0;
-            if (incomingSYP != null && incomingSYP.Count() > 0)
-                incomingSYP_Am = incomingSYP.Sum(fiv2 => fiv2.المبلغ_الوارد);
-            var outgoingUSD = qryToGetTotals.Where(fiv1 => fiv1.العملة == "دولار أمريكي" && fiv1.وارد_أم_صادر == "صادر");
-            double outgoingUSD_Am = 0;
-            if (outgoingUSD != null && outgoingUSD.Count() > 0)
-                outgoingUSD_Am = outgoingUSD.Sum(fiv2 => fiv2.المبلغ_الصادر);
-            var outgoingEUR = qryToGetTotals.Where(fiv1 => fiv1.العملة == "يورو أوروبي" && fiv1.وارد_أم_صادر == "صادر");
-            double outgoingEUR_Am = 0;
-            if (outgoingEUR != null && outgoingEUR.Count() > 0)
-                outgoingEUR_Am = outgoingEUR.Sum(fiv2 => fiv2.المبلغ_الصادر);
-            var outgoingSYP = qryToGetTotals.Where(fiv1 => fiv1.العملة == "ليرة تركية" && fiv1.وارد_أم_صادر == "صادر");
-            double outgoingSYP_Am = 0;
-            if (outgoingSYP != null && outgoingSYP.Count() > 0)
-                outgoingSYP_Am = outgoingSYP.Sum(fiv2 => fiv2.المبلغ_الصادر);
-
-            incomesInUSDToolStripStatusLabel.Text = $"مجموع الواردات بالدولار: {incomingUSD_Am}";
-            incomesInEURToolStripStatusLabel.Text = $"مجموع الواردات باليورو: {incomingEUR_Am}";
-            incomesInSYPToolStripStatusLabel.Text = $"مجموع الواردات بالليرة: {incomingSYP_Am}";
-            outgoingInUSDToolStripStatusLabel.Text = $"مجموع الصادرات بالدولار: {outgoingUSD_Am}";
-            outgoingInEURToolStripStatusLabel.Text = $"مجموع الصادرات باليورو: {outgoingEUR_Am}";
-            outgoingInSYPToolStripStatusLabel.Text = $"مجموع الصادرات بالليرة: {outgoingSYP_Am}";
+            incomesInUSDToolStripStatusLabel.Text = $"مجموع الواردات بالدولار: {qryToGetTotals.Where(fv1 => fv1.العملة == "دولار أمريكي").CalcIncomingOfFinancialItems()}";
+            incomesInEURToolStripStatusLabel.Text = $"مجموع الواردات باليورو: {qryToGetTotals.Where(fv1 => fv1.العملة == "يورو أوروبي").CalcIncomingOfFinancialItems()}";
+            incomesInSYPToolStripStatusLabel.Text = $"مجموع الواردات بالتركي: {qryToGetTotals.Where(fv1 => fv1.العملة == "ليرة تركية").CalcIncomingOfFinancialItems()}";
+            outgoingInUSDToolStripStatusLabel.Text = $"مجموع الصادرات بالدولار: {qryToGetTotals.Where(fv1 => fv1.العملة == "دولار أمريكي").CalcOutgoingOfFinancialItems()}";
+            outgoingInEURToolStripStatusLabel.Text = $"مجموع الصادرات باليورو: {qryToGetTotals.Where(fv1 => fv1.العملة == "يورو أوروبي").CalcOutgoingOfFinancialItems()}";
+            outgoingInSYPToolStripStatusLabel.Text = $"مجموع الصادرات بالتركي: {qryToGetTotals.Where(fv1 => fv1.العملة == "ليرة تركية").CalcOutgoingOfFinancialItems()}";
 
             totalsDataGridView.Rows.Clear();
             List<string> currenciesList = StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName).ToList();
             foreach (string oneCu in currenciesList)
             {
-                if (!qryToGetTotals.Any(fiv1 => fiv1.العملة == oneCu))
-                    continue;
-                var incomingCu = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "وارد");
-                double incomingCu_Am = 0;
-                if (incomingCu != null && incomingCu.Count() > 0)
-                    incomingCu_Am = incomingCu.Sum(fiv2 => fiv2.المبلغ_الوارد);
-                var incomingCuPrevMonth = incomingCu.Where(fi1 => fi1.تاريخ_تحرير_السجل.AddMonths(1).Month == DateTime.Today.Month && fi1.تاريخ_تحرير_السجل.AddMonths(1).Year == DateTime.Today.Year);
-                double incomingCuPrevMonth_Am = 0;
-                if (incomingCuPrevMonth != null && incomingCuPrevMonth.Count() > 0)
-                    incomingCuPrevMonth_Am = incomingCuPrevMonth.Sum(fiv2 => fiv2.المبلغ_الوارد);
-                var outgoingCu = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu && fiv1.وارد_أم_صادر == "صادر");
-                double outgoingCu_Am = 0;
-                if (outgoingCu != null && outgoingCu.Count() > 0)
-                    outgoingCu_Am = outgoingCu.Sum(fiv2 => fiv2.المبلغ_الصادر);
-                var outgoingCuPrevMonth = outgoingCu.Where(fi1 => fi1.تاريخ_تحرير_السجل.AddMonths(1).Month == DateTime.Today.Month && fi1.تاريخ_تحرير_السجل.AddMonths(1).Year == DateTime.Today.Year);
-                double outgoingCuPrevMonth_Am = 0;
-                if (outgoingCuPrevMonth != null && outgoingCuPrevMonth.Count() > 0)
-                    outgoingCuPrevMonth_Am = outgoingCuPrevMonth.Sum(fiv2 => fiv2.المبلغ_الصادر);
-                double recycledCu_Am = incomingCuPrevMonth_Am - outgoingCuPrevMonth_Am;
-                totalsDataGridView.Rows.Add(new object[] { oneCu, incomingCu_Am, outgoingCu_Am, recycledCu_Am });
+                var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu);
+                totalsDataGridView.Rows.Add(new object[] { oneCu, qryToGetTotals_OneCurr.CalcIncomingOfFinancialItems(), qryToGetTotals_OneCurr.CalcOutgoingOfFinancialItems(), qryToGetTotals_OneCurr.CalcWholeRecycledOfFinancialItems() });
             }
         }
 

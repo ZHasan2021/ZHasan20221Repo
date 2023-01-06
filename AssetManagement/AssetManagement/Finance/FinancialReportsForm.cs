@@ -1106,6 +1106,7 @@ namespace AssetManagement.Finance
                                 var financialItemsQryVw_OneItem = financialItemsQryVw.Where(fi1v => fi1v.الدائرة == oneItem);
                                 double totalIncomingSubLevel = financialItemsQryVw_OneItem.CalcIncomingOfFinancialItems();
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
+                                var directOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
 
@@ -1189,7 +1190,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo1 => fvo1.المبلغ_الصادر + fvo1.المبلغ_الوارد) : 0;
+                                    cells.Value = directOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -1543,7 +1544,10 @@ namespace AssetManagement.Finance
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                    cells.Value = oneItem2;
+                                    string oneItem22 = oneItem2;
+                                    if (oneItem22 == "")
+                                        oneItem22 = "إدارة الدائرة";
+                                    cells.Value = oneItem22;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
                                 {
@@ -1563,6 +1567,7 @@ namespace AssetManagement.Finance
                                 var financialItemsQryVw_OneItem = financialItemsQryVw.Where(fi1v => fi1v.القسم == oneItem2);
                                 double totalIncomingSubLevel = financialItemsQryVw_OneItem.CalcIncomingOfFinancialItems();
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
+                                var directOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
                                 var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "");
@@ -1648,7 +1653,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo2 => fvo2.المبلغ_الصادر + fvo2.المبلغ_الوارد) : 0;
+                                    cells.Value = directOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -1886,7 +1891,7 @@ namespace AssetManagement.Finance
                                 cells.Value = "مدور المستوى بدون المستوى الادنى";
                             }
                             startRow++;
-                            foreach (string oneDpt in StaticCode.mainDbContext.DepartmentTbls.Select(dpt1 => dpt1.DepartmentName).ToList())
+                            foreach (string oneDpt in financialItemsQryVw.Select(fv2=>fv2.القسم).Distinct().OrderBy(fvd2=>fvd2).ToList())
                             {
                                 Application.DoEvents();
 
@@ -1899,7 +1904,10 @@ namespace AssetManagement.Finance
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = oneDpt;
+                                    string oneDpt1 = oneDpt;
+                                    if (oneDpt1 == "")
+                                        oneDpt1 = "إدارة الدائرة";
+                                    cells.Value = oneDpt1;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
                                 {
@@ -1927,7 +1935,7 @@ namespace AssetManagement.Finance
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw.Where(fvd1 => fvd1.القسم == oneDpt).CalcHeadRecycledOfFinancialItems();
+                                    cells.Value = financialItemsQryVw.Where(fvd1 => fvd1.القسم == oneDpt).CalcWholeRecycledOfFinancialItems();
                                 }
                                 startRow++;
                             }
@@ -2002,7 +2010,10 @@ namespace AssetManagement.Finance
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                    cells.Value = oneItem3;
+                                    string oneItem33 = oneItem3;
+                                    if (oneItem33 == "")
+                                        oneItem33 = "إدارة القسم";
+                                    cells.Value = oneItem33;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
                                 {
@@ -2022,6 +2033,7 @@ namespace AssetManagement.Finance
                                 var financialItemsQryVw_OneItem = financialItemsQryVw.Where(fi1v => fi1v.الوحدة == oneItem3);
                                 double totalIncomingSubLevel = financialItemsQryVw_OneItem.CalcIncomingOfFinancialItems();
                                 double totalOutgoingSubLevel = financialItemsQryVw_OneItem.CalcOutgoingOfFinancialItems();
+                                var directOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
                                 var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneItem.Where(idoufv => idoufv.وارد_أم_صادر == "وارد" || (idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
                                 double totalRecycledSubLevel = financialItemsQryVw_OneItem.CalcWholeRecycledOfFinancialItems();
                                 var financialItemsQryVw_OneItem_Head = financialItemsQryVw_OneItem.Where(fvh => fvh.الوحدة == "");
@@ -2107,7 +2119,7 @@ namespace AssetManagement.Finance
                                     cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                                     cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                     cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                    cells.Value = (incomingOrDirectOutgoingSubLevelQry.Any()) ? incomingOrDirectOutgoingSubLevelQry.Sum(fvo3 => fvo3.المبلغ_الصادر + fvo3.المبلغ_الوارد) : 0;
+                                    cells.Value = directOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                                 {
@@ -2320,7 +2332,7 @@ namespace AssetManagement.Finance
                                 cells.Value = "مدور المستوى بدون المستوى الادنى";
                             }
                             startRow++;
-                            foreach (string oneSdpt in StaticCode.mainDbContext.SubDepartmentTbls.Select(sdpt1 => sdpt1.SubDepartmentName).ToList())
+                            foreach (string oneSdpt in financialItemsQryVw.Select(fv3 => fv3.الوحدة).Distinct().OrderBy(fvsd3 => fvsd3).ToList())
                             {
                                 Application.DoEvents();
 
@@ -2333,7 +2345,10 @@ namespace AssetManagement.Finance
                                     cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                     cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = oneSdpt;
+                                    string oneSdpt1 = oneSdpt;
+                                    if (oneSdpt1 == "")
+                                        oneSdpt1 = "إدارة القسم";
+                                    cells.Value = oneSdpt1;
                                 }
                                 using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
                                 {

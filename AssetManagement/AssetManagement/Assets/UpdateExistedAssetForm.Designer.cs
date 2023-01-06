@@ -47,7 +47,6 @@ namespace AssetManagement.Assets
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
-            this.actualCurrentPriceCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.actualCurrentPriceLabel = new System.Windows.Forms.Label();
             this.actualCurrentPriceNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -154,7 +153,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).BeginInit();
@@ -233,7 +231,6 @@ namespace AssetManagement.Assets
             this.assetInfoTabPage1.Controls.Add(this.assetSubDeptLabel);
             this.assetInfoTabPage1.Controls.Add(this.assetSubDeptLookUpEdit);
             this.assetInfoTabPage1.Controls.Add(this.isNewOrOldAssetPanel);
-            this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceCurrencyLookUpEdit);
             this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceLabel);
             this.assetInfoTabPage1.Controls.Add(this.actualCurrentPriceNumericUpDown);
             this.assetInfoTabPage1.Controls.Add(this.currentStatusLabel);
@@ -431,24 +428,6 @@ namespace AssetManagement.Assets
             this.isOldAssetRadioButton.TabIndex = 85;
             this.isOldAssetRadioButton.Text = "قديم";
             this.isOldAssetRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // actualCurrentPriceCurrencyLookUpEdit
-            // 
-            this.actualCurrentPriceCurrencyLookUpEdit.Location = new System.Drawing.Point(125, 316);
-            this.actualCurrentPriceCurrencyLookUpEdit.Name = "actualCurrentPriceCurrencyLookUpEdit";
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 23, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.PopupWidth = 500;
-            this.actualCurrentPriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
-            this.actualCurrentPriceCurrencyLookUpEdit.Size = new System.Drawing.Size(173, 28);
-            this.actualCurrentPriceCurrencyLookUpEdit.TabIndex = 260;
             // 
             // currencyTblBindingSource
             // 
@@ -1468,6 +1447,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -1512,7 +1492,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceCurrencyLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).EndInit();
@@ -1572,7 +1551,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
         private System.Windows.Forms.TabControl assetInfoTabControl;
         private System.Windows.Forms.TabPage assetInfoTabPage1;
-        private DevExpress.XtraEditors.LookUpEdit actualCurrentPriceCurrencyLookUpEdit;
         private System.Windows.Forms.Label actualCurrentPriceLabel;
         private System.Windows.Forms.NumericUpDown actualCurrentPriceNumericUpDown;
         private System.Windows.Forms.Label currentStatusLabel;

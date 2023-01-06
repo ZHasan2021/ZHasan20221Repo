@@ -150,6 +150,7 @@ namespace AssetManagement.Assets
             // 
             // moveAssetGroupBox
             // 
+            this.moveAssetGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.moveAssetGroupBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveAssetGroupBox.Controls.Add(this.toPlaceOfPresenceCheckBox);
             this.moveAssetGroupBox.Controls.Add(this.toPlaceOfPresenceTextBox);
@@ -179,11 +180,10 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Controls.Add(this.fromSquareLabel);
             this.moveAssetGroupBox.Controls.Add(this.fromSectionLabel);
             this.moveAssetGroupBox.Controls.Add(this.fromDepartmentLabel);
-            this.moveAssetGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.moveAssetGroupBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 180);
+            this.moveAssetGroupBox.Location = new System.Drawing.Point(0, 214);
             this.moveAssetGroupBox.Name = "moveAssetGroupBox";
-            this.moveAssetGroupBox.Size = new System.Drawing.Size(1247, 703);
+            this.moveAssetGroupBox.Size = new System.Drawing.Size(1247, 669);
             this.moveAssetGroupBox.TabIndex = 100;
             this.moveAssetGroupBox.TabStop = false;
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
@@ -296,7 +296,7 @@ namespace AssetManagement.Assets
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.assetMovementTblBindingNavigatorSaveItem});
-            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 445);
+            this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(3, 411);
             this.assetMovementTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetMovementTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.assetMovementTblBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -406,7 +406,7 @@ namespace AssetManagement.Assets
             // 
             this.assetMoveVwGridControl.DataSource = this.assetMovementTblBindingSource;
             this.assetMoveVwGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 472);
+            this.assetMoveVwGridControl.Location = new System.Drawing.Point(3, 438);
             this.assetMoveVwGridControl.MainView = this.assetMoveVwGridView;
             this.assetMoveVwGridControl.Name = "assetMoveVwGridControl";
             this.assetMoveVwGridControl.Size = new System.Drawing.Size(1241, 228);
@@ -585,7 +585,7 @@ namespace AssetManagement.Assets
             // 
             this.assetMoveBtn.Image = global::AssetManagement.Properties.Resources._1592276;
             this.assetMoveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.assetMoveBtn.Location = new System.Drawing.Point(12, 351);
+            this.assetMoveBtn.Location = new System.Drawing.Point(21, 293);
             this.assetMoveBtn.Name = "assetMoveBtn";
             this.assetMoveBtn.Size = new System.Drawing.Size(163, 74);
             this.assetMoveBtn.TabIndex = 400;

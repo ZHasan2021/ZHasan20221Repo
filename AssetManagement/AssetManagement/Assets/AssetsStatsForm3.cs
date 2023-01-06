@@ -24,7 +24,7 @@ namespace AssetManagement.Assets
             InitializeComponent();
         }
 
-        void PrepareListsForDataSources(IQueryable<AssetVw> assetsToView, string groupField, string seriesField, string aggValue)
+        void PrepareListsForDataSources(List<AssetVw> assetsToView, string groupField, string seriesField, string aggValue)
         {
             groupList.Clear();
             stackList.Clear();
@@ -118,41 +118,41 @@ namespace AssetManagement.Assets
             {
                 Application.DoEvents();
 
-                var assetsOccur = assetsToView;
+                List<AssetVw> assetsOccur = new List<AssetVw> ();
                 switch (groupField)
                 {
                     case "قديم أو جديد":
-                        assetsOccur = assetsToView.Where(asv1 => StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == asv1.معرف_الأصل).IsOldOrNewAsset == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == asv1.معرف_الأصل).IsOldOrNewAsset == oneFItem).ToList();
                         break;
                     case "الدائرة":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.الدائرة == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.الدائرة == oneFItem).ToList();
                         break;
                     case "القسم":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.القسم == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.القسم == oneFItem).ToList();
                         break;
                     case "الوحدة":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.الوحدة == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.الوحدة == oneFItem).ToList();
                         break;
                     case "الفئة الرئيسية":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.الفئة_الرئيسية == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.الفئة_الرئيسية == oneFItem).ToList();
                         break;
                     case "الفئة الفرعية":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.الفئة_الفرعية == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.الفئة_الفرعية == oneFItem).ToList();
                         break;
                     case "حالة الأصل الآنية":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.حالة_الأصل_الآنية == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.حالة_الأصل_الآنية == oneFItem).ToList();
                         break;
                     case "عملة الشراء":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.عملة_سعر_الشراء == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.عملة_سعر_الشراء == oneFItem).ToList();
                         break;
                     case "الساحة":
-                        assetsOccur = assetsToView.Where(asv1 => asv1.الساحة == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => asv1.الساحة == oneFItem).ToList();
                         break;
                     case "سنة الشراء":
-                        assetsOccur = assetsToView.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الشراء).Year.ToString() == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الشراء).Year.ToString() == oneFItem).ToList();
                         break;
                     case "سنة إدراج الأصل في السجلات":
-                        assetsOccur = assetsToView.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الإدخال).Year.ToString() == oneFItem);
+                        assetsOccur = assetsToView.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الإدخال).Year.ToString() == oneFItem).ToList();
                         break;
                     default:
                         break;
@@ -161,40 +161,41 @@ namespace AssetManagement.Assets
                 {
                     Application.DoEvents();
 
+                List<AssetVw> assetsOccur2 = new List<AssetVw> ();
                     switch (seriesField)
                     {
                         case "قديم أو جديد":
-                            assetsOccur = assetsOccur.Where(asv1 => StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == asv1.معرف_الأصل).IsOldOrNewAsset == oneSItem);
+                            assetsOccur = assetsOccur.Where(asv1 => StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == asv1.معرف_الأصل).IsOldOrNewAsset == oneSItem).ToList();
                             break;
                         case "الدائرة":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.الدائرة == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.الدائرة == oneSItem).ToList();
                             break;
                         case "القسم":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.القسم == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.القسم == oneSItem).ToList();
                             break;
                         case "الوحدة":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.الوحدة == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.الوحدة == oneSItem).ToList();
                             break;
                         case "الفئة الرئيسية":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.الفئة_الرئيسية == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.الفئة_الرئيسية == oneSItem).ToList();
                             break;
                         case "الفئة الفرعية":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.الفئة_الفرعية == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.الفئة_الفرعية == oneSItem).ToList();
                             break;
                         case "حالة الأصل الآنية":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.حالة_الأصل_الآنية == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.حالة_الأصل_الآنية == oneSItem).ToList();
                             break;
                         case "عملة الشراء":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.عملة_سعر_الشراء == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.عملة_سعر_الشراء == oneSItem).ToList();
                             break;
                         case "الساحة":
-                            assetsOccur = assetsOccur.Where(asv1 => asv1.الساحة == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => asv1.الساحة == oneSItem).ToList();
                             break;
                         case "سنة الشراء":
-                            assetsOccur = assetsOccur.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الشراء).Year.ToString() == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الشراء).Year.ToString() == oneSItem).ToList();
                             break;
                         case "سنة إدراج الأصل في السجلات":
-                            assetsOccur = assetsOccur.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الإدخال).Year.ToString() == oneSItem);
+                            assetsOccur2 = assetsOccur.Where(asv1 => Convert.ToDateTime(asv1.تاريخ_الإدخال).Year.ToString() == oneSItem).ToList();
                             break;
                         default:
                             break;
@@ -202,10 +203,10 @@ namespace AssetManagement.Assets
 
                     int countOfAssets = 0;
                     double sumOfPrchs = 0;
-                    if (!assetsOccur.Any())
+                    if (!assetsOccur2.Any())
                         continue;
-                    countOfAssets = assetsOccur.Sum(asvc1 => asvc1.العدد);
-                    sumOfPrchs = assetsOccur.Where(asvp1 => asvp1.سعر_الشراء != null).Sum(asvp2 => Convert.ToDouble(asvp2.سعر_الشراء));
+                    countOfAssets = assetsOccur2.Sum(asvc1 => asvc1.العدد);
+                    sumOfPrchs = assetsOccur2.Where(asvp1 => asvp1.سعر_الشراء != null).Sum(asvp2 => Convert.ToDouble(asvp2.سعر_الشراء));
                     switch (aggValue)
                     {
                         case "أعداد الأصول":
@@ -236,6 +237,11 @@ namespace AssetManagement.Assets
             e.AlertForm.Location = new Point(500, 400);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void showStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (aggValueBarEditItem.EditValue == null)
@@ -261,7 +267,7 @@ namespace AssetManagement.Assets
                     return;
                 }
             }
-            PrepareListsForDataSources(searchResults, groupFieldBarEditItem.EditValue.ToString(), ((addSeriesBarCheckItem.Checked) ? seriesFieldBarEditItem.EditValue.ToString() : ""), aggValueBarEditItem.EditValue.ToString());
+            PrepareListsForDataSources(searchResults.ToList(), groupFieldBarEditItem.EditValue.ToString(), ((addSeriesBarCheckItem.Checked) ? seriesFieldBarEditItem.EditValue.ToString() : ""), aggValueBarEditItem.EditValue.ToString());
 
             List<ChartControl> chartsIncluded = new List<ChartControl>()
             {
@@ -279,7 +285,19 @@ namespace AssetManagement.Assets
                 //fullStackedBarSeriesLabel1.TextPattern = "{VP:P0}";
 
                 oneChart.Titles[0].Text = $"{aggValueBarEditItem.EditValue} حسب {groupFieldBarEditItem.EditValue}{((addSeriesBarCheckItem.Checked) ? " و " + seriesFieldBarEditItem.EditValue.ToString() : "")}";
+
+                XYDiagram xyDiagram1 = (oneChart.Diagram as XYDiagram);
+                xyDiagram1.AxisX.Title.Text = seriesFieldBarEditItem.EditValue.ToString();
+                xyDiagram1.AxisY.NumericScaleOptions.AutoGrid = true;
+                xyDiagram1.AxisY.Title.Text = aggValueBarEditItem.EditValue.ToString();
+                xyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                //xyDiagram1.Rotated = true;
             }
+
+            FullStackedBarSeriesLabel fulllStackedBarSeriesLabel1 = chartFullStackedBar.SeriesTemplate.Label as FullStackedBarSeriesLabel;
+            fulllStackedBarSeriesLabel1.TextPattern = "{S}: {V:0,,.0}";
+            chartFullStackedBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+
             chartFullStackedBar.DataSource = twoFieldsDataSource;
             chartBar.DataSource = twoFieldsDataSource;
         }

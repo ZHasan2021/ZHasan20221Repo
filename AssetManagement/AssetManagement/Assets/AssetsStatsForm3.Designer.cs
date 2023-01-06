@@ -161,13 +161,15 @@ namespace AssetManagement.Assets
             // aggValueBarEditItem
             // 
             this.aggValueBarEditItem.Caption = "عرض قيم";
-            this.aggValueBarEditItem.CaptionToEditorIndent = 0;
+            this.aggValueBarEditItem.CaptionAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.aggValueBarEditItem.CaptionToEditorIndent = 10;
             this.aggValueBarEditItem.Edit = this.aggValueRepositoryItemComboBox;
             this.aggValueBarEditItem.EditWidth = 150;
             this.aggValueBarEditItem.Id = 3;
             this.aggValueBarEditItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aggValueBarEditItem.ItemAppearance.Normal.Options.UseFont = true;
             this.aggValueBarEditItem.Name = "aggValueBarEditItem";
+            this.aggValueBarEditItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // aggValueRepositoryItemComboBox
             // 
@@ -182,10 +184,13 @@ namespace AssetManagement.Assets
             // groupFieldBarEditItem
             // 
             this.groupFieldBarEditItem.Caption = "حسب";
+            this.groupFieldBarEditItem.CaptionAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.groupFieldBarEditItem.CaptionToEditorIndent = 10;
             this.groupFieldBarEditItem.Edit = this.groupFieldRepositoryItemComboBox;
             this.groupFieldBarEditItem.EditWidth = 150;
             this.groupFieldBarEditItem.Id = 4;
             this.groupFieldBarEditItem.Name = "groupFieldBarEditItem";
+            this.groupFieldBarEditItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // groupFieldRepositoryItemComboBox
             // 
@@ -208,7 +213,7 @@ namespace AssetManagement.Assets
             // 
             // addSeriesBarCheckItem
             // 
-            this.addSeriesBarCheckItem.Caption = "وحقل إضافي";
+            this.addSeriesBarCheckItem.Caption = "وحقل إضافي ";
             this.addSeriesBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.AfterText;
             this.addSeriesBarCheckItem.Id = 6;
             this.addSeriesBarCheckItem.Name = "addSeriesBarCheckItem";
@@ -434,21 +439,6 @@ namespace AssetManagement.Assets
             this.chartFullStackedBar.AnimationStartMode = DevExpress.XtraCharts.ChartAnimationMode.OnLoad;
             this.chartFullStackedBar.BorderOptions.Visibility = DevExpress.Utils.DefaultBoolean.False;
             this.chartFullStackedBar.CrosshairEnabled = DevExpress.Utils.DefaultBoolean.False;
-            DevExpress.XtraCharts.XYDiagram xyDiagram3 = new DevExpress.XtraCharts.XYDiagram();
-            xyDiagram3.AxisX.Tickmarks.MinorVisible = false;
-            xyDiagram3.AxisX.Title.Text = "Countries";
-            xyDiagram3.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram3.AxisY.Label.TextPattern = "{V:P0}";
-            xyDiagram3.AxisY.Title.Text = "Percent";
-            xyDiagram3.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram3.AxisY.WholeRange.Auto = true;
-            xyDiagram3.AxisY.WholeRange.AutoSideMargins = true;
-            xyDiagram3.AxisY.WholeRange.EndSideMargin = 0D;
-            //xyDiagram3.AxisY.WholeRange.MaxValueSerializable = "1";
-            //xyDiagram3.AxisY.WholeRange.MinValueSerializable = "0";
-            xyDiagram3.AxisY.WholeRange.StartSideMargin = 0D;
-            xyDiagram3.DefaultPane.StackedBarTotalLabel.TextPattern = "Total\n{TV:F0}K";
-            this.chartFullStackedBar.Diagram = xyDiagram3;
             this.chartFullStackedBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartFullStackedBar.Legend.BackColor = System.Drawing.Color.Transparent;
             this.chartFullStackedBar.Legend.Border.Visibility = DevExpress.Utils.DefaultBoolean.False;
@@ -493,19 +483,11 @@ namespace AssetManagement.Assets
             xyDiagram1.AxisY.Title.Text = "Millions of Dollars";
             xyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.VisualRange.Auto = true;
-            //xyDiagram1.AxisY.VisualRange.MaxValueSerializable = "6";
-            //xyDiagram1.AxisY.VisualRange.MinValueSerializable = "0";
-            xyDiagram1.AxisY.WholeRange.Auto = true;
-            xyDiagram1.AxisY.WholeRange.AutoSideMargins = true;
-            //xyDiagram1.AxisY.WholeRange.EndSideMargin = 0D;
-            //xyDiagram1.AxisY.WholeRange.MaxValueSerializable = "6";
-            //xyDiagram1.AxisY.WholeRange.MinValueSerializable = "0";
-            xyDiagram1.AxisY.WholeRange.StartSideMargin = 0D;
-            xyDiagram1.LabelsResolveOverlappingMinIndent = 0;
             xyDiagram1.EnableAxisXScrolling = true;
+            xyDiagram1.EnableAxisXZooming = true;
             xyDiagram1.EnableAxisYScrolling = true;
-
+            xyDiagram1.EnableAxisYZooming = true;
+            xyDiagram1.LabelsResolveOverlappingMinIndent = 0;
             this.chartBar.Diagram = xyDiagram1;
             this.chartBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartBar.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Right;
@@ -515,13 +497,11 @@ namespace AssetManagement.Assets
             this.chartBar.Name = "chartBar";
             this.chartBar.SeriesDataMember = "Year";
             this.chartBar.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.chartBar.SeriesTemplate.ArgumentDataMember = "Region";
             this.chartBar.SeriesTemplate.CrosshairLabelPattern = "Year: {S}\nGSP: ${V}M";
             sideBySideBarSeriesLabel1.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
             this.chartBar.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
             this.chartBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             this.chartBar.SeriesTemplate.SeriesDataMember = "Year";
-            this.chartBar.SeriesTemplate.ValueDataMembersSerializable = "Sales";
             this.chartBar.Size = new System.Drawing.Size(1086, 585);
             this.chartBar.TabIndex = 2;
             this.chartBar.TabStop = false;

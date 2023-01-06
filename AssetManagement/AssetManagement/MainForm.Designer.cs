@@ -120,6 +120,7 @@ namespace AssetManagement
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -195,10 +196,11 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem,
             this.manageOutgoingTypeTblBarButtonItem,
             this.financialItemsStatsBarButtonItem,
-            this.destructedAssetsBarStaticItem});
+            this.destructedAssetsBarStaticItem,
+            this.activeUserSectionBarStaticItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 88;
+            this.mainRibbonControl.MaxItemId = 89;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -741,7 +743,7 @@ namespace AssetManagement
             // 
             this.activeUserDeptBarStaticItem.Id = 81;
             this.activeUserDeptBarStaticItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3466467;
-            this.activeUserDeptBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.activeUserDeptBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.activeUserDeptBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.activeUserDeptBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
             this.activeUserDeptBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
@@ -999,6 +1001,7 @@ namespace AssetManagement
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserRoleBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
+            this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserSectionBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserDeptBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.actionsStatusBarStaticItem);
             this.mainRibbonStatusBar.Location = new System.Drawing.Point(0, 951);
@@ -1118,6 +1121,15 @@ namespace AssetManagement
             this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
             this.actionsStatusMemoEdit.TabIndex = 8;
             // 
+            // activeUserSectionBarStaticItem
+            // 
+            this.activeUserSectionBarStaticItem.Id = 88;
+            this.activeUserSectionBarStaticItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._228050;
+            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.activeUserSectionBarStaticItem.Name = "activeUserSectionBarStaticItem";
+            this.activeUserSectionBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1236,6 +1248,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageOutgoingTypeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem financialItemsStatsBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem destructedAssetsBarStaticItem;
+        private DevExpress.XtraBars.BarStaticItem activeUserSectionBarStaticItem;
     }
 }
 
