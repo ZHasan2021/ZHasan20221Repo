@@ -465,7 +465,7 @@ namespace AssetManagement.Finance
             gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(619, 88);
+            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(655, 88);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
             this.financialItemCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -474,7 +474,7 @@ namespace AssetManagement.Finance
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
             this.subdRpositoryItemLookUpEdit});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(766, 806);
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(730, 806);
             this.financialItemCategoryGridControl.TabIndex = 9;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -748,8 +748,8 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.Location = new System.Drawing.Point(0, 88);
             this.totalsDockPanel.Name = "totalsDockPanel";
             this.totalsDockPanel.Options.ShowCloseButton = false;
-            this.totalsDockPanel.OriginalSize = new System.Drawing.Size(619, 200);
-            this.totalsDockPanel.Size = new System.Drawing.Size(619, 806);
+            this.totalsDockPanel.OriginalSize = new System.Drawing.Size(655, 200);
+            this.totalsDockPanel.Size = new System.Drawing.Size(655, 806);
             this.totalsDockPanel.Text = "الإجماليات";
             // 
             // dockPanel1_Container
@@ -757,7 +757,7 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.Controls.Add(this.totalsDataGridView);
             this.dockPanel1_Container.Location = new System.Drawing.Point(6, 32);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(609, 770);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(645, 770);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // totalsDataGridView
@@ -783,7 +783,7 @@ namespace AssetManagement.Finance
             this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.totalsDataGridView.RowTemplate.Height = 24;
             this.totalsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.totalsDataGridView.Size = new System.Drawing.Size(609, 263);
+            this.totalsDataGridView.Size = new System.Drawing.Size(645, 263);
             this.totalsDataGridView.TabIndex = 12;
             // 
             // colFiCurrency

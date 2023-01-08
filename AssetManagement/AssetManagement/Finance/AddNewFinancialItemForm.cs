@@ -180,11 +180,6 @@ namespace AssetManagement.Finance
                 mainAlertControl.Show(this, "اختر القسم أولاً", StaticCode.ApplicationTitle);
                 return;
             }
-            if (financialItemSubDeptLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                mainAlertControl.Show(this, "اختر الوحدة أولاً", StaticCode.ApplicationTitle);
-                return;
-            }
             if (financialItemDescriptionTextBox.Text.Trim() == "")
             {
                 mainAlertControl.Show(this, "املأ بيان السجل المالي أولاً", StaticCode.ApplicationTitle);
@@ -194,6 +189,14 @@ namespace AssetManagement.Finance
             {
                 mainAlertControl.Show(this, "اكتب تاريخ السجل المالي أولاً", StaticCode.ApplicationTitle);
                 return;
+            }
+            else
+            {
+                if (Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue) > DateTime.Today)
+                {
+                    mainAlertControl.Show(this, "تاريخ السجل المالي أحدث من تاريخ اليوم", StaticCode.ApplicationTitle);
+                    return;
+                }
             }
             if (!(incomingRadioButton.Checked || outgoingRadioButton.Checked))
             {
@@ -254,50 +257,21 @@ namespace AssetManagement.Finance
                 return;
             try
             {
-                int assetSubD = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
-                if (financialItemSectionLookUpEdit.EditValue == null)
+                int assetSubD = 0;
+                if (financialItemSubDeptLookUpEdit.EditValue != null)
+                    assetSubD = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
+                else
                 {
                     if (StaticCode.activeUserRole.IsSectionIndependent == true)
                     {
-                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == StaticCode.PMName && sdptv1.القسم_التابعة_له == StaticCode.PMName && sdptv1.الدائرة_التي_يتبع_لها_القسم == StaticCode.PMName);
-                        if (qry_PM == null || qry_PM.Count() == 0)
-                        {
-                            SectionTbl newPM_Sec = new SectionTbl() { SectionName = StaticCode.PMName };
-                            StaticCode.mainDbContext.SectionTbls.InsertOnSubmit(newPM_Sec);
-                            StaticCode.mainDbContext.SubmitChanges();
-                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = StaticCode.PMName, SectionOfDepartment = newPM_Sec.ID };
-                            StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
-                            StaticCode.mainDbContext.SubmitChanges();
-                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = StaticCode.PMName, MainDepartment = newPM_Dpt.ID };
-                            StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
-                            StaticCode.mainDbContext.SubmitChanges();
-                            assetSubD = newPM_SDpt.ID;
-                        }
-                        else
-                        {
-                            assetSubD = qry_PM.First().معرف_الوحدة;
-                        }
+                        assetSubD = StaticCode.GetSubDeptForPM();
+
                     }
-                }
-                else if (financialItemDeptLookUpEdit.EditValue == null)
-                {
-                    if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                    else
                     {
-                        var qry_PM = StaticCode.mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text) && sdptv1.القسم_التابعة_له == (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text) && sdptv1.الدائرة_التي_يتبع_لها_القسم == financialItemSectionLookUpEdit.Text);
-                        if (qry_PM == null || qry_PM.Count() == 0)
-                        {
-                            DepartmentTbl newPM_Dpt = new DepartmentTbl() { DepartmentName = (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text), SectionOfDepartment = Convert.ToInt32(financialItemSectionLookUpEdit.EditValue) };
-                            StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newPM_Dpt);
-                            StaticCode.mainDbContext.SubmitChanges();
-                            SubDepartmentTbl newPM_SDpt = new SubDepartmentTbl() { SubDepartmentName = (StaticCode.MngAbbr + financialItemSectionLookUpEdit.Text), MainDepartment = newPM_Dpt.ID };
-                            StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newPM_SDpt);
-                            StaticCode.mainDbContext.SubmitChanges();
-                            assetSubD = newPM_SDpt.ID;
-                        }
-                        else
-                        {
-                            assetSubD = qry_PM.First().معرف_الوحدة;
-                        }
+                        assetSubD = StaticCode.GetSubDeptBySectionName(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
+                        if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                            assetSubD = StaticCode.GetSubDeptByDeptName(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
                     }
                 }
 
@@ -326,6 +300,32 @@ namespace AssetManagement.Finance
                             newFiIt.OutgoingTo = outgoingToDeptLookUpEdit.Text;
                         if (outgoingToSubDeptLookUpEdit.Visible)
                             newFiIt.OutgoingTo = outgoingToSubDeptLookUpEdit.Text;
+                        if (!updateExisted)
+                        {
+                            int subD_Incoming = 0;
+                            if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                                subD_Incoming = StaticCode.GetSubDeptBySectionName(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
+                            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                                subD_Incoming = StaticCode.GetSubDeptByDeptName(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
+                            else
+                                subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
+                            FinancialItemTbl newIcomingRec = new FinancialItemTbl()
+                            {
+                                FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue),
+                                FinancialItemSubDept = subD_Incoming,
+                                FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
+                                FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
+                                IncomingOrOutgoing = "وارد",
+                                IncomingAmount = Convert.ToDouble(outgoingAmountNumericUpDown.Value),
+                                IncomingFrom = "من المستوى الأعلى",
+                                OutgoingAmount = 0,
+                                OutgoingTo = "",
+                                OutgoingType = "",
+                                FinancialItemCurrency = Convert.ToInt32(financialItemCurrencyLookUpEdit.EditValue),
+                                AdditionalNotes = additionalNotesTextBox.Text.Trim(),
+                            };
+                            StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(newIcomingRec);
+                        }
                     }
                     newFiIt.IncomingFrom = "";
                 }

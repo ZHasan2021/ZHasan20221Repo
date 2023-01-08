@@ -508,6 +508,7 @@
     <Compile Include="Options\OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TempClass.cs" />
     <Compile Include="Users\ManageUserRoleTblForm.cs">
       <SubType>Form</SubType>
     </Compile>

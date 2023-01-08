@@ -115,7 +115,7 @@ namespace AssetManagement.Finance
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
                 //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
                 this.UpdateTotalsAsFiltered();
-                mainAlertControl.Show(this, "تم تعديل السجل المالي", StaticCode.ApplicationTitle);
+                //mainAlertControl.Show(this, "تم تعديل السجل المالي", StaticCode.ApplicationTitle);
             }
             catch
             {
