@@ -71,6 +71,11 @@ namespace AssetManagement.Assets
             {
                 return;
             }
+            if (!(toSectionDepartmentSubDepartmentCheckBox.Checked || toSquareCheckBox.Checked || toCustodianNameCheckBox.Checked || toPlaceOfPresenceCheckBox.Checked))
+            {
+                mainAlertControl.Show(this, "اختر واحدة من معلومات النقل على الأقل", StaticCode.ApplicationTitle);
+                return;
+            }
             if (toSectionDepartmentSubDepartmentCheckBox.Checked)
             {
                 if (toSectionLookUpEdit.EditValue == null)

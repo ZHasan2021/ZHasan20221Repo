@@ -374,6 +374,11 @@ namespace AssetManagement
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(assetsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
+
+            int sectionCol = 5;
+            int departmentCol = (formNo == 3) ? 11 : 10;
+            int subDepartmentCol = (formNo == 3) ? 16 : 15;
+            int threeLevelsRow = 5;
             int headersRow = 7;
             int startRow = headersRow + 1;
             int assetCodeColumn = 3;
@@ -410,67 +415,90 @@ namespace AssetManagement
             List<string> existedCodes = mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             int existedAssetsCount = existedCodes.Count();
             int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
-
-            string sectionName = srcExcelWs.Cells[5, 5].Value?.ToString().Replace("الدائرة:", "").Trim();
-            string departmentName = srcExcelWs.Cells[5, (formNo == 3) ? 11 : 10].Value?.ToString().Trim();
-            string subDepartmentName = srcExcelWs.Cells[5, (formNo == 3) ? 16 : 15].Value?.ToString().Trim();
+           
+            string sectionName = srcExcelWs.Cells[threeLevelsRow, sectionCol].Value?.ToString().Replace("الدائرة:", "").Trim();
+            string departmentName = srcExcelWs.Cells[threeLevelsRow, departmentCol].Value?.ToString().Trim();
+            string subDepartmentName = srcExcelWs.Cells[threeLevelsRow, subDepartmentCol].Value?.ToString().Trim();
             int sctID = 0;
             int dptID = 0;
             int assetSubD = 0;
-            if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
+            if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName)) // Section
             {
-                errorMsg = "الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
-                    ;
-                tmpMainDbContext.Dispose();
-                return null;
+                if (sectionName == StaticCode.PMName)
+                {
+                    assetSubD = StaticCode.GetSubDeptForPM();
+                }
+                else
+                {
+                    errorMsg = "الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
+                        ;
+                    tmpMainDbContext.Dispose();
+                    return null;
+                }
             }
             else
             {
                 sctID = mainDbContext.SectionTbls.Where(sct1 => sct1.SectionName == sectionName).First().ID;
-            }
-            if (activeUserRole.IsSectionIndependent == true)
-            {
-                assetSubD = GetSubDeptBySectionName(sctID);
-            }
-            else
-            {
-                if (!mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName))
+                if (activeUserRole.IsSectionIndependent == true)
                 {
-                    if (activeUserRole.IsSectionIndependent != true)
-                    {
-                        errorMsg = "القسم المضمن في ملف الإكسل غير موجودة في سجلات الأقسام أو لا يتبع للدائرة المضمنة في ملف الإكسل ذاته";
-                        tmpMainDbContext.Dispose();
-                        return null;
-                    }
+                    assetSubD = GetSubDeptBySectionName(sctID);
                 }
-                else
+                else // Department
                 {
-                    dptID = mainDbContext.DepartmentVws.Where(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName).First().معرف_القسم;
-                    if (activeUserRole.IsDepartmentIndependent == true)
+                    if (!mainDbContext.DepartmentVws.Any(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName))
                     {
-                        assetSubD = GetSubDeptByDeptName(dptID);
-                    }
-                    else
-                    {
-                        var existedSubDept = mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
-
-                        if (existedSubDept == null || existedSubDept.Count() == 0)
+                        if(departmentName=="")
                         {
-                            if (activeUserRole.IsSectionIndependent != true && activeUserRole.IsDepartmentIndependent != true)
-                            {
-                                errorMsg = "الوحدة المضمنة في ملف الإكسل غير موجودة في سجلات الوحدات أو لا تتبع للقسم والدائرة المضمنين في ملف الإكسل ذاته";
-                                tmpMainDbContext.Dispose();
-                                return null;
-                            }
+                            assetSubD = StaticCode.GetSubDeptForPM();
                         }
                         else
                         {
-                            assetSubD = existedSubDept.First().معرف_الوحدة;
+                            errorMsg = "القسم المضمن في ملف الإكسل غير موجودة في سجلات الأقسام أو لا يتبع للدائرة المضمنة في ملف الإكسل ذاته";
+                            tmpMainDbContext.Dispose();
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        dptID = mainDbContext.DepartmentVws.Where(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName).First().معرف_القسم;
+                        if (activeUserRole.IsDepartmentIndependent == true)
+                        {
+                            assetSubD = GetSubDeptByDeptName(dptID);
+                        }
+                        else // SubDepartment
+                        {
+                            //////
+                            var existedSubDept = mainDbContext.SubDepartmentVws.Where(fiv1 => fiv1.اسم_الوحدة == subDepartmentName && fiv1.القسم_التابعة_له == departmentName && fiv1.الدائرة_التي_يتبع_لها_القسم == sectionName);
+
+                            if (!existedSubDept.Any())
+                            {
+                                if (subDepartmentName=="")
+                                {
+                                    if (departmentName == "")
+                                    {
+                                        assetSubD = StaticCode.GetSubDeptForPM();
+                                    }
+                                    else
+                                    {
+                                        assetSubD = StaticCode.GetSubDeptByDeptName(dptID);
+                                    }
+                                }
+                                else
+                                {
+                                    errorMsg = "الوحدة المضمنة في ملف الإكسل غير موجودة في سجلات الوحدات أو لا تتبع للقسم والدائرة المضمنين في ملف الإكسل ذاته";
+                                    tmpMainDbContext.Dispose();
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                assetSubD = existedSubDept.First().معرف_الوحدة;
+                            }
                         }
                     }
                 }
             }
-
+            
             List<string> unknownMinorCategories = new List<string>();
             List<AssetTbl> importedAssets = new List<AssetTbl>();
             int rowStartNo = 8;
@@ -1265,9 +1293,9 @@ namespace AssetManagement
             ExcelPackage srcExcelEp = new ExcelPackage(new FileInfo(fiItsFilePath));
             ExcelWorkbook srcExcelWb = srcExcelEp.Workbook;
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
-            string sectionName = srcExcelWs.Cells[2, 1].Value?.ToString().Replace("الدائرة:", "").Trim();
-            string departmentName = srcExcelWs.Cells[2, 4].Value?.ToString().Replace("القسم:", "").Trim();
-            string subDepartmentName = srcExcelWs.Cells[2, 7].Value?.ToString().Replace("الوحدة:", "").Trim();
+            string sectionName = srcExcelWs.Cells[2, 2].Value?.ToString().Replace("الدائرة:", "").Trim();
+            string departmentName = srcExcelWs.Cells[2, 5].Value?.ToString().Replace("القسم:", "").Trim();
+            string subDepartmentName = srcExcelWs.Cells[2, 8].Value?.ToString().Replace("الوحدة:", "").Trim();
             int sctID = 0;
             int dptID = 0;
             int assetSubD = 0;
@@ -1323,28 +1351,37 @@ namespace AssetManagement
             try
             {
                 int rowStartNo = 5;
+                int incomingAmountCol = 2;
+                int outgoingAmountCol = 3;
+                int currCol = 4;
+                int incomingFromCol = 5;
+                int outgoingTypeCol = 6;
+                int outgoingToCol = 7;
+                int descriptionCol = 8;
+                int fiDateCol = 9;
+                int fiCaCol = 10;
                 bool isIncoming = true;
                 while (rowStartNo <= srcExcelWs.Dimension.End.Row && srcExcelWs.Cells[rowStartNo, 7].Value?.ToString().Replace("ـ", "") != "الإجمالي")
                 {
                     Application.DoEvents();
 
-                    if (srcExcelWs.Cells[rowStartNo, 1].Value?.ToString() == "ثانياً : المصاريف :")
+                    if (srcExcelWs.Cells[rowStartNo, 2].Value?.ToString() == "ثانياً : المصاريف :")
                     {
                         isIncoming = false;
                         rowStartNo++;
                     }
-                    string curVal = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString().Trim();
-                    string incomingFromVal = srcExcelWs.Cells[rowStartNo, 4].Value?.ToString().Trim();
-                    string outgoingTypeVal = srcExcelWs.Cells[rowStartNo, 5].Value?.ToString().Trim();
-                    string outgoingToVal = srcExcelWs.Cells[rowStartNo, 6].Value?.ToString().Trim();
-                    string ficaVal = srcExcelWs.Cells[rowStartNo, 9].Value?.ToString().Trim();
+                    string curVal = srcExcelWs.Cells[rowStartNo, currCol].Value?.ToString().Trim();
+                    string incomingFromVal = srcExcelWs.Cells[rowStartNo, incomingFromCol].Value?.ToString().Trim();
+                    string outgoingTypeVal = srcExcelWs.Cells[rowStartNo, outgoingTypeCol].Value?.ToString().Trim();
+                    string outgoingToVal = srcExcelWs.Cells[rowStartNo, outgoingToCol].Value?.ToString().Trim();
+                    string ficaVal = srcExcelWs.Cells[rowStartNo, fiCaCol].Value?.ToString().Trim();
                     double incomingAmountVal = 0;
-                    if (isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, 1].Value?.ToString(), out incomingAmountVal))
+                    if (isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, incomingAmountCol].Value?.ToString(), out incomingAmountVal))
                     {
                         return ($"قيمة الوارد في السطر {rowStartNo} غير صحيحة");
                     }
                     double outgoingAmountVal = 0;
-                    if (!isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, 2].Value?.ToString(), out outgoingAmountVal))
+                    if (!isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, outgoingAmountCol].Value?.ToString(), out outgoingAmountVal))
                     {
                         if (String.IsNullOrEmpty(curVal) || String.IsNullOrEmpty(ficaVal))
                         {
@@ -1357,14 +1394,14 @@ namespace AssetManagement
                         }
                     }
                     DateTime fiDateVal = DateTime.Today;
-                    if (!isIncoming && !DateTime.TryParse(srcExcelWs.Cells[rowStartNo, 8].Value?.ToString(), out fiDateVal))
+                    if (!isIncoming && !DateTime.TryParse(srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString(), out fiDateVal))
                     {
                         return ($"قيمة التاريخ في السطر {rowStartNo} غير صحيحة");
                     }
 
                     if (!mainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == curVal))
                     {
-                        if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 2].Value?.ToString()) && String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 8].Value?.ToString()) && String.IsNullOrEmpty(ficaVal))
+                        if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 3].Value?.ToString()) && String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString()) && String.IsNullOrEmpty(ficaVal))
                         {
                             rowStartNo++;
                             continue;
@@ -1410,7 +1447,7 @@ namespace AssetManagement
                     FinancialItemTbl newFinancialItem = new FinancialItemTbl()
                     {
                         FinancialItemCategory = existedFiItCat.First().ID,
-                        FinancialItemDescription = srcExcelWs.Cells[rowStartNo, 7].Value?.ToString(),
+                        FinancialItemDescription = srcExcelWs.Cells[rowStartNo, descriptionCol].Value?.ToString(),
                         IncomingFrom = incomingFromVal,
                         OutgoingType = outgoingTypeVal,
                         OutgoingTo = outgoingToVal,
@@ -1455,26 +1492,6 @@ namespace AssetManagement
             double outcomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
             double cycled = incomes2 - outcomes2;
             return new List<double>() { incomes, outcomes, cycled };
-        }
-
-        public static double CalcRecycledOfFinancialItems(IQueryable<FinancialItemVw> fivQry)
-        {
-            if (fivQry == null || fivQry.Count() == 0)
-                return 0;
-            DateTime today1 = DateTime.Today.AddDays(appOptions.ShiftDays);
-            var incomingLastMonth = fivQry.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد" && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv1.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
-            double incomingLastMonth_Am = (incomingLastMonth.Any()) ? incomingLastMonth.Sum(fiv11 => fiv11.المبلغ_الوارد) : 0;
-            var outgoingLastMonth = fivQry.Where(fiv2 => fiv2.وارد_أم_صادر == "صادر" && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Month == today1.Month && fiv2.تاريخ_تحرير_السجل.AddMonths(1).Year == today1.Year);
-            double outgoingLastMonth_Am = (outgoingLastMonth.Any()) ? outgoingLastMonth.Sum(fiv11 => fiv11.المبلغ_الصادر) : 0;
-            double recycled_Am = incomingLastMonth_Am - outgoingLastMonth_Am;
-            return recycled_Am;
-        }
-
-        public static double CalcRecycledOfFinancialItems(IQueryable<FinancialItemTbl> fiitQry)
-        {
-            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
-            var fivQry = mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
-            return (CalcRecycledOfFinancialItems(fivQry));
         }
         #endregion
     }

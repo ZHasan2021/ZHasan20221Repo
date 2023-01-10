@@ -95,6 +95,7 @@ namespace AssetManagement
             this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.financialItemsStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.destructedAssetsBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -120,7 +121,7 @@ namespace AssetManagement
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -800,6 +801,15 @@ namespace AssetManagement
             this.destructedAssetsBarStaticItem.Name = "destructedAssetsBarStaticItem";
             this.destructedAssetsBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.destructedAssetsBarStaticItem_ItemClick);
             // 
+            // activeUserSectionBarStaticItem
+            // 
+            this.activeUserSectionBarStaticItem.Id = 88;
+            this.activeUserSectionBarStaticItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._228050;
+            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
+            this.activeUserSectionBarStaticItem.Name = "activeUserSectionBarStaticItem";
+            this.activeUserSectionBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -1121,20 +1131,33 @@ namespace AssetManagement
             this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
             this.actionsStatusMemoEdit.TabIndex = 8;
             // 
-            // activeUserSectionBarStaticItem
+            // progressPanel1
             // 
-            this.activeUserSectionBarStaticItem.Id = 88;
-            this.activeUserSectionBarStaticItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._228050;
-            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.activeUserSectionBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
-            this.activeUserSectionBarStaticItem.Name = "activeUserSectionBarStaticItem";
-            this.activeUserSectionBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.progressPanel1.Appearance.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.Appearance.Options.UseBackColor = true;
+            this.progressPanel1.Appearance.Options.UseFont = true;
+            this.progressPanel1.AppearanceCaption.Font = new System.Drawing.Font("Sakkal Majalla", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
+            this.progressPanel1.AppearanceCaption.Options.UseFont = true;
+            this.progressPanel1.AppearanceCaption.Options.UseForeColor = true;
+            this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressPanel1.AppearanceDescription.Options.UseFont = true;
+            this.progressPanel1.Caption = "جار إعداد التقارير المالية";
+            this.progressPanel1.Description = "الرجاء الانتظار";
+            this.progressPanel1.Location = new System.Drawing.Point(550, 402);
+            this.progressPanel1.Name = "progressPanel1";
+            this.progressPanel1.Size = new System.Drawing.Size(384, 177);
+            this.progressPanel1.TabIndex = 401;
+            this.progressPanel1.Text = "جار إعداد التقارير المالية";
+            this.progressPanel1.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 981);
+            this.Controls.Add(this.progressPanel1);
             this.Controls.Add(this.actionsStatusMemoEdit);
             this.Controls.Add(this.mainMemoEdit);
             this.Controls.Add(this.mainRibbonStatusBar);
@@ -1249,6 +1272,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem financialItemsStatsBarButtonItem;
         private DevExpress.XtraBars.BarStaticItem destructedAssetsBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem activeUserSectionBarStaticItem;
+        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
     }
 }
 

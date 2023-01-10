@@ -912,33 +912,63 @@ namespace AssetManagement.Assets
             string sectionOfSearch = "";
             string departmentOfSearch = "";
             string subDepartmentOfSearch = "";
-            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            if (StaticCode.activeUserRole.IsSectionIndependent == true)
+            {
+                sectionOfSearch = StaticCode.PMName;
+            }
+            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
             {
                 sectionOfSearch = StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == Convert.ToInt32(StaticCode.activeUser.UserSection)).SectionName;
             }
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            else
             {
+                sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Single(dptv1 => dptv1.معرف_القسم == Convert.ToInt32(StaticCode.activeUser.UserDept)).الدائرة_التي_يتبع_لها_القسم;
                 departmentOfSearch = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == Convert.ToInt32(StaticCode.activeUser.UserDept)).DepartmentName;
             }
-            if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
+            if (customSearchRadioButton.Checked)
             {
-                subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+                    if (searchBySectionCheckBox.Checked)
+                    {
+                        sectionOfSearch = searchBySectionLookUpEdit.Text;
+                    }
+                    if (searchByDepartmentCheckBox.Checked)
+                    {
+                        departmentOfSearch = searchByDepartmentSearchLookUpEdit.Text;
+                        sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Single(dptv1 => dptv1.معرف_القسم == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).الدائرة_التي_يتبع_لها_القسم;
+                    }
+                    if (searchBySubDepartmentCheckBox.Checked)
+                    {
+                        subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+                        departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).القسم_التابعة_له;
+                        sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).الدائرة_التي_يتبع_لها_القسم;
+                    }
+                }
+                else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                {
+                    if (searchByDepartmentCheckBox.Checked)
+                    {
+                        departmentOfSearch = searchByDepartmentSearchLookUpEdit.Text;
+                        sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Single(dptv1 => dptv1.معرف_القسم == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue)).الدائرة_التي_يتبع_لها_القسم;
+                    }
+                    if (searchBySubDepartmentCheckBox.Checked)
+                    {
+                        subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+                        departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).القسم_التابعة_له;
+                        sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).الدائرة_التي_يتبع_لها_القسم;
+                    }
+                }
+                else
+                {
+                    if (searchBySubDepartmentCheckBox.Checked)
+                    {
+                        subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
+                        departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).القسم_التابعة_له;
+                        sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Single(sdptv1 => sdptv1.معرف_الوحدة == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue)).الدائرة_التي_يتبع_لها_القسم;
+                    }
+                }
             }
-            //if (customSearchGroupBox.Visible && searchBySectionCheckBox.Checked)
-            //{
-            //    sectionOfSearch = searchBySectionLookUpEdit.Text;
-            //}
-            //else if (customSearchGroupBox.Visible && searchByDepartmentCheckBox.Checked)
-            //{
-            //    sectionOfSearch = StaticCode.mainDbContext.DepartmentVws.Where(dptv1 => dptv1.اسم_القسم == searchByDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
-            //    departmentOfSearch = searchByDepartmentSearchLookUpEdit.Text;
-            //}
-            //else if (customSearchGroupBox.Visible && searchBySubDepartmentCheckBox.Checked)
-            //{
-            //    sectionOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().الدائرة_التي_يتبع_لها_القسم;
-            //    departmentOfSearch = StaticCode.mainDbContext.SubDepartmentVws.Where(sdtv1 => sdtv1.اسم_الوحدة == searchBySubDepartmentSearchLookUpEdit.Text).First().القسم_التابعة_له;
-            //    subDepartmentOfSearch = searchBySubDepartmentSearchLookUpEdit.Text;
-            //}
             using (var cells = astWs.Cells[5, 5, 5, endCol])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";

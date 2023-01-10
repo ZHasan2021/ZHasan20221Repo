@@ -247,6 +247,7 @@ namespace AssetManagement
             }
             actionsStatusMemoEdit.Text = "";
 
+            progressPanel1.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -256,30 +257,35 @@ namespace AssetManagement
             if (assetCodeCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int movedFieldCol = mvColumnsHeaders.IndexOf("الحقل المحدث بعملية النقل") + 1;
             if (movedFieldCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (الحقل المحدث بعملية النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int mvFromCol = mvColumnsHeaders.IndexOf("من") + 1;
             if (mvFromCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (القيمة الحالية) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int mvToCol = mvColumnsHeaders.IndexOf("إلى") + 1;
             if (mvToCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (القيمة الجديدة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int mvDateCol = mvColumnsHeaders.IndexOf("تاريخ النقل") + 1;
             if (mvDateCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (تاريخ النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
 
@@ -343,6 +349,7 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
+            progressPanel1.Visible = false;
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -356,6 +363,7 @@ namespace AssetManagement
             }
             actionsStatusMemoEdit.Text = "";
 
+            progressPanel1.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -365,54 +373,63 @@ namespace AssetManagement
             if (assetCodeCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trCategoryCol = mvColumnsHeaders.IndexOf("نوع التصريف") + 1;
             if (trCategoryCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (نوع التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trQuantityCol = mvColumnsHeaders.IndexOf("العدد") + 1;
             if (trQuantityCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (العدد) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trSellPriceCol = mvColumnsHeaders.IndexOf("مبلغ البيع") + 1;
             if (trSellPriceCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trSellPriceCurrCol = mvColumnsHeaders.IndexOf("عملة مبلغ البيع") + 1;
             if (trSellPriceCurrCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (عملة مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trGetOutOfWorkCol = mvColumnsHeaders.IndexOf("إخراج الأصل من الخدمة") + 1;
             if (trGetOutOfWorkCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (إخراج الأصل من الخدمة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trCurrPriceCol = mvColumnsHeaders.IndexOf("السعر الحالي مع الإهلاك") + 1;
             if (trCurrPriceCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (السعر الحالي مع الإهلاك) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trNotesCol = mvColumnsHeaders.IndexOf("ملاحظات") + 1;
             if (trNotesCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (ملاحظات) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
             int trDateCol = mvColumnsHeaders.IndexOf("تاريخ التصريف") + 1;
             if (trDateCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (تاريخ التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                progressPanel1.Visible = false;
                 return;
             }
 
@@ -433,18 +450,21 @@ namespace AssetManagement
                     if (trQuantityVal <= 0)
                     {
                         mainAlertControl.Show(this, $"العدد في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                        progressPanel1.Visible = false;
                         return;
                     }
                     double trSellPriceVal = (astWs.Cells[iRow, trSellPriceCol].Value?.ToString() == "") ? 0 : Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
                     if (trSellPriceVal <= 0)
                     {
                         mainAlertControl.Show(this, $"السعر في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                        progressPanel1.Visible = false;
                         return;
                     }
                     tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString().Trim();
                     if (!StaticCode.mainDbContext.CurrencyTbls.Any(cu2 => cu2.CurrencyName == tmpVal))
                     {
                         mainAlertControl.Show(this, $"العملة في السطر رقم {iRow} غير موجودة في جدول العملات، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
+                        progressPanel1.Visible = false;
                         return;
                     }
                     int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
@@ -501,6 +521,7 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
+            progressPanel1.Visible = false;
         }
 
         private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
@@ -513,6 +534,7 @@ namespace AssetManagement
                 return;
             }
 
+            progressPanel1.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -535,12 +557,14 @@ namespace AssetManagement
             if (importingReport == null)
             {
                 actionsStatusMemoEdit.Text = errorMsgOut;
+                progressPanel1.Visible = false;
                 mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
                 return;
             }
             else
             {
                 actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة ({newAssetsCount})\r\n2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})\r\n3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel})\r\n---------------";
+                progressPanel1.Visible = false;
                 mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
                 return;
             }

@@ -2399,72 +2399,6 @@ namespace AssetManagement.Finance
             }
         }
 
-        private void exportFinancialReportToExcelDropDownButton_Click_Old(object sender, EventArgs e)
-        {
-            SaveFileDialog financialReportSFD = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
-            if (financialReportSFD.ShowDialog() != DialogResult.OK)
-            {
-                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
-                return;
-            }
-            string targetPath = financialReportSFD.FileName;
-            if (!File.Exists(StaticCode.FinancialReportPath2))
-            {
-                mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
-                MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            File.Copy(StaticCode.FinancialReportPath2, targetPath, true);
-            ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
-            ExcelWorkbook fiRpWb = fiRpEp.Workbook;
-            ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
-            string sectionVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            string departmentVal = (StaticCode.activeUserRole.IsSectionIndependent != true) ? $"الدائرة: {StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == StaticCode.activeUser.UserSection).SectionName}" : "";
-            fiRpWs.Cells[2, 1, 2, 2].Value = $"الدائرة: {((searchBySectionCheckBox.Checked) ? searchBySectionLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 3].Value = $"القسم: {((searchByDepartmentCheckBox.Checked) ? searchByDepartmentSearchLookUpEdit.Text : "الكل")}";
-            fiRpWs.Cells[2, 4, 2, 5].Value = $"الوحدة: {((searchBySubDepartmentCheckBox.Checked) ? searchBySubDepartmentSearchLookUpEdit.Text : "الكل")}";
-            int startRow = 5;
-            foreach (FinancialItemTbl oneFiRp in financialItemsQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
-            {
-                Application.DoEvents();
-                fiRpWs.Cells[startRow, 1].Value = oneFiRp.IncomingAmount;
-                fiRpWs.Cells[startRow, 3].Value = oneFiRp.FinancialItemDescription;
-                fiRpWs.Cells[startRow, 4].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
-                fiRpWs.Cells[startRow, 5].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
-                startRow++;
-            }
-            using (var cells = fiRpWs.Cells[startRow, 1, startRow, 5])
-            {
-                cells.Merge = true;
-                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                cells.Style.Font.Color.SetColor(Color.FromArgb(31, 73, 125));
-                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(242, 220, 219));
-                cells.Value = "ثانياً : المصاريف :";
-            }
-            startRow++;
-            foreach (FinancialItemTbl oneFiRp in financialItemsQry.Where(fic1 => fic1.IncomingOrOutgoing == "صادر"))
-            {
-                Application.DoEvents();
-                fiRpWs.Cells[startRow, 2].Value = oneFiRp.OutgoingAmount;
-                fiRpWs.Cells[startRow, 3].Value = oneFiRp.FinancialItemDescription;
-                fiRpWs.Cells[startRow, 4].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
-                fiRpWs.Cells[startRow, 5].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
-                startRow++;
-            }
-            List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
-            int macaStartRow = 70;
-            foreach (string oneMaCa in mainCategoriesNames)
-            {
-                fiRpWs.Cells[macaStartRow, 7].Value = oneMaCa;
-                macaStartRow++;
-            }
-            fiRpEp.Save();
-            mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
-            MessageBox.Show("تم التصدير بنجاح", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         /// <summary>
         /// 2
         /// </summary>
@@ -2497,6 +2431,15 @@ namespace AssetManagement.Finance
             ExcelWorksheet listsWs = fiRpWb.Worksheets["Lists"];
 
             int ficaRowStart = 3;
+            int incomingAmountCol = 2;
+            int outgoingAmountCol = 3;
+            int currCol = 4;
+            int incomingFromCol = 5;
+            int outgoingTypeCol = 6;
+            int outgoingToCol = 7;
+            int descriptionCol = 8;
+            int fiDateCol = 9;
+            int fiCaCol = 10;
             int curRowStart = 97;
             int curRowStart2 = 3;
             int curColStart = 13;
@@ -2552,12 +2495,12 @@ namespace AssetManagement.Finance
             foreach (FinancialItemTbl oneFiRp in financialItemsQry.Where(fic1 => fic1.IncomingOrOutgoing == "وارد"))
             {
                 Application.DoEvents();
-                fiRpWs.Cells[startRow, 2].Value = oneFiRp.IncomingAmount;
-                fiRpWs.Cells[startRow, 4].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
-                fiRpWs.Cells[startRow, 5].Value = oneFiRp.IncomingFrom?.Trim();
-                fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemDescription;
-                fiRpWs.Cells[startRow, 9].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
-                fiRpWs.Cells[startRow, 10].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
+                fiRpWs.Cells[startRow, incomingAmountCol].Value = oneFiRp.IncomingAmount;
+                fiRpWs.Cells[startRow, currCol].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
+                fiRpWs.Cells[startRow, incomingFromCol].Value = oneFiRp.IncomingFrom?.Trim();
+                fiRpWs.Cells[startRow, descriptionCol].Value = oneFiRp.FinancialItemDescription;
+                fiRpWs.Cells[startRow, fiDateCol].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
+                fiRpWs.Cells[startRow, fiCaCol].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
                 startRow++;
             }
             using (var cells = fiRpWs.Cells[startRow, 2, startRow, 10])
@@ -2576,13 +2519,13 @@ namespace AssetManagement.Finance
             foreach (FinancialItemTbl oneFiRp in financialItemsQry.Where(fic1 => fic1.IncomingOrOutgoing == "صادر"))
             {
                 Application.DoEvents();
-                fiRpWs.Cells[startRow, 3].Value = oneFiRp.OutgoingAmount;
-                fiRpWs.Cells[startRow, 4].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
-                fiRpWs.Cells[startRow, 6].Value = oneFiRp.OutgoingType?.Trim();
-                fiRpWs.Cells[startRow, 7].Value = oneFiRp.OutgoingTo?.Trim();
-                fiRpWs.Cells[startRow, 8].Value = oneFiRp.FinancialItemDescription;
-                fiRpWs.Cells[startRow, 9].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
-                fiRpWs.Cells[startRow, 10].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
+                fiRpWs.Cells[startRow, outgoingAmountCol].Value = oneFiRp.OutgoingAmount;
+                fiRpWs.Cells[startRow, currCol].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
+                fiRpWs.Cells[startRow, outgoingTypeCol].Value = oneFiRp.OutgoingType?.Trim();
+                fiRpWs.Cells[startRow, outgoingToCol].Value = oneFiRp.OutgoingTo?.Trim();
+                fiRpWs.Cells[startRow, descriptionCol].Value = oneFiRp.FinancialItemDescription;
+                fiRpWs.Cells[startRow, fiDateCol].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
+                fiRpWs.Cells[startRow, fiCaCol].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;
                 startRow++;
             }
             List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
