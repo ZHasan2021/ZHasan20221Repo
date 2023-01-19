@@ -109,6 +109,7 @@ namespace AssetManagement.Finance
             this.colTotalIncoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalOutgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalRecycled = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource1)).BeginInit();
@@ -134,6 +135,7 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemVwBindingSource
@@ -473,7 +475,8 @@ namespace AssetManagement.Finance
             this.curRepositoryItemLookUpEdit,
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
-            this.subdRpositoryItemLookUpEdit});
+            this.subdRpositoryItemLookUpEdit,
+            this.notesRepositoryItemMemoEdit});
             this.financialItemCategoryGridControl.Size = new System.Drawing.Size(730, 806);
             this.financialItemCategoryGridControl.TabIndex = 9;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
@@ -505,6 +508,7 @@ namespace AssetManagement.Finance
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", null, "(مجموع المبالغ الصادرة={0:0.##})")});
             this.financialItemGridView.Name = "financialItemGridView";
             this.financialItemGridView.OptionsBehavior.Editable = false;
+            this.financialItemGridView.OptionsView.RowAutoHeight = true;
             this.financialItemGridView.OptionsView.ShowFooter = true;
             this.financialItemGridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colتاريختحريرالسجل, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -645,6 +649,7 @@ namespace AssetManagement.Finance
             // 
             // colملاحظاتإضافية
             // 
+            this.colملاحظاتإضافية.ColumnEdit = this.notesRepositoryItemMemoEdit;
             this.colملاحظاتإضافية.FieldName = "ملاحظات إضافية";
             this.colملاحظاتإضافية.MinWidth = 250;
             this.colملاحظاتإضافية.Name = "colملاحظاتإضافية";
@@ -838,6 +843,10 @@ namespace AssetManagement.Finance
             this.colTotalRecycled.ReadOnly = true;
             this.colTotalRecycled.Width = 125;
             // 
+            // notesRepositoryItemMemoEdit
+            // 
+            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
+            // 
             // ManageFinancialItemTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -847,9 +856,9 @@ namespace AssetManagement.Finance
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
-            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsDockPanel);
             this.Controls.Add(this.mainTabFormControl);
+            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsStatusStrip);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
@@ -886,6 +895,7 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -963,5 +973,6 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalOutgoing;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalRecycled;
         private DevExpress.XtraBars.Docking.DockManager mainDockManager;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit notesRepositoryItemMemoEdit;
     }
 }

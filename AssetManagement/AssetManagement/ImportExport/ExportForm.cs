@@ -72,7 +72,7 @@ namespace AssetManagement.Finance
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(500, 400);
         }
 
@@ -266,10 +266,33 @@ namespace AssetManagement.Finance
                 tbls2.Add("AssetMovementTbl");
                 tbls2.Add("AssetTransactionTbl");
             }
+            List<int> includedsAssetsIDs = new List<int>();
+            List<int> includedsSubDepts = new List<int>();
+            if (unknownExportRadioButton.Checked)
+            {
+                includedsAssetsIDs = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.ID).ToList();
+                includedsSubDepts = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.AssetSubDepartment).Distinct().ToList();
+            }
+            else if (exportBySectionRadioButton.Checked || !exportBySectionRadioButton.Enabled)
+            {
+                includedsSubDepts = StaticCode.GetSubDeptsListBySectionID(Convert.ToInt32(exportBySectionLookUpEdit.EditValue));
+            }
+            if (exportByDepartmentRadioButton.Checked || !exportByDepartmentRadioButton.Enabled)
+            {
+                includedsSubDepts = StaticCode.GetSubDeptsListByDeptID(Convert.ToInt32(exportByDepartmentSearchLookUpEdit.EditValue));
+            }
+            if (exportBySubDepartmentRadioButton.Checked)
+            {
+                includedsSubDepts = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetSubDepartment == Convert.ToInt32(exportBySubDepartmentSearchLookUpEdit.EditValue)).Select(ast2 => ast2.AssetSubDepartment).Distinct().ToList();
+            }
+            includedsAssetsIDs = StaticCode.mainDbContext.AssetTbls.Where(ast1 => includedsSubDepts.Contains(ast1.AssetSubDepartment)).Select(ast2 => ast2.ID).ToList();
+            string includedsAssetsIDsStr = String.Join(",", includedsAssetsIDs);
+            string includedsSubDeptsStr = String.Join(",", includedsSubDepts);
+
             if (!Directory.Exists(StaticCode.ExportFolder))
                 Directory.CreateDirectory(StaticCode.ExportFolder);
             string outFile1 = $"Export{DateTime.Now.Ticks}{((exportBySectionRadioButton.Checked) ? $"-الدائرة {exportBySectionLookUpEdit.Text}" : "")}{((exportByDepartmentRadioButton.Checked) ? $"-القسم {exportByDepartmentSearchLookUpEdit.Text}" : "")}{((exportBySubDepartmentRadioButton.Checked) ? $"-الوحدة {exportBySubDepartmentSearchLookUpEdit.Text}" : "")}.xlsx";
-            SaveFileDialog exportSFD = new SaveFileDialog() { Filter = (encryptExportedFileCheckBox.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", FileName = outFile1 };
+            SaveFileDialog exportSFD = new SaveFileDialog() { Filter = (encryptExportedFileCheckBox.Checked) ? "encrypted database file (*.assf)|*.assf" : "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", FileName = outFile1, InitialDirectory = StaticCode.ExportFolder };
             if (exportSFD.ShowDialog() != DialogResult.OK)
             {
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
@@ -286,39 +309,28 @@ namespace AssetManagement.Finance
                 {
                     foreach (var oneModel in tbls2)
                     {
-                        //string oneTblName = oneModel.TableName.Replace("dbo.", "");
                         string oneTblName = oneModel;
                         ExcelWorksheet ws = pck.Workbook.Worksheets[oneTblName];
                         if (ws == null)
                             ws = pck.Workbook.Worksheets.Add(oneTblName);
                         string queryStr = $"SELECT * FROM [{oneTblName}]";
-                        string fieldToFilter = "";
+                        string whereStatement = "";
                         switch (oneTblName)
                         {
                             case "AssetTbl":
-                                fieldToFilter = "AssetSubDepartment";
+                                whereStatement = (includedsAssetsIDs.Any()) ? $" WHERE AssetSubDepartment IN ({includedsSubDeptsStr});" : "WHERE 1 = 2;";
                                 break;
                             case "FinancialItemTbl":
-                                fieldToFilter = "FinancialItemSubDept";
+                                whereStatement = (includedsAssetsIDs.Any()) ? $" WHERE FinancialItemSubDept IN ({includedsSubDeptsStr});" : "WHERE 1 = 2;";
                                 break;
                             case "AssetMovementTbl":
                             case "AssetTransactionTbl":
-                                fieldToFilter = "AssetID IN (SELECT ID FROM AssetTbl WHERE AssetSubDepartment";
+                                whereStatement = (includedsAssetsIDs.Any()) ? $" WHERE AssetID IN ({includedsAssetsIDsStr});" : "WHERE 1 = 2;";
                                 break;
                             default:
                                 break;
                         }
-                        if (exportBySubDepartmentRadioButton.Checked)
-                            queryStr += $" WHERE {fieldToFilter} = {exportBySubDepartmentSearchLookUpEdit.EditValue}";
-                        if (exportByDepartmentRadioButton.Checked)
-                            queryStr += $" WHERE {fieldToFilter} IN (SELECT ID FROM SubDepartmentTbl WHERE MainDepartment = {exportByDepartmentSearchLookUpEdit.EditValue})";
-                        if (exportBySectionRadioButton.Checked)
-                            queryStr += $" WHERE {fieldToFilter} IN (SELECT ID FROM SubDepartmentTbl WHERE MainDepartment IN (SELECT ID FROM SectionTbl WHERE ID = {exportBySectionLookUpEdit.EditValue}))";
-                        if (oneTblName == "AssetMovementTbl" || oneTblName == "AssetTransactionTbl")
-                        {
-                            if (!unknownExportRadioButton.Checked)
-                                queryStr += ")";
-                        }
+                        queryStr += whereStatement;
                         SqlDataAdapter dbAdpt = new SqlDataAdapter(queryStr, dbConn);
                         DataTable oneDt = new DataTable();
                         dbAdpt.Fill(oneDt);

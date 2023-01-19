@@ -31,7 +31,6 @@ namespace AssetManagement.Finance
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportForm));
-            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -67,6 +66,7 @@ namespace AssetManagement.Finance
             this.colالدائرةالتييتبعلهاالقسم = new DevExpress.XtraGrid.Columns.GridColumn();
             this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
+            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exportBySectionLookUpEdit.Properties)).BeginInit();
@@ -79,21 +79,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.departmentVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mainAlertControl
-            // 
-            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
-            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.mainAlertControl.AppearanceText.Options.UseFont = true;
-            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
-            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
-            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
-            this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
             // manageSubDepartmentTblBtn
             // 
@@ -452,6 +437,22 @@ namespace AssetManagement.Finance
             // 
             this.subDepartmentVwTableAdapter.ClearBeforeFill = true;
             // 
+            // mainAlertControl
+            // 
+            this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
+            this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.mainAlertControl.AppearanceText.Options.UseFont = true;
+            this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
+            this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
+            this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceText.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            // 
             // ExportForm
             // 
             this.AcceptButton = this.exportData_OK;
@@ -503,8 +504,6 @@ namespace AssetManagement.Finance
         }
 
         #endregion
-
-        private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
         private System.Windows.Forms.Button manageSubDepartmentTblBtn;
         private System.Windows.Forms.Button manageSectionTblBtn;
         private DevExpress.XtraEditors.LookUpEdit exportBySectionLookUpEdit;
@@ -540,5 +539,6 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter departmentVwTableAdapter;
         private System.Windows.Forms.BindingSource subDepartmentVwBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter subDepartmentVwTableAdapter;
+        private DevExpress.XtraBars.Alerter.AlertControl mainAlertControl;
     }
 }

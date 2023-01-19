@@ -68,7 +68,7 @@ namespace AssetManagement.Finance
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(500, 400);
         }
 
@@ -270,7 +270,7 @@ namespace AssetManagement.Finance
                     }
                 }
 
-                List<int> subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Select(sdp1 => sdp1.ID).ToList();
+                List<int> subDeptList = StaticCode.GetAssetsSubDeptsOfActiveUser();
                 if (importBySubDepartmentRadioButton.Checked)
                     subDeptList.Add(Convert.ToInt32(importBySectionLookUpEdit.EditValue));
                 else if (importByDepartmentRadioButton.Checked)
@@ -280,7 +280,12 @@ namespace AssetManagement.Finance
                     List<int> deptList = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(importBySectionLookUpEdit.EditValue)).Select(dpt2 => dpt2.ID).ToList();
                     subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => deptList.Contains(subd1.MainDepartment)).Select(subd2 => subd2.ID).ToList();
                 }
-                StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList);
+                List<string> newAssets = new List<string>();
+                List<string> updatedAssets = new List<string>();
+                List<string> invalideAssets = new List<string>();
+                StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList, out newAssets, out updatedAssets, out invalideAssets);
+
+                string importReport = $"الاستيراد من قاعدة بيانات:\r\nالأصول الجديدة ({newAssets.Count}): {String.Join(",", newAssets.ToArray())}\r\nالأصول المحدثة ({updatedAssets.Count}): {String.Join(",", updatedAssets.ToArray())}\r\nالأصول ذات بيانات خاطئة ({invalideAssets.Count}): {String.Join(",", invalideAssets.ToArray())}";
 
                 ImportExportTbl newImport = new ImportExportTbl()
                 {
@@ -289,7 +294,7 @@ namespace AssetManagement.Finance
                     ActionByDepartment = (importByDepartmentRadioButton.Checked) ? importByDepartmentSearchLookUpEdit.Text : "",
                     ActionBySection = (importBySectionRadioButton.Checked) ? importBySectionLookUpEdit.Text : "",
                     ActionBySubDepartment = (importBySubDepartmentRadioButton.Checked) ? importBySubDepartmentSearchLookUpEdit.Text : "",
-                    ActionNotes = notesTextBox.Text.Trim(),
+                    ActionNotes = importReport + "\r\n-------------\r\n" + notesTextBox.Text.Trim(),
                 };
                 StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
                 StaticCode.mainDbContext.SubmitChanges();

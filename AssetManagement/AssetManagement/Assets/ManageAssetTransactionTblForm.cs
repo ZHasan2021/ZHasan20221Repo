@@ -21,6 +21,37 @@ namespace AssetManagement.AuxTables
             InitializeComponent();
         }
 
+        void LoadAssets()
+        {
+            List<int> IDsIncluded = StaticCode.mainDbContext.AssetVw_Alls.Select(astv1 => astv1.معرف_الأصل).ToList();
+            string plusQry = "";
+            if (IDsIncluded.Count() == 0)
+                plusQry = " WHERE 1 > 2;";
+            else
+            {
+                foreach (int oneID in IDsIncluded)
+                    plusQry += oneID + ", ";
+                plusQry = $" WHERE [AssetID] IN ({ plusQry.Trim().Trim(',').Trim()});";
+            }
+            AssetTransactionTblDataTable customVw = this.assetMngDbDataSet.AssetTransactionTbl;
+            for (int i = 0; i < customVw.Rows.Count; i++)
+            {
+                try
+                {
+                    var oneRow = customVw.Rows[i];
+                    object[] oneRowItemArray = oneRow.ItemArray;
+                    if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                        customVw.Rows.Remove(oneRow);
+                }
+                catch
+                {
+                    this.assetTransactionTblTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                    return;
+                }
+            }
+            this.assetTransactionTblTableAdapter.FillByQuery(customVw, plusQry);
+        }
+
         private void ManageAssetTransactionTblForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
@@ -32,11 +63,13 @@ namespace AssetManagement.AuxTables
             // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTransactionTbl' table. You can move, or remove it, as needed.
-            this.assetTransactionTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTransactionTbl);
+            //this.assetTransactionTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTransactionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
 
             this.MinimumSize = this.Size;
+
+            LoadAssets();
         }
 
         private void assetTransactionTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

@@ -21,6 +21,37 @@ namespace AssetManagement.AuxTables
             InitializeComponent();
         }
 
+        void LoadAssets()
+        {
+            List<int> IDsIncluded = StaticCode.mainDbContext.AssetVw_Alls.Select(astv1 => astv1.معرف_الأصل).ToList();
+            string plusQry = "";
+            if (IDsIncluded.Count() == 0)
+                plusQry = " WHERE 1 > 2;";
+            else
+            {
+                foreach (int oneID in IDsIncluded)
+                    plusQry += oneID + ", ";
+                plusQry = $" WHERE [AssetID] IN ({ plusQry.Trim().Trim(',').Trim()});";
+            }
+            AssetMovementTblDataTable customVw = this.assetMngDbDataSet.AssetMovementTbl;
+            for (int i = 0; i < customVw.Rows.Count; i++)
+            {
+                try
+                {
+                    var oneRow = customVw.Rows[i];
+                    object[] oneRowItemArray = oneRow.ItemArray;
+                    if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                        customVw.Rows.Remove(oneRow);
+                }
+                catch
+                {
+                    this.assetMovementTblTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                    return;
+                }
+            }
+            this.assetMovementTblTableAdapter.FillByQuery(customVw, plusQry);
+        }
+
         private void ManageAssetMovementTblForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetTbl' table. You can move, or remove it, as needed.
@@ -30,9 +61,11 @@ namespace AssetManagement.AuxTables
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetMovementTbl' table. You can move, or remove it, as needed.
-            this.assetMovementTblTableAdapter.Fill(this.assetMngDbDataSet.AssetMovementTbl);
+            //this.assetMovementTblTableAdapter.Fill(this.assetMngDbDataSet.AssetMovementTbl);
 
             this.MinimumSize = this.Size;
+
+            LoadAssets();
         }
 
         private void assetMovementTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

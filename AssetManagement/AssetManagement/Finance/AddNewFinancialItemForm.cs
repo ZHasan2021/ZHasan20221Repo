@@ -125,15 +125,25 @@ namespace AssetManagement.Finance
 
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
-
+                    //
+                    financialItemSectionLookUpEdit.Enabled =
+                    financialItemDeptLookUpEdit.Enabled =
+                    financialItemSubDeptLookUpEdit.Enabled = false;
                 }
                 else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                 {
                     outgoingToDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == StaticCode.activeUser.UserSection);
+                    //
+                    financialItemSectionLookUpEdit.Enabled =
+                    financialItemDeptLookUpEdit.Enabled =
+                    financialItemSubDeptLookUpEdit.Enabled = false;
                 }
                 else
                 {
                     outgoingToSubDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdt1 => sdt1.MainDepartment == StaticCode.activeUser.UserDept);
+                    //
+                    financialItemSectionLookUpEdit.Enabled =
+                    financialItemDeptLookUpEdit.Enabled = false;
                 }
             }
         }
@@ -269,9 +279,9 @@ namespace AssetManagement.Finance
                     }
                     else
                     {
-                        assetSubD = StaticCode.GetSubDeptBySectionName(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
+                        assetSubD = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
                         if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-                            assetSubD = StaticCode.GetSubDeptByDeptName(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
+                            assetSubD = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
                     }
                 }
 
@@ -304,9 +314,9 @@ namespace AssetManagement.Finance
                         {
                             int subD_Incoming = 0;
                             if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptBySectionName(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
+                                subD_Incoming = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
                             else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptByDeptName(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
+                                subD_Incoming = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
                             else
                                 subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
                             FinancialItemTbl newIcomingRec = new FinancialItemTbl()
@@ -404,27 +414,6 @@ namespace AssetManagement.Finance
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
-
-            financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = true;
-            if (StaticCode.activeUserRole.IsSectionIndependent != true)
-            {
-                financialItemSectionLookUpEdit.Enabled = false;
-            }
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
-            }
-            if (incomingRadioButton.Checked)
-            {
-                if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                {
-                    financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
-                }
-                if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                {
-                    financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
-                }
-            }
         }
 
         private void outgoingRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -479,15 +468,7 @@ namespace AssetManagement.Finance
         private void outgoingTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             relatedOutgoingLabel.Visible = outgoingToSectionLookUpEdit.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = outgoingTypeLookUpEdit.Text == "صادرات معلقة";
-            financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = true;
-            if (StaticCode.activeUserRole.IsSectionIndependent != true)
-            {
-                financialItemSectionLookUpEdit.Enabled = false;
-            }
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
-            }
+
             if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
             {
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
@@ -518,9 +499,9 @@ namespace AssetManagement.Finance
                 }
             }
 
-            outgoingToSectionLookUpEdit.EditValue =
-            outgoingToDeptLookUpEdit.EditValue =
-            outgoingToSubDeptLookUpEdit.EditValue = null;
+            //outgoingToSectionLookUpEdit.EditValue =
+            //outgoingToDeptLookUpEdit.EditValue =
+            //outgoingToSubDeptLookUpEdit.EditValue = null;
         }
 
         private void manageOutgoingTypeBtn_Click(object sender, EventArgs e)

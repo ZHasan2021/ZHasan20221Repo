@@ -65,6 +65,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.importExportTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.importExportGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importExportTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -72,6 +73,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.sctRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importExportTblBindingNavigator)).BeginInit();
             this.importExportTblBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // importExportGridControl
@@ -85,8 +87,9 @@ namespace AssetManagement.AuxTables
             this.importExportGridControl.MainView = this.importExportGridView;
             this.importExportGridControl.Name = "importExportGridControl";
             this.importExportGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.sctRepositoryItemLookUpEdit});
-            this.importExportGridControl.Size = new System.Drawing.Size(1130, 608);
+            this.sctRepositoryItemLookUpEdit,
+            this.repositoryItemMemoEdit1});
+            this.importExportGridControl.Size = new System.Drawing.Size(1289, 713);
             this.importExportGridControl.TabIndex = 5;
             this.importExportGridControl.UseEmbeddedNavigator = true;
             this.importExportGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -224,6 +227,7 @@ namespace AssetManagement.AuxTables
             // colActionNotes
             // 
             this.colActionNotes.Caption = "ملاحظات";
+            this.colActionNotes.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colActionNotes.FieldName = "ActionNotes";
             this.colActionNotes.MinWidth = 300;
             this.colActionNotes.Name = "colActionNotes";
@@ -284,6 +288,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -318,7 +323,7 @@ namespace AssetManagement.AuxTables
             this.importExportTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.importExportTblBindingNavigator.Name = "importExportTblBindingNavigator";
             this.importExportTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.importExportTblBindingNavigator.Size = new System.Drawing.Size(1130, 47);
+            this.importExportTblBindingNavigator.Size = new System.Drawing.Size(1289, 47);
             this.importExportTblBindingNavigator.TabIndex = 4;
             this.importExportTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -418,11 +423,15 @@ namespace AssetManagement.AuxTables
             this.importExportTblBindingNavigatorSaveItem.Visible = false;
             this.importExportTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.importExportTblBindingNavigatorSaveItem_Click);
             // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            // 
             // ManageImportExportTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 655);
+            this.ClientSize = new System.Drawing.Size(1289, 760);
             this.Controls.Add(this.importExportGridControl);
             this.Controls.Add(this.importExportTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -440,6 +449,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.importExportTblBindingNavigator)).EndInit();
             this.importExportTblBindingNavigator.ResumeLayout(false);
             this.importExportTblBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -479,5 +489,6 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Columns.GridColumn colLastModifiedBy;
         private DevExpress.XtraGrid.Columns.GridColumn colActionNotes;
         private DevExpress.XtraGrid.Columns.GridColumn colTablesExported;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
     }
 }

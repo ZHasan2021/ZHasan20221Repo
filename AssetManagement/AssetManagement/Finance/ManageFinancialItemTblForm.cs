@@ -32,7 +32,7 @@ namespace AssetManagement.Finance
             foreach (string oneCu in currenciesList)
             {
                 var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu);
-                totalsDataGridView.Rows.Add(new object[] { oneCu, qryToGetTotals_OneCurr.CalcIncomingOfFinancialItems(), qryToGetTotals_OneCurr.CalcOutgoingOfFinancialItems(), qryToGetTotals_OneCurr.CalcWholeRecycledOfFinancialItems() });
+                totalsDataGridView.Rows.Add(new object[] { oneCu, qryToGetTotals_OneCurr.CalcIncomingOfFinancialItems(), qryToGetTotals_OneCurr.CalcOutgoingOfFinancialItems(), qryToGetTotals_OneCurr.CalcRecycledOfFinancialItems() });
             }
         }
 

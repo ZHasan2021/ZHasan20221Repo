@@ -136,6 +136,7 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -182,6 +183,7 @@ namespace AssetManagement.Finance
             this.searchDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             this.searchXtraScrollableControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -527,6 +529,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -637,7 +640,8 @@ namespace AssetManagement.Finance
             this.curRepositoryItemLookUpEdit,
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit3,
-            this.subdRpositoryItemLookUpEdit});
+            this.subdRpositoryItemLookUpEdit,
+            this.notesRepositoryItemMemoEdit});
             this.financialItemCategoryGridControl.Size = new System.Drawing.Size(765, 375);
             this.financialItemCategoryGridControl.TabIndex = 653;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
@@ -669,6 +673,7 @@ namespace AssetManagement.Finance
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", null, "(مجموع المبالغ الصادرة={0:0.##})")});
             this.financialItemGridView.Name = "financialItemGridView";
             this.financialItemGridView.OptionsBehavior.Editable = false;
+            this.financialItemGridView.OptionsView.RowAutoHeight = true;
             this.financialItemGridView.OptionsView.ShowFooter = true;
             this.financialItemGridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colتاريختحريرالسجل, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -806,6 +811,7 @@ namespace AssetManagement.Finance
             // 
             // colملاحظاتإضافية
             // 
+            this.colملاحظاتإضافية.ColumnEdit = this.notesRepositoryItemMemoEdit;
             this.colملاحظاتإضافية.FieldName = "ملاحظات إضافية";
             this.colملاحظاتإضافية.MinWidth = 250;
             this.colملاحظاتإضافية.Name = "colملاحظاتإضافية";
@@ -1302,6 +1308,10 @@ namespace AssetManagement.Finance
             this.progressPanel1.Text = "جار إعداد التقارير المالية";
             this.progressPanel1.Visible = false;
             // 
+            // notesRepositoryItemMemoEdit
+            // 
+            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
+            // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -1321,6 +1331,7 @@ namespace AssetManagement.Finance
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "التقارير المالية";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FinancialReportsForm_FormClosing);
             this.Load += new System.EventHandler(this.FinancialReportsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).EndInit();
@@ -1372,6 +1383,7 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.ResumeLayout(false);
             this.searchXtraScrollableControl.ResumeLayout(false);
             this.searchXtraScrollableControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1483,5 +1495,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit notesRepositoryItemMemoEdit;
     }
 }

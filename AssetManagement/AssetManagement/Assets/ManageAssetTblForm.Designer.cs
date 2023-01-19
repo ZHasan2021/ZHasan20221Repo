@@ -86,7 +86,7 @@ namespace AssetManagement.Assets
             this.colمواصفاتالأصل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالموديل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاللون = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colالحجم_السعة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colتاريخالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colعملةسعرالشراء = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -97,7 +97,9 @@ namespace AssetManagement.Assets
             this.colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاسمصاحبالعهدة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colتفاصيلإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetDetailsRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colملاحظاتأخرى = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetNotesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colعنوانالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاسمالمالك = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالمستغلمنه = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -126,6 +128,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
+            this.estateAddressRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -142,6 +145,8 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetDetailsRepositoryItemMemoEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetNotesRepositoryItemMemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -155,6 +160,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // mainCategoryTblBindingSource
@@ -467,7 +473,10 @@ namespace AssetManagement.Assets
             this.repositoryItemDateEdit1,
             this.repositoryItemLookUpEdit6,
             this.repositoryItemCalcEdit1,
-            this.repositoryItemLookUpEdit7});
+            this.repositoryItemLookUpEdit7,
+            this.assetDetailsRepositoryItemMemoEdit,
+            this.assetNotesRepositoryItemMemoEdit,
+            this.estateAddressRepositoryItemMemoEdit});
             this.assetGridControl.Size = new System.Drawing.Size(1470, 956);
             this.assetGridControl.TabIndex = 6;
             this.assetGridControl.UseEmbeddedNavigator = true;
@@ -489,7 +498,7 @@ namespace AssetManagement.Assets
             this.colمواصفاتالأصل,
             this.colالموديل,
             this.colاللون,
-            this.gridColumn1,
+            this.colالحجم_السعة,
             this.colتاريخالشراء,
             this.colسعرالشراء,
             this.colعملةسعرالشراء,
@@ -518,6 +527,7 @@ namespace AssetManagement.Assets
             this.assetGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.assetGridView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.assetGridView.OptionsBehavior.Editable = false;
+            this.assetGridView.OptionsView.RowAutoHeight = true;
             this.assetGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.assetGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.assetTblGridView_RowClick);
             this.assetGridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.assetTblGridView_RowCellClick);
@@ -631,14 +641,14 @@ namespace AssetManagement.Assets
             this.colاللون.VisibleIndex = 10;
             this.colاللون.Width = 94;
             // 
-            // gridColumn1
+            // colالحجم_السعة
             // 
-            this.gridColumn1.FieldName = "الحجم / السعة";
-            this.gridColumn1.MinWidth = 80;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 11;
-            this.gridColumn1.Width = 94;
+            this.colالحجم_السعة.FieldName = "الحجم / السعة";
+            this.colالحجم_السعة.MinWidth = 80;
+            this.colالحجم_السعة.Name = "colالحجم_السعة";
+            this.colالحجم_السعة.Visible = true;
+            this.colالحجم_السعة.VisibleIndex = 11;
+            this.colالحجم_السعة.Width = 94;
             // 
             // colتاريخالشراء
             // 
@@ -723,24 +733,35 @@ namespace AssetManagement.Assets
             // 
             // colتفاصيلإضافية
             // 
+            this.colتفاصيلإضافية.ColumnEdit = this.assetDetailsRepositoryItemMemoEdit;
             this.colتفاصيلإضافية.FieldName = "تفاصيل إضافية";
-            this.colتفاصيلإضافية.MinWidth = 150;
+            this.colتفاصيلإضافية.MinWidth = 250;
             this.colتفاصيلإضافية.Name = "colتفاصيلإضافية";
             this.colتفاصيلإضافية.Visible = true;
             this.colتفاصيلإضافية.VisibleIndex = 21;
-            this.colتفاصيلإضافية.Width = 150;
+            this.colتفاصيلإضافية.Width = 250;
+            // 
+            // assetDetailsRepositoryItemMemoEdit
+            // 
+            this.assetDetailsRepositoryItemMemoEdit.Name = "assetDetailsRepositoryItemMemoEdit";
             // 
             // colملاحظاتأخرى
             // 
+            this.colملاحظاتأخرى.ColumnEdit = this.assetNotesRepositoryItemMemoEdit;
             this.colملاحظاتأخرى.FieldName = "ملاحظات أخرى";
-            this.colملاحظاتأخرى.MinWidth = 150;
+            this.colملاحظاتأخرى.MinWidth = 250;
             this.colملاحظاتأخرى.Name = "colملاحظاتأخرى";
             this.colملاحظاتأخرى.Visible = true;
             this.colملاحظاتأخرى.VisibleIndex = 22;
-            this.colملاحظاتأخرى.Width = 150;
+            this.colملاحظاتأخرى.Width = 250;
+            // 
+            // assetNotesRepositoryItemMemoEdit
+            // 
+            this.assetNotesRepositoryItemMemoEdit.Name = "assetNotesRepositoryItemMemoEdit";
             // 
             // colعنوانالعقار
             // 
+            this.colعنوانالعقار.ColumnEdit = this.estateAddressRepositoryItemMemoEdit;
             this.colعنوانالعقار.FieldName = "عنوان العقار";
             this.colعنوانالعقار.MinWidth = 150;
             this.colعنوانالعقار.Name = "colعنوانالعقار";
@@ -841,11 +862,11 @@ namespace AssetManagement.Assets
             // colالعمرالافتراضيالمتبقيللأصل
             // 
             this.colالعمرالافتراضيالمتبقيللأصل.FieldName = "العمر الافتراضي المتبقي للأصل";
-            this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 150;
+            this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 200;
             this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
             this.colالعمرالافتراضيالمتبقيللأصل.Visible = true;
             this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 34;
-            this.colالعمرالافتراضيالمتبقيللأصل.Width = 150;
+            this.colالعمرالافتراضيالمتبقيللأصل.Width = 200;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -1034,6 +1055,10 @@ namespace AssetManagement.Assets
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
+            // estateAddressRepositoryItemMemoEdit
+            // 
+            this.estateAddressRepositoryItemMemoEdit.Name = "estateAddressRepositoryItemMemoEdit";
+            // 
             // ManageAssetTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1073,6 +1098,8 @@ namespace AssetManagement.Assets
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assetGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetDetailsRepositoryItemMemoEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetNotesRepositoryItemMemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
@@ -1086,6 +1113,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1156,7 +1184,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colمواصفاتالأصل;
         private DevExpress.XtraGrid.Columns.GridColumn colالموديل;
         private DevExpress.XtraGrid.Columns.GridColumn colاللون;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn colالحجم_السعة;
         private DevExpress.XtraGrid.Columns.GridColumn colتاريخالشراء;
         private DevExpress.XtraGrid.Columns.GridColumn colسعرالشراء;
         private DevExpress.XtraGrid.Columns.GridColumn colعملةسعرالشراء;
@@ -1187,5 +1215,8 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarButtonItem destructAllBarButtonItem;
         private DevExpress.XtraBars.BarCheckItem getAssetsOutOfWorkBarCheckItem;
         private DevExpress.XtraBars.BarButtonItem moveAllBarButtonItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit assetDetailsRepositoryItemMemoEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit assetNotesRepositoryItemMemoEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit estateAddressRepositoryItemMemoEdit;
     }
 }
