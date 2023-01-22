@@ -945,11 +945,14 @@ namespace AssetManagement
         #region Export and Import
         public static string ExportFolder = $"{Application.StartupPath}//Export files//";
 
-        public static void ImportDataFromExcel(string excelFilePath, List<int> filtered_SubDepts, out List<string> newAssets, out List<string> updatedAssets, out List<string> invalideAssets)
+        public static void ImportDataFromExcel(string excelFilePath, List<int> filtered_SubDepts, out List<string> newAssets, out List<string> updatedAssets, out List<string> invalidAssets, out List<string> newFinancialItems, out List<string> updatedFinancialItems, out List<string> invalidFinancialItems)
         {
             newAssets = new List<string>();
             updatedAssets = new List<string>();
-            invalideAssets = new List<string>();
+            invalidAssets = new List<string>();
+            newFinancialItems = new List<string>();
+            updatedFinancialItems = new List<string>();
+            invalidFinancialItems = new List<string>();
 
             //create our connection strings
             string ssqlconnectionstring = new Properties.Settings().AssetMngDbConnectionString;
@@ -1019,7 +1022,17 @@ namespace AssetManagement
                             string updateQry = $"UPDATE {oneTable} SET {fieldsValuesPairs} WHERE {currKeyField} = N'{oneKeyValue}';";
                             sqlcomm.CommandText = updateQry;
                             sqlcomm.ExecuteNonQuery();
-                            updatedAssets.Add(oneKeyValue);
+                            switch (oneTable)
+                            {
+                                case "AssetTbl":
+                                    updatedAssets.Add(oneKeyValue);
+                                    break;
+                                case "FinancialItemTbl":
+                                    updatedFinancialItems.Add(oneKeyValue);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                         else
                         {
@@ -1046,12 +1059,32 @@ namespace AssetManagement
                             string updateQry = $"INSERT INTO {oneTable}({fieldsPairs}) VALUES ({valuesPairs});";
                             sqlcomm.CommandText = updateQry;
                             sqlcomm.ExecuteNonQuery();
-                            newAssets.Add(oneKeyValue);
+                            switch (oneTable)
+                            {
+                                case "AssetTbl":
+                                    newAssets.Add(oneKeyValue);
+                                    break;
+                                case "FinancialItemTbl":
+                                    newFinancialItems.Add(oneKeyValue);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                     catch
                     {
-                        invalideAssets.Add(oneKeyValue);
+                        switch (oneTable)
+                        {
+                            case "AssetTbl":
+                                invalidAssets.Add(oneKeyValue);
+                                break;
+                            case "FinancialItemTbl":
+                                invalidFinancialItems.Add(oneKeyValue);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -1645,5 +1678,25 @@ namespace AssetManagement
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv => includedIDs.Contains(fiv.معرف_السجل_المالي));
             return (fivQry.CalcRecycledOfFinancialItems());
         }
+
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemVw> fivQry)
+        {
+            var fivResult = fivQry;
+            if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                fivResult = fivQry.Where(idoufv1 => (idoufv1.وارد_أم_صادر == "وارد" && (idoufv1.جهة_الإيراد == "أخرى" || (idoufv1.جهة_الإيراد == "من المستوى الأعلى" && idoufv1.الدائرة == StaticCode.PMName && idoufv1.القسم == StaticCode.PMName && idoufv1.الوحدة == StaticCode.PMName))) || (idoufv1.وارد_أم_صادر == "صادر" && idoufv1.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                fivResult = fivQry.Where(idoufv2 => (idoufv2.وارد_أم_صادر == "وارد" && (idoufv2.جهة_الإيراد == "أخرى" || (idoufv2.جهة_الإيراد == "من المستوى الأعلى" && idoufv2.القسم == "" && idoufv2.الوحدة == ""))) || (idoufv2.وارد_أم_صادر == "صادر" && idoufv2.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+            else
+                fivResult = fivQry.Where(idoufv3 => (idoufv3.وارد_أم_صادر == "وارد" && (idoufv3.جهة_الإيراد == "أخرى" || (idoufv3.جهة_الإيراد == "من المستوى الأعلى" && idoufv3.الوحدة == ""))) || (idoufv3.وارد_أم_صادر == "صادر" && idoufv3.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+            return (fivResult);
+        }
+
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemTbl> fiitQry)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
+            return (fivQry.GetTotalFinancialTableOfLevel());
+        }
+
     }
 }

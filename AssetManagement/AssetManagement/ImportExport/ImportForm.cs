@@ -222,6 +222,11 @@ namespace AssetManagement.Finance
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void importData_OK_Click(object sender, EventArgs e)
         {
             if (importBySectionRadioButton.Checked && importBySectionLookUpEdit.EditValue == null)
@@ -283,9 +288,12 @@ namespace AssetManagement.Finance
                 List<string> newAssets = new List<string>();
                 List<string> updatedAssets = new List<string>();
                 List<string> invalideAssets = new List<string>();
-                StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList, out newAssets, out updatedAssets, out invalideAssets);
+                List<string> newFinancialItems = new List<string>();
+                List<string> updatedFinancialItems = new List<string>();
+                List<string> invalideFinancialItems = new List<string>();
+                StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList, out newAssets, out updatedAssets, out invalideAssets, out newFinancialItems, out updatedFinancialItems, out invalideFinancialItems);
 
-                string importReport = $"الاستيراد من قاعدة بيانات:\r\nالأصول الجديدة ({newAssets.Count}): {String.Join(",", newAssets.ToArray())}\r\nالأصول المحدثة ({updatedAssets.Count}): {String.Join(",", updatedAssets.ToArray())}\r\nالأصول ذات بيانات خاطئة ({invalideAssets.Count}): {String.Join(",", invalideAssets.ToArray())}";
+                string importReport = $"الاستيراد من قاعدة بيانات:\r\nالأصول الجديدة ({newAssets.Count}): {String.Join(",", newAssets.ToArray())}\r\nالأصول المحدثة ({updatedAssets.Count}): {String.Join(",", updatedAssets.ToArray())}\r\nالأصول ذات بيانات خاطئة ({invalideAssets.Count}): {String.Join(",", invalideAssets.ToArray())}\r\nالسجلات المالية الجديدة ({newFinancialItems.Count}): {String.Join(",", newFinancialItems.ToArray())}\r\nالسجلات المالية المحدثة ({updatedFinancialItems.Count}): {String.Join(",", updatedFinancialItems.ToArray())}\r\nالسجلات المالية ذات بيانات خاطئة ({invalideFinancialItems.Count}): {String.Join(",", invalideFinancialItems.ToArray())}";
 
                 ImportExportTbl newImport = new ImportExportTbl()
                 {

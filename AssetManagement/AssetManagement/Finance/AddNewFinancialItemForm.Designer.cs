@@ -69,10 +69,10 @@ namespace AssetManagement.Finance
             this.outgoingAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.outgoingAmountLabel = new System.Windows.Forms.Label();
             this.outgoingToPanel = new System.Windows.Forms.Panel();
-            this.manageIncomingTypeBtn = new System.Windows.Forms.Button();
             this.outgoingTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.outgoingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.relatedOutgoingLabel = new System.Windows.Forms.Label();
+            this.manageOutgoingTypeBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.outgoingToSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.sectionTblBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -80,10 +80,10 @@ namespace AssetManagement.Finance
             this.departmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.outgoingToSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.manageIncomingTypeBtn = new System.Windows.Forms.Button();
             this.incomingFromLabel = new System.Windows.Forms.Label();
             this.incomingTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.incomingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.manageOutgoingTypeBtn = new System.Windows.Forms.Button();
             this.incomingFromPanel = new System.Windows.Forms.Panel();
             this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
@@ -406,6 +406,7 @@ namespace AssetManagement.Finance
             this.financialItemSubDeptLabel.Size = new System.Drawing.Size(61, 24);
             this.financialItemSubDeptLabel.TabIndex = 230;
             this.financialItemSubDeptLabel.Text = "الوحدة:";
+            this.financialItemSubDeptLabel.Visible = false;
             // 
             // financialItemSubDeptLookUpEdit
             // 
@@ -426,6 +427,7 @@ namespace AssetManagement.Finance
             this.financialItemSubDeptLookUpEdit.Properties.ValueMember = "ID";
             this.financialItemSubDeptLookUpEdit.Size = new System.Drawing.Size(321, 30);
             this.financialItemSubDeptLookUpEdit.TabIndex = 235;
+            this.financialItemSubDeptLookUpEdit.Visible = false;
             // 
             // subDepartmentTblBindingSource
             // 
@@ -572,17 +574,6 @@ namespace AssetManagement.Finance
             this.outgoingToPanel.TabIndex = 100;
             this.outgoingToPanel.Visible = false;
             // 
-            // manageIncomingTypeBtn
-            // 
-            this.manageIncomingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manageIncomingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageIncomingTypeBtn.Location = new System.Drawing.Point(374, 4);
-            this.manageIncomingTypeBtn.Name = "manageIncomingTypeBtn";
-            this.manageIncomingTypeBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageIncomingTypeBtn.TabIndex = 115;
-            this.manageIncomingTypeBtn.UseVisualStyleBackColor = true;
-            this.manageIncomingTypeBtn.Click += new System.EventHandler(this.manageIncomingTypeBtn_Click);
-            // 
             // outgoingTypeLookUpEdit
             // 
             this.outgoingTypeLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -620,6 +611,17 @@ namespace AssetManagement.Finance
             this.relatedOutgoingLabel.TabIndex = 120;
             this.relatedOutgoingLabel.Text = "صادر إلى:";
             this.relatedOutgoingLabel.Visible = false;
+            // 
+            // manageOutgoingTypeBtn
+            // 
+            this.manageOutgoingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageOutgoingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageOutgoingTypeBtn.Location = new System.Drawing.Point(374, 4);
+            this.manageOutgoingTypeBtn.Name = "manageOutgoingTypeBtn";
+            this.manageOutgoingTypeBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageOutgoingTypeBtn.TabIndex = 65;
+            this.manageOutgoingTypeBtn.UseVisualStyleBackColor = true;
+            this.manageOutgoingTypeBtn.Click += new System.EventHandler(this.manageOutgoingTypeBtn_Click);
             // 
             // label1
             // 
@@ -708,6 +710,17 @@ namespace AssetManagement.Finance
             this.subDepartmentTblBindingSource1.DataMember = "SubDepartmentTbl";
             this.subDepartmentTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
+            // manageIncomingTypeBtn
+            // 
+            this.manageIncomingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageIncomingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageIncomingTypeBtn.Location = new System.Drawing.Point(374, 4);
+            this.manageIncomingTypeBtn.Name = "manageIncomingTypeBtn";
+            this.manageIncomingTypeBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageIncomingTypeBtn.TabIndex = 115;
+            this.manageIncomingTypeBtn.UseVisualStyleBackColor = true;
+            this.manageIncomingTypeBtn.Click += new System.EventHandler(this.manageIncomingTypeBtn_Click);
+            // 
             // incomingFromLabel
             // 
             this.incomingFromLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -742,17 +755,6 @@ namespace AssetManagement.Finance
             // 
             this.incomingTypeTblBindingSource.DataMember = "IncomingTypeTbl";
             this.incomingTypeTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // manageOutgoingTypeBtn
-            // 
-            this.manageOutgoingTypeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manageOutgoingTypeBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageOutgoingTypeBtn.Location = new System.Drawing.Point(374, 4);
-            this.manageOutgoingTypeBtn.Name = "manageOutgoingTypeBtn";
-            this.manageOutgoingTypeBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageOutgoingTypeBtn.TabIndex = 65;
-            this.manageOutgoingTypeBtn.UseVisualStyleBackColor = true;
-            this.manageOutgoingTypeBtn.Click += new System.EventHandler(this.manageOutgoingTypeBtn_Click);
             // 
             // incomingFromPanel
             // 
@@ -795,6 +797,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = this.outgoingTypeTblTableAdapter;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -803,6 +806,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
