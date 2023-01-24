@@ -20,18 +20,11 @@ namespace AssetManagement.Finance
 
         void UpdateTotals(IQueryable<FinancialItemVw> qryToGetTotals)
         {
-            incomesInUSDToolStripStatusLabel.Text = $"مجموع الواردات بالدولار: {qryToGetTotals.Where(fv1 => fv1.العملة == "دولار أمريكي").CalcIncomingOfFinancialItems()}";
-            incomesInEURToolStripStatusLabel.Text = $"مجموع الواردات باليورو: {qryToGetTotals.Where(fv1 => fv1.العملة == "يورو أوروبي").CalcIncomingOfFinancialItems()}";
-            incomesInSYPToolStripStatusLabel.Text = $"مجموع الواردات بالتركي: {qryToGetTotals.Where(fv1 => fv1.العملة == "ليرة تركية").CalcIncomingOfFinancialItems()}";
-            outgoingInUSDToolStripStatusLabel.Text = $"مجموع الصادرات بالدولار: {qryToGetTotals.Where(fv1 => fv1.العملة == "دولار أمريكي").CalcOutgoingOfFinancialItems()}";
-            outgoingInEURToolStripStatusLabel.Text = $"مجموع الصادرات باليورو: {qryToGetTotals.Where(fv1 => fv1.العملة == "يورو أوروبي").CalcOutgoingOfFinancialItems()}";
-            outgoingInSYPToolStripStatusLabel.Text = $"مجموع الصادرات بالتركي: {qryToGetTotals.Where(fv1 => fv1.العملة == "ليرة تركية").CalcOutgoingOfFinancialItems()}";
-
             totalsDataGridView.Rows.Clear();
             List<string> currenciesList = StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName).ToList();
             foreach (string oneCu in currenciesList)
             {
-                var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu);
+                var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu).GetTotalFinancialTableOfLevel();
                 totalsDataGridView.Rows.Add(new object[] { oneCu, qryToGetTotals_OneCurr.CalcIncomingOfFinancialItems(), qryToGetTotals_OneCurr.CalcOutgoingOfFinancialItems(), qryToGetTotals_OneCurr.CalcRecycledOfFinancialItems() });
             }
         }

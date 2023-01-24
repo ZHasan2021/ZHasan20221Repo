@@ -16,6 +16,9 @@ namespace AssetManagement.Finance
     {
         bool updateExisted = false;
         int existedRecord = 0;
+        int incomingMawazanat = 0;
+        int outgoingMawazanat = 0;
+
         public AddNewFinancialItemForm()
         {
             InitializeComponent();
@@ -44,6 +47,10 @@ namespace AssetManagement.Finance
             this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
             this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemCategoryTbl);
+
+            incomingMawazanat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == "موازنات واردة").First().ID;
+            outgoingMawazanat = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == "موازنات صادرة").First().ID;
+
             this.MinimumSize = this.Size;
             manageFinancialItemCategoryTblBtn.Visible = StaticCode.activeUserRole.ManageFinancialItemCategories == true;
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
@@ -321,7 +328,7 @@ namespace AssetManagement.Finance
                                 subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
                             FinancialItemTbl newIcomingRec = new FinancialItemTbl()
                             {
-                                FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue),
+                                FinancialItemCategory = incomingMawazanat,
                                 FinancialItemSubDept = subD_Incoming,
                                 FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim(),
                                 FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue),
@@ -410,6 +417,7 @@ namespace AssetManagement.Finance
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "وارد");
             financialItemCategoryLookUpEdit.EditValue = null;
+            financialItemCategoryLookUpEdit.Enabled = true;
             incomingAmountNumericUpDown.Enabled = incomingFromLabel.Visible = incomingFromPanel.Visible = true;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = false;
             incomingAmountNumericUpDown.Value =
@@ -420,16 +428,12 @@ namespace AssetManagement.Finance
         {
             financialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fii1 => fii1.IsIncomingOrOutgiung == "صادر");
             financialItemCategoryLookUpEdit.EditValue = null;
+            financialItemCategoryLookUpEdit.Enabled = true;
             incomingAmountNumericUpDown.Enabled = incomingFromLabel.Visible = incomingFromPanel.Visible = false;
             outgoingAmountNumericUpDown.Enabled = outgoingToPanel.Visible = true;
             incomingAmountNumericUpDown.Value =
                 outgoingAmountNumericUpDown.Value = 0;
             outgoingTypeLookUpEdit_EditValueChanged(sender, e);
-        }
-
-        private void incomingOutgoingRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            financialItemCategoryLookUpEdit.Properties.DataSource = financialItemCategoryTblBindingSource;
         }
 
         private void financialItemCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)
@@ -468,9 +472,13 @@ namespace AssetManagement.Finance
         private void outgoingTypeLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             relatedOutgoingLabel.Visible = outgoingToSectionLookUpEdit.Visible = outgoingToDeptLookUpEdit.Visible = outgoingToSubDeptLookUpEdit.Visible = outgoingTypeLookUpEdit.Text == "صادرات معلقة";
+            financialItemCategoryLookUpEdit.Enabled = true;
 
             if (outgoingTypeLookUpEdit.Text == "صادرات معلقة")
             {
+                financialItemCategoryLookUpEdit.EditValue = outgoingMawazanat;
+                financialItemCategoryLookUpEdit.Enabled = false;
+
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
                     outgoingToSectionLookUpEdit.Visible = true;
@@ -498,10 +506,6 @@ namespace AssetManagement.Finance
                     financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
                 }
             }
-
-            //outgoingToSectionLookUpEdit.EditValue =
-            //outgoingToDeptLookUpEdit.EditValue =
-            //outgoingToSubDeptLookUpEdit.EditValue = null;
         }
 
         private void manageOutgoingTypeBtn_Click(object sender, EventArgs e)

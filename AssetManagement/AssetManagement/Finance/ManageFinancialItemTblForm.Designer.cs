@@ -71,13 +71,6 @@ namespace AssetManagement.Finance
             this.editFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.deleteFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.totalsStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.incomesInUSDToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.incomesInEURToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.incomesInSYPToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.outgoingInUSDToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.outgoingInEURToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.outgoingInSYPToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
             this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colمعرفالسجلالمالي = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -96,6 +89,7 @@ namespace AssetManagement.Finance
             this.colالمبلغالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالعملة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colملاحظاتإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.ficatRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.curRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -109,7 +103,6 @@ namespace AssetManagement.Finance
             this.colTotalIncoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalOutgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalRecycled = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource1)).BeginInit();
@@ -122,9 +115,9 @@ namespace AssetManagement.Finance
             this.financialItemTblBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            this.totalsStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
@@ -135,7 +128,6 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemVwBindingSource
@@ -405,60 +397,6 @@ namespace AssetManagement.Finance
             this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
             this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
             // 
-            // totalsStatusStrip
-            // 
-            this.totalsStatusStrip.AutoSize = false;
-            this.totalsStatusStrip.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalsStatusStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.totalsStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.incomesInUSDToolStripStatusLabel,
-            this.incomesInEURToolStripStatusLabel,
-            this.incomesInSYPToolStripStatusLabel,
-            this.outgoingInUSDToolStripStatusLabel,
-            this.outgoingInEURToolStripStatusLabel,
-            this.outgoingInSYPToolStripStatusLabel});
-            this.totalsStatusStrip.Location = new System.Drawing.Point(0, 854);
-            this.totalsStatusStrip.Name = "totalsStatusStrip";
-            this.totalsStatusStrip.Size = new System.Drawing.Size(1385, 40);
-            this.totalsStatusStrip.TabIndex = 7;
-            this.totalsStatusStrip.Visible = false;
-            // 
-            // incomesInUSDToolStripStatusLabel
-            // 
-            this.incomesInUSDToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.incomesInUSDToolStripStatusLabel.Name = "incomesInUSDToolStripStatusLabel";
-            this.incomesInUSDToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
-            // incomesInEURToolStripStatusLabel
-            // 
-            this.incomesInEURToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.incomesInEURToolStripStatusLabel.Name = "incomesInEURToolStripStatusLabel";
-            this.incomesInEURToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
-            // incomesInSYPToolStripStatusLabel
-            // 
-            this.incomesInSYPToolStripStatusLabel.BackColor = System.Drawing.Color.Silver;
-            this.incomesInSYPToolStripStatusLabel.Name = "incomesInSYPToolStripStatusLabel";
-            this.incomesInSYPToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
-            // outgoingInUSDToolStripStatusLabel
-            // 
-            this.outgoingInUSDToolStripStatusLabel.BackColor = System.Drawing.Color.Gainsboro;
-            this.outgoingInUSDToolStripStatusLabel.Name = "outgoingInUSDToolStripStatusLabel";
-            this.outgoingInUSDToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
-            // outgoingInEURToolStripStatusLabel
-            // 
-            this.outgoingInEURToolStripStatusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.outgoingInEURToolStripStatusLabel.Name = "outgoingInEURToolStripStatusLabel";
-            this.outgoingInEURToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
-            // outgoingInSYPToolStripStatusLabel
-            // 
-            this.outgoingInSYPToolStripStatusLabel.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.outgoingInSYPToolStripStatusLabel.Name = "outgoingInSYPToolStripStatusLabel";
-            this.outgoingInSYPToolStripStatusLabel.Size = new System.Drawing.Size(0, 34);
-            // 
             // financialItemCategoryGridControl
             // 
             this.financialItemCategoryGridControl.DataSource = this.financialItemVwBindingSource;
@@ -657,6 +595,10 @@ namespace AssetManagement.Finance
             this.colملاحظاتإضافية.VisibleIndex = 13;
             this.colملاحظاتإضافية.Width = 250;
             // 
+            // notesRepositoryItemMemoEdit
+            // 
+            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
+            // 
             // ficatRepositoryItemLookUpEdit
             // 
             this.ficatRepositoryItemLookUpEdit.AutoHeight = false;
@@ -843,10 +785,6 @@ namespace AssetManagement.Finance
             this.colTotalRecycled.ReadOnly = true;
             this.colTotalRecycled.Width = 125;
             // 
-            // notesRepositoryItemMemoEdit
-            // 
-            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
-            // 
             // ManageFinancialItemTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -856,10 +794,9 @@ namespace AssetManagement.Finance
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
+            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsDockPanel);
             this.Controls.Add(this.mainTabFormControl);
-            this.Controls.Add(this.financialItemTblBindingNavigator);
-            this.Controls.Add(this.totalsStatusStrip);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -881,10 +818,9 @@ namespace AssetManagement.Finance
             this.financialItemTblBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            this.totalsStatusStrip.ResumeLayout(false);
-            this.totalsStatusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
@@ -895,7 +831,6 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -935,13 +870,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
-        private System.Windows.Forms.StatusStrip totalsStatusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel incomesInUSDToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel incomesInEURToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel incomesInSYPToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInUSDToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInEURToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel outgoingInSYPToolStripStatusLabel;
         private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colمعرفالسجلالمالي;

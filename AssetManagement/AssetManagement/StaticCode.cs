@@ -1568,20 +1568,23 @@ namespace AssetManagement
                     {
                         if (incomingFromVal == "من المستوى الأعلى")
                         {
-                            string levelName = "";
-                            if (activeUserRole.IsSectionIndependent == true)
-                                levelName = sectionName;
-                            else if (activeUserRole.IsDepartmentIndependent == true)
-                                levelName = departmentName;
-                            else
-                                levelName = subDepartmentName;
+                            rowStartNo++;
+                            continue;
 
-                            var similarRecord = mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.المبلغ_الصادر == incomingAmountVal && fiv1.العملة == curVal && fiv1.وارد_أم_صادر == "وارد" && fiv1.نوع_الصادر == "صادرات معلقة" && fiv1.صادر_إلى == levelName && fiv1.تاريخ_تحرير_السجل > fiDateVal && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year);
-                            if (similarRecord.Any())
-                            {
-                                rowStartNo++;
-                                continue;
-                            }
+                            //string levelName = "";
+                            //if (activeUserRole.IsSectionIndependent == true)
+                            //    levelName = sectionName;
+                            //else if (activeUserRole.IsDepartmentIndependent == true)
+                            //    levelName = departmentName;
+                            //else
+                            //    levelName = subDepartmentName;
+
+                            //var similarRecord = mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.المبلغ_الصادر == incomingAmountVal && fiv1.العملة == curVal && fiv1.وارد_أم_صادر == "وارد" && fiv1.نوع_الصادر == "صادرات معلقة" && fiv1.صادر_إلى == levelName && fiv1.تاريخ_تحرير_السجل > fiDateVal && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year);
+                            //if (similarRecord.Any())
+                            //{
+                            //    rowStartNo++;
+                            //    continue;
+                            //}
                         }
                     }
 
@@ -1691,12 +1694,16 @@ namespace AssetManagement
             return (fivResult);
         }
 
+        /// <summary>
+        /// للحصول على الواردات من المستوى الأعلى فقط لليوزر الحالي مع الصادرات المباشرة دون المعلقة
+        /// </summary>
+        /// <param name="fiitQry"></param>
+        /// <returns></returns>
         public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemTbl> fiitQry)
         {
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
             return (fivQry.GetTotalFinancialTableOfLevel());
         }
-
     }
 }
