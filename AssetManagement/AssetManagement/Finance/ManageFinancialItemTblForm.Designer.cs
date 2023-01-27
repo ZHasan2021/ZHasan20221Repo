@@ -32,11 +32,12 @@ namespace AssetManagement.Finance
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageFinancialItemTblForm));
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
             this.financialItemVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -711,6 +712,14 @@ namespace AssetManagement.Finance
             // 
             this.totalsDataGridView.AllowUserToAddRows = false;
             this.totalsDataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.totalsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.totalsDataGridView.ColumnHeadersHeight = 55;
             this.totalsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.totalsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -726,8 +735,8 @@ namespace AssetManagement.Finance
             this.totalsDataGridView.RowHeadersVisible = false;
             this.totalsDataGridView.RowHeadersWidth = 51;
             this.totalsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.totalsDataGridView.RowTemplate.Height = 24;
             this.totalsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.totalsDataGridView.Size = new System.Drawing.Size(645, 263);
@@ -735,8 +744,8 @@ namespace AssetManagement.Finance
             // 
             // colFiCurrency
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.colFiCurrency.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.colFiCurrency.DefaultCellStyle = dataGridViewCellStyle2;
             this.colFiCurrency.HeaderText = "العملة";
             this.colFiCurrency.MinimumWidth = 6;
             this.colFiCurrency.Name = "colFiCurrency";
@@ -745,13 +754,13 @@ namespace AssetManagement.Finance
             // 
             // colTotalIncoming
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = "-";
-            this.colTotalIncoming.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colTotalIncoming.HeaderText = "إجمالي الوارد";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "-";
+            this.colTotalIncoming.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colTotalIncoming.HeaderText = "إجمالي الوارد العام";
             this.colTotalIncoming.MinimumWidth = 6;
             this.colTotalIncoming.Name = "colTotalIncoming";
             this.colTotalIncoming.ReadOnly = true;
@@ -759,13 +768,13 @@ namespace AssetManagement.Finance
             // 
             // colTotalOutgoing
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "-";
-            this.colTotalOutgoing.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colTotalOutgoing.HeaderText = "إجمالي الصادر";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "-";
+            this.colTotalOutgoing.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colTotalOutgoing.HeaderText = "إجمالي الصادر العام";
             this.colTotalOutgoing.MinimumWidth = 6;
             this.colTotalOutgoing.Name = "colTotalOutgoing";
             this.colTotalOutgoing.ReadOnly = true;
@@ -773,13 +782,13 @@ namespace AssetManagement.Finance
             // 
             // colTotalRecycled
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = "-";
-            this.colTotalRecycled.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colTotalRecycled.HeaderText = "إجمالي المدور";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = "-";
+            this.colTotalRecycled.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colTotalRecycled.HeaderText = "إجمالي المدور العام";
             this.colTotalRecycled.MinimumWidth = 6;
             this.colTotalRecycled.Name = "colTotalRecycled";
             this.colTotalRecycled.ReadOnly = true;
@@ -794,9 +803,9 @@ namespace AssetManagement.Finance
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
-            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.Controls.Add(this.totalsDockPanel);
             this.Controls.Add(this.mainTabFormControl);
+            this.Controls.Add(this.financialItemTblBindingNavigator);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -896,11 +905,11 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.Docking.DockPanel totalsDockPanel;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private System.Windows.Forms.DataGridView totalsDataGridView;
+        private DevExpress.XtraBars.Docking.DockManager mainDockManager;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit notesRepositoryItemMemoEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFiCurrency;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalIncoming;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalOutgoing;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalRecycled;
-        private DevExpress.XtraBars.Docking.DockManager mainDockManager;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit notesRepositoryItemMemoEdit;
     }
 }

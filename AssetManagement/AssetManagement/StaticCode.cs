@@ -1682,7 +1682,14 @@ namespace AssetManagement
             return (fivQry.CalcRecycledOfFinancialItems());
         }
 
-        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemVw> fivQry)
+
+
+        /// <summary>
+        /// للحصول على الواردات من المستوى الأعلى فقط لليوزر الحالي مع الصادرات المباشرة دون المعلقة
+        /// </summary>
+        /// <param name="fivQry"></param>
+        /// <returns></returns>
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel_Default(this IQueryable<FinancialItemVw> fivQry)
         {
             var fivResult = fivQry;
             if (StaticCode.activeUserRole.IsSectionIndependent == true)
@@ -1694,16 +1701,46 @@ namespace AssetManagement
             return (fivResult);
         }
 
-        /// <summary>
-        /// للحصول على الواردات من المستوى الأعلى فقط لليوزر الحالي مع الصادرات المباشرة دون المعلقة
-        /// </summary>
-        /// <param name="fiitQry"></param>
-        /// <returns></returns>
-        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemTbl> fiitQry)
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel_Default(this IQueryable<FinancialItemTbl> fiitQry)
         {
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
-            return (fivQry.GetTotalFinancialTableOfLevel());
+            return (fivQry.GetTotalFinancialTableOfLevel_Default());
+        }
+
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemVw> fivQry, int levelRank, string sectionName, string deptName, string subDeptName)
+        {
+            var fivResult = fivQry;
+            switch (levelRank)
+            {
+                case 1:
+                    fivResult = fivQry.Where(idoufv1 => (idoufv1.وارد_أم_صادر == "وارد" && (idoufv1.جهة_الإيراد == "أخرى" || (idoufv1.جهة_الإيراد == "من المستوى الأعلى" && idoufv1.الدائرة == StaticCode.PMName && idoufv1.القسم == StaticCode.PMName && idoufv1.الوحدة == StaticCode.PMName))) || (idoufv1.وارد_أم_صادر == "صادر" && idoufv1.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+                    break;
+                case 2:
+                    fivResult = fivQry.Where(idoufv2 => (idoufv2.وارد_أم_صادر == "وارد" && (idoufv2.جهة_الإيراد == "أخرى" || (idoufv2.جهة_الإيراد == "من المستوى الأعلى" && idoufv2.الدائرة == sectionName && idoufv2.القسم == "" && idoufv2.الوحدة == ""))) || (idoufv2.وارد_أم_صادر == "صادر" && idoufv2.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+                    break;
+                case 3:
+                    fivResult = fivQry.Where(idoufv3 => (idoufv3.وارد_أم_صادر == "وارد" && (idoufv3.جهة_الإيراد == "أخرى" || (idoufv3.جهة_الإيراد == "من المستوى الأعلى" && idoufv3.الدائرة == sectionName && idoufv3.القسم == deptName && idoufv3.الوحدة == ""))) || (idoufv3.وارد_أم_صادر == "صادر" && idoufv3.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+                    break;
+                case 4:
+                    fivResult = fivQry.Where(idoufv4 => (idoufv4.وارد_أم_صادر == "وارد" && (idoufv4.جهة_الإيراد == "أخرى" || (idoufv4.جهة_الإيراد == "من المستوى الأعلى" && idoufv4.الدائرة == sectionName && idoufv4.القسم == deptName && idoufv4.الوحدة == subDeptName))) || (idoufv4.وارد_أم_صادر == "صادر" && idoufv4.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
+                    break;
+                default:
+                    break;
+            }
+            return (fivResult);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="fiitQry"></param>
+        /// <returns></returns>
+        public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemTbl> fiitQry, int levelRank, string sectionName, string deptName, string subDeptName)
+        {
+            List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
+            var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
+            return (fivQry.GetTotalFinancialTableOfLevel(levelRank, sectionName, deptName, subDeptName));
         }
     }
 }

@@ -21,8 +21,10 @@ namespace AssetManagement.Finance
     public partial class FinancialReportsForm : Form
     {
         IQueryable<FinancialItemTbl> financialItemsQry = null;
-        int levelSelected = 0;
-        int levelID = 0;
+        int fiSubLevel = 0;
+        string sectionName = "";
+        string deptName = "";
+        string subDeptName = "";
 
         public FinancialReportsForm()
         {
@@ -105,6 +107,9 @@ namespace AssetManagement.Finance
             progressPanel1.Visible = true;
 
             #region Set and apply the financial items query
+            sectionName = "";
+            deptName = "";
+            subDeptName = "";
             if (!(searchAllRadioButton.Checked || searchBySectionCheckBox.Checked || searchByDepartmentCheckBox.Checked || searchBySubDepartmentCheckBox.Checked))
             {
                 mainAlertControl.Show(this, "اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle);
@@ -149,6 +154,7 @@ namespace AssetManagement.Finance
             }
 
             financialItemsQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
+            fiSubLevel = 1;
             if (searchBySectionCheckBox.Checked)
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
@@ -159,10 +165,11 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    levelID = Convert.ToInt32(searchBySectionLookUpEdit.EditValue);
                     List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
                     List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
                     financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    sectionName = searchBySectionLookUpEdit.Text;
+                    fiSubLevel = 2;
                 }
             }
             if (searchByDepartmentCheckBox.Checked)
@@ -175,9 +182,10 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    levelID = Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue);
                     List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
                     financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    deptName = searchByDepartmentSearchLookUpEdit.Text;
+                    fiSubLevel = 3;
                 }
             }
             if (searchBySubDepartmentCheckBox.Checked)
@@ -190,8 +198,9 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    levelID = Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue);
                     financialItemsQry = financialItemsQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
+                    subDeptName = searchBySubDepartmentSearchLookUpEdit.Text;
+                    fiSubLevel = 4;
                 }
             }
             if (searchWithinPeriodCheckBox.Checked)
@@ -269,9 +278,9 @@ namespace AssetManagement.Finance
                 totalCycledNumericUpDown.Value = Convert.ToDecimal(financialItemsQry.CalcRecycledOfFinancialItems());
 
                 subLevelTotalsTreeView.Nodes.Clear();
-                switch (levelSelected)
+                switch (fiSubLevel)
                 {
-                    case 0:
+                    case 1:
                         var subLevelQuery1 = StaticCode.mainDbContext.SectionTbls;
                         foreach (SectionTbl oneItem in subLevelQuery1)
                         {
@@ -286,7 +295,7 @@ namespace AssetManagement.Finance
                             oneNode.Nodes.Add($"المدور: {levelQry1.CalcRecycledOfFinancialItems()}");
                         }
                         break;
-                    case 1:
+                    case 2:
                         var subLevelQuery2 = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
                         foreach (DepartmentTbl oneItem in subLevelQuery2)
                         {
@@ -300,7 +309,7 @@ namespace AssetManagement.Finance
                             oneNode.Nodes.Add($"المدور: {levelQry2.CalcRecycledOfFinancialItems()}");
                         }
                         break;
-                    case 2:
+                    case 3:
                         var subLevelQuery3 = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => sdpt1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue));
                         foreach (SubDepartmentTbl oneItem in subLevelQuery3)
                         {
@@ -334,35 +343,62 @@ namespace AssetManagement.Finance
                     if (!financialItemsQryVw_OneCurr.Any())
                         continue;
 
-                    #region General financial report
                     string sheet_Title_Name1 = "السجل المالي العام للـ PM";
                     string sheet_Title_Name1_short = "عام PM";
-                    int fiSubLevel = 0;
+                    string sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
+                    string sheet_Title_Name2_short = "تفصيلي PM";
                     if (searchAllRadioButton.Checked)
                     {
                         sheet_Title_Name1 = "السجل المالي العام للـ PM";
                         sheet_Title_Name1_short = "عام PM";
-                        fiSubLevel = 1;
+                        sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
+                        sheet_Title_Name2_short = "تفصيلي PM";
                     }
                     if (searchBySectionCheckBox.Checked)
                     {
                         sheet_Title_Name1 = "السجل المالي العام للدائرة";
                         sheet_Title_Name1_short = "عام دائرة";
-                        fiSubLevel = 2;
+                        sheet_Title_Name2 = "السجل المالي التفصيلي للدائرة";
+                        sheet_Title_Name2_short = "تفصيلي دائرة";
                     }
                     if (searchByDepartmentCheckBox.Checked)
                     {
                         sheet_Title_Name1 = "السجل المالي العام للقسم";
                         sheet_Title_Name1_short = "عام قسم";
-                        fiSubLevel = 3;
+                        sheet_Title_Name2 = "السجل المالي التفصيلي للقسم";
+                        sheet_Title_Name2_short = "تفصيلي قسم";
                     }
                     if (searchBySubDepartmentCheckBox.Checked)
                     {
                         sheet_Title_Name1 = "السجل المالي العام للوحدة";
                         sheet_Title_Name1_short = "عام وحدة";
-                        fiSubLevel = 4;
+                        sheet_Title_Name2 = "السجل المالي التفصيلي للوحدة";
+                        sheet_Title_Name2_short = "تفصيلي وحدة";
                     }
                     sheet_Title_Name1_short += " - " + oneCurr;
+                    sheet_Title_Name2_short += " - " + oneCurr;
+                    var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel(fiSubLevel, sectionName, deptName, subDeptName);
+                    var financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr;
+                    switch (fiSubLevel)
+                    {
+                        case 1:
+                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh1 => fivh1.الدائرة == StaticCode.PMName && fivh1.القسم == StaticCode.PMName && fivh1.الوحدة == StaticCode.PMName);
+                            break;
+                        case 2:
+                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh2 => fivh2.القسم == deptName && fivh2.الوحدة == subDeptName);
+                            break;
+                        case 3:
+                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == subDeptName);
+                            break;
+                        default:
+                            break;
+                    }
+                    double totalIncoming_HeadSubLevel = financialItemsQryVw_OneCurr_Head.CalcIncomingOfFinancialItems();
+                    double totalOutgoing_HeadSubLevel = financialItemsQryVw_OneCurr_Head.CalcOutgoingOfFinancialItems();
+                    var directOutgoingSubLevelQry = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
+                    double totalRecycled_HeadSubLevel = financialItemsQryVw_OneCurr_Head.CalcRecycledOfFinancialItems();
+
+                    #region General financial report
                     ExcelWorksheet generalFinancialReportWs = financialReport_SubLevelsWb.Worksheets.Add(sheet_Title_Name1_short);
                     generalFinancialReportWs.View.ShowGridLines = false;
                     generalFinancialReportWs.View.RightToLeft = true;
@@ -556,11 +592,6 @@ namespace AssetManagement.Finance
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow, 6, outgoingRow, 7])
                             {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للـ PM");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع الـ PM");
-                                richText2.Color = Color.Red;
                                 cells.Merge = true;
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -569,6 +600,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
+                                cells.Value = "مجموع صادرات الـ PM (المباشرة والمعلقة)";
                             }
                             outgoingRow++;
                             #endregion
@@ -769,11 +801,6 @@ namespace AssetManagement.Finance
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow2, 6, outgoingRow2, 7])
                             {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للدائرة");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع الدائرة");
-                                richText2.Color = Color.Red;
                                 cells.Merge = true;
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -782,6 +809,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
+                                cells.Value = "مجموع صادرات رئيس الدائرة (المباشرة والمعلقة)";
                             }
                             outgoingRow2++;
                             #endregion
@@ -982,11 +1010,6 @@ namespace AssetManagement.Finance
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow3, 6, outgoingRow3, 7])
                             {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للقسم");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع القسم");
-                                richText2.Color = Color.Red;
                                 cells.Merge = true;
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -995,6 +1018,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
+                                cells.Value = "مجموع صادرات رئيس القسم (المباشرة والمعلقة)";
                             }
                             outgoingRow3++;
                             #endregion
@@ -1195,11 +1219,6 @@ namespace AssetManagement.Finance
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow4, 6, outgoingRow4, 7])
                             {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للوحدة");
-                                richText1.Color = Color.Black;
-                                //ExcelRichText richText2 = textValue.Add(" دون أفرع الوحدة");
-                                //richText2.Color = Color.Red;
                                 cells.Merge = true;
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -1208,6 +1227,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
+                                cells.Value = "مجموع صادرات رئيس الوحدة (المباشرة والمعلقة)";
                             }
                             outgoingRow4++;
                             #endregion
@@ -1245,34 +1265,15 @@ namespace AssetManagement.Finance
                     #endregion
 
                     #region Detailed fincnaial report
-                    string sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
-                    string sheet_Title_Name2_short = "تفصيلي PM";
-                    if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                    {
-                        sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
-                        sheet_Title_Name2_short = "تفصيلي PM";
-                    }
-                    else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                    {
-                        sheet_Title_Name2 = "السجل المالي التفصيلي للدائرة";
-                        sheet_Title_Name2_short = "تفصيلي دائرة";
-                    }
-                    else
-                    {
-                        sheet_Title_Name2 = "السجل المالي التفصيلي للقسم";
-                        sheet_Title_Name2_short = "تفصيلي قسم";
-                    }
-                    sheet_Title_Name2_short += " - " + oneCurr;
-
                     ExcelWorksheet detailedFinancialReportWs = financialReport_SubLevelsWb.Worksheets.Add(sheet_Title_Name2_short);
                     detailedFinancialReportWs.View.ShowGridLines = false;
                     detailedFinancialReportWs.View.RightToLeft = true;
                     detailedFinancialReportWs.View.ZoomScale = 70;
                     detailedFinancialReportWs.Column(2).Width = 15;
-                    detailedFinancialReportWs.Column(3).Width = 18;
+                    detailedFinancialReportWs.Column(3).Width = 35;
                     detailedFinancialReportWs.Column(4).Width = 34;
-                    detailedFinancialReportWs.Column(5).Width = 38;
-                    detailedFinancialReportWs.Column(6).Width = 47;
+                    detailedFinancialReportWs.Column(5).Width = 44;
+                    detailedFinancialReportWs.Column(6).Width = 41;
                     detailedFinancialReportWs.Column(8).Width = 20;
                     detailedFinancialReportWs.Column(9).Width =
                     detailedFinancialReportWs.Column(10).Width =
@@ -1283,6 +1284,9 @@ namespace AssetManagement.Finance
                     detailedFinancialReportWs.Column(15).Width = 45;
                     detailedFinancialReportWs.Column(16).Width = 20;
                     detailedFinancialReportWs.Column(17).Width = 30;
+                    detailedFinancialReportWs.Row(8).Height =
+                    detailedFinancialReportWs.Row(9).Height =
+                    detailedFinancialReportWs.Row(10).Height = 22;
                     using (var cells = detailedFinancialReportWs.Cells[2, 2, 3, 7])
                     {
                         cells.Style.Font.Name = "Calibri";
@@ -1297,1753 +1301,602 @@ namespace AssetManagement.Finance
                         cells.Value = sheet_Title_Name2;
                     }
                     startRow = 6;
+
+                    #region Totals of current level
+                    int figuresRow = startRow + 2;
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow, 2])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204));
+                        cells.Value = totalIncoming_HeadSubLevel;
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow, 3])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204));
+                        cells.Value = "مجموع إيرادات الـ PM";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow, 5])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcIncomingOfFinancialItems();
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Value = "إجمالي الإيرادات العامة";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 2])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 230, 153));
+                        cells.Value = totalOutgoing_HeadSubLevel;
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 3])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 230, 153));
+                        cells.Value = "مجموع صادرات الـ PM المباشرة والمعلقة";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 5])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 203, 173));
+                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 6])
+                    {
+                        ExcelRichTextCollection textValue = cells.RichText;
+                        ExcelRichText richText1 = textValue.Add("إجمالي الصادرات العامة (المباشرة فقط) للـ PM");
+                        richText1.Color = Color.Black;
+                        ExcelRichText richText2 = textValue.Add(" وتفرعاته");
+                        richText2.Color = Color.Red;
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 203, 173));
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 2])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.Font.Color.SetColor(Color.Red);
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 224, 180));
+                        cells.Value = totalRecycled_HeadSubLevel;
+                    }
+                    string recycledHeadText = "مدور بيد الـ PM";
                     switch (fiSubLevel)
                     {
                         case 1:
-                            detailedFinancialReportWs.Row(startRow).Height = 27;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                cells.Value = StaticCode.PMName;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
-                                cells.Value = "السجل المالي الكلي للـ PM";
-                            }
-                            startRow += 2;
-
-                            #region Recycled of sub-level in detail
-                            var financialItemsQryVw_OneCurr_Head1 = financialItemsQryVw_OneCurr.Where(fivh1 => fivh1.الدائرة == StaticCode.PMName && fivh1.القسم == StaticCode.PMName && fivh1.الوحدة == StaticCode.PMName);
-                            double totalIncoming_HeadSubLevel1 = financialItemsQryVw_OneCurr_Head1.CalcIncomingOfFinancialItems();
-                            double totalOutgoing_HeadSubLevel1 = financialItemsQryVw_OneCurr_Head1.CalcOutgoingOfFinancialItems();
-                            var directOutgoingSubLevelQry1 = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
-                            var incomingOrDirectOutgoingSubLevelQry1 = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel();
-                            double totalRecycled_HeadSubLevel1 = financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems();
-
-                            int figuresRow1 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel1;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = "مجموع إيرادات الـ PM";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                                cells.Value = totalOutgoing_HeadSubLevel1;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للـ PM");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع الـ PM");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1 + 2, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = totalRecycled_HeadSubLevel1;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1 + 2, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = "مدور بيد الـ PM";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1 + 2, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Value = directOutgoingSubLevelQry1.CalcOutgoingOfFinancialItems();
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1 + 2, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة فقط) للـ PM");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" وتفرعاته");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            }
-                            figuresRow1 += 5;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 2, figuresRow1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المدور الكلي لل PM وتفرعاته";
-                            }
-                            figuresRow1++;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 2, figuresRow1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            figuresRow1 += 3;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow1, 2, figuresRow1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "تفصيل المدور الكلي للـ PM وتفرعاته";
-                            }
-                            figuresRow1++;
-                            int allRecycledRow1 = figuresRow1;
-                            List<string> sects = financialItemsQryVw_OneCurr.Select(fvi1 => fvi1.الدائرة).Distinct().OrderBy(fvi11 => fvi11).ToList();
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow1, 2, allRecycledRow1 + sects.Count() - 1, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow1, 5, allRecycledRow1 + sects.Count() - 1, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المجموع";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow1, 6, allRecycledRow1 + sects.Count() - 1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            foreach (string oneSct in sects)
-                            {
-                                Application.DoEvents();
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow1, 2, allRecycledRow1, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = ("مدور بيد رئيس دائرة " + oneSct).Replace("رئيس دائرة " + StaticCode.PMName, StaticCode.PMName);
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow1, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd1 => fvd1.الدائرة == oneSct).CalcRecycledOfFinancialItems();
-                                }
-                                allRecycledRow1++;
-                            }
-                            figuresRow1 = allRecycledRow1;
-                            #endregion
-
-                            #region Incoming and Direct outgoing of sub-level in detail
-                            int tableRow1 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[tableRow1, 9, tableRow1, 17])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(208, 206, 206));
-                            }
-                            detailedFinancialReportWs.Cells[tableRow1, 9].Value = "الوارد";
-                            detailedFinancialReportWs.Cells[tableRow1, 10].Value = "الصادر";
-                            detailedFinancialReportWs.Cells[tableRow1, 11].Value = "العملة";
-                            detailedFinancialReportWs.Cells[tableRow1, 12].Value = "جهة الإيراد";
-                            detailedFinancialReportWs.Cells[tableRow1, 13].Value = "نوع الصادر";
-                            detailedFinancialReportWs.Cells[tableRow1, 14].Value = "صادر إلى";
-                            detailedFinancialReportWs.Cells[tableRow1, 15].Value = "البيان";
-                            detailedFinancialReportWs.Cells[tableRow1, 16].Value = "التاريخ";
-                            detailedFinancialReportWs.Cells[tableRow1, 17].Value = "لربط الخلايا";
-                            if (incomingOrDirectOutgoingSubLevelQry1.Any())
-                            {
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow1 + 1, 9, tableRow1 + incomingOrDirectOutgoingSubLevelQry1.Count(), 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow1 + incomingOrDirectOutgoingSubLevelQry1.Count() + 1, 9, tableRow1 + incomingOrDirectOutgoingSubLevelQry1.Count() + 1, 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(192, 153, 239));
-                                }
-                                tableRow1++;
-                                foreach (var oneRec in incomingOrDirectOutgoingSubLevelQry1)
-                                {
-                                    detailedFinancialReportWs.Cells[tableRow1, 9].Value = oneRec.المبلغ_الوارد;
-                                    detailedFinancialReportWs.Cells[tableRow1, 10].Value = oneRec.المبلغ_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow1, 11].Value = oneRec.العملة;
-                                    detailedFinancialReportWs.Cells[tableRow1, 12].Value = oneRec.جهة_الإيراد;
-                                    detailedFinancialReportWs.Cells[tableRow1, 13].Value = oneRec.نوع_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow1, 14].Value = oneRec.صادر_إلى;
-                                    detailedFinancialReportWs.Cells[tableRow1, 15].Value = oneRec.بيان_السجل_المالي;
-                                    detailedFinancialReportWs.Cells[tableRow1, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
-                                    detailedFinancialReportWs.Cells[tableRow1, 17].Value = oneRec.اسم_البند_المالي;
-                                    tableRow1++;
-                                }
-                                detailedFinancialReportWs.Cells[tableRow1, 9].Value = incomingOrDirectOutgoingSubLevelQry1.CalcIncomingOfFinancialItems();
-                                detailedFinancialReportWs.Cells[tableRow1, 10].Value = incomingOrDirectOutgoingSubLevelQry1.CalcOutgoingOfFinancialItems();
-                                tableRow1++;
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow1, 9])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = "قيمة المدور";
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow1, 10])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = incomingOrDirectOutgoingSubLevelQry1.CalcRecycledOfFinancialItems();
-                                }
-                                tableRow1++;
-                            }
-                            #endregion
-
-                            #region Total amounts of sub-levels
-                            startRow = Math.Max(figuresRow1, tableRow1) + 3;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
-                            }
-                            startRow++;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي إيرادات";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي صادرات (مباشر ومعلق)";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "مدور المستوى بدون المستوى الادنى";
-                            }
-                            startRow++;
-                            foreach (string oneSct in StaticCode.mainDbContext.SectionTbls.Select(sct1 => sct1.SectionName).OrderBy(sct11 => sct11).ToList())
-                            {
-                                Application.DoEvents();
-
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = oneSct;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd1 => fvd1.الدائرة == oneSct).CalcIncomingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd1 => fvd1.الدائرة == oneSct).CalcOutgoingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd1 => fvd1.الدائرة == oneSct).CalcRecycledOfFinancialItems();
-                                }
-                                startRow++;
-                            }
-
-                            #region Total Row
-                            //using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                            //{
-                            //    cells.Style.Font.Name = "Calibri";
-                            //    cells.Style.Font.Size = 14.0F;
-                            //    cells.Merge = true;
-                            //    cells.Style.Font.Bold = true;
-                            //    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            //    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            //    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            //    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            //    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            //    cells.Value = "الإجمالي";
-                            //}
-                            //using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                            //{
-                            //    cells.Style.Font.Name = "Calibri";
-                            //    cells.Style.Font.Size = 14.0F;
-                            //    cells.Merge = true;
-                            //    cells.Style.Font.Bold = true;
-                            //    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            //    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            //    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            //    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            //    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            //    cells.Value = financialItemsQryVw.CalcIncomingOfFinancialItems();
-                            //}
-                            //using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                            //{
-                            //    cells.Style.Font.Name = "Calibri";
-                            //    cells.Style.Font.Size = 14.0F;
-                            //    cells.Merge = true;
-                            //    cells.Style.Font.Bold = true;
-                            //    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            //    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            //    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            //    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            //    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            //    cells.Value = financialItemsQryVw.CalcOutgoingOfFinancialItems();
-                            //}
-                            //using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                            //{
-                            //    cells.Style.Font.Name = "Calibri";
-                            //    cells.Style.Font.Size = 14.0F;
-                            //    cells.Merge = true;
-                            //    cells.Style.Font.Bold = true;
-                            //    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            //    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            //    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            //    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            //    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            //    cells.Value = financialItemsQryVw.CalcHeadRecycledOfFinancialItems();
-                            //}
-                            //startRow++;
-                            #endregion
-                            #endregion
+                            recycledHeadText = "مدور بيد الـ PM";
                             break;
                         case 2:
-                            detailedFinancialReportWs.Row(startRow).Height = 27;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                cells.Value = searchBySectionLookUpEdit.Text;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
-                                cells.Value = "السجل المالي الكلي للدائرة";
-                            }
-                            startRow += 2;
-
-                            #region Recycled of sub-level in detail
-                            var financialItemsQryVw_OneCurr_Head2 = financialItemsQryVw_OneCurr.Where(fivh2 => fivh2.القسم == "" && fivh2.الوحدة == "");
-                            double totalIncoming_HeadSubLevel2 = financialItemsQryVw_OneCurr_Head2.CalcIncomingOfFinancialItems();
-                            double totalOutgoing_HeadSubLevel2 = financialItemsQryVw_OneCurr_Head2.CalcOutgoingOfFinancialItems();
-                            var directOutgoingSubLevelQry2 = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
-                            var incomingOrDirectOutgoingSubLevelQry2 = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel();
-                            double totalRecycled_HeadSubLevel2 = financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems();
-
-                            int figuresRow2 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel2;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = "مجموع إيرادات رئيس الدائرة";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                                cells.Value = totalOutgoing_HeadSubLevel2;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للدائرة");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع الدائرة");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2 + 2, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = totalRecycled_HeadSubLevel2;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2 + 2, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = "مدور بيد رئيس الدائرة";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2 + 2, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Value = directOutgoingSubLevelQry2.CalcOutgoingOfFinancialItems();
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2 + 2, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة فقط) للدائرة");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" وتفرعاتها");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            }
-                            figuresRow2 += 5;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 2, figuresRow2, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المدور الكلي للدائرة وتفرعاتها";
-                            }
-                            figuresRow2++;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 2, figuresRow2, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            figuresRow2 += 3;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow2, 2, figuresRow2, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "تفصيل المدور الكلي للدائرة وتفرعاتها";
-                            }
-                            figuresRow2++;
-                            int allRecycledRow2 = figuresRow2;
-                            List<string> depts = financialItemsQryVw_OneCurr.Select(fvi2 => fvi2.القسم).Distinct().OrderBy(fvi22 => fvi22).ToList();
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow2, 2, allRecycledRow2 + depts.Count() - 1, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow2, 5, allRecycledRow2 + depts.Count() - 1, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المجموع";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow2, 6, allRecycledRow2 + depts.Count() - 1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            foreach (string oneDpt in depts)
-                            {
-                                Application.DoEvents();
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow2, 2, allRecycledRow2, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = "مدور بيد رئيس " + ((oneDpt != "") ? ("قسم " + oneDpt) : "الدائرة");
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow2, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd2 => fvd2.القسم == oneDpt).CalcRecycledOfFinancialItems();
-                                }
-                                allRecycledRow2++;
-                            }
-                            figuresRow2 = allRecycledRow2;
-                            #endregion
-
-                            #region Incoming and Direct outgoing of sub-level in detail
-                            int tableRow2 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[tableRow2, 9, tableRow2, 17])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(208, 206, 206));
-                            }
-                            detailedFinancialReportWs.Cells[tableRow2, 9].Value = "الوارد";
-                            detailedFinancialReportWs.Cells[tableRow2, 10].Value = "الصادر";
-                            detailedFinancialReportWs.Cells[tableRow2, 11].Value = "العملة";
-                            detailedFinancialReportWs.Cells[tableRow2, 12].Value = "جهة الإيراد";
-                            detailedFinancialReportWs.Cells[tableRow2, 13].Value = "نوع الصادر";
-                            detailedFinancialReportWs.Cells[tableRow2, 14].Value = "صادر إلى";
-                            detailedFinancialReportWs.Cells[tableRow2, 15].Value = "البيان";
-                            detailedFinancialReportWs.Cells[tableRow2, 16].Value = "التاريخ";
-                            detailedFinancialReportWs.Cells[tableRow2, 17].Value = "لربط الخلايا";
-                            if (incomingOrDirectOutgoingSubLevelQry2.Any())
-                            {
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow2 + 1, 9, tableRow2 + incomingOrDirectOutgoingSubLevelQry2.Count(), 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow2 + incomingOrDirectOutgoingSubLevelQry2.Count() + 1, 9, tableRow2 + incomingOrDirectOutgoingSubLevelQry2.Count() + 1, 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(192, 153, 239));
-                                }
-                                tableRow2++;
-                                foreach (var oneRec in incomingOrDirectOutgoingSubLevelQry2)
-                                {
-                                    detailedFinancialReportWs.Cells[tableRow2, 9].Value = oneRec.المبلغ_الوارد;
-                                    detailedFinancialReportWs.Cells[tableRow2, 10].Value = oneRec.المبلغ_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow2, 11].Value = oneRec.العملة;
-                                    detailedFinancialReportWs.Cells[tableRow2, 12].Value = oneRec.جهة_الإيراد;
-                                    detailedFinancialReportWs.Cells[tableRow2, 13].Value = oneRec.نوع_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow2, 14].Value = oneRec.صادر_إلى;
-                                    detailedFinancialReportWs.Cells[tableRow2, 15].Value = oneRec.بيان_السجل_المالي;
-                                    detailedFinancialReportWs.Cells[tableRow2, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
-                                    detailedFinancialReportWs.Cells[tableRow2, 17].Value = oneRec.اسم_البند_المالي;
-                                    tableRow2++;
-                                }
-                                detailedFinancialReportWs.Cells[tableRow2, 9].Value = incomingOrDirectOutgoingSubLevelQry2.CalcIncomingOfFinancialItems();
-                                detailedFinancialReportWs.Cells[tableRow2, 10].Value = incomingOrDirectOutgoingSubLevelQry2.CalcOutgoingOfFinancialItems();
-                                tableRow2++;
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow2, 9])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = "قيمة المدور";
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow2, 10])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = incomingOrDirectOutgoingSubLevelQry2.CalcRecycledOfFinancialItems();
-                                }
-                                tableRow2++;
-                            }
-                            #endregion
-
-                            #region Total amounts of sub-levels
-                            startRow = Math.Max(figuresRow2, tableRow2) + 3;
-
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "ملخص مختصر لإيرادات وصادرات الدائرة وتفرعاتها";
-                            }
-                            startRow++;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي إيرادات";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي صادرات (مباشر ومعلق)";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "مدور المستوى بدون المستوى الادنى";
-                            }
-                            startRow++;
-                            foreach (string oneDpt in depts)
-                            {
-                                Application.DoEvents();
-
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    string oneDpt1 = oneDpt;
-                                    if (oneDpt1 == "")
-                                        oneDpt1 = "إدارة الدائرة";
-                                    cells.Value = oneDpt1;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd2 => fvd2.القسم == oneDpt).CalcIncomingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd2 => fvd2.القسم == oneDpt).CalcOutgoingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd2 => fvd2.القسم == oneDpt).CalcRecycledOfFinancialItems();
-                                }
-                                startRow++;
-                            }
-                            #endregion
+                            recycledHeadText = "مدور بيد رئيس الدائرة";
                             break;
                         case 3:
-                            detailedFinancialReportWs.Row(startRow).Height = 27;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                cells.Value = searchByDepartmentSearchLookUpEdit.Text;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
-                                cells.Value = "السجل المالي الكلي للقسم";
-                            }
-                            startRow += 2;
-
-                            #region Recycled of sub-level in detail
-                            var financialItemsQryVw_OneCurr_Head3 = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == "");
-                            double totalIncoming_HeadSubLevel3 = financialItemsQryVw_OneCurr_Head3.CalcIncomingOfFinancialItems();
-                            double totalOutgoing_HeadSubLevel3 = financialItemsQryVw_OneCurr_Head3.CalcOutgoingOfFinancialItems();
-                            var directOutgoingSubLevelQry3 = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
-                            var incomingOrDirectOutgoingSubLevelQry3 = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel();
-                            double totalRecycled_HeadSubLevel3 = financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems();
-
-                            int figuresRow3 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel3;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = "مجموع إيرادات رئيس القسم";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                                cells.Value = totalOutgoing_HeadSubLevel3;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للقسم");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" دون أفرع القسم");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3 + 2, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = totalRecycled_HeadSubLevel3;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3 + 2, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = "مدور بيد رئيس القسم";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3 + 2, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Value = directOutgoingSubLevelQry3.CalcOutgoingOfFinancialItems();
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3 + 2, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة فقط) للقسم");
-                                richText1.Color = Color.Black;
-                                ExcelRichText richText2 = textValue.Add(" وتفرعاته");
-                                richText2.Color = Color.Red;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            }
-                            figuresRow3 += 5;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 2, figuresRow3, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المدور الكلي للقسم وتفرعاته";
-                            }
-                            figuresRow3++;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 2, figuresRow3, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            figuresRow3 += 3;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow3, 2, figuresRow3, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "تفصيل المدور الكلي للقسم وتفرعاته";
-                            }
-                            figuresRow3++;
-                            int allRecycledRow3 = figuresRow3;
-                            List<string> sdepts = financialItemsQryVw_OneCurr.Select(fvi3 => fvi3.الوحدة).Distinct().OrderBy(fvi33 => fvi33).ToList();
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow3, 2, allRecycledRow3 + sdepts.Count() - 1, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow3, 5, allRecycledRow3 + sdepts.Count() - 1, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المجموع";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow3, 6, allRecycledRow3 + sdepts.Count() - 1, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            foreach (string oneSDpt in sdepts)
-                            {
-                                Application.DoEvents();
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow3, 2, allRecycledRow3, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = "مدور بيد رئيس " + ((oneSDpt != "") ? ("وحدة " + oneSDpt) : "القسم");
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[allRecycledRow3, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvd3 => fvd3.الوحدة == oneSDpt).CalcRecycledOfFinancialItems();
-                                }
-                                allRecycledRow3++;
-                            }
-                            figuresRow3 = allRecycledRow3;
-                            #endregion
-
-                            #region Incoming and Direct outgoing of sub-level in detail
-                            int tableRow3 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[tableRow3, 9, tableRow3, 17])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(208, 206, 206));
-                            }
-                            detailedFinancialReportWs.Cells[tableRow3, 9].Value = "الوارد";
-                            detailedFinancialReportWs.Cells[tableRow3, 10].Value = "الصادر";
-                            detailedFinancialReportWs.Cells[tableRow3, 11].Value = "العملة";
-                            detailedFinancialReportWs.Cells[tableRow3, 12].Value = "جهة الإيراد";
-                            detailedFinancialReportWs.Cells[tableRow3, 13].Value = "نوع الصادر";
-                            detailedFinancialReportWs.Cells[tableRow3, 14].Value = "صادر إلى";
-                            detailedFinancialReportWs.Cells[tableRow3, 15].Value = "البيان";
-                            detailedFinancialReportWs.Cells[tableRow3, 16].Value = "التاريخ";
-                            detailedFinancialReportWs.Cells[tableRow3, 17].Value = "لربط الخلايا";
-                            if (incomingOrDirectOutgoingSubLevelQry3.Any())
-                            {
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow3 + 1, 9, tableRow3 + incomingOrDirectOutgoingSubLevelQry3.Count(), 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow3 + incomingOrDirectOutgoingSubLevelQry3.Count() + 1, 9, tableRow3 + incomingOrDirectOutgoingSubLevelQry3.Count() + 1, 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(192, 153, 239));
-                                }
-                                tableRow3++;
-                                foreach (var oneRec in incomingOrDirectOutgoingSubLevelQry3)
-                                {
-                                    detailedFinancialReportWs.Cells[tableRow3, 9].Value = oneRec.المبلغ_الوارد;
-                                    detailedFinancialReportWs.Cells[tableRow3, 10].Value = oneRec.المبلغ_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow3, 11].Value = oneRec.العملة;
-                                    detailedFinancialReportWs.Cells[tableRow3, 12].Value = oneRec.جهة_الإيراد;
-                                    detailedFinancialReportWs.Cells[tableRow3, 13].Value = oneRec.نوع_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow3, 14].Value = oneRec.صادر_إلى;
-                                    detailedFinancialReportWs.Cells[tableRow3, 15].Value = oneRec.بيان_السجل_المالي;
-                                    detailedFinancialReportWs.Cells[tableRow3, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
-                                    detailedFinancialReportWs.Cells[tableRow3, 17].Value = oneRec.اسم_البند_المالي;
-                                    tableRow3++;
-                                }
-                                detailedFinancialReportWs.Cells[tableRow3, 9].Value = incomingOrDirectOutgoingSubLevelQry3.CalcIncomingOfFinancialItems();
-                                detailedFinancialReportWs.Cells[tableRow3, 10].Value = incomingOrDirectOutgoingSubLevelQry3.CalcOutgoingOfFinancialItems();
-                                tableRow3++;
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow3, 9])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = "قيمة المدور";
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow3, 10])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = incomingOrDirectOutgoingSubLevelQry3.CalcRecycledOfFinancialItems();
-                                }
-                                tableRow3++;
-                            }
-                            #endregion
-
-                            #region Total amounts of sub-levels
-                            startRow = Math.Max(figuresRow3, tableRow3) + 3;
-
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "ملخص مختصر لإيرادات وصادرات القسم وتفرعاته";
-                            }
-                            startRow++;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي إيرادات";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي صادرات (مباشر ومعلق)";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "مدور المستوى بدون المستوى الادنى";
-                            }
-                            startRow++;
-                            foreach (string oneSDpt in sdepts)
-                            {
-                                Application.DoEvents();
-
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    string oneSDpt1 = oneSDpt;
-                                    if (oneSDpt1 == "")
-                                        oneSDpt1 = "إدارة القسم";
-                                    cells.Value = oneSDpt1;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvsd3 => fvsd3.الوحدة == oneSDpt).CalcIncomingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvsd3 => fvsd3.الوحدة == oneSDpt).CalcOutgoingOfFinancialItems();
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Merge = true;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                    cells.Value = financialItemsQryVw_OneCurr.Where(fvsd3 => fvsd3.الوحدة == oneSDpt).CalcRecycledOfFinancialItems();
-                                }
-                                startRow++;
-                            }
-                            #endregion
+                            recycledHeadText = "مدور بيد رئيس القسم";
                             break;
                         case 4:
-                            detailedFinancialReportWs.Row(startRow).Height = 27;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                                cells.Value = searchBySubDepartmentSearchLookUpEdit.Text;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
-                                cells.Value = "السجل المالي الكلي للوحدة";
-                            }
-                            startRow += 2;
-
-                            #region Recycled of sub-level in detail
-                            var financialItemsQryVw_OneCurr_Head4 = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == searchByDepartmentSearchLookUpEdit.Text);
-                            double totalIncoming_HeadSubLevel4 = financialItemsQryVw_OneCurr_Head4.CalcIncomingOfFinancialItems();
-                            double totalOutgoing_HeadSubLevel4 = financialItemsQryVw_OneCurr_Head4.CalcOutgoingOfFinancialItems();
-                            var directOutgoingSubLevelQry4 = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
-                            var incomingOrDirectOutgoingSubLevelQry4 = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel();
-                            double totalRecycled_HeadSubLevel4 = financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems();
-
-                            int figuresRow4 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel4;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = "مجموع إيرادات رئيس الوحدة";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                                cells.Value = totalOutgoing_HeadSubLevel4;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة والمعلقة) للوحدة");
-                                richText1.Color = Color.Black;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 230, 173));
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4 + 2, 2])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = totalRecycled_HeadSubLevel4;
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4 + 2, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Value = "مدور بيد رئيس الوحدة";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4 + 2, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Value = directOutgoingSubLevelQry4.CalcOutgoingOfFinancialItems();
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4 + 2, 6])
-                            {
-                                ExcelRichTextCollection textValue = cells.RichText;
-                                ExcelRichText richText1 = textValue.Add("مجموع (الصادرات المباشرة فقط) للوحدة");
-                                richText1.Color = Color.Black;
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                            }
-                            figuresRow4 += 5;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 2, figuresRow4, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المدور الكلي للوحدة";
-                            }
-                            figuresRow4++;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 2, figuresRow4, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            figuresRow4 += 3;
-                            using (var cells = detailedFinancialReportWs.Cells[figuresRow4, 2, figuresRow4, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "تفصيل المدور الكلي للوحدة";
-                            }
-                            figuresRow4++;
-                            int allRecycledRow4 = figuresRow4;
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow4, 2, allRecycledRow4, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow4, 5, allRecycledRow4, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = "المجموع";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow4, 6, allRecycledRow4, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
-                            }
-                            figuresRow4 = allRecycledRow4;
-                            #endregion
-
-                            #region Incoming and Direct outgoing of sub-level in detail
-                            int tableRow4 = startRow;
-                            using (var cells = detailedFinancialReportWs.Cells[tableRow4, 9, tableRow4, 17])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 11.0F;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(208, 206, 206));
-                            }
-                            detailedFinancialReportWs.Cells[tableRow4, 9].Value = "الوارد";
-                            detailedFinancialReportWs.Cells[tableRow4, 10].Value = "الصادر";
-                            detailedFinancialReportWs.Cells[tableRow4, 11].Value = "العملة";
-                            detailedFinancialReportWs.Cells[tableRow4, 12].Value = "جهة الإيراد";
-                            detailedFinancialReportWs.Cells[tableRow4, 13].Value = "نوع الصادر";
-                            detailedFinancialReportWs.Cells[tableRow4, 14].Value = "صادر إلى";
-                            detailedFinancialReportWs.Cells[tableRow4, 15].Value = "البيان";
-                            detailedFinancialReportWs.Cells[tableRow4, 16].Value = "التاريخ";
-                            detailedFinancialReportWs.Cells[tableRow4, 17].Value = "لربط الخلايا";
-                            if (incomingOrDirectOutgoingSubLevelQry4.Any())
-                            {
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow4 + 1, 9, tableRow4 + incomingOrDirectOutgoingSubLevelQry4.Count(), 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Size = 11.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow4 + incomingOrDirectOutgoingSubLevelQry4.Count() + 1, 9, tableRow4 + incomingOrDirectOutgoingSubLevelQry4.Count() + 1, 17])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(192, 153, 239));
-                                }
-                                tableRow4++;
-                                foreach (var oneRec in incomingOrDirectOutgoingSubLevelQry4)
-                                {
-                                    detailedFinancialReportWs.Cells[tableRow4, 9].Value = oneRec.المبلغ_الوارد;
-                                    detailedFinancialReportWs.Cells[tableRow4, 10].Value = oneRec.المبلغ_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow4, 11].Value = oneRec.العملة;
-                                    detailedFinancialReportWs.Cells[tableRow4, 12].Value = oneRec.جهة_الإيراد;
-                                    detailedFinancialReportWs.Cells[tableRow4, 13].Value = oneRec.نوع_الصادر;
-                                    detailedFinancialReportWs.Cells[tableRow4, 14].Value = oneRec.صادر_إلى;
-                                    detailedFinancialReportWs.Cells[tableRow4, 15].Value = oneRec.بيان_السجل_المالي;
-                                    detailedFinancialReportWs.Cells[tableRow4, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
-                                    detailedFinancialReportWs.Cells[tableRow4, 17].Value = oneRec.اسم_البند_المالي;
-                                    tableRow4++;
-                                }
-                                detailedFinancialReportWs.Cells[tableRow4, 9].Value = incomingOrDirectOutgoingSubLevelQry4.CalcIncomingOfFinancialItems();
-                                detailedFinancialReportWs.Cells[tableRow4, 10].Value = incomingOrDirectOutgoingSubLevelQry4.CalcOutgoingOfFinancialItems();
-                                tableRow4++;
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow4, 9])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = "قيمة المدور";
-                                }
-                                using (var cells = detailedFinancialReportWs.Cells[tableRow4, 10])
-                                {
-                                    cells.Style.Font.Name = "Calibri";
-                                    cells.Style.Font.Bold = true;
-                                    cells.Style.Font.Size = 12.0F;
-                                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                    cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
-                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                                    cells.Value = incomingOrDirectOutgoingSubLevelQry4.CalcRecycledOfFinancialItems();
-                                }
-                                tableRow4++;
-                            }
-                            #endregion
-
-                            #region Total amounts of sub-levels
-                            startRow = Math.Max(figuresRow4, tableRow4) + 3;
-
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "ملخص مختصر لإيرادات وصادرات الوحدة";
-                            }
-                            startRow++;
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي إيرادات";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "إجمالي صادرات (مباشر ومعلق)";
-                            }
-                            using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                            {
-                                cells.Style.Font.Name = "Calibri";
-                                cells.Style.Font.Size = 14.0F;
-                                cells.Merge = true;
-                                cells.Style.Font.Bold = true;
-                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = "مدور المستوى بدون المستوى الادنى";
-                            }
-                            startRow++;
-                            #endregion
+                            recycledHeadText = "مدور بيد رئيس الوحدة";
                             break;
                         default:
                             break;
                     }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 3])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 224, 180));
+                        cells.Value = recycledHeadText;
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 5])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.Font.Color.SetColor(Color.Red);
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
+                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems();
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
+                        cells.Value = "إجمالي المدور العام";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[figuresRow, 5, figuresRow + 2, 6])
+                    {
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                    }
+                    figuresRow += 6;
+                    #endregion
+
+                    #region Incoming and Direct outgoing of sub-level in detail
+                    detailedFinancialReportWs.Row(startRow).Height = 27;
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
+                        cells.Value = StaticCode.PMName;
+                    }
+                    string totalFinancialText = "السجل المالي الكلي للـ PM";
+                    switch (fiSubLevel)
+                    {
+                        case 1:
+                            totalFinancialText = "السجل المالي الكلي للـ PM";
+                            break;
+                        case 2:
+                            totalFinancialText = "السجل المالي الكلي للدائرة";
+                            break;
+                        case 3:
+                            totalFinancialText = "السجل المالي الكلي للقسم";
+                            break;
+                        case 4:
+                            totalFinancialText = "السجل المالي الكلي للوحدة";
+                            break;
+                        default:
+                            break;
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 10, startRow, 12])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
+                        cells.Value = totalFinancialText;
+                    }
+                    int tableRow = startRow + 2;
+                    using (var cells = detailedFinancialReportWs.Cells[tableRow, 9, tableRow, 17])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(208, 206, 206));
+                    }
+                    detailedFinancialReportWs.Cells[tableRow, 9].Value = "الإيرادات العامة";
+                    detailedFinancialReportWs.Cells[tableRow, 10].Value = "الصادرات العامة";
+                    detailedFinancialReportWs.Cells[tableRow, 11].Value = "العملة";
+                    detailedFinancialReportWs.Cells[tableRow, 12].Value = "جهة الإيراد";
+                    detailedFinancialReportWs.Cells[tableRow, 13].Value = "نوع الصادر";
+                    detailedFinancialReportWs.Cells[tableRow, 14].Value = "صادر إلى";
+                    detailedFinancialReportWs.Cells[tableRow, 15].Value = "البيان";
+                    detailedFinancialReportWs.Cells[tableRow, 16].Value = "التاريخ";
+                    detailedFinancialReportWs.Cells[tableRow, 17].Value = "لربط الخلايا";
+                    if (incomingOrDirectOutgoingSubLevelQry.Any())
+                    {
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count(), 17])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 17])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Bold = true;
+                            cells.Style.Font.Size = 12.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(192, 153, 239));
+                        }
+                        tableRow++;
+                        foreach (var oneRec in incomingOrDirectOutgoingSubLevelQry)
+                        {
+                            detailedFinancialReportWs.Cells[tableRow, 9].Value = oneRec.المبلغ_الوارد;
+                            detailedFinancialReportWs.Cells[tableRow, 10].Value = oneRec.المبلغ_الصادر;
+                            detailedFinancialReportWs.Cells[tableRow, 11].Value = oneRec.العملة;
+                            detailedFinancialReportWs.Cells[tableRow, 12].Value = oneRec.جهة_الإيراد;
+                            detailedFinancialReportWs.Cells[tableRow, 13].Value = oneRec.نوع_الصادر;
+                            detailedFinancialReportWs.Cells[tableRow, 14].Value = oneRec.صادر_إلى;
+                            detailedFinancialReportWs.Cells[tableRow, 15].Value = oneRec.بيان_السجل_المالي;
+                            detailedFinancialReportWs.Cells[tableRow, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
+                            detailedFinancialReportWs.Cells[tableRow, 17].Value = oneRec.اسم_البند_المالي;
+                            tableRow++;
+                        }
+                        detailedFinancialReportWs.Cells[tableRow, 9].Value = incomingOrDirectOutgoingSubLevelQry.CalcIncomingOfFinancialItems();
+                        detailedFinancialReportWs.Cells[tableRow, 10].Value = incomingOrDirectOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
+                        tableRow++;
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow, 9])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Bold = true;
+                            cells.Style.Font.Size = 12.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
+                            cells.Value = "قيمة المدور العام";
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow, 10])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Bold = true;
+                            cells.Style.Font.Size = 12.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
+                            cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems();
+                        }
+                        tableRow++;
+                    }
+                    #endregion
+
+                    #region Recycled of sub-levels of current level
+                    List<string> subLevelNames = new List<string>();
+                    if (fiSubLevel <= 3)
+                    {
+                        string detailedRecycledText = "تفصيل المدور العام للـ PM وتفرعاته";
+                        switch (fiSubLevel)
+                        {
+                            case 1:
+                                detailedRecycledText = "تفصيل المدور العام للـ PM وتفرعاته";
+                                break;
+                            case 2:
+                                detailedRecycledText = "تفصيل المدور العام للدائرة وتفرعاتها";
+                                break;
+                            case 3:
+                                detailedRecycledText = "تفصيل المدور العام للقسم وتفرعاته";
+                                break;
+                            default:
+                                break;
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[figuresRow, 2, figuresRow, 6])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = detailedRecycledText;
+                        }
+                        figuresRow++;
+                        int allRecycledRow = figuresRow;
+                        switch (fiSubLevel)
+                        {
+                            case 1:
+                                subLevelNames = financialItemsQryVw_OneCurr.Select(sln1 => sln1.الدائرة).Distinct().OrderBy(sln1 => sln1).Distinct().ToList();
+                                break;
+                            case 2:
+                                subLevelNames = financialItemsQryVw_OneCurr.Select(sln2 => sln2.القسم).Distinct().OrderBy(sln2 => sln2).Distinct().ToList();
+                                break;
+                            case 3:
+                                subLevelNames = financialItemsQryVw_OneCurr.Select(sln3 => sln3.الوحدة).Distinct().OrderBy(sln3 => sln3).Distinct().ToList();
+                                break;
+                            default:
+                                break;
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 2, allRecycledRow + subLevelNames.Count() - 1, 4])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 5, allRecycledRow + subLevelNames.Count() - 1, 5])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                            cells.Value = "المجموع";
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 6, allRecycledRow + subLevelNames.Count() - 1, 6])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                            cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
+                        }
+
+                        foreach (string oneSLN in subLevelNames)
+                        {
+                            var subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
+                            switch (fiSubLevel)
+                            {
+                                case 1:
+                                    subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
+                                    break;
+                                case 2:
+                                    subLevelRecords = financialItemsQryVw_OneCurr.Where(sln2 => sln2.القسم == oneSLN);
+                                    break;
+                                case 3:
+                                    subLevelRecords = financialItemsQryVw_OneCurr.Where(sln3 => sln3.الوحدة == oneSLN);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            string recycledHeadSubText = "";
+                            switch (fiSubLevel)
+                            {
+                                case 1:
+                                    recycledHeadSubText = ((oneSLN == StaticCode.PMName) ? "مدور بيد PM" : ("المدور العام لدائرة " + oneSLN));
+                                    break;
+                                case 2:
+                                    recycledHeadSubText = ((oneSLN == "") ? "مدور بيد رئيس الدائرة" : ("المدور العام لقسم " + oneSLN));
+                                    break;
+                                case 3:
+                                    recycledHeadSubText = ((oneSLN == "") ? "مدور بيد رئيس القسم" : ("المدور العام لوحدة " + oneSLN));
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            Application.DoEvents();
+                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 2, allRecycledRow, 3])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Style.Font.Bold = true;
+                                cells.Merge = true;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = recycledHeadSubText;
+                            }
+                            using (var cells = detailedFinancialReportWs.Cells[allRecycledRow, 4])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = subLevelRecords.CalcRecycledOfFinancialItems();
+                            }
+                            allRecycledRow++;
+                        }
+                        figuresRow = allRecycledRow;
+                    }
+                    #endregion
+
+                    #region Total amounts of sub-levels
+                    startRow = Math.Max(figuresRow, tableRow) + 3;
+                    string subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
+                    switch (fiSubLevel)
+                    {
+                        case 1:
+                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
+                            break;
+                        case 2:
+                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الدائرة وتفرعاتها";
+                            break;
+                        case 3:
+                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات القسم وتفرعاته";
+                            break;
+                        default:
+                            break;
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
+                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        cells.Value = subLevelsOutlineText;
+                    }
+                    startRow++;
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        cells.Value = "المستوى";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        cells.Value = "إجمالي إيرادات رئيس المستوى";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        cells.Value = "إجمالي صادرات رئيس المستوى (مباشر ومعلق)";
+                    }
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        cells.Value = "مدور بيد رئيس المستوى";
+                    }
+                    startRow++;
+                    foreach (string oneSLN in subLevelNames)
+                    {
+                        var subLevel_HeadRecords = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel_Default();
+                        switch (fiSubLevel)
+                        {
+                            case 1:
+                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN).GetTotalFinancialTableOfLevel(2, oneSLN, "", "");
+                                break;
+                            case 2:
+                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln2 => sln2.الدائرة == sectionName && sln2.القسم == oneSLN).GetTotalFinancialTableOfLevel(3, sectionName, oneSLN, "");
+                                break;
+                            case 3:
+                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln3 => sln3.الدائرة == sectionName && sln3.القسم == deptName && sln3.الوحدة == oneSLN).GetTotalFinancialTableOfLevel(4, sectionName, deptName, oneSLN);
+                                break;
+                            default:
+                                break;
+                        }
+                        string outlineHeadSubText = "";
+                        switch (fiSubLevel)
+                        {
+                            case 1:
+                                outlineHeadSubText = ((oneSLN == StaticCode.PMName) ? StaticCode.PMName : ("مدور بيد رئيس دائرة " + oneSLN));
+                                break;
+                            case 2:
+                                outlineHeadSubText = ((oneSLN == "") ? "إدارة الدائرة" : ("مدور بيد رئيس قسم " + oneSLN));
+                                break;
+                            case 3:
+                                outlineHeadSubText = ((oneSLN == "") ? "إدارة القسم" : ("مدور بيد رئيس وحدة " + oneSLN));
+                                break;
+                            default:
+                                break;
+                        }
+
+                        Application.DoEvents();
+
+                        using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = outlineHeadSubText;
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = subLevel_HeadRecords.CalcIncomingOfFinancialItems();
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = subLevel_HeadRecords.CalcOutgoingOfFinancialItems();
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 11.0F;
+                            cells.Merge = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = subLevel_HeadRecords.CalcRecycledOfFinancialItems();
+                        }
+                        startRow++;
+                    }
+                    #endregion
                     #endregion
 
                     financialReport_SubLevelsEp.Save();
@@ -3197,7 +2050,7 @@ namespace AssetManagement.Finance
             fiRpWs.Cells[2, 8].Value = subDepartmentVal;
             fiRpWs.Cells[2, 9, 2, 10].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
             int startRow = 5;
-            var financialItemsQry2 = financialItemsQry.GetTotalFinancialTableOfLevel();
+            var financialItemsQry2 = financialItemsQry.GetTotalFinancialTableOfLevel(fiSubLevel, sectionName, deptName, subDeptName);
             if (financialItemsQry2.Any(fici1 => fici1.وارد_أم_صادر == "وارد"))
             {
                 foreach (FinancialItemVw oneFiV in financialItemsQry2.Where(fici1 => fici1.وارد_أم_صادر == "وارد"))
@@ -3272,24 +2125,21 @@ namespace AssetManagement.Finance
             manageSubDepartmentTblBtn.Visible = searchBySubDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
             if (searchAllRadioButton.Checked)
             {
-                levelSelected = 0;
-                levelID = 0;
+                fiSubLevel = 1;
             }
             if (searchBySectionCheckBox.Checked)
             {
-                levelSelected = 1;
+                fiSubLevel = 2;
             }
             if (searchByDepartmentCheckBox.Checked)
             {
-                levelSelected = 2;
-                levelID = 0;
+                fiSubLevel = 3;
             }
             if (searchBySubDepartmentCheckBox.Checked)
             {
-                levelSelected = 3;
-                levelID = 0;
+                fiSubLevel = 4;
             }
-            subLevelTotalsTreeView.Visible = levelSelected < 3;
+            subLevelTotalsTreeView.Visible = fiSubLevel < 4;
         }
 
         private void manageDepartmentTblBtn_Click(object sender, EventArgs e)

@@ -24,7 +24,7 @@ namespace AssetManagement.Finance
             List<string> currenciesList = StaticCode.mainDbContext.CurrencyTbls.Select(cu1 => cu1.CurrencyName).ToList();
             foreach (string oneCu in currenciesList)
             {
-                var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu).GetTotalFinancialTableOfLevel();
+                var qryToGetTotals_OneCurr = qryToGetTotals.Where(fiv1 => fiv1.العملة == oneCu).GetTotalFinancialTableOfLevel_Default();
                 totalsDataGridView.Rows.Add(new object[] { oneCu, qryToGetTotals_OneCurr.CalcIncomingOfFinancialItems(), qryToGetTotals_OneCurr.CalcOutgoingOfFinancialItems(), qryToGetTotals_OneCurr.CalcRecycledOfFinancialItems() });
             }
         }
