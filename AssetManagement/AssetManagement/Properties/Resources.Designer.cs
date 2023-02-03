@@ -393,6 +393,16 @@ namespace AssetManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2912628 {
+            get {
+                object obj = ResourceManager.GetObject("2912628", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _2912643 {
             get {
                 object obj = ResourceManager.GetObject("2912643", resourceCulture);
@@ -603,6 +613,16 @@ namespace AssetManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _52790_table_windows_icon {
+            get {
+                object obj = ResourceManager.GetObject("52790_table_windows_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _5323293 {
             get {
                 object obj = ResourceManager.GetObject("5323293", resourceCulture);
@@ -673,9 +693,29 @@ namespace AssetManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _6413901 {
+            get {
+                object obj = ResourceManager.GetObject("6413901", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _6423204 {
             get {
                 object obj = ResourceManager.GetObject("6423204", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _6497729 {
+            get {
+                object obj = ResourceManager.GetObject("6497729", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -726,6 +766,16 @@ namespace AssetManagement.Properties {
         internal static System.Drawing.Bitmap _7065712 {
             get {
                 object obj = ResourceManager.GetObject("7065712", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _7076599_notification_ring_alarm_bell_alert_icon {
+            get {
+                object obj = ResourceManager.GetObject("7076599_notification_ring_alarm_bell_alert_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -836,6 +886,16 @@ namespace AssetManagement.Properties {
         internal static System.Drawing.Bitmap _968279 {
             get {
                 object obj = ResourceManager.GetObject("968279", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _968753 {
+            get {
+                object obj = ResourceManager.GetObject("968753", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -156,8 +156,10 @@ namespace AssetManagement.Assets
                 placeOfPresenceTextBox.Text = currSrchRes.PlaceOfPresence;
                 currentStatusLookUpEdit.EditValue = currSrchRes.CurrentStatus;
                 actualCurrentPriceNumericUpDown.Value = Convert.ToDecimal(currSrchRes.ActualCurrentPrice);
-                modelLookUpEdit.Text = currSrchRes.Model;
-                colorComboBox.Text = currSrchRes.Color;
+                if (!String.IsNullOrEmpty(currSrchRes.Model))
+                    modelLookUpEdit.Text = currSrchRes.Model;
+                if (!String.IsNullOrEmpty(currSrchRes.Color))
+                    colorComboBox.Text = currSrchRes.Color;
                 volumeTextBox.Text = currSrchRes.Volume;
                 custodianNameTextBox.Text = currSrchRes.CustodianName;
                 ownerNameTextBox.Text = currSrchRes.OwnerName;
@@ -277,7 +279,7 @@ namespace AssetManagement.Assets
                 currSrchRes.CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue);
                 currSrchRes.ActualCurrentPrice = Convert.ToDouble(actualCurrentPriceNumericUpDown.Value);
                 currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue);
-                currSrchRes.Model = modelLookUpEdit.Text;
+                currSrchRes.Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text;
                 currSrchRes.Color = colorComboBox.Text;
                 currSrchRes.Volume = volumeTextBox.Text.Trim();
                 currSrchRes.CustodianName = custodianNameTextBox.Text.Trim();
@@ -294,12 +296,14 @@ namespace AssetManagement.Assets
                 currSrchRes.CarManufacturingYear = Convert.ToInt32(carManufacturingYearNumericUpDown.Value);
                 currSrchRes.CarChassisNumber = carChassisNumberTextBox.Text.Trim();
                 currSrchRes.CarEngineNumber = carEngineNumberTextBox.Text.Trim();
-                StaticCode.mainDbContext.SubmitChanges();
+                AssetMngDbDataContext tmpDbContext = new AssetMngDbDataContext();
+                tmpDbContext.SubmitChanges();
                 Thread.Sleep(500);
                 this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                //this.Close();
             }
-            catch
+            catch (Exception ex)
             {
                 mainAlertControl.Show(this, "خطأ في الحفظ", StaticCode.ApplicationTitle);
             }

@@ -47,7 +47,6 @@ namespace AssetManagement.Assets
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.actualCurrentPriceLabel = new System.Windows.Forms.Label();
             this.actualCurrentPriceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.currentStatusLabel = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@ namespace AssetManagement.Assets
             this.modelLabel = new System.Windows.Forms.Label();
             this.manageCurrencyTblBtn = new System.Windows.Forms.Button();
             this.purchasePriceCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.purchasePriceLabel = new System.Windows.Forms.Label();
             this.purchaseDateLabel = new System.Windows.Forms.Label();
             this.purchaseDateDateEdit = new DevExpress.XtraEditors.DateEdit();
@@ -153,11 +153,11 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceCurrencyLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceNumericUpDown)).BeginInit();
@@ -429,11 +429,6 @@ namespace AssetManagement.Assets
             this.isOldAssetRadioButton.Text = "قديم";
             this.isOldAssetRadioButton.UseVisualStyleBackColor = true;
             // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // actualCurrentPriceLabel
             // 
             this.actualCurrentPriceLabel.AutoSize = true;
@@ -575,6 +570,11 @@ namespace AssetManagement.Assets
             this.purchasePriceCurrencyLookUpEdit.Properties.ValueMember = "ID";
             this.purchasePriceCurrencyLookUpEdit.Size = new System.Drawing.Size(206, 28);
             this.purchasePriceCurrencyLookUpEdit.TabIndex = 230;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // purchasePriceLabel
             // 
@@ -928,6 +928,7 @@ namespace AssetManagement.Assets
             // assetCodeTextBox
             // 
             this.assetCodeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetCodeTextBox.Enabled = false;
             this.assetCodeTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assetCodeTextBox.Location = new System.Drawing.Point(882, 66);
             this.assetCodeTextBox.Name = "assetCodeTextBox";
@@ -1492,11 +1493,11 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualCurrentPriceNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentStatusLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceCurrencyLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchasePriceNumericUpDown)).EndInit();

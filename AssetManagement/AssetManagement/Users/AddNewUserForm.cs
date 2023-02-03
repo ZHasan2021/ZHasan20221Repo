@@ -51,6 +51,7 @@ namespace AssetManagement.Users
                 userSectionLookUpEdit.EditValue = existedUser.UserSection;
                 userDeptLookUpEdit.EditValue = existedUser.UserDept;
                 userPrefixTextBox.Text = existedUser.UserPrefix;
+                userRoleComboBox_SelectedIndexChanged(sender, e);
 
                 this.Text = "تعديل حساب موجود";
                 addNewUserBtn_OK.Text = "حفظ";

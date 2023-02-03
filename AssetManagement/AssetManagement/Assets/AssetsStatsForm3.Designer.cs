@@ -44,7 +44,6 @@ namespace AssetManagement.Assets
             this.aggValueRepositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.groupFieldBarEditItem = new DevExpress.XtraBars.BarEditItem();
             this.groupFieldRepositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.addSeriesBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.seriesFieldBarEditItem = new DevExpress.XtraBars.BarEditItem();
             this.seriesFieldBRepositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.showStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -57,12 +56,43 @@ namespace AssetManagement.Assets
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.mainDockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
-            this.customSearchDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.chartOptionsDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.customSearchDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+            this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.searchByCurrencyCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchBySectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.searchByCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchByMinorCategoryCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
+            this.searchByPurchaseDateCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchByMinorCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchByDepartmentCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchBySectionCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchByMainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchByInsertionDateCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchByPurchaseDatePanel = new System.Windows.Forms.Panel();
+            this.searchByPurchaseDateLabel_To = new System.Windows.Forms.Label();
+            this.searchByPurchaseDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
+            this.searchByPurchaseDateLabel_From = new System.Windows.Forms.Label();
+            this.searchByPurchaseDateDateEdit_From = new DevExpress.XtraEditors.DateEdit();
+            this.searchByDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchByMainCategoryCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
+            this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
+            this.searchByInsertionDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
+            this.searchByInsertionDateLabel_From = new System.Windows.Forms.Label();
+            this.searchByInsertionDateDateEdit_From = new DevExpress.XtraEditors.DateEdit();
+            this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.chartFullStackedBarNavigationPane = new DevExpress.XtraBars.Navigation.NavigationPane();
@@ -70,6 +100,14 @@ namespace AssetManagement.Assets
             this.chartFullStackedBar = new DevExpress.XtraCharts.ChartControl();
             this.navigationPage_BarChart = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.chartBar = new DevExpress.XtraCharts.ChartControl();
+            this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
+            this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
+            this.minorCategoryVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.minorCategoryVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter();
+            this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
+            this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aggValueRepositoryItemComboBox)).BeginInit();
@@ -79,9 +117,32 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDockManager)).BeginInit();
             this.hideContainerLeft.SuspendLayout();
-            this.customSearchDockPanel.SuspendLayout();
             this.chartOptionsDockPanel.SuspendLayout();
+            this.customSearchDockPanel.SuspendLayout();
+            this.controlContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
+            this.searchByPurchaseDatePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            this.searchByInsertionDatePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFullStackedBarNavigationPane)).BeginInit();
             this.chartFullStackedBarNavigationPane.SuspendLayout();
@@ -93,6 +154,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.chartBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toolbarFormControl1
@@ -100,7 +162,7 @@ namespace AssetManagement.Assets
             this.toolbarFormControl1.Location = new System.Drawing.Point(0, 0);
             this.toolbarFormControl1.Manager = this.toolbarFormManager1;
             this.toolbarFormControl1.Name = "toolbarFormControl1";
-            this.toolbarFormControl1.Size = new System.Drawing.Size(1303, 39);
+            this.toolbarFormControl1.Size = new System.Drawing.Size(1353, 39);
             this.toolbarFormControl1.TabIndex = 0;
             this.toolbarFormControl1.TabStop = false;
             this.toolbarFormControl1.ToolbarForm = this;
@@ -121,7 +183,6 @@ namespace AssetManagement.Assets
             this.aggValueBarEditItem,
             this.groupFieldBarEditItem,
             this.seriesFieldBarEditItem,
-            this.addSeriesBarCheckItem,
             this.showStatsBarButtonItem});
             this.toolbarFormManager1.MaxItemId = 8;
             this.toolbarFormManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -153,7 +214,6 @@ namespace AssetManagement.Assets
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.aggValueBarEditItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.groupFieldBarEditItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.addSeriesBarCheckItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.seriesFieldBarEditItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.showStatsBarButtonItem)});
             this.bar2.Text = "Custom 3";
@@ -183,7 +243,7 @@ namespace AssetManagement.Assets
             // 
             // groupFieldBarEditItem
             // 
-            this.groupFieldBarEditItem.Caption = "حسب";
+            this.groupFieldBarEditItem.Caption = "اعتماداً على حقل:";
             this.groupFieldBarEditItem.CaptionAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.groupFieldBarEditItem.CaptionToEditorIndent = 10;
             this.groupFieldBarEditItem.Edit = this.groupFieldRepositoryItemComboBox;
@@ -211,22 +271,15 @@ namespace AssetManagement.Assets
             "سنة إدراج الأصل في السجلات"});
             this.groupFieldRepositoryItemComboBox.Name = "groupFieldRepositoryItemComboBox";
             // 
-            // addSeriesBarCheckItem
-            // 
-            this.addSeriesBarCheckItem.Caption = "وحقل إضافي ";
-            this.addSeriesBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.AfterText;
-            this.addSeriesBarCheckItem.Id = 6;
-            this.addSeriesBarCheckItem.Name = "addSeriesBarCheckItem";
-            this.addSeriesBarCheckItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.addSeriesBarCheckItem_CheckedChanged);
-            // 
             // seriesFieldBarEditItem
             // 
-            this.seriesFieldBarEditItem.Caption = "ثم";
+            this.seriesFieldBarEditItem.Caption = "وحقل:";
+            this.seriesFieldBarEditItem.CaptionAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.seriesFieldBarEditItem.Edit = this.seriesFieldBRepositoryItemComboBox;
             this.seriesFieldBarEditItem.EditWidth = 150;
             this.seriesFieldBarEditItem.Id = 5;
             this.seriesFieldBarEditItem.Name = "seriesFieldBarEditItem";
-            this.seriesFieldBarEditItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.seriesFieldBarEditItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // seriesFieldBRepositoryItemComboBox
             // 
@@ -269,15 +322,15 @@ namespace AssetManagement.Assets
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 39);
             this.barDockControlTop.Manager = this.toolbarFormManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1303, 71);
+            this.barDockControlTop.Size = new System.Drawing.Size(1353, 71);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 785);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 826);
             this.barDockControlBottom.Manager = this.toolbarFormManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1303, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1353, 20);
             // 
             // barDockControlLeft
             // 
@@ -285,15 +338,15 @@ namespace AssetManagement.Assets
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 110);
             this.barDockControlLeft.Manager = this.toolbarFormManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 675);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 716);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1303, 110);
+            this.barDockControlRight.Location = new System.Drawing.Point(1353, 110);
             this.barDockControlRight.Manager = this.toolbarFormManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 675);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 716);
             // 
             // repositoryItemComboBox1
             // 
@@ -314,6 +367,8 @@ namespace AssetManagement.Assets
             this.mainDockManager.AutoHideContainers.AddRange(new DevExpress.XtraBars.Docking.AutoHideContainer[] {
             this.hideContainerLeft});
             this.mainDockManager.Form = this;
+            this.mainDockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.customSearchDockPanel});
             this.mainDockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -331,34 +386,11 @@ namespace AssetManagement.Assets
             // hideContainerLeft
             // 
             this.hideContainerLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.hideContainerLeft.Controls.Add(this.customSearchDockPanel);
             this.hideContainerLeft.Controls.Add(this.chartOptionsDockPanel);
             this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.hideContainerLeft.Location = new System.Drawing.Point(0, 110);
             this.hideContainerLeft.Name = "hideContainerLeft";
-            this.hideContainerLeft.Size = new System.Drawing.Size(26, 675);
-            // 
-            // customSearchDockPanel
-            // 
-            this.customSearchDockPanel.Controls.Add(this.controlContainer1);
-            this.customSearchDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.customSearchDockPanel.ID = new System.Guid("929966fb-eaca-444d-8f44-d7230c978c3a");
-            this.customSearchDockPanel.Location = new System.Drawing.Point(26, 80);
-            this.customSearchDockPanel.Name = "customSearchDockPanel";
-            this.customSearchDockPanel.Options.ShowCloseButton = false;
-            this.customSearchDockPanel.OriginalSize = new System.Drawing.Size(416, 200);
-            this.customSearchDockPanel.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.customSearchDockPanel.SavedIndex = 0;
-            this.customSearchDockPanel.Size = new System.Drawing.Size(416, 705);
-            this.customSearchDockPanel.Text = "بحث مخصص";
-            this.customSearchDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
-            // 
-            // controlContainer1
-            // 
-            this.controlContainer1.Location = new System.Drawing.Point(6, 32);
-            this.controlContainer1.Name = "controlContainer1";
-            this.controlContainer1.Size = new System.Drawing.Size(406, 669);
-            this.controlContainer1.TabIndex = 0;
+            this.hideContainerLeft.Size = new System.Drawing.Size(26, 716);
             // 
             // chartOptionsDockPanel
             // 
@@ -382,6 +414,441 @@ namespace AssetManagement.Assets
             this.dockPanel1_Container.Size = new System.Drawing.Size(376, 639);
             this.dockPanel1_Container.TabIndex = 0;
             // 
+            // customSearchDockPanel
+            // 
+            this.customSearchDockPanel.Controls.Add(this.controlContainer1);
+            this.customSearchDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.customSearchDockPanel.ID = new System.Guid("929966fb-eaca-444d-8f44-d7230c978c3a");
+            this.customSearchDockPanel.Location = new System.Drawing.Point(26, 110);
+            this.customSearchDockPanel.Name = "customSearchDockPanel";
+            this.customSearchDockPanel.Options.ShowCloseButton = false;
+            this.customSearchDockPanel.OriginalSize = new System.Drawing.Size(474, 200);
+            this.customSearchDockPanel.Size = new System.Drawing.Size(474, 716);
+            this.customSearchDockPanel.Text = "بحث مخصص";
+            // 
+            // controlContainer1
+            // 
+            this.controlContainer1.Controls.Add(this.searchByCurrencyCheckBox);
+            this.controlContainer1.Controls.Add(this.searchBySectionLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchByCurrencyLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchByMinorCategoryCheckBox);
+            this.controlContainer1.Controls.Add(this.searchAssetDropDownButton);
+            this.controlContainer1.Controls.Add(this.searchByPurchaseDateCheckBox);
+            this.controlContainer1.Controls.Add(this.searchByMinorCategoryLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchByDepartmentCheckBox);
+            this.controlContainer1.Controls.Add(this.searchBySubDepartmentLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchBySectionCheckBox);
+            this.controlContainer1.Controls.Add(this.searchByMainCategoryLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchByInsertionDateCheckBox);
+            this.controlContainer1.Controls.Add(this.searchBySubDepartmentCheckBox);
+            this.controlContainer1.Controls.Add(this.searchByPurchaseDatePanel);
+            this.controlContainer1.Controls.Add(this.searchByDepartmentLookUpEdit);
+            this.controlContainer1.Controls.Add(this.searchByMainCategoryCheckBox);
+            this.controlContainer1.Controls.Add(this.searchByInsertionDatePanel);
+            this.controlContainer1.Location = new System.Drawing.Point(6, 32);
+            this.controlContainer1.Name = "controlContainer1";
+            this.controlContainer1.Size = new System.Drawing.Size(464, 680);
+            this.controlContainer1.TabIndex = 0;
+            // 
+            // searchByCurrencyCheckBox
+            // 
+            this.searchByCurrencyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByCurrencyCheckBox.AutoSize = true;
+            this.searchByCurrencyCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByCurrencyCheckBox.Location = new System.Drawing.Point(348, 276);
+            this.searchByCurrencyCheckBox.Name = "searchByCurrencyCheckBox";
+            this.searchByCurrencyCheckBox.Size = new System.Drawing.Size(111, 25);
+            this.searchByCurrencyCheckBox.TabIndex = 520;
+            this.searchByCurrencyCheckBox.Text = "حسب العملة:";
+            this.searchByCurrencyCheckBox.UseVisualStyleBackColor = true;
+            this.searchByCurrencyCheckBox.CheckedChanged += new System.EventHandler(this.searchByCurrencyCheckBox_CheckedChanged);
+            // 
+            // searchBySectionLookUpEdit
+            // 
+            this.searchBySectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySectionLookUpEdit.Location = new System.Drawing.Point(61, 26);
+            this.searchBySectionLookUpEdit.Name = "searchBySectionLookUpEdit";
+            this.searchBySectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySectionLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchBySectionLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchBySectionLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الدائرة", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionName", "اسم الدائرة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchBySectionLookUpEdit.Properties.DataSource = this.sectionTblBindingSource;
+            this.searchBySectionLookUpEdit.Properties.DisplayMember = "SectionName";
+            this.searchBySectionLookUpEdit.Properties.PopupWidth = 500;
+            this.searchBySectionLookUpEdit.Properties.ValueMember = "ID";
+            this.searchBySectionLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchBySectionLookUpEdit.TabIndex = 510;
+            this.searchBySectionLookUpEdit.Visible = false;
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // searchByCurrencyLookUpEdit
+            // 
+            this.searchByCurrencyLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByCurrencyLookUpEdit.Location = new System.Drawing.Point(61, 274);
+            this.searchByCurrencyLookUpEdit.Name = "searchByCurrencyLookUpEdit";
+            this.searchByCurrencyLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByCurrencyLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchByCurrencyLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByCurrencyLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف العملة", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrencyName", "اسم العملة", 120, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchByCurrencyLookUpEdit.Properties.DataSource = this.currencyTblBindingSource;
+            this.searchByCurrencyLookUpEdit.Properties.DisplayMember = "CurrencyName";
+            this.searchByCurrencyLookUpEdit.Properties.PopupWidth = 500;
+            this.searchByCurrencyLookUpEdit.Properties.ValueMember = "ID";
+            this.searchByCurrencyLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchByCurrencyLookUpEdit.TabIndex = 522;
+            this.searchByCurrencyLookUpEdit.Visible = false;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchByMinorCategoryCheckBox
+            // 
+            this.searchByMinorCategoryCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByMinorCategoryCheckBox.AutoSize = true;
+            this.searchByMinorCategoryCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByMinorCategoryCheckBox.Location = new System.Drawing.Point(312, 226);
+            this.searchByMinorCategoryCheckBox.Name = "searchByMinorCategoryCheckBox";
+            this.searchByMinorCategoryCheckBox.Size = new System.Drawing.Size(147, 25);
+            this.searchByMinorCategoryCheckBox.TabIndex = 517;
+            this.searchByMinorCategoryCheckBox.Text = "حسب الفئة الفرعية:";
+            this.searchByMinorCategoryCheckBox.UseVisualStyleBackColor = true;
+            this.searchByMinorCategoryCheckBox.CheckedChanged += new System.EventHandler(this.searchByMinorCategoryCheckBox_CheckedChanged);
+            // 
+            // searchAssetDropDownButton
+            // 
+            this.searchAssetDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchAssetDropDownButton.ImageOptions.Image = global::AssetManagement.Properties.Resources._2719309;
+            this.searchAssetDropDownButton.Location = new System.Drawing.Point(42, 584);
+            this.searchAssetDropDownButton.Name = "searchAssetDropDownButton";
+            this.searchAssetDropDownButton.Size = new System.Drawing.Size(163, 73);
+            this.searchAssetDropDownButton.TabIndex = 525;
+            this.searchAssetDropDownButton.Text = "بحث";
+            this.searchAssetDropDownButton.Click += new System.EventHandler(this.searchAssetDropDownButton_Click);
+            // 
+            // searchByPurchaseDateCheckBox
+            // 
+            this.searchByPurchaseDateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByPurchaseDateCheckBox.AutoSize = true;
+            this.searchByPurchaseDateCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByPurchaseDateCheckBox.Location = new System.Drawing.Point(316, 335);
+            this.searchByPurchaseDateCheckBox.Name = "searchByPurchaseDateCheckBox";
+            this.searchByPurchaseDateCheckBox.Size = new System.Drawing.Size(143, 25);
+            this.searchByPurchaseDateCheckBox.TabIndex = 519;
+            this.searchByPurchaseDateCheckBox.Text = "حسب تاريخ الشراء:";
+            this.searchByPurchaseDateCheckBox.UseVisualStyleBackColor = true;
+            this.searchByPurchaseDateCheckBox.CheckedChanged += new System.EventHandler(this.searchByPurchaseDateCheckBox_CheckedChanged);
+            // 
+            // searchByMinorCategoryLookUpEdit
+            // 
+            this.searchByMinorCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByMinorCategoryLookUpEdit.Location = new System.Drawing.Point(61, 226);
+            this.searchByMinorCategoryLookUpEdit.Name = "searchByMinorCategoryLookUpEdit";
+            this.searchByMinorCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByMinorCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchByMinorCategoryLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByMinorCategoryLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الفئة الفرعية", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MinorCategoryName", "اسم الفئة الفرعية", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MinorCategoryDescription", "وصف الفئة الفرعية", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategory", "معرف الفئة الرئيسية", 100, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductiveAgeInYears", "العمر الإنتاجي بالسنوات", 150, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DestructionRate", "معدل الإهلاك", 120, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchByMinorCategoryLookUpEdit.Properties.DataSource = this.minorCategoryTblBindingSource;
+            this.searchByMinorCategoryLookUpEdit.Properties.DisplayMember = "MinorCategoryName";
+            this.searchByMinorCategoryLookUpEdit.Properties.PopupWidth = 500;
+            this.searchByMinorCategoryLookUpEdit.Properties.ValueMember = "ID";
+            this.searchByMinorCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchByMinorCategoryLookUpEdit.TabIndex = 518;
+            this.searchByMinorCategoryLookUpEdit.Visible = false;
+            // 
+            // minorCategoryTblBindingSource
+            // 
+            this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
+            this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchByDepartmentCheckBox
+            // 
+            this.searchByDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByDepartmentCheckBox.AutoSize = true;
+            this.searchByDepartmentCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByDepartmentCheckBox.Location = new System.Drawing.Point(348, 76);
+            this.searchByDepartmentCheckBox.Name = "searchByDepartmentCheckBox";
+            this.searchByDepartmentCheckBox.Size = new System.Drawing.Size(111, 25);
+            this.searchByDepartmentCheckBox.TabIndex = 511;
+            this.searchByDepartmentCheckBox.Text = "حسب القسم:";
+            this.searchByDepartmentCheckBox.UseVisualStyleBackColor = true;
+            this.searchByDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchByDepartmentCheckBox_CheckedChanged);
+            // 
+            // searchBySubDepartmentLookUpEdit
+            // 
+            this.searchBySubDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySubDepartmentLookUpEdit.Location = new System.Drawing.Point(60, 126);
+            this.searchBySubDepartmentLookUpEdit.Name = "searchBySubDepartmentLookUpEdit";
+            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySubDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchBySubDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchBySubDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchBySubDepartmentLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
+            this.searchBySubDepartmentLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
+            this.searchBySubDepartmentLookUpEdit.Properties.PopupWidth = 500;
+            this.searchBySubDepartmentLookUpEdit.Properties.ValueMember = "ID";
+            this.searchBySubDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchBySubDepartmentLookUpEdit.TabIndex = 514;
+            this.searchBySubDepartmentLookUpEdit.Visible = false;
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchBySectionCheckBox
+            // 
+            this.searchBySectionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySectionCheckBox.AutoSize = true;
+            this.searchBySectionCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySectionCheckBox.Location = new System.Drawing.Point(348, 26);
+            this.searchBySectionCheckBox.Name = "searchBySectionCheckBox";
+            this.searchBySectionCheckBox.Size = new System.Drawing.Size(111, 25);
+            this.searchBySectionCheckBox.TabIndex = 509;
+            this.searchBySectionCheckBox.Text = "حسب الدائرة:";
+            this.searchBySectionCheckBox.UseVisualStyleBackColor = true;
+            this.searchBySectionCheckBox.CheckedChanged += new System.EventHandler(this.searchBySectionCheckBox_CheckedChanged);
+            // 
+            // searchByMainCategoryLookUpEdit
+            // 
+            this.searchByMainCategoryLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByMainCategoryLookUpEdit.Location = new System.Drawing.Point(60, 176);
+            this.searchByMainCategoryLookUpEdit.Name = "searchByMainCategoryLookUpEdit";
+            this.searchByMainCategoryLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByMainCategoryLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchByMainCategoryLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByMainCategoryLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الفئة الرئيسية", 70, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategoryName", "اسم الفئة الرئيسية", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainCategoryDescription", "وصف الفئة الرئيسية", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchByMainCategoryLookUpEdit.Properties.DataSource = this.mainCategoryTblBindingSource;
+            this.searchByMainCategoryLookUpEdit.Properties.DisplayMember = "MainCategoryName";
+            this.searchByMainCategoryLookUpEdit.Properties.PopupWidth = 500;
+            this.searchByMainCategoryLookUpEdit.Properties.ValueMember = "ID";
+            this.searchByMainCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchByMainCategoryLookUpEdit.TabIndex = 516;
+            this.searchByMainCategoryLookUpEdit.Visible = false;
+            // 
+            // mainCategoryTblBindingSource
+            // 
+            this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
+            this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchByInsertionDateCheckBox
+            // 
+            this.searchByInsertionDateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByInsertionDateCheckBox.AutoSize = true;
+            this.searchByInsertionDateCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByInsertionDateCheckBox.Location = new System.Drawing.Point(306, 455);
+            this.searchByInsertionDateCheckBox.Name = "searchByInsertionDateCheckBox";
+            this.searchByInsertionDateCheckBox.Size = new System.Drawing.Size(153, 25);
+            this.searchByInsertionDateCheckBox.TabIndex = 523;
+            this.searchByInsertionDateCheckBox.Text = "حسب تاريخ الإدخال:";
+            this.searchByInsertionDateCheckBox.UseVisualStyleBackColor = true;
+            this.searchByInsertionDateCheckBox.CheckedChanged += new System.EventHandler(this.searchByInsertionDateCheckBox_CheckedChanged);
+            // 
+            // searchBySubDepartmentCheckBox
+            // 
+            this.searchBySubDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBySubDepartmentCheckBox.AutoSize = true;
+            this.searchBySubDepartmentCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBySubDepartmentCheckBox.Location = new System.Drawing.Point(344, 126);
+            this.searchBySubDepartmentCheckBox.Name = "searchBySubDepartmentCheckBox";
+            this.searchBySubDepartmentCheckBox.Size = new System.Drawing.Size(115, 25);
+            this.searchBySubDepartmentCheckBox.TabIndex = 513;
+            this.searchBySubDepartmentCheckBox.Text = "حسب الوحدة:";
+            this.searchBySubDepartmentCheckBox.UseVisualStyleBackColor = true;
+            this.searchBySubDepartmentCheckBox.CheckedChanged += new System.EventHandler(this.searchBySubDepartmentCheckBox_CheckedChanged);
+            // 
+            // searchByPurchaseDatePanel
+            // 
+            this.searchByPurchaseDatePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByPurchaseDatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateLabel_To);
+            this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateDateEdit_To);
+            this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateLabel_From);
+            this.searchByPurchaseDatePanel.Controls.Add(this.searchByPurchaseDateDateEdit_From);
+            this.searchByPurchaseDatePanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByPurchaseDatePanel.Location = new System.Drawing.Point(60, 335);
+            this.searchByPurchaseDatePanel.Name = "searchByPurchaseDatePanel";
+            this.searchByPurchaseDatePanel.Size = new System.Drawing.Size(234, 101);
+            this.searchByPurchaseDatePanel.TabIndex = 521;
+            this.searchByPurchaseDatePanel.Visible = false;
+            // 
+            // searchByPurchaseDateLabel_To
+            // 
+            this.searchByPurchaseDateLabel_To.AutoSize = true;
+            this.searchByPurchaseDateLabel_To.Location = new System.Drawing.Point(189, 61);
+            this.searchByPurchaseDateLabel_To.Name = "searchByPurchaseDateLabel_To";
+            this.searchByPurchaseDateLabel_To.Size = new System.Drawing.Size(29, 21);
+            this.searchByPurchaseDateLabel_To.TabIndex = 250;
+            this.searchByPurchaseDateLabel_To.Text = "إلى:";
+            // 
+            // searchByPurchaseDateDateEdit_To
+            // 
+            this.searchByPurchaseDateDateEdit_To.EditValue = null;
+            this.searchByPurchaseDateDateEdit_To.Location = new System.Drawing.Point(13, 58);
+            this.searchByPurchaseDateDateEdit_To.Name = "searchByPurchaseDateDateEdit_To";
+            this.searchByPurchaseDateDateEdit_To.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByPurchaseDateDateEdit_To.Properties.Appearance.Options.UseFont = true;
+            this.searchByPurchaseDateDateEdit_To.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByPurchaseDateDateEdit_To.Size = new System.Drawing.Size(156, 28);
+            this.searchByPurchaseDateDateEdit_To.TabIndex = 255;
+            // 
+            // searchByPurchaseDateLabel_From
+            // 
+            this.searchByPurchaseDateLabel_From.AutoSize = true;
+            this.searchByPurchaseDateLabel_From.Location = new System.Drawing.Point(189, 16);
+            this.searchByPurchaseDateLabel_From.Name = "searchByPurchaseDateLabel_From";
+            this.searchByPurchaseDateLabel_From.Size = new System.Drawing.Size(32, 21);
+            this.searchByPurchaseDateLabel_From.TabIndex = 240;
+            this.searchByPurchaseDateLabel_From.Text = "من:";
+            // 
+            // searchByPurchaseDateDateEdit_From
+            // 
+            this.searchByPurchaseDateDateEdit_From.EditValue = null;
+            this.searchByPurchaseDateDateEdit_From.Location = new System.Drawing.Point(13, 13);
+            this.searchByPurchaseDateDateEdit_From.Name = "searchByPurchaseDateDateEdit_From";
+            this.searchByPurchaseDateDateEdit_From.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByPurchaseDateDateEdit_From.Properties.Appearance.Options.UseFont = true;
+            this.searchByPurchaseDateDateEdit_From.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByPurchaseDateDateEdit_From.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByPurchaseDateDateEdit_From.Size = new System.Drawing.Size(156, 28);
+            this.searchByPurchaseDateDateEdit_From.TabIndex = 245;
+            // 
+            // searchByDepartmentLookUpEdit
+            // 
+            this.searchByDepartmentLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByDepartmentLookUpEdit.Location = new System.Drawing.Point(60, 76);
+            this.searchByDepartmentLookUpEdit.Name = "searchByDepartmentLookUpEdit";
+            this.searchByDepartmentLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByDepartmentLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.searchByDepartmentLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByDepartmentLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DepartmentName", "اسم القسم", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SectionOfDepartment", "معرف الدائرة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.searchByDepartmentLookUpEdit.Properties.DataSource = this.departmentTblBindingSource;
+            this.searchByDepartmentLookUpEdit.Properties.DisplayMember = "DepartmentName";
+            this.searchByDepartmentLookUpEdit.Properties.PopupWidth = 500;
+            this.searchByDepartmentLookUpEdit.Properties.ValueMember = "ID";
+            this.searchByDepartmentLookUpEdit.Size = new System.Drawing.Size(234, 28);
+            this.searchByDepartmentLookUpEdit.TabIndex = 512;
+            this.searchByDepartmentLookUpEdit.Visible = false;
+            // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // searchByMainCategoryCheckBox
+            // 
+            this.searchByMainCategoryCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByMainCategoryCheckBox.AutoSize = true;
+            this.searchByMainCategoryCheckBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByMainCategoryCheckBox.Location = new System.Drawing.Point(307, 176);
+            this.searchByMainCategoryCheckBox.Name = "searchByMainCategoryCheckBox";
+            this.searchByMainCategoryCheckBox.Size = new System.Drawing.Size(152, 25);
+            this.searchByMainCategoryCheckBox.TabIndex = 515;
+            this.searchByMainCategoryCheckBox.Text = "حسب الفئة الرئيسية:";
+            this.searchByMainCategoryCheckBox.UseVisualStyleBackColor = true;
+            this.searchByMainCategoryCheckBox.CheckedChanged += new System.EventHandler(this.searchByMainCategoryCheckBox_CheckedChanged);
+            // 
+            // searchByInsertionDatePanel
+            // 
+            this.searchByInsertionDatePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchByInsertionDatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateLabel_To);
+            this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateDateEdit_To);
+            this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateLabel_From);
+            this.searchByInsertionDatePanel.Controls.Add(this.searchByInsertionDateDateEdit_From);
+            this.searchByInsertionDatePanel.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByInsertionDatePanel.Location = new System.Drawing.Point(60, 455);
+            this.searchByInsertionDatePanel.Name = "searchByInsertionDatePanel";
+            this.searchByInsertionDatePanel.Size = new System.Drawing.Size(234, 101);
+            this.searchByInsertionDatePanel.TabIndex = 524;
+            this.searchByInsertionDatePanel.Visible = false;
+            // 
+            // searchByInsertionDateLabel_To
+            // 
+            this.searchByInsertionDateLabel_To.AutoSize = true;
+            this.searchByInsertionDateLabel_To.Location = new System.Drawing.Point(189, 61);
+            this.searchByInsertionDateLabel_To.Name = "searchByInsertionDateLabel_To";
+            this.searchByInsertionDateLabel_To.Size = new System.Drawing.Size(29, 21);
+            this.searchByInsertionDateLabel_To.TabIndex = 280;
+            this.searchByInsertionDateLabel_To.Text = "إلى:";
+            // 
+            // searchByInsertionDateDateEdit_To
+            // 
+            this.searchByInsertionDateDateEdit_To.EditValue = null;
+            this.searchByInsertionDateDateEdit_To.Location = new System.Drawing.Point(13, 57);
+            this.searchByInsertionDateDateEdit_To.Name = "searchByInsertionDateDateEdit_To";
+            this.searchByInsertionDateDateEdit_To.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByInsertionDateDateEdit_To.Properties.Appearance.Options.UseFont = true;
+            this.searchByInsertionDateDateEdit_To.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByInsertionDateDateEdit_To.Size = new System.Drawing.Size(156, 28);
+            this.searchByInsertionDateDateEdit_To.TabIndex = 285;
+            // 
+            // searchByInsertionDateLabel_From
+            // 
+            this.searchByInsertionDateLabel_From.AutoSize = true;
+            this.searchByInsertionDateLabel_From.Location = new System.Drawing.Point(189, 16);
+            this.searchByInsertionDateLabel_From.Name = "searchByInsertionDateLabel_From";
+            this.searchByInsertionDateLabel_From.Size = new System.Drawing.Size(32, 21);
+            this.searchByInsertionDateLabel_From.TabIndex = 270;
+            this.searchByInsertionDateLabel_From.Text = "من:";
+            // 
+            // searchByInsertionDateDateEdit_From
+            // 
+            this.searchByInsertionDateDateEdit_From.EditValue = null;
+            this.searchByInsertionDateDateEdit_From.Location = new System.Drawing.Point(13, 9);
+            this.searchByInsertionDateDateEdit_From.Name = "searchByInsertionDateDateEdit_From";
+            this.searchByInsertionDateDateEdit_From.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchByInsertionDateDateEdit_From.Properties.Appearance.Options.UseFont = true;
+            this.searchByInsertionDateDateEdit_From.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.searchByInsertionDateDateEdit_From.Size = new System.Drawing.Size(156, 28);
+            this.searchByInsertionDateDateEdit_From.TabIndex = 275;
+            // 
             // mainAlertControl
             // 
             this.mainAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -397,11 +864,6 @@ namespace AssetManagement.Assets
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // assetVwBindingSource
             // 
             this.assetVwBindingSource.DataMember = "AssetVw";
@@ -416,14 +878,14 @@ namespace AssetManagement.Assets
             this.chartFullStackedBarNavigationPane.Controls.Add(this.navigationPage_FullStackedBarChart);
             this.chartFullStackedBarNavigationPane.Controls.Add(this.navigationPage_BarChart);
             this.chartFullStackedBarNavigationPane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartFullStackedBarNavigationPane.Location = new System.Drawing.Point(26, 110);
+            this.chartFullStackedBarNavigationPane.Location = new System.Drawing.Point(500, 110);
             this.chartFullStackedBarNavigationPane.Name = "chartFullStackedBarNavigationPane";
             this.chartFullStackedBarNavigationPane.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.navigationPage_FullStackedBarChart,
             this.navigationPage_BarChart});
-            this.chartFullStackedBarNavigationPane.RegularSize = new System.Drawing.Size(1277, 675);
+            this.chartFullStackedBarNavigationPane.RegularSize = new System.Drawing.Size(853, 716);
             this.chartFullStackedBarNavigationPane.SelectedPage = this.navigationPage_FullStackedBarChart;
-            this.chartFullStackedBarNavigationPane.Size = new System.Drawing.Size(1277, 675);
+            this.chartFullStackedBarNavigationPane.Size = new System.Drawing.Size(853, 716);
             this.chartFullStackedBarNavigationPane.TabIndex = 14;
             this.chartFullStackedBarNavigationPane.Text = "Full stacked bar";
             // 
@@ -432,7 +894,7 @@ namespace AssetManagement.Assets
             this.navigationPage_FullStackedBarChart.Caption = "Full stacked bar chart";
             this.navigationPage_FullStackedBarChart.Controls.Add(this.chartFullStackedBar);
             this.navigationPage_FullStackedBarChart.Name = "navigationPage_FullStackedBarChart";
-            this.navigationPage_FullStackedBarChart.Size = new System.Drawing.Size(1086, 585);
+            this.navigationPage_FullStackedBarChart.Size = new System.Drawing.Size(662, 626);
             // 
             // chartFullStackedBar
             // 
@@ -453,7 +915,7 @@ namespace AssetManagement.Assets
             this.chartFullStackedBar.SeriesTemplate.Label = fullStackedBarSeriesLabel1;
             this.chartFullStackedBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             this.chartFullStackedBar.SeriesTemplate.View = fullStackedBarSeriesView1;
-            this.chartFullStackedBar.Size = new System.Drawing.Size(1086, 585);
+            this.chartFullStackedBar.Size = new System.Drawing.Size(662, 626);
             this.chartFullStackedBar.TabIndex = 6;
             this.chartFullStackedBar.TabStop = false;
             chartTitle1.Font = new System.Drawing.Font("Sakkal Majalla", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -466,7 +928,7 @@ namespace AssetManagement.Assets
             this.navigationPage_BarChart.Caption = "Bar chart";
             this.navigationPage_BarChart.Controls.Add(this.chartBar);
             this.navigationPage_BarChart.Name = "navigationPage_BarChart";
-            this.navigationPage_BarChart.Size = new System.Drawing.Size(1086, 585);
+            this.navigationPage_BarChart.Size = new System.Drawing.Size(662, 626);
             // 
             // chartBar
             // 
@@ -502,19 +964,53 @@ namespace AssetManagement.Assets
             this.chartBar.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
             this.chartBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             this.chartBar.SeriesTemplate.SeriesDataMember = "Year";
-            this.chartBar.Size = new System.Drawing.Size(1086, 585);
+            this.chartBar.Size = new System.Drawing.Size(662, 626);
             this.chartBar.TabIndex = 2;
             this.chartBar.TabStop = false;
             chartTitle2.Text = "DevAV Sales by Regions";
             this.chartBar.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
             chartTitle2});
             // 
+            // sectionTblTableAdapter
+            // 
+            this.sectionTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // departmentTblTableAdapter
+            // 
+            this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentTblTableAdapter
+            // 
+            this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // mainCategoryTblTableAdapter
+            // 
+            this.mainCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // minorCategoryVwBindingSource
+            // 
+            this.minorCategoryVwBindingSource.DataMember = "MinorCategoryVw";
+            this.minorCategoryVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // minorCategoryVwTableAdapter
+            // 
+            this.minorCategoryVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // minorCategoryTblTableAdapter
+            // 
+            this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // currencyTblTableAdapter
+            // 
+            this.currencyTblTableAdapter.ClearBeforeFill = true;
+            // 
             // AssetsStatsForm3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1303, 805);
+            this.ClientSize = new System.Drawing.Size(1353, 846);
             this.Controls.Add(this.chartFullStackedBarNavigationPane);
+            this.Controls.Add(this.customSearchDockPanel);
             this.Controls.Add(this.hideContainerLeft);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -538,9 +1034,35 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDockManager)).EndInit();
             this.hideContainerLeft.ResumeLayout(false);
-            this.customSearchDockPanel.ResumeLayout(false);
             this.chartOptionsDockPanel.ResumeLayout(false);
+            this.customSearchDockPanel.ResumeLayout(false);
+            this.controlContainer1.ResumeLayout(false);
+            this.controlContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
+            this.searchByPurchaseDatePanel.ResumeLayout(false);
+            this.searchByPurchaseDatePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            this.searchByInsertionDatePanel.ResumeLayout(false);
+            this.searchByInsertionDatePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFullStackedBarNavigationPane)).EndInit();
             this.chartFullStackedBarNavigationPane.ResumeLayout(false);
@@ -552,6 +1074,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,10 +1111,48 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox aggValueRepositoryItemComboBox;
         private DevExpress.XtraBars.BarEditItem groupFieldBarEditItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox groupFieldRepositoryItemComboBox;
-        private DevExpress.XtraBars.BarCheckItem addSeriesBarCheckItem;
         private DevExpress.XtraBars.BarEditItem seriesFieldBarEditItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox seriesFieldBRepositoryItemComboBox;
         private DevExpress.XtraBars.BarButtonItem showStatsBarButtonItem;
         private DevExpress.XtraCharts.ChartControl chartBar;
+        private System.Windows.Forms.CheckBox searchByCurrencyCheckBox;
+        private DevExpress.XtraEditors.LookUpEdit searchBySectionLookUpEdit;
+        private DevExpress.XtraEditors.LookUpEdit searchByCurrencyLookUpEdit;
+        private System.Windows.Forms.CheckBox searchByMinorCategoryCheckBox;
+        private DevExpress.XtraEditors.DropDownButton searchAssetDropDownButton;
+        private System.Windows.Forms.CheckBox searchByPurchaseDateCheckBox;
+        private DevExpress.XtraEditors.LookUpEdit searchByMinorCategoryLookUpEdit;
+        private System.Windows.Forms.CheckBox searchByDepartmentCheckBox;
+        private DevExpress.XtraEditors.LookUpEdit searchBySubDepartmentLookUpEdit;
+        private System.Windows.Forms.CheckBox searchBySectionCheckBox;
+        private DevExpress.XtraEditors.LookUpEdit searchByMainCategoryLookUpEdit;
+        private System.Windows.Forms.CheckBox searchByInsertionDateCheckBox;
+        private System.Windows.Forms.CheckBox searchBySubDepartmentCheckBox;
+        private System.Windows.Forms.Panel searchByPurchaseDatePanel;
+        private System.Windows.Forms.Label searchByPurchaseDateLabel_To;
+        private DevExpress.XtraEditors.DateEdit searchByPurchaseDateDateEdit_To;
+        private System.Windows.Forms.Label searchByPurchaseDateLabel_From;
+        private DevExpress.XtraEditors.DateEdit searchByPurchaseDateDateEdit_From;
+        private DevExpress.XtraEditors.LookUpEdit searchByDepartmentLookUpEdit;
+        private System.Windows.Forms.CheckBox searchByMainCategoryCheckBox;
+        private System.Windows.Forms.Panel searchByInsertionDatePanel;
+        private System.Windows.Forms.Label searchByInsertionDateLabel_To;
+        private DevExpress.XtraEditors.DateEdit searchByInsertionDateDateEdit_To;
+        private System.Windows.Forms.Label searchByInsertionDateLabel_From;
+        private DevExpress.XtraEditors.DateEdit searchByInsertionDateDateEdit_From;
+        private System.Windows.Forms.BindingSource sectionTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
+        private System.Windows.Forms.BindingSource departmentTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
+        private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
+        private System.Windows.Forms.BindingSource mainCategoryTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter mainCategoryTblTableAdapter;
+        private System.Windows.Forms.BindingSource minorCategoryVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter minorCategoryVwTableAdapter;
+        private System.Windows.Forms.BindingSource minorCategoryTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter minorCategoryTblTableAdapter;
+        private System.Windows.Forms.BindingSource currencyTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter currencyTblTableAdapter;
     }
 }

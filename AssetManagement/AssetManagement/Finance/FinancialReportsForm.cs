@@ -20,11 +20,11 @@ namespace AssetManagement.Finance
 {
     public partial class FinancialReportsForm : Form
     {
-        IQueryable<FinancialItemTbl> financialItemsQry = null;
-        int fiSubLevel = 0;
-        string sectionName = "";
-        string deptName = "";
-        string subDeptName = "";
+        IQueryable<FinancialItemTbl> reportQueryResults = null;
+        int reportLevel = 0;
+        string reportSectionName = "";
+        string reportDeptName = "";
+        string reportSubDeptName = "";
 
         public FinancialReportsForm()
         {
@@ -107,9 +107,9 @@ namespace AssetManagement.Finance
             progressPanel1.Visible = true;
 
             #region Set and apply the financial items query
-            sectionName = "";
-            deptName = "";
-            subDeptName = "";
+            reportSectionName = "";
+            reportDeptName = "";
+            reportSubDeptName = "";
             if (!(searchAllRadioButton.Checked || searchBySectionCheckBox.Checked || searchByDepartmentCheckBox.Checked || searchBySubDepartmentCheckBox.Checked))
             {
                 mainAlertControl.Show(this, "اختر البحث حسب أحد المستويات الإدارية أولاً", StaticCode.ApplicationTitle);
@@ -153,8 +153,8 @@ namespace AssetManagement.Finance
                 return;
             }
 
-            financialItemsQry = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
-            fiSubLevel = 1;
+            reportQueryResults = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
+            reportLevel = 1;
             if (searchBySectionCheckBox.Checked)
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
@@ -167,9 +167,9 @@ namespace AssetManagement.Finance
                 {
                     List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
                     List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                    financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
-                    sectionName = searchBySectionLookUpEdit.Text;
-                    fiSubLevel = 2;
+                    reportQueryResults = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    reportSectionName = searchBySectionLookUpEdit.Text;
+                    reportLevel = 2;
                 }
             }
             if (searchByDepartmentCheckBox.Checked)
@@ -183,9 +183,9 @@ namespace AssetManagement.Finance
                 else
                 {
                     List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
-                    financialItemsQry = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
-                    deptName = searchByDepartmentSearchLookUpEdit.Text;
-                    fiSubLevel = 3;
+                    reportQueryResults = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    reportDeptName = searchByDepartmentSearchLookUpEdit.Text;
+                    reportLevel = 3;
                 }
             }
             if (searchBySubDepartmentCheckBox.Checked)
@@ -198,9 +198,9 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    financialItemsQry = financialItemsQry.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
-                    subDeptName = searchBySubDepartmentSearchLookUpEdit.Text;
-                    fiSubLevel = 4;
+                    reportQueryResults = reportQueryResults.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
+                    reportSubDeptName = searchBySubDepartmentSearchLookUpEdit.Text;
+                    reportLevel = 4;
                 }
             }
             if (searchWithinPeriodCheckBox.Checked)
@@ -222,13 +222,13 @@ namespace AssetManagement.Finance
                     fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
                     toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
                 }
-                financialItemsQry = financialItemsQry.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
+                reportQueryResults = reportQueryResults.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
             }
             if (searchByCurrencyCheckBox.Checked)
             {
-                financialItemsQry = financialItemsQry.Where(fi => fi.FinancialItemCurrency == Convert.ToInt32(searchByCurrencyLookUpEdit.EditValue));
+                reportQueryResults = reportQueryResults.Where(fi => fi.FinancialItemCurrency == Convert.ToInt32(searchByCurrencyLookUpEdit.EditValue));
             }
-            bool resultsFound = financialItemsQry != null && financialItemsQry.Count() > 0;
+            bool resultsFound = reportQueryResults != null && reportQueryResults.Count() > 0;
             exportFinancialReportToExcelDropDownButton.Enabled = financialReportTabControl.Visible = resultsFound;
             #endregion
 
@@ -241,7 +241,7 @@ namespace AssetManagement.Finance
             }
             else
             {
-                List<int> IDsIncluded = financialItemsQry.Select(fii1 => fii1.ID).ToList();
+                List<int> IDsIncluded = reportQueryResults.Select(fii1 => fii1.ID).ToList();
                 var financialItemsQryVw = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => IDsIncluded.Contains(fiv1.معرف_السجل_المالي));
                 string plusQry = "";
                 if (IDsIncluded.Count() == 0)
@@ -273,12 +273,29 @@ namespace AssetManagement.Finance
                 this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);
 
                 #region Prepare the totals of each sub-level by currency
-                totalIncomesNumericUpDown.Value = Convert.ToDecimal(financialItemsQry.CalcIncomingOfFinancialItems());
-                totalOutcomesNumericUpDown.Value = Convert.ToDecimal(financialItemsQry.CalcOutgoingOfFinancialItems());
-                totalCycledNumericUpDown.Value = Convert.ToDecimal(financialItemsQry.CalcRecycledOfFinancialItems());
-
+                if (searchAllRadioButton.Checked)
+                {
+                    reportLevel = 1;
+                }
+                if (searchBySectionCheckBox.Checked)
+                {
+                    reportLevel = 2;
+                }
+                if (searchByDepartmentCheckBox.Checked)
+                {
+                    reportLevel = 3;
+                }
+                if (searchBySubDepartmentCheckBox.Checked)
+                {
+                    reportLevel = 4;
+                }
+                subLevelTotalsTreeView.Visible = reportLevel < 4;
                 subLevelTotalsTreeView.Nodes.Clear();
-                switch (fiSubLevel)
+                totalIncomesNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcIncomingOfFinancialItems());
+                totalOutcomesNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcOutgoingOfFinancialItems());
+                totalCycledNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcRecycledOfFinancialItems());
+
+                switch (reportLevel)
                 {
                     case 1:
                         var subLevelQuery1 = StaticCode.mainDbContext.SectionTbls;
@@ -287,7 +304,7 @@ namespace AssetManagement.Finance
                             Application.DoEvents();
                             List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == oneItem.ID select dpt1.ID).ToList();
                             List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                            var levelQry1 = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                            var levelQry1 = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
 
                             TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SectionName);
                             oneNode.Nodes.Add($"الوارد: {levelQry1.CalcIncomingOfFinancialItems()}");
@@ -301,7 +318,7 @@ namespace AssetManagement.Finance
                         {
                             Application.DoEvents();
                             List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == oneItem.ID select sdep1.ID).ToList();
-                            var levelQry2 = from qry in financialItemsQry where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                            var levelQry2 = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
 
                             TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.DepartmentName);
                             oneNode.Nodes.Add($"الوارد: {levelQry2.CalcIncomingOfFinancialItems()}");
@@ -314,7 +331,7 @@ namespace AssetManagement.Finance
                         foreach (SubDepartmentTbl oneItem in subLevelQuery3)
                         {
                             Application.DoEvents();
-                            var levelQry3 = financialItemsQry.Where(fi1 => fi1.FinancialItemSubDept == oneItem.ID);
+                            var levelQry3 = reportQueryResults.Where(fi1 => fi1.FinancialItemSubDept == oneItem.ID);
 
                             TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SubDepartmentName);
                             oneNode.Nodes.Add($"الوارد: {levelQry3.CalcIncomingOfFinancialItems()}");
@@ -347,48 +364,54 @@ namespace AssetManagement.Finance
                     string sheet_Title_Name1_short = "عام PM";
                     string sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
                     string sheet_Title_Name2_short = "تفصيلي PM";
-                    if (searchAllRadioButton.Checked)
+                    string levelName = StaticCode.PMName;
+                    switch (reportLevel)
                     {
-                        sheet_Title_Name1 = "السجل المالي العام للـ PM";
-                        sheet_Title_Name1_short = "عام PM";
-                        sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
-                        sheet_Title_Name2_short = "تفصيلي PM";
-                    }
-                    if (searchBySectionCheckBox.Checked)
-                    {
-                        sheet_Title_Name1 = "السجل المالي العام للدائرة";
-                        sheet_Title_Name1_short = "عام دائرة";
-                        sheet_Title_Name2 = "السجل المالي التفصيلي للدائرة";
-                        sheet_Title_Name2_short = "تفصيلي دائرة";
-                    }
-                    if (searchByDepartmentCheckBox.Checked)
-                    {
-                        sheet_Title_Name1 = "السجل المالي العام للقسم";
-                        sheet_Title_Name1_short = "عام قسم";
-                        sheet_Title_Name2 = "السجل المالي التفصيلي للقسم";
-                        sheet_Title_Name2_short = "تفصيلي قسم";
-                    }
-                    if (searchBySubDepartmentCheckBox.Checked)
-                    {
-                        sheet_Title_Name1 = "السجل المالي العام للوحدة";
-                        sheet_Title_Name1_short = "عام وحدة";
-                        sheet_Title_Name2 = "السجل المالي التفصيلي للوحدة";
-                        sheet_Title_Name2_short = "تفصيلي وحدة";
+                        case 1:
+                            sheet_Title_Name1 = "السجل المالي العام للـ PM";
+                            sheet_Title_Name1_short = "عام PM";
+                            sheet_Title_Name2 = "السجل المالي التفصيلي لل PM";
+                            sheet_Title_Name2_short = "تفصيلي PM";
+                            levelName = StaticCode.PMName;
+                            break;
+                        case 2:
+                            sheet_Title_Name1 = "السجل المالي العام للدائرة";
+                            sheet_Title_Name1_short = "عام دائرة";
+                            sheet_Title_Name2 = "السجل المالي التفصيلي للدائرة";
+                            sheet_Title_Name2_short = "تفصيلي دائرة";
+                            levelName = reportSectionName;
+                            break;
+                        case 3:
+                            sheet_Title_Name1 = "السجل المالي العام للقسم";
+                            sheet_Title_Name1_short = "عام قسم";
+                            sheet_Title_Name2 = "السجل المالي التفصيلي للقسم";
+                            sheet_Title_Name2_short = "تفصيلي قسم";
+                            levelName = reportDeptName;
+                            break;
+                        case 4:
+                            sheet_Title_Name1 = "السجل المالي العام للوحدة";
+                            sheet_Title_Name1_short = "عام وحدة";
+                            sheet_Title_Name2 = "السجل المالي التفصيلي للوحدة";
+                            sheet_Title_Name2_short = "تفصيلي وحدة";
+                            levelName = reportSubDeptName;
+                            break;
+                        default:
+                            break;
                     }
                     sheet_Title_Name1_short += " - " + oneCurr;
                     sheet_Title_Name2_short += " - " + oneCurr;
-                    var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel(fiSubLevel, sectionName, deptName, subDeptName);
+                    var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
                     var financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr;
-                    switch (fiSubLevel)
+                    switch (reportLevel)
                     {
                         case 1:
                             financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh1 => fivh1.الدائرة == StaticCode.PMName && fivh1.القسم == StaticCode.PMName && fivh1.الوحدة == StaticCode.PMName);
                             break;
                         case 2:
-                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh2 => fivh2.القسم == deptName && fivh2.الوحدة == subDeptName);
+                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh2 => fivh2.القسم == reportDeptName && fivh2.الوحدة == reportSubDeptName);
                             break;
                         case 3:
-                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == subDeptName);
+                            financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == reportSubDeptName);
                             break;
                         default:
                             break;
@@ -421,7 +444,7 @@ namespace AssetManagement.Finance
                         cells.Value = sheet_Title_Name1;
                     }
                     int startRow = 6;
-                    switch (fiSubLevel)
+                    switch (reportLevel)
                     {
                         case 1:
                             generalFinancialReportWs.Row(startRow).Height = 27;
@@ -1287,6 +1310,7 @@ namespace AssetManagement.Finance
                     detailedFinancialReportWs.Row(8).Height =
                     detailedFinancialReportWs.Row(9).Height =
                     detailedFinancialReportWs.Row(10).Height = 22;
+                    startRow = 6;
                     using (var cells = detailedFinancialReportWs.Cells[2, 2, 3, 7])
                     {
                         cells.Style.Font.Name = "Calibri";
@@ -1300,7 +1324,20 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thick);
                         cells.Value = sheet_Title_Name2;
                     }
-                    startRow = 6;
+                    detailedFinancialReportWs.Row(startRow).Height = 27;
+                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
+                    {
+                        cells.Style.Font.Name = "Calibri";
+                        cells.Style.Font.Size = 14.0F;
+                        cells.Merge = true;
+                        cells.Style.Font.Bold = true;
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
+                        cells.Value = levelName;
+                    }
+                    int finalRow = startRow;
 
                     #region Totals of current level
                     int figuresRow = startRow + 2;
@@ -1315,6 +1352,44 @@ namespace AssetManagement.Finance
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204));
                         cells.Value = totalIncoming_HeadSubLevel;
                     }
+                    string totalIncomingHeadText = "مجموع إيرادات الـ PM";
+                    string totalOutgoingHeadText = "مجموع صادرات الـ PM المباشرة والمعلقة";
+                    string recycledHeadText = "مدور بيد الـ PM";
+                    string totalDirectOutgoingHeadText_Part1 = "إجمالي الصادرات العامة (المباشرة فقط) للـ PM";
+                    string totalDirectOutgoingHeadText_Part2 = " وتفرعاته";
+                    switch (reportLevel)
+                    {
+                        case 1:
+                            totalIncomingHeadText = "مجموع إيرادات الـ PM";
+                            totalOutgoingHeadText = "مجموع صادرات الـ PM المباشرة والمعلقة";
+                            recycledHeadText = "مدور بيد الـ PM";
+                            totalDirectOutgoingHeadText_Part1 = "إجمالي الصادرات العامة (المباشرة فقط) للـ PM";
+                            totalDirectOutgoingHeadText_Part2 = " وتفرعاته";
+                            break;
+                        case 2:
+                            totalIncomingHeadText = "مجموع إيرادات رئيس الدائرة";
+                            totalOutgoingHeadText = "مجموع صادرات رئيس الدائرة المباشرة والمعلقة";
+                            recycledHeadText = "مدور بيد رئيس الدائرة";
+                            totalDirectOutgoingHeadText_Part1 = "إجمالي الصادرات العامة (المباشرة فقط) للدائرة";
+                            totalDirectOutgoingHeadText_Part2 = " وتفرعاتها";
+                            break;
+                        case 3:
+                            totalIncomingHeadText = "مجموع إيرادات رئيس القسم";
+                            totalOutgoingHeadText = "مجموع صادرات رئيس القسم المباشرة والمعلقة";
+                            recycledHeadText = "مدور بيد رئيس القسم";
+                            totalDirectOutgoingHeadText_Part1 = "إجمالي الصادرات العامة (المباشرة فقط) للقسم";
+                            totalDirectOutgoingHeadText_Part2 = " وتفرعاته";
+                            break;
+                        case 4:
+                            totalIncomingHeadText = "مجموع إيرادات رئيس الوحدة";
+                            totalOutgoingHeadText = "مجموع صادرات رئيس الوحدة المباشرة والمعلقة";
+                            recycledHeadText = "مدور بيد رئيس الوحدة";
+                            totalDirectOutgoingHeadText_Part1 = "إجمالي الصادرات العامة (المباشرة فقط) للوحدة";
+                            totalDirectOutgoingHeadText_Part2 = " وتفرعاتها";
+                            break;
+                        default:
+                            break;
+                    }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow, 3])
                     {
                         cells.Style.Font.Name = "Calibri";
@@ -1324,7 +1399,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204));
-                        cells.Value = "مجموع إيرادات الـ PM";
+                        cells.Value = totalIncomingHeadText;
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow, 5])
                     {
@@ -1368,7 +1443,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 230, 153));
-                        cells.Value = "مجموع صادرات الـ PM المباشرة والمعلقة";
+                        cells.Value = totalOutgoingHeadText;
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 5])
                     {
@@ -1384,9 +1459,9 @@ namespace AssetManagement.Finance
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 6])
                     {
                         ExcelRichTextCollection textValue = cells.RichText;
-                        ExcelRichText richText1 = textValue.Add("إجمالي الصادرات العامة (المباشرة فقط) للـ PM");
+                        ExcelRichText richText1 = textValue.Add(totalDirectOutgoingHeadText_Part1);
                         richText1.Color = Color.Black;
-                        ExcelRichText richText2 = textValue.Add(" وتفرعاته");
+                        ExcelRichText richText2 = textValue.Add(totalDirectOutgoingHeadText_Part2);
                         richText2.Color = Color.Red;
                         cells.Style.Font.Name = "Calibri";
                         cells.Style.Font.Size = 11.0F;
@@ -1408,24 +1483,7 @@ namespace AssetManagement.Finance
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 224, 180));
                         cells.Value = totalRecycled_HeadSubLevel;
                     }
-                    string recycledHeadText = "مدور بيد الـ PM";
-                    switch (fiSubLevel)
-                    {
-                        case 1:
-                            recycledHeadText = "مدور بيد الـ PM";
-                            break;
-                        case 2:
-                            recycledHeadText = "مدور بيد رئيس الدائرة";
-                            break;
-                        case 3:
-                            recycledHeadText = "مدور بيد رئيس القسم";
-                            break;
-                        case 4:
-                            recycledHeadText = "مدور بيد رئيس الوحدة";
-                            break;
-                        default:
-                            break;
-                    }
+
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 3])
                     {
                         cells.Style.Font.Name = "Calibri";
@@ -1469,21 +1527,8 @@ namespace AssetManagement.Finance
                     #endregion
 
                     #region Incoming and Direct outgoing of sub-level in detail
-                    detailedFinancialReportWs.Row(startRow).Height = 27;
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
-                        cells.Value = StaticCode.PMName;
-                    }
                     string totalFinancialText = "السجل المالي الكلي للـ PM";
-                    switch (fiSubLevel)
+                    switch (reportLevel)
                     {
                         case 1:
                             totalFinancialText = "السجل المالي الكلي للـ PM";
@@ -1600,10 +1645,10 @@ namespace AssetManagement.Finance
 
                     #region Recycled of sub-levels of current level
                     List<string> subLevelNames = new List<string>();
-                    if (fiSubLevel <= 3)
+                    if (reportLevel <= 3)
                     {
                         string detailedRecycledText = "تفصيل المدور العام للـ PM وتفرعاته";
-                        switch (fiSubLevel)
+                        switch (reportLevel)
                         {
                             case 1:
                                 detailedRecycledText = "تفصيل المدور العام للـ PM وتفرعاته";
@@ -1632,7 +1677,7 @@ namespace AssetManagement.Finance
                         }
                         figuresRow++;
                         int allRecycledRow = figuresRow;
-                        switch (fiSubLevel)
+                        switch (reportLevel)
                         {
                             case 1:
                                 subLevelNames = financialItemsQryVw_OneCurr.Select(sln1 => sln1.الدائرة).Distinct().OrderBy(sln1 => sln1).Distinct().ToList();
@@ -1679,7 +1724,7 @@ namespace AssetManagement.Finance
                         foreach (string oneSLN in subLevelNames)
                         {
                             var subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
-                            switch (fiSubLevel)
+                            switch (reportLevel)
                             {
                                 case 1:
                                     subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
@@ -1694,7 +1739,7 @@ namespace AssetManagement.Finance
                                     break;
                             }
                             string recycledHeadSubText = "";
-                            switch (fiSubLevel)
+                            switch (reportLevel)
                             {
                                 case 1:
                                     recycledHeadSubText = ((oneSLN == StaticCode.PMName) ? "مدور بيد PM" : ("المدور العام لدائرة " + oneSLN));
@@ -1737,166 +1782,176 @@ namespace AssetManagement.Finance
                     #endregion
 
                     #region Total amounts of sub-levels
-                    startRow = Math.Max(figuresRow, tableRow) + 3;
-                    string subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
-                    switch (fiSubLevel)
+                    if (reportLevel <= 3)
                     {
-                        case 1:
-                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
-                            break;
-                        case 2:
-                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الدائرة وتفرعاتها";
-                            break;
-                        case 3:
-                            subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات القسم وتفرعاته";
-                            break;
-                        default:
-                            break;
-                    }
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 6])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
-                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        cells.Value = subLevelsOutlineText;
-                    }
-                    startRow++;
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        cells.Value = "المستوى";
-                    }
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        cells.Value = "إجمالي إيرادات رئيس المستوى";
-                    }
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        cells.Value = "إجمالي صادرات رئيس المستوى (مباشر ومعلق)";
-                    }
-                    using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                    {
-                        cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 14.0F;
-                        cells.Merge = true;
-                        cells.Style.Font.Bold = true;
-                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                        cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        cells.Value = "مدور بيد رئيس المستوى";
-                    }
-                    startRow++;
-                    foreach (string oneSLN in subLevelNames)
-                    {
-                        var subLevel_HeadRecords = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel_Default();
-                        switch (fiSubLevel)
+                        finalRow = figuresRow + 2;
+                        string subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
+                        switch (reportLevel)
                         {
                             case 1:
-                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN).GetTotalFinancialTableOfLevel(2, oneSLN, "", "");
+                                subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الـ PM وتفرعاته";
                                 break;
                             case 2:
-                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln2 => sln2.الدائرة == sectionName && sln2.القسم == oneSLN).GetTotalFinancialTableOfLevel(3, sectionName, oneSLN, "");
+                                subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات الدائرة وتفرعاتها";
                                 break;
                             case 3:
-                                subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln3 => sln3.الدائرة == sectionName && sln3.القسم == deptName && sln3.الوحدة == oneSLN).GetTotalFinancialTableOfLevel(4, sectionName, deptName, oneSLN);
+                                subLevelsOutlineText = "ملخص مختصر لإيرادات وصادرات القسم وتفرعاته";
                                 break;
                             default:
                                 break;
                         }
-                        string outlineHeadSubText = "";
-                        switch (fiSubLevel)
-                        {
-                            case 1:
-                                outlineHeadSubText = ((oneSLN == StaticCode.PMName) ? StaticCode.PMName : ("مدور بيد رئيس دائرة " + oneSLN));
-                                break;
-                            case 2:
-                                outlineHeadSubText = ((oneSLN == "") ? "إدارة الدائرة" : ("مدور بيد رئيس قسم " + oneSLN));
-                                break;
-                            case 3:
-                                outlineHeadSubText = ((oneSLN == "") ? "إدارة القسم" : ("مدور بيد رئيس وحدة " + oneSLN));
-                                break;
-                            default:
-                                break;
-                        }
-
-                        Application.DoEvents();
-
-                        using (var cells = detailedFinancialReportWs.Cells[startRow, 2, startRow, 3])
+                        using (var cells = detailedFinancialReportWs.Cells[finalRow, 2, finalRow, 6])
                         {
                             cells.Style.Font.Name = "Calibri";
-                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.Font.Size = 14.0F;
                             cells.Merge = true;
                             cells.Style.Font.Bold = true;
                             cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(155, 194, 230));
                             cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            cells.Value = outlineHeadSubText;
+                            cells.Value = subLevelsOutlineText;
                         }
-                        using (var cells = detailedFinancialReportWs.Cells[startRow, 4])
+                        finalRow++;
+                        using (var cells = detailedFinancialReportWs.Cells[finalRow, 2, finalRow, 3])
                         {
                             cells.Style.Font.Name = "Calibri";
-                            cells.Style.Font.Size = 11.0F;
-                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            cells.Value = subLevel_HeadRecords.CalcIncomingOfFinancialItems();
-                        }
-                        using (var cells = detailedFinancialReportWs.Cells[startRow, 5])
-                        {
-                            cells.Style.Font.Name = "Calibri";
-                            cells.Style.Font.Size = 11.0F;
-                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            cells.Value = subLevel_HeadRecords.CalcOutgoingOfFinancialItems();
-                        }
-                        using (var cells = detailedFinancialReportWs.Cells[startRow, 6])
-                        {
-                            cells.Style.Font.Name = "Calibri";
-                            cells.Style.Font.Size = 11.0F;
+                            cells.Style.Font.Size = 14.0F;
                             cells.Merge = true;
+                            cells.Style.Font.Bold = true;
                             cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
                             cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            cells.Value = subLevel_HeadRecords.CalcRecycledOfFinancialItems();
+                            cells.Value = "المستوى";
                         }
-                        startRow++;
+                        using (var cells = detailedFinancialReportWs.Cells[finalRow, 4])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = "إجمالي إيرادات رئيس المستوى";
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[finalRow, 5])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = "إجمالي صادرات رئيس المستوى (مباشر ومعلق)";
+                        }
+                        using (var cells = detailedFinancialReportWs.Cells[finalRow, 6])
+                        {
+                            cells.Style.Font.Name = "Calibri";
+                            cells.Style.Font.Size = 14.0F;
+                            cells.Merge = true;
+                            cells.Style.Font.Bold = true;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Value = "مدور بيد رئيس المستوى";
+                        }
+                        finalRow++;
+                        foreach (string oneSLN in subLevelNames)
+                        {
+                            var subLevel_HeadRecords = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel_Default();
+                            switch (reportLevel)
+                            {
+                                case 1:
+                                    subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN && sln1.القسم == "" && sln1.الوحدة == "");
+                                    if (oneSLN == StaticCode.PMName)
+                                        subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == StaticCode.PMName && sln1.القسم == StaticCode.PMName && sln1.الوحدة == StaticCode.PMName);
+                                    break;
+                                case 2:
+                                    subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln2 => sln2.الدائرة == reportSectionName && sln2.القسم == oneSLN && sln2.الوحدة == "");
+                                    break;
+                                case 3:
+                                    subLevel_HeadRecords = financialItemsQryVw_OneCurr.Where(sln3 => sln3.الدائرة == reportSectionName && sln3.القسم == reportDeptName && sln3.الوحدة == oneSLN);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            string outlineHeadSubText = "";
+                            switch (reportLevel)
+                            {
+                                case 1:
+                                    outlineHeadSubText = ((oneSLN == StaticCode.PMName) ? StaticCode.PMName : ("رئيس دائرة " + oneSLN));
+                                    break;
+                                case 2:
+                                    outlineHeadSubText = ((oneSLN == "") ? "إدارة الدائرة" : ("رئيس قسم " + oneSLN));
+                                    break;
+                                case 3:
+                                    outlineHeadSubText = ((oneSLN == "") ? "إدارة القسم" : ("رئيس وحدة " + oneSLN));
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            Application.DoEvents();
+
+                            using (var cells = detailedFinancialReportWs.Cells[finalRow, 2, finalRow, 3])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Merge = true;
+                                cells.Style.Font.Bold = true;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = outlineHeadSubText;
+                            }
+                            using (var cells = detailedFinancialReportWs.Cells[finalRow, 4])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = subLevel_HeadRecords.CalcIncomingOfFinancialItems();
+                            }
+                            using (var cells = detailedFinancialReportWs.Cells[finalRow, 5])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = subLevel_HeadRecords.CalcOutgoingOfFinancialItems();
+                            }
+                            using (var cells = detailedFinancialReportWs.Cells[finalRow, 6])
+                            {
+                                cells.Style.Font.Name = "Calibri";
+                                cells.Style.Font.Size = 11.0F;
+                                cells.Merge = true;
+                                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                                cells.Value = subLevel_HeadRecords.CalcRecycledOfFinancialItems();
+                            }
+                            finalRow++;
+                        }
                     }
                     #endregion
+
+                    for (int iRow = startRow + 2; iRow <= finalRow; iRow++)
+                    {
+                        detailedFinancialReportWs.Row(iRow).Height = 23;
+                    }
                     #endregion
 
                     financialReport_SubLevelsEp.Save();
@@ -2050,7 +2105,7 @@ namespace AssetManagement.Finance
             fiRpWs.Cells[2, 8].Value = subDepartmentVal;
             fiRpWs.Cells[2, 9, 2, 10].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
             int startRow = 5;
-            var financialItemsQry2 = financialItemsQry.GetTotalFinancialTableOfLevel(fiSubLevel, sectionName, deptName, subDeptName);
+            var financialItemsQry2 = reportQueryResults.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
             if (financialItemsQry2.Any(fici1 => fici1.وارد_أم_صادر == "وارد"))
             {
                 foreach (FinancialItemVw oneFiV in financialItemsQry2.Where(fici1 => fici1.وارد_أم_صادر == "وارد"))
@@ -2115,31 +2170,10 @@ namespace AssetManagement.Finance
             annualDateTimePicker.Visible = annualRadioButton.Checked;
         }
 
-        private void searchInDeptRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void searchAllRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
-            searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
-            searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
-            manageSectionTblBtn.Visible = searchBySectionCheckBox.Checked && StaticCode.activeUserRole.ManageSections == true;
-            manageDepartmentTblBtn.Visible = searchByDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageDepartments == true;
-            manageSubDepartmentTblBtn.Visible = searchBySubDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
             if (searchAllRadioButton.Checked)
-            {
-                fiSubLevel = 1;
-            }
-            if (searchBySectionCheckBox.Checked)
-            {
-                fiSubLevel = 2;
-            }
-            if (searchByDepartmentCheckBox.Checked)
-            {
-                fiSubLevel = 3;
-            }
-            if (searchBySubDepartmentCheckBox.Checked)
-            {
-                fiSubLevel = 4;
-            }
-            subLevelTotalsTreeView.Visible = fiSubLevel < 4;
+                searchBySectionCheckBox.Checked = searchByDepartmentCheckBox.Checked = searchBySubDepartmentCheckBox.Checked = false;
         }
 
         private void manageDepartmentTblBtn_Click(object sender, EventArgs e)
@@ -2190,6 +2224,7 @@ namespace AssetManagement.Finance
             if (searchBySectionCheckBox.Checked)
                 searchAllRadioButton.Checked = false;
             searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            manageSectionTblBtn.Visible = searchBySectionCheckBox.Checked && StaticCode.activeUserRole.ManageSections == true;
             if (searchBySectionCheckBox.Checked)
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
@@ -2234,6 +2269,7 @@ namespace AssetManagement.Finance
             if (searchByDepartmentCheckBox.Checked)
                 searchAllRadioButton.Checked = false;
             searchByDepartmentSearchLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            manageDepartmentTblBtn.Visible = searchByDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageDepartments == true;
             if (searchByDepartmentCheckBox.Checked)
             {
                 if (searchByDepartmentSearchLookUpEdit.EditValue == null)
@@ -2314,6 +2350,7 @@ namespace AssetManagement.Finance
             if (searchBySubDepartmentCheckBox.Checked)
                 searchAllRadioButton.Checked = false;
             searchBySubDepartmentSearchLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
+            manageSubDepartmentTblBtn.Visible = searchBySubDepartmentCheckBox.Checked && StaticCode.activeUserRole.ManageSubDepartments == true;
         }
 
         private void exportDetailedFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

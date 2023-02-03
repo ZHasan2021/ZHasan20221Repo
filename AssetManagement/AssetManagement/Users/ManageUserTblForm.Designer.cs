@@ -62,7 +62,6 @@ namespace AssetManagement.Users
             this.userRoleTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserRoleTblTableAdapter();
             this.userTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.UserTblTableAdapter();
             this.userTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -73,10 +72,11 @@ namespace AssetManagement.Users
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.userTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.userTblBindingNavigatorManageUserRolesItem = new System.Windows.Forms.ToolStripButton();
-            this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             this.userTblBindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
+            this.departmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentVwTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTblBindingSource)).BeginInit();
@@ -324,16 +324,20 @@ namespace AssetManagement.Users
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
             this.tableAdapterManager.ImportExportTblTableAdapter = null;
+            this.tableAdapterManager.IncomingTypeTblTableAdapter = null;
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
+            this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
             this.tableAdapterManager.SquareTblTableAdapter = null;
             this.tableAdapterManager.StatusTblTableAdapter = null;
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = this.userRoleTblTableAdapter;
             this.tableAdapterManager.UserTblTableAdapter = this.userTblTableAdapter;
             // 
@@ -385,16 +389,6 @@ namespace AssetManagement.Users
             this.userTblBindingNavigator.Size = new System.Drawing.Size(1274, 47);
             this.userTblBindingNavigator.TabIndex = 6;
             this.userTblBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(44, 44);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -473,6 +467,16 @@ namespace AssetManagement.Users
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(44, 44);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
             // userTblBindingNavigatorSaveItem
             // 
             this.userTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -489,12 +493,8 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorManageUserRolesItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.userTblBindingNavigatorManageUserRolesItem.Name = "userTblBindingNavigatorManageUserRolesItem";
             this.userTblBindingNavigatorManageUserRolesItem.Size = new System.Drawing.Size(44, 44);
-            this.userTblBindingNavigatorManageUserRolesItem.Text = "toolStripButton1";
+            this.userTblBindingNavigatorManageUserRolesItem.Text = "إدارة صلاحيات المستخدمين";
             this.userTblBindingNavigatorManageUserRolesItem.Click += new System.EventHandler(this.userTblBindingNavigatorManageUserRolesItem_Click);
-            // 
-            // departmentVwTableAdapter
-            // 
-            this.departmentVwTableAdapter.ClearBeforeFill = true;
             // 
             // userTblBindingNavigatorEditItem
             // 
@@ -505,6 +505,10 @@ namespace AssetManagement.Users
             this.userTblBindingNavigatorEditItem.Size = new System.Drawing.Size(44, 44);
             this.userTblBindingNavigatorEditItem.Text = "تعديل";
             this.userTblBindingNavigatorEditItem.Click += new System.EventHandler(this.userTblBindingNavigatorEditItem_Click);
+            // 
+            // departmentVwTableAdapter
+            // 
+            this.departmentVwTableAdapter.ClearBeforeFill = true;
             // 
             // ManageUserTblForm
             // 

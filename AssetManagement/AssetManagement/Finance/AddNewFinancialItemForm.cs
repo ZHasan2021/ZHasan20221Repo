@@ -454,11 +454,15 @@ namespace AssetManagement.Finance
                         AddNewAssetForm astFrm = new AddNewAssetForm();
                         astFrm.ShowDialog();
                         addNewFinancialItemBtn_OK.Enabled = astFrm.AssetAdded;
+                        additionalNotesTextBox.Text = $"شراء الأصل ذو الكود ({astFrm.AssetCode})";
+                        additionalNotesTextBox.Enabled = false;
                     }
                     else
                     {
                         MessageBox.Show("هذا البند المالي يوصف على أنه أصل ثابت لكنك لا تملك الصلاحية لإضافة أصل، الرجاء طلب سماحية لإضافة أصل ثم إدخال كافة بيانات الأصل ", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         addNewFinancialItemBtn_OK.Enabled = false;
+                        additionalNotesTextBox.Text = "";
+                        additionalNotesTextBox.Enabled = true;
                         return;
                     }
                 }

@@ -28,7 +28,7 @@ namespace AssetManagement
     {
         IQueryable<AssetTbl> assetsToDestructList = null;
         IQueryable<AssetTbl> destructedAssetsList = null;
-        int delaySeconds = 0;
+        List<string> notAddedAssetsWithFinancialItemsList = null;
 
         public MainForm()
         {
@@ -41,7 +41,7 @@ namespace AssetManagement
             this.MinimumSize = this.Size;
 
             ApplyUserRolesOnInterface();
-            UpdateAssetsToDestructLabel();
+            CheckAssetsNotifications();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,19 +62,6 @@ namespace AssetManagement
         {
             appDateBarStaticItem.Caption = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays).ToString("dddd, MMMM dd, yyyy");
             appTimeBarStaticItem.Caption = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds).ToLongTimeString();
-            if (delaySeconds != -5)
-                delaySeconds++;
-            if (delaySeconds > 1)
-            {
-                delaySeconds = -5;
-                UpdateDestructedAssetsLabel();
-                if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
-                {
-                    Thread.Sleep(1000);
-                    MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    destructedAssetsBarStaticItem_ItemClick(this, null);
-                }
-            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -104,24 +91,25 @@ namespace AssetManagement
         {
             ImportForm impFrm = new ImportForm();
             impFrm.ShowDialog();
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
         #endregion
 
         #region Assets
-        private void UpdateAssetsToDestructLabel()
+        private void CheckAssetsNotifications()
         {
             assetsToDestructList = StaticCode.GetAssetsToDestruct();
-            assetsToDestructBarStaticItem.Visibility = (assetsToDestructList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            assetsToDestructBarStaticItem.Caption = $"عدد الأصول التي أوشكت على الاهتلاك هو: ({assetsToDestructList.Count()})";
-        }
-
-        private void UpdateDestructedAssetsLabel()
-        {
             destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
-            destructedAssetsBarStaticItem.Visibility = (destructedAssetsList.Count() > 0) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            destructedAssetsBarStaticItem.Caption = $"أصول انتهى عمرها الإنتاجي دون تصريف: ({destructedAssetsList.Count()})";
+            notAddedAssetsWithFinancialItemsList = StaticCode.GetNotAddedAssetsHaveFinancialItems();
+
+            if (assetsToDestructList.Any() || destructedAssetsList.Any() || notAddedAssetsWithFinancialItemsList.Any())
+            {
+                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الافتراضي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})");
+            }
+            else
+            {
+                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, "لا يوجد إشعارات");
+            }
         }
 
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -136,8 +124,7 @@ namespace AssetManagement
         {
             CustomAssetsForm cuFrm = new CustomAssetsForm();
             cuFrm.ShowDialog();
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
 
         private void addNewAssetMovementBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -199,41 +186,29 @@ namespace AssetManagement
             statFrm.ShowDialog();
         }
 
-        private void assetsToDestructBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageAssetTblForm desFrm = new ManageAssetTblForm(assetsToDestructList, "الأصول التي سينتهي عمرها الإنتاجي");
-            desFrm.ShowDialog();
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
-        }
-
         private void destructedAssetsBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageAssetTblForm desFrm = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
             desFrm.ShowDialog();
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 1);
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
 
         private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 2);
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
 
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 3);
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -247,7 +222,7 @@ namespace AssetManagement
             }
             actionsStatusMemoEdit.Text = "";
 
-            progressPanel1.Visible = true;
+            mainProgressPanel.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -257,35 +232,35 @@ namespace AssetManagement
             if (assetCodeCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int movedFieldCol = mvColumnsHeaders.IndexOf("الحقل المحدث بعملية النقل") + 1;
             if (movedFieldCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (الحقل المحدث بعملية النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int mvFromCol = mvColumnsHeaders.IndexOf("من") + 1;
             if (mvFromCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (القيمة الحالية) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int mvToCol = mvColumnsHeaders.IndexOf("إلى") + 1;
             if (mvToCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (القيمة الجديدة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int mvDateCol = mvColumnsHeaders.IndexOf("تاريخ النقل") + 1;
             if (mvDateCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (تاريخ النقل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
 
@@ -349,7 +324,7 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
-            progressPanel1.Visible = false;
+            mainProgressPanel.Visible = false;
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -363,7 +338,7 @@ namespace AssetManagement
             }
             actionsStatusMemoEdit.Text = "";
 
-            progressPanel1.Visible = true;
+            mainProgressPanel.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -373,63 +348,63 @@ namespace AssetManagement
             if (assetCodeCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (كود الأصل) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trCategoryCol = mvColumnsHeaders.IndexOf("نوع التصريف") + 1;
             if (trCategoryCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (نوع التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trQuantityCol = mvColumnsHeaders.IndexOf("العدد") + 1;
             if (trQuantityCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (العدد) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trSellPriceCol = mvColumnsHeaders.IndexOf("مبلغ البيع") + 1;
             if (trSellPriceCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trSellPriceCurrCol = mvColumnsHeaders.IndexOf("عملة مبلغ البيع") + 1;
             if (trSellPriceCurrCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (عملة مبلغ البيع) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trGetOutOfWorkCol = mvColumnsHeaders.IndexOf("إخراج الأصل من الخدمة") + 1;
             if (trGetOutOfWorkCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (إخراج الأصل من الخدمة) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trCurrPriceCol = mvColumnsHeaders.IndexOf("السعر الحالي مع الإهلاك") + 1;
             if (trCurrPriceCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (السعر الحالي مع الإهلاك) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trNotesCol = mvColumnsHeaders.IndexOf("ملاحظات") + 1;
             if (trNotesCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (ملاحظات) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
             int trDateCol = mvColumnsHeaders.IndexOf("تاريخ التصريف") + 1;
             if (trDateCol == 0)
             {
                 mainAlertControl.Show(this, "عمود (تاريخ التصريف) مفقود، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 return;
             }
 
@@ -450,21 +425,21 @@ namespace AssetManagement
                     if (trQuantityVal <= 0)
                     {
                         mainAlertControl.Show(this, $"العدد في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                        progressPanel1.Visible = false;
+                        mainProgressPanel.Visible = false;
                         return;
                     }
                     double trSellPriceVal = (astWs.Cells[iRow, trSellPriceCol].Value?.ToString() == "") ? 0 : Convert.ToDouble(astWs.Cells[iRow, trSellPriceCol].Value?.ToString());
                     if (trSellPriceVal <= 0)
                     {
                         mainAlertControl.Show(this, $"السعر في السطر رقم {iRow} صفر أو سالب، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                        progressPanel1.Visible = false;
+                        mainProgressPanel.Visible = false;
                         return;
                     }
                     tmpVal = astWs.Cells[iRow, trSellPriceCurrCol].Value?.ToString().Trim();
                     if (!StaticCode.mainDbContext.CurrencyTbls.Any(cu2 => cu2.CurrencyName == tmpVal))
                     {
                         mainAlertControl.Show(this, $"العملة في السطر رقم {iRow} غير موجودة في جدول العملات، لا يمكن المتابعة في الاستيراد", StaticCode.ApplicationTitle);
-                        progressPanel1.Visible = false;
+                        mainProgressPanel.Visible = false;
                         return;
                     }
                     int trSellPriceCurrVal = StaticCode.mainDbContext.CurrencyTbls.Single(cur1 => cur1.CurrencyName == tmpVal).ID;
@@ -521,7 +496,7 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
-            progressPanel1.Visible = false;
+            mainProgressPanel.Visible = false;
         }
 
         private void ImportAssetsFromExcel(object sender, DevExpress.XtraBars.ItemClickEventArgs e, int formNo)
@@ -534,7 +509,7 @@ namespace AssetManagement
                 return;
             }
 
-            progressPanel1.Visible = true;
+            mainProgressPanel.Visible = true;
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
@@ -557,19 +532,69 @@ namespace AssetManagement
             if (importingReport == null)
             {
                 actionsStatusMemoEdit.Text = errorMsgOut;
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
                 return;
             }
             else
             {
                 actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة ({newAssetsCount})\r\n2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})\r\n3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel})\r\n---------------";
-                progressPanel1.Visible = false;
+                mainProgressPanel.Visible = false;
                 mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
                 return;
             }
         }
 
+        private void breakingAlertControl_ButtonClick(object sender, DevExpress.XtraBars.Alerter.AlertButtonClickEventArgs e)
+        {
+            switch (e.Button.Name)
+            {
+                case "destructedAssetsAlertButton":
+                    if (StaticCode.activeUserRole.ManageAssetTbl != true)
+                    {
+                        mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لا تملك الصلاحيات للدخول إلى سجلات الأصول!");
+                        return;
+                    }
+                    ManageAssetTblForm desFrm1 = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
+                    desFrm1.ShowDialog();
+                    CheckAssetsNotifications();
+                    break;
+                case "assetsToDestructAlertButton":
+                    if (StaticCode.activeUserRole.ManageAssetTbl != true)
+                    {
+                        mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لا تملك الصلاحيات للدخول إلى سجلات الأصول!");
+                        return;
+                    }
+                    ManageAssetTblForm desFrm2 = new ManageAssetTblForm(assetsToDestructList, "الأصول التي سينتهي عمرها الإنتاجي");
+                    desFrm2.ShowDialog();
+                    CheckAssetsNotifications();
+                    break;
+                case "notAddedAssetsWithFinancialItemsAlertButton":
+                    actionsStatusMemoEdit.Text = $"الأصول غير الموجودة ولها سجلات مالية تتعلق بشرائها ({notAddedAssetsWithFinancialItemsList.Count}):\r\n";
+                    for (int i = 0; i < notAddedAssetsWithFinancialItemsList.Count; i++)
+                    {
+                        actionsStatusMemoEdit.Text += $"{i + 1}- notAddedAssetsWithFinancialItemsList[i]\r\n";
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void breakingAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
+        {
+            e.AlertForm.Size = new Size(350, 300);
+            e.AlertForm.BackColor = Color.DarkGreen;
+            e.AlertForm.ForeColor = Color.Red;
+            e.AlertForm.StartPosition = FormStartPosition.Manual;
+            e.AlertForm.Location = new Point(200, 400);
+            e.Buttons.PinButton.SetDown(true);
+        }
+
+        private void viewAssetsNotificationsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CheckAssetsNotifications();
+        }
         #endregion
 
         #region Options
@@ -592,8 +617,7 @@ namespace AssetManagement
         {
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
-            UpdateAssetsToDestructLabel();
-            UpdateDestructedAssetsLabel();
+            CheckAssetsNotifications();
         }
         #endregion
 
@@ -725,12 +749,14 @@ namespace AssetManagement
         {
             AddNewFinancialItemForm newFinFrm = new AddNewFinancialItemForm();
             newFinFrm.ShowDialog();
+            CheckAssetsNotifications();
         }
 
         private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
             fiItFrm.Show();
+            CheckAssetsNotifications();
         }
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -759,14 +785,16 @@ namespace AssetManagement
             else
             {
                 mainAlertControl.Show(this, "تم استيراد السجلات المالية بنجاح، راجع إدارة السجلات المالية للتأكد من ذلك", StaticCode.ApplicationTitle);
+                CheckAssetsNotifications();
                 return;
             }
         }
 
         private void financialItemsStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FinancialStatsForm fistFrm = new FinancialStatsForm();
-            fistFrm.ShowDialog();
+            mainAlertControl.Show(this, StaticCode.ApplicationTitle, "هذه الميزة قيد الإنجاز حالياً");
+            //FinancialStatsForm fistFrm = new FinancialStatsForm();
+            //fistFrm.ShowDialog();
         }
         #endregion
 
@@ -893,9 +921,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             if (logResult == DialogResult.OK)
             {
                 ApplyUserRolesOnInterface();
-                UpdateAssetsToDestructLabel();
-                UpdateDestructedAssetsLabel();
-                if (destructedAssetsBarStaticItem.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
+                CheckAssetsNotifications();
+                if (destructedAssetsList.Any())
                 {
                     Thread.Sleep(1000);
                     MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);

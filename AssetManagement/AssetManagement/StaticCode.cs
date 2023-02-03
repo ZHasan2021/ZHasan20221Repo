@@ -903,6 +903,22 @@ namespace AssetManagement
             return res;
         }
 
+        public static List<string> GetNotAddedAssetsHaveFinancialItems()
+        {
+            List<string> assetsStatements = new List<string>()
+            {
+                "اصل ثابت",
+                "أصل ثابت",
+                "أصول ثابتة",
+                "اصول ثابتة"
+            };
+            var assetsFIVQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.اسم_البند_المالي.Contains("اصل ثابت") || fiv1.اسم_البند_المالي.Contains("أصل ثابت") || fiv1.اسم_البند_المالي.Contains("أصول ثابتة") || fiv1.اسم_البند_المالي.Contains("اصول ثابتة"));
+            if (!assetsFIVQry.Any())
+                return new List<string>();
+            List<string> resAssetsCodes = assetsFIVQry.Select(fiv2 => fiv2.ملاحظات_إضافية.Replace("شراء الأصل ذو الكود", "").Replace(")", "").Replace("(", "").Trim()).ToList();
+            return resAssetsCodes;
+        }
+
         public static string GetTheNewAssetCode()
         {
             string currUserPrefix = activeUser.UserPrefix;
@@ -1682,10 +1698,8 @@ namespace AssetManagement
             return (fivQry.CalcRecycledOfFinancialItems());
         }
 
-
-
         /// <summary>
-        /// للحصول على الواردات من المستوى الأعلى فقط لليوزر الحالي مع الصادرات المباشرة دون المعلقة
+        /// للحصول على الواردات من المستوى الأعلى مع الصادرات المباشرة فقط دون المعلقة للمستخدم الحالي فقط
         /// </summary>
         /// <param name="fivQry"></param>
         /// <returns></returns>
@@ -1708,6 +1722,15 @@ namespace AssetManagement
             return (fivQry.GetTotalFinancialTableOfLevel_Default());
         }
 
+        /// <summary>
+        /// للحصول على الورادات من المستوى الأعلى مع الصادرات المباشرة فقط دون المعلقة حسب الدائرة والقسم والوحدة
+        /// </summary>
+        /// <param name="fivQry"></param>
+        /// <param name="levelRank"></param>
+        /// <param name="sectionName"></param>
+        /// <param name="deptName"></param>
+        /// <param name="subDeptName"></param>
+        /// <returns></returns>
         public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemVw> fivQry, int levelRank, string sectionName, string deptName, string subDeptName)
         {
             var fivResult = fivQry;
@@ -1731,11 +1754,6 @@ namespace AssetManagement
             return (fivResult);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="fiitQry"></param>
-        /// <returns></returns>
         public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel(this IQueryable<FinancialItemTbl> fiitQry, int levelRank, string sectionName, string deptName, string subDeptName)
         {
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();

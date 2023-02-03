@@ -31,6 +31,9 @@ namespace AssetManagement
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            DevExpress.XtraBars.Alerter.AlertButton alertButton1 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton2 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton3 = new DevExpress.XtraBars.Alerter.AlertButton();
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -74,7 +77,6 @@ namespace AssetManagement
             this.openEencryptionKeysFolderRarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openAppFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openBackupFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.assetsToDestructBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.openExportFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -94,8 +96,8 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageOutgoingTypeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.financialItemsStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.destructedAssetsBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
+            this.viewAssetsNotificationsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -121,7 +123,8 @@ namespace AssetManagement
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.mainProgressPanel = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.breakingAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -177,7 +180,6 @@ namespace AssetManagement
             this.openEencryptionKeysFolderRarButtonItem,
             this.openAppFolderBarButtonItem,
             this.openBackupFolderBarButtonItem,
-            this.assetsToDestructBarStaticItem,
             this.openExportFolderBarButtonItem,
             this.manageModelTblBarButtonItem,
             this.manageSubDepartmentTblBarButtonItem,
@@ -197,11 +199,11 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem,
             this.manageOutgoingTypeTblBarButtonItem,
             this.financialItemsStatsBarButtonItem,
-            this.destructedAssetsBarStaticItem,
-            this.activeUserSectionBarStaticItem});
+            this.activeUserSectionBarStaticItem,
+            this.viewAssetsNotificationsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 89;
+            this.mainRibbonControl.MaxItemId = 90;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -601,18 +603,6 @@ namespace AssetManagement
             this.openBackupFolderBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.openBackupFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openBackupFolderBarButtonItem_ItemClick);
             // 
-            // assetsToDestructBarStaticItem
-            // 
-            this.assetsToDestructBarStaticItem.Id = 56;
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.assetsToDestructBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.assetsToDestructBarStaticItem.Name = "assetsToDestructBarStaticItem";
-            this.assetsToDestructBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.assetsToDestructBarStaticItem_ItemClick);
-            // 
             // openExportFolderBarButtonItem
             // 
             this.openExportFolderBarButtonItem.Caption = "مجلد الملفات المصدرة";
@@ -789,18 +779,6 @@ namespace AssetManagement
             this.financialItemsStatsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.financialItemsStatsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.financialItemsStatsBarButtonItem_ItemClick);
             // 
-            // destructedAssetsBarStaticItem
-            // 
-            this.destructedAssetsBarStaticItem.Id = 87;
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.destructedAssetsBarStaticItem.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.destructedAssetsBarStaticItem.Name = "destructedAssetsBarStaticItem";
-            this.destructedAssetsBarStaticItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.destructedAssetsBarStaticItem_ItemClick);
-            // 
             // activeUserSectionBarStaticItem
             // 
             this.activeUserSectionBarStaticItem.Id = 88;
@@ -809,6 +787,15 @@ namespace AssetManagement
             this.activeUserSectionBarStaticItem.ItemAppearance.Normal.Options.UseBackColor = true;
             this.activeUserSectionBarStaticItem.Name = "activeUserSectionBarStaticItem";
             this.activeUserSectionBarStaticItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // viewAssetsNotificationsBarButtonItem
+            // 
+            this.viewAssetsNotificationsBarButtonItem.Caption = "عرض إشعارات الأصول";
+            this.viewAssetsNotificationsBarButtonItem.Id = 89;
+            this.viewAssetsNotificationsBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._7076599_notification_ring_alarm_bell_alert_icon;
+            this.viewAssetsNotificationsBarButtonItem.Name = "viewAssetsNotificationsBarButtonItem";
+            this.viewAssetsNotificationsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.viewAssetsNotificationsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewAssetsNotificationsBarButtonItem_ItemClick);
             // 
             // mainRibbonMiniToolbar
             // 
@@ -847,6 +834,7 @@ namespace AssetManagement
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.updateExistedAssetBarButtonItem);
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.deleteAssetsBarButtonItem);
             this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.manageAssetTblBarButtonItem);
+            this.existedAssetsRibbonPageGroup.ItemLinks.Add(this.viewAssetsNotificationsBarButtonItem);
             this.existedAssetsRibbonPageGroup.Name = "existedAssetsRibbonPageGroup";
             this.existedAssetsRibbonPageGroup.Text = "جدول الأصول - Assets table";
             // 
@@ -1006,11 +994,8 @@ namespace AssetManagement
             this.mainRibbonStatusBar.ItemLinks.Add(this.skinDropDownButtonItem1);
             this.mainRibbonStatusBar.ItemLinks.Add(this.appDateBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.appTimeBarStaticItem);
-            this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
-            this.mainRibbonStatusBar.ItemLinks.Add(this.destructedAssetsBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserRoleBarStaticItem);
-            this.mainRibbonStatusBar.ItemLinks.Add(this.assetsToDestructBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserSectionBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.activeUserDeptBarStaticItem);
             this.mainRibbonStatusBar.ItemLinks.Add(this.actionsStatusBarStaticItem);
@@ -1131,33 +1116,63 @@ namespace AssetManagement
             this.actionsStatusMemoEdit.Size = new System.Drawing.Size(310, 668);
             this.actionsStatusMemoEdit.TabIndex = 8;
             // 
-            // progressPanel1
+            // mainProgressPanel
             // 
-            this.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.progressPanel1.Appearance.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressPanel1.Appearance.Options.UseBackColor = true;
-            this.progressPanel1.Appearance.Options.UseFont = true;
-            this.progressPanel1.AppearanceCaption.Font = new System.Drawing.Font("Sakkal Majalla", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressPanel1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
-            this.progressPanel1.AppearanceCaption.Options.UseFont = true;
-            this.progressPanel1.AppearanceCaption.Options.UseForeColor = true;
-            this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressPanel1.AppearanceDescription.Options.UseFont = true;
-            this.progressPanel1.Caption = "جار إعداد التقارير المالية";
-            this.progressPanel1.Description = "الرجاء الانتظار";
-            this.progressPanel1.Location = new System.Drawing.Point(550, 402);
-            this.progressPanel1.Name = "progressPanel1";
-            this.progressPanel1.Size = new System.Drawing.Size(384, 177);
-            this.progressPanel1.TabIndex = 401;
-            this.progressPanel1.Text = "جار إعداد التقارير المالية";
-            this.progressPanel1.Visible = false;
+            this.mainProgressPanel.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.mainProgressPanel.Appearance.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainProgressPanel.Appearance.Options.UseBackColor = true;
+            this.mainProgressPanel.Appearance.Options.UseFont = true;
+            this.mainProgressPanel.AppearanceCaption.Font = new System.Drawing.Font("Sakkal Majalla", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainProgressPanel.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
+            this.mainProgressPanel.AppearanceCaption.Options.UseFont = true;
+            this.mainProgressPanel.AppearanceCaption.Options.UseForeColor = true;
+            this.mainProgressPanel.AppearanceDescription.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainProgressPanel.AppearanceDescription.Options.UseFont = true;
+            this.mainProgressPanel.Caption = "جار إعداد التقارير المالية";
+            this.mainProgressPanel.Description = "الرجاء الانتظار";
+            this.mainProgressPanel.Location = new System.Drawing.Point(747, 383);
+            this.mainProgressPanel.Name = "mainProgressPanel";
+            this.mainProgressPanel.Size = new System.Drawing.Size(384, 177);
+            this.mainProgressPanel.TabIndex = 401;
+            this.mainProgressPanel.Text = "جار إعداد التقارير المالية";
+            this.mainProgressPanel.Visible = false;
+            // 
+            // breakingAlertControl
+            // 
+            this.breakingAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.breakingAlertControl.AppearanceCaption.Options.UseFont = true;
+            this.breakingAlertControl.AppearanceCaption.Options.UseTextOptions = true;
+            this.breakingAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.breakingAlertControl.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.breakingAlertControl.AppearanceText.Font = new System.Drawing.Font("Sakkal Majalla", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.breakingAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.breakingAlertControl.AppearanceText.Options.UseFont = true;
+            this.breakingAlertControl.AppearanceText.Options.UseForeColor = true;
+            this.breakingAlertControl.AppearanceText.Options.UseTextOptions = true;
+            this.breakingAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.breakingAlertControl.AppearanceText.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            alertButton1.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
+            alertButton1.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon;
+            alertButton1.Name = "destructedAssetsAlertButton";
+            alertButton2.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
+            alertButton2.ImageOptions.Image = global::AssetManagement.Properties.Resources._2912628;
+            alertButton2.Name = "assetsToDestructAlertButton";
+            alertButton3.Hint = "عرض السجلات المالية الخاصة بالأصول الثابتة وأصولها غير مضافة بعد";
+            alertButton3.ImageOptions.Image = global::AssetManagement.Properties.Resources._968753;
+            alertButton3.Name = "notAddedAssetsWithFinancialItemsAlertButton";
+            this.breakingAlertControl.Buttons.Add(alertButton1);
+            this.breakingAlertControl.Buttons.Add(alertButton2);
+            this.breakingAlertControl.Buttons.Add(alertButton3);
+            this.breakingAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
+            this.breakingAlertControl.ButtonClick += new DevExpress.XtraBars.Alerter.AlertButtonClickEventHandler(this.breakingAlertControl_ButtonClick);
+            this.breakingAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.breakingAlertControl_FormLoad);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 981);
-            this.Controls.Add(this.progressPanel1);
+            this.Controls.Add(this.mainProgressPanel);
             this.Controls.Add(this.actionsStatusMemoEdit);
             this.Controls.Add(this.mainMemoEdit);
             this.Controls.Add(this.mainRibbonStatusBar);
@@ -1248,7 +1263,6 @@ namespace AssetManagement
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup appFoldersRibbonPageGroup;
         private DevExpress.XtraBars.BarButtonItem openAppFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem openBackupFolderBarButtonItem;
-        private DevExpress.XtraBars.BarStaticItem assetsToDestructBarStaticItem;
         private DevExpress.XtraEditors.MemoEdit mainMemoEdit;
         private DevExpress.XtraBars.BarButtonItem openExportFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageModelTblBarButtonItem;
@@ -1270,9 +1284,10 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem manageIncomingTypeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem manageOutgoingTypeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem financialItemsStatsBarButtonItem;
-        private DevExpress.XtraBars.BarStaticItem destructedAssetsBarStaticItem;
         private DevExpress.XtraBars.BarStaticItem activeUserSectionBarStaticItem;
-        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
+        private DevExpress.XtraWaitForm.ProgressPanel mainProgressPanel;
+        private DevExpress.XtraBars.Alerter.AlertControl breakingAlertControl;
+        private DevExpress.XtraBars.BarButtonItem viewAssetsNotificationsBarButtonItem;
     }
 }
 

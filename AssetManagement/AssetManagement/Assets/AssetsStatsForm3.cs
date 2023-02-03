@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AssetManagement.AssetMngDbDataSet;
 
 namespace AssetManagement.Assets
 {
@@ -38,10 +39,10 @@ namespace AssetManagement.Assets
                     groupList = assetsToView.Select(asvg1 => asvg1.الدائرة).Distinct().ToList();
                     break;
                 case "القسم":
-                    groupList = assetsToView.Select(asvg1 => asvg1.القسم).Distinct().ToList();
+                    groupList = assetsToView.Select(asvg1 => (asvg1.القسم == "") ? ("إدارة " + asvg1.الدائرة) : asvg1.القسم).Distinct().ToList();
                     break;
                 case "الوحدة":
-                    groupList = assetsToView.Select(asvg1 => asvg1.الوحدة).Distinct().ToList();
+                    groupList = assetsToView.Select(asvg1 => (asvg1.الوحدة == "") ? ("إدارة " + asvg1.القسم) : asvg1.الوحدة).Distinct().ToList();
                     break;
                 case "الفئة الرئيسية":
                     groupList = assetsToView.Select(asvg1 => asvg1.الفئة_الرئيسية).Distinct().ToList();
@@ -77,10 +78,10 @@ namespace AssetManagement.Assets
                     stackList = assetsToView.Select(asvs1 => asvs1.الدائرة).Distinct().ToList();
                     break;
                 case "القسم":
-                    stackList = assetsToView.Select(asvs1 => asvs1.القسم).Distinct().ToList();
+                    stackList = assetsToView.Select(asvs1 => (asvs1.القسم == "") ? ("إدارة " + asvs1.الدائرة) : asvs1.القسم).Distinct().ToList();
                     break;
                 case "الوحدة":
-                    stackList = assetsToView.Select(asvs1 => asvs1.الوحدة).Distinct().ToList();
+                    stackList = assetsToView.Select(asvs1 => (asvs1.الوحدة == "") ? ("إدارة " + asvs1.القسم) : asvs1.الوحدة).Distinct().ToList();
                     break;
                 case "الفئة الرئيسية":
                     stackList = assetsToView.Select(asvs1 => asvs1.الفئة_الرئيسية).Distinct().ToList();
@@ -118,7 +119,7 @@ namespace AssetManagement.Assets
             {
                 Application.DoEvents();
 
-                List<AssetVw> assetsOccur = new List<AssetVw> ();
+                List<AssetVw> assetsOccur = new List<AssetVw>();
                 switch (groupField)
                 {
                     case "قديم أو جديد":
@@ -161,7 +162,7 @@ namespace AssetManagement.Assets
                 {
                     Application.DoEvents();
 
-                List<AssetVw> assetsOccur2 = new List<AssetVw> ();
+                    List<AssetVw> assetsOccur2 = new List<AssetVw>();
                     switch (seriesField)
                     {
                         case "قديم أو جديد":
@@ -226,6 +227,20 @@ namespace AssetManagement.Assets
 
         private void AssetsStatsForm3_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.CurrencyTbl' table. You can move, or remove it, as needed.
+            this.currencyTblTableAdapter.Fill(this.assetMngDbDataSet.CurrencyTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.MinorCategoryTbl' table. You can move, or remove it, as needed.
+            this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.MinorCategoryVw' table. You can move, or remove it, as needed.
+            this.minorCategoryVwTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryVw);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.MainCategoryTbl' table. You can move, or remove it, as needed.
+            this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
+            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
+            this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.SectionTbl' table. You can move, or remove it, as needed.
+            this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             searchResults = StaticCode.mainDbContext.AssetVws.Select(asv1 => asv1);
@@ -254,20 +269,12 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "اختر خانة الحقل التجميعي", StaticCode.ApplicationTitle);
                 return;
             }
-            if (addSeriesBarCheckItem.Checked)
+            if (aggValueBarEditItem.EditValue == null)
             {
-                if (seriesFieldBarEditItem.EditValue == null)
-                {
-                    mainAlertControl.Show(this, "اختر خانة الحقل التراكمي", StaticCode.ApplicationTitle);
-                    return;
-                }
-                if (groupFieldBarEditItem.EditValue.ToString() == seriesFieldBarEditItem.EditValue.ToString())
-                {
-                    mainAlertControl.Show(this, "الحقل التجميعي لا يجب أن يكون نفسه الحقل التراكمي", StaticCode.ApplicationTitle);
-                    return;
-                }
+                mainAlertControl.Show(this, "اختر خانة حقل القيم", StaticCode.ApplicationTitle);
+                return;
             }
-            PrepareListsForDataSources(searchResults.ToList(), groupFieldBarEditItem.EditValue.ToString(), ((addSeriesBarCheckItem.Checked) ? seriesFieldBarEditItem.EditValue.ToString() : ""), aggValueBarEditItem.EditValue.ToString());
+            PrepareListsForDataSources(searchResults.ToList(), groupFieldBarEditItem.EditValue.ToString(), seriesFieldBarEditItem.EditValue.ToString(), aggValueBarEditItem.EditValue.ToString());
 
             List<ChartControl> chartsIncluded = new List<ChartControl>()
             {
@@ -281,35 +288,274 @@ namespace AssetManagement.Assets
                 oneChart.SeriesTemplate.ArgumentDataMember = groupFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.ValueDataMembersSerializable = aggValueBarEditItem.EditValue.ToString();
-                oneChart.SeriesTemplate.CrosshairLabelPattern = "{S}: {V:0.0}";
+                oneChart.SeriesTemplate.CrosshairLabelPattern = "{S}: {V}";
                 //fullStackedBarSeriesLabel1.TextPattern = "{VP:P0}";
 
-                oneChart.Titles[0].Text = $"{aggValueBarEditItem.EditValue} حسب {groupFieldBarEditItem.EditValue}{((addSeriesBarCheckItem.Checked) ? " و " + seriesFieldBarEditItem.EditValue.ToString() : "")}";
-
-                XYDiagram xyDiagram1 = (oneChart.Diagram as XYDiagram);
-                xyDiagram1.AxisX.Title.Text = seriesFieldBarEditItem.EditValue.ToString();
-                xyDiagram1.AxisY.NumericScaleOptions.AutoGrid = true;
-                xyDiagram1.AxisY.Title.Text = aggValueBarEditItem.EditValue.ToString();
-                xyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
-                //xyDiagram1.Rotated = true;
+                oneChart.Titles[0].Text = $"{aggValueBarEditItem.EditValue} حسب {groupFieldBarEditItem.EditValue} و {seriesFieldBarEditItem.EditValue.ToString()}";
             }
 
+            SideBySideBarSeriesView view1 = chartBar.SeriesTemplate.View as SideBySideBarSeriesView;
+            view1.BarWidth = 1.5;
+            view1.BarDistance = 2;
+            //view1.ColorEach = true;
+
+            XYDiagram xyDiagram1 = (chartBar.Diagram as XYDiagram);
+            xyDiagram1.AxisX.Title.Text = seriesFieldBarEditItem.EditValue.ToString();
+            xyDiagram1.AxisY.NumericScaleOptions.AutoGrid = true;
+            xyDiagram1.AxisY.Title.Text = aggValueBarEditItem.EditValue.ToString();
+            xyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            //xyDiagram1.Rotated = true;
+            XYDiagram xyDiagram2 = (chartFullStackedBar.Diagram as XYDiagram);
+            xyDiagram2.AxisX.Title.Text = seriesFieldBarEditItem.EditValue.ToString();
+            xyDiagram2.AxisY.NumericScaleOptions.AutoGrid = true;
+            xyDiagram2.AxisY.Title.Text = aggValueBarEditItem.EditValue.ToString();
+            xyDiagram2.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            //xyDiagram2.Rotated = true;
+
             FullStackedBarSeriesLabel fulllStackedBarSeriesLabel1 = chartFullStackedBar.SeriesTemplate.Label as FullStackedBarSeriesLabel;
-            fulllStackedBarSeriesLabel1.TextPattern = "{S}: {V:0,,.0}";
+            fulllStackedBarSeriesLabel1.TextPattern = "{S}:{V:F0}";
             chartFullStackedBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            BarSeriesLabel barSeriesLabel1 = chartBar.SeriesTemplate.Label as BarSeriesLabel;
+            barSeriesLabel1.TextPattern = "{S} - {V}";
+            chartBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            chartBar.SeriesTemplate.CrosshairLabelPattern = "{S}";
 
             chartFullStackedBar.DataSource = twoFieldsDataSource;
             chartBar.DataSource = twoFieldsDataSource;
         }
 
-        private void addSeriesBarCheckItem_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            seriesFieldBarEditItem.Visibility = (addSeriesBarCheckItem.Checked) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-        }
-
         private void toolbarFormControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void searchBySectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchBySectionLookUpEdit.Visible = searchBySectionCheckBox.Checked;
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                    return;
+                var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                searchByDepartmentLookUpEdit.Properties.DataSource = deptItems;
+                searchBySubDepartmentLookUpEdit.EditValue = null;
+            }
+            else
+            {
+                searchByDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls;
+                this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
+            }
+        }
+
+        private void searchByDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByDepartmentLookUpEdit.Visible = searchByDepartmentCheckBox.Checked;
+            if (searchByDepartmentCheckBox.Checked)
+            {
+                if (searchByDepartmentLookUpEdit.EditValue == null)
+                    return;
+                var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(searchByDepartmentLookUpEdit.EditValue));
+                searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+            }
+            else
+            {
+                if (searchBySectionCheckBox.Checked)
+                {
+                    if (searchBySectionLookUpEdit.EditValue == null)
+                        return;
+                    var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue));
+                    List<int> dptIds = deptItems.Select(dpt2 => dpt2.ID).ToList();
+                    var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => dptIds.Contains(subd1.MainDepartment));
+                    int jj = subDeptItems.Count();
+                    searchBySubDepartmentLookUpEdit.Properties.DataSource = subDeptItems;
+                }
+                else
+                {
+                    searchBySubDepartmentLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls;
+                    this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
+                }
+            }
+        }
+
+        private void searchBySubDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchBySubDepartmentLookUpEdit.Visible = searchBySubDepartmentCheckBox.Checked;
+        }
+
+        private void searchByMainCategoryCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByMainCategoryLookUpEdit.Visible = searchByMainCategoryCheckBox.Checked;
+        }
+
+        private void searchByMinorCategoryCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByMinorCategoryLookUpEdit.Visible = searchByMinorCategoryCheckBox.Checked;
+        }
+
+        private void searchByPurchaseDateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByPurchaseDatePanel.Visible = searchByPurchaseDateCheckBox.Checked;
+        }
+
+        private void searchByInsertionDateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByInsertionDatePanel.Visible = searchByInsertionDateCheckBox.Checked;
+        }
+
+        private void searchByCurrencyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByCurrencyLookUpEdit.Visible = searchByCurrencyCheckBox.Checked;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchAssetDropDownButton_Click(object sender, EventArgs e)
+        {
+            searchResults = from ast in StaticCode.mainDbContext.AssetVws select ast;
+            if (searchBySectionCheckBox.Checked)
+            {
+                if (searchBySectionLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الدائرة أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.الدائرة == searchBySectionLookUpEdit.Text);
+                }
+            }
+            if (searchByDepartmentCheckBox.Checked)
+            {
+                if (searchByDepartmentLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد القسم أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.القسم == searchByDepartmentLookUpEdit.Text);
+                }
+            }
+            if (searchBySubDepartmentCheckBox.Checked)
+            {
+                if (searchBySubDepartmentLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الوحدة أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.الوحدة == searchBySubDepartmentCheckBox.Text);
+                }
+            }
+            if (searchByMainCategoryCheckBox.Checked)
+            {
+                if (searchByMainCategoryLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الفئة الرئيسية أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.الفئة_الرئيسية == searchByMainCategoryLookUpEdit.Text);
+                }
+            }
+            if (searchByMinorCategoryCheckBox.Checked)
+            {
+                if (searchByMinorCategoryLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد الفئة الفرعية أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.الفئة_الفرعية == searchByMinorCategoryLookUpEdit.Text);
+                }
+            }
+            if (searchByCurrencyCheckBox.Checked)
+            {
+                if (searchByCurrencyLookUpEdit.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "حدد عملة سعر الشراء أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                else
+                {
+                    searchResults = searchResults.Where(astv1 => astv1.عملة_سعر_الشراء == searchByCurrencyLookUpEdit.Text);
+                }
+            }
+            if (searchByPurchaseDateCheckBox.Checked)
+            {
+                if (searchByPurchaseDateDateEdit_From.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اكتب بداية تاريخ الشراء أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (searchByPurchaseDateDateEdit_To.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اكتب نهاية تاريخ الشراء أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) > Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue))
+                {
+                    mainAlertControl.Show(this, "بداية تاريخ الشراء أحدث من نهاية تاريخ الشراء", StaticCode.ApplicationTitle);
+                    return;
+                }
+                searchResults = searchResults.Where(ast => ast.تاريخ_الشراء != null && ast.تاريخ_الشراء >= Convert.ToDateTime(searchByPurchaseDateDateEdit_From.EditValue) && ast.تاريخ_الشراء <= Convert.ToDateTime(searchByPurchaseDateDateEdit_To.EditValue));
+            }
+            if (searchByInsertionDateCheckBox.Checked)
+            {
+                if (searchByInsertionDateDateEdit_From.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اكتب بداية تاريخ الإدخال أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (searchByInsertionDateDateEdit_To.EditValue == null)
+                {
+                    mainAlertControl.Show(this, "اكتب نهاية تاريخ الإدخال أولاً", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) > Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue))
+                {
+                    mainAlertControl.Show(this, "بداية تاريخ الإدخال أحدث من نهاية تاريخ الإدخال", StaticCode.ApplicationTitle);
+                    return;
+                }
+                searchResults = searchResults.Where(ast => ast.تاريخ_الإدخال != null && ast.تاريخ_الإدخال >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.تاريخ_الإدخال <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
+            }
+
+            //if (searchResults.Count() == 0)
+            //{
+            //    mainAlertControl.Show(this, "لا توجد نتائج", StaticCode.ApplicationTitle);
+            //}
+            //else
+            //{
+            //    List<int> IDsIncluded = searchResults.Select(as1 => as1.معرف_الأصل).ToList();
+            //    string plusQry = "";
+            //    foreach (int oneID in IDsIncluded)
+            //        plusQry += oneID + ", ";
+            //    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+            //    AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
+            //    for (int i = 0; i < customVw.Rows.Count; i++)
+            //    {
+            //        try
+            //        {
+            //            var oneRow = customVw.Rows[i];
+            //            object[] oneRowItemArray = oneRow.ItemArray;
+            //            if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+            //                customVw.Rows.Remove(oneRow);
+            //        }
+            //        catch
+            //        {
+            //            continue;
+            //        }
+            //    }
+            //    this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+            //}
+
+            showStatsBarButtonItem_ItemClick(sender, null);
         }
     }
 }

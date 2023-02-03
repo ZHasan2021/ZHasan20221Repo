@@ -17,6 +17,7 @@ namespace AssetManagement.Assets
         int assetProdAge = 0;
 
         public bool AssetAdded = false;
+        public string AssetCode = "";
 
         public AddNewAssetForm()
         {
@@ -287,6 +288,7 @@ namespace AssetManagement.Assets
                 StaticCode.mainDbContext.SubmitChanges();
                 this.DialogResult = DialogResult.OK;
                 AssetAdded = true;
+                AssetCode = assetCodeTextBox.Text;
                 e.Cancel = false;
             }
             catch (Exception ex)
@@ -294,6 +296,7 @@ namespace AssetManagement.Assets
                 string fff = ex.Message;
                 mainAlertControl.Show(this, "خطأ في بعص الإدخالات، تأكد ثانية من القيم", StaticCode.ApplicationTitle);
                 AssetAdded = false;
+                AssetCode = "";
                 e.Cancel = true;
             }
             progressPanel1.Visible = false;

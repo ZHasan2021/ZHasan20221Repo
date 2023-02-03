@@ -480,7 +480,7 @@ namespace AssetManagement.Finance
             this.searchAllRadioButton.TabIndex = 15;
             this.searchAllRadioButton.Text = "كل السجلات المالية";
             this.searchAllRadioButton.UseVisualStyleBackColor = true;
-            this.searchAllRadioButton.CheckedChanged += new System.EventHandler(this.searchInDeptRadioButton_CheckedChanged);
+            this.searchAllRadioButton.CheckedChanged += new System.EventHandler(this.searchAllRadioButton_CheckedChanged);
             // 
             // searchWithinPeriodCheckBox
             // 

@@ -56,7 +56,7 @@ namespace AssetManagement.Users
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
         }
 
