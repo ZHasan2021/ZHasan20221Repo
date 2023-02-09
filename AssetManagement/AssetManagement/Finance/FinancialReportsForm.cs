@@ -520,7 +520,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncomingSubLevel1;
+                                cells.Value = Math.Round(totalIncomingSubLevel1);
                             }
                             using (var cells = generalFinancialReportWs.Cells[incomingRow1, 3])
                             {
@@ -611,7 +611,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalOutgoing_HeadSubLevel1;
+                                cells.Value = Math.Round(totalOutgoing_HeadSubLevel1);
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow, 6, outgoingRow, 7])
                             {
@@ -639,7 +639,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems());
                             }
                             using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                             {
@@ -729,7 +729,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncomingSubLevel2;
+                                cells.Value = Math.Round(totalIncomingSubLevel2);
                             }
                             using (var cells = generalFinancialReportWs.Cells[incomingRow2, 3])
                             {
@@ -820,7 +820,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalOutgoingSubLevel2;
+                                cells.Value = Math.Round(totalOutgoingSubLevel2);
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow2, 6, outgoingRow2, 7])
                             {
@@ -848,7 +848,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems());
                             }
                             using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                             {
@@ -938,7 +938,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel3;
+                                cells.Value = Math.Round(totalIncoming_HeadSubLevel3);
                             }
                             using (var cells = generalFinancialReportWs.Cells[incomingRow3, 3])
                             {
@@ -1029,7 +1029,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalOutgoing_HeadSubLevel3;
+                                cells.Value = Math.Round(totalOutgoing_HeadSubLevel3);
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow3, 6, outgoingRow3, 7])
                             {
@@ -1057,7 +1057,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems());
                             }
                             using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                             {
@@ -1147,7 +1147,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalIncoming_HeadSubLevel4;
+                                cells.Value = Math.Round(totalIncoming_HeadSubLevel4);
                             }
                             using (var cells = generalFinancialReportWs.Cells[incomingRow4, 3])
                             {
@@ -1238,7 +1238,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                                cells.Value = totalOutgoing_HeadSubLevel4;
+                                cells.Value = Math.Round(totalOutgoing_HeadSubLevel4);
                             }
                             using (var cells = generalFinancialReportWs.Cells[outgoingRow4, 6, outgoingRow4, 7])
                             {
@@ -1266,7 +1266,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems());
                             }
                             using (var cells = generalFinancialReportWs.Cells[startRow, 3])
                             {
@@ -1350,7 +1350,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204));
-                        cells.Value = totalIncoming_HeadSubLevel;
+                        cells.Value = Math.Round(totalIncoming_HeadSubLevel);
                     }
                     string totalIncomingHeadText = "مجموع إيرادات الـ PM";
                     string totalOutgoingHeadText = "مجموع صادرات الـ PM المباشرة والمعلقة";
@@ -1410,7 +1410,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(252, 228, 214));
-                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcIncomingOfFinancialItems();
+                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcIncomingOfFinancialItems());
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow, 6])
                     {
@@ -1432,7 +1432,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 230, 153));
-                        cells.Value = totalOutgoing_HeadSubLevel;
+                        cells.Value = Math.Round(totalOutgoing_HeadSubLevel);
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 3])
                     {
@@ -1454,7 +1454,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(248, 203, 173));
-                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcOutgoingOfFinancialItems();
+                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcOutgoingOfFinancialItems());
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 1, 6])
                     {
@@ -1481,7 +1481,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 224, 180));
-                        cells.Value = totalRecycled_HeadSubLevel;
+                        cells.Value = Math.Round(totalRecycled_HeadSubLevel);
                     }
 
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 3])
@@ -1505,7 +1505,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                        cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems();
+                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems());
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                     {
@@ -1637,7 +1637,7 @@ namespace AssetManagement.Finance
                             cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
                             cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                             cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                            cells.Value = incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems();
+                            cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems());
                         }
                         tableRow++;
                     }
@@ -1718,7 +1718,7 @@ namespace AssetManagement.Finance
                             cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                             cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            cells.Value = financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems();
+                            cells.Value = Math.Round(financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems());
                         }
 
                         foreach (string oneSLN in subLevelNames)
@@ -1773,7 +1773,7 @@ namespace AssetManagement.Finance
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = subLevelRecords.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(subLevelRecords.CalcRecycledOfFinancialItems());
                             }
                             allRecycledRow++;
                         }
@@ -1922,7 +1922,7 @@ namespace AssetManagement.Finance
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = subLevel_HeadRecords.CalcIncomingOfFinancialItems();
+                                cells.Value = Math.Round(subLevel_HeadRecords.CalcIncomingOfFinancialItems());
                             }
                             using (var cells = detailedFinancialReportWs.Cells[finalRow, 5])
                             {
@@ -1931,7 +1931,7 @@ namespace AssetManagement.Finance
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = subLevel_HeadRecords.CalcOutgoingOfFinancialItems();
+                                cells.Value = Math.Round(subLevel_HeadRecords.CalcOutgoingOfFinancialItems());
                             }
                             using (var cells = detailedFinancialReportWs.Cells[finalRow, 6])
                             {
@@ -1941,7 +1941,7 @@ namespace AssetManagement.Finance
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = subLevel_HeadRecords.CalcRecycledOfFinancialItems();
+                                cells.Value = Math.Round(subLevel_HeadRecords.CalcRecycledOfFinancialItems());
                             }
                             finalRow++;
                         }

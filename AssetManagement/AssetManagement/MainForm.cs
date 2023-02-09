@@ -104,7 +104,7 @@ namespace AssetManagement
 
             if (assetsToDestructList.Any() || destructedAssetsList.Any() || notAddedAssetsWithFinancialItemsList.Any())
             {
-                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الافتراضي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})");
+                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})");
             }
             else
             {
@@ -557,7 +557,6 @@ namespace AssetManagement
                     }
                     ManageAssetTblForm desFrm1 = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
                     desFrm1.ShowDialog();
-                    CheckAssetsNotifications();
                     break;
                 case "assetsToDestructAlertButton":
                     if (StaticCode.activeUserRole.ManageAssetTbl != true)
@@ -567,13 +566,12 @@ namespace AssetManagement
                     }
                     ManageAssetTblForm desFrm2 = new ManageAssetTblForm(assetsToDestructList, "الأصول التي سينتهي عمرها الإنتاجي");
                     desFrm2.ShowDialog();
-                    CheckAssetsNotifications();
                     break;
                 case "notAddedAssetsWithFinancialItemsAlertButton":
                     actionsStatusMemoEdit.Text = $"الأصول غير الموجودة ولها سجلات مالية تتعلق بشرائها ({notAddedAssetsWithFinancialItemsList.Count}):\r\n";
                     for (int i = 0; i < notAddedAssetsWithFinancialItemsList.Count; i++)
                     {
-                        actionsStatusMemoEdit.Text += $"{i + 1}- notAddedAssetsWithFinancialItemsList[i]\r\n";
+                        actionsStatusMemoEdit.Text += $"{i + 1}- {notAddedAssetsWithFinancialItemsList[i]}\r\n";
                     }
                     break;
                 default:
@@ -587,7 +585,7 @@ namespace AssetManagement
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Red;
             e.AlertForm.StartPosition = FormStartPosition.Manual;
-            e.AlertForm.Location = new Point(200, 400);
+            e.AlertForm.Location = new Point(900, 400);
             e.Buttons.PinButton.SetDown(true);
         }
 
@@ -756,7 +754,6 @@ namespace AssetManagement
         {
             ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
             fiItFrm.Show();
-            CheckAssetsNotifications();
         }
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

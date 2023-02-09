@@ -1157,7 +1157,7 @@ namespace AssetManagement
             alertButton2.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
             alertButton2.ImageOptions.Image = global::AssetManagement.Properties.Resources._2912628;
             alertButton2.Name = "assetsToDestructAlertButton";
-            alertButton3.Hint = "عرض السجلات المالية الخاصة بالأصول الثابتة وأصولها غير مضافة بعد";
+            alertButton3.Hint = "عرض كودات الأصول غير المضافة بعد";
             alertButton3.ImageOptions.Image = global::AssetManagement.Properties.Resources._968753;
             alertButton3.Name = "notAddedAssetsWithFinancialItemsAlertButton";
             this.breakingAlertControl.Buttons.Add(alertButton1);

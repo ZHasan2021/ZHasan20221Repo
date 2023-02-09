@@ -1,18 +1,207 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AssetMngDb" Class="AssetMngDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Db\AssetMngDb.mdf;Initial Catalog=AssetMngDb;Integrated Security=True" SettingsObjectName="AssetManagement.Properties.Settings" SettingsPropertyName="AssetMngDbConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.AssetMovementTbl" Member="AssetMovementTbls">
-    <Type Name="AssetMovementTbl">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AssetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FieldChanged" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="OldValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="NewValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="MovementDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="AssetMovedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="AssetMovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AssetMovementUniqueKey" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="UserTbl_AssetMovementTbl" Member="UserTbl" ThisKey="AssetMovedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
-      <Association Name="AssetTbl_AssetMovementTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
+  <Table Name="dbo.AssetMoveVw" Member="AssetMoveVws">
+    <Type Name="AssetMoveVw">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SubDepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubDepartmentVw" Member="SubDepartmentVws">
+    <Type Name="SubDepartmentVw">
+      <Column Name="[معرف الوحدة]" Member="معرف_الوحدة" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الوحدة]" Member="اسم_الوحدة" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[القسم التابعة له]" Member="القسم_التابعة_له" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[الدائرة التي يتبع لها القسم]" Member="الدائرة_التي_يتبع_لها_القسم" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetStatVw" Member="AssetStatVws">
+    <Type Name="AssetStatVw">
+      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetVw" Member="AssetVws">
+    <Type Name="AssetVw">
+      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetVw_All" Member="AssetVw_Alls">
+    <Type Name="AssetVw_All">
+      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepartmentVw" Member="DepartmentVws">
+    <Type Name="DepartmentVw">
+      <Column Name="[معرف القسم]" Member="معرف_القسم" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم القسم]" Member="اسم_القسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[الدائرة التي يتبع لها القسم]" Member="الدائرة_التي_يتبع_لها_القسم" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinancialItemStatVw" Member="FinancialItemStatVws">
+    <Type Name="FinancialItemStatVw">
+      <Column Name="[معرف السجل المالي]" Member="معرف_السجل_المالي" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود السجل المالي]" Member="كود_السجل_المالي" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[اسم البند المالي]" Member="اسم_البند_المالي" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[بيان السجل المالي]" Member="بيان_السجل_المالي" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير السجل]" Member="تاريخ_تحرير_السجل" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[وارد أم صادر]" Member="وارد_أم_صادر" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة الإيراد]" Member="جهة_الإيراد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[نوع الصادر]" Member="نوع_الصادر" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[صادر إلى]" Member="صادر_إلى" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[المبلغ الوارد]" Member="المبلغ_الوارد" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[المبلغ الصادر]" Member="المبلغ_الصادر" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="العملة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[ملاحظات إضافية]" Member="ملاحظات_إضافية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">
+    <Type Name="FinancialItemVw">
+      <Column Name="[معرف السجل المالي]" Member="معرف_السجل_المالي" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[كود السجل المالي]" Member="كود_السجل_المالي" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[اسم البند المالي]" Member="اسم_البند_المالي" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[بيان السجل المالي]" Member="بيان_السجل_المالي" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[تاريخ تحرير السجل]" Member="تاريخ_تحرير_السجل" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[وارد أم صادر]" Member="وارد_أم_صادر" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[جهة الإيراد]" Member="جهة_الإيراد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[نوع الصادر]" Member="نوع_الصادر" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[صادر إلى]" Member="صادر_إلى" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[المبلغ الوارد]" Member="المبلغ_الوارد" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[المبلغ الصادر]" Member="المبلغ_الصادر" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="العملة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[ملاحظات إضافية]" Member="ملاحظات_إضافية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
+    <Type Name="MinorCategoryVw">
+      <Column Name="[معرف الفئة الفرعية]" Member="معرف_الفئة_الفرعية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[معرف الفئة الرئيسية]" Member="معرف_الفئة_الرئيسية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.UserTbl" Member="UserTbls">
@@ -31,6 +220,21 @@
       <Association Name="UserTbl_UserLoginTbl" Member="UserLoginTbls" ThisKey="ID" OtherKey="UserID" Type="UserLoginTbl" />
       <Association Name="DepartmentTbl_UserTbl" Member="DepartmentTbl" ThisKey="UserDept" OtherKey="ID" Type="DepartmentTbl" IsForeignKey="true" />
       <Association Name="UserRoleTbl_UserTbl" Member="UserRoleTbl" ThisKey="UserRole" OtherKey="ID" Type="UserRoleTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssetMovementTbl" Member="AssetMovementTbls">
+    <Type Name="AssetMovementTbl">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AssetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FieldChanged" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OldValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="NewValue" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MovementDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="AssetMovedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AssetMovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssetMovementUniqueKey" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="UserTbl_AssetMovementTbl" Member="UserTbl" ThisKey="AssetMovedBy" OtherKey="ID" Type="UserTbl" IsForeignKey="true" />
+      <Association Name="AssetTbl_AssetMovementTbl" Member="AssetTbl" ThisKey="AssetID" OtherKey="ID" Type="AssetTbl" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.AssetTbl" Member="AssetTbls">
@@ -354,149 +558,6 @@
       <Column Name="IsSectionIndependent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="IsDepartmentIndependent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="UserRoleTbl_UserTbl" Member="UserTbls" ThisKey="ID" OtherKey="UserRole" Type="UserTbl" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AssetMoveVw" Member="AssetMoveVws">
-    <Type Name="AssetMoveVw">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MainCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="MinorCategoryName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="AssetCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="SectionName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="SubDepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="SquareName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="StatusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="CustodianName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="InsertedOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SubDepartmentVw" Member="SubDepartmentVws">
-    <Type Name="SubDepartmentVw">
-      <Column Name="[معرف الوحدة]" Member="معرف_الوحدة" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[اسم الوحدة]" Member="اسم_الوحدة" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[القسم التابعة له]" Member="القسم_التابعة_له" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[الدائرة التي يتبع لها القسم]" Member="الدائرة_التي_يتبع_لها_القسم" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AssetVw" Member="AssetVws">
-    <Type Name="AssetVw">
-      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AssetVw_All" Member="AssetVw_Alls">
-    <Type Name="AssetVw_All">
-      <Column Name="[معرف الأصل]" Member="معرف_الأصل" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[كود الأصل]" Member="كود_الأصل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="العدد" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="الساحة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[الفئة الرئيسية]" Member="الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[الفئة الفرعية]" Member="الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[مواصفات الأصل]" Member="مواصفات_الأصل" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="الموديل" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="اللون" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[الحجم / السعة]" Member="الحجم___السعة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الشراء]" Member="تاريخ_الشراء" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="[سعر الشراء]" Member="سعر_الشراء" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="[عملة سعر الشراء]" Member="عملة_سعر_الشراء" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[مكان التواجد]" Member="مكان_التواجد" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[حالة الأصل الآنية]" Member="حالة_الأصل_الآنية" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[نسبة الاستفادة منه]" Member="نسبة_الاستفادة_منه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[السعر الفعلي الحالي]" Member="السعر_الفعلي_الحالي" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[عملة السعر الفعلي الحالي]" Member="عملة_السعر_الفعلي_الحالي" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[اسم صاحب العهدة]" Member="اسم_صاحب_العهدة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تفاصيل إضافية]" Member="تفاصيل_إضافية" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="[ملاحظات أخرى]" Member="ملاحظات_أخرى" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="[عنوان العقار]" Member="عنوان_العقار" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[اسم المالك]" Member="اسم_المالك" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[المستغل منه]" Member="المستغل_منه" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[مع من ورقة الملكية]" Member="مع_من_ورقة_الملكية" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[مساحة العقار]" Member="مساحة_العقار" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[وحدة مساحة العقار]" Member="وحدة_مساحة_العقار" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[رقم لوحة المركبة]" Member="رقم_لوحة_المركبة" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="[سنة صنع المركبة]" Member="سنة_صنع_المركبة" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[رقم الهيكل (الشاصيه) للمركبة]" Member="رقم_الهيكل__الشاصيه__للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[رقم المحرك للمركبة]" Member="رقم_المحرك_للمركبة" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[معدل الإهلاك للأصل]" Member="معدل_الإهلاك_للأصل" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الافتراضي المتبقي للأصل]" Member="العمر_الافتراضي_المتبقي_للأصل" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[تاريخ الإدخال]" Member="تاريخ_الإدخال" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DepartmentVw" Member="DepartmentVws">
-    <Type Name="DepartmentVw">
-      <Column Name="[معرف القسم]" Member="معرف_القسم" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[اسم القسم]" Member="اسم_القسم" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="[الدائرة التي يتبع لها القسم]" Member="الدائرة_التي_يتبع_لها_القسم" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.FinancialItemVw" Member="FinancialItemVws">
-    <Type Name="FinancialItemVw">
-      <Column Name="[معرف السجل المالي]" Member="معرف_السجل_المالي" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[كود السجل المالي]" Member="كود_السجل_المالي" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[اسم البند المالي]" Member="اسم_البند_المالي" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[بيان السجل المالي]" Member="بيان_السجل_المالي" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Column Name="الدائرة" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="القسم" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="الوحدة" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="[تاريخ تحرير السجل]" Member="تاريخ_تحرير_السجل" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="[وارد أم صادر]" Member="وارد_أم_صادر" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="[جهة الإيراد]" Member="جهة_الإيراد" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[نوع الصادر]" Member="نوع_الصادر" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[صادر إلى]" Member="صادر_إلى" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[المبلغ الوارد]" Member="المبلغ_الوارد" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[المبلغ الصادر]" Member="المبلغ_الصادر" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="العملة" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="[ملاحظات إضافية]" Member="ملاحظات_إضافية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MinorCategoryVw" Member="MinorCategoryVws">
-    <Type Name="MinorCategoryVw">
-      <Column Name="[معرف الفئة الفرعية]" Member="معرف_الفئة_الفرعية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[معرف الفئة الرئيسية]" Member="معرف_الفئة_الرئيسية" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[اسم الفئة الفرعية]" Member="اسم_الفئة_الفرعية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[وصف الفئة الفرعية]" Member="وصف_الفئة_الفرعية" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Column Name="[اسم الفئة الرئيسية]" Member="اسم_الفئة_الرئيسية" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="[العمر الإنتاجي بالسنوات]" Member="العمر_الإنتاجي_بالسنوات" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[معدل الإهلاك]" Member="معدل_الإهلاك" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.GetSubDeptsOfActiveUser" Method="GetSubDeptsOfActiveUser" IsComposable="true">

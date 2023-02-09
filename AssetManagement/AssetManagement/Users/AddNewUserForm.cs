@@ -99,6 +99,19 @@ namespace AssetManagement.Users
                 mainAlertControl.Show(this, "كلمة المرور يجب أن تتألف من 8 محارف على الأقل", StaticCode.ApplicationTitle);
                 return;
             }
+            if (!updateExisted)
+            {
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Username == userNameTextBox.Text.Trim()))
+                {
+                    mainAlertControl.Show(this, "اسم المستخدم الذي كتبته موجود مسبقاً ولا يمكن اعتماده لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Password == passwordTextBox.Text.Trim()))
+                {
+                    mainAlertControl.Show(this, "كلمة المرور التي كتبتها موجودة مسبقاً ولا يمكن اعتمادها لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+            }
             if (userRoleComboBox.SelectedIndex == -1)
             {
                 mainAlertControl.Show(this, "اختر نوع الحساب أولاً", StaticCode.ApplicationTitle);
@@ -199,7 +212,7 @@ namespace AssetManagement.Users
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
         }
     }

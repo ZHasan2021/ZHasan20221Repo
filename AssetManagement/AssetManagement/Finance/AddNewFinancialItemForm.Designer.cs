@@ -306,7 +306,7 @@ namespace AssetManagement.Finance
             // incomingAmountNumericUpDown
             // 
             this.incomingAmountNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.incomingAmountNumericUpDown.DecimalPlaces = 2;
+            this.incomingAmountNumericUpDown.DecimalPlaces = 1;
             this.incomingAmountNumericUpDown.Enabled = false;
             this.incomingAmountNumericUpDown.Location = new System.Drawing.Point(135, 576);
             this.incomingAmountNumericUpDown.Maximum = new decimal(new int[] {
@@ -535,7 +535,7 @@ namespace AssetManagement.Finance
             // outgoingAmountNumericUpDown
             // 
             this.outgoingAmountNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.outgoingAmountNumericUpDown.DecimalPlaces = 2;
+            this.outgoingAmountNumericUpDown.DecimalPlaces = 1;
             this.outgoingAmountNumericUpDown.Enabled = false;
             this.outgoingAmountNumericUpDown.Location = new System.Drawing.Point(422, 576);
             this.outgoingAmountNumericUpDown.Maximum = new decimal(new int[] {

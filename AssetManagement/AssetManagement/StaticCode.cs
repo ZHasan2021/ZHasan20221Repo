@@ -281,7 +281,6 @@ namespace AssetManagement
         {
             return (StaticCode.mainDbContext.AssetTbls.Where(ast1 => StaticCode.mainDbContext.AssetVws.Select(astv1 => astv1.معرف_الأصل).Contains(ast1.ID)).Select(ast2 => ast2.AssetSubDepartment).ToList());
         }
-
         //public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         //{
         //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -1537,6 +1536,7 @@ namespace AssetManagement
                     {
                         return ($"قيمة الوارد في السطر {rowStartNo} غير صحيحة");
                     }
+                    incomingAmountVal = Math.Round(incomingAmountVal, 1);
                     double outgoingAmountVal = 0;
                     if (!isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, outgoingAmountCol].Value?.ToString(), out outgoingAmountVal))
                     {
@@ -1550,6 +1550,7 @@ namespace AssetManagement
                             return ($"قيمة الصادر في السطر {rowStartNo} غير صحيحة");
                         }
                     }
+                    outgoingAmountVal = Math.Round(outgoingAmountVal, 1);
                     DateTime fiDateVal = DateTime.Today;
                     if (!isIncoming && !DateTime.TryParse(srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString(), out fiDateVal))
                     {

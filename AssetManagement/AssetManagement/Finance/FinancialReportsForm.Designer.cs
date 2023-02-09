@@ -98,6 +98,7 @@ namespace AssetManagement.Finance
             this.colالمبلغالصادر = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالعملة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colملاحظاتإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.ficatRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.curRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -136,7 +137,6 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
-            this.notesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -160,6 +160,7 @@ namespace AssetManagement.Finance
             this.detailedFiguresTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
@@ -183,7 +184,6 @@ namespace AssetManagement.Finance
             this.searchDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             this.searchXtraScrollableControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // mainAlertControl
@@ -819,6 +819,10 @@ namespace AssetManagement.Finance
             this.colملاحظاتإضافية.VisibleIndex = 13;
             this.colملاحظاتإضافية.Width = 250;
             // 
+            // notesRepositoryItemMemoEdit
+            // 
+            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
+            // 
             // ficatRepositoryItemLookUpEdit
             // 
             this.ficatRepositoryItemLookUpEdit.AutoHeight = false;
@@ -925,7 +929,7 @@ namespace AssetManagement.Finance
             // totalCycledNumericUpDown
             // 
             this.totalCycledNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalCycledNumericUpDown.DecimalPlaces = 2;
+            this.totalCycledNumericUpDown.DecimalPlaces = 1;
             this.totalCycledNumericUpDown.Enabled = false;
             this.totalCycledNumericUpDown.Location = new System.Drawing.Point(463, 116);
             this.totalCycledNumericUpDown.Maximum = new decimal(new int[] {
@@ -955,7 +959,7 @@ namespace AssetManagement.Finance
             // totalOutcomesNumericUpDown
             // 
             this.totalOutcomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalOutcomesNumericUpDown.DecimalPlaces = 2;
+            this.totalOutcomesNumericUpDown.DecimalPlaces = 1;
             this.totalOutcomesNumericUpDown.Enabled = false;
             this.totalOutcomesNumericUpDown.Location = new System.Drawing.Point(463, 66);
             this.totalOutcomesNumericUpDown.Maximum = new decimal(new int[] {
@@ -980,7 +984,7 @@ namespace AssetManagement.Finance
             // totalIncomesNumericUpDown
             // 
             this.totalIncomesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalIncomesNumericUpDown.DecimalPlaces = 2;
+            this.totalIncomesNumericUpDown.DecimalPlaces = 1;
             this.totalIncomesNumericUpDown.Enabled = false;
             this.totalIncomesNumericUpDown.Location = new System.Drawing.Point(463, 16);
             this.totalIncomesNumericUpDown.Maximum = new decimal(new int[] {
@@ -1308,10 +1312,6 @@ namespace AssetManagement.Finance
             this.progressPanel1.Text = "جار إعداد التقارير المالية";
             this.progressPanel1.Visible = false;
             // 
-            // notesRepositoryItemMemoEdit
-            // 
-            this.notesRepositoryItemMemoEdit.Name = "notesRepositoryItemMemoEdit";
-            // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -1358,6 +1358,7 @@ namespace AssetManagement.Finance
             this.detailedFiguresTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ficatRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.curRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
@@ -1383,7 +1384,6 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.ResumeLayout(false);
             this.searchXtraScrollableControl.ResumeLayout(false);
             this.searchXtraScrollableControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.notesRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
