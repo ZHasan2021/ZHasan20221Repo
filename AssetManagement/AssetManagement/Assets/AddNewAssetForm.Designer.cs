@@ -755,6 +755,7 @@ namespace AssetManagement.Assets
             // assetSectionLookUpEdit
             // 
             this.assetSectionLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetSectionLookUpEdit.Enabled = false;
             this.assetSectionLookUpEdit.Location = new System.Drawing.Point(1045, 147);
             this.assetSectionLookUpEdit.Name = "assetSectionLookUpEdit";
             this.assetSectionLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -791,6 +792,7 @@ namespace AssetManagement.Assets
             // assetDeptLookUpEdit
             // 
             this.assetDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.assetDeptLookUpEdit.Enabled = false;
             this.assetDeptLookUpEdit.Location = new System.Drawing.Point(1045, 202);
             this.assetDeptLookUpEdit.Name = "assetDeptLookUpEdit";
             this.assetDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1547,6 +1549,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 

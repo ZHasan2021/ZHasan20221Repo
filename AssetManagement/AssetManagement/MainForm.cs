@@ -123,8 +123,8 @@ namespace AssetManagement
         private void manageAssetTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CustomAssetsForm cuFrm = new CustomAssetsForm();
-            cuFrm.ShowDialog();
-            CheckAssetsNotifications();
+            if (cuFrm.ShowDialog() == DialogResult.OK)
+                CheckAssetsNotifications();
         }
 
         private void addNewAssetMovementBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -620,6 +620,31 @@ namespace AssetManagement
         #endregion
 
         #region Aux tables
+        private void categoriesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
+            //catFrm.ShowDialog();
+            ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
+            macaFrm.ShowDialog();
+        }
+
+        private void importCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void addNewMainCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
+            catFrm.ShowDialog();
+        }
+
+        private void addNewMinorCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddNewMinorCategoryForm addFrm = new AddNewMinorCategoryForm();
+            addFrm.ShowDialog();
+        }
+
         private void manageCurrencyTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageCurrencyTblForm curFrm = new ManageCurrencyTblForm();
@@ -655,27 +680,7 @@ namespace AssetManagement
             ManageTransactionTypeTblForm ttyFrm = new ManageTransactionTypeTblForm();
             ttyFrm.ShowDialog();
         }
-
-        private void addNewMainCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
-            catFrm.ShowDialog();
-        }
-
-        private void addNewMinorCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            AddNewMinorCategoryForm addFrm = new AddNewMinorCategoryForm();
-            addFrm.ShowDialog();
-        }
-
-        private void categoriesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
-            //catFrm.ShowDialog();
-            ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
-            macaFrm.ShowDialog();
-        }
-
+       
         private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();

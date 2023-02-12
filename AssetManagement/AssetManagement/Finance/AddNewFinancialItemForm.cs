@@ -15,7 +15,8 @@ namespace AssetManagement.Finance
     public partial class AddNewFinancialItemForm : Form
     {
         bool updateExisted = false;
-        int existedRecord = 0;
+        int existedRecordID = 0;
+        int relevantRecordID = 0;
         int incomingMawazanat = 0;
         int outgoingMawazanat = 0;
 
@@ -27,7 +28,7 @@ namespace AssetManagement.Finance
         public AddNewFinancialItemForm(int recordToUpdate)
         {
             InitializeComponent();
-            existedRecord = recordToUpdate;
+            existedRecordID = recordToUpdate;
             updateExisted = true;
         }
 
@@ -62,7 +63,7 @@ namespace AssetManagement.Finance
 
             if (updateExisted)
             {
-                FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecord);
+                FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecordID);
                 financialItemSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment).SectionOfDepartment;
                 financialItemDeptLookUpEdit.EditValue = StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment;
                 financialItemSubDeptLookUpEdit.EditValue = currFiIt.FinancialItemSubDept;
@@ -91,6 +92,8 @@ namespace AssetManagement.Finance
                         {
                             outgoingToSubDeptLookUpEdit.Text = currFiIt.OutgoingTo;
                         }
+
+                        relevantRecordID = currFiIt.FindRelevantFinancialItem();
                     }
                 }
                 financialItemCategoryLookUpEdit.EditValue = currFiIt.FinancialItemCategory;
@@ -132,7 +135,6 @@ namespace AssetManagement.Finance
 
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
-                    //
                     financialItemSectionLookUpEdit.Enabled =
                     financialItemDeptLookUpEdit.Enabled =
                     financialItemSubDeptLookUpEdit.Enabled = false;
@@ -140,7 +142,6 @@ namespace AssetManagement.Finance
                 else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                 {
                     outgoingToDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == StaticCode.activeUser.UserSection);
-                    //
                     financialItemSectionLookUpEdit.Enabled =
                     financialItemDeptLookUpEdit.Enabled =
                     financialItemSubDeptLookUpEdit.Enabled = false;
@@ -148,7 +149,6 @@ namespace AssetManagement.Finance
                 else
                 {
                     outgoingToSubDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.SubDepartmentTbls.Where(sdt1 => sdt1.MainDepartment == StaticCode.activeUser.UserDept);
-                    //
                     financialItemSectionLookUpEdit.Enabled =
                     financialItemDeptLookUpEdit.Enabled = false;
                 }
@@ -282,7 +282,6 @@ namespace AssetManagement.Finance
                     if (StaticCode.activeUserRole.IsSectionIndependent == true)
                     {
                         assetSubD = StaticCode.GetSubDeptForPM();
-
                     }
                     else
                     {
@@ -294,7 +293,7 @@ namespace AssetManagement.Finance
 
                 FinancialItemTbl newFiIt = new FinancialItemTbl();
                 if (updateExisted)
-                    newFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecord);
+                    newFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecordID);
                 newFiIt.FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue);
                 newFiIt.FinancialItemSubDept = assetSubD;
                 newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
@@ -317,15 +316,20 @@ namespace AssetManagement.Finance
                             newFiIt.OutgoingTo = outgoingToDeptLookUpEdit.Text;
                         if (outgoingToSubDeptLookUpEdit.Visible)
                             newFiIt.OutgoingTo = outgoingToSubDeptLookUpEdit.Text;
-                        if (!updateExisted)
+                        int subD_Incoming = 0;
+                        if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                            subD_Incoming = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
+                        else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
+                            subD_Incoming = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
+                        else
+                            subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
+                        if (updateExisted && relevantRecordID!=0)
                         {
-                            int subD_Incoming = 0;
-                            if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
-                            else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
-                            else
-                                subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
+                            FinancialItemTbl relativeRecord = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == relevantRecordID);
+                            relativeRecord.IncomingAmount =Convert.ToDouble( outgoingAmountNumericUpDown.Value);
+                        }
+                        else
+                        {
                             FinancialItemTbl newIcomingRec = new FinancialItemTbl()
                             {
                                 FinancialItemCategory = incomingMawazanat,

@@ -1503,6 +1503,7 @@ namespace AssetManagement
             }
 
             List<string> unknownMinorCategories = new List<string>();
+            List<int> existedFinancialItems = new List<int>();
             List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
             try
             {
@@ -1551,6 +1552,7 @@ namespace AssetManagement
                         }
                     }
                     outgoingAmountVal = Math.Round(outgoingAmountVal, 1);
+                    string incomingOrOutgoingVal = (isIncoming) ? "وارد" : "صادر";
                     DateTime fiDateVal = DateTime.Today;
                     if (!isIncoming && !DateTime.TryParse(srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString(), out fiDateVal))
                     {
@@ -1572,9 +1574,16 @@ namespace AssetManagement
                         unknownMinorCategories.Add($"{unknownMinorCategories.Count() + 1}- البند المالي: {ficaVal}");
                         rowStartNo++;
                         continue;
-                        //return ($"البند المالي في السطر {rowStartNo} غير موجودة في جداول البنود المالية");
                     }
                     var existedFiItCat = mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == ficaVal);
+
+                    var existedFiIt = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.الدائرة == sectionName && fiv1.القسم == departmentName && fiv1.الوحدة == subDepartmentName && fiv1.تاريخ_تحرير_السجل == fiDateVal && fiv1.وارد_أم_صادر == incomingOrOutgoingVal && fiv1.اسم_البند_المالي == ficaVal && fiv1.المبلغ_الوارد == incomingAmountVal && fiv1.المبلغ_الصادر == outgoingAmountVal && fiv1.العملة == curVal);
+                    if (existedFiIt.Any())
+                    {
+                        existedFinancialItems.Add(rowStartNo);
+                        rowStartNo++;
+                        continue;
+                    }
 
                     if (ficaVal != null && ficaVal.Contains("مدور"))
                     {
@@ -1616,7 +1625,7 @@ namespace AssetManagement
                         FinancialItemInsertionDate = fiDateVal,
                         FinancialItemCurrency = currID,
                         IncomingAmount = (isIncoming) ? incomingAmountVal : 0,
-                        IncomingOrOutgoing = (isIncoming) ? "وارد" : "صادر",
+                        IncomingOrOutgoing = incomingOrOutgoingVal,
                         OutgoingAmount = (isIncoming) ? 0 : outgoingAmountVal,
                         AdditionalNotes = "",
                     };
@@ -1629,30 +1638,22 @@ namespace AssetManagement
                 return ("ملف غير صحيح، نحتاج لاستيراد بيانات من ملف قياسي للسجلات المالية وفق النموذج المعتمد");
             }
 
-            if (unknownMinorCategories.Count() > 0)
+            if (unknownMinorCategories.Any() || existedFinancialItems.Any())
             {
-                string tmp = "";
-                foreach (string oneItem in unknownMinorCategories)
+                string reportMsg = "";
+                if (unknownMinorCategories.Count() > 0)
                 {
-                    tmp += oneItem + "\r\n";
+                    reportMsg += $"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{String.Join("\r\n", unknownMinorCategories.ToArray())}\r\n\r\n";
                 }
-                return ($"هناك بعض البنود المالية غير موجودة في الجداول وهي:\r\n{tmp}\r\n\r\nمن فضلك راجع مسؤول التطبيق لإضافتها");
+                if (existedFinancialItems.Count() > 0)
+                {
+                    reportMsg += $"هناك بعض السجلات المالية موجودة مسبقاً في الجداول وهي الأسطر ذات الأرقام: ({String.Join(", ", existedFinancialItems.ToArray())})\r\n\r\n";
+                }
+                return reportMsg;
             }
             mainDbContext.FinancialItemTbls.InsertAllOnSubmit(importedAssets);
             mainDbContext.SubmitChanges();
             return "Done!";
-        }
-
-        public static List<double> GetCycledToMonth1(IQueryable<FinancialItemTbl> fiQry, int newYear, int newMonth)
-        {
-            var fiQryCycled = fiQry.Where(fii5 => fii5.FinancialItemInsertionDate.AddMonths(1).Month == newMonth && fii5.FinancialItemInsertionDate.AddMonths(1).Year == newYear);
-
-            double incomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
-            double outcomes = (fiQry.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQry.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
-            double incomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "وارد") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "وارد").Sum(fii2 => fii2.IncomingAmount);
-            double outcomes2 = (fiQryCycled.Count(fii1 => fii1.IncomingOrOutgoing == "صادر") == 0) ? 0 : fiQryCycled.Where(fii1 => fii1.IncomingOrOutgoing == "صادر").Sum(fii2 => fii2.OutgoingAmount);
-            double cycled = incomes2 - outcomes2;
-            return new List<double>() { incomes, outcomes, cycled };
         }
         #endregion
     }
@@ -1760,6 +1761,20 @@ namespace AssetManagement
             List<int> includedIDs = fiitQry.Select(fiit => fiit.ID).ToList();
             var fivQry = StaticCode.mainDbContext.FinancialItemVws.Where(fivi => includedIDs.Contains(fivi.معرف_السجل_المالي));
             return (fivQry.GetTotalFinancialTableOfLevel(levelRank, sectionName, deptName, subDeptName));
+        }
+
+        public static int FindRelevantFinancialItem(this FinancialItemTbl currFiIt)
+        {
+            int releventRecordID = 0;
+            string fiCaName = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == currFiIt.FinancialItemCategory).FinancialItemCategoryName;
+            if (fiCaName != "موازنات صادرة")
+                return 0;
+            var relativeRecordQry = StaticCode.mainDbContext.FinancialItemTbls.Where(rfi1 => rfi1.IncomingOrOutgoing == "وارد" && rfi1.IncomingAmount == currFiIt.OutgoingAmount && rfi1.FinancialItemCurrency == currFiIt.FinancialItemCurrency && rfi1.FinancialItemInsertionDate.Year == currFiIt.FinancialItemInsertionDate.Year && rfi1.FinancialItemInsertionDate.Month == currFiIt.FinancialItemInsertionDate.Month && rfi1.FinancialItemInsertionDate.Day == currFiIt.FinancialItemInsertionDate.Day && rfi1.IncomingFrom == "من المستوى الأعلى" && StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == currFiIt.FinancialItemCategory).FinancialItemCategoryName == "موازنات واردة");
+            if (relativeRecordQry.Any())
+            {
+                releventRecordID = relativeRecordQry.First().ID;
+            }
+            return releventRecordID;
         }
     }
 }

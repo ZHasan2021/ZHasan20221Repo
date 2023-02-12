@@ -31,9 +31,9 @@ namespace AssetManagement
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Alerter.AlertButton alertButton1 = new DevExpress.XtraBars.Alerter.AlertButton();
-            DevExpress.XtraBars.Alerter.AlertButton alertButton2 = new DevExpress.XtraBars.Alerter.AlertButton();
-            DevExpress.XtraBars.Alerter.AlertButton alertButton3 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton4 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton5 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton6 = new DevExpress.XtraBars.Alerter.AlertButton();
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -98,6 +98,8 @@ namespace AssetManagement
             this.financialItemsStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.viewAssetsNotificationsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.updatedExistedFinancialItemBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.importCategoriesFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -108,7 +110,9 @@ namespace AssetManagement
             this.financeRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.FinancialRecordsRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.manageAuxTablesRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.assetsCategoriesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.auxTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.financieRelatedTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.exportImportDataRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.importExportDataRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.backupAndRestoreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -125,6 +129,7 @@ namespace AssetManagement
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.mainProgressPanel = new DevExpress.XtraWaitForm.ProgressPanel();
             this.breakingAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.managementTablesRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -200,10 +205,12 @@ namespace AssetManagement
             this.manageOutgoingTypeTblBarButtonItem,
             this.financialItemsStatsBarButtonItem,
             this.activeUserSectionBarStaticItem,
-            this.viewAssetsNotificationsBarButtonItem});
+            this.viewAssetsNotificationsBarButtonItem,
+            this.updatedExistedFinancialItemBarCheckItem,
+            this.importCategoriesFromExcelBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 90;
+            this.mainRibbonControl.MaxItemId = 92;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -245,7 +252,7 @@ namespace AssetManagement
             this.addNewMainCategoryBarButtonItem.Id = 4;
             this.addNewMainCategoryBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._228050;
             this.addNewMainCategoryBarButtonItem.Name = "addNewMainCategoryBarButtonItem";
-            this.addNewMainCategoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addNewMainCategoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.addNewMainCategoryBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewMainCategoryBarButtonItem_ItemClick);
             // 
             // addNewMinorCategoryBarButtonItem
@@ -254,7 +261,7 @@ namespace AssetManagement
             this.addNewMinorCategoryBarButtonItem.Id = 5;
             this.addNewMinorCategoryBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1192551;
             this.addNewMinorCategoryBarButtonItem.Name = "addNewMinorCategoryBarButtonItem";
-            this.addNewMinorCategoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addNewMinorCategoryBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.addNewMinorCategoryBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addNewMinorCategoryBarButtonItem_ItemClick);
             // 
             // skinDropDownButtonItem1
@@ -348,7 +355,7 @@ namespace AssetManagement
             this.manageDepartmentTblBarButtonItem.Id = 19;
             this.manageDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._55967741;
             this.manageDepartmentTblBarButtonItem.Name = "manageDepartmentTblBarButtonItem";
-            this.manageDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageDepartmentTblBarButtonItem_ItemClick);
             // 
             // manageSectionTblBarButtonItem
@@ -366,7 +373,7 @@ namespace AssetManagement
             this.manageSquareTblBarButtonItem.Id = 21;
             this.manageSquareTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._8571415;
             this.manageSquareTblBarButtonItem.Name = "manageSquareTblBarButtonItem";
-            this.manageSquareTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageSquareTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageSquareTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSquareTblBarButtonItem_ItemClick);
             // 
             // manageEstateAreaUnitTblBarButtonItem
@@ -375,7 +382,7 @@ namespace AssetManagement
             this.manageEstateAreaUnitTblBarButtonItem.Id = 22;
             this.manageEstateAreaUnitTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._10096362;
             this.manageEstateAreaUnitTblBarButtonItem.Name = "manageEstateAreaUnitTblBarButtonItem";
-            this.manageEstateAreaUnitTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageEstateAreaUnitTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageEstateAreaUnitTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageEstateAreaUnitTblBarButtonItem_ItemClick);
             // 
             // manageTransactionTypeTblBarButtonItem
@@ -384,7 +391,7 @@ namespace AssetManagement
             this.manageTransactionTypeTblBarButtonItem.Id = 23;
             this.manageTransactionTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2998707;
             this.manageTransactionTypeTblBarButtonItem.Name = "manageTransactionTypeTblBarButtonItem";
-            this.manageTransactionTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageTransactionTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageTransactionTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageTransactionTypeTblBarButtonItem_ItemClick);
             // 
             // addNewAssetMovementBarButtonItem
@@ -618,7 +625,7 @@ namespace AssetManagement
             this.manageModelTblBarButtonItem.Id = 60;
             this.manageModelTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu___Copy;
             this.manageModelTblBarButtonItem.Name = "manageModelTblBarButtonItem";
-            this.manageModelTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageModelTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageModelTblBarButtonItem_ItemClick);
             // 
             // manageSubDepartmentTblBarButtonItem
@@ -627,7 +634,7 @@ namespace AssetManagement
             this.manageSubDepartmentTblBarButtonItem.Id = 61;
             this.manageSubDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3466467;
             this.manageSubDepartmentTblBarButtonItem.Name = "manageSubDepartmentTblBarButtonItem";
-            this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageSubDepartmentTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageSubDepartmentTblBarButtonItem_ItemClick);
             // 
             // manageImportExportTblBarButtonItem
@@ -758,7 +765,7 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem.Id = 84;
             this.manageIncomingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2556744;
             this.manageIncomingTypeTblBarButtonItem.Name = "manageIncomingTypeTblBarButtonItem";
-            this.manageIncomingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageIncomingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageIncomingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageIncomingTypeTblBarButtonItem_ItemClick);
             // 
             // manageOutgoingTypeTblBarButtonItem
@@ -767,7 +774,7 @@ namespace AssetManagement
             this.manageOutgoingTypeTblBarButtonItem.Id = 85;
             this.manageOutgoingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._6701075;
             this.manageOutgoingTypeTblBarButtonItem.Name = "manageOutgoingTypeTblBarButtonItem";
-            this.manageOutgoingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageOutgoingTypeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.manageOutgoingTypeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageOutgoingTypeTblBarButtonItem_ItemClick);
             // 
             // financialItemsStatsBarButtonItem
@@ -797,6 +804,22 @@ namespace AssetManagement
             this.viewAssetsNotificationsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.viewAssetsNotificationsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewAssetsNotificationsBarButtonItem_ItemClick);
             // 
+            // updatedExistedFinancialItemBarCheckItem
+            // 
+            this.updatedExistedFinancialItemBarCheckItem.Caption = "تحديث السجل الموجود";
+            this.updatedExistedFinancialItemBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
+            this.updatedExistedFinancialItemBarCheckItem.Id = 90;
+            this.updatedExistedFinancialItemBarCheckItem.Name = "updatedExistedFinancialItemBarCheckItem";
+            // 
+            // importCategoriesFromExcelBarButtonItem
+            // 
+            this.importCategoriesFromExcelBarButtonItem.Caption = "استيراد الفئات عبر إكسل";
+            this.importCategoriesFromExcelBarButtonItem.Id = 91;
+            this.importCategoriesFromExcelBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._36435101;
+            this.importCategoriesFromExcelBarButtonItem.Name = "importCategoriesFromExcelBarButtonItem";
+            this.importCategoriesFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importCategoriesFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importCategoriesFromExcelBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -823,8 +846,6 @@ namespace AssetManagement
             this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarSubItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
             this.newAssetRibbonPageGroup.Text = "أصل جديد - New asset";
             // 
@@ -877,6 +898,7 @@ namespace AssetManagement
             // 
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.addNewFinancialItemBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.importFinancialItemsFromExcelBarButtonItem);
+            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.updatedExistedFinancialItemBarCheckItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.prepareFinancialReportsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.financialItemsStatsBarButtonItem);
@@ -890,28 +912,41 @@ namespace AssetManagement
             this.manageAuxTablesRibbonPage.Appearance.Options.UseTextOptions = true;
             this.manageAuxTablesRibbonPage.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.manageAuxTablesRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.auxTablesRibbonPageGroup});
+            this.assetsCategoriesRibbonPageGroup,
+            this.managementTablesRibbonPageGroup,
+            this.auxTablesRibbonPageGroup,
+            this.financieRelatedTablesRibbonPageGroup});
             this.manageAuxTablesRibbonPage.ImageOptions.Image = global::AssetManagement.Properties.Resources._2762550;
             this.manageAuxTablesRibbonPage.Name = "manageAuxTablesRibbonPage";
             this.manageAuxTablesRibbonPage.Text = "الجداول المساعدة";
             // 
+            // assetsCategoriesRibbonPageGroup
+            // 
+            this.assetsCategoriesRibbonPageGroup.ItemLinks.Add(this.manageCategoriesBarButtonItem);
+            this.assetsCategoriesRibbonPageGroup.ItemLinks.Add(this.importCategoriesFromExcelBarButtonItem);
+            this.assetsCategoriesRibbonPageGroup.ItemLinks.Add(this.addNewMainCategoryBarButtonItem);
+            this.assetsCategoriesRibbonPageGroup.ItemLinks.Add(this.addNewMinorCategoryBarButtonItem);
+            this.assetsCategoriesRibbonPageGroup.Name = "assetsCategoriesRibbonPageGroup";
+            this.assetsCategoriesRibbonPageGroup.Text = "فئات الأصول";
+            // 
             // auxTablesRibbonPageGroup
             // 
             this.auxTablesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCategoriesBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageCurrencyTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSectionTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageDepartmentTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSubDepartmentTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageSquareTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageTransactionTypeTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemCategoryTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageIncomingTypeTblBarButtonItem);
-            this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageOutgoingTypeTblBarButtonItem);
             this.auxTablesRibbonPageGroup.ItemLinks.Add(this.manageModelTblBarButtonItem);
             this.auxTablesRibbonPageGroup.Name = "auxTablesRibbonPageGroup";
             this.auxTablesRibbonPageGroup.Text = "الجداول المساعدة";
+            // 
+            // financieRelatedTablesRibbonPageGroup
+            // 
+            this.financieRelatedTablesRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemCategoryTblBarButtonItem);
+            this.financieRelatedTablesRibbonPageGroup.ItemLinks.Add(this.manageCurrencyTblBarButtonItem);
+            this.financieRelatedTablesRibbonPageGroup.ItemLinks.Add(this.manageIncomingTypeTblBarButtonItem);
+            this.financieRelatedTablesRibbonPageGroup.ItemLinks.Add(this.manageOutgoingTypeTblBarButtonItem);
+            this.financieRelatedTablesRibbonPageGroup.Name = "financieRelatedTablesRibbonPageGroup";
+            this.financieRelatedTablesRibbonPageGroup.Text = "الجداول المتعلقة بالمالية";
             // 
             // exportImportDataRibbonPage
             // 
@@ -1151,21 +1186,29 @@ namespace AssetManagement
             this.breakingAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.breakingAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.breakingAlertControl.AppearanceText.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            alertButton1.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
-            alertButton1.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon;
-            alertButton1.Name = "destructedAssetsAlertButton";
-            alertButton2.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
-            alertButton2.ImageOptions.Image = global::AssetManagement.Properties.Resources._2912628;
-            alertButton2.Name = "assetsToDestructAlertButton";
-            alertButton3.Hint = "عرض كودات الأصول غير المضافة بعد";
-            alertButton3.ImageOptions.Image = global::AssetManagement.Properties.Resources._968753;
-            alertButton3.Name = "notAddedAssetsWithFinancialItemsAlertButton";
-            this.breakingAlertControl.Buttons.Add(alertButton1);
-            this.breakingAlertControl.Buttons.Add(alertButton2);
-            this.breakingAlertControl.Buttons.Add(alertButton3);
+            alertButton4.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
+            alertButton4.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon;
+            alertButton4.Name = "destructedAssetsAlertButton";
+            alertButton5.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
+            alertButton5.ImageOptions.Image = global::AssetManagement.Properties.Resources._2912628;
+            alertButton5.Name = "assetsToDestructAlertButton";
+            alertButton6.Hint = "عرض كودات الأصول غير المضافة بعد";
+            alertButton6.ImageOptions.Image = global::AssetManagement.Properties.Resources._968753;
+            alertButton6.Name = "notAddedAssetsWithFinancialItemsAlertButton";
+            this.breakingAlertControl.Buttons.Add(alertButton4);
+            this.breakingAlertControl.Buttons.Add(alertButton5);
+            this.breakingAlertControl.Buttons.Add(alertButton6);
             this.breakingAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.breakingAlertControl.ButtonClick += new DevExpress.XtraBars.Alerter.AlertButtonClickEventHandler(this.breakingAlertControl_ButtonClick);
             this.breakingAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.breakingAlertControl_FormLoad);
+            // 
+            // managementTablesRibbonPageGroup
+            // 
+            this.managementTablesRibbonPageGroup.ItemLinks.Add(this.manageSectionTblBarButtonItem);
+            this.managementTablesRibbonPageGroup.ItemLinks.Add(this.manageDepartmentTblBarButtonItem);
+            this.managementTablesRibbonPageGroup.ItemLinks.Add(this.manageSubDepartmentTblBarButtonItem);
+            this.managementTablesRibbonPageGroup.Name = "managementTablesRibbonPageGroup";
+            this.managementTablesRibbonPageGroup.Text = "الجداول الإدارية";
             // 
             // MainForm
             // 
@@ -1288,6 +1331,11 @@ namespace AssetManagement
         private DevExpress.XtraWaitForm.ProgressPanel mainProgressPanel;
         private DevExpress.XtraBars.Alerter.AlertControl breakingAlertControl;
         private DevExpress.XtraBars.BarButtonItem viewAssetsNotificationsBarButtonItem;
+        private DevExpress.XtraBars.BarCheckItem updatedExistedFinancialItemBarCheckItem;
+        private DevExpress.XtraBars.BarButtonItem importCategoriesFromExcelBarButtonItem;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsCategoriesRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup financieRelatedTablesRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup managementTablesRibbonPageGroup;
     }
 }
 

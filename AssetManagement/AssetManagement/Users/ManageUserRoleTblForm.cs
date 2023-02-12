@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,9 +29,23 @@ namespace AssetManagement.Users
 
         private void userRoleTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            userRoleTblBindingSource.EndEdit();
-            tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+            try
+            {
+                this.Validate();
+                userRoleTblBindingSource.EndEdit();
+                tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
+
+                StaticCode.mainConn.Close();
+                StaticCode.mainConn.Open();
+
+                mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            }
+            catch (SqlException)
+            {
+                mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لا يمكن تكرار نوع الحساب لأكثر من سجل، حاول تعديل المدخلات لتوافق القيود الموضوعة");
+                MessageBox.Show("لا يمكن تكرار نوع الحساب لأكثر من سجل، حاول تعديل المدخلات لتوافق القيود الموضوعة", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             StaticCode.mainConn.Close();
             StaticCode.mainConn.Open();
@@ -40,7 +55,7 @@ namespace AssetManagement.Users
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 100);
+            e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(500, 200);
         }
     }

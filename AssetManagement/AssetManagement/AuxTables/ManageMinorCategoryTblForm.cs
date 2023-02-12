@@ -53,6 +53,20 @@ namespace AssetManagement.AuxTables
             }
         }
 
+        private void minorCategoryTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx",FileName="الفئات الفرعية" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            minorCategoryGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الفئات الفرعية" });
+            mainAlertControl.Show(this, "تم تصدير بيانات الفئات الفرعية إلى اكسل", StaticCode.ApplicationTitle);
+        }
+        private void minorCategoryTblBindingNavigatorManageMainCategoriesItem_Click(object sender, EventArgs e)
+        {
+            ManageMainCategoryTblForm maca = new ManageMainCategoryTblForm();
+            maca.ShowDialog();
+        }
+
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 150);

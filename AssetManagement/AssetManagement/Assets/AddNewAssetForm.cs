@@ -85,6 +85,7 @@ namespace AssetManagement.Assets
 
                 }
             }
+            assetSubDeptLookUpEdit.Enabled = StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true;
 
             assetCodeTextBox.Text = StaticCode.GetTheNewAssetCode();
         }
