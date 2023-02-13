@@ -620,17 +620,130 @@ namespace AssetManagement
         #endregion
 
         #region Aux tables
-        private void categoriesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void manageMainCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
-            //catFrm.ShowDialog();
             ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
             macaFrm.ShowDialog();
         }
 
+        private void manageMinorCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageMinorCategoryTblForm micaFrm = new ManageMinorCategoryTblForm();
+            micaFrm.ShowDialog();
+        }
+
         private void importCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
 
+            mainProgressPanel.Visible = true;
+            ExcelPackage catsEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook catsWb = catsEp.Workbook;
+            ExcelWorksheet catsWs = catsWb.Worksheets.First();
+            List<string> columnsHeaders = catsWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            int macaNameCol = columnsHeaders.IndexOf("الفئة الرئيسية") + 1;
+            int micaNameCol = columnsHeaders.IndexOf("اسم الفئة الفرعية") + 1;
+            int micaDescCol = columnsHeaders.IndexOf("وصف الفئة الفرعية") + 1;
+            int micaProdAgeCol = columnsHeaders.IndexOf("العمر الإنتاجي بالسنوات") + 1;
+            int micaDestRateCol = columnsHeaders.IndexOf("معدل الإهلاك") + 1;
+            if (macaNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الفئة الرئيسية غير موجود";
+                return;
+            }
+            if (micaNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الفئة الفرعية غير موجود";
+                return;
+            }
+            if (micaProdAgeCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود العمر الإنتاجي بالسنوات غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= catsWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                int oneMiCaProdAgeVal = 0;
+                if (!Int32.TryParse(catsWs.Cells[iRow, micaProdAgeCol].Value?.ToString(), out oneMiCaProdAgeVal))
+                {
+                    actionsStatusMemoEdit.Text = $"العمر الإنتاجي في السطر {iRow} ليس رقماً صحيحاً";
+                    return;
+                }
+                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString();
+                if (oneMaCaVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الفئة الرئيسية في السطر {iRow} فارغ";
+                    return;
+                }
+                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString();
+                if (oneMiCaVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الفئة الفرعية في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newMiCasCount = 0;
+            int existedMiCasCount = 0;
+            for (int iRow = 2; iRow <= catsWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                int oneMiCaProdAgeVal = Convert.ToInt32(catsWs.Cells[iRow, micaProdAgeCol].Value);
+                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString();
+                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString();
+                string oneMiCaDescVal = "";
+                if (micaDescCol > 0)
+                    oneMiCaDescVal = catsWs.Cells[iRow, micaDescCol].Value?.ToString();
+                int oneMaCaID = 0;
+                if (!tmpDataContext.MainCategoryTbls.Any(maca1 => maca1.MainCategoryName == oneMaCaVal))
+                {
+                    MainCategoryTbl newMaCaRec = new MainCategoryTbl() { MainCategoryName = oneMaCaVal, MainCategoryDescription = "" };
+                    tmpDataContext.MainCategoryTbls.InsertOnSubmit(newMaCaRec);
+                    tmpDataContext.SubmitChanges();
+                    oneMaCaID = newMaCaRec.ID;
+                    MinorCategoryTbl newMiCaRec = new MinorCategoryTbl() { MinorCategoryName = oneMiCaVal, MainCategory = oneMaCaID, MinorCategoryDescription = oneMiCaDescVal, ProductiveAgeInYears = oneMiCaProdAgeVal };
+                    tmpDataContext.MinorCategoryTbls.InsertOnSubmit(newMiCaRec);
+                    newMiCasCount++;
+                }
+                else
+                {
+                    oneMaCaID = tmpDataContext.MainCategoryTbls.Where(maca1 => maca1.MainCategoryName == oneMaCaVal).First().ID;
+                    if (!tmpDataContext.MinorCategoryTbls.Any(mica1 => mica1.MinorCategoryName == oneMiCaVal && mica1.MainCategory == oneMaCaID))
+                    {
+                        MinorCategoryTbl newMiCaRec = new MinorCategoryTbl() { MinorCategoryName = oneMiCaVal, MainCategory = oneMaCaID, MinorCategoryDescription = oneMiCaDescVal, ProductiveAgeInYears = oneMiCaProdAgeVal, DestructionRate = 1.0 / (double)oneMiCaProdAgeVal };
+                        tmpDataContext.MinorCategoryTbls.InsertOnSubmit(newMiCaRec);
+                        newMiCasCount++;
+                    }
+                    else
+                    {
+                        MinorCategoryTbl existedMiCaRec = tmpDataContext.MinorCategoryTbls.Where(mica1 => mica1.MinorCategoryName == oneMiCaVal && mica1.MainCategory == oneMaCaID).First();
+                        existedMiCaRec.MinorCategoryDescription = oneMiCaDescVal;
+                        existedMiCaRec.ProductiveAgeInYears = oneMiCaProdAgeVal;
+                        existedMiCaRec.DestructionRate = 1.0 / (double)oneMiCaProdAgeVal;
+                        existedMiCasCount++;
+                    }
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الفئات الفرعية المضافة ({newMiCasCount})\r\n2- عدد الفئات الفرعية المحدثة ({existedMiCasCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الفئات الفرعية بنجاح", StaticCode.ApplicationTitle);
+            return;
         }
 
         private void addNewMainCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -680,7 +793,7 @@ namespace AssetManagement
             ManageTransactionTypeTblForm ttyFrm = new ManageTransactionTypeTblForm();
             ttyFrm.ShowDialog();
         }
-       
+
         private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();
@@ -868,7 +981,10 @@ namespace AssetManagement
             addNewAssetTransactionBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewAssetTransaction == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageAssetMovementTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageAssetMovements == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageAssetTransactionTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageAssetTransactions == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            manageCategoriesBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true && StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageCategoriesBarSubItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true || StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageMainCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageMinorCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importCategoriesFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true && StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCurrencyTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageCurrencies == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSubDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSubDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;

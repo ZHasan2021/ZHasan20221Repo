@@ -323,10 +323,10 @@ namespace AssetManagement.Finance
                             subD_Incoming = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
                         else
                             subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
-                        if (updateExisted && relevantRecordID!=0)
+                        if (updateExisted && relevantRecordID != 0)
                         {
                             FinancialItemTbl relativeRecord = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == relevantRecordID);
-                            relativeRecord.IncomingAmount =Convert.ToDouble( outgoingAmountNumericUpDown.Value);
+                            relativeRecord.IncomingAmount = Convert.ToDouble(outgoingAmountNumericUpDown.Value);
                         }
                         else
                         {

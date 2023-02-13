@@ -118,7 +118,7 @@ namespace AssetManagement.Finance
 
         private void deleteFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MessageBox.Show("هل تريد بالتأكيد حذف السجل؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (MessageBox.Show("للتذكير أن سجل الصادر المعلق عادة ما يرتبط بسجل وارد من المستوى الأعلى والعكس صحيح، هل تريد بالتأكيد حذف السجل الحالي وأي سجل متعلق به في خال وجوده؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             if (currRow < 0)
             {
@@ -130,12 +130,20 @@ namespace AssetManagement.Finance
                 int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
                 FinancialItemTbl recToDelte = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == currFiItID);
                 StaticCode.mainDbContext.FinancialItemTbls.DeleteOnSubmit(recToDelte);
+                int relevantRecordID = recToDelte.FindRelevantFinancialItem();
+                if (relevantRecordID > 0)
+                {
+                    FinancialItemTbl relevantRecToDelte = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == relevantRecordID);
+                    StaticCode.mainDbContext.FinancialItemTbls.DeleteOnSubmit(relevantRecToDelte);
+                }
                 StaticCode.mainDbContext.SubmitChanges();
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
-                //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
                 UpdateTotalsAsFiltered();
-                mainAlertControl.Show(this, "تم حذف السجل المالي", StaticCode.ApplicationTitle);
+                string deleteSuccessMsg = "تم حذف السجل المالي";
+                if (relevantRecordID > 0)
+                    deleteSuccessMsg += " وسجل إضافي مرتبط به";
+                mainAlertControl.Show(this, deleteSuccessMsg, StaticCode.ApplicationTitle);
             }
             catch
             {

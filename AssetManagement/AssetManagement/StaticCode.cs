@@ -1767,12 +1767,21 @@ namespace AssetManagement
         {
             int releventRecordID = 0;
             string fiCaName = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == currFiIt.FinancialItemCategory).FinancialItemCategoryName;
-            if (fiCaName != "موازنات صادرة")
-                return 0;
-            var relativeRecordQry = StaticCode.mainDbContext.FinancialItemTbls.Where(rfi1 => rfi1.IncomingOrOutgoing == "وارد" && rfi1.IncomingAmount == currFiIt.OutgoingAmount && rfi1.FinancialItemCurrency == currFiIt.FinancialItemCurrency && rfi1.FinancialItemInsertionDate.Year == currFiIt.FinancialItemInsertionDate.Year && rfi1.FinancialItemInsertionDate.Month == currFiIt.FinancialItemInsertionDate.Month && rfi1.FinancialItemInsertionDate.Day == currFiIt.FinancialItemInsertionDate.Day && rfi1.IncomingFrom == "من المستوى الأعلى" && StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == currFiIt.FinancialItemCategory).FinancialItemCategoryName == "موازنات واردة");
-            if (relativeRecordQry.Any())
+            if (fiCaName == "موازنات صادرة")
             {
-                releventRecordID = relativeRecordQry.First().ID;
+                var relativeRecordQry = StaticCode.mainDbContext.FinancialItemTbls.Where(rfi1 => rfi1.IncomingOrOutgoing == "وارد" && rfi1.IncomingAmount == currFiIt.OutgoingAmount && rfi1.FinancialItemCurrency == currFiIt.FinancialItemCurrency && rfi1.FinancialItemInsertionDate.Year == currFiIt.FinancialItemInsertionDate.Year && rfi1.FinancialItemInsertionDate.Month == currFiIt.FinancialItemInsertionDate.Month && rfi1.FinancialItemInsertionDate.Day == currFiIt.FinancialItemInsertionDate.Day && rfi1.IncomingFrom == "من المستوى الأعلى" && StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == rfi1.FinancialItemCategory).FinancialItemCategoryName == "موازنات واردة");
+                if (relativeRecordQry.Any())
+                {
+                    releventRecordID = relativeRecordQry.First().ID;
+                }
+            }
+            else if (fiCaName == "موازنات واردة")
+            {
+                var relativeRecordQry = StaticCode.mainDbContext.FinancialItemTbls.Where(rfi1 => rfi1.IncomingOrOutgoing == "صادر" && rfi1.OutgoingAmount == currFiIt.IncomingAmount && rfi1.FinancialItemCurrency == currFiIt.FinancialItemCurrency && rfi1.FinancialItemInsertionDate.Year == currFiIt.FinancialItemInsertionDate.Year && rfi1.FinancialItemInsertionDate.Month == currFiIt.FinancialItemInsertionDate.Month && rfi1.FinancialItemInsertionDate.Day == currFiIt.FinancialItemInsertionDate.Day && rfi1.OutgoingType == "صادرات معلقة" && StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == rfi1.FinancialItemCategory).FinancialItemCategoryName == "موازنات صادرة");
+                if (relativeRecordQry.Any())
+                {
+                    releventRecordID = relativeRecordQry.First().ID;
+                }
             }
             return releventRecordID;
         }
