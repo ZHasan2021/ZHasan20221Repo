@@ -55,7 +55,7 @@ namespace AssetManagement.AuxTables
 
         private void minorCategoryTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx",FileName="الفئات الفرعية" };
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "الفئات الفرعية" };
             if (exportDlg.ShowDialog() != DialogResult.OK)
                 return;
             minorCategoryGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الفئات الفرعية" });

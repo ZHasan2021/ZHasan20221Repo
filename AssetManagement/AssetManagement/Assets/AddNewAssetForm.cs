@@ -53,7 +53,6 @@ namespace AssetManagement.Assets
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
-            manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageSquareTblBtn.Visible = StaticCode.activeUserRole.ManageSquares == true;
             manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
@@ -85,7 +84,6 @@ namespace AssetManagement.Assets
 
                 }
             }
-            assetSubDeptLookUpEdit.Enabled = StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true;
 
             assetCodeTextBox.Text = StaticCode.GetTheNewAssetCode();
         }
@@ -113,8 +111,6 @@ namespace AssetManagement.Assets
                         errorMsg += "لم يتم تحديد الدائرة\r\n";
                     if (assetDeptLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
                         errorMsg += "لم يتم تحديد القسم\r\n";
-                    if (assetSubDeptLookUpEdit.EditValue == null && StaticCode.activeUserRole.IsSectionIndependent != true && StaticCode.activeUserRole.IsDepartmentIndependent != true)
-                        errorMsg += "لم يتم تحديد الوحدة\r\n";
                     if (assetSquareLookUpEdit.EditValue == null)
                         errorMsg += "لم يتم تحديد الساحة\r\n";
                     if (mainCategoryLookUpEdit.EditValue == null)
@@ -180,7 +176,7 @@ namespace AssetManagement.Assets
 
             try
             {
-                int assetSubD = Convert.ToInt32(assetSubDeptLookUpEdit.EditValue);
+                int assetSubD = 0;
                 if (assetSectionLookUpEdit.EditValue == null)
                 {
                     if (StaticCode.activeUserRole.IsSectionIndependent == true)
@@ -247,7 +243,6 @@ namespace AssetManagement.Assets
                     CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue),
                     BenefitPercentage = benefitPercentageTextBox.Text.Trim(),
                     ActualCurrentPrice = Convert.ToInt32(actualCurrentPriceNumericUpDown.Value),
-                    ActualCurrentPriceCurrency = Convert.ToInt32(actualCurrentPriceCurrencyLookUpEdit.EditValue),
                     CustodianName = custodianNameTextBox.Text.Trim(),
                     MoreDetails = moreDetailsTextBox.Text.Trim(),
                     AssetNotes = assetNotesTextBox.Text.Trim(),
@@ -292,9 +287,8 @@ namespace AssetManagement.Assets
                 AssetCode = assetCodeTextBox.Text;
                 e.Cancel = false;
             }
-            catch (Exception ex)
+            catch
             {
-                string fff = ex.Message;
                 mainAlertControl.Show(this, "خطأ في بعص الإدخالات، تأكد ثانية من القيم", StaticCode.ApplicationTitle);
                 AssetAdded = false;
                 AssetCode = "";
@@ -420,30 +414,12 @@ namespace AssetManagement.Assets
             }
         }
 
-        private void assetDeptLookUpEdit_EditValueChanged(object sender, EventArgs e)
-        {
-            if (assetDeptLookUpEdit.EditValue == null)
-                return;
-            var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(assetDeptLookUpEdit.EditValue));
-            assetSubDeptLookUpEdit.Properties.DataSource = subDeptItems;
-        }
-
         private void assetSectionLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             if (assetSectionLookUpEdit.EditValue == null)
                 return;
             var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(assetSectionLookUpEdit.EditValue));
             assetDeptLookUpEdit.Properties.DataSource = deptItems;
-            assetDeptLookUpEdit_EditValueChanged(sender, e);
-            assetSubDeptLookUpEdit.EditValue = null;
-        }
-
-        private void manageSubDepartmentTblBtn_Click(object sender, EventArgs e)
-        {
-            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
-            sdptFrm.ShowDialog();
-
-            this.subDepartmentTblTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentTbl);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

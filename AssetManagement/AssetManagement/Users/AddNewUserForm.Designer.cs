@@ -206,12 +206,14 @@ namespace AssetManagement.Users
             this.mainAlertControl.AppearanceCaption.Options.UseFont = true;
             this.mainAlertControl.AppearanceCaption.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.mainAlertControl.AppearanceText.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.mainAlertControl.AppearanceText.Options.UseFont = true;
             this.mainAlertControl.AppearanceText.Options.UseForeColor = true;
             this.mainAlertControl.AppearanceText.Options.UseTextOptions = true;
             this.mainAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.mainAlertControl.AppearanceText.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.mainAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.mainAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.mainAlertControl_FormLoad);
             // 
@@ -325,6 +327,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = this.sectionTblTableAdapter;
@@ -333,6 +336,7 @@ namespace AssetManagement.Users
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = this.userRoleTblTableAdapter;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 

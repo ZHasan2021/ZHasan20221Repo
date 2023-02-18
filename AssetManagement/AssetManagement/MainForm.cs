@@ -28,6 +28,7 @@ namespace AssetManagement
     {
         IQueryable<AssetTbl> assetsToDestructList = null;
         IQueryable<AssetTbl> destructedAssetsList = null;
+        IQueryable<AssetTbl> assetsWithoutPurchaseDateList = null;
         List<string> notAddedAssetsWithFinancialItemsList = null;
 
         public MainForm()
@@ -101,10 +102,11 @@ namespace AssetManagement
             assetsToDestructList = StaticCode.GetAssetsToDestruct();
             destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
             notAddedAssetsWithFinancialItemsList = StaticCode.GetNotAddedAssetsHaveFinancialItems();
+            assetsWithoutPurchaseDateList = StaticCode.GetAssetsWithoutPurchaseDate();
 
-            if (assetsToDestructList.Any() || destructedAssetsList.Any() || notAddedAssetsWithFinancialItemsList.Any())
+            if (assetsToDestructList.Any() || destructedAssetsList.Any() || notAddedAssetsWithFinancialItemsList.Any() || assetsWithoutPurchaseDateList.Any())
             {
-                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})");
+                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})\r\nعدد الأصول التي لا تملك تواريخ شراء ({assetsWithoutPurchaseDateList.Count()})");
             }
             else
             {
@@ -123,8 +125,7 @@ namespace AssetManagement
         private void manageAssetTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CustomAssetsForm cuFrm = new CustomAssetsForm();
-            if (cuFrm.ShowDialog() == DialogResult.OK)
-                CheckAssetsNotifications();
+            cuFrm.ShowDialog();
         }
 
         private void addNewAssetMovementBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -574,6 +575,15 @@ namespace AssetManagement
                         actionsStatusMemoEdit.Text += $"{i + 1}- {notAddedAssetsWithFinancialItemsList[i]}\r\n";
                     }
                     break;
+                case "assetsWithoutPurchaseDate":
+                    if (StaticCode.activeUserRole.ManageAssetTbl != true)
+                    {
+                        mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لا تملك الصلاحيات للدخول إلى سجلات الأصول!");
+                        return;
+                    }
+                    ManageAssetTblForm desFrm3 = new ManageAssetTblForm(assetsWithoutPurchaseDateList, "الأصول التي ليس لديها تواريخ شراء");
+                    desFrm3.ShowDialog();
+                    break;
                 default:
                     break;
             }
@@ -632,7 +642,7 @@ namespace AssetManagement
             micaFrm.ShowDialog();
         }
 
-        private void importCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void importAssetsCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
@@ -758,6 +768,105 @@ namespace AssetManagement
             addFrm.ShowDialog();
         }
 
+        private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageFinancialItemCategoryTblForm ficFrm = new ManageFinancialItemCategoryTblForm();
+            ficFrm.ShowDialog();
+        }
+
+        private void importFinancialItemsCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage ficaEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook ficaWb = ficaEp.Workbook;
+            ExcelWorksheet ficaWs = ficaWb.Worksheets.First();
+            List<string> columnsHeaders = ficaWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            int ficaNameCol = columnsHeaders.IndexOf("اسم البند المالي") + 1;
+            int ficaDetCol = columnsHeaders.IndexOf("وصف البند المالي") + 1;
+            int ficaInOutCol = columnsHeaders.IndexOf("صادر أم وارد") + 1;
+            if (ficaNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم البند المالي غير موجود";
+                return;
+            }
+            if (ficaDetCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود وصف البند المالي غير موجود";
+                return;
+            }
+            if (ficaInOutCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود صادر أم وارد غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= ficaWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString();
+                if (oneFiCaVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم البند المالي  في السطر {iRow} فارغ";
+                    return;
+                }
+                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString();
+                if (oneFiCaDetVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"وصف البند المالي  في السطر {iRow} فارغ";
+                    return;
+                }
+                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString();
+                if (oneFiCaInOutVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"قيمة (صادر أم وارد)  في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newFiCasCount = 0;
+            int existedFiCasCount = 0;
+            for (int iRow = 2; iRow <= ficaWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString();
+                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString();
+                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString();
+                if (!tmpDataContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == oneFiCaVal))
+                {
+                    FinancialItemCategoryTbl newFiCaRec = new FinancialItemCategoryTbl() { FinancialItemCategoryName = oneFiCaVal, FinancialItemCategoryDetails = oneFiCaDetVal, IsIncomingOrOutgiung = oneFiCaInOutVal };
+                    tmpDataContext.FinancialItemCategoryTbls.InsertOnSubmit(newFiCaRec);
+                    newFiCasCount++;
+                }
+                else
+                {
+                    FinancialItemCategoryTbl existedFiCaRec = tmpDataContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == oneFiCaVal).First();
+                    existedFiCaRec.FinancialItemCategoryDetails = oneFiCaDetVal;
+                    existedFiCaRec.IsIncomingOrOutgiung = oneFiCaInOutVal;
+                    existedFiCasCount++;
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد البنود المالية المضافة ({newFiCasCount})\r\n2- عدد البنود المالية المحدثة ({existedFiCasCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد البنود المالية بنجاح", StaticCode.ApplicationTitle);
+            return;
+        }
+
         private void manageCurrencyTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageCurrencyTblForm curFrm = new ManageCurrencyTblForm();
@@ -855,17 +964,13 @@ namespace AssetManagement
         #endregion
 
         #region Finance
-        private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageFinancialItemCategoryTblForm ficFrm = new ManageFinancialItemCategoryTblForm();
-            ficFrm.ShowDialog();
-        }
-
         private void addNewFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AddNewFinancialItemForm newFinFrm = new AddNewFinancialItemForm();
             newFinFrm.ShowDialog();
-            CheckAssetsNotifications();
+
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+            GC.Collect();
         }
 
         private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -984,7 +1089,7 @@ namespace AssetManagement
             manageCategoriesBarSubItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true || StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageMainCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMainCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageMinorCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            importCategoriesFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true && StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importAssetsCategoriesFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true && StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCurrencyTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageCurrencies == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSubDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSubDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -1010,6 +1115,7 @@ namespace AssetManagement
             addNewFinancialItemBarButtonItem.Visibility =
 importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItem == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemsBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItems == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importFinancialItemsCategoriesFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewFinancialItemCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageFinancialItemCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageFinancialItemCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageIncomingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageIncomingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;

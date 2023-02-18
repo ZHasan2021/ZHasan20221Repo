@@ -51,6 +51,15 @@ namespace AssetManagement.AuxTables
             }
         }
 
+        private void financialItemCategoryTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "البنود المالية" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            financialItemCategoryGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول البنود المالية" });
+            mainAlertControl.Show(this, "تم تصدير بيانات البنود المالية إلى اكسل", StaticCode.ApplicationTitle);
+        }
+
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
             e.AlertForm.Size = new Size(350, 150);

@@ -44,9 +44,6 @@ namespace AssetManagement.Assets
             this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
             this.incorrectPictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorSummaryLabel1 = new System.Windows.Forms.Label();
-            this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
-            this.assetSubDeptLabel = new System.Windows.Forms.Label();
-            this.assetSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
@@ -159,7 +156,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
@@ -259,9 +255,6 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage1.Controls.Add(this.correctPictureBox1);
             this.assetBasicsWizardPage1.Controls.Add(this.incorrectPictureBox1);
             this.assetBasicsWizardPage1.Controls.Add(this.errorSummaryLabel1);
-            this.assetBasicsWizardPage1.Controls.Add(this.manageSubDepartmentTblBtn);
-            this.assetBasicsWizardPage1.Controls.Add(this.assetSubDeptLabel);
-            this.assetBasicsWizardPage1.Controls.Add(this.assetSubDeptLookUpEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.isNewOrOldAssetPanel);
             this.assetBasicsWizardPage1.Controls.Add(this.modelLookUpEdit);
             this.assetBasicsWizardPage1.Controls.Add(this.manageModelTblBtn);
@@ -429,48 +422,6 @@ namespace AssetManagement.Assets
             this.errorSummaryLabel1.Name = "errorSummaryLabel1";
             this.errorSummaryLabel1.Size = new System.Drawing.Size(0, 21);
             this.errorSummaryLabel1.TabIndex = 256;
-            // 
-            // manageSubDepartmentTblBtn
-            // 
-            this.manageSubDepartmentTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manageSubDepartmentTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
-            this.manageSubDepartmentTblBtn.Location = new System.Drawing.Point(978, 245);
-            this.manageSubDepartmentTblBtn.Name = "manageSubDepartmentTblBtn";
-            this.manageSubDepartmentTblBtn.Size = new System.Drawing.Size(55, 55);
-            this.manageSubDepartmentTblBtn.TabIndex = 51;
-            this.manageSubDepartmentTblBtn.UseVisualStyleBackColor = true;
-            this.manageSubDepartmentTblBtn.Click += new System.EventHandler(this.manageSubDepartmentTblBtn_Click);
-            // 
-            // assetSubDeptLabel
-            // 
-            this.assetSubDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSubDeptLabel.AutoSize = true;
-            this.assetSubDeptLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSubDeptLabel.Location = new System.Drawing.Point(1363, 260);
-            this.assetSubDeptLabel.Name = "assetSubDeptLabel";
-            this.assetSubDeptLabel.Size = new System.Drawing.Size(61, 24);
-            this.assetSubDeptLabel.TabIndex = 45;
-            this.assetSubDeptLabel.Text = "الوحدة:";
-            // 
-            // assetSubDeptLookUpEdit
-            // 
-            this.assetSubDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.assetSubDeptLookUpEdit.Location = new System.Drawing.Point(1045, 257);
-            this.assetSubDeptLookUpEdit.Name = "assetSubDeptLookUpEdit";
-            this.assetSubDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assetSubDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.assetSubDeptLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.assetSubDeptLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.assetSubDeptLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
-            this.assetSubDeptLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
-            this.assetSubDeptLookUpEdit.Properties.PopupWidth = 500;
-            this.assetSubDeptLookUpEdit.Properties.ValueMember = "ID";
-            this.assetSubDeptLookUpEdit.Size = new System.Drawing.Size(234, 30);
-            this.assetSubDeptLookUpEdit.TabIndex = 50;
             // 
             // subDepartmentTblBindingSource
             // 
@@ -809,7 +760,6 @@ namespace AssetManagement.Assets
             this.assetDeptLookUpEdit.Properties.ValueMember = "ID";
             this.assetDeptLookUpEdit.Size = new System.Drawing.Size(234, 30);
             this.assetDeptLookUpEdit.TabIndex = 40;
-            this.assetDeptLookUpEdit.EditValueChanged += new System.EventHandler(this.assetDeptLookUpEdit_EditValueChanged);
             // 
             // departmentTblBindingSource
             // 
@@ -1632,7 +1582,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetSubDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
@@ -1782,9 +1731,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Panel isNewOrOldAssetPanel;
         private System.Windows.Forms.RadioButton isNewAssetRadioButton;
         private System.Windows.Forms.RadioButton isOldAssetRadioButton;
-        private System.Windows.Forms.Button manageSubDepartmentTblBtn;
-        private System.Windows.Forms.Label assetSubDeptLabel;
-        private DevExpress.XtraEditors.LookUpEdit assetSubDeptLookUpEdit;
         private System.Windows.Forms.BindingSource subDepartmentTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.PictureBox incorrectPictureBox1;

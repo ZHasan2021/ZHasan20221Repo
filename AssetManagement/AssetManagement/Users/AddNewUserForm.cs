@@ -48,10 +48,10 @@ namespace AssetManagement.Users
                 userNameTextBox.Text = existedUser.Username;
                 passwordTextBox.Text = confirmPasswordTextBox.Text = existedUser.Password;
                 userRoleComboBox.SelectedValue = existedUser.UserRole;
+                userRoleComboBox_SelectedIndexChanged(sender, e);
                 userSectionLookUpEdit.EditValue = existedUser.UserSection;
                 userDeptLookUpEdit.EditValue = existedUser.UserDept;
                 userPrefixTextBox.Text = existedUser.UserPrefix;
-                userRoleComboBox_SelectedIndexChanged(sender, e);
 
                 this.Text = "تعديل حساب موجود";
                 addNewUserBtn_OK.Text = "حفظ";
@@ -89,6 +89,11 @@ namespace AssetManagement.Users
                 mainAlertControl.Show(this, "أدخل كلمة المرور أولاً", StaticCode.ApplicationTitle);
                 return;
             }
+            if (userPrefixTextBox.Text.Trim() == "")
+            {
+                mainAlertControl.Show(this, "أدخل بادئة المستخدم أولاً", StaticCode.ApplicationTitle);
+                return;
+            }
             if (passwordTextBox.Text.Trim() != confirmPasswordTextBox.Text.Trim())
             {
                 mainAlertControl.Show(this, "كلمة المرور غير متطابقة", StaticCode.ApplicationTitle);
@@ -99,7 +104,25 @@ namespace AssetManagement.Users
                 mainAlertControl.Show(this, "كلمة المرور يجب أن تتألف من 8 محارف على الأقل", StaticCode.ApplicationTitle);
                 return;
             }
-            if (!updateExisted)
+            if (updateExisted)
+            {
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Username == userNameTextBox.Text.Trim() && usr1.ID != existedUser.ID))
+                {
+                    mainAlertControl.Show(this, "اسم المستخدم الذي كتبته موجود مسبقاً ولا يمكن اعتماده لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Password == passwordTextBox.Text.Trim() && usr1.ID != existedUser.ID))
+                {
+                    mainAlertControl.Show(this, "كلمة المرور التي كتبتها موجودة مسبقاً ولا يمكن اعتمادها لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.UserPrefix == userPrefixTextBox.Text.Trim() && usr1.ID != existedUser.ID))
+                {
+                    mainAlertControl.Show(this, "بادئة المستخدم التي كتبتها موجودة مسبقاً ولا يمكن اعتمادها لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+            }
+            else
             {
                 if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Username == userNameTextBox.Text.Trim()))
                 {
@@ -109,6 +132,11 @@ namespace AssetManagement.Users
                 if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.Password == passwordTextBox.Text.Trim()))
                 {
                     mainAlertControl.Show(this, "كلمة المرور التي كتبتها موجودة مسبقاً ولا يمكن اعتمادها لأكثر من مرة", StaticCode.ApplicationTitle);
+                    return;
+                }
+                if (StaticCode.mainDbContext.UserTbls.Any(usr1 => usr1.UserPrefix == userPrefixTextBox.Text.Trim()))
+                {
+                    mainAlertControl.Show(this, "بادئة المستخدم التي كتبتها موجودة مسبقاً ولا يمكن اعتمادها لأكثر من مرة", StaticCode.ApplicationTitle);
                     return;
                 }
             }

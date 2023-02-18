@@ -55,8 +55,6 @@ namespace AssetManagement.Finance
             this.additionalNotesLabel = new System.Windows.Forms.Label();
             this.manageDepartmentTblBtn = new System.Windows.Forms.Button();
             this.manageSubDepartmentTblBtn = new System.Windows.Forms.Button();
-            this.financialItemSubDeptLabel = new System.Windows.Forms.Label();
-            this.financialItemSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.manageSectionTblBtn = new System.Windows.Forms.Button();
             this.financialItemSectionLabel = new System.Windows.Forms.Label();
@@ -69,6 +67,7 @@ namespace AssetManagement.Finance
             this.outgoingAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.outgoingAmountLabel = new System.Windows.Forms.Label();
             this.outgoingToPanel = new System.Windows.Forms.Panel();
+            this.outgoingToTextBox = new System.Windows.Forms.TextBox();
             this.outgoingTypeLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.outgoingTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.relatedOutgoingLabel = new System.Windows.Forms.Label();
@@ -94,6 +93,8 @@ namespace AssetManagement.Finance
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.sectionTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.financialItemSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.financialItemSubDeptLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -103,7 +104,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomingAmountNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSectionLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
@@ -123,6 +123,7 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.incomingTypeTblBindingSource)).BeginInit();
             this.incomingFromPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemCategoryLabel
@@ -396,39 +397,6 @@ namespace AssetManagement.Finance
             this.manageSubDepartmentTblBtn.UseVisualStyleBackColor = true;
             this.manageSubDepartmentTblBtn.Click += new System.EventHandler(this.manageSubDepartmentTblBtn_Click);
             // 
-            // financialItemSubDeptLabel
-            // 
-            this.financialItemSubDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialItemSubDeptLabel.AutoSize = true;
-            this.financialItemSubDeptLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.financialItemSubDeptLabel.Location = new System.Drawing.Point(33, 340);
-            this.financialItemSubDeptLabel.Name = "financialItemSubDeptLabel";
-            this.financialItemSubDeptLabel.Size = new System.Drawing.Size(61, 24);
-            this.financialItemSubDeptLabel.TabIndex = 230;
-            this.financialItemSubDeptLabel.Text = "الوحدة:";
-            this.financialItemSubDeptLabel.Visible = false;
-            // 
-            // financialItemSubDeptLookUpEdit
-            // 
-            this.financialItemSubDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.financialItemSubDeptLookUpEdit.Location = new System.Drawing.Point(216, 337);
-            this.financialItemSubDeptLookUpEdit.Name = "financialItemSubDeptLookUpEdit";
-            this.financialItemSubDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.financialItemSubDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
-            this.financialItemSubDeptLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.financialItemSubDeptLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.financialItemSubDeptLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
-            this.financialItemSubDeptLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
-            this.financialItemSubDeptLookUpEdit.Properties.PopupWidth = 500;
-            this.financialItemSubDeptLookUpEdit.Properties.ValueMember = "ID";
-            this.financialItemSubDeptLookUpEdit.Size = new System.Drawing.Size(321, 30);
-            this.financialItemSubDeptLookUpEdit.TabIndex = 235;
-            this.financialItemSubDeptLookUpEdit.Visible = false;
-            // 
             // subDepartmentTblBindingSource
             // 
             this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
@@ -561,6 +529,7 @@ namespace AssetManagement.Finance
             // 
             this.outgoingToPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.outgoingToPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.outgoingToPanel.Controls.Add(this.outgoingToTextBox);
             this.outgoingToPanel.Controls.Add(this.outgoingTypeLookUpEdit);
             this.outgoingToPanel.Controls.Add(this.relatedOutgoingLabel);
             this.outgoingToPanel.Controls.Add(this.manageOutgoingTypeBtn);
@@ -573,6 +542,16 @@ namespace AssetManagement.Finance
             this.outgoingToPanel.Size = new System.Drawing.Size(839, 62);
             this.outgoingToPanel.TabIndex = 100;
             this.outgoingToPanel.Visible = false;
+            // 
+            // outgoingToTextBox
+            // 
+            this.outgoingToTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.outgoingToTextBox.Enabled = false;
+            this.outgoingToTextBox.Location = new System.Drawing.Point(29, 16);
+            this.outgoingToTextBox.Name = "outgoingToTextBox";
+            this.outgoingToTextBox.Size = new System.Drawing.Size(249, 32);
+            this.outgoingToTextBox.TabIndex = 506;
+            this.outgoingToTextBox.Visible = false;
             // 
             // outgoingTypeLookUpEdit
             // 
@@ -831,6 +810,37 @@ namespace AssetManagement.Finance
             this.sectionTblBindingSource1.DataMember = "SectionTbl";
             this.sectionTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
+            // financialItemSubDeptLookUpEdit
+            // 
+            this.financialItemSubDeptLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.financialItemSubDeptLookUpEdit.Location = new System.Drawing.Point(216, 337);
+            this.financialItemSubDeptLookUpEdit.Name = "financialItemSubDeptLookUpEdit";
+            this.financialItemSubDeptLookUpEdit.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.financialItemSubDeptLookUpEdit.Properties.Appearance.Options.UseFont = true;
+            this.financialItemSubDeptLookUpEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.financialItemSubDeptLookUpEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "معرف الوحدة", 80, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SubDepartmentName", "اسم الوحدة", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MainDepartment", "معرف القسم", 120, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.financialItemSubDeptLookUpEdit.Properties.DataSource = this.subDepartmentTblBindingSource;
+            this.financialItemSubDeptLookUpEdit.Properties.DisplayMember = "SubDepartmentName";
+            this.financialItemSubDeptLookUpEdit.Properties.PopupWidth = 500;
+            this.financialItemSubDeptLookUpEdit.Properties.ValueMember = "ID";
+            this.financialItemSubDeptLookUpEdit.Size = new System.Drawing.Size(321, 30);
+            this.financialItemSubDeptLookUpEdit.TabIndex = 235;
+            // 
+            // financialItemSubDeptLabel
+            // 
+            this.financialItemSubDeptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.financialItemSubDeptLabel.AutoSize = true;
+            this.financialItemSubDeptLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.financialItemSubDeptLabel.Location = new System.Drawing.Point(33, 340);
+            this.financialItemSubDeptLabel.Name = "financialItemSubDeptLabel";
+            this.financialItemSubDeptLabel.Size = new System.Drawing.Size(61, 24);
+            this.financialItemSubDeptLabel.TabIndex = 230;
+            this.financialItemSubDeptLabel.Text = "الوحدة:";
+            // 
             // AddNewFinancialItemForm
             // 
             this.AcceptButton = this.addNewFinancialItemBtn_OK;
@@ -838,12 +848,12 @@ namespace AssetManagement.Finance
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addNewFinancialItemBtn_Cancel;
             this.ClientSize = new System.Drawing.Size(1226, 687);
+            this.Controls.Add(this.financialItemSubDeptLabel);
+            this.Controls.Add(this.financialItemSubDeptLookUpEdit);
             this.Controls.Add(this.outgoingAmountNumericUpDown);
             this.Controls.Add(this.outgoingAmountLabel);
             this.Controls.Add(this.addNewAssetBtn);
             this.Controls.Add(this.manageSubDepartmentTblBtn);
-            this.Controls.Add(this.financialItemSubDeptLabel);
-            this.Controls.Add(this.financialItemSubDeptLookUpEdit);
             this.Controls.Add(this.manageSectionTblBtn);
             this.Controls.Add(this.financialItemSectionLabel);
             this.Controls.Add(this.financialItemSectionLookUpEdit);
@@ -888,7 +898,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCurrencyLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomingAmountNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSectionLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
@@ -910,6 +919,7 @@ namespace AssetManagement.Finance
             this.incomingFromPanel.ResumeLayout(false);
             this.incomingFromPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -946,8 +956,6 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter departmentTblTableAdapter;
         private AssetMngDbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Button manageSubDepartmentTblBtn;
-        private System.Windows.Forms.Label financialItemSubDeptLabel;
-        private DevExpress.XtraEditors.LookUpEdit financialItemSubDeptLookUpEdit;
         private System.Windows.Forms.Button manageSectionTblBtn;
         private System.Windows.Forms.Label financialItemSectionLabel;
         private DevExpress.XtraEditors.LookUpEdit financialItemSectionLookUpEdit;
@@ -980,5 +988,8 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.Button manageIncomingTypeBtn;
         private System.Windows.Forms.Button manageOutgoingTypeBtn;
         private System.Windows.Forms.Panel incomingFromPanel;
+        private System.Windows.Forms.TextBox outgoingToTextBox;
+        private DevExpress.XtraEditors.LookUpEdit financialItemSubDeptLookUpEdit;
+        private System.Windows.Forms.Label financialItemSubDeptLabel;
     }
 }

@@ -75,7 +75,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryGridControl.Location = new System.Drawing.Point(0, 47);
             this.mainCategoryGridControl.MainView = this.mainCategoryGridView;
             this.mainCategoryGridControl.Name = "mainCategoryGridControl";
-            this.mainCategoryGridControl.Size = new System.Drawing.Size(1180, 623);
+            this.mainCategoryGridControl.Size = new System.Drawing.Size(1290, 686);
             this.mainCategoryGridControl.TabIndex = 5;
             this.mainCategoryGridControl.UseEmbeddedNavigator = true;
             this.mainCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -159,6 +159,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.MainCategoryTblTableAdapter = this.mainCategoryTblTableAdapter;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
@@ -167,6 +168,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -282,8 +284,8 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.mainCategoryTblBindingNavigatorSaveItem,
-            this.manageMinorCategoryTblToolStripButton,
-            this.addAllMicaToFicaToolStripButton});
+            this.addAllMicaToFicaToolStripButton,
+            this.manageMinorCategoryTblToolStripButton});
             this.mainCategoryTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.mainCategoryTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.mainCategoryTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -291,7 +293,7 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.mainCategoryTblBindingNavigator.Name = "mainCategoryTblBindingNavigator";
             this.mainCategoryTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.mainCategoryTblBindingNavigator.Size = new System.Drawing.Size(1180, 47);
+            this.mainCategoryTblBindingNavigator.Size = new System.Drawing.Size(1290, 47);
             this.mainCategoryTblBindingNavigator.TabIndex = 4;
             this.mainCategoryTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -302,6 +304,7 @@ namespace AssetManagement.AuxTables
             this.manageMinorCategoryTblToolStripButton.Name = "manageMinorCategoryTblToolStripButton";
             this.manageMinorCategoryTblToolStripButton.Size = new System.Drawing.Size(213, 44);
             this.manageMinorCategoryTblToolStripButton.Text = "إدارة جدول الفئات الفرعية";
+            this.manageMinorCategoryTblToolStripButton.Visible = false;
             this.manageMinorCategoryTblToolStripButton.Click += new System.EventHandler(this.manageMinorCategoryTblToolStripButton_Click);
             // 
             // addAllMicaToFicaToolStripButton
@@ -317,7 +320,7 @@ namespace AssetManagement.AuxTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 670);
+            this.ClientSize = new System.Drawing.Size(1290, 733);
             this.Controls.Add(this.mainCategoryGridControl);
             this.Controls.Add(this.mainCategoryTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

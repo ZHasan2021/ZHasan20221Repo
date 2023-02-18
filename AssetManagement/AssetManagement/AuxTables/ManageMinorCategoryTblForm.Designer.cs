@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageMinorCategoryTblForm));
             this.minorCategoryGridControl = new DevExpress.XtraGrid.GridControl();
             this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -62,8 +62,8 @@ namespace AssetManagement.AuxTables
             this.minorCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.minorCategoryTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.minorCategoryTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
-            this.minorCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem = new System.Windows.Forms.ToolStripButton();
+            this.minorCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -79,15 +79,15 @@ namespace AssetManagement.AuxTables
             // 
             this.minorCategoryGridControl.DataSource = this.minorCategoryTblBindingSource;
             this.minorCategoryGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.RelationName = "minorCategoryLevel";
+            gridLevelNode1.RelationName = "minorCategoryLevel";
             this.minorCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.minorCategoryGridControl.Location = new System.Drawing.Point(0, 47);
             this.minorCategoryGridControl.MainView = this.minorCategoryGridView;
             this.minorCategoryGridControl.Name = "minorCategoryGridControl";
             this.minorCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.macaRepositoryItemLookUpEdit});
-            this.minorCategoryGridControl.Size = new System.Drawing.Size(1180, 623);
+            this.minorCategoryGridControl.Size = new System.Drawing.Size(1274, 702);
             this.minorCategoryGridControl.TabIndex = 5;
             this.minorCategoryGridControl.UseEmbeddedNavigator = true;
             this.minorCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -370,7 +370,7 @@ namespace AssetManagement.AuxTables
             this.minorCategoryTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.minorCategoryTblBindingNavigator.Name = "minorCategoryTblBindingNavigator";
             this.minorCategoryTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.minorCategoryTblBindingNavigator.Size = new System.Drawing.Size(1180, 47);
+            this.minorCategoryTblBindingNavigator.Size = new System.Drawing.Size(1274, 47);
             this.minorCategoryTblBindingNavigator.TabIndex = 4;
             this.minorCategoryTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -384,11 +384,6 @@ namespace AssetManagement.AuxTables
             this.minorCategoryTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى إكسل";
             this.minorCategoryTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.minorCategoryTblBindingNavigatorExportToExcelItem_Click);
             // 
-            // minorCategoryTblBindingSource1
-            // 
-            this.minorCategoryTblBindingSource1.DataMember = "MinorCategoryTbl";
-            this.minorCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
-            // 
             // minorCategoryTblBindingNavigatorManageMainCategoriesItem
             // 
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -397,13 +392,19 @@ namespace AssetManagement.AuxTables
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.Name = "minorCategoryTblBindingNavigatorManageMainCategoriesItem";
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.Size = new System.Drawing.Size(44, 44);
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.Text = "إدارة جدول الفئات الرئيسية";
+            this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.Visible = false;
             this.minorCategoryTblBindingNavigatorManageMainCategoriesItem.Click += new System.EventHandler(this.minorCategoryTblBindingNavigatorManageMainCategoriesItem_Click);
+            // 
+            // minorCategoryTblBindingSource1
+            // 
+            this.minorCategoryTblBindingSource1.DataMember = "MinorCategoryTbl";
+            this.minorCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
             // 
             // ManageMinorCategoryTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 670);
+            this.ClientSize = new System.Drawing.Size(1274, 749);
             this.Controls.Add(this.minorCategoryGridControl);
             this.Controls.Add(this.minorCategoryTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

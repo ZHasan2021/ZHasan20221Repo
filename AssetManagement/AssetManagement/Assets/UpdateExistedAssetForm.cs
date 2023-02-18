@@ -278,7 +278,6 @@ namespace AssetManagement.Assets
                 currSrchRes.PlaceOfPresence = placeOfPresenceTextBox.Text.Trim();
                 currSrchRes.CurrentStatus = Convert.ToInt32(currentStatusLookUpEdit.EditValue);
                 currSrchRes.ActualCurrentPrice = Convert.ToDouble(actualCurrentPriceNumericUpDown.Value);
-                currSrchRes.ActualCurrentPriceCurrency = Convert.ToInt32(purchasePriceCurrencyLookUpEdit.EditValue);
                 currSrchRes.Model = (modelLookUpEdit.EditValue == null) ? "" : modelLookUpEdit.Text;
                 currSrchRes.Color = colorComboBox.Text;
                 currSrchRes.Volume = volumeTextBox.Text.Trim();
@@ -303,7 +302,7 @@ namespace AssetManagement.Assets
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
                 //this.Close();
             }
-            catch (Exception ex)
+            catch
             {
                 mainAlertControl.Show(this, "خطأ في الحفظ", StaticCode.ApplicationTitle);
             }

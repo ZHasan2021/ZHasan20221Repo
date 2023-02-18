@@ -471,6 +471,8 @@ namespace AssetManagement.Finance
             // 
             // colاسمالبندالمالي
             // 
+            this.colاسمالبندالمالي.AppearanceCell.Options.UseTextOptions = true;
+            this.colاسمالبندالمالي.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colاسمالبندالمالي.FieldName = "اسم البند المالي";
             this.colاسمالبندالمالي.MinWidth = 200;
             this.colاسمالبندالمالي.Name = "colاسمالبندالمالي";
@@ -480,6 +482,8 @@ namespace AssetManagement.Finance
             // 
             // colبيانالسجلالمالي
             // 
+            this.colبيانالسجلالمالي.AppearanceCell.Options.UseTextOptions = true;
+            this.colبيانالسجلالمالي.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colبيانالسجلالمالي.FieldName = "بيان السجل المالي";
             this.colبيانالسجلالمالي.MinWidth = 250;
             this.colبيانالسجلالمالي.Name = "colبيانالسجلالمالي";
@@ -588,6 +592,8 @@ namespace AssetManagement.Finance
             // 
             // colملاحظاتإضافية
             // 
+            this.colملاحظاتإضافية.AppearanceCell.Options.UseTextOptions = true;
+            this.colملاحظاتإضافية.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colملاحظاتإضافية.ColumnEdit = this.notesRepositoryItemMemoEdit;
             this.colملاحظاتإضافية.FieldName = "ملاحظات إضافية";
             this.colملاحظاتإضافية.MinWidth = 250;
@@ -714,7 +720,7 @@ namespace AssetManagement.Finance
             this.totalsDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.8F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

@@ -118,7 +118,7 @@ namespace AssetManagement.Finance
 
         private void deleteFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MessageBox.Show("للتذكير أن سجل الصادر المعلق عادة ما يرتبط بسجل وارد من المستوى الأعلى والعكس صحيح، هل تريد بالتأكيد حذف السجل الحالي وأي سجل متعلق به في خال وجوده؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (MessageBox.Show("للتذكير أن سجل الصادر المعلق عادة ما يرتبط بسجل وارد من المستوى الأعلى والعكس صحيح، هل تريد بالتأكيد حذف السجل الحالي وأي سجل متعلق به في حال وجوده؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             if (currRow < 0)
             {
