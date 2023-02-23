@@ -98,7 +98,6 @@ namespace AssetManagement
             this.financialItemsStatsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.activeUserSectionBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
             this.viewAssetsNotificationsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.updatedExistedFinancialItemBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.importAssetsCategoriesFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageCategoriesBarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.manageMainCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -209,7 +208,6 @@ namespace AssetManagement
             this.financialItemsStatsBarButtonItem,
             this.activeUserSectionBarStaticItem,
             this.viewAssetsNotificationsBarButtonItem,
-            this.updatedExistedFinancialItemBarCheckItem,
             this.importAssetsCategoriesFromExcelBarButtonItem,
             this.manageCategoriesBarSubItem,
             this.manageMainCategoryTblBarButtonItem,
@@ -217,7 +215,7 @@ namespace AssetManagement
             this.importFinancialItemsCategoriesFromExcelBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 96;
+            this.mainRibbonControl.MaxItemId = 97;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -279,13 +277,13 @@ namespace AssetManagement
             this.addNewMainCategoryBarButtonItem.Id = 4;
             this.addNewMainCategoryBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._228050;
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.addNewMainCategoryBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewMainCategoryBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.addNewMainCategoryBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.addNewMainCategoryBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.addNewMainCategoryBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewMainCategoryBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.addNewMainCategoryBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.addNewMainCategoryBarButtonItem.Name = "addNewMainCategoryBarButtonItem";
@@ -298,13 +296,13 @@ namespace AssetManagement
             this.addNewMinorCategoryBarButtonItem.Id = 5;
             this.addNewMinorCategoryBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1192551;
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewMinorCategoryBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.addNewMinorCategoryBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.addNewMinorCategoryBarButtonItem.Name = "addNewMinorCategoryBarButtonItem";
@@ -424,13 +422,13 @@ namespace AssetManagement
             this.manageCurrencyTblBarButtonItem.Id = 18;
             this.manageCurrencyTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1570810;
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageCurrencyTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageCurrencyTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageCurrencyTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageCurrencyTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageCurrencyTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageCurrencyTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageCurrencyTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageCurrencyTblBarButtonItem.Name = "manageCurrencyTblBarButtonItem";
@@ -443,13 +441,13 @@ namespace AssetManagement
             this.manageDepartmentTblBarButtonItem.Id = 19;
             this.manageDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._55967741;
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageDepartmentTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageDepartmentTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageDepartmentTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.manageDepartmentTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageDepartmentTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageDepartmentTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageDepartmentTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageDepartmentTblBarButtonItem.Name = "manageDepartmentTblBarButtonItem";
@@ -481,13 +479,13 @@ namespace AssetManagement
             this.manageSquareTblBarButtonItem.Id = 21;
             this.manageSquareTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._8571415;
             this.manageSquareTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageSquareTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageSquareTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageSquareTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageSquareTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSquareTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageSquareTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageSquareTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageSquareTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageSquareTblBarButtonItem.Name = "manageSquareTblBarButtonItem";
@@ -500,13 +498,13 @@ namespace AssetManagement
             this.manageEstateAreaUnitTblBarButtonItem.Id = 22;
             this.manageEstateAreaUnitTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._10096362;
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageEstateAreaUnitTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageEstateAreaUnitTblBarButtonItem.Name = "manageEstateAreaUnitTblBarButtonItem";
@@ -519,13 +517,13 @@ namespace AssetManagement
             this.manageTransactionTypeTblBarButtonItem.Id = 23;
             this.manageTransactionTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2998707;
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageTransactionTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageTransactionTypeTblBarButtonItem.Name = "manageTransactionTypeTblBarButtonItem";
@@ -576,13 +574,13 @@ namespace AssetManagement
             this.manageAssetMovementTblBarButtonItem.Id = 27;
             this.manageAssetMovementTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._7040278;
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetMovementTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageAssetMovementTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageAssetMovementTblBarButtonItem.Name = "manageAssetMovementTblBarButtonItem";
@@ -595,13 +593,13 @@ namespace AssetManagement
             this.manageAssetTransactionTblBarButtonItem.Id = 28;
             this.manageAssetTransactionTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._8115025;
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageAssetTransactionTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageAssetTransactionTblBarButtonItem.Name = "manageAssetTransactionTblBarButtonItem";
@@ -993,13 +991,13 @@ namespace AssetManagement
             this.manageModelTblBarButtonItem.Id = 60;
             this.manageModelTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._1000_F_399997320_eOI2YeuJoFpnkQISQOA0ywFPaYxcQgNu___Copy;
             this.manageModelTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageModelTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageModelTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageModelTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageModelTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageModelTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageModelTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageModelTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageModelTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageModelTblBarButtonItem.Name = "manageModelTblBarButtonItem";
@@ -1012,13 +1010,13 @@ namespace AssetManagement
             this.manageSubDepartmentTblBarButtonItem.Id = 61;
             this.manageSubDepartmentTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3466467;
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageSubDepartmentTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageSubDepartmentTblBarButtonItem.Name = "manageSubDepartmentTblBarButtonItem";
@@ -1183,13 +1181,13 @@ namespace AssetManagement
             this.manageIncomingTypeTblBarButtonItem.Id = 84;
             this.manageIncomingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._2556744;
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageIncomingTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageIncomingTypeTblBarButtonItem.Name = "manageIncomingTypeTblBarButtonItem";
@@ -1202,13 +1200,13 @@ namespace AssetManagement
             this.manageOutgoingTypeTblBarButtonItem.Id = 85;
             this.manageOutgoingTypeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._6701075;
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
             this.manageOutgoingTypeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
             this.manageOutgoingTypeTblBarButtonItem.Name = "manageOutgoingTypeTblBarButtonItem";
@@ -1261,23 +1259,6 @@ namespace AssetManagement
             this.viewAssetsNotificationsBarButtonItem.Name = "viewAssetsNotificationsBarButtonItem";
             this.viewAssetsNotificationsBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.viewAssetsNotificationsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewAssetsNotificationsBarButtonItem_ItemClick);
-            // 
-            // updatedExistedFinancialItemBarCheckItem
-            // 
-            this.updatedExistedFinancialItemBarCheckItem.Caption = "تحديث السجل الموجود";
-            this.updatedExistedFinancialItemBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
-            this.updatedExistedFinancialItemBarCheckItem.Id = 90;
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.updatedExistedFinancialItemBarCheckItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.updatedExistedFinancialItemBarCheckItem.Name = "updatedExistedFinancialItemBarCheckItem";
             // 
             // importAssetsCategoriesFromExcelBarButtonItem
             // 
@@ -1430,7 +1411,6 @@ namespace AssetManagement
             // 
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.addNewFinancialItemBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.importFinancialItemsFromExcelBarButtonItem);
-            this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.updatedExistedFinancialItemBarCheckItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.manageFinancialItemsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.prepareFinancialReportsBarButtonItem);
             this.FinancialRecordsRibbonPageGroup.ItemLinks.Add(this.financialItemsStatsBarButtonItem);
@@ -1715,11 +1695,20 @@ namespace AssetManagement
             // 
             // breakingAlertControl
             // 
+            this.breakingAlertControl.AllowHotTrack = false;
             this.breakingAlertControl.AppearanceCaption.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.breakingAlertControl.AppearanceCaption.Options.UseFont = true;
             this.breakingAlertControl.AppearanceCaption.Options.UseTextOptions = true;
             this.breakingAlertControl.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.breakingAlertControl.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.breakingAlertControl.AppearanceHotTrackedText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.breakingAlertControl.AppearanceHotTrackedText.Font = new System.Drawing.Font("Sakkal Majalla", 13.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.breakingAlertControl.AppearanceHotTrackedText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.breakingAlertControl.AppearanceHotTrackedText.Options.UseBackColor = true;
+            this.breakingAlertControl.AppearanceHotTrackedText.Options.UseFont = true;
+            this.breakingAlertControl.AppearanceHotTrackedText.Options.UseForeColor = true;
+            this.breakingAlertControl.AppearanceHotTrackedText.Options.UseTextOptions = true;
+            this.breakingAlertControl.AppearanceHotTrackedText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.breakingAlertControl.AppearanceText.Font = new System.Drawing.Font("Sakkal Majalla", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.breakingAlertControl.AppearanceText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.breakingAlertControl.AppearanceText.Options.UseFont = true;
@@ -1733,12 +1722,12 @@ namespace AssetManagement
             alertButton2.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
             alertButton2.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon;
             alertButton2.Name = "destructedAssetsAlertButton";
-            alertButton3.Hint = "عرض كودات الأصول غير المضافة بعد";
-            alertButton3.ImageOptions.Image = global::AssetManagement.Properties.Resources._968753;
-            alertButton3.Name = "notAddedAssetsWithFinancialItemsAlertButton";
-            alertButton4.Hint = "عرض الأصول التي ليس لها تواريخ شراء";
-            alertButton4.ImageOptions.Image = global::AssetManagement.Properties.Resources._2636436;
-            alertButton4.Name = "assetsWithoutPurchaseDate";
+            alertButton3.Hint = "عرض الأصول التي ليس لها تواريخ شراء";
+            alertButton3.ImageOptions.Image = global::AssetManagement.Properties.Resources._2636436;
+            alertButton3.Name = "assetsWithoutPurchaseDate";
+            alertButton4.Hint = "عرض الأصول ذات البيانات الناقصة";
+            alertButton4.ImageOptions.Image = global::AssetManagement.Properties.Resources._9109824;
+            alertButton4.Name = "missingDataAssets";
             this.breakingAlertControl.Buttons.Add(alertButton1);
             this.breakingAlertControl.Buttons.Add(alertButton2);
             this.breakingAlertControl.Buttons.Add(alertButton3);
@@ -1867,7 +1856,6 @@ namespace AssetManagement
         private DevExpress.XtraWaitForm.ProgressPanel mainProgressPanel;
         private DevExpress.XtraBars.Alerter.AlertControl breakingAlertControl;
         private DevExpress.XtraBars.BarButtonItem viewAssetsNotificationsBarButtonItem;
-        private DevExpress.XtraBars.BarCheckItem updatedExistedFinancialItemBarCheckItem;
         private DevExpress.XtraBars.BarButtonItem importAssetsCategoriesFromExcelBarButtonItem;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup assetsCategoriesRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup financieRelatedTablesRibbonPageGroup;

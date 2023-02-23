@@ -281,6 +281,33 @@ namespace AssetManagement
         {
             return (StaticCode.mainDbContext.AssetTbls.Where(ast1 => StaticCode.mainDbContext.AssetVws.Select(astv1 => astv1.معرف_الأصل).Contains(ast1.ID)).Select(ast2 => ast2.AssetSubDepartment).ToList());
         }
+
+        public static int GetMissingDataMinorCategory()
+        {
+            var missingDataMiCaQry = StaticCode.mainDbContext.MinorCategoryVws.Where(mica1 => mica1.اسم_الفئة_الرئيسية == missingDataStatement && mica1.اسم_الفئة_الفرعية == missingDataStatement);
+            if (missingDataMiCaQry.Any())
+                return missingDataMiCaQry.First().معرف_الفئة_الفرعية;
+            var missingDataMaCaQry = StaticCode.mainDbContext.MainCategoryTbls.Where(maca1 => maca1.MainCategoryName == missingDataStatement);
+            if (missingDataMaCaQry.Any())
+            {
+                int micaID = missingDataMaCaQry.First().ID;
+                MinorCategoryTbl newMiCa = new MinorCategoryTbl() { MinorCategoryName = missingDataStatement, MainCategory = micaID, ProductiveAgeInYears = 1000, DestructionRate = 0.001 };
+                StaticCode.mainDbContext.MinorCategoryTbls.InsertOnSubmit(newMiCa);
+                StaticCode.mainDbContext.SubmitChanges();
+                return newMiCa.ID;
+            }
+            else
+            {
+                MainCategoryTbl newMaCa = new MainCategoryTbl() { MainCategoryName = missingDataStatement };
+                StaticCode.mainDbContext.MainCategoryTbls.InsertOnSubmit(newMaCa);
+                StaticCode.mainDbContext.SubmitChanges();
+                int micaID = newMaCa.ID;
+                MinorCategoryTbl newMiCa = new MinorCategoryTbl() { MinorCategoryName = missingDataStatement, MainCategory = micaID, ProductiveAgeInYears = 1000, DestructionRate = 0.001 };
+                StaticCode.mainDbContext.MinorCategoryTbls.InsertOnSubmit(newMiCa);
+                StaticCode.mainDbContext.SubmitChanges();
+                return newMiCa.ID;
+            }
+        }
         //public virtual int FillByQuery(AssetMngDbDataSet.AssetVwDataTable dataTable, string whereQuery)
         //{
         //    int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
@@ -303,6 +330,14 @@ namespace AssetManagement
         #endregion
 
         #region Assets
+        public static List<string> assetsStatements = new List<string>()
+            {
+                "اصل ثابت",
+                "أصل ثابت",
+                "أصول ثابتة",
+                "اصول ثابتة"
+            };
+        public static string missingDataStatement = "بيانات الأصل ناقصة";
         public static string ImportAssetsFromExcel(string assetsFilePath, int formNo, bool updateExistedAssets, out string errorMsg)
         {
             AssetMngDbDataContext tmpMainDbContext = new AssetMngDbDataContext();
@@ -352,7 +387,7 @@ namespace AssetManagement
             int carChasColumn = 12;
             int carEngineColumn = 13;
 
-            List<string> assetsCodes = srcExcelWs.Cells.Where(cl1 => cl1.Start.Column == assetCodeColumn && cl1.End.Column == assetCodeColumn && cl1.Start.Row >= startRow).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> assetsCodes = srcExcelWs.Cells.Where(cl1 => cl1.Start.Column == assetCodeColumn && cl1.End.Column == assetCodeColumn && cl1.Start.Row >= startRow && !cl1.Offset(0, -1).Value.ToString().Contains("ملاحظة:")).Select(cl2 => cl2.Value?.ToString()).ToList();
             List<string> newCodes = mainDbContext.AssetTbls.Where(ast1 => !assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             List<string> existedCodes = mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             int existedAssetsCount = existedCodes.Count();
@@ -461,7 +496,20 @@ namespace AssetManagement
 
                 try
                 {
-                    string astCode = srcExcelWs.Cells[rowStartNo, 3].Value?.ToString().Trim();
+                    if (!String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo + 1, 2].Value?.ToString()) &&
+                    srcExcelWs.Cells[rowStartNo + 1, 2].Value.ToString().Contains("ملاحظة:"))
+                        break;
+                    if (!String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, 2].Value?.ToString()) &&
+                   srcExcelWs.Cells[rowStartNo, 2].Value.ToString().Contains("ملاحظة:"))
+                        break;
+
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, assetCodeColumn].Value?.ToString().Trim()))
+                    {
+                        errorMsg = $"كود الأصل في السطر {rowStartNo} غير موجود";
+                        tmpMainDbContext.Dispose();
+                        return null;
+                    }
+                    string astCode = srcExcelWs.Cells[rowStartNo, assetCodeColumn].Value?.ToString().Trim();
                     AssetTbl newAsset = new AssetTbl();
                     newAsset.IsOldOrNewAsset = "قديم";
                     newAsset.EstateArea = "";
@@ -539,7 +587,12 @@ namespace AssetManagement
                     }
                     newAsset.EstateAddress = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, estateAddress].Value?.ToString().Trim() : "";
                     newAsset.CarPanelNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, carPanelNumberAddress].Value?.ToString().Trim() : "";
-                    if (srcExcelWs.Cells[rowStartNo, prchsValColumn + formShift].Value != null)
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, prchsValColumn + formShift].Value?.ToString().Trim()))
+                    {
+                        newAsset.PurchasePrice = 0;
+                        newAsset.PurchasePriceCurrency = 1;
+                    }
+                    else
                     {
                         double prchsPriceVal = 0;
                         if (!Double.TryParse(srcExcelWs.Cells[rowStartNo, prchsValColumn + formShift].Value?.ToString().Trim(), out prchsPriceVal))
@@ -555,8 +608,15 @@ namespace AssetManagement
                             tmpMainDbContext.Dispose();
                             return null;
                         }
+                        if (!tmpMainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, prchsCurrColumn + formShift].Value.ToString().Trim()))
+                        {
+                            errorMsg = $"اسم العملة في السطر {rowStartNo} ليست صحيحة";
+                            tmpMainDbContext.Dispose();
+                            return null;
+                        }
                         newAsset.PurchasePriceCurrency = tmpMainDbContext.CurrencyTbls.Single(cu1 => cu1.CurrencyName == srcExcelWs.Cells[rowStartNo, prchsCurrColumn + formShift].Value.ToString().Trim()).ID;
                     }
+
                     double actualPriceVal = 0;
                     if (!Double.TryParse(srcExcelWs.Cells[rowStartNo, actualPriceColumn + formShift].Value?.ToString().Trim(), out actualPriceVal))
                     {
@@ -685,27 +745,18 @@ namespace AssetManagement
 
         public static IQueryable<AssetTbl> GetAssetsWithoutPurchaseDate()
         {
-            ExecuteProcedure("dbo.CalcAssetsLifeSpanSp");
             mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
             var availableAssets = mainDbContext.AssetVws;
-            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => availableAssets.Select(asv1 => asv1.معرف_الأصل).ToList().Contains(ast.ID)&& ast.PurchaseDate == null).Select(ast1 => ast1);
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => availableAssets.Select(asv1 => asv1.معرف_الأصل).ToList().Contains(ast.ID) && ast.PurchaseDate == null).Select(ast1 => ast1);
             return res;
         }
 
-        public static List<string> GetNotAddedAssetsHaveFinancialItems()
+        public static IQueryable<AssetTbl> GetMissingDataAssets()
         {
-            List<string> assetsStatements = new List<string>()
-            {
-                "اصل ثابت",
-                "أصل ثابت",
-                "أصول ثابتة",
-                "اصول ثابتة"
-            };
-            var assetsFIVQry = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.اسم_البند_المالي.Contains("اصل ثابت") || fiv1.اسم_البند_المالي.Contains("أصل ثابت") || fiv1.اسم_البند_المالي.Contains("أصول ثابتة") || fiv1.اسم_البند_المالي.Contains("اصول ثابتة"));
-            if (!assetsFIVQry.Any())
-                return new List<string>();
-            List<string> resAssetsCodes = assetsFIVQry.Select(fiv2 => fiv2.بيان_السجل_المالي.Replace("شراء الأصل ذو الكود", "").Replace(")", "").Replace("(", "").Trim()).ToList();
-            return resAssetsCodes;
+            mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
+            var availableAssets = mainDbContext.AssetVws;
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.AssetNotes != null && ast.AssetNotes.Contains("بيانات الأصل ناقصة")).Select(ast1 => ast1);
+            return res;
         }
 
         public static string GetTheNewAssetCode()
@@ -719,6 +770,26 @@ namespace AssetManagement
             try
             {
                 maxAssetIDForCurrUser = Convert.ToInt32(maxAssetCodeForCurrUser.Replace(currUserPrefix + "-", "")) + 1;
+            }
+            catch
+            {
+                maxAssetIDForCurrUser = 1;
+            }
+            string maxAssetIDForCurrUser_Str = maxAssetIDForCurrUser.ToString();
+            return ($"{currUserPrefix}-{maxAssetIDForCurrUser_Str.PadLeft(7, '0')}");
+        }
+
+        public static string GetTheNewAssetCode(int incrementValue)
+        {
+            string currUserPrefix = activeUser.UserPrefix;
+            var currUserAssets = mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode.Contains(currUserPrefix + "-"));
+            if (currUserAssets == null || currUserAssets.Count() == 0)
+                return ($"{currUserPrefix}-{(incrementValue + 1).ToString().PadLeft(7, '0')}");
+            string maxAssetCodeForCurrUser = currUserAssets.Max(ast2 => ast2.AssetCode);
+            int maxAssetIDForCurrUser = 1;
+            try
+            {
+                maxAssetIDForCurrUser = Convert.ToInt32(maxAssetCodeForCurrUser.Replace(currUserPrefix + "-", "")) + 1 + incrementValue;
             }
             catch
             {
@@ -1197,12 +1268,12 @@ namespace AssetManagement
         #region Finance
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
-        public static string FinancialReportPath2 = $"{FinanceFolder}financial blank report2.xlsx";
         public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
         public static string SubLevelTotalsOutPath = $"{FinanceFolder}التقرير المالي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
 
-        public static string ImportFinancialItemsFromExcel(string fiItsFilePath)
+        public static string ImportFinancialItemsFromExcel(string fiItsFilePath, out int codeIncVal)
         {
+            codeIncVal = 0;
             if (!File.Exists(fiItsFilePath))
             {
                 return ("مسار الملف غير صحيح");
@@ -1216,6 +1287,7 @@ namespace AssetManagement
             int sctID = 0;
             int dptID = 0;
             int assetSubD = 0;
+            List<string> newAssetsFoundByCodesList = new List<string>();
             if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName)) // Section
             {
                 if (sectionName == StaticCode.PMName)
@@ -1294,6 +1366,7 @@ namespace AssetManagement
 
             List<string> unknownMinorCategories = new List<string>();
             List<int> existedFinancialItems = new List<int>();
+            List<string> addedAssetsByCode = new List<string>();
             List<FinancialItemTbl> importedAssets = new List<FinancialItemTbl>();
             try
             {
@@ -1303,10 +1376,9 @@ namespace AssetManagement
                 int currCol = 4;
                 int incomingFromCol = 5;
                 int outgoingTypeCol = 6;
-                int outgoingToCol = 7;
-                int descriptionCol = 8;
-                int fiDateCol = 9;
-                int fiCaCol = 10;
+                int descriptionCol = 7;
+                int fiDateCol = 8;
+                int fiCaCol = 9;
                 bool isIncoming = true;
                 while (rowStartNo <= srcExcelWs.Dimension.End.Row && srcExcelWs.Cells[rowStartNo, 7].Value?.ToString().Replace("ـ", "") != "الإجمالي")
                 {
@@ -1317,11 +1389,28 @@ namespace AssetManagement
                         isIncoming = false;
                         rowStartNo++;
                     }
-                    string curVal = srcExcelWs.Cells[rowStartNo, currCol].Value?.ToString().Trim();
-                    string incomingFromVal = srcExcelWs.Cells[rowStartNo, incomingFromCol].Value?.ToString().Trim();
-                    string outgoingTypeVal = srcExcelWs.Cells[rowStartNo, outgoingTypeCol].Value?.ToString().Trim();
-                    string outgoingToVal = srcExcelWs.Cells[rowStartNo, outgoingToCol].Value?.ToString().Trim();
                     string ficaVal = srcExcelWs.Cells[rowStartNo, fiCaCol].Value?.ToString().Trim();
+                    string curVal = srcExcelWs.Cells[rowStartNo, currCol].Value?.ToString().Trim();
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, descriptionCol].Value?.ToString().Trim()))
+                    {
+                        if (String.IsNullOrEmpty(curVal) || String.IsNullOrEmpty(ficaVal))
+                        {
+                            rowStartNo++;
+                            break;
+                        }
+                        else
+                        {
+                            return ($"وصف السجل المالي في السطر {rowStartNo} فارغ");
+                        }
+                    }
+                    string fiDescVal = srcExcelWs.Cells[rowStartNo, descriptionCol].Value?.ToString().Trim();
+                    string incomingFromVal = (srcExcelWs.Cells[rowStartNo, incomingFromCol].Value == null) ? "" : srcExcelWs.Cells[rowStartNo, incomingFromCol].Value?.ToString().Trim();
+                    string outgoingTypeVal = (srcExcelWs.Cells[rowStartNo, outgoingTypeCol].Value == null) ? "" : srcExcelWs.Cells[rowStartNo, outgoingTypeCol].Value?.ToString().Trim();
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, fiCaCol].Value?.ToString().Trim()))
+                    {
+                        return ($"اسم البند المالي في السطر {rowStartNo} فارغ");
+                    }
+
                     double incomingAmountVal = 0;
                     if (isIncoming && !Double.TryParse(srcExcelWs.Cells[rowStartNo, incomingAmountCol].Value?.ToString(), out incomingAmountVal))
                     {
@@ -1367,7 +1456,7 @@ namespace AssetManagement
                     }
                     var existedFiItCat = mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == ficaVal);
 
-                    var existedFiIt = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.الدائرة == sectionName && fiv1.القسم == departmentName && fiv1.الوحدة == subDepartmentName && fiv1.تاريخ_تحرير_السجل == fiDateVal && fiv1.وارد_أم_صادر == incomingOrOutgoingVal && fiv1.اسم_البند_المالي == ficaVal && fiv1.المبلغ_الوارد == incomingAmountVal && fiv1.المبلغ_الصادر == outgoingAmountVal && fiv1.العملة == curVal && fiv1.جهة_الإيراد == incomingFromVal && fiv1.نوع_الصادر == outgoingTypeVal);
+                    var existedFiIt = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.الدائرة == sectionName && fiv1.القسم == departmentName && fiv1.الوحدة == subDepartmentName && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Day == fiDateVal.Day && fiv1.وارد_أم_صادر == incomingOrOutgoingVal && fiv1.اسم_البند_المالي == ficaVal && fiv1.المبلغ_الوارد == incomingAmountVal && fiv1.المبلغ_الصادر == outgoingAmountVal && fiv1.العملة == curVal && fiv1.جهة_الإيراد == incomingFromVal && fiv1.نوع_الصادر == outgoingTypeVal);
                     if (existedFiIt.Any())
                     {
                         existedFinancialItems.Add(rowStartNo);
@@ -1386,31 +1475,16 @@ namespace AssetManagement
                         {
                             rowStartNo++;
                             continue;
-
-                            //string levelName = "";
-                            //if (activeUserRole.IsSectionIndependent == true)
-                            //    levelName = sectionName;
-                            //else if (activeUserRole.IsDepartmentIndependent == true)
-                            //    levelName = departmentName;
-                            //else
-                            //    levelName = subDepartmentName;
-
-                            //var similarRecord = mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.المبلغ_الصادر == incomingAmountVal && fiv1.العملة == curVal && fiv1.وارد_أم_صادر == "وارد" && fiv1.نوع_الصادر == "صادرات معلقة" && fiv1.صادر_إلى == levelName && fiv1.تاريخ_تحرير_السجل > fiDateVal && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year);
-                            //if (similarRecord.Any())
-                            //{
-                            //    rowStartNo++;
-                            //    continue;
-                            //}
                         }
                     }
 
                     FinancialItemTbl newFinancialItem = new FinancialItemTbl()
                     {
                         FinancialItemCategory = existedFiItCat.First().ID,
-                        FinancialItemDescription = srcExcelWs.Cells[rowStartNo, descriptionCol].Value?.ToString(),
+                        FinancialItemDescription = fiDescVal,
                         IncomingFrom = incomingFromVal,
                         OutgoingType = outgoingTypeVal,
-                        OutgoingTo = outgoingToVal,
+                        OutgoingTo = "",
                         FinancialItemSubDept = assetSubD,
                         FinancialItemInsertionDate = fiDateVal,
                         FinancialItemCurrency = currID,
@@ -1421,6 +1495,50 @@ namespace AssetManagement
                     };
                     importedAssets.Add(newFinancialItem);
                     rowStartNo++;
+
+                    if (assetsStatements.Any(ast1 => ficaVal.Contains(ast1)))
+                    {
+                        AssetTbl newAssetByFoundCode = new AssetTbl()
+                        {
+                            AssetCode = GetTheNewAssetCode(codeIncVal++),
+                            AssetSubDepartment = assetSubD,
+                            AssetSpecifications = fiDescVal,
+                            PurchaseDate = fiDateVal,
+                            PurchasePrice = outgoingAmountVal,
+                            PurchasePriceCurrency = currID,
+                            ActualCurrentPrice = outgoingAmountVal,
+                            AssetMinorCategory = GetMissingDataMinorCategory(),
+                            DestructionRate = 0,
+                            LifeSpanInMonths = 10000,
+                            AssetSquare = 1,
+                            CurrentStatus = 1,
+                            AddingMethod = "Import/Excel",
+                            BenefitPercentage = "",
+                            CarChassisNumber = "",
+                            CarManufacturingYear = 0,
+                            CarPanelNumber = "",
+                            CarEngineNumber = "",
+                            Color = "",
+                            Volume = "",
+                            OwnerName = "",
+                            EstateOwnershipDocumentWith = "",
+                            EstateAddress = "",
+                            EstateArea = "",
+                            EstateAreaUnit = 1,
+                            IsOldOrNewAsset = "جديد",
+                            IsOutOfWork = false,
+                            IsSold = false,
+                            ItemsQuantity = 1,
+                            Model = "",
+                            OfUsed = "",
+                            PlaceOfPresence = "",
+                            CustodianName = missingDataStatement,
+                            AssetNotes = missingDataStatement,
+                            MoreDetails = missingDataStatement,
+                        };
+
+                        StaticCode.mainDbContext.AssetTbls.InsertOnSubmit(newAssetByFoundCode);
+                    }
                 }
             }
             catch

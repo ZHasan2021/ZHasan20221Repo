@@ -295,8 +295,7 @@ namespace AssetManagement.Assets
                 currSrchRes.CarManufacturingYear = Convert.ToInt32(carManufacturingYearNumericUpDown.Value);
                 currSrchRes.CarChassisNumber = carChassisNumberTextBox.Text.Trim();
                 currSrchRes.CarEngineNumber = carEngineNumberTextBox.Text.Trim();
-                AssetMngDbDataContext tmpDbContext = new AssetMngDbDataContext();
-                tmpDbContext.SubmitChanges();
+                StaticCode.mainDbContext.SubmitChanges();
                 Thread.Sleep(500);
                 this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);

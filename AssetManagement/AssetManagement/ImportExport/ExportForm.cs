@@ -271,7 +271,7 @@ namespace AssetManagement.Finance
             if (unknownExportRadioButton.Checked)
             {
                 includedsAssetsIDs = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.ID).ToList();
-                includedsSubDepts = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.AssetSubDepartment).Distinct().ToList();
+                includedsSubDepts = StaticCode.mainDbContext.AssetTbls.Select(ast1 => ast1.AssetSubDepartment).Union(StaticCode.mainDbContext.FinancialItemTbls.Select(fit1 => fit1.FinancialItemSubDept)).Distinct().ToList();
             }
             else if (exportBySectionRadioButton.Checked || !exportBySectionRadioButton.Enabled)
             {

@@ -1988,13 +1988,13 @@ namespace AssetManagement.Finance
                 return;
             }
             string targetPath = financialReportSFD.FileName;
-            if (!File.Exists(StaticCode.FinancialReportPath2))
+            if (!File.Exists(StaticCode.FinancialReportPath))
             {
                 mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
                 MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            File.Copy(StaticCode.FinancialReportPath2, targetPath, true);
+            File.Copy(StaticCode.FinancialReportPath, targetPath, true);
             ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
@@ -2006,13 +2006,12 @@ namespace AssetManagement.Finance
             int currCol = 4;
             int incomingFromCol = 5;
             int outgoingTypeCol = 6;
-            int outgoingToCol = 7;
-            int descriptionCol = 8;
-            int fiDateCol = 9;
-            int fiCaCol = 10;
+            int descriptionCol = 7;
+            int fiDateCol = 8;
+            int fiCaCol = 9;
             int curRowStart = 97;
             int curRowStart2 = 3;
-            int curColStart = 13;
+            int curColStart = 12;
             foreach (FinancialItemCategoryTbl oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls)
             {
                 listsWs.Cells[ficaRowStart, 3].Value = oneFiCa.FinancialItemCategoryName;
@@ -2143,7 +2142,6 @@ namespace AssetManagement.Finance
                     fiRpWs.Cells[startRow, outgoingAmountCol].Value = oneFiRp.OutgoingAmount;
                     fiRpWs.Cells[startRow, currCol].Value = StaticCode.mainDbContext.CurrencyTbls.Single(cu1 => cu1.ID == oneFiRp.FinancialItemCurrency).CurrencyName;
                     fiRpWs.Cells[startRow, outgoingTypeCol].Value = oneFiRp.OutgoingType?.Trim();
-                    fiRpWs.Cells[startRow, outgoingToCol].Value = oneFiRp.OutgoingTo?.Trim();
                     fiRpWs.Cells[startRow, descriptionCol].Value = oneFiRp.FinancialItemDescription;
                     fiRpWs.Cells[startRow, fiDateCol].Value = oneFiRp.FinancialItemInsertionDate.ToShortDateString();
                     fiRpWs.Cells[startRow, fiCaCol].Value = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fic1 => fic1.ID == oneFiRp.FinancialItemCategory).FinancialItemCategoryName;

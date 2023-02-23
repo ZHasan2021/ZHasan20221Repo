@@ -94,13 +94,13 @@ namespace AssetManagement.Assets
             this.colحالةالأصلالآنية = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colنسبةالاستفادةمنه = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colعملةالسعرالفعليالحالي = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colاسمصاحبالعهدة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colتفاصيلإضافية = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetDetailsRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colملاحظاتأخرى = new DevExpress.XtraGrid.Columns.GridColumn();
             this.assetNotesRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colعنوانالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.estateAddressRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colاسمالمالك = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالمستغلمنه = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colمعمنورقةالملكية = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -128,7 +128,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.statusTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.StatusTblTableAdapter();
-            this.estateAddressRepositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
@@ -147,6 +146,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDetailsRepositoryItemMemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetNotesRepositoryItemMemoEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -160,7 +160,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // mainCategoryTblBindingSource
@@ -506,7 +505,6 @@ namespace AssetManagement.Assets
             this.colحالةالأصلالآنية,
             this.colنسبةالاستفادةمنه,
             this.colالسعرالفعليالحالي,
-            this.colعملةالسعرالفعليالحالي,
             this.colاسمصاحبالعهدة,
             this.colتفاصيلإضافية,
             this.colملاحظاتأخرى,
@@ -713,22 +711,13 @@ namespace AssetManagement.Assets
             this.colالسعرالفعليالحالي.VisibleIndex = 18;
             this.colالسعرالفعليالحالي.Width = 94;
             // 
-            // colعملةالسعرالفعليالحالي
-            // 
-            this.colعملةالسعرالفعليالحالي.FieldName = "عملة السعر الفعلي الحالي";
-            this.colعملةالسعرالفعليالحالي.MinWidth = 80;
-            this.colعملةالسعرالفعليالحالي.Name = "colعملةالسعرالفعليالحالي";
-            this.colعملةالسعرالفعليالحالي.Visible = true;
-            this.colعملةالسعرالفعليالحالي.VisibleIndex = 19;
-            this.colعملةالسعرالفعليالحالي.Width = 94;
-            // 
             // colاسمصاحبالعهدة
             // 
             this.colاسمصاحبالعهدة.FieldName = "اسم صاحب العهدة";
             this.colاسمصاحبالعهدة.MinWidth = 120;
             this.colاسمصاحبالعهدة.Name = "colاسمصاحبالعهدة";
             this.colاسمصاحبالعهدة.Visible = true;
-            this.colاسمصاحبالعهدة.VisibleIndex = 20;
+            this.colاسمصاحبالعهدة.VisibleIndex = 19;
             this.colاسمصاحبالعهدة.Width = 120;
             // 
             // colتفاصيلإضافية
@@ -738,7 +727,7 @@ namespace AssetManagement.Assets
             this.colتفاصيلإضافية.MinWidth = 250;
             this.colتفاصيلإضافية.Name = "colتفاصيلإضافية";
             this.colتفاصيلإضافية.Visible = true;
-            this.colتفاصيلإضافية.VisibleIndex = 21;
+            this.colتفاصيلإضافية.VisibleIndex = 20;
             this.colتفاصيلإضافية.Width = 250;
             // 
             // assetDetailsRepositoryItemMemoEdit
@@ -752,7 +741,7 @@ namespace AssetManagement.Assets
             this.colملاحظاتأخرى.MinWidth = 250;
             this.colملاحظاتأخرى.Name = "colملاحظاتأخرى";
             this.colملاحظاتأخرى.Visible = true;
-            this.colملاحظاتأخرى.VisibleIndex = 22;
+            this.colملاحظاتأخرى.VisibleIndex = 21;
             this.colملاحظاتأخرى.Width = 250;
             // 
             // assetNotesRepositoryItemMemoEdit
@@ -766,8 +755,12 @@ namespace AssetManagement.Assets
             this.colعنوانالعقار.MinWidth = 150;
             this.colعنوانالعقار.Name = "colعنوانالعقار";
             this.colعنوانالعقار.Visible = true;
-            this.colعنوانالعقار.VisibleIndex = 23;
+            this.colعنوانالعقار.VisibleIndex = 22;
             this.colعنوانالعقار.Width = 150;
+            // 
+            // estateAddressRepositoryItemMemoEdit
+            // 
+            this.estateAddressRepositoryItemMemoEdit.Name = "estateAddressRepositoryItemMemoEdit";
             // 
             // colاسمالمالك
             // 
@@ -775,7 +768,7 @@ namespace AssetManagement.Assets
             this.colاسمالمالك.MinWidth = 120;
             this.colاسمالمالك.Name = "colاسمالمالك";
             this.colاسمالمالك.Visible = true;
-            this.colاسمالمالك.VisibleIndex = 24;
+            this.colاسمالمالك.VisibleIndex = 23;
             this.colاسمالمالك.Width = 120;
             // 
             // colالمستغلمنه
@@ -784,7 +777,7 @@ namespace AssetManagement.Assets
             this.colالمستغلمنه.MinWidth = 100;
             this.colالمستغلمنه.Name = "colالمستغلمنه";
             this.colالمستغلمنه.Visible = true;
-            this.colالمستغلمنه.VisibleIndex = 25;
+            this.colالمستغلمنه.VisibleIndex = 24;
             this.colالمستغلمنه.Width = 100;
             // 
             // colمعمنورقةالملكية
@@ -793,7 +786,7 @@ namespace AssetManagement.Assets
             this.colمعمنورقةالملكية.MinWidth = 120;
             this.colمعمنورقةالملكية.Name = "colمعمنورقةالملكية";
             this.colمعمنورقةالملكية.Visible = true;
-            this.colمعمنورقةالملكية.VisibleIndex = 26;
+            this.colمعمنورقةالملكية.VisibleIndex = 25;
             this.colمعمنورقةالملكية.Width = 120;
             // 
             // colمساحةالعقار
@@ -802,7 +795,7 @@ namespace AssetManagement.Assets
             this.colمساحةالعقار.MinWidth = 80;
             this.colمساحةالعقار.Name = "colمساحةالعقار";
             this.colمساحةالعقار.Visible = true;
-            this.colمساحةالعقار.VisibleIndex = 27;
+            this.colمساحةالعقار.VisibleIndex = 26;
             this.colمساحةالعقار.Width = 94;
             // 
             // colوحدةمساحةالعقار
@@ -811,7 +804,7 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار.MinWidth = 80;
             this.colوحدةمساحةالعقار.Name = "colوحدةمساحةالعقار";
             this.colوحدةمساحةالعقار.Visible = true;
-            this.colوحدةمساحةالعقار.VisibleIndex = 28;
+            this.colوحدةمساحةالعقار.VisibleIndex = 27;
             this.colوحدةمساحةالعقار.Width = 94;
             // 
             // colرقملوحةالمركبة
@@ -820,7 +813,7 @@ namespace AssetManagement.Assets
             this.colرقملوحةالمركبة.MinWidth = 100;
             this.colرقملوحةالمركبة.Name = "colرقملوحةالمركبة";
             this.colرقملوحةالمركبة.Visible = true;
-            this.colرقملوحةالمركبة.VisibleIndex = 29;
+            this.colرقملوحةالمركبة.VisibleIndex = 28;
             this.colرقملوحةالمركبة.Width = 100;
             // 
             // colسنةصنعالمركبة
@@ -829,7 +822,7 @@ namespace AssetManagement.Assets
             this.colسنةصنعالمركبة.MinWidth = 80;
             this.colسنةصنعالمركبة.Name = "colسنةصنعالمركبة";
             this.colسنةصنعالمركبة.Visible = true;
-            this.colسنةصنعالمركبة.VisibleIndex = 30;
+            this.colسنةصنعالمركبة.VisibleIndex = 29;
             this.colسنةصنعالمركبة.Width = 94;
             // 
             // gridColumn2
@@ -838,7 +831,7 @@ namespace AssetManagement.Assets
             this.gridColumn2.MinWidth = 120;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 31;
+            this.gridColumn2.VisibleIndex = 30;
             this.gridColumn2.Width = 120;
             // 
             // colرقمالمحركللمركبة
@@ -847,7 +840,7 @@ namespace AssetManagement.Assets
             this.colرقمالمحركللمركبة.MinWidth = 120;
             this.colرقمالمحركللمركبة.Name = "colرقمالمحركللمركبة";
             this.colرقمالمحركللمركبة.Visible = true;
-            this.colرقمالمحركللمركبة.VisibleIndex = 32;
+            this.colرقمالمحركللمركبة.VisibleIndex = 31;
             this.colرقمالمحركللمركبة.Width = 1000;
             // 
             // colمعدلالإهلاكللأصل
@@ -856,7 +849,7 @@ namespace AssetManagement.Assets
             this.colمعدلالإهلاكللأصل.MinWidth = 80;
             this.colمعدلالإهلاكللأصل.Name = "colمعدلالإهلاكللأصل";
             this.colمعدلالإهلاكللأصل.Visible = true;
-            this.colمعدلالإهلاكللأصل.VisibleIndex = 33;
+            this.colمعدلالإهلاكللأصل.VisibleIndex = 32;
             this.colمعدلالإهلاكللأصل.Width = 94;
             // 
             // colالعمرالافتراضيالمتبقيللأصل
@@ -865,7 +858,7 @@ namespace AssetManagement.Assets
             this.colالعمرالافتراضيالمتبقيللأصل.MinWidth = 200;
             this.colالعمرالافتراضيالمتبقيللأصل.Name = "colالعمرالافتراضيالمتبقيللأصل";
             this.colالعمرالافتراضيالمتبقيللأصل.Visible = true;
-            this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 34;
+            this.colالعمرالافتراضيالمتبقيللأصل.VisibleIndex = 33;
             this.colالعمرالافتراضيالمتبقيللأصل.Width = 200;
             // 
             // repositoryItemLookUpEdit1
@@ -1055,10 +1048,6 @@ namespace AssetManagement.Assets
             // 
             this.statusTblTableAdapter.ClearBeforeFill = true;
             // 
-            // estateAddressRepositoryItemMemoEdit
-            // 
-            this.estateAddressRepositoryItemMemoEdit.Name = "estateAddressRepositoryItemMemoEdit";
-            // 
             // ManageAssetTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1100,6 +1089,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetDetailsRepositoryItemMemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetNotesRepositoryItemMemoEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
@@ -1113,7 +1103,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estateAddressRepositoryItemMemoEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1192,7 +1181,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colحالةالأصلالآنية;
         private DevExpress.XtraGrid.Columns.GridColumn colنسبةالاستفادةمنه;
         private DevExpress.XtraGrid.Columns.GridColumn colالسعرالفعليالحالي;
-        private DevExpress.XtraGrid.Columns.GridColumn colعملةالسعرالفعليالحالي;
         private DevExpress.XtraGrid.Columns.GridColumn colاسمصاحبالعهدة;
         private DevExpress.XtraGrid.Columns.GridColumn colتفاصيلإضافية;
         private DevExpress.XtraGrid.Columns.GridColumn colملاحظاتأخرى;

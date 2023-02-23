@@ -259,6 +259,7 @@ namespace AssetManagement.Assets
 
         private void getAssetOutOfWorkCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+
         }
 
         private void assetMoveVwGridControl_Click(object sender, EventArgs e)

@@ -750,17 +750,30 @@ namespace AssetManagement.Assets
             }
             int startRow = 7;
             int currentRow = startRow;
-            using (var cells = astWs.Cells[currentRow, 2, currentRow, columnsWidths.Count + 1])
+            using (var cells = astWs.Cells[startRow, 2, startRow, columnsWidths.Count + 1])
             {
                 cells.Style.Font.Name = "Sakkal Majalla";
                 cells.Style.Font.Size = 11.0F;
                 cells.Style.WrapText = true;
                 cells.Style.Font.Bold = true;
                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Medium;
-                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(217, 217, 217));
+                //cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                //cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(217, 217, 217));
                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            }
+
+            List<int> mandatoryColumns = new List<int>() { 3, 4, 5, 6, 7, 21, 22, 23, 25, 27 };
+            for (int iColH = 2; iColH <= 33; iColH++)
+            {
+                using (var cells = astWs.Cells[startRow, iColH])
+                {
+                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    if (mandatoryColumns.Contains(iColH))
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 217, 102));
+                    else
+                        cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(217, 217, 217));
+                }
             }
             #endregion
 
@@ -841,6 +854,18 @@ namespace AssetManagement.Assets
             {
                 if (astWs.Column(iCol).Hidden)
                     astWs.DeleteColumn(iCol);
+            }
+
+            using (var cells = astWs.Cells[currentRow + 1, 2, currentRow + 1, 10])
+            {
+                cells.Merge = true;
+                cells.Style.Font.Name = "Sakkal Majalla";
+                cells.Style.Font.Size = 11.0F;
+                cells.Style.Font.Bold = true;
+                cells.Style.Font.UnderLine = true;
+                cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+                cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                cells.Value = "ملاحظة: اللون الأصفر لرأس العمود يشير إلى أن هذا الحقل إجباري، أما اللون الرمادي فهو يعني أن الحقل اختياري";
             }
             #endregion
 

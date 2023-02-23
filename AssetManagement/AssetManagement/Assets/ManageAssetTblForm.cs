@@ -202,6 +202,8 @@ namespace AssetManagement.Assets
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
                 UpdateExistedAssetForm cardVwFrm = new UpdateExistedAssetForm(currAssetID);
                 cardVwFrm.ShowDialog();
+                StaticCode.mainDbContext = new AssetMngDbDataContext();
+                GC.Collect();
                 currRow = 0;
                 this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
                 this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);

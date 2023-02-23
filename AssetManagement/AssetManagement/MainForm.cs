@@ -29,7 +29,7 @@ namespace AssetManagement
         IQueryable<AssetTbl> assetsToDestructList = null;
         IQueryable<AssetTbl> destructedAssetsList = null;
         IQueryable<AssetTbl> assetsWithoutPurchaseDateList = null;
-        List<string> notAddedAssetsWithFinancialItemsList = null;
+        IQueryable<AssetTbl> missingDataAssetsList = null;
 
         public MainForm()
         {
@@ -101,12 +101,29 @@ namespace AssetManagement
         {
             assetsToDestructList = StaticCode.GetAssetsToDestruct();
             destructedAssetsList = StaticCode.GetDestructedWithoutTransactionAssets();
-            notAddedAssetsWithFinancialItemsList = StaticCode.GetNotAddedAssetsHaveFinancialItems();
             assetsWithoutPurchaseDateList = StaticCode.GetAssetsWithoutPurchaseDate();
+            missingDataAssetsList = StaticCode.GetMissingDataAssets();
 
-            if (assetsToDestructList.Any() || destructedAssetsList.Any() || notAddedAssetsWithFinancialItemsList.Any() || assetsWithoutPurchaseDateList.Any())
+            if (assetsToDestructList.Any() || destructedAssetsList.Any() || assetsWithoutPurchaseDateList.Any() || missingDataAssetsList.Any())
             {
-                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول غير الموجودة وتملك سجلات مالية خاصة بها ({notAddedAssetsWithFinancialItemsList.Count()})\r\nعدد الأصول التي لا تملك تواريخ شراء ({assetsWithoutPurchaseDateList.Count()})");
+                breakingAlertControl.Show(this, StaticCode.ApplicationTitle, $"لديك بعض الإشعارات بخصوص بيانات الأصول وفق التفاصيل التالية:\r\nعدد الأصول التي أوشكت على انتهاء عمرها الإنتاجي ({assetsToDestructList.Count()})\r\nعدد الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها ({destructedAssetsList.Count()})\r\nعدد الأصول التي لا تملك تواريخ شراء ({assetsWithoutPurchaseDateList.Count()})\r\nعدد الأصول ذات البيانات الناقصة ({missingDataAssetsList.Count()})");
+
+                if (destructedAssetsList.Any())
+                {
+                    if (StaticCode.activeUserRole.ManageAssetTbl == true)
+                    {
+                        ManageAssetTblForm desFrm1 = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
+                        desFrm1.ShowDialog();
+                    }
+                }
+                if (missingDataAssetsList.Any())
+                {
+                    if (StaticCode.activeUserRole.ManageAssetTbl == true)
+                    {
+                        ManageAssetTblForm desFrm2 = new ManageAssetTblForm(missingDataAssetsList, "الأصول ذات البيانات الناقصة");
+                        desFrm2.ShowDialog();
+                    }
+                }
             }
             else
             {
@@ -514,7 +531,7 @@ namespace AssetManagement
             ExcelPackage astEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook astWb = astEp.Workbook;
             ExcelWorksheet astWs = astWb.Worksheets.First();
-            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> assetsCodes = astWs.Cells.Where(cl1 => cl1.Start.Column == 3 && cl1.End.Column == 3 && cl1.Start.Row >= 8 && !cl1.Offset(0, -1).Value.ToString().Contains("ملاحظة:")).Select(cl2 => cl2.Value?.ToString()).ToList();
             List<string> existedCodes = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
             List<string> existedCodes_ImportExcel = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode) && ast1.AddingMethod == "Import/Excel").Select(ast2 => ast2.AssetCode).ToList();
             List<string> existedCodes_UserForm = StaticCode.mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode) && ast1.AddingMethod == "UserForm").Select(ast2 => ast2.AssetCode).ToList();
@@ -568,13 +585,6 @@ namespace AssetManagement
                     ManageAssetTblForm desFrm2 = new ManageAssetTblForm(assetsToDestructList, "الأصول التي سينتهي عمرها الإنتاجي");
                     desFrm2.ShowDialog();
                     break;
-                case "notAddedAssetsWithFinancialItemsAlertButton":
-                    actionsStatusMemoEdit.Text = $"الأصول غير الموجودة ولها سجلات مالية تتعلق بشرائها ({notAddedAssetsWithFinancialItemsList.Count}):\r\n";
-                    for (int i = 0; i < notAddedAssetsWithFinancialItemsList.Count; i++)
-                    {
-                        actionsStatusMemoEdit.Text += $"{i + 1}- {notAddedAssetsWithFinancialItemsList[i]}\r\n";
-                    }
-                    break;
                 case "assetsWithoutPurchaseDate":
                     if (StaticCode.activeUserRole.ManageAssetTbl != true)
                     {
@@ -584,6 +594,15 @@ namespace AssetManagement
                     ManageAssetTblForm desFrm3 = new ManageAssetTblForm(assetsWithoutPurchaseDateList, "الأصول التي ليس لديها تواريخ شراء");
                     desFrm3.ShowDialog();
                     break;
+                case "missingDataAssets":
+                    if (StaticCode.activeUserRole.ManageAssetTbl != true)
+                    {
+                        mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لا تملك الصلاحيات للدخول إلى سجلات الأصول!");
+                        return;
+                    }
+                    ManageAssetTblForm desFrm4 = new ManageAssetTblForm(missingDataAssetsList, "الأصول ذات البيانات الناقصة");
+                    desFrm4.ShowDialog();
+                    break;
                 default:
                     break;
             }
@@ -591,12 +610,12 @@ namespace AssetManagement
 
         private void breakingAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(350, 300);
+            e.AlertForm.Size = new Size(400, 350);
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Red;
             e.AlertForm.StartPosition = FormStartPosition.Manual;
             e.AlertForm.Location = new Point(900, 400);
-            e.Buttons.PinButton.SetDown(true);
+            //e.Buttons.PinButton.SetDown(true);
         }
 
         private void viewAssetsNotificationsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -995,7 +1014,8 @@ namespace AssetManagement
                 return;
             }
 
-            string errorMsg = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName);
+            int newAssetsAdded = 0;
+            string errorMsg = StaticCode.ImportFinancialItemsFromExcel(assetsFileOFD.FileName, out newAssetsAdded);
             if (errorMsg != "Done!")
             {
                 actionsStatusMemoEdit.Text = errorMsg;
@@ -1004,7 +1024,10 @@ namespace AssetManagement
             }
             else
             {
-                mainAlertControl.Show(this, "تم استيراد السجلات المالية بنجاح، راجع إدارة السجلات المالية للتأكد من ذلك", StaticCode.ApplicationTitle);
+                StaticCode.mainDbContext = new AssetMngDbDataContext();
+                GC.Collect();
+                string actionMsg = $"تم استيراد السجلات المالية بنجاح، وتم إضافة {newAssetsAdded} أصول إلى سجلات الأصول كذلك، راجع إدارة سجلات الأصول والسجلات المالية للتأكد من ذلك";
+                mainAlertControl.Show(this, actionMsg, StaticCode.ApplicationTitle);
                 CheckAssetsNotifications();
                 return;
             }
