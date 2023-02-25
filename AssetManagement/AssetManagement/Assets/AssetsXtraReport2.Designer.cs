@@ -106,8 +106,6 @@ namespace AssetManagement.Assets
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression35 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Column column36 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression36 = new DevExpress.DataAccess.Sql.ColumnExpression();
-            DevExpress.DataAccess.Sql.Column column37 = new DevExpress.DataAccess.Sql.Column();
-            DevExpress.DataAccess.Sql.ColumnExpression columnExpression37 = new DevExpress.DataAccess.Sql.ColumnExpression();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssetsXtraReport2));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -117,6 +115,24 @@ namespace AssetManagement.Assets
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
+            this.table3 = new DevExpress.XtraReports.UI.XRTable();
+            this.tableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -133,6 +149,7 @@ namespace AssetManagement.Assets
             this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupHeader3 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table4 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -150,7 +167,6 @@ namespace AssetManagement.Assets
             this.tableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -160,6 +176,7 @@ namespace AssetManagement.Assets
             this.label4 = new DevExpress.XtraReports.UI.XRLabel();
             this.label7 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter3 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.xrPageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.panel2 = new DevExpress.XtraReports.UI.XRPanel();
             this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.label9 = new DevExpress.XtraReports.UI.XRLabel();
@@ -181,31 +198,10 @@ namespace AssetManagement.Assets
             this.GrandTotalData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GrandTotalBackground1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.table3 = new DevExpress.XtraReports.UI.XRTable();
-            this.tableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrPageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
+            ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -281,6 +277,224 @@ namespace AssetManagement.Assets
             this.GroupHeader1.HeightF = 103.3333F;
             this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
+            // 
+            // xrLine1
+            // 
+            this.xrLine1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash;
+            this.xrLine1.BorderWidth = 4F;
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(4.327297E-05F, 44.16667F);
+            this.xrLine1.Name = "xrLine1";
+            this.xrLine1.SizeF = new System.Drawing.SizeF(1068.5F, 2F);
+            this.xrLine1.StylePriority.UseBorderDashStyle = false;
+            this.xrLine1.StylePriority.UseBorderWidth = false;
+            // 
+            // table3
+            // 
+            this.table3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.table3.BorderWidth = 2F;
+            this.table3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 64.49997F);
+            this.table3.Name = "table3";
+            this.table3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.tableRow3});
+            this.table3.SizeF = new System.Drawing.SizeF(1047.968F, 38.83337F);
+            this.table3.StylePriority.UseBorders = false;
+            this.table3.StylePriority.UseBorderWidth = false;
+            // 
+            // tableRow3
+            // 
+            this.tableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.tableCell11,
+            this.tableCell12,
+            this.tableCell13,
+            this.tableCell14,
+            this.tableCell15,
+            this.tableCell16,
+            this.tableCell17,
+            this.tableCell18,
+            this.tableCell19,
+            this.tableCell20,
+            this.tableCell21,
+            this.tableCell22,
+            this.tableCell23,
+            this.tableCell24,
+            this.tableCell26});
+            this.tableRow3.Name = "tableRow3";
+            this.tableRow3.Weight = 1D;
+            // 
+            // tableCell11
+            // 
+            this.tableCell11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell11.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.tableCell11.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell11.Name = "tableCell11";
+            this.tableCell11.StyleName = "DetailCaption1";
+            this.tableCell11.StylePriority.UseBackColor = false;
+            this.tableCell11.StylePriority.UseBorders = false;
+            this.tableCell11.StylePriority.UseFont = false;
+            this.tableCell11.Text = "كود الأصل";
+            this.tableCell11.Weight = 0.05058905563140384D;
+            // 
+            // tableCell12
+            // 
+            this.tableCell12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell12.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell12.Name = "tableCell12";
+            this.tableCell12.StyleName = "DetailCaption1";
+            this.tableCell12.StylePriority.UseBackColor = false;
+            this.tableCell12.StylePriority.UseFont = false;
+            this.tableCell12.StylePriority.UseTextAlignment = false;
+            this.tableCell12.Text = "العدد";
+            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell12.Weight = 0.030066216293063757D;
+            // 
+            // tableCell13
+            // 
+            this.tableCell13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell13.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell13.Name = "tableCell13";
+            this.tableCell13.StyleName = "DetailCaption1";
+            this.tableCell13.StylePriority.UseBackColor = false;
+            this.tableCell13.StylePriority.UseFont = false;
+            this.tableCell13.Text = "الساحة";
+            this.tableCell13.Weight = 0.038176287659091077D;
+            // 
+            // tableCell14
+            // 
+            this.tableCell14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell14.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell14.Name = "tableCell14";
+            this.tableCell14.StyleName = "DetailCaption1";
+            this.tableCell14.StylePriority.UseBackColor = false;
+            this.tableCell14.StylePriority.UseFont = false;
+            this.tableCell14.Text = "مواصفات الأصل";
+            this.tableCell14.Weight = 0.071634226585794991D;
+            // 
+            // tableCell15
+            // 
+            this.tableCell15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell15.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell15.Name = "tableCell15";
+            this.tableCell15.StyleName = "DetailCaption1";
+            this.tableCell15.StylePriority.UseBackColor = false;
+            this.tableCell15.StylePriority.UseFont = false;
+            this.tableCell15.Text = "الموديل";
+            this.tableCell15.Weight = 0.03983491374801764D;
+            // 
+            // tableCell16
+            // 
+            this.tableCell16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell16.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell16.Name = "tableCell16";
+            this.tableCell16.StyleName = "DetailCaption1";
+            this.tableCell16.StylePriority.UseBackColor = false;
+            this.tableCell16.StylePriority.UseFont = false;
+            this.tableCell16.Text = "اللون";
+            this.tableCell16.Weight = 0.032058755073511677D;
+            // 
+            // tableCell17
+            // 
+            this.tableCell17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell17.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell17.Name = "tableCell17";
+            this.tableCell17.StyleName = "DetailCaption1";
+            this.tableCell17.StylePriority.UseBackColor = false;
+            this.tableCell17.StylePriority.UseFont = false;
+            this.tableCell17.Text = "الحجم / السعة";
+            this.tableCell17.Weight = 0.063481108734159408D;
+            // 
+            // tableCell18
+            // 
+            this.tableCell18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell18.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell18.Name = "tableCell18";
+            this.tableCell18.StyleName = "DetailCaption1";
+            this.tableCell18.StylePriority.UseBackColor = false;
+            this.tableCell18.StylePriority.UseFont = false;
+            this.tableCell18.Text = "تاريخ الشراء";
+            this.tableCell18.Weight = 0.060142317255375208D;
+            // 
+            // tableCell19
+            // 
+            this.tableCell19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell19.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell19.Name = "tableCell19";
+            this.tableCell19.StyleName = "DetailCaption1";
+            this.tableCell19.StylePriority.UseBackColor = false;
+            this.tableCell19.StylePriority.UseFont = false;
+            this.tableCell19.StylePriority.UseTextAlignment = false;
+            this.tableCell19.Text = "سعر الشراء";
+            this.tableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell19.Weight = 0.056092668181830639D;
+            // 
+            // tableCell20
+            // 
+            this.tableCell20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell20.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell20.Name = "tableCell20";
+            this.tableCell20.StyleName = "DetailCaption1";
+            this.tableCell20.StylePriority.UseBackColor = false;
+            this.tableCell20.StylePriority.UseFont = false;
+            this.tableCell20.Text = "عملة سعر الشراء";
+            this.tableCell20.Weight = 0.076863209480878D;
+            // 
+            // tableCell21
+            // 
+            this.tableCell21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell21.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell21.Name = "tableCell21";
+            this.tableCell21.StyleName = "DetailCaption1";
+            this.tableCell21.StylePriority.UseBackColor = false;
+            this.tableCell21.StylePriority.UseFont = false;
+            this.tableCell21.Text = "مكان التواجد";
+            this.tableCell21.Weight = 0.0586129305405077D;
+            // 
+            // tableCell22
+            // 
+            this.tableCell22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell22.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell22.Name = "tableCell22";
+            this.tableCell22.StyleName = "DetailCaption1";
+            this.tableCell22.StylePriority.UseBackColor = false;
+            this.tableCell22.StylePriority.UseFont = false;
+            this.tableCell22.Text = "حالة الأصل الآنية";
+            this.tableCell22.Weight = 0.075366135285879765D;
+            // 
+            // tableCell23
+            // 
+            this.tableCell23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell23.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell23.Name = "tableCell23";
+            this.tableCell23.StyleName = "DetailCaption1";
+            this.tableCell23.StylePriority.UseBackColor = false;
+            this.tableCell23.StylePriority.UseFont = false;
+            this.tableCell23.Text = "نسبة الاستفادة منه";
+            this.tableCell23.Weight = 0.0802881653003318D;
+            // 
+            // tableCell24
+            // 
+            this.tableCell24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell24.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell24.Name = "tableCell24";
+            this.tableCell24.StyleName = "DetailCaption1";
+            this.tableCell24.StylePriority.UseBackColor = false;
+            this.tableCell24.StylePriority.UseFont = false;
+            this.tableCell24.StylePriority.UseTextAlignment = false;
+            this.tableCell24.Text = "السعر الفعلي الحالي";
+            this.tableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell24.Weight = 0.083874637328987367D;
+            // 
+            // tableCell26
+            // 
+            this.tableCell26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tableCell26.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableCell26.Name = "tableCell26";
+            this.tableCell26.StyleName = "DetailCaption1";
+            this.tableCell26.StylePriority.UseBackColor = false;
+            this.tableCell26.StylePriority.UseFont = false;
+            this.tableCell26.Text = "اسم صاحب العهدة";
+            this.tableCell26.Weight = 0.078274119335206671D;
             // 
             // table1
             // 
@@ -467,6 +681,16 @@ namespace AssetManagement.Assets
             this.GroupHeader3.Level = 3;
             this.GroupHeader3.Name = "GroupHeader3";
             // 
+            // xrLine2
+            // 
+            this.xrLine2.ForeColor = System.Drawing.Color.Silver;
+            this.xrLine2.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            this.xrLine2.LineWidth = 3F;
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(4.327297E-05F, 5.833333F);
+            this.xrLine2.Name = "xrLine2";
+            this.xrLine2.SizeF = new System.Drawing.SizeF(1068.5F, 23F);
+            this.xrLine2.StylePriority.UseForeColor = false;
+            // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -486,7 +710,7 @@ namespace AssetManagement.Assets
             this.table4.OddStyleName = "DetailData3_Odd";
             this.table4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow4});
-            this.table4.SizeF = new System.Drawing.SizeF(1069F, 25F);
+            this.table4.SizeF = new System.Drawing.SizeF(1047.968F, 24.16667F);
             this.table4.StylePriority.UseBorderDashStyle = false;
             this.table4.StylePriority.UseBorders = false;
             this.table4.StylePriority.UseFont = false;
@@ -508,7 +732,6 @@ namespace AssetManagement.Assets
             this.tableCell38,
             this.tableCell39,
             this.tableCell40,
-            this.tableCell41,
             this.tableCell42});
             this.tableRow4.Name = "tableRow4";
             this.tableRow4.Weight = 11.5D;
@@ -661,16 +884,6 @@ namespace AssetManagement.Assets
             this.tableCell40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.tableCell40.Weight = 0.08387464446593268D;
             // 
-            // tableCell41
-            // 
-            this.tableCell41.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[عملة السعر الفعلي الحالي]")});
-            this.tableCell41.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell41.Name = "tableCell41";
-            this.tableCell41.StyleName = "DetailData1";
-            this.tableCell41.StylePriority.UseFont = false;
-            this.tableCell41.Weight = 0.10464520360734331D;
-            // 
             // tableCell42
             // 
             this.tableCell42.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -788,6 +1001,11 @@ namespace AssetManagement.Assets
             this.GroupFooter3.Level = 2;
             this.GroupFooter3.Name = "GroupFooter3";
             // 
+            // xrPageBreak1
+            // 
+            this.xrPageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 74.54371F);
+            this.xrPageBreak1.Name = "xrPageBreak1";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Wheat;
@@ -880,6 +1098,7 @@ namespace AssetManagement.Assets
             this.sqlDataSource1.ConnectionName = "AssetManagement.Properties.Settings.AssetMngDbConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
             columnExpression1.ColumnName = "معرف الأصل";
+            table5.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"805\" />";
             table5.Name = "AssetVw";
             columnExpression1.Table = table5;
             column1.Expression = columnExpression1;
@@ -940,57 +1159,54 @@ namespace AssetManagement.Assets
             columnExpression20.ColumnName = "السعر الفعلي الحالي";
             columnExpression20.Table = table5;
             column20.Expression = columnExpression20;
-            columnExpression21.ColumnName = "عملة السعر الفعلي الحالي";
+            columnExpression21.ColumnName = "اسم صاحب العهدة";
             columnExpression21.Table = table5;
             column21.Expression = columnExpression21;
-            columnExpression22.ColumnName = "اسم صاحب العهدة";
+            columnExpression22.ColumnName = "تفاصيل إضافية";
             columnExpression22.Table = table5;
             column22.Expression = columnExpression22;
-            columnExpression23.ColumnName = "تفاصيل إضافية";
+            columnExpression23.ColumnName = "ملاحظات أخرى";
             columnExpression23.Table = table5;
             column23.Expression = columnExpression23;
-            columnExpression24.ColumnName = "ملاحظات أخرى";
+            columnExpression24.ColumnName = "عنوان العقار";
             columnExpression24.Table = table5;
             column24.Expression = columnExpression24;
-            columnExpression25.ColumnName = "عنوان العقار";
+            columnExpression25.ColumnName = "اسم المالك";
             columnExpression25.Table = table5;
             column25.Expression = columnExpression25;
-            columnExpression26.ColumnName = "اسم المالك";
+            columnExpression26.ColumnName = "المستغل منه";
             columnExpression26.Table = table5;
             column26.Expression = columnExpression26;
-            columnExpression27.ColumnName = "المستغل منه";
+            columnExpression27.ColumnName = "مع من ورقة الملكية";
             columnExpression27.Table = table5;
             column27.Expression = columnExpression27;
-            columnExpression28.ColumnName = "مع من ورقة الملكية";
+            columnExpression28.ColumnName = "مساحة العقار";
             columnExpression28.Table = table5;
             column28.Expression = columnExpression28;
-            columnExpression29.ColumnName = "مساحة العقار";
+            columnExpression29.ColumnName = "وحدة مساحة العقار";
             columnExpression29.Table = table5;
             column29.Expression = columnExpression29;
-            columnExpression30.ColumnName = "وحدة مساحة العقار";
+            columnExpression30.ColumnName = "رقم لوحة المركبة";
             columnExpression30.Table = table5;
             column30.Expression = columnExpression30;
-            columnExpression31.ColumnName = "رقم لوحة المركبة";
+            columnExpression31.ColumnName = "سنة صنع المركبة";
             columnExpression31.Table = table5;
             column31.Expression = columnExpression31;
-            columnExpression32.ColumnName = "سنة صنع المركبة";
+            columnExpression32.ColumnName = "رقم الهيكل (الشاصيه) للمركبة";
             columnExpression32.Table = table5;
             column32.Expression = columnExpression32;
-            columnExpression33.ColumnName = "رقم الهيكل (الشاصيه) للمركبة";
+            columnExpression33.ColumnName = "رقم المحرك للمركبة";
             columnExpression33.Table = table5;
             column33.Expression = columnExpression33;
-            columnExpression34.ColumnName = "رقم المحرك للمركبة";
+            columnExpression34.ColumnName = "معدل الإهلاك للأصل";
             columnExpression34.Table = table5;
             column34.Expression = columnExpression34;
-            columnExpression35.ColumnName = "معدل الإهلاك للأصل";
+            columnExpression35.ColumnName = "العمر الافتراضي المتبقي للأصل";
             columnExpression35.Table = table5;
             column35.Expression = columnExpression35;
-            columnExpression36.ColumnName = "العمر الافتراضي المتبقي للأصل";
+            columnExpression36.ColumnName = "تاريخ الإدخال";
             columnExpression36.Table = table5;
             column36.Expression = columnExpression36;
-            columnExpression37.ColumnName = "تاريخ الإدخال";
-            columnExpression37.Table = table5;
-            column37.Expression = columnExpression37;
             selectQuery1.Columns.Add(column1);
             selectQuery1.Columns.Add(column2);
             selectQuery1.Columns.Add(column3);
@@ -1027,7 +1243,6 @@ namespace AssetManagement.Assets
             selectQuery1.Columns.Add(column34);
             selectQuery1.Columns.Add(column35);
             selectQuery1.Columns.Add(column36);
-            selectQuery1.Columns.Add(column37);
             selectQuery1.Name = "AssetVw";
             selectQuery1.Tables.Add(table5);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
@@ -1175,251 +1390,6 @@ namespace AssetManagement.Assets
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
             // 
-            // table3
-            // 
-            this.table3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.table3.BorderWidth = 2F;
-            this.table3.LocationFloat = new DevExpress.Utils.PointFloat(2.563E-06F, 64.5F);
-            this.table3.Name = "table3";
-            this.table3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.tableRow3});
-            this.table3.SizeF = new System.Drawing.SizeF(1069F, 38.83334F);
-            this.table3.StylePriority.UseBorders = false;
-            this.table3.StylePriority.UseBorderWidth = false;
-            // 
-            // tableRow3
-            // 
-            this.tableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.tableCell11,
-            this.tableCell12,
-            this.tableCell13,
-            this.tableCell14,
-            this.tableCell15,
-            this.tableCell16,
-            this.tableCell17,
-            this.tableCell18,
-            this.tableCell19,
-            this.tableCell20,
-            this.tableCell21,
-            this.tableCell22,
-            this.tableCell23,
-            this.tableCell24,
-            this.tableCell25,
-            this.tableCell26});
-            this.tableRow3.Name = "tableRow3";
-            this.tableRow3.Weight = 1D;
-            // 
-            // tableCell11
-            // 
-            this.tableCell11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell11.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.tableCell11.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell11.Name = "tableCell11";
-            this.tableCell11.StyleName = "DetailCaption1";
-            this.tableCell11.StylePriority.UseBackColor = false;
-            this.tableCell11.StylePriority.UseBorders = false;
-            this.tableCell11.StylePriority.UseFont = false;
-            this.tableCell11.Text = "كود الأصل";
-            this.tableCell11.Weight = 0.05058905563140384D;
-            // 
-            // tableCell12
-            // 
-            this.tableCell12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell12.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell12.Name = "tableCell12";
-            this.tableCell12.StyleName = "DetailCaption1";
-            this.tableCell12.StylePriority.UseBackColor = false;
-            this.tableCell12.StylePriority.UseFont = false;
-            this.tableCell12.StylePriority.UseTextAlignment = false;
-            this.tableCell12.Text = "العدد";
-            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell12.Weight = 0.030066216293063757D;
-            // 
-            // tableCell13
-            // 
-            this.tableCell13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell13.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell13.Name = "tableCell13";
-            this.tableCell13.StyleName = "DetailCaption1";
-            this.tableCell13.StylePriority.UseBackColor = false;
-            this.tableCell13.StylePriority.UseFont = false;
-            this.tableCell13.Text = "الساحة";
-            this.tableCell13.Weight = 0.038176287659091077D;
-            // 
-            // tableCell14
-            // 
-            this.tableCell14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell14.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell14.Name = "tableCell14";
-            this.tableCell14.StyleName = "DetailCaption1";
-            this.tableCell14.StylePriority.UseBackColor = false;
-            this.tableCell14.StylePriority.UseFont = false;
-            this.tableCell14.Text = "مواصفات الأصل";
-            this.tableCell14.Weight = 0.071634226585794991D;
-            // 
-            // tableCell15
-            // 
-            this.tableCell15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell15.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell15.Name = "tableCell15";
-            this.tableCell15.StyleName = "DetailCaption1";
-            this.tableCell15.StylePriority.UseBackColor = false;
-            this.tableCell15.StylePriority.UseFont = false;
-            this.tableCell15.Text = "الموديل";
-            this.tableCell15.Weight = 0.03983491374801764D;
-            // 
-            // tableCell16
-            // 
-            this.tableCell16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell16.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell16.Name = "tableCell16";
-            this.tableCell16.StyleName = "DetailCaption1";
-            this.tableCell16.StylePriority.UseBackColor = false;
-            this.tableCell16.StylePriority.UseFont = false;
-            this.tableCell16.Text = "اللون";
-            this.tableCell16.Weight = 0.032058755073511677D;
-            // 
-            // tableCell17
-            // 
-            this.tableCell17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell17.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell17.Name = "tableCell17";
-            this.tableCell17.StyleName = "DetailCaption1";
-            this.tableCell17.StylePriority.UseBackColor = false;
-            this.tableCell17.StylePriority.UseFont = false;
-            this.tableCell17.Text = "الحجم / السعة";
-            this.tableCell17.Weight = 0.063481108734159408D;
-            // 
-            // tableCell18
-            // 
-            this.tableCell18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell18.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell18.Name = "tableCell18";
-            this.tableCell18.StyleName = "DetailCaption1";
-            this.tableCell18.StylePriority.UseBackColor = false;
-            this.tableCell18.StylePriority.UseFont = false;
-            this.tableCell18.Text = "تاريخ الشراء";
-            this.tableCell18.Weight = 0.060142317255375208D;
-            // 
-            // tableCell19
-            // 
-            this.tableCell19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell19.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell19.Name = "tableCell19";
-            this.tableCell19.StyleName = "DetailCaption1";
-            this.tableCell19.StylePriority.UseBackColor = false;
-            this.tableCell19.StylePriority.UseFont = false;
-            this.tableCell19.StylePriority.UseTextAlignment = false;
-            this.tableCell19.Text = "سعر الشراء";
-            this.tableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell19.Weight = 0.056092668181830639D;
-            // 
-            // tableCell20
-            // 
-            this.tableCell20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell20.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell20.Name = "tableCell20";
-            this.tableCell20.StyleName = "DetailCaption1";
-            this.tableCell20.StylePriority.UseBackColor = false;
-            this.tableCell20.StylePriority.UseFont = false;
-            this.tableCell20.Text = "عملة سعر الشراء";
-            this.tableCell20.Weight = 0.076863209480878D;
-            // 
-            // tableCell21
-            // 
-            this.tableCell21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell21.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell21.Name = "tableCell21";
-            this.tableCell21.StyleName = "DetailCaption1";
-            this.tableCell21.StylePriority.UseBackColor = false;
-            this.tableCell21.StylePriority.UseFont = false;
-            this.tableCell21.Text = "مكان التواجد";
-            this.tableCell21.Weight = 0.0586129305405077D;
-            // 
-            // tableCell22
-            // 
-            this.tableCell22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell22.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell22.Name = "tableCell22";
-            this.tableCell22.StyleName = "DetailCaption1";
-            this.tableCell22.StylePriority.UseBackColor = false;
-            this.tableCell22.StylePriority.UseFont = false;
-            this.tableCell22.Text = "حالة الأصل الآنية";
-            this.tableCell22.Weight = 0.075366135285879765D;
-            // 
-            // tableCell23
-            // 
-            this.tableCell23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell23.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell23.Name = "tableCell23";
-            this.tableCell23.StyleName = "DetailCaption1";
-            this.tableCell23.StylePriority.UseBackColor = false;
-            this.tableCell23.StylePriority.UseFont = false;
-            this.tableCell23.Text = "نسبة الاستفادة منه";
-            this.tableCell23.Weight = 0.0802881653003318D;
-            // 
-            // tableCell24
-            // 
-            this.tableCell24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell24.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell24.Name = "tableCell24";
-            this.tableCell24.StyleName = "DetailCaption1";
-            this.tableCell24.StylePriority.UseBackColor = false;
-            this.tableCell24.StylePriority.UseFont = false;
-            this.tableCell24.StylePriority.UseTextAlignment = false;
-            this.tableCell24.Text = "السعر الفعلي الحالي";
-            this.tableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell24.Weight = 0.083874637328987367D;
-            // 
-            // tableCell25
-            // 
-            this.tableCell25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell25.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell25.Name = "tableCell25";
-            this.tableCell25.StyleName = "DetailCaption1";
-            this.tableCell25.StylePriority.UseBackColor = false;
-            this.tableCell25.StylePriority.UseFont = false;
-            this.tableCell25.Text = "عملة السعر الفعلي الحالي";
-            this.tableCell25.Weight = 0.10464519647039801D;
-            // 
-            // tableCell26
-            // 
-            this.tableCell26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tableCell26.Font = new System.Drawing.Font("Sakkal Majalla", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableCell26.Name = "tableCell26";
-            this.tableCell26.StyleName = "DetailCaption1";
-            this.tableCell26.StylePriority.UseBackColor = false;
-            this.tableCell26.StylePriority.UseFont = false;
-            this.tableCell26.Text = "اسم صاحب العهدة";
-            this.tableCell26.Weight = 0.078274119335206671D;
-            // 
-            // xrLine1
-            // 
-            this.xrLine1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash;
-            this.xrLine1.BorderWidth = 4F;
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(4.327297E-05F, 44.16667F);
-            this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(1068.5F, 2F);
-            this.xrLine1.StylePriority.UseBorderDashStyle = false;
-            this.xrLine1.StylePriority.UseBorderWidth = false;
-            // 
-            // xrPageBreak1
-            // 
-            this.xrPageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 74.54371F);
-            this.xrPageBreak1.Name = "xrPageBreak1";
-            // 
-            // xrLine2
-            // 
-            this.xrLine2.ForeColor = System.Drawing.Color.Silver;
-            this.xrLine2.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            this.xrLine2.LineWidth = 3F;
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(4.327297E-05F, 5.833333F);
-            this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(1068.5F, 23F);
-            this.xrLine2.StylePriority.UseForeColor = false;
-            // 
             // AssetsXtraReport2
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1462,10 +1432,10 @@ namespace AssetManagement.Assets
             this.GrandTotalBackground1,
             this.PageInfo});
             this.Version = "21.2";
+            ((System.ComponentModel.ISupportInitialize)(this.table3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1512,7 +1482,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraReports.UI.XRTableCell tableCell38;
         private DevExpress.XtraReports.UI.XRTableCell tableCell39;
         private DevExpress.XtraReports.UI.XRTableCell tableCell40;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell41;
         private DevExpress.XtraReports.UI.XRTableCell tableCell42;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
         private DevExpress.XtraReports.UI.XRLabel label2;
@@ -1561,7 +1530,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraReports.UI.XRTableCell tableCell22;
         private DevExpress.XtraReports.UI.XRTableCell tableCell23;
         private DevExpress.XtraReports.UI.XRTableCell tableCell24;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell25;
         private DevExpress.XtraReports.UI.XRTableCell tableCell26;
         private DevExpress.XtraReports.UI.XRPageBreak xrPageBreak1;
         private DevExpress.XtraReports.UI.XRLine xrLine2;

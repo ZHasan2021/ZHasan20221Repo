@@ -855,16 +855,26 @@ namespace AssetManagement
                 ExcelWorksheet oneSh = srcExcelWb.Worksheets.Where(sh1 => sh1.Name == oneTable).First();
                 for (int iRow = 2; iRow <= oneSh.Dimension.End.Row; iRow++)
                 {
-                    string currKeyField = keyFields[tblsToImport.IndexOf(oneTable)];
-                    string currSubDField = subDFields[tblsToImport.IndexOf(oneTable)];
-                    List<string> tblFields = oneSh.Cells.Where(cl1 => cl1.End.Row == 1 && cl1.Start.Row == 1 && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()).ToList();
-                    int keyIndex = tblFields.IndexOf(currKeyField) + 1;
-                    int subIndex = tblFields.IndexOf(currSubDField) + 1;
+                    Application.DoEvents();
+
                     string oneKeyValue = "";
-                    int oneSubDValue = 0;
                     try
                     {
-                        Application.DoEvents();
+                        string currKeyField = keyFields[tblsToImport.IndexOf(oneTable)];
+                        string currSubDField = subDFields[tblsToImport.IndexOf(oneTable)];
+                        List<string> tblFields = oneSh.Cells.Where(cl1 => cl1.End.Row == 1 && cl1.Start.Row == 1 && cl1.End.Column <= oneSh.Dimension.End.Column).Select(cl2 => cl2.Value?.ToString()).ToList();
+                        int keyIndex = tblFields.IndexOf(currKeyField) + 1;
+                        int subIndex = tblFields.IndexOf(currSubDField) + 1;
+                        if (oneTable == "FinancialItemTbl" && tblFields.Contains("IncomingFrom") && tblFields.Contains("FinancialItemCategory"))
+                        {
+                            int fiCaVal = Convert.ToInt32(oneSh.Cells[iRow, tblFields.IndexOf("FinancialItemCategory") + 1].Value);
+                            string fiCaName = StaticCode.mainDbContext.FinancialItemCategoryTbls.Single(fica1 => fica1.ID == fiCaVal).FinancialItemCategoryName;
+                            string incomingFromVal = oneSh.Cells[iRow, tblFields.IndexOf("IncomingFrom") + 1].Value?.ToString();
+                            if (fiCaName.Contains("مدور") || incomingFromVal == "من المستوى الأعلى")
+                                continue;
+                        }
+                        int oneSubDValue = 0;
+
                         oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
                         oneSubDValue = Convert.ToInt32(oneSh.Cells[iRow, subIndex].Value);
                         if (!filtered_SubDepts.Contains(oneSubDValue))
@@ -884,6 +894,7 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
+
                                 if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "DEON"))
                                 {
                                     DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
@@ -1270,6 +1281,7 @@ namespace AssetManagement
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
         public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
         public static string SubLevelTotalsOutPath = $"{FinanceFolder}التقرير المالي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
+        public static string AssetAsFiCaStatement = "أصول ثابتة";
 
         public static string ImportFinancialItemsFromExcel(string fiItsFilePath, out int codeIncVal)
         {
@@ -1496,7 +1508,9 @@ namespace AssetManagement
                     importedAssets.Add(newFinancialItem);
                     rowStartNo++;
 
-                    if (assetsStatements.Any(ast1 => ficaVal.Contains(ast1)))
+                    string ficaDesc = existedFiItCat.First().FinancialItemCategoryDetails;
+                    //if (assetsStatements.Any(ast1 => ficaDesc.Contains(ast1)))
+                    if (ficaDesc.Contains(StaticCode.AssetAsFiCaStatement))
                     {
                         AssetTbl newAssetByFoundCode = new AssetTbl()
                         {

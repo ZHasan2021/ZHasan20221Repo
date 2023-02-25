@@ -1302,16 +1302,15 @@ namespace AssetManagement.Finance
                     detailedFinancialReportWs.Column(10).Width =
                     detailedFinancialReportWs.Column(11).Width =
                     detailedFinancialReportWs.Column(12).Width =
-                    detailedFinancialReportWs.Column(13).Width =
-                    detailedFinancialReportWs.Column(14).Width = 20;
-                    detailedFinancialReportWs.Column(15).Width = 45;
-                    detailedFinancialReportWs.Column(16).Width = 20;
-                    detailedFinancialReportWs.Column(17).Width = 30;
+                    detailedFinancialReportWs.Column(13).Width = 20;
+                    detailedFinancialReportWs.Column(14).Width = 45;
+                    detailedFinancialReportWs.Column(15).Width = 20;
+                    detailedFinancialReportWs.Column(16).Width = 30;
                     detailedFinancialReportWs.Row(8).Height =
                     detailedFinancialReportWs.Row(9).Height =
                     detailedFinancialReportWs.Row(10).Height = 22;
                     startRow = 6;
-                    using (var cells = detailedFinancialReportWs.Cells[2, 2, 3, 7])
+                    using (var cells = detailedFinancialReportWs.Cells[2, 2, 3, 6])
                     {
                         cells.Style.Font.Name = "Calibri";
                         cells.Style.Font.Size = 18.0F;
@@ -1558,7 +1557,7 @@ namespace AssetManagement.Finance
                         cells.Value = totalFinancialText;
                     }
                     int tableRow = startRow + 2;
-                    using (var cells = detailedFinancialReportWs.Cells[tableRow, 9, tableRow, 17])
+                    using (var cells = detailedFinancialReportWs.Cells[tableRow, 9, tableRow, 16])
                     {
                         cells.Style.Font.Name = "Calibri";
                         cells.Style.Font.Size = 11.0F;
@@ -1573,13 +1572,12 @@ namespace AssetManagement.Finance
                     detailedFinancialReportWs.Cells[tableRow, 11].Value = "العملة";
                     detailedFinancialReportWs.Cells[tableRow, 12].Value = "جهة الإيراد";
                     detailedFinancialReportWs.Cells[tableRow, 13].Value = "نوع الصادر";
-                    detailedFinancialReportWs.Cells[tableRow, 14].Value = "صادر إلى";
-                    detailedFinancialReportWs.Cells[tableRow, 15].Value = "البيان";
-                    detailedFinancialReportWs.Cells[tableRow, 16].Value = "التاريخ";
-                    detailedFinancialReportWs.Cells[tableRow, 17].Value = "لربط الخلايا";
+                    detailedFinancialReportWs.Cells[tableRow, 14].Value = "البيان";
+                    detailedFinancialReportWs.Cells[tableRow, 15].Value = "التاريخ";
+                    detailedFinancialReportWs.Cells[tableRow, 16].Value = "لربط الخلايا";
                     if (incomingOrDirectOutgoingSubLevelQry.Any())
                     {
-                        using (var cells = detailedFinancialReportWs.Cells[tableRow + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count(), 17])
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count(), 16])
                         {
                             cells.Style.Font.Name = "Calibri";
                             cells.Style.Font.Size = 11.0F;
@@ -1587,7 +1585,7 @@ namespace AssetManagement.Finance
                             cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                             cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                         }
-                        using (var cells = detailedFinancialReportWs.Cells[tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 17])
+                        using (var cells = detailedFinancialReportWs.Cells[tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 9, tableRow + incomingOrDirectOutgoingSubLevelQry.Count() + 1, 16])
                         {
                             cells.Style.Font.Name = "Calibri";
                             cells.Style.Font.Bold = true;
@@ -1606,10 +1604,9 @@ namespace AssetManagement.Finance
                             detailedFinancialReportWs.Cells[tableRow, 11].Value = oneRec.العملة;
                             detailedFinancialReportWs.Cells[tableRow, 12].Value = oneRec.جهة_الإيراد;
                             detailedFinancialReportWs.Cells[tableRow, 13].Value = oneRec.نوع_الصادر;
-                            detailedFinancialReportWs.Cells[tableRow, 14].Value = oneRec.صادر_إلى;
-                            detailedFinancialReportWs.Cells[tableRow, 15].Value = oneRec.بيان_السجل_المالي;
-                            detailedFinancialReportWs.Cells[tableRow, 16].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
-                            detailedFinancialReportWs.Cells[tableRow, 17].Value = oneRec.اسم_البند_المالي;
+                            detailedFinancialReportWs.Cells[tableRow, 14].Value = oneRec.بيان_السجل_المالي;
+                            detailedFinancialReportWs.Cells[tableRow, 15].Value = oneRec.تاريخ_تحرير_السجل.ToString("d");
+                            detailedFinancialReportWs.Cells[tableRow, 16].Value = oneRec.اسم_البند_المالي;
                             tableRow++;
                         }
                         detailedFinancialReportWs.Cells[tableRow, 9].Value = incomingOrDirectOutgoingSubLevelQry.CalcIncomingOfFinancialItems();
@@ -1994,6 +1991,8 @@ namespace AssetManagement.Finance
                 MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (File.Exists(targetPath))
+                File.Delete(targetPath);
             File.Copy(StaticCode.FinancialReportPath, targetPath, true);
             ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
@@ -2120,7 +2119,7 @@ namespace AssetManagement.Finance
                     startRow++;
                 }
             }
-            using (var cells = fiRpWs.Cells[startRow, 2, startRow, 10])
+            using (var cells = fiRpWs.Cells[startRow, 2, startRow, 9])
             {
                 cells.Merge = true;
                 cells.Style.Font.Name = "Calibri";
@@ -2148,12 +2147,11 @@ namespace AssetManagement.Finance
                     startRow++;
                 }
             }
-            List<string> mainCategoriesNames = StaticCode.mainDbContext.MainCategoryTbls.Select(maca1 => maca1.MainCategoryName).ToList();
             int macaStartRow = 70;
-            int macaStartCol = 12;
-            foreach (string oneMaCa in mainCategoriesNames)
+            int macaStartCol = 11;
+            foreach (string oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryDetails.Contains(StaticCode.AssetAsFiCaStatement)).Select(fica2 => fica2.FinancialItemCategoryName))
             {
-                fiRpWs.Cells[macaStartRow, macaStartCol].Value = oneMaCa;
+                fiRpWs.Cells[macaStartRow, macaStartCol].Value = oneFiCa;
                 macaStartRow++;
             }
             fiRpEp.Save();
