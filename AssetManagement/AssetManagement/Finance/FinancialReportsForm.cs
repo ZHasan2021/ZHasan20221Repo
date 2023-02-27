@@ -2099,9 +2099,9 @@ namespace AssetManagement.Finance
             string departmentVal = $"القسم: {departmentOfSearch}";
             string subDepartmentVal = $"الوحدة: {subDepartmentOfSearch}";
             fiRpWs.Cells[2, 2, 2, 4].Value = sectionVal;
-            fiRpWs.Cells[2, 5, 2, 7].Value = departmentVal;
-            fiRpWs.Cells[2, 8].Value = subDepartmentVal;
-            fiRpWs.Cells[2, 9, 2, 10].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
+            fiRpWs.Cells[2, 5, 2, 6].Value = departmentVal;
+            fiRpWs.Cells[2, 7].Value = subDepartmentVal;
+            fiRpWs.Cells[2, 8, 2, 9].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
             int startRow = 5;
             var financialItemsQry2 = reportQueryResults.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
             if (financialItemsQry2.Any(fici1 => fici1.وارد_أم_صادر == "وارد"))

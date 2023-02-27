@@ -30,6 +30,7 @@ namespace AssetManagement
         IQueryable<AssetTbl> destructedAssetsList = null;
         IQueryable<AssetTbl> assetsWithoutPurchaseDateList = null;
         IQueryable<AssetTbl> missingDataAssetsList = null;
+        int timer3 = 0;
 
         public MainForm()
         {
@@ -42,7 +43,7 @@ namespace AssetManagement
             this.MinimumSize = this.Size;
 
             ApplyUserRolesOnInterface();
-            CheckAssetsNotifications();
+            //CheckAssetsNotifications();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,6 +64,11 @@ namespace AssetManagement
         {
             appDateBarStaticItem.Caption = DateTime.Today.AddDays(StaticCode.appOptions.ShiftDays).ToString("dddd, MMMM dd, yyyy");
             appTimeBarStaticItem.Caption = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds).ToLongTimeString();
+            timer3++;
+            if (timer3 == 3)
+            {
+                CheckAssetsNotifications();
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -92,7 +98,7 @@ namespace AssetManagement
         {
             ImportForm impFrm = new ImportForm();
             impFrm.ShowDialog();
-            CheckAssetsNotifications();
+            timer3 = 0;
         }
         #endregion
 
@@ -208,25 +214,21 @@ namespace AssetManagement
         {
             ManageAssetTblForm desFrm = new ManageAssetTblForm(destructedAssetsList, "الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها");
             desFrm.ShowDialog();
-            CheckAssetsNotifications();
         }
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 1);
-            CheckAssetsNotifications();
         }
 
         private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 2);
-            CheckAssetsNotifications();
         }
 
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ImportAssetsFromExcel(sender, e, 3);
-            CheckAssetsNotifications();
         }
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -552,14 +554,13 @@ namespace AssetManagement
                 actionsStatusMemoEdit.Text = errorMsgOut;
                 mainProgressPanel.Visible = false;
                 mainAlertControl.Show(this, errorMsgOut, StaticCode.ApplicationTitle);
-                return;
             }
             else
             {
                 actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة ({newAssetsCount})\r\n2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})\r\n3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel})\r\n---------------";
                 mainProgressPanel.Visible = false;
                 mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
-                return;
+                timer3 = 0;
             }
         }
 
@@ -644,7 +645,7 @@ namespace AssetManagement
         {
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
-            CheckAssetsNotifications();
+            timer3 = 0;
         }
         #endregion
 
@@ -1026,9 +1027,9 @@ namespace AssetManagement
             {
                 StaticCode.mainDbContext = new AssetMngDbDataContext();
                 GC.Collect();
-                string actionMsg = $"تم استيراد السجلات المالية بنجاح، وتم إضافة {newAssetsAdded} أصول إلى سجلات الأصول كذلك، راجع إدارة سجلات الأصول والسجلات المالية للتأكد من ذلك";
+                string actionMsg = $"تم استيراد السجلات المالية بنجاح، وتم إضافة ({newAssetsAdded}) أصول إلى سجلات الأصول كذلك، راجع إدارة سجلات الأصول والسجلات المالية للتأكد من ذلك";
                 mainAlertControl.Show(this, actionMsg, StaticCode.ApplicationTitle);
-                CheckAssetsNotifications();
+                timer3 = 0;
                 return;
             }
         }
@@ -1168,13 +1169,7 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             if (logResult == DialogResult.OK)
             {
                 ApplyUserRolesOnInterface();
-                CheckAssetsNotifications();
-                if (destructedAssetsList.Any())
-                {
-                    Thread.Sleep(1000);
-                    MessageBox.Show("هناك أصول انتهى عمرها الإنتاجي ولم يتم تصريفها بعد", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    destructedAssetsBarStaticItem_ItemClick(this, null);
-                }
+                timer3 = 0;
             }
         }
 

@@ -34,6 +34,42 @@ namespace AssetManagement
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
         public static string PMName = "PM";
         public static string MngAbbr = "Mng_";
+        public static string UserSectionName
+        {
+            get
+            {
+                if (activeUserRole.IsSectionIndependent == true)
+                    return "";
+                else
+                {
+                    int userSectionID = 0;
+                    if (!Int32.TryParse(activeUser.UserSection?.ToString(), out userSectionID))
+                        return "";
+                    if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.ID == userSectionID))
+                        return "";
+                    string usrSecName = StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == userSectionID).SectionName;
+                    return usrSecName;
+                }
+            }
+        }
+        public static string UserDeptName
+        {
+            get
+            {
+                if (activeUserRole.IsDepartmentIndependent == true)
+                    return "";
+                else
+                {
+                    int userDeptID = 0;
+                    if (!Int32.TryParse(activeUser.UserDept?.ToString(), out userDeptID))
+                        return "";
+                    if (!StaticCode.mainDbContext.DepartmentTbls.Any(dpt1 => dpt1.ID == userDeptID))
+                        return "";
+                    string usrDptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == userDeptID).DepartmentName;
+                    return usrDptName;
+                }
+            }
+        }
 
         public static void AssignDbParams()
         {
@@ -147,34 +183,6 @@ namespace AssetManagement
             SqlCommand sqlComm = new SqlCommand(procName, sqlConn);
             sqlComm.CommandType = System.Data.CommandType.StoredProcedure;
             sqlComm.ExecuteNonQuery();
-        }
-
-        public static string GetActiveUserSection()
-        {
-            if (activeUserRole.IsSectionIndependent == true)
-                return "";
-            try
-            {
-                return (mainDbContext.SectionTbls.Single(sct1 => sct1.ID == activeUser.UserSection).SectionName);
-            }
-            catch
-            {
-                return "";
-            }
-        }
-
-        public static string GetActiveUserDept()
-        {
-            if (activeUserRole.IsDepartmentIndependent == true)
-                return "";
-            try
-            {
-                return (mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == activeUser.UserDept).DepartmentName);
-            }
-            catch
-            {
-                return "";
-            }
         }
 
         public static int GetSubDeptForPM()
@@ -399,6 +407,30 @@ namespace AssetManagement
             int sctID = 0;
             int dptID = 0;
             int assetSubD = 0;
+            if (activeUserRole.IsSectionIndependent != true)
+            {
+                if (sectionName != UserSectionName)
+                {
+                    errorMsg = "الدائرة المضمنة في ملف الإكسل غير مطابقة للدائرة التي يتبع لها الحساب النشط، لذا لا يمكن استيراد البيانات";
+                    tmpMainDbContext.Dispose();
+                    return null;
+                }
+            }
+            if (activeUserRole.IsDepartmentIndependent != true)
+            {
+                if (sectionName != UserSectionName)
+                {
+                    errorMsg = "الدائرة المضمنة في ملف الإكسل غير مطابقة للدائرة التي يتبع لها الحساب النشط، لذا لا يمكن استيراد البيانات";
+                    tmpMainDbContext.Dispose();
+                    return null;
+                }
+                if (departmentName != UserDeptName)
+                {
+                    errorMsg = "القسم المضمن في ملف الإكسل غير مطابق للقسم الذي يتبع له الحساب النشط، لذا لا يمكن استيراد البيانات";
+                    tmpMainDbContext.Dispose();
+                    return null;
+                }
+            }
             if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName)) // Section
             {
                 if (sectionName == StaticCode.PMName)
@@ -413,8 +445,7 @@ namespace AssetManagement
                     }
                     else
                     {
-                        errorMsg = "الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر"
-                            ;
+                        errorMsg = "الدائرة المضمنة في ملف الإكسل غير موجودة في سجلات الدوائر";
                         tmpMainDbContext.Dispose();
                         return null;
                     }
@@ -755,7 +786,7 @@ namespace AssetManagement
         {
             mainDbContext.Refresh(RefreshMode.KeepChanges, mainDbContext.AssetTbls);
             var availableAssets = mainDbContext.AssetVws;
-            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => ast.AssetNotes != null && ast.AssetNotes.Contains("بيانات الأصل ناقصة")).Select(ast1 => ast1);
+            IQueryable<AssetTbl> res = mainDbContext.AssetTbls.Where(ast => availableAssets.Select(asv1 => asv1.معرف_الأصل).ToList().Contains(ast.ID) && ast.AssetNotes != null && ast.AssetNotes.Contains("بيانات الأصل ناقصة")).Select(ast1 => ast1);
             return res;
         }
 
@@ -1295,11 +1326,29 @@ namespace AssetManagement
             ExcelWorksheet srcExcelWs = srcExcelWb.Worksheets.First();
             string sectionName = srcExcelWs.Cells[2, 2].Value?.ToString().Replace("الدائرة:", "").Trim();
             string departmentName = srcExcelWs.Cells[2, 5].Value?.ToString().Replace("القسم:", "").Trim();
-            string subDepartmentName = srcExcelWs.Cells[2, 8].Value?.ToString().Replace("الوحدة:", "").Trim();
+            string subDepartmentName = srcExcelWs.Cells[2, 7].Value?.ToString().Replace("الوحدة:", "").Trim();
             int sctID = 0;
             int dptID = 0;
             int assetSubD = 0;
             List<string> newAssetsFoundByCodesList = new List<string>();
+            if (activeUserRole.IsSectionIndependent != true)
+            {
+                if (sectionName != UserSectionName)
+                {
+                    return ("الدائرة المضمنة في ملف الإكسل غير مطابقة للدائرة التي يتبع لها الحساب النشط، لذا لا يمكن استيراد البيانات");
+                }
+            }
+            if (activeUserRole.IsDepartmentIndependent != true)
+            {
+                if (sectionName != UserSectionName)
+                {
+                    return ("الدائرة المضمنة في ملف الإكسل غير مطابقة للدائرة التي يتبع لها الحساب النشط، لذا لا يمكن استيراد البيانات");
+                }
+                if (departmentName != UserDeptName)
+                {
+                    return ("القسم المضمن في ملف الإكسل غير مطابق للقسم الذي يتبع له الحساب النشط، لذا لا يمكن استيراد البيانات");
+                }
+            }
             if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName)) // Section
             {
                 if (sectionName == StaticCode.PMName)
