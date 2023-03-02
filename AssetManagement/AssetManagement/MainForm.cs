@@ -611,7 +611,7 @@ namespace AssetManagement
 
         private void breakingAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
         {
-            e.AlertForm.Size = new Size(400, 250);
+            //e.AlertForm.Size = new Size(400, 250);
             e.AlertForm.BackColor = Color.DarkGreen;
             e.AlertForm.ForeColor = Color.Red;
             e.AlertForm.StartPosition = FormStartPosition.Manual;

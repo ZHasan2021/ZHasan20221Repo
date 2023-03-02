@@ -256,7 +256,7 @@ namespace AssetManagement.Assets
         {
             assetGridControl.Visible = false;
             exportToExcelDropDownButton.Enabled = moveAllDropDownButton.Enabled = false;
-            assetsQry = from ast in StaticCode.mainDbContext.AssetTbls where (from asv in StaticCode.mainDbContext.AssetVws select asv.معرف_الأصل).Contains(ast.ID) == true select ast;
+            assetsQry = from ast in StaticCode.mainDbContext.AssetTbls where (from asv in StaticCode.mainDbContext.AssetVw_Alls select asv.معرف_الأصل).Contains(ast.ID) == true select ast;
             if (customSearchRadioButton.Checked)
             {
                 if (searchBySectionCheckBox.Checked)
@@ -461,7 +461,6 @@ namespace AssetManagement.Assets
         private void exportToExcelDropDownButton_Click(object sender, EventArgs e)
         {
             exportToExcelDropDownButton.ShowDropDown();
-            //ExportAssets(1);
         }
 
         /// <summary>

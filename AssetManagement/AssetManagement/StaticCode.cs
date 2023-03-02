@@ -185,6 +185,22 @@ namespace AssetManagement
             sqlComm.ExecuteNonQuery();
         }
 
+        public static DateTime AppToday
+        {
+            get
+            {
+                return DateTime.Today.AddDays(appOptions.ShiftDays);
+            }
+        }
+        
+        public static DateTime AppNow
+        {
+            get
+            {
+                return DateTime.Now.AddSeconds(appOptions.ShiftSeconds);
+            }
+        }
+
         public static int GetSubDeptForPM()
         {
             int assetSubD = 0;
@@ -835,10 +851,12 @@ namespace AssetManagement
             if (ast.PurchaseDate == null || ast.PurchasePrice == null)
                 return 0;
             DateTime purchaseDate = Convert.ToDateTime(ast.PurchaseDate);
-            int monthsDiff = (DateTime.Today.Year * 12 + DateTime.Today.Month) - (purchaseDate.Year * 12 + purchaseDate.Month);
-            int yearsDiff = monthsDiff / 12;
-            double destRate = yearsDiff * mainDbContext.MinorCategoryTbls.Single(mica1 => mica1.ID == ast.AssetMinorCategory).DestructionRate;
-            double calcPrice = Convert.ToDouble(ast.PurchasePrice) * (1 - destRate);
+            int monthsDiff = (AppToday.Year * 12 + AppToday.Month) - (purchaseDate.Year * 12 + purchaseDate.Month);
+            double yearsDiff = (double)monthsDiff / 12.0;
+            double destRate = yearsDiff * ast.DestructionRate;
+            double calcPrice = Convert.ToDouble(ast.PurchasePrice) * (100 - destRate) / 100.0;
+            if (calcPrice < 0)
+                return 0;
             return calcPrice;
         }
         #endregion
@@ -881,7 +899,7 @@ namespace AssetManagement
             foreach (string oneTable in tblsToImport)
             {
                 Application.DoEvents();
-                if (srcExcelWb.Worksheets.Count(sh1 => sh1.Name == oneTable) == 0)
+                if (!srcExcelWb.Worksheets.Any(sh1 => sh1.Name == oneTable))
                     continue;
                 ExcelWorksheet oneSh = srcExcelWb.Worksheets.Where(sh1 => sh1.Name == oneTable).First();
                 for (int iRow = 2; iRow <= oneSh.Dimension.End.Row; iRow++)
@@ -907,7 +925,17 @@ namespace AssetManagement
                         int oneSubDValue = 0;
 
                         oneKeyValue = oneSh.Cells[iRow, keyIndex].Value?.ToString();
-                        oneSubDValue = Convert.ToInt32(oneSh.Cells[iRow, subIndex].Value);
+                        if (oneTable == "AssetTbl" || oneTable == "FinancialItemTbl")
+                        {
+                            oneSubDValue = Convert.ToInt32(oneSh.Cells[iRow, subIndex].Value);
+                        }
+                        if (oneTable == "AssetMovementTbl" || oneTable == "AssetTransactionTbl")
+                        {
+                            string assetCode = oneSh.Cells[iRow, subIndex].Value?.ToString();
+                            if (!StaticCode.mainDbContext.AssetTbls.Any(ast1 => ast1.AssetCode == assetCode))
+                                continue;
+                            oneSubDValue = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCode).First().AssetSubDepartment;
+                        }
                         if (!filtered_SubDepts.Contains(oneSubDValue))
                         {
                             continue;
@@ -926,10 +954,28 @@ namespace AssetManagement
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
 
+                                if (oneTable == "AssetMovementTbl" || oneTable == "AssetTransactionTbl")
+                                {
+                                    if (oneField == "AssetID")
+                                    {
+                                        string assetCode = oneSh.Cells[iRow, iCol].Value?.ToString();
+                                        if (!StaticCode.mainDbContext.AssetTbls.Any(ast1 => ast1.AssetCode == assetCode))
+                                            continue;
+                                        oneVal = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCode).First().ID.ToString();
+                                    }
+                                }
+
                                 if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "DEON"))
                                 {
-                                    DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
-                                    fieldsValuesPairs += $"{oneField} = N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
+                                    if (String.IsNullOrEmpty(oneVal))
+                                    {
+                                        fieldsValuesPairs += $"{oneField} = NULL, ";
+                                    }
+                                    else
+                                    {
+                                        DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
+                                        fieldsValuesPairs += $"{oneField} = N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
+                                    }
                                 }
                                 else
                                 {
@@ -961,11 +1007,30 @@ namespace AssetManagement
                             {
                                 string oneField = oneSh.Cells[1, iCol].Value?.ToString();
                                 string oneVal = oneSh.Cells[iRow, iCol].Value?.ToString();
+
+                                if (oneTable == "AssetMovementTbl" || oneTable == "AssetTransactionTbl")
+                                {
+                                    if (oneField == "AssetID")
+                                    {
+                                        string assetCode = oneSh.Cells[iRow, iCol].Value?.ToString();
+                                        if (!StaticCode.mainDbContext.AssetTbls.Any(ast1 => ast1.AssetCode == assetCode))
+                                            continue;
+                                        oneVal = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCode).First().ID.ToString();
+                                    }
+                                }
+
                                 fieldsPairs += $"{oneField}, ";
                                 if (oneField.ToUpper().Contains("DATE") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "EDON") || (oneField.Length > 4 && oneField.ToUpper().Substring(oneField.Length - 4) == "DEON"))
                                 {
-                                    DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
-                                    valuesPairs += $"N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
+                                    if (String.IsNullOrEmpty(oneVal))
+                                    {
+                                        valuesPairs += $"NULL, ";
+                                    }
+                                    else
+                                    {
+                                        DateTime fieldAsDate = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(oneVal));
+                                        valuesPairs += $"N'{fieldAsDate.ToString("yyyy-MM-dd")}', ";
+                                    }
                                 }
                                 else
                                 {
@@ -1559,7 +1624,7 @@ namespace AssetManagement
 
                     string ficaDesc = existedFiItCat.First().FinancialItemCategoryDetails;
                     //if (assetsStatements.Any(ast1 => ficaDesc.Contains(ast1)))
-                    if (ficaDesc.Contains(StaticCode.AssetAsFiCaStatement))
+                    if (!isIncoming && ficaDesc.Contains(StaticCode.AssetAsFiCaStatement) && StaticCode.activeUserRole.AddNewAsset == true)
                     {
                         AssetTbl newAssetByFoundCode = new AssetTbl()
                         {

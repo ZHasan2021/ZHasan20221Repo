@@ -223,16 +223,7 @@ namespace AssetManagement.Assets
             getAssetOutOfWorkCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
             moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
-            if (assetToTransact.IsOldOrNewAsset == "جديد")
-            {
                 currentPriceWithDestroyingNumericUpDown.Value = Convert.ToDecimal(StaticCode.CalcActualPriceForAsset(assetToTransact));
-                currentPriceWithDestroyingNumericUpDown.Enabled = false;
-            }
-            else
-            {
-                currentPriceWithDestroyingNumericUpDown.Value = 0;
-                currentPriceWithDestroyingNumericUpDown.Enabled = true;
-            }
             assetItemsQuantityToTransactNumericUpDown_ValueChanged(sender, e);
         }
 

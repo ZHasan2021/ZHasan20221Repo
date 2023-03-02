@@ -1,4 +1,5 @@
 ﻿using AssetManagement.AuxTables;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -275,7 +276,19 @@ namespace AssetManagement.Finance
                     }
                 }
 
-                List<int> subDeptList = StaticCode.GetAssetsSubDeptsOfActiveUser();
+                ExcelPackage impEp = new ExcelPackage(new FileInfo(importedExcelFilePath));
+                ExcelWorkbook impWb = impEp.Workbook;
+                if (!impWb.Worksheets.Any(ws1 => ws1.Name == "AssetTbl" || ws1.Name == "FinancialIremTbl"))
+                {
+                    mainAlertControl.Show(this, "الملف لا يحوي أوراق عمل خاصة بالأصول أو السجلات المالية، لا يمكن المتابعة", StaticCode.ApplicationTitle);
+                    if (decryptImportedFileCheckBox.Checked)
+                    {
+                        if (File.Exists(importedExcelFilePath))
+                            File.Delete(importedExcelFilePath);
+                    }
+                }
+
+                List<int> subDeptList = StaticCode.mainDbContext.SubDepartmentTbls.Select(sdpt1 => sdpt1.ID).ToList();
                 if (importBySubDepartmentRadioButton.Checked)
                     subDeptList.Add(Convert.ToInt32(importBySectionLookUpEdit.EditValue));
                 else if (importByDepartmentRadioButton.Checked)
@@ -293,7 +306,7 @@ namespace AssetManagement.Finance
                 List<string> invalideFinancialItems = new List<string>();
                 StaticCode.ImportDataFromExcel(importedExcelFilePath, subDeptList, out newAssets, out updatedAssets, out invalideAssets, out newFinancialItems, out updatedFinancialItems, out invalideFinancialItems);
 
-                string importReport = $"الاستيراد من قاعدة بيانات:\r\nالأصول الجديدة ({newAssets.Count}): {String.Join(",", newAssets.ToArray())}\r\nالأصول المحدثة ({updatedAssets.Count}): {String.Join(",", updatedAssets.ToArray())}\r\nالأصول ذات بيانات خاطئة ({invalideAssets.Count}): {String.Join(",", invalideAssets.ToArray())}\r\nالسجلات المالية الجديدة ({newFinancialItems.Count}): {String.Join(",", newFinancialItems.ToArray())}\r\nالسجلات المالية المحدثة ({updatedFinancialItems.Count}): {String.Join(",", updatedFinancialItems.ToArray())}\r\nالسجلات المالية ذات بيانات خاطئة ({invalideFinancialItems.Count}): {String.Join(",", invalideFinancialItems.ToArray())}";
+                string importReport = $"الاستيراد من قاعدة بيانات:\r\nالأصول المضافة ({newAssets.Count}): {String.Join(",", newAssets.ToArray())}\r\nالأصول المحدثة ({updatedAssets.Count}): {String.Join(",", updatedAssets.ToArray())}\r\nالأصول ذات بيانات خاطئة ({invalideAssets.Count}): {String.Join(",", invalideAssets.ToArray())}\r\nالسجلات المالية المضافة ({newFinancialItems.Count}): {String.Join(",", newFinancialItems.ToArray())}\r\nالسجلات المالية المحدثة ({updatedFinancialItems.Count}): {String.Join(",", updatedFinancialItems.ToArray())}\r\nالسجلات المالية ذات بيانات خاطئة ({invalideFinancialItems.Count}): {String.Join(",", invalideFinancialItems.ToArray())}";
 
                 ImportExportTbl newImport = new ImportExportTbl()
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Columns;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,8 @@ namespace AssetManagement.AuxTables
             mainCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewMainCategory == true;
 
             this.MinimumSize = this.Size;
+
+            colMainCategoryName.FilterInfo = new DevExpress.XtraGrid.Columns.ColumnFilterInfo("[MainCategoryName] <> 'بيانات الأصل ناقصة'");
         }
 
         private void mainCategoryTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -61,21 +64,6 @@ namespace AssetManagement.AuxTables
         {
             ManageMinorCategoryTblForm mica = new ManageMinorCategoryTblForm();
             mica.ShowDialog();
-        }
-
-        private void addAllMicaToFicaToolStripButton_Click(object sender, EventArgs e)
-        {
-            foreach (var oneMica in StaticCode.mainDbContext.MainCategoryTbls.Select(mica1 => mica1))
-            {
-                if (StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fica1 => fica1.FinancialItemCategoryName == oneMica.MainCategoryName) == 0)
-                    StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(new FinancialItemCategoryTbl()
-                    {
-                        FinancialItemCategoryName = oneMica.MainCategoryName,
-                        FinancialItemCategoryDetails = "أصول ثابتة"
-                    });
-            }
-            StaticCode.mainDbContext.SubmitChanges();
-            mainAlertControl.Show(this, "تم إضافة كل الفئات الرئيسية غير المضافة مسبقاً", StaticCode.ApplicationTitle);
         }
     }
 }

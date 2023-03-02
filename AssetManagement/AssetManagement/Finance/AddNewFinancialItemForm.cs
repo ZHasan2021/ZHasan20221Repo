@@ -403,7 +403,7 @@ namespace AssetManagement.Finance
 
                 mainAlertControl.Show(this, $"تمت {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي بنجاح", StaticCode.ApplicationTitle);
             }
-            catch (Exception ex)
+            catch
             {
                 mainAlertControl.Show(this, $"خطأ في {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي، حاول لاحقاً", StaticCode.ApplicationTitle);
             }

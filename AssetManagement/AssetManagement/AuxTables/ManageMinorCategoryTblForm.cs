@@ -28,6 +28,8 @@ namespace AssetManagement.AuxTables
             minorCategoryGridControl.EmbeddedNavigator.Buttons.Append.Visible = StaticCode.activeUserRole.AddNewMinorCategory == true;
 
             this.MinimumSize = this.Size;
+
+            colMinorCategoryName.FilterInfo = new DevExpress.XtraGrid.Columns.ColumnFilterInfo("[MinorCategoryName] <> 'بيانات الأصل ناقصة'");
         }
 
         private void minorCategoryTblBindingNavigatorSaveItem_Click(object sender, EventArgs e)

@@ -244,6 +244,10 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             searchResults = StaticCode.mainDbContext.AssetVws.Select(asv1 => asv1);
+
+            chartBar.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            chartFullStackedBar.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -283,7 +287,6 @@ namespace AssetManagement.Assets
             };
             foreach (ChartControl oneChart in chartsIncluded)
             {
-                oneChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
                 oneChart.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.ArgumentDataMember = groupFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
@@ -525,35 +528,6 @@ namespace AssetManagement.Assets
                 }
                 searchResults = searchResults.Where(ast => ast.تاريخ_الإدخال != null && ast.تاريخ_الإدخال >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.تاريخ_الإدخال <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
             }
-
-            //if (searchResults.Count() == 0)
-            //{
-            //    mainAlertControl.Show(this, "لا توجد نتائج", StaticCode.ApplicationTitle);
-            //}
-            //else
-            //{
-            //    List<int> IDsIncluded = searchResults.Select(as1 => as1.معرف_الأصل).ToList();
-            //    string plusQry = "";
-            //    foreach (int oneID in IDsIncluded)
-            //        plusQry += oneID + ", ";
-            //    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
-            //    AssetVwDataTable customVw = this.assetMngDbDataSet.AssetVw;
-            //    for (int i = 0; i < customVw.Rows.Count; i++)
-            //    {
-            //        try
-            //        {
-            //            var oneRow = customVw.Rows[i];
-            //            object[] oneRowItemArray = oneRow.ItemArray;
-            //            if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
-            //                customVw.Rows.Remove(oneRow);
-            //        }
-            //        catch
-            //        {
-            //            continue;
-            //        }
-            //    }
-            //    this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
-            //}
 
             showStatsBarButtonItem_ItemClick(sender, null);
         }

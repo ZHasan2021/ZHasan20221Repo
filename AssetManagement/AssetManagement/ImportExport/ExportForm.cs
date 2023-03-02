@@ -342,8 +342,26 @@ namespace AssetManagement.Finance
                             }
                         }
                         ws.Cells["A1"].LoadFromDataTable(oneDt, true, OfficeOpenXml.Table.TableStyles.Light19);
-                        pck.Save();
                     }
+
+                    foreach (ExcelWorksheet oneWs in pck.Workbook.Worksheets)
+                    {
+                        if (oneWs.Name != "AssetMovementTbl" && oneWs.Name != "AssetTransactionTbl")
+                            continue;
+
+                        int assetIDCol = oneWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList().IndexOf("AssetID");
+                        if (assetIDCol == -1)
+                            continue;
+                        for (int iRow = 2; iRow <= oneWs.Dimension.End.Row; iRow++)
+                        {
+                            Application.DoEvents();
+
+                            int oneAssetID = Convert.ToInt32(oneWs.Cells[iRow, assetIDCol + 1].Value);
+                            string oneAssetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == oneAssetID).AssetCode;
+                            oneWs.Cells[iRow, assetIDCol + 1].Value = oneAssetCode;
+                        }
+                    }
+                    pck.Save();
                 }
                 if (encryptExportedFileCheckBox.Checked)
                 {

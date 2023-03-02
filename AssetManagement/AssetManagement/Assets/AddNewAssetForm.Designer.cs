@@ -44,7 +44,6 @@ namespace AssetManagement.Assets
             this.correctPictureBox1 = new System.Windows.Forms.PictureBox();
             this.incorrectPictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorSummaryLabel1 = new System.Windows.Forms.Label();
-            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isNewOrOldAssetPanel = new System.Windows.Forms.Panel();
             this.isNewAssetRadioButton = new System.Windows.Forms.RadioButton();
             this.isOldAssetRadioButton = new System.Windows.Forms.RadioButton();
@@ -134,6 +133,7 @@ namespace AssetManagement.Assets
             this.carManufacturingYearLabel = new System.Windows.Forms.Label();
             this.carPanelNumberTextBox = new System.Windows.Forms.TextBox();
             this.carPanelNumberLabel = new System.Windows.Forms.Label();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
@@ -156,7 +156,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             this.isNewOrOldAssetPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelTblBindingSource)).BeginInit();
@@ -190,6 +189,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
             this.assetCarLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -422,11 +422,6 @@ namespace AssetManagement.Assets
             this.errorSummaryLabel1.Name = "errorSummaryLabel1";
             this.errorSummaryLabel1.Size = new System.Drawing.Size(0, 21);
             this.errorSummaryLabel1.TabIndex = 256;
-            // 
-            // subDepartmentTblBindingSource
-            // 
-            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet1;
             // 
             // isNewOrOldAssetPanel
             // 
@@ -1466,6 +1461,11 @@ namespace AssetManagement.Assets
             this.carPanelNumberLabel.TabIndex = 0;
             this.carPanelNumberLabel.Text = "رقم لوحة السيارة:";
             // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet1;
+            // 
             // minorCategoryTblTableAdapter
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
@@ -1582,7 +1582,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.correctPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incorrectPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             this.isNewOrOldAssetPanel.ResumeLayout(false);
             this.isNewOrOldAssetPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelLookUpEdit.Properties)).EndInit();
@@ -1620,6 +1619,7 @@ namespace AssetManagement.Assets
             this.assetCarLandWizardPage.ResumeLayout(false);
             this.assetCarLandWizardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource1)).EndInit();
             this.ResumeLayout(false);
 

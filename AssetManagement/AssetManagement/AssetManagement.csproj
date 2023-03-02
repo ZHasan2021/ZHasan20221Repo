@@ -783,6 +783,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\91098242.png" />
+    <None Include="Resources\26364362.png" />
+    <None Include="Resources\52790_table_windows_icon2.png" />
+    <None Include="Resources\29126282.png" />
     <None Include="Resources\9109824.png" />
     <None Include="Resources\2636436.png" />
     <None Include="Resources\968753.png" />

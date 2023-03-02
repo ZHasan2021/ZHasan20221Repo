@@ -186,7 +186,7 @@ namespace AssetManagement.AuxTables
             // 
             // colDestructionRate
             // 
-            this.colDestructionRate.Caption = "معدل الإهلاك";
+            this.colDestructionRate.Caption = "معدل الإهلاك (%)";
             this.colDestructionRate.FieldName = "DestructionRate";
             this.colDestructionRate.MinWidth = 25;
             this.colDestructionRate.Name = "colDestructionRate";

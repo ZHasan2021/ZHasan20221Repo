@@ -56,7 +56,6 @@ namespace AssetManagement.AuxTables
             this.mainCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.mainCategoryTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.manageMinorCategoryTblToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.addAllMicaToFicaToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -284,7 +283,6 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.mainCategoryTblBindingNavigatorSaveItem,
-            this.addAllMicaToFicaToolStripButton,
             this.manageMinorCategoryTblToolStripButton});
             this.mainCategoryTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.mainCategoryTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
@@ -306,15 +304,6 @@ namespace AssetManagement.AuxTables
             this.manageMinorCategoryTblToolStripButton.Text = "إدارة جدول الفئات الفرعية";
             this.manageMinorCategoryTblToolStripButton.Visible = false;
             this.manageMinorCategoryTblToolStripButton.Click += new System.EventHandler(this.manageMinorCategoryTblToolStripButton_Click);
-            // 
-            // addAllMicaToFicaToolStripButton
-            // 
-            this.addAllMicaToFicaToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("addAllMicaToFicaToolStripButton.Image")));
-            this.addAllMicaToFicaToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addAllMicaToFicaToolStripButton.Name = "addAllMicaToFicaToolStripButton";
-            this.addAllMicaToFicaToolStripButton.Size = new System.Drawing.Size(263, 44);
-            this.addAllMicaToFicaToolStripButton.Text = "إضافة الفئات الرئيسية كبنود مالية";
-            this.addAllMicaToFicaToolStripButton.Click += new System.EventHandler(this.addAllMicaToFicaToolStripButton_Click);
             // 
             // ManageMainCategoryTblForm
             // 
@@ -367,6 +356,5 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Columns.GridColumn colMainCategoryName;
         private DevExpress.XtraGrid.Columns.GridColumn colMainCategoryDescription;
         private System.Windows.Forms.ToolStripButton manageMinorCategoryTblToolStripButton;
-        private System.Windows.Forms.ToolStripButton addAllMicaToFicaToolStripButton;
     }
 }

@@ -442,9 +442,6 @@ namespace AssetManagement.Finance
             this.colالعملة,
             this.colملاحظاتإضافية});
             this.financialItemGridView.GridControl = this.financialItemCategoryGridControl;
-            this.financialItemGridView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الوارد", null, "(مجموع المبالغ الواردة={0:0.##})"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "المبلغ الصادر", null, "(مجموع المبالغ الصادرة={0:0.##})")});
             this.financialItemGridView.Name = "financialItemGridView";
             this.financialItemGridView.OptionsBehavior.Editable = false;
             this.financialItemGridView.OptionsView.RowAutoHeight = true;
