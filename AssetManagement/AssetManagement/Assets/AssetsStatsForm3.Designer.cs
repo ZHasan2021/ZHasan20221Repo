@@ -33,7 +33,6 @@ namespace AssetManagement.Assets
             DevExpress.XtraCharts.FullStackedBarSeriesLabel fullStackedBarSeriesLabel1 = new DevExpress.XtraCharts.FullStackedBarSeriesLabel();
             DevExpress.XtraCharts.FullStackedBarSeriesView fullStackedBarSeriesView1 = new DevExpress.XtraCharts.FullStackedBarSeriesView();
             DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             DevExpress.XtraCharts.ChartTitle chartTitle2 = new DevExpress.XtraCharts.ChartTitle();
             this.toolbarFormControl1 = new DevExpress.XtraBars.ToolbarForm.ToolbarFormControl();
@@ -62,21 +61,15 @@ namespace AssetManagement.Assets
             this.controlContainer1 = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchByCurrencyCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.searchByCurrencyLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByMinorCategoryCheckBox = new System.Windows.Forms.CheckBox();
             this.searchAssetDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.searchByPurchaseDateCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByMinorCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchBySectionCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByMainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByInsertionDateCheckBox = new System.Windows.Forms.CheckBox();
             this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByPurchaseDatePanel = new System.Windows.Forms.Panel();
@@ -85,13 +78,13 @@ namespace AssetManagement.Assets
             this.searchByPurchaseDateLabel_From = new System.Windows.Forms.Label();
             this.searchByPurchaseDateDateEdit_From = new DevExpress.XtraEditors.DateEdit();
             this.searchByDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
-            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchByMainCategoryCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
             this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
             this.searchByInsertionDateDateEdit_To = new DevExpress.XtraEditors.DateEdit();
             this.searchByInsertionDateLabel_From = new System.Windows.Forms.Label();
             this.searchByInsertionDateDateEdit_From = new DevExpress.XtraEditors.DateEdit();
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
@@ -99,14 +92,21 @@ namespace AssetManagement.Assets
             this.navigationPage_FullStackedBarChart = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.chartFullStackedBar = new DevExpress.XtraCharts.ChartControl();
             this.navigationPage_BarChart = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.chartBar = new DevExpress.XtraCharts.ChartControl();
+            this.chartControl_Bar = new DevExpress.XtraCharts.ChartControl();
+            this.assetStatVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetStatVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetStatVwTableAdapter();
+            this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
+            this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter();
-            this.minorCategoryVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.minorCategoryVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter();
+            this.minorCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.minorCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter();
+            this.currencyTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
@@ -121,28 +121,22 @@ namespace AssetManagement.Assets
             this.customSearchDockPanel.SuspendLayout();
             this.controlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             this.searchByPurchaseDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             this.searchByInsertionDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFullStackedBarNavigationPane)).BeginInit();
             this.chartFullStackedBarNavigationPane.SuspendLayout();
@@ -151,10 +145,16 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(fullStackedBarSeriesLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(fullStackedBarSeriesView1)).BeginInit();
             this.navigationPage_BarChart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl_Bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetStatVwBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toolbarFormControl1
@@ -265,10 +265,9 @@ namespace AssetManagement.Assets
             "الفئة الرئيسية",
             "الفئة الفرعية",
             "حالة الأصل الآنية",
-            "عملة الشراء",
+            "عملة سعر الشراء",
             "الساحة",
-            "سنة الشراء",
-            "سنة إدراج الأصل في السجلات"});
+            "سنة الشراء"});
             this.groupFieldRepositoryItemComboBox.Name = "groupFieldRepositoryItemComboBox";
             // 
             // seriesFieldBarEditItem
@@ -294,10 +293,9 @@ namespace AssetManagement.Assets
             "الفئة الرئيسية",
             "الفئة الفرعية",
             "حالة الأصل الآنية",
-            "عملة الشراء",
+            "عملة سعر الشراء",
             "الساحة",
-            "سنة الشراء",
-            "سنة إدراج الأصل في السجلات"});
+            "سنة الشراء"});
             this.seriesFieldBRepositoryItemComboBox.Name = "seriesFieldBRepositoryItemComboBox";
             // 
             // showStatsBarButtonItem
@@ -397,13 +395,13 @@ namespace AssetManagement.Assets
             this.chartOptionsDockPanel.Controls.Add(this.dockPanel1_Container);
             this.chartOptionsDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.chartOptionsDockPanel.ID = new System.Guid("330d2073-b58f-431b-9ff4-080a6a68bb5a");
-            this.chartOptionsDockPanel.Location = new System.Drawing.Point(26, 110);
+            this.chartOptionsDockPanel.Location = new System.Drawing.Point(26, 0);
             this.chartOptionsDockPanel.Name = "chartOptionsDockPanel";
             this.chartOptionsDockPanel.Options.ShowCloseButton = false;
             this.chartOptionsDockPanel.OriginalSize = new System.Drawing.Size(386, 200);
             this.chartOptionsDockPanel.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.chartOptionsDockPanel.SavedIndex = 0;
-            this.chartOptionsDockPanel.Size = new System.Drawing.Size(386, 675);
+            this.chartOptionsDockPanel.Size = new System.Drawing.Size(386, 846);
             this.chartOptionsDockPanel.Text = "خيارات العرض";
             this.chartOptionsDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
             // 
@@ -411,7 +409,7 @@ namespace AssetManagement.Assets
             // 
             this.dockPanel1_Container.Location = new System.Drawing.Point(6, 32);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(376, 639);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(376, 810);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // customSearchDockPanel
@@ -483,16 +481,6 @@ namespace AssetManagement.Assets
             this.searchBySectionLookUpEdit.TabIndex = 510;
             this.searchBySectionLookUpEdit.Visible = false;
             // 
-            // sectionTblBindingSource
-            // 
-            this.sectionTblBindingSource.DataMember = "SectionTbl";
-            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // searchByCurrencyLookUpEdit
             // 
             this.searchByCurrencyLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -512,11 +500,6 @@ namespace AssetManagement.Assets
             this.searchByCurrencyLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchByCurrencyLookUpEdit.TabIndex = 522;
             this.searchByCurrencyLookUpEdit.Visible = false;
-            // 
-            // currencyTblBindingSource
-            // 
-            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
-            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // searchByMinorCategoryCheckBox
             // 
@@ -579,11 +562,6 @@ namespace AssetManagement.Assets
             this.searchByMinorCategoryLookUpEdit.TabIndex = 518;
             this.searchByMinorCategoryLookUpEdit.Visible = false;
             // 
-            // minorCategoryTblBindingSource
-            // 
-            this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
-            this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // searchByDepartmentCheckBox
             // 
             this.searchByDepartmentCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -618,11 +596,6 @@ namespace AssetManagement.Assets
             this.searchBySubDepartmentLookUpEdit.TabIndex = 514;
             this.searchBySubDepartmentLookUpEdit.Visible = false;
             // 
-            // subDepartmentTblBindingSource
-            // 
-            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
-            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // searchBySectionCheckBox
             // 
             this.searchBySectionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -656,11 +629,6 @@ namespace AssetManagement.Assets
             this.searchByMainCategoryLookUpEdit.Size = new System.Drawing.Size(234, 28);
             this.searchByMainCategoryLookUpEdit.TabIndex = 516;
             this.searchByMainCategoryLookUpEdit.Visible = false;
-            // 
-            // mainCategoryTblBindingSource
-            // 
-            this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
-            this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // searchByInsertionDateCheckBox
             // 
@@ -770,11 +738,6 @@ namespace AssetManagement.Assets
             this.searchByDepartmentLookUpEdit.TabIndex = 512;
             this.searchByDepartmentLookUpEdit.Visible = false;
             // 
-            // departmentTblBindingSource
-            // 
-            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
-            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // searchByMainCategoryCheckBox
             // 
             this.searchByMainCategoryCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -848,6 +811,11 @@ namespace AssetManagement.Assets
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchByInsertionDateDateEdit_From.Size = new System.Drawing.Size(156, 28);
             this.searchByInsertionDateDateEdit_From.TabIndex = 275;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // mainAlertControl
             // 
@@ -926,79 +894,93 @@ namespace AssetManagement.Assets
             // navigationPage_BarChart
             // 
             this.navigationPage_BarChart.Caption = "Bar chart";
-            this.navigationPage_BarChart.Controls.Add(this.chartBar);
+            this.navigationPage_BarChart.Controls.Add(this.chartControl_Bar);
             this.navigationPage_BarChart.Name = "navigationPage_BarChart";
             this.navigationPage_BarChart.Size = new System.Drawing.Size(662, 626);
             // 
-            // chartBar
+            // chartControl_Bar
             // 
-            this.chartBar.AnimationStartMode = DevExpress.XtraCharts.ChartAnimationMode.OnLoad;
-            this.chartBar.BorderOptions.Visibility = DevExpress.Utils.DefaultBoolean.False;
-            this.chartBar.CrosshairEnabled = DevExpress.Utils.DefaultBoolean.False;
-            this.chartBar.CrosshairOptions.CrosshairLabelMode = DevExpress.XtraCharts.CrosshairLabelMode.ShowForNearestSeries;
-            this.chartBar.CrosshairOptions.LinesMode = DevExpress.XtraCharts.CrosshairLinesMode.Free;
-            xyDiagram1.AxisX.Tickmarks.MinorVisible = false;
-            xyDiagram1.AxisX.Title.Text = "States";
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.Interlaced = true;
-            xyDiagram1.AxisY.NumericScaleOptions.AutoGrid = false;
-            xyDiagram1.AxisY.Title.Text = "Millions of Dollars";
-            xyDiagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.EnableAxisXScrolling = true;
-            xyDiagram1.EnableAxisXZooming = true;
-            xyDiagram1.EnableAxisYScrolling = true;
-            xyDiagram1.EnableAxisYZooming = true;
-            xyDiagram1.LabelsResolveOverlappingMinIndent = 0;
-            this.chartBar.Diagram = xyDiagram1;
-            this.chartBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartBar.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Right;
-            this.chartBar.Legend.Name = "Default Legend";
-            this.chartBar.Location = new System.Drawing.Point(0, 0);
-            this.chartBar.Margin = new System.Windows.Forms.Padding(4);
-            this.chartBar.Name = "chartBar";
-            this.chartBar.SeriesDataMember = "Year";
-            this.chartBar.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.chartBar.SeriesTemplate.CrosshairLabelPattern = "Year: {S}\nGSP: ${V}M";
-            sideBySideBarSeriesLabel1.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.Default;
-            this.chartBar.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
-            this.chartBar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            this.chartBar.SeriesTemplate.SeriesDataMember = "Year";
-            this.chartBar.Size = new System.Drawing.Size(662, 626);
-            this.chartBar.TabIndex = 2;
-            this.chartBar.TabStop = false;
-            chartTitle2.Text = "DevAV Sales by Regions";
-            this.chartBar.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
+            this.chartControl_Bar.DataSource = this.assetStatVwBindingSource;
+            this.chartControl_Bar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControl_Bar.Location = new System.Drawing.Point(0, 0);
+            this.chartControl_Bar.Name = "chartControl_Bar";
+            this.chartControl_Bar.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            sideBySideBarSeriesLabel1.Position = DevExpress.XtraCharts.BarSeriesLabelPosition.TopInside;
+            sideBySideBarSeriesLabel1.TextPattern = "{A} - {V} $";
+            this.chartControl_Bar.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
+            this.chartControl_Bar.SeriesTemplate.QualitativeSummaryOptions.SummaryFunction = "SUM([سعر الشراء])";
+            this.chartControl_Bar.SeriesTemplate.ToolTipHintDataMember = "العدد";
+            this.chartControl_Bar.SeriesTemplate.ValueDataMembersSerializable = "سعر الشراء";
+            this.chartControl_Bar.Size = new System.Drawing.Size(662, 626);
+            this.chartControl_Bar.TabIndex = 1;
+            chartTitle2.Text = "Side-by-side Chart";
+            chartTitle2.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            this.chartControl_Bar.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
             chartTitle2});
+            // 
+            // assetStatVwBindingSource
+            // 
+            this.assetStatVwBindingSource.DataMember = "AssetStatVw";
+            this.assetStatVwBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSetBindingSource
+            // 
+            this.assetMngDbDataSetBindingSource.DataSource = this.assetMngDbDataSet;
+            this.assetMngDbDataSetBindingSource.Position = 0;
+            // 
+            // assetStatVwTableAdapter
+            // 
+            this.assetStatVwTableAdapter.ClearBeforeFill = true;
+            // 
+            // sectionTblBindingSource
+            // 
+            this.sectionTblBindingSource.DataMember = "SectionTbl";
+            this.sectionTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // sectionTblTableAdapter
             // 
             this.sectionTblTableAdapter.ClearBeforeFill = true;
             // 
+            // departmentTblBindingSource
+            // 
+            this.departmentTblBindingSource.DataMember = "DepartmentTbl";
+            this.departmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // departmentTblTableAdapter
             // 
             this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // subDepartmentTblBindingSource
+            // 
+            this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
+            this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // subDepartmentTblTableAdapter
             // 
             this.subDepartmentTblTableAdapter.ClearBeforeFill = true;
             // 
+            // mainCategoryTblBindingSource
+            // 
+            this.mainCategoryTblBindingSource.DataMember = "MainCategoryTbl";
+            this.mainCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // mainCategoryTblTableAdapter
             // 
             this.mainCategoryTblTableAdapter.ClearBeforeFill = true;
             // 
-            // minorCategoryVwBindingSource
+            // minorCategoryTblBindingSource
             // 
-            this.minorCategoryVwBindingSource.DataMember = "MinorCategoryVw";
-            this.minorCategoryVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // minorCategoryVwTableAdapter
-            // 
-            this.minorCategoryVwTableAdapter.ClearBeforeFill = true;
+            this.minorCategoryTblBindingSource.DataMember = "MinorCategoryTbl";
+            this.minorCategoryTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // minorCategoryTblTableAdapter
             // 
             this.minorCategoryTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // currencyTblBindingSource
+            // 
+            this.currencyTblBindingSource.DataMember = "CurrencyTbl";
+            this.currencyTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // currencyTblTableAdapter
             // 
@@ -1039,16 +1021,10 @@ namespace AssetManagement.Assets
             this.controlContainer1.ResumeLayout(false);
             this.controlContainer1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySectionLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByCurrencyLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMinorCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByMainCategoryLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
             this.searchByPurchaseDatePanel.ResumeLayout(false);
             this.searchByPurchaseDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1056,13 +1032,13 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByPurchaseDateDateEdit_From.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByDepartmentLookUpEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
             this.searchByInsertionDatePanel.ResumeLayout(false);
             this.searchByInsertionDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_From.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFullStackedBarNavigationPane)).EndInit();
             this.chartFullStackedBarNavigationPane.ResumeLayout(false);
@@ -1071,10 +1047,16 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(fullStackedBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartFullStackedBar)).EndInit();
             this.navigationPage_BarChart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl_Bar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetStatVwBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minorCategoryTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currencyTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1103,7 +1085,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
         private DevExpress.XtraBars.Navigation.NavigationPane chartFullStackedBarNavigationPane;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage_FullStackedBarChart;
-        private DevExpress.XtraCharts.ChartControl chartFullStackedBar;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage_BarChart;
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
@@ -1114,7 +1095,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraBars.BarEditItem seriesFieldBarEditItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox seriesFieldBRepositoryItemComboBox;
         private DevExpress.XtraBars.BarButtonItem showStatsBarButtonItem;
-        private DevExpress.XtraCharts.ChartControl chartBar;
         private System.Windows.Forms.CheckBox searchByCurrencyCheckBox;
         private DevExpress.XtraEditors.LookUpEdit searchBySectionLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit searchByCurrencyLookUpEdit;
@@ -1140,6 +1120,11 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.DateEdit searchByInsertionDateDateEdit_To;
         private System.Windows.Forms.Label searchByInsertionDateLabel_From;
         private DevExpress.XtraEditors.DateEdit searchByInsertionDateDateEdit_From;
+        private DevExpress.XtraCharts.ChartControl chartFullStackedBar;
+        private DevExpress.XtraCharts.ChartControl chartControl_Bar;
+        private System.Windows.Forms.BindingSource assetMngDbDataSetBindingSource;
+        private System.Windows.Forms.BindingSource assetStatVwBindingSource;
+        private AssetMngDbDataSetTableAdapters.AssetStatVwTableAdapter assetStatVwTableAdapter;
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
         private System.Windows.Forms.BindingSource departmentTblBindingSource;
@@ -1148,8 +1133,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.BindingSource mainCategoryTblBindingSource;
         private AssetMngDbDataSetTableAdapters.MainCategoryTblTableAdapter mainCategoryTblTableAdapter;
-        private System.Windows.Forms.BindingSource minorCategoryVwBindingSource;
-        private AssetMngDbDataSetTableAdapters.MinorCategoryVwTableAdapter minorCategoryVwTableAdapter;
         private System.Windows.Forms.BindingSource minorCategoryTblBindingSource;
         private AssetMngDbDataSetTableAdapters.MinorCategoryTblTableAdapter minorCategoryTblTableAdapter;
         private System.Windows.Forms.BindingSource currencyTblBindingSource;

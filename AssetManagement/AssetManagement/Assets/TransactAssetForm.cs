@@ -223,7 +223,7 @@ namespace AssetManagement.Assets
             getAssetOutOfWorkCheckBox.Checked = false;
             assetNotesTextBox.Text = "";
             moneyAmountNumericUpDown.Value = currentPriceWithDestroyingNumericUpDown.Value = 0;
-                currentPriceWithDestroyingNumericUpDown.Value = Convert.ToDecimal(StaticCode.CalcActualPriceForAsset(assetToTransact));
+            currentPriceWithDestroyingNumericUpDown.Value = Convert.ToDecimal(StaticCode.CalcActualPriceForAsset(assetToTransact));
             assetItemsQuantityToTransactNumericUpDown_ValueChanged(sender, e);
         }
 
