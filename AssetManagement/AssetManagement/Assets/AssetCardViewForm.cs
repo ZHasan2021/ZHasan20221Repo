@@ -14,6 +14,7 @@ namespace AssetManagement.Assets
     public partial class AssetCardViewForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int assetID = 0;
+        int cardType = 0;
         public AssetCardViewForm()
         {
             InitializeComponent();
@@ -22,6 +23,13 @@ namespace AssetManagement.Assets
         public AssetCardViewForm(int assetIDPrm)
         {
             this.assetID = assetIDPrm;
+            InitializeComponent();
+        }
+
+        public AssetCardViewForm(int assetIDPrm, int cardTypePrm)
+        {
+            this.assetID = assetIDPrm;
+            this.cardType = cardTypePrm;
             InitializeComponent();
         }
 
@@ -52,6 +60,21 @@ namespace AssetManagement.Assets
                     }
                 }
                 this.assetVw_AllTableAdapter.FillByQuery(customVw, plusQry);
+            }
+
+            switch (cardType)
+            {
+                case 1:
+                    colاسمالمالك.Visible = colالمستغلمنه.Visible = colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = colرقملوحةالمركبة.Visible = false;
+                    break;
+                case 2:
+                    colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colاللون.Visible = colالموديل.Visible = colاللون.Visible = false;
+                    break;
+                case 3:
+                    colالمستغلمنه.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = false;
+                    break;
+                default:
+                    break;
             }
         }
 

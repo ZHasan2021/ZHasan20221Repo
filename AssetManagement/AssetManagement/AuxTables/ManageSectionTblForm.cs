@@ -56,5 +56,14 @@ namespace AssetManagement.AuxTables
             e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
         }
+
+        private void sectionTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "الدوائر" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            sectionGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الدوائر" });
+            mainAlertControl.Show(this, "تم تصدير بيانات الدوائر إلى اكسل", StaticCode.ApplicationTitle);
+        }
     }
 }

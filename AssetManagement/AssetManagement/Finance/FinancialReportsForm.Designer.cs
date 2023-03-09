@@ -137,6 +137,7 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.searchXtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.exportExpensesAnalysisFormBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
@@ -316,7 +317,8 @@ namespace AssetManagement.Finance
             // 
             this.exportFinancialReportToExcelPopupMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.exportStandardFormBarButtonItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.exportDetailedFormBarButtonItem)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportDetailedFormBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.exportExpensesAnalysisFormBarButtonItem)});
             this.exportFinancialReportToExcelPopupMenu.Manager = this.barManager1;
             this.exportFinancialReportToExcelPopupMenu.Name = "exportFinancialReportToExcelPopupMenu";
             // 
@@ -343,8 +345,9 @@ namespace AssetManagement.Finance
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.exportStandardFormBarButtonItem,
-            this.exportDetailedFormBarButtonItem});
-            this.barManager1.MaxItemId = 2;
+            this.exportDetailedFormBarButtonItem,
+            this.exportExpensesAnalysisFormBarButtonItem});
+            this.barManager1.MaxItemId = 3;
             // 
             // barDockControlTop
             // 
@@ -1312,6 +1315,13 @@ namespace AssetManagement.Finance
             this.progressPanel1.Text = "جار إعداد التقارير المالية";
             this.progressPanel1.Visible = false;
             // 
+            // exportExpensesAnalysisFormBarButtonItem
+            // 
+            this.exportExpensesAnalysisFormBarButtonItem.Caption = "تصدير نموذج تحليل المصاريف";
+            this.exportExpensesAnalysisFormBarButtonItem.Id = 2;
+            this.exportExpensesAnalysisFormBarButtonItem.Name = "exportExpensesAnalysisFormBarButtonItem";
+            this.exportExpensesAnalysisFormBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportExpensesAnalysisFormBarButtonItem_ItemClick);
+            // 
             // FinancialReportsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -1496,5 +1506,6 @@ namespace AssetManagement.Finance
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit notesRepositoryItemMemoEdit;
+        private DevExpress.XtraBars.BarButtonItem exportExpensesAnalysisFormBarButtonItem;
     }
 }

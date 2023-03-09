@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace AssetManagement.Assets
             manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
             manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
-            assetFinancialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر");
+            assetFinancialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر" && fica1.FinancialItemCategoryDetails.Contains(StaticCode.AssetAsFiCaStatement));
 
             if (StaticCode.activeUserRole.IsSectionIndependent != true)
             {
@@ -282,6 +283,13 @@ namespace AssetManagement.Assets
                     });
                 }
                 StaticCode.mainDbContext.SubmitChanges();
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCodeTextBox.Text.Trim() + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                foreach (string oneFile in allAttachmentsListBox.Items)
+                {
+                    File.Copy(oneFile, assetFolder + Path.GetFileName(oneFile), true);
+                }
                 this.DialogResult = DialogResult.OK;
                 AssetAdded = true;
                 AssetCode = assetCodeTextBox.Text;
@@ -445,6 +453,28 @@ namespace AssetManagement.Assets
         private void purchasePriceCurrencyLookUpEdit_EditValueChanged(object sender, EventArgs e)
         {
             actualCurrentPriceCurrencyLookUpEdit.EditValue = purchasePriceCurrencyLookUpEdit.EditValue;
+        }
+
+        private void attachFilesBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog assetOFD = new OpenFileDialog();
+            assetOFD.Multiselect = true;
+            if (assetOFD.ShowDialog() != DialogResult.OK)
+                return;
+            foreach (string oneFile in assetOFD.FileNames)
+            {
+                if (!allAttachmentsListBox.Items.Contains(oneFile))
+                    allAttachmentsListBox.Items.Add(oneFile);
+            }
+            clearAllAttchmentsBtn.Enabled = true;
+        }
+
+        private void clearAllAttchmentsBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("هل أنت متأكد؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            allAttachmentsListBox.Items.Clear();
+            clearAllAttchmentsBtn.Enabled = false;
         }
     }
 }

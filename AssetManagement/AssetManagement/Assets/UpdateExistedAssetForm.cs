@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -296,6 +298,13 @@ namespace AssetManagement.Assets
                 currSrchRes.CarChassisNumber = carChassisNumberTextBox.Text.Trim();
                 currSrchRes.CarEngineNumber = carEngineNumberTextBox.Text.Trim();
                 StaticCode.mainDbContext.SubmitChanges();
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCodeTextBox.Text.Trim() + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                foreach (string oneFile in allAttachmentsListBox.Items)
+                {
+                    File.Copy(oneFile, assetFolder + Path.GetFileName(oneFile), true);
+                }
                 Thread.Sleep(500);
                 this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
@@ -364,6 +373,36 @@ namespace AssetManagement.Assets
             mdlFrm.ShowDialog();
 
             this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
+        }
+
+        private void attachFilesBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog assetOFD = new OpenFileDialog();
+            assetOFD.Multiselect = true;
+            if (assetOFD.ShowDialog() != DialogResult.OK)
+                return;
+            foreach (string oneFile in assetOFD.FileNames)
+            {
+                if (!allAttachmentsListBox.Items.Contains(oneFile))
+                    allAttachmentsListBox.Items.Add(oneFile);
+            }
+            clearAllAttchmentsBtn.Enabled = true;
+        }
+
+        private void clearAllAttchmentsBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("هل أنت متأكد؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            allAttachmentsListBox.Items.Clear();
+            clearAllAttchmentsBtn.Enabled = false;
+        }
+
+        private void openAssetFolderBtn_Click(object sender, EventArgs e)
+        {
+            string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCodeTextBox.Text.Trim() + "//";
+            if (!Directory.Exists(assetFolder))
+                Directory.CreateDirectory(assetFolder);
+            Process.Start(assetFolder);
         }
     }
 }

@@ -59,5 +59,14 @@ namespace AssetManagement.AuxTables
             e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
         }
+
+        private void subDepartmentTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "الوحدات" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            subDepartmentGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الوحدات" });
+            mainAlertControl.Show(this, "تم تصدير بيانات الوحدات إلى اكسل", StaticCode.ApplicationTitle);
+        }
     }
 }

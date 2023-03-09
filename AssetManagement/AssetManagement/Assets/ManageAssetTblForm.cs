@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace AssetManagement.Assets
     public partial class ManageAssetTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
+        int cardType = 0;
         IQueryable<AssetTbl> customDS = null;
         string optionalFormTitle = "";
         IQueryable<AssetTbl> filteredAssets = null;
@@ -163,7 +166,7 @@ namespace AssetManagement.Assets
             try
             {
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
-                AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
+                AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID, cardType);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
             }
@@ -346,6 +349,76 @@ namespace AssetManagement.Assets
                 IDsVisible.Add(Convert.ToInt32(assetGridView.GetRowCellValue(i, colمعرفالأصل)));
             }
             filteredAssets = StaticCode.mainDbContext.AssetTbls.Where(asv1 => IDsVisible.Contains(asv1.ID));
+        }
+
+        private void openAssetFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                string assetCode = assetGridView.GetRowCellValue(currRow, colكودالأصل).ToString();
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                Process.Start(assetFolder);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void addFilesToAssetFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                OpenFileDialog assetOFD = new OpenFileDialog();
+                assetOFD.Multiselect = true;
+                if (assetOFD.ShowDialog() != DialogResult.OK)
+                    return;
+                int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                string assetCode = assetGridView.GetRowCellValue(currRow, colكودالأصل).ToString();
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                foreach (string oneFile in assetOFD.FileNames)
+                {
+                    File.Copy(oneFile, assetFolder + Path.GetFileName(oneFile), true);
+                }
+                mainAlertControl.Show(this, $"تم إضافة ({assetOFD.FileNames.Count()}) مرفق/ات", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void generalCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cardType = 1;
+            showAssetCardBarButtonItem_ItemClick(sender, e);
+        }
+
+        private void estatesCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cardType = 2;
+            showAssetCardBarButtonItem_ItemClick(sender, e);
+        }
+
+        private void vehiclesCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cardType = 3;
+            showAssetCardBarButtonItem_ItemClick(sender, e);
         }
     }
 }

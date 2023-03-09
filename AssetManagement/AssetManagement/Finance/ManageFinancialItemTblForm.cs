@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,6 +161,58 @@ namespace AssetManagement.Finance
         private void financialItemGridView_ColumnFilterChanged(object sender, EventArgs e)
         {
             UpdateTotalsAsFiltered();
+        }
+
+        private void openFinancialItemFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
+                string fiItCode = StaticCode.mainDbContext.FinancialItemTbls.Single(fiit1 => fiit1.ID == currFiItID).FinancialItemCode;
+                string fiItFolder = StaticCode.FinancialItemsAttachmentsFolder + fiItCode + "//";
+                if (!Directory.Exists(fiItFolder))
+                    Directory.CreateDirectory(fiItFolder);
+                Process.Start(fiItFolder);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void addFilesToFinancialItemFolderBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                OpenFileDialog assetOFD = new OpenFileDialog();
+                assetOFD.Multiselect = true;
+                if (assetOFD.ShowDialog() != DialogResult.OK)
+                    return;
+                int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
+                string fiItCode = StaticCode.mainDbContext.FinancialItemTbls.Single(fiit1 => fiit1.ID == currFiItID).FinancialItemCode;
+                string fiItFolder = StaticCode.FinancialItemsAttachmentsFolder + fiItCode + "//";
+                if (!Directory.Exists(fiItFolder))
+                    Directory.CreateDirectory(fiItFolder);
+                foreach (string oneFile in assetOFD.FileNames)
+                {
+                    File.Copy(oneFile, fiItFolder + Path.GetFileName(oneFile), true);
+                }
+                mainAlertControl.Show(this, $"تم إضافة ({assetOFD.FileNames.Count()}) مرفق/ات", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
+            }
         }
     }
 }

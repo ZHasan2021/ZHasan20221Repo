@@ -52,6 +52,17 @@ namespace AssetManagement.Assets
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentTbl' table. You can move, or remove it, as needed.
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                toSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                toSectionLookUpEdit.Enabled = false;
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                toDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                toDepartmentLookUpEdit.Enabled = false;
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

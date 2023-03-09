@@ -14,7 +14,41 @@ namespace AssetManagement.Assets
 {
     public partial class AssetsStatsForm3 : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
-        IQueryable<AssetVw> searchResults = null;
+        IQueryable<AssetStatVw> searchResults = null;
+
+        void LoadAssets()
+        {
+            if (searchResults != null)
+            {
+                List<int> IDsIncluded = searchResults.Select(as1 => as1.معرف_الأصل).ToList();
+                string plusQry = "";
+                if (IDsIncluded.Count() == 0)
+                    plusQry = " WHERE 1 > 2;";
+                else
+                {
+                    foreach (int oneID in IDsIncluded)
+                        plusQry += oneID + ", ";
+                    plusQry = $" WHERE [معرف الأصل] IN ({ plusQry.Trim().Trim(',').Trim()});";
+                }
+                AssetStatVwDataTable customVw = this.assetMngDbDataSet.AssetStatVw;
+                for (int i = 0; i < customVw.Rows.Count; i++)
+                {
+                    try
+                    {
+                        var oneRow = customVw.Rows[i];
+                        object[] oneRowItemArray = oneRow.ItemArray;
+                        if (IDsIncluded.IndexOf(Convert.ToInt32(oneRowItemArray[0])) == -1)
+                            customVw.Rows.Remove(oneRow);
+                    }
+                    catch
+                    {
+                        this.assetStatVwTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
+                        return;
+                    }
+                }
+                this.assetStatVwTableAdapter.FillByQuery(customVw, plusQry);
+            }
+        }
 
         public AssetsStatsForm3()
         {
@@ -37,13 +71,7 @@ namespace AssetManagement.Assets
             this.sectionTblTableAdapter.Fill(this.assetMngDbDataSet.SectionTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetStatVw' table. You can move, or remove it, as needed.
             this.assetStatVwTableAdapter.Fill(this.assetMngDbDataSet.AssetStatVw);
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
-            this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
-            searchResults = StaticCode.mainDbContext.AssetVws.Select(asv1 => asv1);
-
-            BarSeriesLabel barSeriesLabel2 = chartControl_Bar.SeriesTemplate.Label as BarSeriesLabel;
-            barSeriesLabel2.TextPattern = "{S} - {V}";
-            chartControl_Bar.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            searchResults = StaticCode.mainDbContext.AssetStatVws.Select(asv1 => asv1);
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -59,19 +87,25 @@ namespace AssetManagement.Assets
         /// <param name="e"></param>
         private void showStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            chartStackedBarNavigationPane.Visible = false;
             if (aggValueBarEditItem.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر خانة قيم العرض", StaticCode.ApplicationTitle);
                 return;
             }
-            if (groupFieldBarEditItem.EditValue == null)
+            if (seriesFieldBarEditItem.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر خانة الحقل التجميعي", StaticCode.ApplicationTitle);
                 return;
             }
-            if (aggValueBarEditItem.EditValue == null)
+            if (dataMemberFieldBarEditItem.EditValue == null)
             {
                 mainAlertControl.Show(this, "اختر خانة حقل القيم", StaticCode.ApplicationTitle);
+                return;
+            }
+            if (seriesFieldBarEditItem.EditValue.ToString() == dataMemberFieldBarEditItem.EditValue.ToString())
+            {
+                mainAlertControl.Show(this, "الحقل التجميعي لا يجب أن يكون نفس حقل القيم", StaticCode.ApplicationTitle);
                 return;
             }
             string aggField = "";
@@ -89,22 +123,30 @@ namespace AssetManagement.Assets
             List<ChartControl> chartsIncluded = new List<ChartControl>()
             {
                 chartControl_Bar,
-                chartFullStackedBar,
+                chartControl_StackedBar,
+                chartControl_PieChart,
             };
             foreach (ChartControl oneChart in chartsIncluded)
             {
-                oneChart.Titles[0].Text = $"{aggValueBarEditItem.EditValue} حسب {groupFieldBarEditItem.EditValue} و {seriesFieldBarEditItem.EditValue.ToString()}";
+                oneChart.Titles[0].Text = $"{aggValueBarEditItem.EditValue} حسب {seriesFieldBarEditItem.EditValue} و {dataMemberFieldBarEditItem.EditValue.ToString()}";
 
-                oneChart.SeriesDataMember = groupFieldBarEditItem.EditValue.ToString();
-                oneChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-                oneChart.SeriesTemplate.ArgumentDataMember = seriesFieldBarEditItem.EditValue.ToString();
 
+                if (oneChart.Name == "chartControl_Bar" || oneChart.Name == "chartControl_StackedBar")
+                {
+                    oneChart.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
+                    oneChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+                    oneChart.SeriesTemplate.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
+                }
+
+                    oneChart.SeriesTemplate.ArgumentDataMember = dataMemberFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.QualitativeSummaryOptions.SummaryFunction = $"SUM([{aggField}])";
-                oneChart.SeriesTemplate.SeriesDataMember = groupFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.ValueDataMembersSerializable = aggField;
+                oneChart.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                oneChart.SeriesTemplate.Label.TextPattern = "{S} - {V}";
                 oneChart.RefreshData();
                 oneChart.Refresh();
             }
+            chartStackedBarNavigationPane.Visible = true;
         }
 
         private void toolbarFormControl1_Click(object sender, EventArgs e)
@@ -197,7 +239,7 @@ namespace AssetManagement.Assets
         /// <param name="e"></param>
         private void searchAssetDropDownButton_Click(object sender, EventArgs e)
         {
-            searchResults = from ast in StaticCode.mainDbContext.AssetVws select ast;
+            searchResults = from ast in StaticCode.mainDbContext.AssetStatVws select ast;
             if (searchBySectionCheckBox.Checked)
             {
                 if (searchBySectionLookUpEdit.EditValue == null)
@@ -309,6 +351,7 @@ namespace AssetManagement.Assets
                 searchResults = searchResults.Where(ast => ast.تاريخ_الإدخال != null && ast.تاريخ_الإدخال >= Convert.ToDateTime(searchByInsertionDateDateEdit_From.EditValue) && ast.تاريخ_الإدخال <= Convert.ToDateTime(searchByInsertionDateDateEdit_To.EditValue));
             }
 
+            LoadAssets();
             showStatsBarButtonItem_ItemClick(sender, null);
         }
     }

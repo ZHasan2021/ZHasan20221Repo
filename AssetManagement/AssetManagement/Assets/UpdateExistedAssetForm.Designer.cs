@@ -123,6 +123,12 @@ namespace AssetManagement.Assets
             this.assetNotesLabel = new System.Windows.Forms.Label();
             this.moreDetailsTextBox = new System.Windows.Forms.TextBox();
             this.moreDetailsLabel = new System.Windows.Forms.Label();
+            this.assetInfoTabPage3 = new System.Windows.Forms.TabPage();
+            this.attachmentsGroupBox = new System.Windows.Forms.GroupBox();
+            this.openAssetFolderBtn = new System.Windows.Forms.Button();
+            this.clearAllAttchmentsBtn = new System.Windows.Forms.Button();
+            this.allAttachmentsListBox = new System.Windows.Forms.ListBox();
+            this.attachFilesBtn = new System.Windows.Forms.Button();
             this.searchResultsListBox = new System.Windows.Forms.ListBox();
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -178,6 +184,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
+            this.assetInfoTabPage3.SuspendLayout();
+            this.attachmentsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -214,6 +222,7 @@ namespace AssetManagement.Assets
             // 
             this.assetInfoTabControl.Controls.Add(this.assetInfoTabPage1);
             this.assetInfoTabControl.Controls.Add(this.assetInfoTabPage2);
+            this.assetInfoTabControl.Controls.Add(this.assetInfoTabPage3);
             this.assetInfoTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assetInfoTabControl.Location = new System.Drawing.Point(3, 28);
             this.assetInfoTabControl.Name = "assetInfoTabControl";
@@ -1300,6 +1309,72 @@ namespace AssetManagement.Assets
             this.moreDetailsLabel.TabIndex = 330;
             this.moreDetailsLabel.Text = "تفاصيل أخرى:";
             // 
+            // assetInfoTabPage3
+            // 
+            this.assetInfoTabPage3.Controls.Add(this.attachmentsGroupBox);
+            this.assetInfoTabPage3.Location = new System.Drawing.Point(4, 33);
+            this.assetInfoTabPage3.Name = "assetInfoTabPage3";
+            this.assetInfoTabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.assetInfoTabPage3.Size = new System.Drawing.Size(1271, 544);
+            this.assetInfoTabPage3.TabIndex = 2;
+            this.assetInfoTabPage3.Text = "3";
+            this.assetInfoTabPage3.UseVisualStyleBackColor = true;
+            // 
+            // attachmentsGroupBox
+            // 
+            this.attachmentsGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.attachmentsGroupBox.Controls.Add(this.openAssetFolderBtn);
+            this.attachmentsGroupBox.Controls.Add(this.clearAllAttchmentsBtn);
+            this.attachmentsGroupBox.Controls.Add(this.allAttachmentsListBox);
+            this.attachmentsGroupBox.Controls.Add(this.attachFilesBtn);
+            this.attachmentsGroupBox.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attachmentsGroupBox.Location = new System.Drawing.Point(678, 33);
+            this.attachmentsGroupBox.Name = "attachmentsGroupBox";
+            this.attachmentsGroupBox.Size = new System.Drawing.Size(539, 391);
+            this.attachmentsGroupBox.TabIndex = 600;
+            this.attachmentsGroupBox.TabStop = false;
+            this.attachmentsGroupBox.Text = "المرفقات";
+            // 
+            // openAssetFolderBtn
+            // 
+            this.openAssetFolderBtn.Image = global::AssetManagement.Properties.Resources._25567442;
+            this.openAssetFolderBtn.Location = new System.Drawing.Point(307, 34);
+            this.openAssetFolderBtn.Name = "openAssetFolderBtn";
+            this.openAssetFolderBtn.Size = new System.Drawing.Size(80, 80);
+            this.openAssetFolderBtn.TabIndex = 616;
+            this.openAssetFolderBtn.UseVisualStyleBackColor = true;
+            this.openAssetFolderBtn.Click += new System.EventHandler(this.openAssetFolderBtn_Click);
+            // 
+            // clearAllAttchmentsBtn
+            // 
+            this.clearAllAttchmentsBtn.Enabled = false;
+            this.clearAllAttchmentsBtn.Location = new System.Drawing.Point(22, 187);
+            this.clearAllAttchmentsBtn.Name = "clearAllAttchmentsBtn";
+            this.clearAllAttchmentsBtn.Size = new System.Drawing.Size(94, 80);
+            this.clearAllAttchmentsBtn.TabIndex = 615;
+            this.clearAllAttchmentsBtn.Text = "Clear list";
+            this.clearAllAttchmentsBtn.UseVisualStyleBackColor = true;
+            this.clearAllAttchmentsBtn.Click += new System.EventHandler(this.clearAllAttchmentsBtn_Click);
+            // 
+            // allAttachmentsListBox
+            // 
+            this.allAttachmentsListBox.FormattingEnabled = true;
+            this.allAttachmentsListBox.ItemHeight = 25;
+            this.allAttachmentsListBox.Location = new System.Drawing.Point(138, 137);
+            this.allAttachmentsListBox.Name = "allAttachmentsListBox";
+            this.allAttachmentsListBox.Size = new System.Drawing.Size(371, 204);
+            this.allAttachmentsListBox.TabIndex = 610;
+            // 
+            // attachFilesBtn
+            // 
+            this.attachFilesBtn.Image = global::AssetManagement.Properties.Resources._233038;
+            this.attachFilesBtn.Location = new System.Drawing.Point(429, 34);
+            this.attachFilesBtn.Name = "attachFilesBtn";
+            this.attachFilesBtn.Size = new System.Drawing.Size(80, 80);
+            this.attachFilesBtn.TabIndex = 205;
+            this.attachFilesBtn.UseVisualStyleBackColor = true;
+            this.attachFilesBtn.Click += new System.EventHandler(this.attachFilesBtn_Click);
+            // 
             // searchResultsListBox
             // 
             this.searchResultsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1519,6 +1594,8 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
+            this.assetInfoTabPage3.ResumeLayout(false);
+            this.attachmentsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1641,5 +1718,11 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.ModelTblTableAdapter modelTblTableAdapter;
         private System.Windows.Forms.BindingSource assetVwBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
+        private System.Windows.Forms.TabPage assetInfoTabPage3;
+        private System.Windows.Forms.GroupBox attachmentsGroupBox;
+        private System.Windows.Forms.Button clearAllAttchmentsBtn;
+        private System.Windows.Forms.ListBox allAttachmentsListBox;
+        private System.Windows.Forms.Button attachFilesBtn;
+        private System.Windows.Forms.Button openAssetFolderBtn;
     }
 }

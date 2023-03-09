@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,6 +162,7 @@ namespace AssetManagement.Finance
                     financialItemSectionLookUpEdit.Enabled =
                     financialItemDeptLookUpEdit.Enabled = false;
                 }
+                openFinancialItemFolderBtn.Visible = false;
             }
         }
 
@@ -302,10 +305,15 @@ namespace AssetManagement.Finance
 
                 FinancialItemTbl newFiIt = new FinancialItemTbl();
                 if (updateExisted)
+                {
                     newFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecordID);
-                newFiIt.FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue);
-                if (!updateExisted)
+                }
+                else
+                {
+                    newFiIt.FinancialItemCode = StaticCode.GetTheNewFinancialItemCode();
                     newFiIt.FinancialItemSubDept = assetSubD;
+                }
+                newFiIt.FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue);
                 newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
                 newFiIt.FinancialItemInsertionDate = Convert.ToDateTime(financialItemInsertionDateDateEdit.EditValue);
                 if (incomingRadioButton.Checked)
@@ -400,6 +408,13 @@ namespace AssetManagement.Finance
                     //relevantRecord.RelevantRecordID = newFiIt.ID;
                 }
                 StaticCode.mainDbContext.SubmitChanges();
+                string financialItemFolder = StaticCode.FinancialItemsAttachmentsFolder + newFiIt.FinancialItemCode + "//";
+                if (!Directory.Exists(financialItemFolder))
+                    Directory.CreateDirectory(financialItemFolder);
+                foreach (string oneFile in allAttachmentsListBox.Items)
+                {
+                    File.Copy(oneFile, financialItemFolder + Path.GetFileName(oneFile), true);
+                }
 
                 mainAlertControl.Show(this, $"تمت {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي بنجاح", StaticCode.ApplicationTitle);
             }
@@ -576,6 +591,37 @@ namespace AssetManagement.Finance
             ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();
             inTyFrm.ShowDialog();
             this.incomingTypeTblTableAdapter.Fill(this.assetMngDbDataSet.IncomingTypeTbl);
+        }
+
+        private void attachFilesBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog assetOFD = new OpenFileDialog();
+            assetOFD.Multiselect = true;
+            if (assetOFD.ShowDialog() != DialogResult.OK)
+                return;
+            foreach (string oneFile in assetOFD.FileNames)
+            {
+                if (!allAttachmentsListBox.Items.Contains(oneFile))
+                    allAttachmentsListBox.Items.Add(oneFile);
+            }
+            clearAllAttchmentsBtn.Enabled = true;
+        }
+
+        private void clearAllAttchmentsBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("هل أنت متأكد؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            allAttachmentsListBox.Items.Clear();
+            clearAllAttchmentsBtn.Enabled = false;
+        }
+
+        private void openFinancialItemFolderBtn_Click(object sender, EventArgs e)
+        {
+            FinancialItemTbl existedRecord = StaticCode.mainDbContext.FinancialItemTbls.Single(fiit1 => fiit1.ID == existedRecordID);
+            string assetFolder = StaticCode.FinancialItemsAttachmentsFolder + existedRecord.FinancialItemCode + "//";
+            if (!Directory.Exists(assetFolder))
+                Directory.CreateDirectory(assetFolder);
+            Process.Start(assetFolder);
         }
     }
 }

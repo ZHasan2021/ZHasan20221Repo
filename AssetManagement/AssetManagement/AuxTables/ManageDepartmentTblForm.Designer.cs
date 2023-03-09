@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageDepartmentTblForm));
             this.departmentGridControl = new DevExpress.XtraGrid.GridControl();
             this.departmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -58,6 +58,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.departmentTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
+            this.departmentTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.departmentGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -72,15 +73,15 @@ namespace AssetManagement.AuxTables
             // 
             this.departmentGridControl.DataSource = this.departmentTblBindingSource;
             this.departmentGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.RelationName = "departmentLevel";
+            gridLevelNode2.RelationName = "departmentLevel";
             this.departmentGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.departmentGridControl.Location = new System.Drawing.Point(0, 47);
             this.departmentGridControl.MainView = this.departmentGridView;
             this.departmentGridControl.Name = "departmentGridControl";
             this.departmentGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.sctRepositoryItemLookUpEdit});
-            this.departmentGridControl.Size = new System.Drawing.Size(996, 574);
+            this.departmentGridControl.Size = new System.Drawing.Size(1152, 634);
             this.departmentGridControl.TabIndex = 5;
             this.departmentGridControl.UseEmbeddedNavigator = true;
             this.departmentGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -188,6 +189,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
@@ -196,6 +198,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -218,7 +221,8 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.departmentTblBindingNavigatorSaveItem});
+            this.departmentTblBindingNavigatorSaveItem,
+            this.departmentTblBindingNavigatorExportToExcelItem});
             this.departmentTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.departmentTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.departmentTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -226,7 +230,7 @@ namespace AssetManagement.AuxTables
             this.departmentTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.departmentTblBindingNavigator.Name = "departmentTblBindingNavigator";
             this.departmentTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.departmentTblBindingNavigator.Size = new System.Drawing.Size(996, 47);
+            this.departmentTblBindingNavigator.Size = new System.Drawing.Size(1152, 47);
             this.departmentTblBindingNavigator.TabIndex = 4;
             this.departmentTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -329,11 +333,21 @@ namespace AssetManagement.AuxTables
             // 
             this.sectionTblTableAdapter.ClearBeforeFill = true;
             // 
+            // departmentTblBindingNavigatorExportToExcelItem
+            // 
+            this.departmentTblBindingNavigatorExportToExcelItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.departmentTblBindingNavigatorExportToExcelItem.Image = global::AssetManagement.Properties.Resources._36435172;
+            this.departmentTblBindingNavigatorExportToExcelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.departmentTblBindingNavigatorExportToExcelItem.Name = "departmentTblBindingNavigatorExportToExcelItem";
+            this.departmentTblBindingNavigatorExportToExcelItem.Size = new System.Drawing.Size(44, 44);
+            this.departmentTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى إكسل";
+            this.departmentTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.departmentTblBindingNavigatorExportToExcelItem_Click);
+            // 
             // ManageDepartmentTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 621);
+            this.ClientSize = new System.Drawing.Size(1152, 681);
             this.Controls.Add(this.departmentGridControl);
             this.Controls.Add(this.departmentTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -384,5 +398,6 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit sctRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource sectionTblBindingSource;
         private AssetMngDbDataSetTableAdapters.SectionTblTableAdapter sectionTblTableAdapter;
+        private System.Windows.Forms.ToolStripButton departmentTblBindingNavigatorExportToExcelItem;
     }
 }

@@ -676,7 +676,7 @@ namespace AssetManagement
             ExcelPackage catsEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook catsWb = catsEp.Workbook;
             ExcelWorksheet catsWs = catsWb.Worksheets.First();
-            List<string> columnsHeaders = catsWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> columnsHeaders = catsWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
             int macaNameCol = columnsHeaders.IndexOf("الفئة الرئيسية") + 1;
             int micaNameCol = columnsHeaders.IndexOf("اسم الفئة الفرعية") + 1;
             int micaDescCol = columnsHeaders.IndexOf("وصف الفئة الفرعية") + 1;
@@ -703,18 +703,18 @@ namespace AssetManagement
                 Application.DoEvents();
 
                 int oneMiCaProdAgeVal = 0;
-                if (!Int32.TryParse(catsWs.Cells[iRow, micaProdAgeCol].Value?.ToString(), out oneMiCaProdAgeVal))
+                if (!Int32.TryParse(catsWs.Cells[iRow, micaProdAgeCol].Value?.ToString().Trim(), out oneMiCaProdAgeVal))
                 {
                     actionsStatusMemoEdit.Text = $"العمر الإنتاجي في السطر {iRow} ليس رقماً صحيحاً";
                     return;
                 }
-                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString();
+                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString().Trim();
                 if (oneMaCaVal == "")
                 {
                     actionsStatusMemoEdit.Text = $"اسم الفئة الرئيسية في السطر {iRow} فارغ";
                     return;
                 }
-                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString();
+                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString().Trim();
                 if (oneMiCaVal == "")
                 {
                     actionsStatusMemoEdit.Text = $"اسم الفئة الفرعية في السطر {iRow} فارغ";
@@ -730,11 +730,11 @@ namespace AssetManagement
                 Application.DoEvents();
 
                 int oneMiCaProdAgeVal = Convert.ToInt32(catsWs.Cells[iRow, micaProdAgeCol].Value);
-                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString();
-                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString();
+                string oneMaCaVal = catsWs.Cells[iRow, macaNameCol].Value?.ToString().Trim();
+                string oneMiCaVal = catsWs.Cells[iRow, micaNameCol].Value?.ToString().Trim();
                 string oneMiCaDescVal = "";
                 if (micaDescCol > 0)
-                    oneMiCaDescVal = catsWs.Cells[iRow, micaDescCol].Value?.ToString();
+                    oneMiCaDescVal = catsWs.Cells[iRow, micaDescCol].Value?.ToString().Trim();
                 int oneMaCaID = 0;
                 if (!tmpDataContext.MainCategoryTbls.Any(maca1 => maca1.MainCategoryName == oneMaCaVal))
                 {
@@ -788,6 +788,281 @@ namespace AssetManagement
             addFrm.ShowDialog();
         }
 
+        private void manageSectionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageSectionTblForm secFrm = new ManageSectionTblForm();
+            secFrm.ShowDialog();
+        }
+
+        private void manageDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageDepartmentTblForm dptFrm = new ManageDepartmentTblForm();
+            dptFrm.ShowDialog();
+        }
+
+        private void manageSubDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
+            sdptFrm.ShowDialog();
+        }
+
+        private void importSectionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage secEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook secWb = secEp.Workbook;
+            ExcelWorksheet secWs = secWb.Worksheets.First();
+            List<string> columnsHeaders = secWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
+            int secNameCol = columnsHeaders.IndexOf("اسم الدائرة") + 1;
+            if (secNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الدائرة غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= secWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSecVal = secWs.Cells[iRow, secNameCol].Value?.ToString().Trim();
+                if (oneSecVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الدائرة  في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newSecsCount = 0;
+            int existedSecsCount = 0;
+            for (int iRow = 2; iRow <= secWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSecVal = secWs.Cells[iRow, secNameCol].Value?.ToString().Trim();
+                if (!tmpDataContext.SectionTbls.Any(sec1 => sec1.SectionName == oneSecVal))
+                {
+                    SectionTbl newSqRec = new SectionTbl() { SectionName = oneSecVal };
+                    tmpDataContext.SectionTbls.InsertOnSubmit(newSqRec);
+                    newSecsCount++;
+                }
+                else
+                {
+                    SectionTbl existedSqRec = tmpDataContext.SectionTbls.Where(sec1 => sec1.SectionName == oneSecVal).First();
+                    existedSecsCount++;
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الدوائر المضافة ({newSecsCount})\r\n2- عدد الدوائر المحدثة ({existedSecsCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الدوائر بنجاح", StaticCode.ApplicationTitle);
+            return;
+        }
+
+        private void importDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage deEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook deWb = deEp.Workbook;
+            ExcelWorksheet deWs = deWb.Worksheets.First();
+            List<string> columnsHeaders = deWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
+            int secNameCol = columnsHeaders.IndexOf("الدائرة التابع لها") + 1;
+            int deNameCol = columnsHeaders.IndexOf("اسم القسم") + 1;
+            if (secNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الفئة الرئيسية غير موجود";
+                return;
+            }
+            if (deNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم القسم غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= deWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSecVal = deWs.Cells[iRow, secNameCol].Value?.ToString();
+                if (oneSecVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الدائرة في السطر {iRow} فارغ";
+                    return;
+                }
+                string oneDeVal = deWs.Cells[iRow, deNameCol].Value?.ToString();
+                if (oneDeVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم القسم في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newDesCount = 0;
+            int existedDesCount = 0;
+            for (int iRow = 2; iRow <= deWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSecVal = deWs.Cells[iRow, secNameCol].Value?.ToString();
+                string oneDeVal = deWs.Cells[iRow, deNameCol].Value?.ToString();
+                int oneSecID = 0;
+                if (!tmpDataContext.SectionTbls.Any(sec1 => sec1.SectionName == oneSecVal))
+                {
+                    SectionTbl newSecRec = new SectionTbl() { SectionName = oneSecVal };
+                    tmpDataContext.SectionTbls.InsertOnSubmit(newSecRec);
+                    tmpDataContext.SubmitChanges();
+                    oneSecID = newSecRec.ID;
+                    DepartmentTbl newDeRec = new DepartmentTbl() { DepartmentName = oneDeVal, SectionOfDepartment = oneSecID };
+                    tmpDataContext.DepartmentTbls.InsertOnSubmit(newDeRec);
+                    newDesCount++;
+                }
+                else
+                {
+                    oneSecID = tmpDataContext.SectionTbls.Where(sec1 => sec1.SectionName == oneSecVal).First().ID;
+                    if (!tmpDataContext.DepartmentTbls.Any(dpt1 => dpt1.DepartmentName == oneDeVal && dpt1.SectionOfDepartment == oneSecID))
+                    {
+                        DepartmentTbl newDeRec = new DepartmentTbl() { DepartmentName = oneDeVal, SectionOfDepartment = oneSecID };
+                        tmpDataContext.DepartmentTbls.InsertOnSubmit(newDeRec);
+                        newDesCount++;
+                    }
+                    else
+                    {
+                        DepartmentTbl existedDeRec = tmpDataContext.DepartmentTbls.Where(dpt1 => dpt1.DepartmentName == oneDeVal && dpt1.SectionOfDepartment == oneSecID).First();
+                        existedDesCount++;
+                    }
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأقسام المضافة ({newDesCount})\r\n2- عدد الأقسام المحدثة ({existedDesCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الأقسام بنجاح", StaticCode.ApplicationTitle);
+            return;
+        }
+
+        private void importSubDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage subdEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook subdWb = subdEp.Workbook;
+            ExcelWorksheet subdWs = subdWb.Worksheets.First();
+            List<string> columnsHeaders = subdWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
+            int deNameCol = columnsHeaders.IndexOf("القسم التابعة له") + 1;
+            int subdNameCol = columnsHeaders.IndexOf("اسم الوحدة") + 1;
+            if (deNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم القسم غير موجود";
+                return;
+            }
+            if (subdNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الوحدة غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= subdWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneDeVal = subdWs.Cells[iRow, deNameCol].Value?.ToString();
+                if (oneDeVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم القسم في السطر {iRow} فارغ";
+                    return;
+                }
+                if (!StaticCode.mainDbContext.DepartmentTbls.Any(dpt1 => dpt1.DepartmentName == oneDeVal))
+                {
+                    actionsStatusMemoEdit.Text = $"اسم القسم في السطر {iRow} غير موجود في سجلات الأقسام";
+                    return;
+                }
+                string oneSubDVal = subdWs.Cells[iRow, subdNameCol].Value?.ToString();
+                if (oneSubDVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الوحدة في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newSubDsCount = 0;
+            int existedSubDsCount = 0;
+            for (int iRow = 2; iRow <= subdWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneDeVal = subdWs.Cells[iRow, deNameCol].Value?.ToString();
+                string oneSubDVal = subdWs.Cells[iRow, subdNameCol].Value?.ToString();
+                int oneDeID = 0;
+                if (!tmpDataContext.DepartmentTbls.Any(dpt1 => dpt1.DepartmentName == oneDeVal))
+                {
+                    DepartmentTbl newDeRec = new DepartmentTbl() { DepartmentName = oneDeVal };
+                    tmpDataContext.DepartmentTbls.InsertOnSubmit(newDeRec);
+                    tmpDataContext.SubmitChanges();
+                    oneDeID = newDeRec.ID;
+                    SubDepartmentTbl newSubDeRec = new SubDepartmentTbl() { SubDepartmentName = oneSubDVal, MainDepartment = oneDeID };
+                    tmpDataContext.SubDepartmentTbls.InsertOnSubmit(newSubDeRec);
+                    newSubDsCount++;
+                }
+                else
+                {
+                    oneDeID = tmpDataContext.DepartmentTbls.Where(dpt1 => dpt1.DepartmentName == oneDeVal).First().ID;
+                    if (!tmpDataContext.SubDepartmentTbls.Any(subd1 => subd1.SubDepartmentName == oneSubDVal && subd1.MainDepartment == oneDeID))
+                    {
+                        SubDepartmentTbl newSubDeRec = new SubDepartmentTbl() { SubDepartmentName = oneSubDVal, MainDepartment = oneDeID };
+                        tmpDataContext.SubDepartmentTbls.InsertOnSubmit(newSubDeRec);
+                        newSubDsCount++;
+                    }
+                    else
+                    {
+                        SubDepartmentTbl existedSubDeRec = tmpDataContext.SubDepartmentTbls.Where(subd1 => subd1.SubDepartmentName == oneSubDVal && subd1.MainDepartment == oneDeID).First();
+                        existedSubDeRec.MainDepartment = oneDeID;
+                        existedSubDsCount++;
+                    }
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الوحدات المضافة ({newSubDsCount})\r\n2- عدد الوحدات المحدثة ({existedSubDsCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الوحدات بنجاح", StaticCode.ApplicationTitle);
+            return;
+        }
+
         private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageFinancialItemCategoryTblForm ficFrm = new ManageFinancialItemCategoryTblForm();
@@ -808,7 +1083,7 @@ namespace AssetManagement
             ExcelPackage ficaEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
             ExcelWorkbook ficaWb = ficaEp.Workbook;
             ExcelWorksheet ficaWs = ficaWb.Worksheets.First();
-            List<string> columnsHeaders = ficaWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString()).ToList();
+            List<string> columnsHeaders = ficaWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
             int ficaNameCol = columnsHeaders.IndexOf("اسم البند المالي") + 1;
             int ficaDetCol = columnsHeaders.IndexOf("وصف البند المالي") + 1;
             int ficaInOutCol = columnsHeaders.IndexOf("صادر أم وارد") + 1;
@@ -832,19 +1107,19 @@ namespace AssetManagement
             {
                 Application.DoEvents();
 
-                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString();
+                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString().Trim();
                 if (oneFiCaVal == "")
                 {
                     actionsStatusMemoEdit.Text = $"اسم البند المالي  في السطر {iRow} فارغ";
                     return;
                 }
-                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString();
+                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString().Trim();
                 if (oneFiCaDetVal == "")
                 {
                     actionsStatusMemoEdit.Text = $"وصف البند المالي  في السطر {iRow} فارغ";
                     return;
                 }
-                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString();
+                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString().Trim();
                 if (oneFiCaInOutVal == "")
                 {
                     actionsStatusMemoEdit.Text = $"قيمة (صادر أم وارد)  في السطر {iRow} فارغ";
@@ -859,9 +1134,9 @@ namespace AssetManagement
             {
                 Application.DoEvents();
 
-                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString();
-                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString();
-                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString();
+                string oneFiCaVal = ficaWs.Cells[iRow, ficaNameCol].Value?.ToString().Trim();
+                string oneFiCaDetVal = ficaWs.Cells[iRow, ficaDetCol].Value?.ToString().Trim();
+                string oneFiCaInOutVal = ficaWs.Cells[iRow, ficaInOutCol].Value?.ToString().Trim();
                 if (!tmpDataContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == oneFiCaVal))
                 {
                     FinancialItemCategoryTbl newFiCaRec = new FinancialItemCategoryTbl() { FinancialItemCategoryName = oneFiCaVal, FinancialItemCategoryDetails = oneFiCaDetVal, IsIncomingOrOutgiung = oneFiCaInOutVal };
@@ -893,22 +1168,156 @@ namespace AssetManagement
             curFrm.ShowDialog();
         }
 
-        private void manageDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageDepartmentTblForm dptFrm = new ManageDepartmentTblForm();
-            dptFrm.ShowDialog();
-        }
-
-        private void manageSectionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageSectionTblForm secFrm = new ManageSectionTblForm();
-            secFrm.ShowDialog();
-        }
-
         private void manageSquareTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ManageSquareTblForm squFrm = new ManageSquareTblForm();
             squFrm.ShowDialog();
+        }
+
+        private void importSquareTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage sqEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook sqWb = sqEp.Workbook;
+            ExcelWorksheet sqWs = sqWb.Worksheets.First();
+            List<string> columnsHeaders = sqWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
+            int sqNameCol = columnsHeaders.IndexOf("اسم الساحة") + 1;
+            int sqLocCol = columnsHeaders.IndexOf("موقع الساحة") + 1;
+            if (sqNameCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الساحة غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= sqWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSqVal = sqWs.Cells[iRow, sqNameCol].Value?.ToString().Trim();
+                if (oneSqVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الساحة  في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newSqsCount = 0;
+            int existedSqsCount = 0;
+            for (int iRow = 2; iRow <= sqWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneSqVal = sqWs.Cells[iRow, sqNameCol].Value?.ToString().Trim();
+                string oneSqLocVal = "";
+                if (sqLocCol > 0)
+                    oneSqLocVal = sqWs.Cells[iRow, sqLocCol].Value?.ToString().Trim();
+                if (!tmpDataContext.SquareTbls.Any(sq1 => sq1.SquareName == oneSqVal))
+                {
+                    SquareTbl newSqRec = new SquareTbl() { SquareName = oneSqVal, SquareLocation = oneSqLocVal };
+                    tmpDataContext.SquareTbls.InsertOnSubmit(newSqRec);
+                    newSqsCount++;
+                }
+                else
+                {
+                    SquareTbl existedSqRec = tmpDataContext.SquareTbls.Where(sq1 => sq1.SquareName == oneSqVal).First();
+                    existedSqRec.SquareLocation = oneSqLocVal;
+                    existedSqsCount++;
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الساحات المضافة ({newSqsCount})\r\n2- عدد الساحات المحدثة ({existedSqsCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الساحات بنجاح", StaticCode.ApplicationTitle);
+            return;
+        }
+
+        private void manageModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ManageModelTblForm mdlFrm = new ManageModelTblForm();
+            mdlFrm.ShowDialog();
+        }
+
+        private void importModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            actionsStatusMemoEdit.Text = "";
+            OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
+            if (assetsFileOFD.ShowDialog() != DialogResult.OK)
+            {
+                mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
+                return;
+            }
+
+            mainProgressPanel.Visible = true;
+            ExcelPackage mdlEp = new ExcelPackage(new FileInfo(assetsFileOFD.FileName));
+            ExcelWorkbook mdlWb = mdlEp.Workbook;
+            ExcelWorksheet mdlWs = mdlWb.Worksheets.First();
+            List<string> columnsHeaders = mdlWs.Cells.Where(cl1 => cl1.Start.Row == 1 && cl1.End.Row == 1).Select(cl2 => cl2.Value?.ToString().Trim()).ToList();
+            int mdlNameEnCol = columnsHeaders.IndexOf("اسم الموديل إنكليزي") + 1;
+            int mdlNameArCol = columnsHeaders.IndexOf("اسم الموديل عربي") + 1;
+            if (mdlNameEnCol == 0)
+            {
+                actionsStatusMemoEdit.Text = "عمود اسم الموديل باللغة الإنكليزية غير موجود";
+                return;
+            }
+
+            for (int iRow = 2; iRow <= mdlWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneMdlVal = mdlWs.Cells[iRow, mdlNameEnCol].Value?.ToString().Trim();
+                if (oneMdlVal == "")
+                {
+                    actionsStatusMemoEdit.Text = $"اسم الموديل باللغة الإنكليزية في السطر {iRow} فارغ";
+                    return;
+                }
+            }
+
+            AssetMngDbDataContext tmpDataContext = new AssetMngDbDataContext();
+            int newMdlsCount = 0;
+            int existedMdlsCount = 0;
+            for (int iRow = 2; iRow <= mdlWs.Dimension.End.Row; iRow++)
+            {
+                Application.DoEvents();
+
+                string oneMdlEnVal = mdlWs.Cells[iRow, mdlNameEnCol].Value?.ToString().Trim();
+                string oneMdlArVal = "";
+                if (mdlNameArCol > 0)
+                    oneMdlArVal = mdlWs.Cells[iRow, mdlNameArCol].Value?.ToString().Trim();
+                if (!tmpDataContext.ModelTbls.Any(mdl1 => mdl1.ModelNameEn == oneMdlEnVal))
+                {
+                    ModelTbl newMdlRec = new ModelTbl() { ModelNameEn = oneMdlEnVal, ModelNameAr = oneMdlArVal };
+                    tmpDataContext.ModelTbls.InsertOnSubmit(newMdlRec);
+                    newMdlsCount++;
+                }
+                else
+                {
+                    ModelTbl existedMdlRec = tmpDataContext.ModelTbls.Where(mdl1 => mdl1.ModelNameEn == oneMdlEnVal).First();
+                    existedMdlRec.ModelNameAr = oneMdlArVal;
+                    existedMdlsCount++;
+                }
+            }
+
+            tmpDataContext.SubmitChanges();
+            StaticCode.mainDbContext.Dispose();
+            StaticCode.mainDbContext = new AssetMngDbDataContext();
+
+            actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الموديلات المضافة ({newMdlsCount})\r\n2- عدد الموديلات المحدثة ({existedMdlsCount})\r\n---------------";
+            mainProgressPanel.Visible = false;
+            mainAlertControl.Show(this, "تم استيراد الموديلات بنجاح", StaticCode.ApplicationTitle);
+            return;
         }
 
         private void manageEstateAreaUnitTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -933,18 +1342,6 @@ namespace AssetManagement
         {
             ManageOutgoingTypeTblForm ouTyFrm = new ManageOutgoingTypeTblForm();
             ouTyFrm.ShowDialog();
-        }
-
-        private void manageModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageModelTblForm mdlFrm = new ManageModelTblForm();
-            mdlFrm.ShowDialog();
-        }
-
-        private void manageSubDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
-            sdptFrm.ShowDialog();
         }
         #endregion
 
@@ -1115,11 +1512,17 @@ namespace AssetManagement
             manageMinorCategoryTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageMinorCategories == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             importAssetsCategoriesFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewMainCategory == true && StaticCode.activeUserRole.AddNewMinorCategory == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageCurrencyTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageCurrencies == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importManagementTablesBarSubItem.Visibility = (StaticCode.activeUserRole.AddNewSection == true || StaticCode.activeUserRole.AddNewDepartment == true || StaticCode.activeUserRole.AddNewSubDepartment == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importSectionTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewSection == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewDepartment == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importSubDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewSubDepartment == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            manageSectionTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSections == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSubDepartmentTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSubDepartments == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            manageSectionTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSections == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageSquareTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageSquares == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importSquareTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewSquare == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageModelTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageModels == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            importModelTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewModel == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageEstateAreaUnitTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageEstateAreaUnits == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageTransactionTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageTransactionTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             addNewAssetInventoryBarButtonItem.Visibility = (StaticCode.activeUserRole.CreateInventoryReport == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;

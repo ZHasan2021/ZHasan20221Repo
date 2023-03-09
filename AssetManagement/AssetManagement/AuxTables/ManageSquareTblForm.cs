@@ -40,5 +40,14 @@ namespace AssetManagement.AuxTables
             e.AlertForm.Size = new Size(350, 100);
             e.AlertForm.Location = new Point(200, 200);
         }
+
+        private void squareTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "الساحات" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            squareGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الساحات" });
+            mainAlertControl.Show(this, "تم تصدير بيانات الساحات إلى اكسل", StaticCode.ApplicationTitle);
+        }
     }
 }

@@ -41,6 +41,17 @@ namespace AssetManagement.Assets
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             assetMovementTblBindingNavigator.Visible = StaticCode.activeUserRole.ManageAssetMovements == true;
             this.MinimumSize = this.Size;
+
+            if (StaticCode.activeUserRole.IsSectionIndependent != true)
+            {
+                toSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                toSectionLookUpEdit.Enabled = false;
+            }
+            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+            {
+                toDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                toDepartmentLookUpEdit.Enabled = false;
+            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

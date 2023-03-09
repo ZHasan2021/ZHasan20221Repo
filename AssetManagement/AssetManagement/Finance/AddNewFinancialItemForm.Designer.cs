@@ -95,6 +95,11 @@ namespace AssetManagement.Finance
             this.sectionTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.financialItemSubDeptLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.financialItemSubDeptLabel = new System.Windows.Forms.Label();
+            this.attachmentsGroupBox = new System.Windows.Forms.GroupBox();
+            this.openFinancialItemFolderBtn = new System.Windows.Forms.Button();
+            this.clearAllAttchmentsBtn = new System.Windows.Forms.Button();
+            this.allAttachmentsListBox = new System.Windows.Forms.ListBox();
+            this.attachFilesBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -124,6 +129,7 @@ namespace AssetManagement.Finance
             this.incomingFromPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).BeginInit();
+            this.attachmentsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // financialItemCategoryLabel
@@ -267,7 +273,7 @@ namespace AssetManagement.Finance
             this.financialItemDescriptionTextBox.Location = new System.Drawing.Point(216, 397);
             this.financialItemDescriptionTextBox.Multiline = true;
             this.financialItemDescriptionTextBox.Name = "financialItemDescriptionTextBox";
-            this.financialItemDescriptionTextBox.Size = new System.Drawing.Size(556, 94);
+            this.financialItemDescriptionTextBox.Size = new System.Drawing.Size(402, 94);
             this.financialItemDescriptionTextBox.TabIndex = 245;
             // 
             // incomingAmountLabel
@@ -335,10 +341,10 @@ namespace AssetManagement.Finance
             this.addNewFinancialItemBtn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.addNewFinancialItemBtn_Cancel.Image = global::AssetManagement.Properties.Resources._2137707;
             this.addNewFinancialItemBtn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewFinancialItemBtn_Cancel.Location = new System.Drawing.Point(995, 562);
+            this.addNewFinancialItemBtn_Cancel.Location = new System.Drawing.Point(995, 603);
             this.addNewFinancialItemBtn_Cancel.Name = "addNewFinancialItemBtn_Cancel";
             this.addNewFinancialItemBtn_Cancel.Size = new System.Drawing.Size(182, 65);
-            this.addNewFinancialItemBtn_Cancel.TabIndex = 505;
+            this.addNewFinancialItemBtn_Cancel.TabIndex = 805;
             this.addNewFinancialItemBtn_Cancel.Text = "إغلاق";
             this.addNewFinancialItemBtn_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addNewFinancialItemBtn_Cancel.UseVisualStyleBackColor = true;
@@ -348,10 +354,10 @@ namespace AssetManagement.Finance
             // 
             this.addNewFinancialItemBtn_OK.Image = global::AssetManagement.Properties.Resources._2137710;
             this.addNewFinancialItemBtn_OK.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addNewFinancialItemBtn_OK.Location = new System.Drawing.Point(995, 466);
+            this.addNewFinancialItemBtn_OK.Location = new System.Drawing.Point(995, 507);
             this.addNewFinancialItemBtn_OK.Name = "addNewFinancialItemBtn_OK";
             this.addNewFinancialItemBtn_OK.Size = new System.Drawing.Size(182, 65);
-            this.addNewFinancialItemBtn_OK.TabIndex = 500;
+            this.addNewFinancialItemBtn_OK.TabIndex = 800;
             this.addNewFinancialItemBtn_OK.Text = "إضافة";
             this.addNewFinancialItemBtn_OK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addNewFinancialItemBtn_OK.UseVisualStyleBackColor = true;
@@ -841,6 +847,61 @@ namespace AssetManagement.Finance
             this.financialItemSubDeptLabel.TabIndex = 230;
             this.financialItemSubDeptLabel.Text = "الوحدة:";
             // 
+            // attachmentsGroupBox
+            // 
+            this.attachmentsGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.attachmentsGroupBox.Controls.Add(this.openFinancialItemFolderBtn);
+            this.attachmentsGroupBox.Controls.Add(this.clearAllAttchmentsBtn);
+            this.attachmentsGroupBox.Controls.Add(this.allAttachmentsListBox);
+            this.attachmentsGroupBox.Controls.Add(this.attachFilesBtn);
+            this.attachmentsGroupBox.Font = new System.Drawing.Font("Sakkal Majalla", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attachmentsGroupBox.Location = new System.Drawing.Point(670, 220);
+            this.attachmentsGroupBox.Name = "attachmentsGroupBox";
+            this.attachmentsGroupBox.Size = new System.Drawing.Size(522, 226);
+            this.attachmentsGroupBox.TabIndex = 400;
+            this.attachmentsGroupBox.TabStop = false;
+            this.attachmentsGroupBox.Text = "المرفقات";
+            // 
+            // openFinancialItemFolderBtn
+            // 
+            this.openFinancialItemFolderBtn.Image = global::AssetManagement.Properties.Resources._25567442;
+            this.openFinancialItemFolderBtn.Location = new System.Drawing.Point(411, 124);
+            this.openFinancialItemFolderBtn.Name = "openFinancialItemFolderBtn";
+            this.openFinancialItemFolderBtn.Size = new System.Drawing.Size(80, 80);
+            this.openFinancialItemFolderBtn.TabIndex = 410;
+            this.openFinancialItemFolderBtn.UseVisualStyleBackColor = true;
+            this.openFinancialItemFolderBtn.Click += new System.EventHandler(this.openFinancialItemFolderBtn_Click);
+            // 
+            // clearAllAttchmentsBtn
+            // 
+            this.clearAllAttchmentsBtn.Enabled = false;
+            this.clearAllAttchmentsBtn.Location = new System.Drawing.Point(29, 180);
+            this.clearAllAttchmentsBtn.Name = "clearAllAttchmentsBtn";
+            this.clearAllAttchmentsBtn.Size = new System.Drawing.Size(94, 40);
+            this.clearAllAttchmentsBtn.TabIndex = 420;
+            this.clearAllAttchmentsBtn.Text = "Clear list";
+            this.clearAllAttchmentsBtn.UseVisualStyleBackColor = true;
+            this.clearAllAttchmentsBtn.Click += new System.EventHandler(this.clearAllAttchmentsBtn_Click);
+            // 
+            // allAttachmentsListBox
+            // 
+            this.allAttachmentsListBox.FormattingEnabled = true;
+            this.allAttachmentsListBox.ItemHeight = 25;
+            this.allAttachmentsListBox.Location = new System.Drawing.Point(29, 38);
+            this.allAttachmentsListBox.Name = "allAttachmentsListBox";
+            this.allAttachmentsListBox.Size = new System.Drawing.Size(327, 129);
+            this.allAttachmentsListBox.TabIndex = 415;
+            // 
+            // attachFilesBtn
+            // 
+            this.attachFilesBtn.Image = global::AssetManagement.Properties.Resources._233038;
+            this.attachFilesBtn.Location = new System.Drawing.Point(411, 38);
+            this.attachFilesBtn.Name = "attachFilesBtn";
+            this.attachFilesBtn.Size = new System.Drawing.Size(80, 80);
+            this.attachFilesBtn.TabIndex = 405;
+            this.attachFilesBtn.UseVisualStyleBackColor = true;
+            this.attachFilesBtn.Click += new System.EventHandler(this.attachFilesBtn_Click);
+            // 
             // AddNewFinancialItemForm
             // 
             this.AcceptButton = this.addNewFinancialItemBtn_OK;
@@ -848,6 +909,7 @@ namespace AssetManagement.Finance
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addNewFinancialItemBtn_Cancel;
             this.ClientSize = new System.Drawing.Size(1226, 687);
+            this.Controls.Add(this.attachmentsGroupBox);
             this.Controls.Add(this.financialItemSubDeptLabel);
             this.Controls.Add(this.financialItemSubDeptLookUpEdit);
             this.Controls.Add(this.outgoingAmountNumericUpDown);
@@ -920,6 +982,7 @@ namespace AssetManagement.Finance
             this.incomingFromPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemSubDeptLookUpEdit.Properties)).EndInit();
+            this.attachmentsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -991,5 +1054,10 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.TextBox outgoingToTextBox;
         private DevExpress.XtraEditors.LookUpEdit financialItemSubDeptLookUpEdit;
         private System.Windows.Forms.Label financialItemSubDeptLabel;
+        private System.Windows.Forms.GroupBox attachmentsGroupBox;
+        private System.Windows.Forms.Button clearAllAttchmentsBtn;
+        private System.Windows.Forms.ListBox allAttachmentsListBox;
+        private System.Windows.Forms.Button attachFilesBtn;
+        private System.Windows.Forms.Button openFinancialItemFolderBtn;
     }
 }

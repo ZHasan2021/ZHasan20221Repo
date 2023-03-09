@@ -59,6 +59,12 @@ namespace AssetManagement.Assets
             this.destructAllBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.getAssetsOutOfWorkBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.moveAllBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.openAssetFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addFilesToAssetFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.showAssetCardBarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.generalCardBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.estatesCardBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.vehiclesCardBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.sectionTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -250,12 +256,15 @@ namespace AssetManagement.Assets
             this.toolbarFormControl1.TitleItemLinks.Add(this.saveChangesBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.exportToExcelBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.showAssetCardBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.showAssetCardBarSubItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.editDataBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.deleteAssetBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.destructBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.destructAllBarButtonItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.getAssetsOutOfWorkBarCheckItem);
             this.toolbarFormControl1.TitleItemLinks.Add(this.moveAllBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.openAssetFolderBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.addFilesToAssetFolderBarButtonItem);
             this.toolbarFormControl1.ToolbarForm = this;
             this.toolbarFormControl1.Click += new System.EventHandler(this.toolbarFormControl1_Click);
             // 
@@ -275,8 +284,14 @@ namespace AssetManagement.Assets
             this.destructBarButtonItem,
             this.destructAllBarButtonItem,
             this.getAssetsOutOfWorkBarCheckItem,
-            this.moveAllBarButtonItem});
-            this.toolbarFormManager2.MaxItemId = 9;
+            this.moveAllBarButtonItem,
+            this.openAssetFolderBarButtonItem,
+            this.addFilesToAssetFolderBarButtonItem,
+            this.showAssetCardBarSubItem,
+            this.generalCardBarButtonItem,
+            this.estatesCardBarButtonItem,
+            this.vehiclesCardBarButtonItem});
+            this.toolbarFormManager2.MaxItemId = 15;
             // 
             // barDockControl1
             // 
@@ -334,6 +349,7 @@ namespace AssetManagement.Assets
             this.showAssetCardBarButtonItem.Id = 2;
             this.showAssetCardBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("showAssetCardBarButtonItem.ImageOptions.SvgImage")));
             this.showAssetCardBarButtonItem.Name = "showAssetCardBarButtonItem";
+            this.showAssetCardBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.showAssetCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showAssetCardBarButtonItem_ItemClick);
             // 
             // editDataBarButtonItem
@@ -385,6 +401,57 @@ namespace AssetManagement.Assets
             this.moveAllBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("moveAllBarButtonItem.ImageOptions.SvgImage")));
             this.moveAllBarButtonItem.Name = "moveAllBarButtonItem";
             this.moveAllBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.moveAllBarButtonItem_ItemClick);
+            // 
+            // openAssetFolderBarButtonItem
+            // 
+            this.openAssetFolderBarButtonItem.Caption = "فتح مجلد الأصل";
+            this.openAssetFolderBarButtonItem.Id = 9;
+            this.openAssetFolderBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("openAssetFolderBarButtonItem.ImageOptions.Image")));
+            this.openAssetFolderBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("openAssetFolderBarButtonItem.ImageOptions.LargeImage")));
+            this.openAssetFolderBarButtonItem.Name = "openAssetFolderBarButtonItem";
+            this.openAssetFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openAssetFolderBarButtonItem_ItemClick);
+            // 
+            // addFilesToAssetFolderBarButtonItem
+            // 
+            this.addFilesToAssetFolderBarButtonItem.Caption = "إضافة ملفات لمجلد الأصل";
+            this.addFilesToAssetFolderBarButtonItem.Id = 10;
+            this.addFilesToAssetFolderBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addFilesToAssetFolderBarButtonItem.ImageOptions.Image")));
+            this.addFilesToAssetFolderBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addFilesToAssetFolderBarButtonItem.ImageOptions.LargeImage")));
+            this.addFilesToAssetFolderBarButtonItem.Name = "addFilesToAssetFolderBarButtonItem";
+            this.addFilesToAssetFolderBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addFilesToAssetFolderBarButtonItem_ItemClick);
+            // 
+            // showAssetCardBarSubItem
+            // 
+            this.showAssetCardBarSubItem.Caption = "إظهار كرت أصل";
+            this.showAssetCardBarSubItem.Id = 11;
+            this.showAssetCardBarSubItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("showAssetCardBarSubItem.ImageOptions.SvgImage")));
+            this.showAssetCardBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.generalCardBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.estatesCardBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.vehiclesCardBarButtonItem)});
+            this.showAssetCardBarSubItem.Name = "showAssetCardBarSubItem";
+            this.showAssetCardBarSubItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
+            // 
+            // generalCardBarButtonItem
+            // 
+            this.generalCardBarButtonItem.Caption = "عام";
+            this.generalCardBarButtonItem.Id = 12;
+            this.generalCardBarButtonItem.Name = "generalCardBarButtonItem";
+            this.generalCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.generalCardBarButtonItem_ItemClick);
+            // 
+            // estatesCardBarButtonItem
+            // 
+            this.estatesCardBarButtonItem.Caption = "عقارات";
+            this.estatesCardBarButtonItem.Id = 13;
+            this.estatesCardBarButtonItem.Name = "estatesCardBarButtonItem";
+            this.estatesCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.estatesCardBarButtonItem_ItemClick);
+            // 
+            // vehiclesCardBarButtonItem
+            // 
+            this.vehiclesCardBarButtonItem.Caption = "مركبات";
+            this.vehiclesCardBarButtonItem.Id = 14;
+            this.vehiclesCardBarButtonItem.Name = "vehiclesCardBarButtonItem";
+            this.vehiclesCardBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.vehiclesCardBarButtonItem_ItemClick);
             // 
             // mainTimer
             // 
@@ -1206,5 +1273,11 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit assetDetailsRepositoryItemMemoEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit assetNotesRepositoryItemMemoEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit estateAddressRepositoryItemMemoEdit;
+        private DevExpress.XtraBars.BarButtonItem openAssetFolderBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem addFilesToAssetFolderBarButtonItem;
+        private DevExpress.XtraBars.BarSubItem showAssetCardBarSubItem;
+        private DevExpress.XtraBars.BarButtonItem generalCardBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem estatesCardBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem vehiclesCardBarButtonItem;
     }
 }

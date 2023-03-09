@@ -40676,7 +40676,27 @@ SELECT ID, UserID, LoggedInAt, LoggedOutAt FROM UserLoginTbl WHERE (ID = @ID)";
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
-        
+
+        public virtual int FillByQuery(AssetMngDbDataSet.AssetStatVwDataTable dataTable, string whereQuery)
+        {
+            int whereIndex = this.CommandCollection[0].CommandText.IndexOf("WHERE ", 0);
+            if (whereIndex == -1)
+            {
+                this.CommandCollection[0].CommandText += whereQuery;
+            }
+            else
+            {
+                this.CommandCollection[0].CommandText = this.CommandCollection[0].CommandText.Substring(0, whereIndex - 1) + whereQuery;
+            }
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true))
+            {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]

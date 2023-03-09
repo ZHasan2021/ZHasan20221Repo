@@ -58,5 +58,14 @@ namespace AssetManagement.AuxTables
             e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
         }
+
+        private void departmentTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "الأقسام" };
+            if (exportDlg.ShowDialog() != DialogResult.OK)
+                return;
+            departmentGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الأقسام" });
+            mainAlertControl.Show(this, "تم تصدير بيانات الأقسام إلى اكسل", StaticCode.ApplicationTitle);
+        }
     }
 }

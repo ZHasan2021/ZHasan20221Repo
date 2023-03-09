@@ -192,7 +192,7 @@ namespace AssetManagement
                 return DateTime.Today.AddDays(appOptions.ShiftDays);
             }
         }
-        
+
         public static DateTime AppNow
         {
             get
@@ -771,6 +771,7 @@ namespace AssetManagement
             tmpMainDbContext.SubmitChanges();
             return "Done!";
         }
+        public static string AssetsAttachmentsFolder = $"{Application.StartupPath}//Assets attachments//";
 
         public static IQueryable<AssetTbl> GetAssetsToDestruct()
         {
@@ -1377,7 +1378,28 @@ namespace AssetManagement
         public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
         public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
         public static string SubLevelTotalsOutPath = $"{FinanceFolder}التقرير المالي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
+        public static string ExpensesAnalysisReportPath = $"{FinanceFolder}تحليل المصروفات{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string AssetAsFiCaStatement = "أصول ثابتة";
+        public static string FinancialItemsAttachmentsFolder = $"{Application.StartupPath}//Financial items attachments//";
+
+        public static string GetTheNewFinancialItemCode()
+        {
+            string currUserPrefix = activeUser.UserPrefix;
+            var currUserAssets = mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode.Contains(currUserPrefix + "-"));
+            if (currUserAssets == null || currUserAssets.Count() == 0)
+                return ($"{currUserPrefix}-1");
+            string maxAssetCodeForCurrUser = currUserAssets.Max(ast2 => ast2.AssetCode);
+            int maxAssetIDForCurrUser = 1;
+            try
+            {
+                maxAssetIDForCurrUser = Convert.ToInt32(maxAssetCodeForCurrUser.Replace(currUserPrefix + "-", "")) + 1;
+            }
+            catch
+            {
+                maxAssetIDForCurrUser = 1;
+            }
+            return ($"{currUserPrefix}-{maxAssetIDForCurrUser}");
+        }
 
         public static string ImportFinancialItemsFromExcel(string fiItsFilePath, out int codeIncVal)
         {

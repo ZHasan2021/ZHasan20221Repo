@@ -54,6 +54,7 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.sectionTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.sectionTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.sectionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sectionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -72,7 +73,7 @@ namespace AssetManagement.AuxTables
             this.sectionGridControl.Location = new System.Drawing.Point(0, 47);
             this.sectionGridControl.MainView = this.sectionGridView;
             this.sectionGridControl.Name = "sectionGridControl";
-            this.sectionGridControl.Size = new System.Drawing.Size(910, 526);
+            this.sectionGridControl.Size = new System.Drawing.Size(1144, 624);
             this.sectionGridControl.TabIndex = 5;
             this.sectionGridControl.UseEmbeddedNavigator = true;
             this.sectionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -181,7 +182,8 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.sectionTblBindingNavigatorSaveItem});
+            this.sectionTblBindingNavigatorSaveItem,
+            this.sectionTblBindingNavigatorExportToExcelItem});
             this.sectionTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.sectionTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.sectionTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -189,7 +191,7 @@ namespace AssetManagement.AuxTables
             this.sectionTblBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.sectionTblBindingNavigator.Name = "sectionTblBindingNavigator";
             this.sectionTblBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.sectionTblBindingNavigator.Size = new System.Drawing.Size(910, 47);
+            this.sectionTblBindingNavigator.Size = new System.Drawing.Size(1144, 47);
             this.sectionTblBindingNavigator.TabIndex = 4;
             this.sectionTblBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -288,11 +290,21 @@ namespace AssetManagement.AuxTables
             this.sectionTblBindingNavigatorSaveItem.Text = "Save Data";
             this.sectionTblBindingNavigatorSaveItem.Click += new System.EventHandler(this.sectionTblBindingNavigatorSaveItem_Click);
             // 
+            // sectionTblBindingNavigatorExportToExcelItem
+            // 
+            this.sectionTblBindingNavigatorExportToExcelItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.sectionTblBindingNavigatorExportToExcelItem.Image = global::AssetManagement.Properties.Resources._36435172;
+            this.sectionTblBindingNavigatorExportToExcelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.sectionTblBindingNavigatorExportToExcelItem.Name = "sectionTblBindingNavigatorExportToExcelItem";
+            this.sectionTblBindingNavigatorExportToExcelItem.Size = new System.Drawing.Size(44, 44);
+            this.sectionTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى إكسل";
+            this.sectionTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.sectionTblBindingNavigatorExportToExcelItem_Click);
+            // 
             // ManageSectionTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 573);
+            this.ClientSize = new System.Drawing.Size(1144, 671);
             this.Controls.Add(this.sectionGridControl);
             this.Controls.Add(this.sectionTblBindingNavigator);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -337,5 +349,6 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Views.Grid.GridView sectionGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colSectionName;
+        private System.Windows.Forms.ToolStripButton sectionTblBindingNavigatorExportToExcelItem;
     }
 }
