@@ -138,7 +138,7 @@ namespace AssetManagement.Assets
                     oneChart.SeriesTemplate.SeriesDataMember = seriesFieldBarEditItem.EditValue.ToString();
                 }
 
-                    oneChart.SeriesTemplate.ArgumentDataMember = dataMemberFieldBarEditItem.EditValue.ToString();
+                oneChart.SeriesTemplate.ArgumentDataMember = dataMemberFieldBarEditItem.EditValue.ToString();
                 oneChart.SeriesTemplate.QualitativeSummaryOptions.SummaryFunction = $"SUM([{aggField}])";
                 oneChart.SeriesTemplate.ValueDataMembersSerializable = aggField;
                 oneChart.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;

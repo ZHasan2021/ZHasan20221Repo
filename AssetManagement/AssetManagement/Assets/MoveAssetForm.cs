@@ -23,6 +23,8 @@ namespace AssetManagement.Assets
 
         private void MoveAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.EmployeeTbl' table. You can move, or remove it, as needed.
+            this.employeeTblTableAdapter.Fill(this.assetMngDbDataSet.EmployeeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -41,17 +43,6 @@ namespace AssetManagement.Assets
             this.departmentTblTableAdapter.Fill(this.assetMngDbDataSet.DepartmentTbl);
             assetMovementTblBindingNavigator.Visible = StaticCode.activeUserRole.ManageAssetMovements == true;
             this.MinimumSize = this.Size;
-
-            if (StaticCode.activeUserRole.IsSectionIndependent != true)
-            {
-                toSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
-                toSectionLookUpEdit.Enabled = false;
-            }
-            if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-            {
-                toDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
-                toDepartmentLookUpEdit.Enabled = false;
-            }
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -253,12 +244,26 @@ namespace AssetManagement.Assets
             moveAssetGroupBox.Visible = assetMoveVwGridControl.Visible = true;
             toSectionDepartmentSubDepartmentCheckBox.Checked = toSquareCheckBox.Checked = toCustodianNameCheckBox.Checked = toPlaceOfPresenceCheckBox.Checked = false;
             toSectionLookUpEdit.EditValue = toDepartmentLookUpEdit.EditValue = toSubDepartmentLookUpEdit.EditValue = toSquareLookUpEdit.EditValue = assetMovementDateDateEdit.EditValue = null;
-            toCustodianNameTextBox.Text = toPlaceOfPresenceTextBox.Text = "";
+            toCustodianNameTextBox.Text = "";
+            toPlaceOfPresenceTextBox.Text = "";
         }
 
         private void toDepartmentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             toSectionLookUpEdit.Visible = toDepartmentLookUpEdit.Visible = toSubDepartmentLookUpEdit.Visible = toSectionDepartmentSubDepartmentCheckBox.Checked;
+            if (toSectionDepartmentSubDepartmentCheckBox.Checked)
+            {
+                if (StaticCode.activeUserRole.IsSectionIndependent != true)
+                {
+                    toSectionLookUpEdit.EditValue = StaticCode.activeUser.UserSection;
+                    toSectionLookUpEdit.Enabled = false;
+                }
+                if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                {
+                    toDepartmentLookUpEdit.EditValue = StaticCode.activeUser.UserDept;
+                    toDepartmentLookUpEdit.Enabled = false;
+                }
+            }
         }
 
         private void toSquareCheckBox_CheckedChanged(object sender, EventArgs e)

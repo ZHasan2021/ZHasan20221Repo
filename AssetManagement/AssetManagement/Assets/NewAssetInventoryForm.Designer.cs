@@ -49,9 +49,10 @@ namespace AssetManagement.Assets
             this.customSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.searchAllRadioButton = new System.Windows.Forms.RadioButton();
             this.customSearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.searchBySubDepartmentSearchLookUpEdit = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.subDepartmentVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.searchBySubDepartmentCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByInsertionDatePanel = new System.Windows.Forms.Panel();
             this.searchByInsertionDateLabel_To = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@ namespace AssetManagement.Assets
             this.searchByAssetSpecificationsCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByAssetSpecificationsTextBox = new System.Windows.Forms.TextBox();
             this.searchByCustodianNameCheckBox = new System.Windows.Forms.CheckBox();
-            this.searchByCustodianNameTextBox = new System.Windows.Forms.TextBox();
             this.searchByAssetCodeCheckBox = new System.Windows.Forms.CheckBox();
             this.searchByAssetCodeTextBox = new System.Windows.Forms.TextBox();
             this.searchByMinorCategoryCheckBox = new System.Windows.Forms.CheckBox();
@@ -105,6 +105,7 @@ namespace AssetManagement.Assets
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.assetGridControl = new DevExpress.XtraGrid.GridControl();
@@ -157,13 +158,15 @@ namespace AssetManagement.Assets
             this.subDepartmentVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentVwTableAdapter();
             this.searchResultsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.moveAllAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchByCustodianNameTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportToExcelPopupMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.customSearchGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             this.searchByInsertionDatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties)).BeginInit();
@@ -238,7 +241,7 @@ namespace AssetManagement.Assets
             // moveAllDropDownButton
             // 
             this.moveAllDropDownButton.Enabled = false;
-            this.moveAllDropDownButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dropDownButton1.ImageOptions.SvgImage")));
+            this.moveAllDropDownButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("moveAllDropDownButton.ImageOptions.SvgImage")));
             this.moveAllDropDownButton.Location = new System.Drawing.Point(401, 20);
             this.moveAllDropDownButton.Name = "moveAllDropDownButton";
             this.moveAllDropDownButton.Size = new System.Drawing.Size(163, 73);
@@ -386,6 +389,7 @@ namespace AssetManagement.Assets
             // customSearchGroupBox
             // 
             this.customSearchGroupBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.customSearchGroupBox.Controls.Add(this.searchByCustodianNameTextBox);
             this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentSearchLookUpEdit);
             this.customSearchGroupBox.Controls.Add(this.searchBySubDepartmentCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchByInsertionDatePanel);
@@ -397,7 +401,6 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Controls.Add(this.searchByAssetSpecificationsCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchByAssetSpecificationsTextBox);
             this.customSearchGroupBox.Controls.Add(this.searchByCustodianNameCheckBox);
-            this.customSearchGroupBox.Controls.Add(this.searchByCustodianNameTextBox);
             this.customSearchGroupBox.Controls.Add(this.searchByAssetCodeCheckBox);
             this.customSearchGroupBox.Controls.Add(this.searchByAssetCodeTextBox);
             this.customSearchGroupBox.Controls.Add(this.searchByMinorCategoryCheckBox);
@@ -420,6 +423,16 @@ namespace AssetManagement.Assets
             this.customSearchGroupBox.Text = "بحث مخصص";
             this.customSearchGroupBox.Visible = false;
             // 
+            // employeeTblBindingSource
+            // 
+            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
+            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // searchBySubDepartmentSearchLookUpEdit
             // 
             this.searchBySubDepartmentSearchLookUpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -441,11 +454,6 @@ namespace AssetManagement.Assets
             // 
             this.subDepartmentVwBindingSource.DataMember = "SubDepartmentVw";
             this.subDepartmentVwBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // searchBySubDepartmentCheckBox
             // 
@@ -663,14 +671,6 @@ namespace AssetManagement.Assets
             this.searchByCustodianNameCheckBox.Text = "حسب صاحب العهدة:";
             this.searchByCustodianNameCheckBox.UseVisualStyleBackColor = true;
             this.searchByCustodianNameCheckBox.CheckedChanged += new System.EventHandler(this.searchByCustodianNameCheckBox_CheckedChanged);
-            // 
-            // searchByCustodianNameTextBox
-            // 
-            this.searchByCustodianNameTextBox.Location = new System.Drawing.Point(78, 83);
-            this.searchByCustodianNameTextBox.Name = "searchByCustodianNameTextBox";
-            this.searchByCustodianNameTextBox.Size = new System.Drawing.Size(234, 28);
-            this.searchByCustodianNameTextBox.TabIndex = 215;
-            this.searchByCustodianNameTextBox.Visible = false;
             // 
             // searchByAssetCodeCheckBox
             // 
@@ -973,6 +973,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -993,6 +994,10 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // employeeTblTableAdapter
+            // 
+            this.employeeTblTableAdapter.ClearBeforeFill = true;
             // 
             // assetVwBindingSource
             // 
@@ -1529,6 +1534,14 @@ namespace AssetManagement.Assets
             this.moveAllAssetsToolStripMenuItem.Text = "نقل الكل";
             this.moveAllAssetsToolStripMenuItem.Click += new System.EventHandler(this.moveAllAssetsToolStripMenuItem_Click);
             // 
+            // searchByCustodianNameTextBox
+            // 
+            this.searchByCustodianNameTextBox.Location = new System.Drawing.Point(78, 83);
+            this.searchByCustodianNameTextBox.Name = "searchByCustodianNameTextBox";
+            this.searchByCustodianNameTextBox.Size = new System.Drawing.Size(234, 28);
+            this.searchByCustodianNameTextBox.TabIndex = 266;
+            this.searchByCustodianNameTextBox.Visible = false;
+            // 
             // NewAssetInventoryForm
             // 
             this.AcceptButton = this.searchAssetDropDownButton;
@@ -1558,9 +1571,10 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.customSearchGroupBox.ResumeLayout(false);
             this.customSearchGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBySubDepartmentSearchLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentVwBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             this.searchByInsertionDatePanel.ResumeLayout(false);
             this.searchByInsertionDatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchByInsertionDateDateEdit_To.Properties.CalendarTimeProperties)).EndInit();
@@ -1640,7 +1654,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.CheckBox searchByAssetSpecificationsCheckBox;
         private System.Windows.Forms.TextBox searchByAssetSpecificationsTextBox;
         private System.Windows.Forms.CheckBox searchByCustodianNameCheckBox;
-        private System.Windows.Forms.TextBox searchByCustodianNameTextBox;
         private System.Windows.Forms.Panel searchByPurchaseDatePanel;
         private System.Windows.Forms.Label searchByPurchaseDateLabel_To;
         private DevExpress.XtraEditors.DateEdit searchByPurchaseDateDateEdit_To;
@@ -1736,5 +1749,8 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.ContextMenuStrip searchResultsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem moveAllAssetsToolStripMenuItem;
         private DevExpress.XtraEditors.DropDownButton moveAllDropDownButton;
+        private System.Windows.Forms.BindingSource employeeTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
+        private System.Windows.Forms.TextBox searchByCustodianNameTextBox;
     }
 }

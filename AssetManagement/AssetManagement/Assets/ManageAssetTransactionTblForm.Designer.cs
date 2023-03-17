@@ -44,6 +44,7 @@ namespace AssetManagement.AuxTables
             this.trtyRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.transactionTypeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colTransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionNotes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionMadeOn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTransactionMadeBy = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,9 +74,11 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem = new System.Windows.Forms.ToolStripButton();
             this.assetTransactionTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.assetTransactionTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem = new System.Windows.Forms.ToolStripButton();
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem = new System.Windows.Forms.ToolStripButton();
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem = new System.Windows.Forms.ToolStripButton();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
             this.assetVw_AllTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVw_AllTableAdapter();
             this.assetVwGridControl = new DevExpress.XtraGrid.GridControl();
@@ -152,7 +155,6 @@ namespace AssetManagement.AuxTables
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
-            this.colQuantityTransacted = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTransactionTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -375,6 +377,16 @@ namespace AssetManagement.AuxTables
             this.colTransactionDate.VisibleIndex = 2;
             this.colTransactionDate.Width = 100;
             // 
+            // colQuantityTransacted
+            // 
+            this.colQuantityTransacted.Caption = "العدد";
+            this.colQuantityTransacted.FieldName = "QuantityTransacted";
+            this.colQuantityTransacted.MinWidth = 100;
+            this.colQuantityTransacted.Name = "colQuantityTransacted";
+            this.colQuantityTransacted.Visible = true;
+            this.colQuantityTransacted.VisibleIndex = 3;
+            this.colQuantityTransacted.Width = 100;
+            // 
             // colTransactionNotes
             // 
             this.colTransactionNotes.Caption = "ملاحظات";
@@ -510,6 +522,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
@@ -518,6 +531,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = this.transactionTypeTblTableAdapter;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -551,10 +565,12 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem,
             this.bindingNavigatorDeleteItem,
             this.assetTransactionTblBindingNavigatorSaveItem,
             this.assetTransactionTblBindingNavigatorExportToExcelItem,
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem});
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem,
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem});
             this.assetTransactionTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.assetTransactionTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetTransactionTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -654,6 +670,16 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
+            // assetTransactionTblBindingNavigatorViewAssetCardItem
+            // 
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Image = global::AssetManagement.Properties.Resources._8341961;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Name = "assetTransactionTblBindingNavigatorViewAssetCardItem";
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Size = new System.Drawing.Size(44, 44);
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Text = "عرض بطاقة الأصل";
+            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorViewAssetCardItem_Click);
+            // 
             // assetTransactionTblBindingNavigatorSaveItem
             // 
             this.assetTransactionTblBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -674,15 +700,25 @@ namespace AssetManagement.AuxTables
             this.assetTransactionTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى اكسل";
             this.assetTransactionTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorExportToExcelItem_Click);
             // 
-            // assetTransactionTblBindingNavigatorViewAssetCardItem
+            // assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem
             // 
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Image = global::AssetManagement.Properties.Resources._8341961;
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Name = "assetTransactionTblBindingNavigatorViewAssetCardItem";
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Size = new System.Drawing.Size(44, 44);
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Text = "عرض بطاقة الأصل";
-            this.assetTransactionTblBindingNavigatorViewAssetCardItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorViewAssetCardItem_Click);
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.Image = global::AssetManagement.Properties.Resources._1685605;
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.Name = "assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem";
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.Size = new System.Drawing.Size(44, 44);
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.Text = "إضافة ملفات لمجلد الأصل";
+            this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem_Click);
+            // 
+            // assetTransactionTblBindingNavigatorOpenAssetFolderItem
+            // 
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.Image = global::AssetManagement.Properties.Resources._1666503;
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.Name = "assetTransactionTblBindingNavigatorOpenAssetFolderItem";
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.Size = new System.Drawing.Size(44, 44);
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.Text = "فتح مجلد الأصل";
+            this.assetTransactionTblBindingNavigatorOpenAssetFolderItem.Click += new System.EventHandler(this.assetTransactionTblBindingNavigatorOpenAssetFolderItem_Click);
             // 
             // assetVwTableAdapter
             // 
@@ -1369,16 +1405,6 @@ namespace AssetManagement.AuxTables
             // 
             this.assetTblTableAdapter.ClearBeforeFill = true;
             // 
-            // colQuantityTransacted
-            // 
-            this.colQuantityTransacted.Caption = "العدد";
-            this.colQuantityTransacted.FieldName = "QuantityTransacted";
-            this.colQuantityTransacted.MinWidth = 100;
-            this.colQuantityTransacted.Name = "colQuantityTransacted";
-            this.colQuantityTransacted.Visible = true;
-            this.colQuantityTransacted.VisibleIndex = 3;
-            this.colQuantityTransacted.Width = 100;
-            // 
             // ManageAssetTransactionTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1574,5 +1600,7 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colQuantityTransacted;
+        private System.Windows.Forms.ToolStripButton assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem;
+        private System.Windows.Forms.ToolStripButton assetTransactionTblBindingNavigatorOpenAssetFolderItem;
     }
 }

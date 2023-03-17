@@ -436,6 +436,12 @@
     <Compile Include="AuxTables\ManageIncomingTypeTblForm.Designer.cs">
       <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuxTables\ManageEmployeeTblForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuxTables\ManageEmployeeTblForm.Designer.cs">
+      <DependentUpon>ManageEmployeeTblForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuxTables\ManageSubDepartmentTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -613,6 +619,9 @@
     <Compile Include="Users\AddNewUserForm.Designer.cs">
       <DependentUpon>AddNewUserForm.cs</DependentUpon>
     </Compile>
+    <None Include="AssetMngDb.dbml.layout">
+      <DependentUpon>AssetMngDb.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Assets\AssetsStatsForm.resx">
       <DependentUpon>AssetsStatsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -661,6 +670,9 @@
     <EmbeddedResource Include="AuxTables\ManageIncomingTypeTblForm.resx">
       <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AuxTables\ManageEmployeeTblForm.resx">
+      <DependentUpon>ManageEmployeeTblForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageSubDepartmentTblForm.resx">
       <DependentUpon>ManageSubDepartmentTblForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -706,9 +718,6 @@
     <EmbeddedResource Include="Users\AddNewUserForm.resx">
       <DependentUpon>AddNewUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="AssetMngDb.dbml.layout">
-      <DependentUpon>AssetMngDb.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="Assets\AddNewAssetForm.resx">
       <DependentUpon>AddNewAssetForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -765,11 +774,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="AssetMngDb.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>AssetMngDb.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -783,6 +787,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AssetMngDb.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\3848173.png" />
+    <None Include="Resources\6001301.png" />
+    <None Include="AssetMngDb.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>AssetMngDb.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\1666503.png" />
+    <None Include="Resources\1685605.png" />
     <None Include="Resources\25567442.png" />
     <None Include="Resources\233038.png" />
     <None Include="Resources\7539302.png" />

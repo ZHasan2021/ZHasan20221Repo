@@ -65,13 +65,33 @@ namespace AssetManagement.Assets
             switch (cardType)
             {
                 case 1:
-                    colاسمالمالك.Visible = colالمستغلمنه.Visible = colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = colرقملوحةالمركبة.Visible = false;
+                    assetLayoutView.Columns.Remove(colاسمالمالك);
+                    assetLayoutView.Columns.Remove(colالمستغلمنه);
+                    assetLayoutView.Columns.Remove(colرقمالمحركللمركبة);
+                    assetLayoutView.Columns.Remove(colرقملوحةالمركبة);
+                    assetLayoutView.Columns.Remove(colسنةصنعالمركبة);
+                    assetLayoutView.Columns.Remove(colعنوانالعقار);
+                    assetLayoutView.Columns.Remove(colمساحةالعقار);
+                    assetLayoutView.Columns.Remove(colمعمنورقةالملكية);
+                    assetLayoutView.Columns.Remove(colوحدةمساحةالعقار);
+                    assetLayoutView.Columns.Remove(colرقملوحةالمركبة);
+                    //colاسمالمالك.Visible = colالمستغلمنه.Visible = colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = colرقملوحةالمركبة.Visible = false;
                     break;
                 case 2:
-                    colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colاللون.Visible = colالموديل.Visible = colاللون.Visible = false;
+                    assetLayoutView.Columns.Remove(colرقمالمحركللمركبة);
+                    assetLayoutView.Columns.Remove(colرقملوحةالمركبة);
+                    assetLayoutView.Columns.Remove(colسنةصنعالمركبة);
+                    assetLayoutView.Columns.Remove(colاللون);
+                    assetLayoutView.Columns.Remove(colالموديل);
+                    //colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible =  colالموديل.Visible = colاللون.Visible = false;
                     break;
                 case 3:
-                    colالمستغلمنه.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = false;
+                    assetLayoutView.Columns.Remove(colالمستغلمنه);
+                    assetLayoutView.Columns.Remove(colعنوانالعقار);
+                    assetLayoutView.Columns.Remove(colمساحةالعقار);
+                    assetLayoutView.Columns.Remove(colمعمنورقةالملكية);
+                    assetLayoutView.Columns.Remove(colوحدةمساحةالعقار);
+                    //colالمستغلمنه.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = false;
                     break;
                 default:
                     break;

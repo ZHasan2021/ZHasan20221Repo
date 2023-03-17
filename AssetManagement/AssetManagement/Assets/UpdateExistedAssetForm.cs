@@ -36,6 +36,8 @@ namespace AssetManagement.Assets
 
         private void UpdateExistedAssetForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'assetMngDbDataSet.EmployeeTbl' table. You can move, or remove it, as needed.
+            this.employeeTblTableAdapter.Fill(this.assetMngDbDataSet.EmployeeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.AssetVw' table. You can move, or remove it, as needed.
             this.assetVwTableAdapter.Fill(this.assetMngDbDataSet.AssetVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.ModelTbl' table. You can move, or remove it, as needed.

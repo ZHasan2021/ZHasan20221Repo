@@ -57,6 +57,7 @@ namespace AssetManagement.AuxTables
             this.financialItemCategoryTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemCategoryTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.financialItemCategoryTblBindingNavigatorExportToExcelItem = new System.Windows.Forms.ToolStripButton();
+            this.colGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -97,7 +98,8 @@ namespace AssetManagement.AuxTables
             this.colID,
             this.colFinancialItemCategoryName,
             this.colFinancialItemCategoryDetails,
-            this.colIsIncomingOrOutgiung});
+            this.colIsIncomingOrOutgiung,
+            this.colGroupName});
             this.financialItemCategoryGridView.GridControl = this.financialItemCategoryGridControl;
             this.financialItemCategoryGridView.Name = "financialItemCategoryGridView";
             // 
@@ -162,6 +164,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
+            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -324,6 +327,16 @@ namespace AssetManagement.AuxTables
             this.financialItemCategoryTblBindingNavigatorExportToExcelItem.Text = "تصدير إلى إكسل";
             this.financialItemCategoryTblBindingNavigatorExportToExcelItem.Click += new System.EventHandler(this.financialItemCategoryTblBindingNavigatorExportToExcelItem_Click);
             // 
+            // colGroupName
+            // 
+            this.colGroupName.Caption = "اسم المجموعة التي يندرج تحتها البند المالي";
+            this.colGroupName.FieldName = "GroupName";
+            this.colGroupName.MinWidth = 150;
+            this.colGroupName.Name = "colGroupName";
+            this.colGroupName.Visible = true;
+            this.colGroupName.VisibleIndex = 3;
+            this.colGroupName.Width = 150;
+            // 
             // ManageFinancialItemCategoryTblForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -376,5 +389,6 @@ namespace AssetManagement.AuxTables
         private System.Windows.Forms.BindingNavigator financialItemCategoryTblBindingNavigator;
         private DevExpress.XtraGrid.Columns.GridColumn colIsIncomingOrOutgiung;
         private System.Windows.Forms.ToolStripButton financialItemCategoryTblBindingNavigatorExportToExcelItem;
+        private DevExpress.XtraGrid.Columns.GridColumn colGroupName;
     }
 }

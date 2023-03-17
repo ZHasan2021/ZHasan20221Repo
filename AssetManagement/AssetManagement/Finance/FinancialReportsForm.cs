@@ -630,8 +630,8 @@ namespace AssetManagement.Finance
                             #endregion
 
                             #region Recycled of sub-level
-                            startRow = Math.Max(incomingRow1, outgoingRow) + 1;
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 2])
+                            int recycledRow1 = incomingRow1 + 1;
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow1, 2])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -642,7 +642,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems());
                             }
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 3])
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow1, 3])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -653,7 +653,6 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = "مدور بيد الـ PM";
                             }
-                            startRow += 5;
                             #endregion
                             break;
                         case 2:
@@ -839,8 +838,8 @@ namespace AssetManagement.Finance
                             #endregion
 
                             #region Recycled of sub-level
-                            startRow = Math.Max(incomingRow2, outgoingRow2) + 1;
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 2])
+                            int recycledRow2 = incomingRow2 + 1;
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow2, 2])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -851,7 +850,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems());
                             }
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 3])
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow2, 3])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -862,7 +861,6 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = "مدور بيد رئيس الدائرة";
                             }
-                            startRow += 5;
                             #endregion
                             break;
                         case 3:
@@ -1048,8 +1046,8 @@ namespace AssetManagement.Finance
                             #endregion
 
                             #region Recycled of sub-level
-                            startRow = Math.Max(incomingRow3, outgoingRow3) + 1;
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 2])
+                            int recycledRow3 = incomingRow3 + 1;
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow3, 2])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -1060,7 +1058,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems());
                             }
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 3])
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow3, 3])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -1071,7 +1069,6 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = "مدور بيد رئيس القسم";
                             }
-                            startRow += 5;
                             #endregion
                             break;
                         case 4:
@@ -1257,8 +1254,8 @@ namespace AssetManagement.Finance
                             #endregion
 
                             #region Recycled of sub-level
-                            startRow = Math.Max(incomingRow4, outgoingRow4) + 1;
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 2])
+                            int recycledRow4 = incomingRow4 + 1;
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow4, 2])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -1269,7 +1266,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems());
                             }
-                            using (var cells = generalFinancialReportWs.Cells[startRow, 3])
+                            using (var cells = generalFinancialReportWs.Cells[recycledRow4, 3])
                             {
                                 cells.Style.Font.Name = "Calibri";
                                 cells.Style.Font.Size = 11.0F;
@@ -1280,7 +1277,6 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
                                 cells.Value = "مدور بيد رئيس الوحدة";
                             }
-                            startRow += 5;
                             #endregion
                             break;
                         default:
@@ -1773,6 +1769,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                                 cells.Value = Math.Round(subLevelRecords.CalcRecycledOfFinancialItems());
                             }
+                            detailedFinancialReportWs.Row(allRecycledRow).Height = 22;
                             allRecycledRow++;
                         }
                         figuresRow = allRecycledRow;
@@ -1946,7 +1943,7 @@ namespace AssetManagement.Finance
                     }
                     #endregion
 
-                    for (int iRow = startRow + 2; iRow <= finalRow; iRow++)
+                    for (int iRow = startRow + 2; iRow <= Math.Max(tableRow, finalRow); iRow++)
                     {
                         detailedFinancialReportWs.Row(iRow).Height = 23;
                     }
@@ -2003,16 +2000,16 @@ namespace AssetManagement.Finance
                 switch (reportLevel)
                 {
                     case 1:
-                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الدائرة).Distinct().ToList();
+                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الدائرة).Distinct().OrderBy(fiv2 => fiv2).ToList();
                         break;
                     case 2:
-                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.القسم).Distinct().ToList();
+                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.القسم).Distinct().OrderBy(fiv2 => fiv2).ToList();
                         break;
                     case 3:
-                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الوحدة).Distinct().ToList();
+                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الوحدة).Distinct().OrderBy(fiv2 => fiv2).ToList();
                         break;
                     case 4:
-                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الوحدة).Distinct().ToList();
+                        subLevelNamesList = financialItemsQryVw.Select(fiv1 => fiv1.الوحدة).Distinct().OrderBy(fiv2 => fiv2).ToList();
                         break;
                     default:
                         break;
@@ -2086,26 +2083,6 @@ namespace AssetManagement.Finance
                         for (int iCurr = 0; iCurr < currenciesList.Count(); iCurr++)
                         {
                             string oneSubLevelName = subLevelNamesList[iSubLevel];
-                            if (oneSubLevelName == "")
-                            {
-                                switch (reportLevel)
-                                {
-                                    case 1:
-                                        oneSubLevelName = StaticCode.PMName;
-                                        break;
-                                    case 2:
-                                        oneSubLevelName = "إدارة الدائرة";
-                                        break;
-                                    case 3:
-                                        oneSubLevelName = "إدارة القسم";
-                                        break;
-                                    case 4:
-                                        oneSubLevelName = "إدارة الوحدة";
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
                             if (iCurr == 0)
                             {
                                 using (var cells = oneSh.Cells[5, startCol, 5, startCol + currenciesList.Count() - 1])
@@ -2137,22 +2114,27 @@ namespace AssetManagement.Finance
                             startCol++;
                         }
                     }
-                    List<string> fiCasList = financialItemsQryVw.Where(fiv1 => fiv1.وارد_أم_صادر == inOutSh).Select(fiv2 => fiv2.اسم_البند_المالي).Distinct().ToList();
-                    int startRow = 7;
-                    using (var cells = oneSh.Cells[startRow, 2, fiCasList.Count() + startRow - 1, startCol - 1])
+                    List<string> fiCasList = financialItemsQryVw.Where(fiv1 => fiv1.وارد_أم_صادر == inOutSh).Select(fiv2 => fiv2.مجموعة_البند_المالي).Distinct().ToList();
+                    if (!fiCasList.Any())
+                    {
+                        ExpensesAnalysisReport_Wb.Worksheets.Delete(oneSh);
+                        continue;
+                    }
+                    int fiCasNamesStartRow = 7;
+                    using (var cells = oneSh.Cells[fiCasNamesStartRow, 2, fiCasList.Count() + fiCasNamesStartRow - 1, startCol - 1])
                     {
                         cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                         cells.Style.Font.Name = "Calibri";
-                        cells.Style.Font.Size = 9.0F;
+                        cells.Style.Font.Size = 10.0F;
                         cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                         cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                         cells.Style.Numberformat.Format = "#,##0.0_);(#,##0.0)";
                     }
-                    using (var cells = oneSh.Cells[startRow, 2, fiCasList.Count() + startRow - 1, 2])
+                    using (var cells = oneSh.Cells[fiCasNamesStartRow, 2, fiCasList.Count() + fiCasNamesStartRow - 1, 2])
                     {
                         cells.Style.Font.Size = 11.0F;
                     }
-                    using (var cells = oneSh.Cells[fiCasList.Count() + startRow, 2, fiCasList.Count() + startRow, subLevelByCurrenyColumn + 2])
+                    using (var cells = oneSh.Cells[fiCasList.Count() + fiCasNamesStartRow, 2, fiCasList.Count() + fiCasNamesStartRow, subLevelByCurrenyColumn + 2])
                     {
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
                         cells.Style.Font.Name = "Sakkal Majalla";
@@ -2164,9 +2146,9 @@ namespace AssetManagement.Finance
                         cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                         cells.Style.Numberformat.Format = "#,##0.0_);(#,##0.0)";
                     }
-                    oneSh.Row(fiCasList.Count() + startRow).Height = 28;
+                    oneSh.Row(fiCasList.Count() + fiCasNamesStartRow).Height = 28;
                     startCol = 3;
-                    int currRow = startRow;
+                    int currRow = fiCasNamesStartRow;
                     foreach (string oneFiCa in fiCasList)
                     {
                         oneSh.Cells[currRow, 2].Value = oneFiCa;
@@ -2176,7 +2158,7 @@ namespace AssetManagement.Finance
 
                             string subLevelName = oneSh.Cells[5, iCol].Value?.ToString();
                             string currName = oneSh.Cells[6, iCol].Value?.ToString();
-                            var fiAmountFv = financialItemsQryVw.Where(fiv1 => fiv1.العملة == currName && fiv1.اسم_البند_المالي == oneFiCa);
+                            var fiAmountFv = financialItemsQryVw.Where(fiv1 => fiv1.العملة == currName && fiv1.مجموعة_البند_المالي == oneFiCa);
                             switch (reportLevel)
                             {
                                 case 1:
@@ -2198,13 +2180,60 @@ namespace AssetManagement.Finance
                         }
                         currRow++;
                     }
-                    oneSh.Cells[currRow, 2].Value = "المجموع";
+                    using (var cells = oneSh.Cells[currRow, 2])
+                    {
+                        cells.Style.Font.Size = 11.0F;
+                        cells.Value = "المجموع";
+                    }
                     for (int iCol = startCol; iCol < subLevelByCurrenyColumn + startCol; iCol++)
                     {
                         Application.DoEvents();
 
-                        ExcelRange oneRng = oneSh.Cells[startRow, iCol, currRow - 1, iCol];
+                        ExcelRange oneRng = oneSh.Cells[fiCasNamesStartRow, iCol, currRow - 1, iCol];
                         oneSh.Cells[currRow, iCol].Formula = $"=SUM({oneRng.Address})";
+                    }
+                    string emptySubLevelName = oneSh.Cells[5, startCol].Value?.ToString();
+                    if (emptySubLevelName == "")
+                    {
+                        switch (reportLevel)
+                        {
+                            case 1:
+                                emptySubLevelName = StaticCode.PMName;
+                                break;
+                            case 2:
+                                emptySubLevelName = "إدارة الدائرة";
+                                break;
+                            case 3:
+                                emptySubLevelName = "إدارة القسم";
+                                break;
+                            case 4:
+                                emptySubLevelName = "إدارة الوحدة";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    oneSh.Cells[5, startCol].Value = emptySubLevelName;
+                    int leftTotalsColumn = subLevelByCurrenyColumn + startCol;
+                    oneSh.Column(leftTotalsColumn).Width = 16;
+                    int lowerTotalsRow = currRow;
+                    for (int iRow = fiCasNamesStartRow - 1; iRow <= lowerTotalsRow; iRow++)
+                    {
+                        Application.DoEvents();
+
+                        ExcelRange oneRng = oneSh.Cells[iRow, startCol, iRow, leftTotalsColumn - 1];
+                        using (var cells = oneSh.Cells[iRow, leftTotalsColumn])
+                        {
+                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
+                            cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            if (iRow == fiCasNamesStartRow - 1)
+                                cells.Value = "المجموع";
+                            else
+                                cells.Formula = $"=SUM({oneRng.Address})";
+                        }
                     }
                 }
                 ExpensesAnalysisReport_Ep.Save();
@@ -2227,12 +2256,14 @@ namespace AssetManagement.Finance
                 exportFinancialReportToExcelDropDownButton.ShowDropDown();
                 return;
             }
-            SaveFileDialog financialReportSFD = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx" };
+            SaveFileDialog financialReportSFD = new SaveFileDialog() { Filter = "Excel workbook 2007-2022 (*.xlsx)|*.xlsx", FileName = "التقرير المالي المعياري" + DateTime.Today.ToString("yyyy-MM-dd") };
             if (financialReportSFD.ShowDialog() != DialogResult.OK)
             {
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
             }
+            if (File.Exists(financialReportSFD.FileName))
+                File.Delete(financialReportSFD.FileName);
             string targetPath = financialReportSFD.FileName;
             if (!File.Exists(StaticCode.FinancialReportPath))
             {
@@ -2257,31 +2288,102 @@ namespace AssetManagement.Finance
             int descriptionCol = 7;
             int fiDateCol = 8;
             int fiCaCol = 9;
-            int curRowStart = 1205;
-            int curRowStart2 = 3;
-            int curColStart = 12;
+            int firstCurrRow = 4;
+            int fiCaRowStart = firstCurrRow + 1;
+            int toalsByCurrRowStart = 1705;
+            int lastRecordRow = 1700;
+            int listsRowStart = 3;
+            int fiCaCol_Left = 11;
+            int currColStart = 12;
+            int emptyCurrenciesColumn = 8;
+            int fiCaDetColumn = fiCaCol_Left + emptyCurrenciesColumn + 1;
+            var fiCaCount_In = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(ficai1 => ficai1.IsIncomingOrOutgiung == "وارد");
+            var fiCaCount_Out = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(ficao1 => ficao1.IsIncomingOrOutgiung == "صادر");
+            List<string> fiCaGroupsList_In = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "وارد").Select(fica2 => fica2.GroupName).Distinct().ToList();
+            List<string> fiCaGroupsList_Out = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر").Select(fica2 => fica2.GroupName).Distinct().ToList();
             foreach (FinancialItemCategoryTbl oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls)
             {
                 listsWs.Cells[ficaRowStart, 3].Value = oneFiCa.FinancialItemCategoryName;
                 listsWs.Cells[ficaRowStart, 4].Value = oneFiCa.FinancialItemCategoryDetails;
+                listsWs.Cells[ficaRowStart, 5].Value = oneFiCa.GroupName;
                 ficaRowStart++;
             }
+            List<int> currRows = new List<int>();
+            currRows.Add(firstCurrRow);
+            int rowsPointer = fiCaRowStart;
+            foreach (var oneFiCaName in fiCaCount_In)
+            {
+                fiRpWs.Cells[rowsPointer, fiCaCol_Left].Value = oneFiCaName.FinancialItemCategoryName;
+                using (var cells = fiRpWs.Cells[rowsPointer, fiCaDetColumn])
+                {
+                    cells.Value = oneFiCaName.FinancialItemCategoryDetails;
+                    cells.Style.Font.Size = 12.0F;
+                    cells.Style.Font.Color.SetColor(Color.Red);
+                    //cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    //cells.Style.Fill.BackgroundColor.SetColor(Color.Red);
+                    cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                }
+                rowsPointer++;
+            }
+            int emptyRows_In = 25 - fiCaCount_In.Count();
+            fiRpWs.DeleteRow(rowsPointer, emptyRows_In);
+            rowsPointer++;
+            toalsByCurrRowStart -= emptyRows_In;
+            lastRecordRow -= emptyRows_In;
+            fiRpWs.Column(fiCaDetColumn).Width = 50;
+            foreach (string oneFiCaGroupName in fiCaGroupsList_Out)
+            {
+                using (var cells = fiRpWs.Cells[rowsPointer, fiCaCol_Left])
+                {
+                    cells.Style.Font.Size = 14.0F;
+                    cells.Style.Font.UnderLine = true;
+                    cells.Style.Font.Color.SetColor(Color.Red);
+                    cells.Value = oneFiCaGroupName;
+                }
+                using (var cells = fiRpWs.Cells[rowsPointer, currColStart - 1, rowsPointer, currColStart + StaticCode.mainDbContext.CurrencyTbls.Count() - 1])
+                {
+                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(242, 220, 219));
+                }
+                currRows.Add(rowsPointer);
+                rowsPointer++;
+                foreach (var oneFiCaName in fiCaCount_Out.Where(fica1 => fica1.GroupName == oneFiCaGroupName))
+                {
+                    Application.DoEvents();
+                    fiRpWs.Cells[rowsPointer, fiCaCol_Left].Value = oneFiCaName.FinancialItemCategoryName;
+                    using (var cells = fiRpWs.Cells[rowsPointer, fiCaDetColumn])
+                    {
+                        cells.Value = oneFiCaName.FinancialItemCategoryDetails;
+                        cells.Style.Font.Size = 12.0F;
+                        cells.Style.Font.Color.SetColor(Color.Red);
+                        //cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        //cells.Style.Fill.BackgroundColor.SetColor(Color.Red);
+                        cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    }
+                    rowsPointer++;
+                }
+            }
+            int totalsRow = 106 - emptyRows_In;
+            int emptyRows_Out = totalsRow - rowsPointer;
+            toalsByCurrRowStart -= emptyRows_Out;
+            lastRecordRow -= emptyRows_Out;
+            fiRpWs.DeleteRow(rowsPointer, emptyRows_Out);
+            int lastTotalRow = rowsPointer + 7;
             foreach (CurrencyTbl oneCu in StaticCode.mainDbContext.CurrencyTbls)
             {
-                fiRpWs.Cells[curRowStart, 2].Value =
-                listsWs.Cells[curRowStart2, 9].Value =
-                fiRpWs.Cells[4, curColStart].Value =
-                fiRpWs.Cells[14, curColStart].Value =
-                fiRpWs.Cells[61, curColStart].Value =
-                fiRpWs.Cells[69, curColStart].Value =
-                fiRpWs.Cells[82, curColStart].Value =
-                fiRpWs.Cells[89, curColStart].Value = oneCu.CurrencyName;
-                curRowStart++;
-                curRowStart2++;
-                curColStart++;
+                fiRpWs.Cells[toalsByCurrRowStart, 2].Value =
+                listsWs.Cells[listsRowStart, 9].Value = oneCu.CurrencyName;
+                toalsByCurrRowStart++;
+                listsRowStart++;
+                foreach (int oneCurrRow in currRows)
+                {
+                    fiRpWs.Cells[oneCurrRow, currColStart].Value = oneCu.CurrencyName;
+                }
+                currColStart++;
             }
-            for (int iCol = 20; iCol >= curColStart; iCol--)
-                fiRpWs.DeleteColumn(iCol);
+            fiRpWs.DeleteColumn(currColStart, emptyCurrenciesColumn - StaticCode.mainDbContext.CurrencyTbls.Count());
 
             string sectionOfSearch = "";
             string departmentOfSearch = "";
@@ -2396,14 +2498,7 @@ namespace AssetManagement.Finance
                     startRow++;
                 }
             }
-            int macaStartRow = 70;
-            int macaStartCol = 11;
-            foreach (string oneFiCa in StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryDetails.Contains(StaticCode.AssetAsFiCaStatement)).Select(fica2 => fica2.FinancialItemCategoryName))
-            {
-                fiRpWs.Cells[macaStartRow, macaStartCol].Value = oneFiCa;
-                macaStartRow++;
-            }
-            fiRpWs.DeleteRow(Math.Max(startRow, 93), 1200 - Math.Max(startRow, 93));
+            fiRpWs.DeleteRow(Math.Max(startRow, lastTotalRow), lastRecordRow - Math.Max(startRow, lastTotalRow));
             fiRpEp.Save();
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
             MessageBox.Show("تم التصدير بنجاح", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -59,7 +59,6 @@ namespace AssetManagement.Finance
             manageCurrencyTblBtn.Visible = StaticCode.activeUserRole.ManageCurrencies == true;
             manageSectionTblBtn.Visible = StaticCode.activeUserRole.ManageSections == true;
             manageDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageDepartments == true;
-            manageSubDepartmentTblBtn.Visible = StaticCode.activeUserRole.ManageSubDepartments == true;
             manageIncomingTypeBtn.Visible = StaticCode.activeUserRole.ManageIncomingTypes == true;
             manageOutgoingTypeBtn.Visible = StaticCode.activeUserRole.ManageOutgoingTypes == true;
 
@@ -68,7 +67,6 @@ namespace AssetManagement.Finance
                 FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == existedRecordID);
                 financialItemSectionLookUpEdit.EditValue = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment).SectionOfDepartment;
                 financialItemDeptLookUpEdit.EditValue = StaticCode.mainDbContext.SubDepartmentTbls.Single(sdpt1 => sdpt1.ID == Convert.ToInt32(currFiIt.FinancialItemSubDept)).MainDepartment;
-                financialItemSubDeptLookUpEdit.EditValue = currFiIt.FinancialItemSubDept;
                 financialItemDescriptionTextBox.Text = currFiIt.FinancialItemDescription;
                 financialItemInsertionDateDateEdit.EditValue = currFiIt.FinancialItemInsertionDate;
                 incomingRadioButton.Checked = currFiIt.IncomingOrOutgoing == "وارد";
@@ -146,15 +144,13 @@ namespace AssetManagement.Finance
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
                     financialItemSectionLookUpEdit.Enabled =
-                    financialItemDeptLookUpEdit.Enabled =
-                    financialItemSubDeptLookUpEdit.Enabled = false;
+                    financialItemDeptLookUpEdit.Enabled = false;
                 }
                 else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                 {
                     outgoingToDeptLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.DepartmentTbls.Where(dpt1 => dpt1.SectionOfDepartment == StaticCode.activeUser.UserSection);
                     financialItemSectionLookUpEdit.Enabled =
-                    financialItemDeptLookUpEdit.Enabled =
-                    financialItemSubDeptLookUpEdit.Enabled = false;
+                    financialItemDeptLookUpEdit.Enabled = false;
                 }
                 else
                 {
@@ -286,20 +282,15 @@ namespace AssetManagement.Finance
             try
             {
                 int assetSubD = 0;
-                if (financialItemSubDeptLookUpEdit.EditValue != null)
-                    assetSubD = Convert.ToInt32(financialItemSubDeptLookUpEdit.EditValue);
+                if (StaticCode.activeUserRole.IsSectionIndependent == true)
+                {
+                    assetSubD = StaticCode.GetSubDeptForPM();
+                }
                 else
                 {
-                    if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                    {
-                        assetSubD = StaticCode.GetSubDeptForPM();
-                    }
-                    else
-                    {
-                        assetSubD = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
-                        if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-                            assetSubD = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
-                    }
+                    assetSubD = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
+                    if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
+                        assetSubD = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
                 }
                 StaticCode.mainDbContext.SubmitChanges();
 
@@ -458,7 +449,6 @@ namespace AssetManagement.Finance
             var deptItems = StaticCode.mainDbContext.DepartmentTbls.Where(sec1 => sec1.SectionOfDepartment == Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
             financialItemDeptLookUpEdit.Properties.DataSource = deptItems;
             financialItemDeptLookUpEdit_EditValueChanged(sender, e);
-            financialItemSubDeptLookUpEdit.EditValue = null;
         }
 
         private void financialItemDeptLookUpEdit_EditValueChanged(object sender, EventArgs e)
@@ -466,7 +456,6 @@ namespace AssetManagement.Finance
             if (financialItemDeptLookUpEdit.EditValue == null)
                 return;
             var subDeptItems = StaticCode.mainDbContext.SubDepartmentTbls.Where(subd1 => subd1.MainDepartment == Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
-            financialItemSubDeptLookUpEdit.Properties.DataSource = subDeptItems;
         }
 
         private void addNewAssetBtn_Click(object sender, EventArgs e)
@@ -570,11 +559,11 @@ namespace AssetManagement.Finance
                 }
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
-                    financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
+                    financialItemSectionLookUpEdit.Enabled = financialItemDeptLookUpEdit.Enabled = false;
                 }
                 if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
                 {
-                    financialItemDeptLookUpEdit.Enabled = financialItemSubDeptLookUpEdit.Enabled = false;
+                    financialItemDeptLookUpEdit.Enabled = false;
                 }
             }
         }

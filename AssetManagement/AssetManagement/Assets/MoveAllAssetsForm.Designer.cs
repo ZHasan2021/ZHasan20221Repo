@@ -43,7 +43,6 @@ namespace AssetManagement.Assets
             this.assetMovementDateLabel = new System.Windows.Forms.Label();
             this.assetMovementDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.assetsAllMoveBtn = new System.Windows.Forms.Button();
-            this.toCustodianNameTextBox = new System.Windows.Forms.TextBox();
             this.toSquareLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.squareTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toSectionLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
@@ -55,6 +54,7 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
+            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.assetMoveVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetMoveVwTableAdapter();
@@ -65,6 +65,8 @@ namespace AssetManagement.Assets
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
+            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toCustodianNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
@@ -82,6 +84,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toPlaceOfPresenceCheckBox
@@ -210,15 +213,6 @@ namespace AssetManagement.Assets
             this.assetsAllMoveBtn.UseVisualStyleBackColor = false;
             this.assetsAllMoveBtn.Click += new System.EventHandler(this.assetsMoveAllBtn_Click);
             // 
-            // toCustodianNameTextBox
-            // 
-            this.toCustodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toCustodianNameTextBox.Location = new System.Drawing.Point(286, 218);
-            this.toCustodianNameTextBox.Name = "toCustodianNameTextBox";
-            this.toCustodianNameTextBox.Size = new System.Drawing.Size(308, 28);
-            this.toCustodianNameTextBox.TabIndex = 35;
-            this.toCustodianNameTextBox.Visible = false;
-            // 
             // toSquareLookUpEdit
             // 
             this.toSquareLookUpEdit.Location = new System.Drawing.Point(286, 168);
@@ -330,6 +324,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -347,8 +342,13 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.SubDepartmentTblTableAdapter = this.subDepartmentTblTableAdapter;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
+            // 
+            // employeeTblTableAdapter
+            // 
+            this.employeeTblTableAdapter.ClearBeforeFill = true;
             // 
             // subDepartmentTblTableAdapter
             // 
@@ -395,11 +395,26 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
+            // employeeTblBindingSource
+            // 
+            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
+            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // toCustodianNameTextBox
+            // 
+            this.toCustodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toCustodianNameTextBox.Location = new System.Drawing.Point(286, 218);
+            this.toCustodianNameTextBox.Name = "toCustodianNameTextBox";
+            this.toCustodianNameTextBox.Size = new System.Drawing.Size(308, 28);
+            this.toCustodianNameTextBox.TabIndex = 201;
+            this.toCustodianNameTextBox.Visible = false;
+            // 
             // MoveAllAssetsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 422);
+            this.Controls.Add(this.toCustodianNameTextBox);
             this.Controls.Add(this.assetsAllMoveBtn);
             this.Controls.Add(this.assetMovementDateLabel);
             this.Controls.Add(this.toPlaceOfPresenceTextBox);
@@ -409,7 +424,6 @@ namespace AssetManagement.Assets
             this.Controls.Add(this.toSectionDepartmentSubDepartmentCheckBox);
             this.Controls.Add(this.toSquareCheckBox);
             this.Controls.Add(this.toCustodianNameCheckBox);
-            this.Controls.Add(this.toCustodianNameTextBox);
             this.Controls.Add(this.toSectionLookUpEdit);
             this.Controls.Add(this.toSquareLookUpEdit);
             this.Controls.Add(this.toDepartmentLookUpEdit);
@@ -440,6 +454,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,7 +464,6 @@ namespace AssetManagement.Assets
         private DevExpress.XtraEditors.LookUpEdit toSquareLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit toSectionLookUpEdit;
         private DevExpress.XtraEditors.LookUpEdit toDepartmentLookUpEdit;
-        private System.Windows.Forms.TextBox toCustodianNameTextBox;
         private System.Windows.Forms.Label assetMovementDateLabel;
         private DevExpress.XtraEditors.DateEdit assetMovementDateDateEdit;
         private System.Windows.Forms.Button assetsAllMoveBtn;
@@ -480,5 +494,8 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
         private System.Windows.Forms.CheckBox toPlaceOfPresenceCheckBox;
         private System.Windows.Forms.TextBox toPlaceOfPresenceTextBox;
+        private System.Windows.Forms.BindingSource employeeTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
+        private System.Windows.Forms.TextBox toCustodianNameTextBox;
     }
 }

@@ -30,7 +30,7 @@ namespace AssetManagement.AuxTables
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageAssetMovementTblForm));
             this.assetMovementGridControl = new DevExpress.XtraGrid.GridControl();
             this.assetMovementTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -39,7 +39,7 @@ namespace AssetManagement.AuxTables
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.astRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colFieldChanged = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOldValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNewValue = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,6 +47,7 @@ namespace AssetManagement.AuxTables
             this.colAssetMovedOn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetMovedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAssetMovementUniqueKey = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assetVwAllBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
@@ -141,13 +142,15 @@ namespace AssetManagement.AuxTables
             this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.assetTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem = new System.Windows.Forms.ToolStripButton();
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementTblBindingNavigator)).BeginInit();
@@ -190,16 +193,15 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // assetMovementGridControl
             // 
             this.assetMovementGridControl.DataSource = this.assetMovementTblBindingSource;
             this.assetMovementGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            gridLevelNode1.RelationName = "assetMovementLevel";
+            gridLevelNode2.RelationName = "assetMovementLevel";
             this.assetMovementGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.assetMovementGridControl.Location = new System.Drawing.Point(0, 47);
             this.assetMovementGridControl.MainView = this.assetMovementGridView;
             this.assetMovementGridControl.Name = "assetMovementGridControl";
@@ -310,10 +312,10 @@ namespace AssetManagement.AuxTables
             this.astRepositoryItemLookUpEdit.PopupWidth = 800;
             this.astRepositoryItemLookUpEdit.ValueMember = "ID";
             // 
-            // assetVwAllBindingSource
+            // assetTblBindingSource
             // 
-            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
-            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
+            this.assetTblBindingSource.DataMember = "AssetTbl";
+            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // colFieldChanged
             // 
@@ -379,6 +381,11 @@ namespace AssetManagement.AuxTables
             this.colAssetMovementUniqueKey.Name = "colAssetMovementUniqueKey";
             this.colAssetMovementUniqueKey.Width = 100;
             // 
+            // assetVwAllBindingSource
+            // 
+            this.assetVwAllBindingSource.DataMember = "AssetVw_All";
+            this.assetVwAllBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
             // assetVwBindingSource
             // 
             this.assetVwBindingSource.DataMember = "AssetVw";
@@ -415,6 +422,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.MainCategoryTblTableAdapter = null;
             this.tableAdapterManager.MinorCategoryTblTableAdapter = null;
             this.tableAdapterManager.ModelTblTableAdapter = null;
+            this.tableAdapterManager.NumberingTblTableAdapter = null;
             this.tableAdapterManager.OptionsTblTableAdapter = null;
             this.tableAdapterManager.OutgoingTypeTblTableAdapter = null;
             this.tableAdapterManager.SectionTblTableAdapter = null;
@@ -423,6 +431,7 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.SubDepartmentTblTableAdapter = null;
             this.tableAdapterManager.TransactionTypeTblTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
@@ -451,7 +460,9 @@ namespace AssetManagement.AuxTables
             this.bindingNavigatorDeleteItem,
             this.assetMovementTblBindingNavigatorSaveItem,
             this.assetMovementTblBindingNavigatorExportToExcelItem,
-            this.assetMovementTblBindingNavigatorViewAssetCardItem});
+            this.assetMovementTblBindingNavigatorViewAssetCardItem,
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem,
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem});
             this.assetMovementTblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.assetMovementTblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.assetMovementTblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -1263,14 +1274,29 @@ namespace AssetManagement.AuxTables
             this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل});
             this.layoutViewCard1.Name = "layoutViewCard1";
             // 
-            // assetTblBindingSource
-            // 
-            this.assetTblBindingSource.DataMember = "AssetTbl";
-            this.assetTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
             // assetTblTableAdapter
             // 
             this.assetTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // assetMovementTblBindingNavigatorAddFilesToAssetFolderItem
+            // 
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.Image = global::AssetManagement.Properties.Resources._1685605;
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.Name = "assetMovementTblBindingNavigatorAddFilesToAssetFolderItem";
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.Size = new System.Drawing.Size(44, 44);
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.Text = "إضافة ملفات لمجلد الأصل";
+            this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem.Click += new System.EventHandler(this.assetMovementTblBindingNavigatorAddFilesToAssetFolderItem_Click);
+            // 
+            // assetMovementTblBindingNavigatorOpenAssetFolderItem
+            // 
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.Image = global::AssetManagement.Properties.Resources._1666503;
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.Name = "assetMovementTblBindingNavigatorOpenAssetFolderItem";
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.Size = new System.Drawing.Size(44, 44);
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.Text = "فتح مجلد الأصل";
+            this.assetMovementTblBindingNavigatorOpenAssetFolderItem.Click += new System.EventHandler(this.assetMovementTblBindingNavigatorOpenAssetFolderItem_Click);
             // 
             // ManageAssetMovementTblForm
             // 
@@ -1292,6 +1318,7 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.astRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwAllBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementTblBindingNavigator)).EndInit();
@@ -1335,7 +1362,6 @@ namespace AssetManagement.AuxTables
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colمعدلالإهلاكللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colالعمرالافتراضيالمتبقيللأصل)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1453,5 +1479,7 @@ namespace AssetManagement.AuxTables
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private System.Windows.Forms.BindingSource assetTblBindingSource;
         private AssetMngDbDataSetTableAdapters.AssetTblTableAdapter assetTblTableAdapter;
+        private System.Windows.Forms.ToolStripButton assetMovementTblBindingNavigatorAddFilesToAssetFolderItem;
+        private System.Windows.Forms.ToolStripButton assetMovementTblBindingNavigatorOpenAssetFolderItem;
     }
 }

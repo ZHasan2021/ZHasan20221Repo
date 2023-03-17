@@ -34,43 +34,7 @@ namespace AssetManagement
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
         public static string PMName = "PM";
         public static string MngAbbr = "Mng_";
-        public static string UserSectionName
-        {
-            get
-            {
-                if (activeUserRole.IsSectionIndependent == true)
-                    return "";
-                else
-                {
-                    int userSectionID = 0;
-                    if (!Int32.TryParse(activeUser.UserSection?.ToString(), out userSectionID))
-                        return "";
-                    if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.ID == userSectionID))
-                        return "";
-                    string usrSecName = StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == userSectionID).SectionName;
-                    return usrSecName;
-                }
-            }
-        }
-        public static string UserDeptName
-        {
-            get
-            {
-                if (activeUserRole.IsDepartmentIndependent == true)
-                    return "";
-                else
-                {
-                    int userDeptID = 0;
-                    if (!Int32.TryParse(activeUser.UserDept?.ToString(), out userDeptID))
-                        return "";
-                    if (!StaticCode.mainDbContext.DepartmentTbls.Any(dpt1 => dpt1.ID == userDeptID))
-                        return "";
-                    string usrDptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == userDeptID).DepartmentName;
-                    return usrDptName;
-                }
-            }
-        }
-
+        
         public static void AssignDbParams()
         {
             mainDbContext = new AssetMngDbDataContext();
@@ -472,7 +436,14 @@ namespace AssetManagement
                 sctID = mainDbContext.SectionTbls.Where(sct1 => sct1.SectionName == sectionName).First().ID;
                 if (activeUserRole.IsSectionIndependent == true)
                 {
-                    assetSubD = GetSubDeptBySectionID(sctID);
+                    if (sectionName.ToUpper() == StaticCode.PMName)
+                    {
+                        assetSubD = StaticCode.GetSubDeptForPM();
+                    }
+                    else
+                    {
+                        assetSubD = GetSubDeptBySectionID(sctID);
+                    }
                 }
                 else // Department
                 {
@@ -537,6 +508,11 @@ namespace AssetManagement
                 formShift = 4;
             if (formNo == 3)
                 formShift = 7;
+            if (!StaticCode.mainDbContext.EstateAreaUnitTbls.Any())
+            {
+                tmpMainDbContext.EstateAreaUnitTbls.InsertOnSubmit(new EstateAreaUnitTbl() { EstateAreaUnitName = StaticCode.missingDataStatement });
+                tmpMainDbContext.SubmitChanges();
+            }
             while (rowStartNo <= srcExcelWs.Dimension.End.Row)
             {
                 Application.DoEvents();
@@ -560,7 +536,7 @@ namespace AssetManagement
                     AssetTbl newAsset = new AssetTbl();
                     newAsset.IsOldOrNewAsset = "قديم";
                     newAsset.EstateArea = "";
-                    newAsset.EstateAreaUnit = 1;
+                    newAsset.EstateAreaUnit = tmpMainDbContext.EstateAreaUnitTbls.First().ID;
                     newAsset.LifeSpanInMonths = 0;
                     newAsset.IsSold = false;
                     newAsset.IsOutOfWork = false;
@@ -637,7 +613,7 @@ namespace AssetManagement
                     if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, prchsValColumn + formShift].Value?.ToString().Trim()))
                     {
                         newAsset.PurchasePrice = 0;
-                        newAsset.PurchasePriceCurrency = 1;
+                        newAsset.PurchasePriceCurrency = tmpMainDbContext.CurrencyTbls.First().ID;
                     }
                     else
                     {
@@ -695,6 +671,12 @@ namespace AssetManagement
                     newAsset.EstateOwnershipDocumentWith = (formNo == 2) ? srcExcelWs.Cells[rowStartNo, estateOwWithColumn].Value?.ToString().Trim() : "";
                     newAsset.CarChassisNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, carChasColumn].Value?.ToString().Trim() : "";
                     newAsset.CarEngineNumber = (formNo == 3) ? srcExcelWs.Cells[rowStartNo, carEngineColumn].Value?.ToString().Trim() : "";
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, sqrColumn + formShift].Value?.ToString().Trim()))
+                    {
+                        errorMsg = $"اسم الساحة في السطر {rowStartNo} فارغة";
+                        tmpMainDbContext.Dispose();
+                        return null;
+                    }
                     if (!tmpMainDbContext.SquareTbls.Any(sq1 => sq1.SquareName == srcExcelWs.Cells[rowStartNo, sqrColumn + formShift].Value.ToString().Trim()))
                     {
                         errorMsg = $"اسم الساحة في السطر {rowStartNo} ليست صحيحة";
@@ -703,6 +685,12 @@ namespace AssetManagement
                     }
                     newAsset.AssetSquare = tmpMainDbContext.SquareTbls.Single(sq1 => sq1.SquareName == srcExcelWs.Cells[rowStartNo, sqrColumn + formShift].Value.ToString().Trim()).ID;
                     newAsset.PlaceOfPresence = srcExcelWs.Cells[rowStartNo, presPlaceColumn + formShift].Value?.ToString().Trim();
+                    if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, curStatusColumn + formShift].Value?.ToString().Trim()))
+                    {
+                        errorMsg = $"حالة الأصل في السطر {rowStartNo} فارغة";
+                        tmpMainDbContext.Dispose();
+                        return null;
+                    }
                     if (!tmpMainDbContext.StatusTbls.Any(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, curStatusColumn + formShift].Value.ToString().Trim()))
                     {
                         errorMsg = $"حالة الأصل في السطر {rowStartNo} ليست صحيحة";
@@ -710,7 +698,6 @@ namespace AssetManagement
                         return null;
                     }
                     newAsset.CurrentStatus = tmpMainDbContext.StatusTbls.Single(st1 => st1.StatusName == srcExcelWs.Cells[rowStartNo, curStatusColumn + formShift].Value.ToString().Trim()).ID;
-
                     newAsset.BenefitPercentage = srcExcelWs.Cells[rowStartNo, benefitPrctgColumn + formShift].Value?.ToString().Trim();
                     if (String.IsNullOrEmpty(srcExcelWs.Cells[rowStartNo, cstdNameColumn + formShift].Value?.ToString().Trim()))
                     {
@@ -866,6 +853,42 @@ namespace AssetManagement
         public static UserTbl activeUser { get; set; }
         public static UserRoleTbl activeUserRole { get; set; }
         public static UserLoginTbl activeUserLogin { get; set; }
+        public static string UserSectionName
+        {
+            get
+            {
+                if (activeUserRole.IsSectionIndependent == true)
+                    return "";
+                else
+                {
+                    int userSectionID = 0;
+                    if (!Int32.TryParse(activeUser.UserSection?.ToString(), out userSectionID))
+                        return "";
+                    if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.ID == userSectionID))
+                        return "";
+                    string usrSecName = StaticCode.mainDbContext.SectionTbls.Single(sct1 => sct1.ID == userSectionID).SectionName;
+                    return usrSecName;
+                }
+            }
+        }
+        public static string UserDeptName
+        {
+            get
+            {
+                if (activeUserRole.IsDepartmentIndependent == true)
+                    return "";
+                else
+                {
+                    int userDeptID = 0;
+                    if (!Int32.TryParse(activeUser.UserDept?.ToString(), out userDeptID))
+                        return "";
+                    if (!StaticCode.mainDbContext.DepartmentTbls.Any(dpt1 => dpt1.ID == userDeptID))
+                        return "";
+                    string usrDptName = StaticCode.mainDbContext.DepartmentTbls.Single(dpt1 => dpt1.ID == userDeptID).DepartmentName;
+                    return usrDptName;
+                }
+            }
+        }
         #endregion
 
         #region Export and Import
@@ -1438,7 +1461,7 @@ namespace AssetManagement
             }
             if (!mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName)) // Section
             {
-                if (sectionName == StaticCode.PMName)
+                if (sectionName.ToUpper() == StaticCode.PMName)
                 {
                     assetSubD = StaticCode.GetSubDeptForPM();
                 }
@@ -1459,7 +1482,14 @@ namespace AssetManagement
                 sctID = mainDbContext.SectionTbls.Where(sct1 => sct1.SectionName == sectionName).First().ID;
                 if (activeUserRole.IsSectionIndependent == true)
                 {
-                    assetSubD = GetSubDeptBySectionID(sctID);
+                    if (sectionName.ToUpper() == StaticCode.PMName)
+                    {
+                        assetSubD = StaticCode.GetSubDeptForPM();
+                    }
+                    else
+                    {
+                        assetSubD = GetSubDeptBySectionID(sctID);
+                    }
                 }
                 else // Department
                 {
@@ -1648,6 +1678,21 @@ namespace AssetManagement
                     //if (assetsStatements.Any(ast1 => ficaDesc.Contains(ast1)))
                     if (!isIncoming && ficaDesc.Contains(StaticCode.AssetAsFiCaStatement) && StaticCode.activeUserRole.AddNewAsset == true)
                     {
+                        if (!StaticCode.mainDbContext.SquareTbls.Any(sq1 => sq1.SquareName == StaticCode.missingDataStatement))
+                        {
+                            StaticCode.mainDbContext.SquareTbls.InsertOnSubmit(new SquareTbl() { SquareName = StaticCode.missingDataStatement, SquareLocation = StaticCode.missingDataStatement });
+                            StaticCode.mainDbContext.SubmitChanges();
+                        }
+                        if (!StaticCode.mainDbContext.EstateAreaUnitTbls.Any(esu1 => esu1.EstateAreaUnitName == StaticCode.missingDataStatement))
+                        {
+                            StaticCode.mainDbContext.EstateAreaUnitTbls.InsertOnSubmit(new EstateAreaUnitTbl() { EstateAreaUnitName = StaticCode.missingDataStatement });
+                            StaticCode.mainDbContext.SubmitChanges();
+                        }
+                        if (!StaticCode.mainDbContext.EmployeeTbls.Any(emp1 => emp1.FirstName == StaticCode.missingDataStatement && emp1.LastName == StaticCode.missingDataStatement && emp1.EmployeeCode == StaticCode.missingDataStatement && emp1.WorkingAt == StaticCode.missingDataStatement))
+                        {
+                            StaticCode.mainDbContext.EmployeeTbls.InsertOnSubmit(new EmployeeTbl() { FirstName = StaticCode.missingDataStatement, LastName = StaticCode.missingDataStatement, EmployeeCode = StaticCode.missingDataStatement, WorkingAt = StaticCode.missingDataStatement });
+                            StaticCode.mainDbContext.SubmitChanges();
+                        }
                         AssetTbl newAssetByFoundCode = new AssetTbl()
                         {
                             AssetCode = GetTheNewAssetCode(codeIncVal++),
@@ -1660,7 +1705,7 @@ namespace AssetManagement
                             AssetMinorCategory = GetMissingDataMinorCategory(),
                             DestructionRate = 0,
                             LifeSpanInMonths = 10000,
-                            AssetSquare = 1,
+                            AssetSquare = StaticCode.mainDbContext.SquareTbls.Where(sq1 => sq1.SquareName == StaticCode.missingDataStatement).First().ID,
                             CurrentStatus = 1,
                             AddingMethod = "Import/Excel",
                             BenefitPercentage = "",
@@ -1674,7 +1719,7 @@ namespace AssetManagement
                             EstateOwnershipDocumentWith = "",
                             EstateAddress = "",
                             EstateArea = "",
-                            EstateAreaUnit = 1,
+                            EstateAreaUnit = StaticCode.mainDbContext.EstateAreaUnitTbls.Where(esu1 => esu1.EstateAreaUnitName == StaticCode.missingDataStatement).First().ID,
                             IsOldOrNewAsset = "جديد",
                             IsOutOfWork = false,
                             IsSold = false,
@@ -1682,7 +1727,7 @@ namespace AssetManagement
                             Model = "",
                             OfUsed = "",
                             PlaceOfPresence = "",
-                            CustodianName = missingDataStatement,
+                            CustodianName = StaticCode.missingDataStatement,
                             AssetNotes = missingDataStatement,
                             MoreDetails = missingDataStatement,
                         };

@@ -179,8 +179,6 @@ namespace AssetManagement.Assets
         private void assetTblGridView_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             currRow = e.RowHandle;
-            var ff = e.Column;
-            var aaa = e.CellValue;
         }
 
         private void assetTblGridView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)

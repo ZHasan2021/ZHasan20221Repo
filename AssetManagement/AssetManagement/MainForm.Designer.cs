@@ -31,10 +31,10 @@ namespace AssetManagement
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Alerter.AlertButton alertButton25 = new DevExpress.XtraBars.Alerter.AlertButton();
-            DevExpress.XtraBars.Alerter.AlertButton alertButton26 = new DevExpress.XtraBars.Alerter.AlertButton();
-            DevExpress.XtraBars.Alerter.AlertButton alertButton27 = new DevExpress.XtraBars.Alerter.AlertButton();
-            DevExpress.XtraBars.Alerter.AlertButton alertButton28 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton5 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton6 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton7 = new DevExpress.XtraBars.Alerter.AlertButton();
+            DevExpress.XtraBars.Alerter.AlertButton alertButton8 = new DevExpress.XtraBars.Alerter.AlertButton();
             this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.addNewAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.updateExistedAssetBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -103,6 +103,14 @@ namespace AssetManagement
             this.manageMainCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.manageMinorCategoryTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.importFinancialItemsCategoriesFromExcelBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importManagementTablesBarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.importSectionTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importSquareTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.manageEmployeeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.importEmployeeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.newAssetRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -133,12 +141,6 @@ namespace AssetManagement
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.mainProgressPanel = new DevExpress.XtraWaitForm.ProgressPanel();
             this.breakingAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.importManagementTablesBarSubItem = new DevExpress.XtraBars.BarSubItem();
-            this.importSectionTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importSquareTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -224,10 +226,12 @@ namespace AssetManagement
             this.importDepartmentTblBarButtonItem,
             this.importSubDepartmentTblBarButtonItem,
             this.importSquareTblBarButtonItem,
-            this.importModelTblBarButtonItem});
+            this.importModelTblBarButtonItem,
+            this.manageEmployeeTblBarButtonItem,
+            this.importEmployeeTblBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.mainRibbonControl.MaxItemId = 103;
+            this.mainRibbonControl.MaxItemId = 105;
             this.mainRibbonControl.MiniToolbars.Add(this.mainRibbonMiniToolbar);
             this.mainRibbonControl.Name = "mainRibbonControl";
             this.mainRibbonControl.OptionsMenuMinWidth = 880;
@@ -1345,6 +1349,123 @@ namespace AssetManagement
             this.importFinancialItemsCategoriesFromExcelBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.importFinancialItemsCategoriesFromExcelBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importFinancialItemsCategoriesFromExcelBarButtonItem_ItemClick);
             // 
+            // importManagementTablesBarSubItem
+            // 
+            this.importManagementTablesBarSubItem.Caption = "استيراد الجداول الإدارية";
+            this.importManagementTablesBarSubItem.Id = 97;
+            this.importManagementTablesBarSubItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._36435101;
+            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Options.UseBackColor = true;
+            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Options.UseFont = true;
+            this.importManagementTablesBarSubItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importManagementTablesBarSubItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Options.UseBackColor = true;
+            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Options.UseFont = true;
+            this.importManagementTablesBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.importSectionTblBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.importDepartmentTblBarButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.importSubDepartmentTblBarButtonItem)});
+            this.importManagementTablesBarSubItem.Name = "importManagementTablesBarSubItem";
+            this.importManagementTablesBarSubItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // importSectionTblBarButtonItem
+            // 
+            this.importSectionTblBarButtonItem.Caption = "الدوائر";
+            this.importSectionTblBarButtonItem.Id = 98;
+            this.importSectionTblBarButtonItem.Name = "importSectionTblBarButtonItem";
+            this.importSectionTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSectionTblBarButtonItem_ItemClick);
+            // 
+            // importDepartmentTblBarButtonItem
+            // 
+            this.importDepartmentTblBarButtonItem.Caption = "الأقسام";
+            this.importDepartmentTblBarButtonItem.Id = 99;
+            this.importDepartmentTblBarButtonItem.Name = "importDepartmentTblBarButtonItem";
+            this.importDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importDepartmentTblBarButtonItem_ItemClick);
+            // 
+            // importSubDepartmentTblBarButtonItem
+            // 
+            this.importSubDepartmentTblBarButtonItem.Caption = "الوحدات";
+            this.importSubDepartmentTblBarButtonItem.Id = 100;
+            this.importSubDepartmentTblBarButtonItem.Name = "importSubDepartmentTblBarButtonItem";
+            this.importSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSubDepartmentTblBarButtonItem_ItemClick);
+            // 
+            // importSquareTblBarButtonItem
+            // 
+            this.importSquareTblBarButtonItem.Caption = "استيراد أسماء الساحات";
+            this.importSquareTblBarButtonItem.Id = 101;
+            this.importSquareTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
+            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
+            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
+            this.importSquareTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importSquareTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
+            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
+            this.importSquareTblBarButtonItem.Name = "importSquareTblBarButtonItem";
+            this.importSquareTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSquareTblBarButtonItem_ItemClick);
+            // 
+            // importModelTblBarButtonItem
+            // 
+            this.importModelTblBarButtonItem.Caption = "استيراد قائمة الموديلات";
+            this.importModelTblBarButtonItem.Id = 102;
+            this.importModelTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
+            this.importModelTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
+            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
+            this.importModelTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importModelTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.importModelTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
+            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
+            this.importModelTblBarButtonItem.Name = "importModelTblBarButtonItem";
+            this.importModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importModelTblBarButtonItem_ItemClick);
+            // 
+            // manageEmployeeTblBarButtonItem
+            // 
+            this.manageEmployeeTblBarButtonItem.Caption = "إدارة جدول الموظفين";
+            this.manageEmployeeTblBarButtonItem.Id = 103;
+            this.manageEmployeeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3848173;
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
+            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
+            this.manageEmployeeTblBarButtonItem.Name = "manageEmployeeTblBarButtonItem";
+            this.manageEmployeeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.manageEmployeeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageEmployeeTblBarButtonItem_ItemClick);
+            // 
+            // importEmployeeTblBarButtonItem
+            // 
+            this.importEmployeeTblBarButtonItem.Caption = "استيراد أسماء الموظفين";
+            this.importEmployeeTblBarButtonItem.Id = 104;
+            this.importEmployeeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
+            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
+            this.importEmployeeTblBarButtonItem.Name = "importEmployeeTblBarButtonItem";
+            this.importEmployeeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
+            this.importEmployeeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importEmployeeTblBarButtonItem_ItemClick);
+            // 
             // mainRibbonMiniToolbar
             // 
             this.mainRibbonMiniToolbar.ParentControl = this;
@@ -1465,6 +1586,8 @@ namespace AssetManagement
             // otherAuxTablesRibbonPageGroup
             // 
             this.otherAuxTablesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
+            this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageEmployeeTblBarButtonItem);
+            this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.importEmployeeTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageSquareTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.importSquareTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
@@ -1732,104 +1855,25 @@ namespace AssetManagement
             this.breakingAlertControl.AppearanceText.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.breakingAlertControl.AppearanceText.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.breakingAlertControl.AutoHeight = true;
-            alertButton25.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
-            alertButton25.ImageOptions.Image = global::AssetManagement.Properties.Resources._29126282;
-            alertButton25.Name = "assetsToDestructAlertButton";
-            alertButton26.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
-            alertButton26.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon2;
-            alertButton26.Name = "destructedAssetsAlertButton";
-            alertButton27.Hint = "عرض الأصول التي ليس لها تواريخ شراء";
-            alertButton27.ImageOptions.Image = global::AssetManagement.Properties.Resources._26364362;
-            alertButton27.Name = "assetsWithoutPurchaseDate";
-            alertButton28.Hint = "عرض الأصول ذات البيانات الناقصة";
-            alertButton28.ImageOptions.Image = global::AssetManagement.Properties.Resources._91098242;
-            alertButton28.Name = "missingDataAssets";
-            this.breakingAlertControl.Buttons.Add(alertButton25);
-            this.breakingAlertControl.Buttons.Add(alertButton26);
-            this.breakingAlertControl.Buttons.Add(alertButton27);
-            this.breakingAlertControl.Buttons.Add(alertButton28);
+            alertButton5.Hint = "عرض الأصول التي سينتهي عمرها الإنتاجي";
+            alertButton5.ImageOptions.Image = global::AssetManagement.Properties.Resources._29126282;
+            alertButton5.Name = "assetsToDestructAlertButton";
+            alertButton6.Hint = "عرض الأصول التي انتهى عمرها الإنتاجي ولم يتم تصريفها";
+            alertButton6.ImageOptions.Image = global::AssetManagement.Properties.Resources._52790_table_windows_icon2;
+            alertButton6.Name = "destructedAssetsAlertButton";
+            alertButton7.Hint = "عرض الأصول التي ليس لها تواريخ شراء";
+            alertButton7.ImageOptions.Image = global::AssetManagement.Properties.Resources._26364362;
+            alertButton7.Name = "assetsWithoutPurchaseDate";
+            alertButton8.Hint = "عرض الأصول ذات البيانات الناقصة";
+            alertButton8.ImageOptions.Image = global::AssetManagement.Properties.Resources._91098242;
+            alertButton8.Name = "missingDataAssets";
+            this.breakingAlertControl.Buttons.Add(alertButton5);
+            this.breakingAlertControl.Buttons.Add(alertButton6);
+            this.breakingAlertControl.Buttons.Add(alertButton7);
+            this.breakingAlertControl.Buttons.Add(alertButton8);
             this.breakingAlertControl.FormLocation = DevExpress.XtraBars.Alerter.AlertFormLocation.TopRight;
             this.breakingAlertControl.ButtonClick += new DevExpress.XtraBars.Alerter.AlertButtonClickEventHandler(this.breakingAlertControl_ButtonClick);
             this.breakingAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.breakingAlertControl_FormLoad);
-            // 
-            // importManagementTablesBarSubItem
-            // 
-            this.importManagementTablesBarSubItem.Caption = "استيراد الجداول الإدارية";
-            this.importManagementTablesBarSubItem.Id = 97;
-            this.importManagementTablesBarSubItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._36435101;
-            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.importManagementTablesBarSubItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.importManagementTablesBarSubItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importManagementTablesBarSubItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.importManagementTablesBarSubItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.importManagementTablesBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.importSectionTblBarButtonItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.importDepartmentTblBarButtonItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.importSubDepartmentTblBarButtonItem)});
-            this.importManagementTablesBarSubItem.Name = "importManagementTablesBarSubItem";
-            this.importManagementTablesBarSubItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // importSectionTblBarButtonItem
-            // 
-            this.importSectionTblBarButtonItem.Caption = "الدوائر";
-            this.importSectionTblBarButtonItem.Id = 98;
-            this.importSectionTblBarButtonItem.Name = "importSectionTblBarButtonItem";
-            this.importSectionTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSectionTblBarButtonItem_ItemClick);
-            // 
-            // importDepartmentTblBarButtonItem
-            // 
-            this.importDepartmentTblBarButtonItem.Caption = "الأقسام";
-            this.importDepartmentTblBarButtonItem.Id = 99;
-            this.importDepartmentTblBarButtonItem.Name = "importDepartmentTblBarButtonItem";
-            this.importDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importDepartmentTblBarButtonItem_ItemClick);
-            // 
-            // importSubDepartmentTblBarButtonItem
-            // 
-            this.importSubDepartmentTblBarButtonItem.Caption = "الوحدات";
-            this.importSubDepartmentTblBarButtonItem.Id = 100;
-            this.importSubDepartmentTblBarButtonItem.Name = "importSubDepartmentTblBarButtonItem";
-            this.importSubDepartmentTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSubDepartmentTblBarButtonItem_ItemClick);
-            // 
-            // importSquareTblBarButtonItem
-            // 
-            this.importSquareTblBarButtonItem.Caption = "استيراد أسماء الساحات";
-            this.importSquareTblBarButtonItem.Id = 101;
-            this.importSquareTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.importSquareTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.importSquareTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importSquareTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.importSquareTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.importSquareTblBarButtonItem.Name = "importSquareTblBarButtonItem";
-            this.importSquareTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importSquareTblBarButtonItem_ItemClick);
-            // 
-            // importModelTblBarButtonItem
-            // 
-            this.importModelTblBarButtonItem.Caption = "استيراد قائمة الموديلات";
-            this.importModelTblBarButtonItem.Id = 102;
-            this.importModelTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.importModelTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.importModelTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.importModelTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importModelTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.importModelTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.importModelTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.importModelTblBarButtonItem.Name = "importModelTblBarButtonItem";
-            this.importModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importModelTblBarButtonItem_ItemClick);
             // 
             // MainForm
             // 
@@ -1965,6 +2009,8 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem importSubDepartmentTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importSquareTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importModelTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem manageEmployeeTblBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem importEmployeeTblBarButtonItem;
     }
 }
 

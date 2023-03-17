@@ -32,12 +32,12 @@ namespace AssetManagement.Finance
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageFinancialItemTblForm));
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
             this.financialItemVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
@@ -68,9 +68,6 @@ namespace AssetManagement.Finance
             this.financialItemTblBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.financialItemTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.financialItemVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter();
-            this.mainTabFormControl = new DevExpress.XtraBars.TabFormControl();
-            this.editFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.financialItemCategoryGridControl = new DevExpress.XtraGrid.GridControl();
             this.financialItemGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -104,6 +101,14 @@ namespace AssetManagement.Finance
             this.colTotalIncoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalOutgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalRecycled = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolbarFormControl1 = new DevExpress.XtraBars.ToolbarForm.ToolbarFormControl();
+            this.toolbarFormManager1 = new DevExpress.XtraBars.ToolbarForm.ToolbarFormManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.editFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteFinancialItemBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.openFinancialItemFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.addFilesToFinancialItemFolderBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).BeginInit();
@@ -116,7 +121,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingNavigator)).BeginInit();
             this.financialItemTblBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).BeginInit();
@@ -131,6 +135,8 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // financialItemVwBindingSource
@@ -196,6 +202,7 @@ namespace AssetManagement.Finance
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = this.financialItemTblTableAdapter;
@@ -369,41 +376,6 @@ namespace AssetManagement.Finance
             // 
             this.financialItemVwTableAdapter.ClearBeforeFill = true;
             // 
-            // mainTabFormControl
-            // 
-            this.mainTabFormControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.editFinancialItemBarButtonItem,
-            this.deleteFinancialItemBarButtonItem,
-            this.openFinancialItemFolderBarButtonItem,
-            this.addFilesToFinancialItemFolderBarButtonItem});
-            this.mainTabFormControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabFormControl.Name = "mainTabFormControl";
-            this.mainTabFormControl.Size = new System.Drawing.Size(1385, 88);
-            this.mainTabFormControl.TabForm = this;
-            this.mainTabFormControl.TabIndex = 6;
-            this.mainTabFormControl.TabStop = false;
-            this.mainTabFormControl.TitleItemLinks.Add(this.editFinancialItemBarButtonItem);
-            this.mainTabFormControl.TitleItemLinks.Add(this.deleteFinancialItemBarButtonItem);
-            this.mainTabFormControl.TitleItemLinks.Add(this.openFinancialItemFolderBarButtonItem);
-            this.mainTabFormControl.TitleItemLinks.Add(this.addFilesToFinancialItemFolderBarButtonItem);
-            this.mainTabFormControl.Click += new System.EventHandler(this.mainTabFormControl_Click);
-            // 
-            // editFinancialItemBarButtonItem
-            // 
-            this.editFinancialItemBarButtonItem.Caption = "تحرير";
-            this.editFinancialItemBarButtonItem.Id = 0;
-            this.editFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editFinancialItemBarButtonItem.ImageOptions.SvgImage")));
-            this.editFinancialItemBarButtonItem.Name = "editFinancialItemBarButtonItem";
-            this.editFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editFinancialItemBarButtonItem_ItemClick);
-            // 
-            // deleteFinancialItemBarButtonItem
-            // 
-            this.deleteFinancialItemBarButtonItem.Caption = "حذف";
-            this.deleteFinancialItemBarButtonItem.Id = 0;
-            this.deleteFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteFinancialItemBarButtonItem.ImageOptions.SvgImage")));
-            this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
-            this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
-            // 
             // financialItemCategoryGridControl
             // 
             this.financialItemCategoryGridControl.DataSource = this.financialItemVwBindingSource;
@@ -412,7 +384,7 @@ namespace AssetManagement.Finance
             gridLevelNode1.RelationName = "financialItemLevel";
             this.financialItemCategoryGridControl.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(655, 88);
+            this.financialItemCategoryGridControl.Location = new System.Drawing.Point(655, 39);
             this.financialItemCategoryGridControl.MainView = this.financialItemGridView;
             this.financialItemCategoryGridControl.Name = "financialItemCategoryGridControl";
             this.financialItemCategoryGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -422,7 +394,7 @@ namespace AssetManagement.Finance
             this.repositoryItemLookUpEdit3,
             this.subdRpositoryItemLookUpEdit,
             this.notesRepositoryItemMemoEdit});
-            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(730, 806);
+            this.financialItemCategoryGridControl.Size = new System.Drawing.Size(730, 855);
             this.financialItemCategoryGridControl.TabIndex = 9;
             this.financialItemCategoryGridControl.UseEmbeddedNavigator = true;
             this.financialItemCategoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -702,11 +674,11 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.Controls.Add(this.dockPanel1_Container);
             this.totalsDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.totalsDockPanel.ID = new System.Guid("ce24d8ba-3df0-4b14-947e-4d7904c888f7");
-            this.totalsDockPanel.Location = new System.Drawing.Point(0, 88);
+            this.totalsDockPanel.Location = new System.Drawing.Point(0, 39);
             this.totalsDockPanel.Name = "totalsDockPanel";
             this.totalsDockPanel.Options.ShowCloseButton = false;
             this.totalsDockPanel.OriginalSize = new System.Drawing.Size(655, 200);
-            this.totalsDockPanel.Size = new System.Drawing.Size(655, 806);
+            this.totalsDockPanel.Size = new System.Drawing.Size(655, 855);
             this.totalsDockPanel.Text = "الإجماليات";
             // 
             // dockPanel1_Container
@@ -714,21 +686,21 @@ namespace AssetManagement.Finance
             this.dockPanel1_Container.Controls.Add(this.totalsDataGridView);
             this.dockPanel1_Container.Location = new System.Drawing.Point(6, 32);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(645, 770);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(645, 819);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // totalsDataGridView
             // 
             this.totalsDataGridView.AllowUserToAddRows = false;
             this.totalsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 7.8F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.totalsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.totalsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.totalsDataGridView.ColumnHeadersHeight = 55;
             this.totalsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.totalsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -744,8 +716,8 @@ namespace AssetManagement.Finance
             this.totalsDataGridView.RowHeadersVisible = false;
             this.totalsDataGridView.RowHeadersWidth = 51;
             this.totalsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.totalsDataGridView.RowTemplate.Height = 24;
             this.totalsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.totalsDataGridView.Size = new System.Drawing.Size(645, 263);
@@ -753,8 +725,8 @@ namespace AssetManagement.Finance
             // 
             // colFiCurrency
             // 
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.colFiCurrency.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.colFiCurrency.DefaultCellStyle = dataGridViewCellStyle2;
             this.colFiCurrency.HeaderText = "العملة";
             this.colFiCurrency.MinimumWidth = 6;
             this.colFiCurrency.Name = "colFiCurrency";
@@ -763,12 +735,12 @@ namespace AssetManagement.Finance
             // 
             // colTotalIncoming
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.Format = "C2";
-            dataGridViewCellStyle15.NullValue = "-";
-            this.colTotalIncoming.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "-";
+            this.colTotalIncoming.DefaultCellStyle = dataGridViewCellStyle3;
             this.colTotalIncoming.HeaderText = "إجمالي الوارد العام";
             this.colTotalIncoming.MinimumWidth = 6;
             this.colTotalIncoming.Name = "colTotalIncoming";
@@ -777,12 +749,12 @@ namespace AssetManagement.Finance
             // 
             // colTotalOutgoing
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.Format = "C2";
-            dataGridViewCellStyle16.NullValue = "-";
-            this.colTotalOutgoing.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "-";
+            this.colTotalOutgoing.DefaultCellStyle = dataGridViewCellStyle4;
             this.colTotalOutgoing.HeaderText = "إجمالي الصادر العام";
             this.colTotalOutgoing.MinimumWidth = 6;
             this.colTotalOutgoing.Name = "colTotalOutgoing";
@@ -791,22 +763,98 @@ namespace AssetManagement.Finance
             // 
             // colTotalRecycled
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.Format = "C2";
-            dataGridViewCellStyle17.NullValue = "-";
-            this.colTotalRecycled.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = "-";
+            this.colTotalRecycled.DefaultCellStyle = dataGridViewCellStyle5;
             this.colTotalRecycled.HeaderText = "إجمالي المدور العام";
             this.colTotalRecycled.MinimumWidth = 6;
             this.colTotalRecycled.Name = "colTotalRecycled";
             this.colTotalRecycled.ReadOnly = true;
             this.colTotalRecycled.Width = 125;
             // 
+            // toolbarFormControl1
+            // 
+            this.toolbarFormControl1.Location = new System.Drawing.Point(0, 0);
+            this.toolbarFormControl1.Manager = this.toolbarFormManager1;
+            this.toolbarFormControl1.Name = "toolbarFormControl1";
+            this.toolbarFormControl1.Size = new System.Drawing.Size(1385, 39);
+            this.toolbarFormControl1.TabIndex = 11;
+            this.toolbarFormControl1.TabStop = false;
+            this.toolbarFormControl1.TitleItemLinks.Add(this.editFinancialItemBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.deleteFinancialItemBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.openFinancialItemFolderBarButtonItem);
+            this.toolbarFormControl1.TitleItemLinks.Add(this.addFilesToFinancialItemFolderBarButtonItem);
+            this.toolbarFormControl1.ToolbarForm = this;
+            // 
+            // toolbarFormManager1
+            // 
+            this.toolbarFormManager1.DockControls.Add(this.barDockControlTop);
+            this.toolbarFormManager1.DockControls.Add(this.barDockControlBottom);
+            this.toolbarFormManager1.DockControls.Add(this.barDockControlLeft);
+            this.toolbarFormManager1.DockControls.Add(this.barDockControlRight);
+            this.toolbarFormManager1.Form = this;
+            this.toolbarFormManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.editFinancialItemBarButtonItem,
+            this.deleteFinancialItemBarButtonItem,
+            this.openFinancialItemFolderBarButtonItem,
+            this.addFilesToFinancialItemFolderBarButtonItem});
+            this.toolbarFormManager1.MaxItemId = 4;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 39);
+            this.barDockControlTop.Manager = this.toolbarFormManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1385, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 894);
+            this.barDockControlBottom.Manager = this.toolbarFormManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1385, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 39);
+            this.barDockControlLeft.Manager = this.toolbarFormManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 855);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1385, 39);
+            this.barDockControlRight.Manager = this.toolbarFormManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 855);
+            // 
+            // editFinancialItemBarButtonItem
+            // 
+            this.editFinancialItemBarButtonItem.Caption = "تحرير";
+            this.editFinancialItemBarButtonItem.Id = 0;
+            this.editFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editFinancialItemBarButtonItem.ImageOptions.SvgImage")));
+            this.editFinancialItemBarButtonItem.Name = "editFinancialItemBarButtonItem";
+            this.editFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editFinancialItemBarButtonItem_ItemClick);
+            // 
+            // deleteFinancialItemBarButtonItem
+            // 
+            this.deleteFinancialItemBarButtonItem.Caption = "حذف";
+            this.deleteFinancialItemBarButtonItem.Id = 1;
+            this.deleteFinancialItemBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteFinancialItemBarButtonItem.ImageOptions.SvgImage")));
+            this.deleteFinancialItemBarButtonItem.Name = "deleteFinancialItemBarButtonItem";
+            this.deleteFinancialItemBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteFinancialItemBarButtonItem_ItemClick);
+            // 
             // openFinancialItemFolderBarButtonItem
             // 
             this.openFinancialItemFolderBarButtonItem.Caption = "فتح مجلد السجل المالي";
-            this.openFinancialItemFolderBarButtonItem.Id = 0;
+            this.openFinancialItemFolderBarButtonItem.Id = 2;
             this.openFinancialItemFolderBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("openFinancialItemFolderBarButtonItem.ImageOptions.Image")));
             this.openFinancialItemFolderBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("openFinancialItemFolderBarButtonItem.ImageOptions.LargeImage")));
             this.openFinancialItemFolderBarButtonItem.Name = "openFinancialItemFolderBarButtonItem";
@@ -814,8 +862,8 @@ namespace AssetManagement.Finance
             // 
             // addFilesToFinancialItemFolderBarButtonItem
             // 
-            this.addFilesToFinancialItemFolderBarButtonItem.Caption = "إضافة ملفات لمجلد السجلل المالي";
-            this.addFilesToFinancialItemFolderBarButtonItem.Id = 1;
+            this.addFilesToFinancialItemFolderBarButtonItem.Caption = "إضافة ملفات لمجلد السجل المالي";
+            this.addFilesToFinancialItemFolderBarButtonItem.Id = 3;
             this.addFilesToFinancialItemFolderBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addFilesToFinancialItemFolderBarButtonItem.ImageOptions.Image")));
             this.addFilesToFinancialItemFolderBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addFilesToFinancialItemFolderBarButtonItem.ImageOptions.LargeImage")));
             this.addFilesToFinancialItemFolderBarButtonItem.Name = "addFilesToFinancialItemFolderBarButtonItem";
@@ -831,15 +879,19 @@ namespace AssetManagement.Finance
             this.ClientSize = new System.Drawing.Size(1385, 894);
             this.Controls.Add(this.financialItemCategoryGridControl);
             this.Controls.Add(this.totalsDockPanel);
-            this.Controls.Add(this.mainTabFormControl);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Controls.Add(this.financialItemTblBindingNavigator);
+            this.Controls.Add(this.toolbarFormControl1);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("ManageFinancialItemTblForm.IconOptions.Icon")));
             this.Name = "ManageFinancialItemTblForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TabFormControl = this.mainTabFormControl;
             this.Text = "إدارة جدول السجلات المالية";
+            this.ToolbarFormControl = this.toolbarFormControl1;
             this.Load += new System.EventHandler(this.ManageFinancialItemTblForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.financialItemVwBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
@@ -852,7 +904,6 @@ namespace AssetManagement.Finance
             ((System.ComponentModel.ISupportInitialize)(this.financialItemTblBindingNavigator)).EndInit();
             this.financialItemTblBindingNavigator.ResumeLayout(false);
             this.financialItemTblBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainTabFormControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemCategoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialItemGridView)).EndInit();
@@ -867,6 +918,8 @@ namespace AssetManagement.Finance
             this.totalsDockPanel.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.totalsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarFormControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarFormManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -902,9 +955,6 @@ namespace AssetManagement.Finance
         private AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter subDepartmentTblTableAdapter;
         private System.Windows.Forms.BindingSource financialItemVwBindingSource;
         private AssetMngDbDataSetTableAdapters.FinancialItemVwTableAdapter financialItemVwTableAdapter;
-        private DevExpress.XtraBars.TabFormControl mainTabFormControl;
-        private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraGrid.GridControl financialItemCategoryGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView financialItemGridView;
@@ -938,6 +988,14 @@ namespace AssetManagement.Finance
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalIncoming;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalOutgoing;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalRecycled;
+        private DevExpress.XtraBars.ToolbarForm.ToolbarFormControl toolbarFormControl1;
+        private DevExpress.XtraBars.ToolbarForm.ToolbarFormManager toolbarFormManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem editFinancialItemBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem deleteFinancialItemBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem openFinancialItemFolderBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem addFilesToFinancialItemFolderBarButtonItem;
     }

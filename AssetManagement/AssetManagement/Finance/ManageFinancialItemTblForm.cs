@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace AssetManagement.Finance
 {
-    public partial class ManageFinancialItemTblForm : DevExpress.XtraBars.TabForm
+    public partial class ManageFinancialItemTblForm : DevExpress.XtraBars.ToolbarForm.ToolbarForm
     {
         int currRow = -1;
         public ManageFinancialItemTblForm()

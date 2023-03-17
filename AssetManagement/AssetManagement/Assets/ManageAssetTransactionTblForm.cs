@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +47,6 @@ namespace AssetManagement.AuxTables
                 }
                 catch
                 {
-                    this.assetTransactionTblTableAdapter.FillByQuery(customVw, " WHERE 1 > 2;");
                     return;
                 }
             }
@@ -158,6 +159,58 @@ namespace AssetManagement.AuxTables
             }
             catch
             {
+            }
+        }
+
+        private void assetTransactionTblBindingNavigatorAddFilesToAssetFolderItem_Click(object sender, EventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                OpenFileDialog assetOFD = new OpenFileDialog();
+                assetOFD.Multiselect = true;
+                if (assetOFD.ShowDialog() != DialogResult.OK)
+                    return;
+                string assetID = assetTransactionGridView.GetRowCellValue(currRow, colAssetID).ToString();
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetID)).AssetCode;
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                foreach (string oneFile in assetOFD.FileNames)
+                {
+                    File.Copy(oneFile, assetFolder + Path.GetFileName(oneFile), true);
+                }
+                mainAlertControl.Show(this, $"تم إضافة ({assetOFD.FileNames.Count()}) مرفق/ات", StaticCode.ApplicationTitle);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
+            }
+        }
+
+        private void assetTransactionTblBindingNavigatorOpenAssetFolderItem_Click(object sender, EventArgs e)
+        {
+            if (currRow < 0)
+            {
+                mainAlertControl.Show(this, "اختر سطراً واحداً فقط", StaticCode.ApplicationTitle);
+                return;
+            }
+            try
+            {
+                string assetID = assetTransactionGridView.GetRowCellValue(currRow, colAssetID).ToString();
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetID)).AssetCode;
+                string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
+                if (!Directory.Exists(assetFolder))
+                    Directory.CreateDirectory(assetFolder);
+                Process.Start(assetFolder);
+            }
+            catch
+            {
+                mainAlertControl.Show(this, "اختر سجلاً واحداً فقط", StaticCode.ApplicationTitle);
             }
         }
     }

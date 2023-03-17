@@ -101,6 +101,8 @@ namespace AssetManagement.Assets
             this.completionWizardPage1 = new DevExpress.XtraWizard.CompletionWizardPage();
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
             this.assetBasicsWizardPage2 = new DevExpress.XtraWizard.WizardPage();
+            this.manageEmployeeTblBtn = new System.Windows.Forms.Button();
+            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.attachmentsGroupBox = new System.Windows.Forms.GroupBox();
             this.clearAllAttchmentsBtn = new System.Windows.Forms.Button();
             this.allAttachmentsListBox = new System.Windows.Forms.ListBox();
@@ -110,7 +112,6 @@ namespace AssetManagement.Assets
             this.benefitPercentageLabel = new System.Windows.Forms.Label();
             this.ownerNameTextBox = new System.Windows.Forms.TextBox();
             this.ownerNameLabel = new System.Windows.Forms.Label();
-            this.custodianNameTextBox = new System.Windows.Forms.TextBox();
             this.custodianNameLabel = new System.Windows.Forms.Label();
             this.assetNotesTextBox = new System.Windows.Forms.TextBox();
             this.assetNotesLabel = new System.Windows.Forms.Label();
@@ -143,6 +144,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
             this.currencyTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.CurrencyTblTableAdapter();
             this.departmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.DepartmentTblTableAdapter();
+            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.financialItemCategoryTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.FinancialItemCategoryTblTableAdapter();
             this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
@@ -152,6 +154,7 @@ namespace AssetManagement.Assets
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.mainAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.mainCategoryTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.custodianNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.addNewAssetWizardControl)).BeginInit();
             this.addNewAssetWizardControl.SuspendLayout();
             this.assetBasicsWizardPage1.SuspendLayout();
@@ -188,6 +191,7 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             this.completionWizardPage1.SuspendLayout();
             this.assetBasicsWizardPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
             this.attachmentsGroupBox.SuspendLayout();
             this.assetBuildingLandWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
@@ -1112,13 +1116,14 @@ namespace AssetManagement.Assets
             // 
             // assetBasicsWizardPage2
             // 
+            this.assetBasicsWizardPage2.Controls.Add(this.custodianNameTextBox);
+            this.assetBasicsWizardPage2.Controls.Add(this.manageEmployeeTblBtn);
             this.assetBasicsWizardPage2.Controls.Add(this.attachmentsGroupBox);
             this.assetBasicsWizardPage2.Controls.Add(this.errorSummaryLabel2);
             this.assetBasicsWizardPage2.Controls.Add(this.benefitPercentageTextBox);
             this.assetBasicsWizardPage2.Controls.Add(this.benefitPercentageLabel);
             this.assetBasicsWizardPage2.Controls.Add(this.ownerNameTextBox);
             this.assetBasicsWizardPage2.Controls.Add(this.ownerNameLabel);
-            this.assetBasicsWizardPage2.Controls.Add(this.custodianNameTextBox);
             this.assetBasicsWizardPage2.Controls.Add(this.custodianNameLabel);
             this.assetBasicsWizardPage2.Controls.Add(this.assetNotesTextBox);
             this.assetBasicsWizardPage2.Controls.Add(this.assetNotesLabel);
@@ -1128,6 +1133,22 @@ namespace AssetManagement.Assets
             this.assetBasicsWizardPage2.Name = "assetBasicsWizardPage2";
             this.assetBasicsWizardPage2.Size = new System.Drawing.Size(1466, 643);
             this.assetBasicsWizardPage2.Text = "صفحة 2 من 4";
+            // 
+            // manageEmployeeTblBtn
+            // 
+            this.manageEmployeeTblBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageEmployeeTblBtn.Image = global::AssetManagement.Properties.Resources._981382;
+            this.manageEmployeeTblBtn.Location = new System.Drawing.Point(836, 15);
+            this.manageEmployeeTblBtn.Name = "manageEmployeeTblBtn";
+            this.manageEmployeeTblBtn.Size = new System.Drawing.Size(55, 55);
+            this.manageEmployeeTblBtn.TabIndex = 6;
+            this.manageEmployeeTblBtn.UseVisualStyleBackColor = true;
+            this.manageEmployeeTblBtn.Click += new System.EventHandler(this.manageEmployeeTblBtn_Click);
+            // 
+            // employeeTblBindingSource
+            // 
+            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
+            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet1;
             // 
             // attachmentsGroupBox
             // 
@@ -1223,15 +1244,6 @@ namespace AssetManagement.Assets
             this.ownerNameLabel.Size = new System.Drawing.Size(91, 24);
             this.ownerNameLabel.TabIndex = 10;
             this.ownerNameLabel.Text = "اسم المالك:";
-            // 
-            // custodianNameTextBox
-            // 
-            this.custodianNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.custodianNameTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.custodianNameTextBox.Location = new System.Drawing.Point(922, 26);
-            this.custodianNameTextBox.Name = "custodianNameTextBox";
-            this.custodianNameTextBox.Size = new System.Drawing.Size(316, 32);
-            this.custodianNameTextBox.TabIndex = 5;
             // 
             // custodianNameLabel
             // 
@@ -1536,6 +1548,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -1564,6 +1577,10 @@ namespace AssetManagement.Assets
             // departmentTblTableAdapter
             // 
             this.departmentTblTableAdapter.ClearBeforeFill = true;
+            // 
+            // employeeTblTableAdapter
+            // 
+            this.employeeTblTableAdapter.ClearBeforeFill = true;
             // 
             // estateAreaUnitTblTableAdapter
             // 
@@ -1613,6 +1630,15 @@ namespace AssetManagement.Assets
             // 
             this.mainCategoryTblBindingSource1.DataMember = "MainCategoryTbl";
             this.mainCategoryTblBindingSource1.DataSource = this.assetMngDbDataSet;
+            // 
+            // custodianNameTextBox
+            // 
+            this.custodianNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.custodianNameTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.custodianNameTextBox.Location = new System.Drawing.Point(922, 26);
+            this.custodianNameTextBox.Name = "custodianNameTextBox";
+            this.custodianNameTextBox.Size = new System.Drawing.Size(316, 32);
+            this.custodianNameTextBox.TabIndex = 5;
             // 
             // AddNewAssetForm
             // 
@@ -1666,6 +1692,7 @@ namespace AssetManagement.Assets
             this.completionWizardPage1.ResumeLayout(false);
             this.assetBasicsWizardPage2.ResumeLayout(false);
             this.assetBasicsWizardPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
             this.attachmentsGroupBox.ResumeLayout(false);
             this.assetBuildingLandWizardPage.ResumeLayout(false);
             this.assetBuildingLandWizardPage.PerformLayout();
@@ -1752,7 +1779,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Label benefitPercentageLabel;
         private System.Windows.Forms.TextBox ownerNameTextBox;
         private System.Windows.Forms.Label ownerNameLabel;
-        private System.Windows.Forms.TextBox custodianNameTextBox;
         private System.Windows.Forms.Label custodianNameLabel;
         private System.Windows.Forms.Label assetSectionLabel;
         private DevExpress.XtraEditors.LookUpEdit assetSectionLookUpEdit;
@@ -1804,5 +1830,9 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.Button clearAllAttchmentsBtn;
         private System.Windows.Forms.ListBox allAttachmentsListBox;
         private System.Windows.Forms.Button attachFilesBtn;
+        private System.Windows.Forms.BindingSource employeeTblBindingSource;
+        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
+        private System.Windows.Forms.Button manageEmployeeTblBtn;
+        private System.Windows.Forms.TextBox custodianNameTextBox;
     }
 }

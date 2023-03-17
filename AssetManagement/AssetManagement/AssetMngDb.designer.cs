@@ -48,6 +48,9 @@ namespace AssetManagement
     partial void InsertDepartmentTbl(DepartmentTbl instance);
     partial void UpdateDepartmentTbl(DepartmentTbl instance);
     partial void DeleteDepartmentTbl(DepartmentTbl instance);
+    partial void InsertEmployeeTbl(EmployeeTbl instance);
+    partial void UpdateEmployeeTbl(EmployeeTbl instance);
+    partial void DeleteEmployeeTbl(EmployeeTbl instance);
     partial void InsertEstateAreaUnitTbl(EstateAreaUnitTbl instance);
     partial void UpdateEstateAreaUnitTbl(EstateAreaUnitTbl instance);
     partial void DeleteEstateAreaUnitTbl(EstateAreaUnitTbl instance);
@@ -134,78 +137,6 @@ namespace AssetManagement
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AssetMoveVw> AssetMoveVws
-		{
-			get
-			{
-				return this.GetTable<AssetMoveVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SubDepartmentVw> SubDepartmentVws
-		{
-			get
-			{
-				return this.GetTable<SubDepartmentVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<AssetStatVw> AssetStatVws
-		{
-			get
-			{
-				return this.GetTable<AssetStatVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<AssetVw> AssetVws
-		{
-			get
-			{
-				return this.GetTable<AssetVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<AssetVw_All> AssetVw_Alls
-		{
-			get
-			{
-				return this.GetTable<AssetVw_All>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DepartmentVw> DepartmentVws
-		{
-			get
-			{
-				return this.GetTable<DepartmentVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<FinancialItemStatVw> FinancialItemStatVws
-		{
-			get
-			{
-				return this.GetTable<FinancialItemStatVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<FinancialItemVw> FinancialItemVws
-		{
-			get
-			{
-				return this.GetTable<FinancialItemVw>();
-			}
-		}
-		
-		public System.Data.Linq.Table<MinorCategoryVw> MinorCategoryVws
-		{
-			get
-			{
-				return this.GetTable<MinorCategoryVw>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AssetMovementTbl> AssetMovementTbls
 		{
 			get
@@ -251,6 +182,14 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<DepartmentTbl>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EmployeeTbl> EmployeeTbls
+		{
+			get
+			{
+				return this.GetTable<EmployeeTbl>();
 			}
 		}
 		
@@ -398,3066 +337,75 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSubDeptsOfActiveUser", IsComposable=true)]
-		public IQueryable<GetSubDeptsOfActiveUserResult> GetSubDeptsOfActiveUser()
+		public System.Data.Linq.Table<AssetMoveVw> AssetMoveVws
 		{
-			return this.CreateMethodCallQuery<GetSubDeptsOfActiveUserResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MonthsToText", IsComposable=true)]
-		public string MonthsToText([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> months)
-		{
-			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), months).ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetMoveVw")]
-	public partial class AssetMoveVw
-	{
-		
-		private int _ID;
-		
-		private string _MainCategoryName;
-		
-		private string _MinorCategoryName;
-		
-		private string _AssetCode;
-		
-		private string _SectionName;
-		
-		private string _DepartmentName;
-		
-		private string _SubDepartmentName;
-		
-		private string _SquareName;
-		
-		private string _StatusName;
-		
-		private string _CustodianName;
-		
-		private System.Nullable<System.DateTime> _InsertedOn;
-		
-		public AssetMoveVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainCategoryName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string MainCategoryName
-		{
-			get
-			{
-				return this._MainCategoryName;
-			}
-			set
-			{
-				if ((this._MainCategoryName != value))
-				{
-					this._MainCategoryName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinorCategoryName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string MinorCategoryName
-		{
-			get
-			{
-				return this._MinorCategoryName;
-			}
-			set
-			{
-				if ((this._MinorCategoryName != value))
-				{
-					this._MinorCategoryName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetCode", DbType="NVarChar(100)")]
-		public string AssetCode
-		{
-			get
-			{
-				return this._AssetCode;
-			}
-			set
-			{
-				if ((this._AssetCode != value))
-				{
-					this._AssetCode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string SectionName
-		{
-			get
-			{
-				return this._SectionName;
-			}
-			set
-			{
-				if ((this._SectionName != value))
-				{
-					this._SectionName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string DepartmentName
-		{
-			get
-			{
-				return this._DepartmentName;
-			}
-			set
-			{
-				if ((this._DepartmentName != value))
-				{
-					this._DepartmentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubDepartmentName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string SubDepartmentName
-		{
-			get
-			{
-				return this._SubDepartmentName;
-			}
-			set
-			{
-				if ((this._SubDepartmentName != value))
-				{
-					this._SubDepartmentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SquareName", DbType="NVarChar(100)")]
-		public string SquareName
-		{
-			get
-			{
-				return this._SquareName;
-			}
-			set
-			{
-				if ((this._SquareName != value))
-				{
-					this._SquareName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string StatusName
-		{
-			get
-			{
-				return this._StatusName;
-			}
-			set
-			{
-				if ((this._StatusName != value))
-				{
-					this._StatusName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustodianName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CustodianName
-		{
-			get
-			{
-				return this._CustodianName;
-			}
-			set
-			{
-				if ((this._CustodianName != value))
-				{
-					this._CustodianName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
-		public System.Nullable<System.DateTime> InsertedOn
-		{
-			get
-			{
-				return this._InsertedOn;
-			}
-			set
-			{
-				if ((this._InsertedOn != value))
-				{
-					this._InsertedOn = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SubDepartmentVw")]
-	public partial class SubDepartmentVw
-	{
-		
-		private int _معرف_الوحدة;
-		
-		private string _اسم_الوحدة;
-		
-		private string _القسم_التابعة_له;
-		
-		private string _الدائرة_التي_يتبع_لها_القسم;
-		
-		public SubDepartmentVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الوحدة]", Storage="_معرف_الوحدة", DbType="Int NOT NULL")]
-		public int معرف_الوحدة
-		{
-			get
-			{
-				return this._معرف_الوحدة;
-			}
-			set
-			{
-				if ((this._معرف_الوحدة != value))
-				{
-					this._معرف_الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الوحدة]", Storage="_اسم_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string اسم_الوحدة
-		{
-			get
-			{
-				return this._اسم_الوحدة;
-			}
-			set
-			{
-				if ((this._اسم_الوحدة != value))
-				{
-					this._اسم_الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[القسم التابعة له]", Storage="_القسم_التابعة_له", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string القسم_التابعة_له
-		{
-			get
-			{
-				return this._القسم_التابعة_له;
-			}
-			set
-			{
-				if ((this._القسم_التابعة_له != value))
-				{
-					this._القسم_التابعة_له = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الدائرة التي يتبع لها القسم]", Storage="_الدائرة_التي_يتبع_لها_القسم", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة_التي_يتبع_لها_القسم
-		{
-			get
-			{
-				return this._الدائرة_التي_يتبع_لها_القسم;
-			}
-			set
-			{
-				if ((this._الدائرة_التي_يتبع_لها_القسم != value))
-				{
-					this._الدائرة_التي_يتبع_لها_القسم = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetStatVw")]
-	public partial class AssetStatVw
-	{
-		
-		private int _معرف_الأصل;
-		
-		private string _كود_الأصل;
-		
-		private int _العدد;
-		
-		private string _الدائرة;
-		
-		private string _القسم;
-		
-		private string _الوحدة;
-		
-		private string _الساحة;
-		
-		private string _الفئة_الرئيسية;
-		
-		private string _الفئة_الفرعية;
-		
-		private string _مواصفات_الأصل;
-		
-		private string _الموديل;
-		
-		private string _اللون;
-		
-		private string _الحجم___السعة;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الشراء;
-		
-		private System.Nullable<double> _سعر_الشراء;
-		
-		private string _عملة_سعر_الشراء;
-		
-		private string _مكان_التواجد;
-		
-		private string _حالة_الأصل_الآنية;
-		
-		private string _نسبة_الاستفادة_منه;
-		
-		private double _السعر_الفعلي_الحالي;
-		
-		private string _اسم_صاحب_العهدة;
-		
-		private string _تفاصيل_إضافية;
-		
-		private string _ملاحظات_أخرى;
-		
-		private string _عنوان_العقار;
-		
-		private string _اسم_المالك;
-		
-		private string _المستغل_منه;
-		
-		private string _مع_من_ورقة_الملكية;
-		
-		private string _مساحة_العقار;
-		
-		private string _وحدة_مساحة_العقار;
-		
-		private string _رقم_لوحة_المركبة;
-		
-		private int _سنة_صنع_المركبة;
-		
-		private string _رقم_الهيكل__الشاصيه__للمركبة;
-		
-		private string _رقم_المحرك_للمركبة;
-		
-		private double _معدل_الإهلاك_للأصل;
-		
-		private string _العمر_الافتراضي_المتبقي_للأصل;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
-		
-		public AssetStatVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
-		public int معرف_الأصل
-		{
-			get
-			{
-				return this._معرف_الأصل;
-			}
-			set
-			{
-				if ((this._معرف_الأصل != value))
-				{
-					this._معرف_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
-		public string كود_الأصل
-		{
-			get
-			{
-				return this._كود_الأصل;
-			}
-			set
-			{
-				if ((this._كود_الأصل != value))
-				{
-					this._كود_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
-		public int العدد
-		{
-			get
-			{
-				return this._العدد;
-			}
-			set
-			{
-				if ((this._العدد != value))
-				{
-					this._العدد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة
-		{
-			get
-			{
-				return this._الدائرة;
-			}
-			set
-			{
-				if ((this._الدائرة != value))
-				{
-					this._الدائرة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
-		public string الوحدة
-		{
-			get
-			{
-				return this._الوحدة;
-			}
-			set
-			{
-				if ((this._الوحدة != value))
-				{
-					this._الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
-		public string الساحة
-		{
-			get
-			{
-				return this._الساحة;
-			}
-			set
-			{
-				if ((this._الساحة != value))
-				{
-					this._الساحة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الرئيسية
-		{
-			get
-			{
-				return this._الفئة_الرئيسية;
-			}
-			set
-			{
-				if ((this._الفئة_الرئيسية != value))
-				{
-					this._الفئة_الرئيسية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الفرعية
-		{
-			get
-			{
-				return this._الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._الفئة_الفرعية != value))
-				{
-					this._الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string مواصفات_الأصل
-		{
-			get
-			{
-				return this._مواصفات_الأصل;
-			}
-			set
-			{
-				if ((this._مواصفات_الأصل != value))
-				{
-					this._مواصفات_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string الموديل
-		{
-			get
-			{
-				return this._الموديل;
-			}
-			set
-			{
-				if ((this._الموديل != value))
-				{
-					this._الموديل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50)")]
-		public string اللون
-		{
-			get
-			{
-				return this._اللون;
-			}
-			set
-			{
-				if ((this._اللون != value))
-				{
-					this._اللون = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string الحجم___السعة
-		{
-			get
-			{
-				return this._الحجم___السعة;
-			}
-			set
-			{
-				if ((this._الحجم___السعة != value))
-				{
-					this._الحجم___السعة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الشراء
-		{
-			get
-			{
-				return this._تاريخ_الشراء;
-			}
-			set
-			{
-				if ((this._تاريخ_الشراء != value))
-				{
-					this._تاريخ_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
-		public System.Nullable<double> سعر_الشراء
-		{
-			get
-			{
-				return this._سعر_الشراء;
-			}
-			set
-			{
-				if ((this._سعر_الشراء != value))
-				{
-					this._سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
-		public string عملة_سعر_الشراء
-		{
-			get
-			{
-				return this._عملة_سعر_الشراء;
-			}
-			set
-			{
-				if ((this._عملة_سعر_الشراء != value))
-				{
-					this._عملة_سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string مكان_التواجد
-		{
-			get
-			{
-				return this._مكان_التواجد;
-			}
-			set
-			{
-				if ((this._مكان_التواجد != value))
-				{
-					this._مكان_التواجد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string حالة_الأصل_الآنية
-		{
-			get
-			{
-				return this._حالة_الأصل_الآنية;
-			}
-			set
-			{
-				if ((this._حالة_الأصل_الآنية != value))
-				{
-					this._حالة_الأصل_الآنية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string نسبة_الاستفادة_منه
-		{
-			get
-			{
-				return this._نسبة_الاستفادة_منه;
-			}
-			set
-			{
-				if ((this._نسبة_الاستفادة_منه != value))
-				{
-					this._نسبة_الاستفادة_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
-		public double السعر_الفعلي_الحالي
-		{
-			get
-			{
-				return this._السعر_الفعلي_الحالي;
-			}
-			set
-			{
-				if ((this._السعر_الفعلي_الحالي != value))
-				{
-					this._السعر_الفعلي_الحالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string اسم_صاحب_العهدة
-		{
-			get
-			{
-				return this._اسم_صاحب_العهدة;
-			}
-			set
-			{
-				if ((this._اسم_صاحب_العهدة != value))
-				{
-					this._اسم_صاحب_العهدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string تفاصيل_إضافية
-		{
-			get
-			{
-				return this._تفاصيل_إضافية;
-			}
-			set
-			{
-				if ((this._تفاصيل_إضافية != value))
-				{
-					this._تفاصيل_إضافية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ملاحظات_أخرى
-		{
-			get
-			{
-				return this._ملاحظات_أخرى;
-			}
-			set
-			{
-				if ((this._ملاحظات_أخرى != value))
-				{
-					this._ملاحظات_أخرى = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string عنوان_العقار
-		{
-			get
-			{
-				return this._عنوان_العقار;
-			}
-			set
-			{
-				if ((this._عنوان_العقار != value))
-				{
-					this._عنوان_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_المالك
-		{
-			get
-			{
-				return this._اسم_المالك;
-			}
-			set
-			{
-				if ((this._اسم_المالك != value))
-				{
-					this._اسم_المالك = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string المستغل_منه
-		{
-			get
-			{
-				return this._المستغل_منه;
-			}
-			set
-			{
-				if ((this._المستغل_منه != value))
-				{
-					this._المستغل_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string مع_من_ورقة_الملكية
-		{
-			get
-			{
-				return this._مع_من_ورقة_الملكية;
-			}
-			set
-			{
-				if ((this._مع_من_ورقة_الملكية != value))
-				{
-					this._مع_من_ورقة_الملكية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string مساحة_العقار
-		{
-			get
-			{
-				return this._مساحة_العقار;
-			}
-			set
-			{
-				if ((this._مساحة_العقار != value))
-				{
-					this._مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
-		public string وحدة_مساحة_العقار
-		{
-			get
-			{
-				return this._وحدة_مساحة_العقار;
-			}
-			set
-			{
-				if ((this._وحدة_مساحة_العقار != value))
-				{
-					this._وحدة_مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string رقم_لوحة_المركبة
-		{
-			get
-			{
-				return this._رقم_لوحة_المركبة;
-			}
-			set
-			{
-				if ((this._رقم_لوحة_المركبة != value))
-				{
-					this._رقم_لوحة_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
-		public int سنة_صنع_المركبة
-		{
-			get
-			{
-				return this._سنة_صنع_المركبة;
-			}
-			set
-			{
-				if ((this._سنة_صنع_المركبة != value))
-				{
-					this._سنة_صنع_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_الهيكل__الشاصيه__للمركبة
-		{
-			get
-			{
-				return this._رقم_الهيكل__الشاصيه__للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
-				{
-					this._رقم_الهيكل__الشاصيه__للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_المحرك_للمركبة
-		{
-			get
-			{
-				return this._رقم_المحرك_للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_المحرك_للمركبة != value))
-				{
-					this._رقم_المحرك_للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
-		public double معدل_الإهلاك_للأصل
-		{
-			get
-			{
-				return this._معدل_الإهلاك_للأصل;
-			}
-			set
-			{
-				if ((this._معدل_الإهلاك_للأصل != value))
-				{
-					this._معدل_الإهلاك_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
-		public string العمر_الافتراضي_المتبقي_للأصل
-		{
-			get
-			{
-				return this._العمر_الافتراضي_المتبقي_للأصل;
-			}
-			set
-			{
-				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
-				{
-					this._العمر_الافتراضي_المتبقي_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الإدخال
-		{
-			get
-			{
-				return this._تاريخ_الإدخال;
-			}
-			set
-			{
-				if ((this._تاريخ_الإدخال != value))
-				{
-					this._تاريخ_الإدخال = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetVw")]
-	public partial class AssetVw
-	{
-		
-		private int _معرف_الأصل;
-		
-		private string _كود_الأصل;
-		
-		private int _العدد;
-		
-		private string _الدائرة;
-		
-		private string _القسم;
-		
-		private string _الوحدة;
-		
-		private string _الساحة;
-		
-		private string _الفئة_الرئيسية;
-		
-		private string _الفئة_الفرعية;
-		
-		private string _مواصفات_الأصل;
-		
-		private string _الموديل;
-		
-		private string _اللون;
-		
-		private string _الحجم___السعة;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الشراء;
-		
-		private System.Nullable<double> _سعر_الشراء;
-		
-		private string _عملة_سعر_الشراء;
-		
-		private string _مكان_التواجد;
-		
-		private string _حالة_الأصل_الآنية;
-		
-		private string _نسبة_الاستفادة_منه;
-		
-		private double _السعر_الفعلي_الحالي;
-		
-		private string _اسم_صاحب_العهدة;
-		
-		private string _تفاصيل_إضافية;
-		
-		private string _ملاحظات_أخرى;
-		
-		private string _عنوان_العقار;
-		
-		private string _اسم_المالك;
-		
-		private string _المستغل_منه;
-		
-		private string _مع_من_ورقة_الملكية;
-		
-		private string _مساحة_العقار;
-		
-		private string _وحدة_مساحة_العقار;
-		
-		private string _رقم_لوحة_المركبة;
-		
-		private int _سنة_صنع_المركبة;
-		
-		private string _رقم_الهيكل__الشاصيه__للمركبة;
-		
-		private string _رقم_المحرك_للمركبة;
-		
-		private double _معدل_الإهلاك_للأصل;
-		
-		private string _العمر_الافتراضي_المتبقي_للأصل;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
-		
-		public AssetVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
-		public int معرف_الأصل
-		{
-			get
-			{
-				return this._معرف_الأصل;
-			}
-			set
-			{
-				if ((this._معرف_الأصل != value))
-				{
-					this._معرف_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
-		public string كود_الأصل
-		{
-			get
-			{
-				return this._كود_الأصل;
-			}
-			set
-			{
-				if ((this._كود_الأصل != value))
-				{
-					this._كود_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
-		public int العدد
-		{
-			get
-			{
-				return this._العدد;
-			}
-			set
-			{
-				if ((this._العدد != value))
-				{
-					this._العدد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة
-		{
-			get
-			{
-				return this._الدائرة;
-			}
-			set
-			{
-				if ((this._الدائرة != value))
-				{
-					this._الدائرة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
-		public string الوحدة
-		{
-			get
-			{
-				return this._الوحدة;
-			}
-			set
-			{
-				if ((this._الوحدة != value))
-				{
-					this._الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
-		public string الساحة
-		{
-			get
-			{
-				return this._الساحة;
-			}
-			set
-			{
-				if ((this._الساحة != value))
-				{
-					this._الساحة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الرئيسية
-		{
-			get
-			{
-				return this._الفئة_الرئيسية;
-			}
-			set
-			{
-				if ((this._الفئة_الرئيسية != value))
-				{
-					this._الفئة_الرئيسية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الفرعية
-		{
-			get
-			{
-				return this._الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._الفئة_الفرعية != value))
-				{
-					this._الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string مواصفات_الأصل
-		{
-			get
-			{
-				return this._مواصفات_الأصل;
-			}
-			set
-			{
-				if ((this._مواصفات_الأصل != value))
-				{
-					this._مواصفات_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string الموديل
-		{
-			get
-			{
-				return this._الموديل;
-			}
-			set
-			{
-				if ((this._الموديل != value))
-				{
-					this._الموديل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string اللون
-		{
-			get
-			{
-				return this._اللون;
-			}
-			set
-			{
-				if ((this._اللون != value))
-				{
-					this._اللون = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string الحجم___السعة
-		{
-			get
-			{
-				return this._الحجم___السعة;
-			}
-			set
-			{
-				if ((this._الحجم___السعة != value))
-				{
-					this._الحجم___السعة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الشراء
-		{
-			get
-			{
-				return this._تاريخ_الشراء;
-			}
-			set
-			{
-				if ((this._تاريخ_الشراء != value))
-				{
-					this._تاريخ_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
-		public System.Nullable<double> سعر_الشراء
-		{
-			get
-			{
-				return this._سعر_الشراء;
-			}
-			set
-			{
-				if ((this._سعر_الشراء != value))
-				{
-					this._سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
-		public string عملة_سعر_الشراء
-		{
-			get
-			{
-				return this._عملة_سعر_الشراء;
-			}
-			set
-			{
-				if ((this._عملة_سعر_الشراء != value))
-				{
-					this._عملة_سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string مكان_التواجد
-		{
-			get
-			{
-				return this._مكان_التواجد;
-			}
-			set
-			{
-				if ((this._مكان_التواجد != value))
-				{
-					this._مكان_التواجد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string حالة_الأصل_الآنية
-		{
-			get
-			{
-				return this._حالة_الأصل_الآنية;
-			}
-			set
-			{
-				if ((this._حالة_الأصل_الآنية != value))
-				{
-					this._حالة_الأصل_الآنية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string نسبة_الاستفادة_منه
-		{
-			get
-			{
-				return this._نسبة_الاستفادة_منه;
-			}
-			set
-			{
-				if ((this._نسبة_الاستفادة_منه != value))
-				{
-					this._نسبة_الاستفادة_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
-		public double السعر_الفعلي_الحالي
-		{
-			get
-			{
-				return this._السعر_الفعلي_الحالي;
-			}
-			set
-			{
-				if ((this._السعر_الفعلي_الحالي != value))
-				{
-					this._السعر_الفعلي_الحالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string اسم_صاحب_العهدة
-		{
-			get
-			{
-				return this._اسم_صاحب_العهدة;
-			}
-			set
-			{
-				if ((this._اسم_صاحب_العهدة != value))
-				{
-					this._اسم_صاحب_العهدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string تفاصيل_إضافية
-		{
-			get
-			{
-				return this._تفاصيل_إضافية;
-			}
-			set
-			{
-				if ((this._تفاصيل_إضافية != value))
-				{
-					this._تفاصيل_إضافية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ملاحظات_أخرى
-		{
-			get
-			{
-				return this._ملاحظات_أخرى;
-			}
-			set
-			{
-				if ((this._ملاحظات_أخرى != value))
-				{
-					this._ملاحظات_أخرى = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string عنوان_العقار
-		{
-			get
-			{
-				return this._عنوان_العقار;
-			}
-			set
-			{
-				if ((this._عنوان_العقار != value))
-				{
-					this._عنوان_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_المالك
-		{
-			get
-			{
-				return this._اسم_المالك;
-			}
-			set
-			{
-				if ((this._اسم_المالك != value))
-				{
-					this._اسم_المالك = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string المستغل_منه
-		{
-			get
-			{
-				return this._المستغل_منه;
-			}
-			set
-			{
-				if ((this._المستغل_منه != value))
-				{
-					this._المستغل_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string مع_من_ورقة_الملكية
-		{
-			get
-			{
-				return this._مع_من_ورقة_الملكية;
-			}
-			set
-			{
-				if ((this._مع_من_ورقة_الملكية != value))
-				{
-					this._مع_من_ورقة_الملكية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string مساحة_العقار
-		{
-			get
-			{
-				return this._مساحة_العقار;
-			}
-			set
-			{
-				if ((this._مساحة_العقار != value))
-				{
-					this._مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
-		public string وحدة_مساحة_العقار
-		{
-			get
-			{
-				return this._وحدة_مساحة_العقار;
-			}
-			set
-			{
-				if ((this._وحدة_مساحة_العقار != value))
-				{
-					this._وحدة_مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string رقم_لوحة_المركبة
-		{
-			get
-			{
-				return this._رقم_لوحة_المركبة;
-			}
-			set
-			{
-				if ((this._رقم_لوحة_المركبة != value))
-				{
-					this._رقم_لوحة_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
-		public int سنة_صنع_المركبة
-		{
-			get
-			{
-				return this._سنة_صنع_المركبة;
-			}
-			set
-			{
-				if ((this._سنة_صنع_المركبة != value))
-				{
-					this._سنة_صنع_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_الهيكل__الشاصيه__للمركبة
-		{
-			get
-			{
-				return this._رقم_الهيكل__الشاصيه__للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
-				{
-					this._رقم_الهيكل__الشاصيه__للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_المحرك_للمركبة
-		{
-			get
-			{
-				return this._رقم_المحرك_للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_المحرك_للمركبة != value))
-				{
-					this._رقم_المحرك_للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
-		public double معدل_الإهلاك_للأصل
-		{
-			get
-			{
-				return this._معدل_الإهلاك_للأصل;
-			}
-			set
-			{
-				if ((this._معدل_الإهلاك_للأصل != value))
-				{
-					this._معدل_الإهلاك_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
-		public string العمر_الافتراضي_المتبقي_للأصل
-		{
-			get
-			{
-				return this._العمر_الافتراضي_المتبقي_للأصل;
-			}
-			set
-			{
-				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
-				{
-					this._العمر_الافتراضي_المتبقي_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الإدخال
-		{
-			get
-			{
-				return this._تاريخ_الإدخال;
-			}
-			set
-			{
-				if ((this._تاريخ_الإدخال != value))
-				{
-					this._تاريخ_الإدخال = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetVw_All")]
-	public partial class AssetVw_All
-	{
-		
-		private int _معرف_الأصل;
-		
-		private string _كود_الأصل;
-		
-		private int _العدد;
-		
-		private string _الدائرة;
-		
-		private string _القسم;
-		
-		private string _الوحدة;
-		
-		private string _الساحة;
-		
-		private string _الفئة_الرئيسية;
-		
-		private string _الفئة_الفرعية;
-		
-		private string _مواصفات_الأصل;
-		
-		private string _الموديل;
-		
-		private string _اللون;
-		
-		private string _الحجم___السعة;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الشراء;
-		
-		private System.Nullable<double> _سعر_الشراء;
-		
-		private string _عملة_سعر_الشراء;
-		
-		private string _مكان_التواجد;
-		
-		private string _حالة_الأصل_الآنية;
-		
-		private string _نسبة_الاستفادة_منه;
-		
-		private double _السعر_الفعلي_الحالي;
-		
-		private string _اسم_صاحب_العهدة;
-		
-		private string _تفاصيل_إضافية;
-		
-		private string _ملاحظات_أخرى;
-		
-		private string _عنوان_العقار;
-		
-		private string _اسم_المالك;
-		
-		private string _المستغل_منه;
-		
-		private string _مع_من_ورقة_الملكية;
-		
-		private string _مساحة_العقار;
-		
-		private string _وحدة_مساحة_العقار;
-		
-		private string _رقم_لوحة_المركبة;
-		
-		private int _سنة_صنع_المركبة;
-		
-		private string _رقم_الهيكل__الشاصيه__للمركبة;
-		
-		private string _رقم_المحرك_للمركبة;
-		
-		private double _معدل_الإهلاك_للأصل;
-		
-		private string _العمر_الافتراضي_المتبقي_للأصل;
-		
-		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
-		
-		public AssetVw_All()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
-		public int معرف_الأصل
-		{
-			get
-			{
-				return this._معرف_الأصل;
-			}
-			set
-			{
-				if ((this._معرف_الأصل != value))
-				{
-					this._معرف_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
-		public string كود_الأصل
-		{
-			get
-			{
-				return this._كود_الأصل;
-			}
-			set
-			{
-				if ((this._كود_الأصل != value))
-				{
-					this._كود_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
-		public int العدد
-		{
-			get
-			{
-				return this._العدد;
-			}
-			set
-			{
-				if ((this._العدد != value))
-				{
-					this._العدد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة
-		{
-			get
-			{
-				return this._الدائرة;
-			}
-			set
-			{
-				if ((this._الدائرة != value))
-				{
-					this._الدائرة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
-		public string الوحدة
-		{
-			get
-			{
-				return this._الوحدة;
-			}
-			set
-			{
-				if ((this._الوحدة != value))
-				{
-					this._الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
-		public string الساحة
-		{
-			get
-			{
-				return this._الساحة;
-			}
-			set
-			{
-				if ((this._الساحة != value))
-				{
-					this._الساحة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الرئيسية
-		{
-			get
-			{
-				return this._الفئة_الرئيسية;
-			}
-			set
-			{
-				if ((this._الفئة_الرئيسية != value))
-				{
-					this._الفئة_الرئيسية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الفئة_الفرعية
-		{
-			get
-			{
-				return this._الفئة_الفرعية;
-			}
-			set
-			{
-				if ((this._الفئة_الفرعية != value))
-				{
-					this._الفئة_الفرعية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string مواصفات_الأصل
-		{
-			get
-			{
-				return this._مواصفات_الأصل;
-			}
-			set
-			{
-				if ((this._مواصفات_الأصل != value))
-				{
-					this._مواصفات_الأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string الموديل
-		{
-			get
-			{
-				return this._الموديل;
-			}
-			set
-			{
-				if ((this._الموديل != value))
-				{
-					this._الموديل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string اللون
-		{
-			get
-			{
-				return this._اللون;
-			}
-			set
-			{
-				if ((this._اللون != value))
-				{
-					this._اللون = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string الحجم___السعة
-		{
-			get
-			{
-				return this._الحجم___السعة;
-			}
-			set
-			{
-				if ((this._الحجم___السعة != value))
-				{
-					this._الحجم___السعة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الشراء
-		{
-			get
-			{
-				return this._تاريخ_الشراء;
-			}
-			set
-			{
-				if ((this._تاريخ_الشراء != value))
-				{
-					this._تاريخ_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
-		public System.Nullable<double> سعر_الشراء
-		{
-			get
-			{
-				return this._سعر_الشراء;
-			}
-			set
-			{
-				if ((this._سعر_الشراء != value))
-				{
-					this._سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
-		public string عملة_سعر_الشراء
-		{
-			get
-			{
-				return this._عملة_سعر_الشراء;
-			}
-			set
-			{
-				if ((this._عملة_سعر_الشراء != value))
-				{
-					this._عملة_سعر_الشراء = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string مكان_التواجد
-		{
-			get
-			{
-				return this._مكان_التواجد;
-			}
-			set
-			{
-				if ((this._مكان_التواجد != value))
-				{
-					this._مكان_التواجد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string حالة_الأصل_الآنية
-		{
-			get
-			{
-				return this._حالة_الأصل_الآنية;
-			}
-			set
-			{
-				if ((this._حالة_الأصل_الآنية != value))
-				{
-					this._حالة_الأصل_الآنية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string نسبة_الاستفادة_منه
-		{
-			get
-			{
-				return this._نسبة_الاستفادة_منه;
-			}
-			set
-			{
-				if ((this._نسبة_الاستفادة_منه != value))
-				{
-					this._نسبة_الاستفادة_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
-		public double السعر_الفعلي_الحالي
-		{
-			get
-			{
-				return this._السعر_الفعلي_الحالي;
-			}
-			set
-			{
-				if ((this._السعر_الفعلي_الحالي != value))
-				{
-					this._السعر_الفعلي_الحالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string اسم_صاحب_العهدة
-		{
-			get
-			{
-				return this._اسم_صاحب_العهدة;
-			}
-			set
-			{
-				if ((this._اسم_صاحب_العهدة != value))
-				{
-					this._اسم_صاحب_العهدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string تفاصيل_إضافية
-		{
-			get
-			{
-				return this._تفاصيل_إضافية;
-			}
-			set
-			{
-				if ((this._تفاصيل_إضافية != value))
-				{
-					this._تفاصيل_إضافية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ملاحظات_أخرى
-		{
-			get
-			{
-				return this._ملاحظات_أخرى;
-			}
-			set
-			{
-				if ((this._ملاحظات_أخرى != value))
-				{
-					this._ملاحظات_أخرى = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string عنوان_العقار
-		{
-			get
-			{
-				return this._عنوان_العقار;
-			}
-			set
-			{
-				if ((this._عنوان_العقار != value))
-				{
-					this._عنوان_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_المالك
-		{
-			get
-			{
-				return this._اسم_المالك;
-			}
-			set
-			{
-				if ((this._اسم_المالك != value))
-				{
-					this._اسم_المالك = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string المستغل_منه
-		{
-			get
-			{
-				return this._المستغل_منه;
-			}
-			set
-			{
-				if ((this._المستغل_منه != value))
-				{
-					this._المستغل_منه = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string مع_من_ورقة_الملكية
-		{
-			get
-			{
-				return this._مع_من_ورقة_الملكية;
-			}
-			set
-			{
-				if ((this._مع_من_ورقة_الملكية != value))
-				{
-					this._مع_من_ورقة_الملكية = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string مساحة_العقار
-		{
-			get
-			{
-				return this._مساحة_العقار;
-			}
-			set
-			{
-				if ((this._مساحة_العقار != value))
-				{
-					this._مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
-		public string وحدة_مساحة_العقار
-		{
-			get
-			{
-				return this._وحدة_مساحة_العقار;
-			}
-			set
-			{
-				if ((this._وحدة_مساحة_العقار != value))
-				{
-					this._وحدة_مساحة_العقار = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string رقم_لوحة_المركبة
-		{
-			get
-			{
-				return this._رقم_لوحة_المركبة;
-			}
-			set
-			{
-				if ((this._رقم_لوحة_المركبة != value))
-				{
-					this._رقم_لوحة_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
-		public int سنة_صنع_المركبة
-		{
-			get
-			{
-				return this._سنة_صنع_المركبة;
-			}
-			set
-			{
-				if ((this._سنة_صنع_المركبة != value))
-				{
-					this._سنة_صنع_المركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_الهيكل__الشاصيه__للمركبة
-		{
-			get
-			{
-				return this._رقم_الهيكل__الشاصيه__للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
-				{
-					this._رقم_الهيكل__الشاصيه__للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string رقم_المحرك_للمركبة
-		{
-			get
-			{
-				return this._رقم_المحرك_للمركبة;
-			}
-			set
-			{
-				if ((this._رقم_المحرك_للمركبة != value))
-				{
-					this._رقم_المحرك_للمركبة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
-		public double معدل_الإهلاك_للأصل
-		{
-			get
-			{
-				return this._معدل_الإهلاك_للأصل;
-			}
-			set
-			{
-				if ((this._معدل_الإهلاك_للأصل != value))
-				{
-					this._معدل_الإهلاك_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
-		public string العمر_الافتراضي_المتبقي_للأصل
-		{
-			get
-			{
-				return this._العمر_الافتراضي_المتبقي_للأصل;
-			}
-			set
-			{
-				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
-				{
-					this._العمر_الافتراضي_المتبقي_للأصل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
-		public System.Nullable<System.DateTime> تاريخ_الإدخال
-		{
-			get
-			{
-				return this._تاريخ_الإدخال;
-			}
-			set
-			{
-				if ((this._تاريخ_الإدخال != value))
-				{
-					this._تاريخ_الإدخال = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DepartmentVw")]
-	public partial class DepartmentVw
-	{
-		
-		private int _معرف_القسم;
-		
-		private string _اسم_القسم;
-		
-		private string _الدائرة_التي_يتبع_لها_القسم;
-		
-		public DepartmentVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف القسم]", Storage="_معرف_القسم", DbType="Int NOT NULL")]
-		public int معرف_القسم
-		{
-			get
-			{
-				return this._معرف_القسم;
-			}
-			set
-			{
-				if ((this._معرف_القسم != value))
-				{
-					this._معرف_القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم القسم]", Storage="_اسم_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string اسم_القسم
-		{
-			get
-			{
-				return this._اسم_القسم;
-			}
-			set
-			{
-				if ((this._اسم_القسم != value))
-				{
-					this._اسم_القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الدائرة التي يتبع لها القسم]", Storage="_الدائرة_التي_يتبع_لها_القسم", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة_التي_يتبع_لها_القسم
-		{
-			get
-			{
-				return this._الدائرة_التي_يتبع_لها_القسم;
-			}
-			set
-			{
-				if ((this._الدائرة_التي_يتبع_لها_القسم != value))
-				{
-					this._الدائرة_التي_يتبع_لها_القسم = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemStatVw")]
-	public partial class FinancialItemStatVw
-	{
-		
-		private int _معرف_السجل_المالي;
-		
-		private string _كود_السجل_المالي;
-		
-		private string _اسم_البند_المالي;
-		
-		private string _بيان_السجل_المالي;
-		
-		private string _الدائرة;
-		
-		private string _القسم;
-		
-		private string _الوحدة;
-		
-		private System.DateTime _تاريخ_تحرير_السجل;
-		
-		private string _وارد_أم_صادر;
-		
-		private string _جهة_الإيراد;
-		
-		private string _نوع_الصادر;
-		
-		private string _صادر_إلى;
-		
-		private double _المبلغ_الوارد;
-		
-		private double _المبلغ_الصادر;
-		
-		private string _العملة;
-		
-		private string _ملاحظات_إضافية;
-		
-		public FinancialItemStatVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف السجل المالي]", Storage="_معرف_السجل_المالي", DbType="Int NOT NULL")]
-		public int معرف_السجل_المالي
-		{
-			get
-			{
-				return this._معرف_السجل_المالي;
-			}
-			set
-			{
-				if ((this._معرف_السجل_المالي != value))
-				{
-					this._معرف_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود السجل المالي]", Storage="_كود_السجل_المالي", DbType="NVarChar(50)")]
-		public string كود_السجل_المالي
-		{
-			get
-			{
-				return this._كود_السجل_المالي;
-			}
-			set
-			{
-				if ((this._كود_السجل_المالي != value))
-				{
-					this._كود_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200)")]
-		public string اسم_البند_المالي
-		{
-			get
-			{
-				return this._اسم_البند_المالي;
-			}
-			set
-			{
-				if ((this._اسم_البند_المالي != value))
-				{
-					this._اسم_البند_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[بيان السجل المالي]", Storage="_بيان_السجل_المالي", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
-		public string بيان_السجل_المالي
-		{
-			get
-			{
-				return this._بيان_السجل_المالي;
-			}
-			set
-			{
-				if ((this._بيان_السجل_المالي != value))
-				{
-					this._بيان_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة
-		{
-			get
-			{
-				return this._الدائرة;
-			}
-			set
-			{
-				if ((this._الدائرة != value))
-				{
-					this._الدائرة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
-		public string الوحدة
-		{
-			get
-			{
-				return this._الوحدة;
-			}
-			set
-			{
-				if ((this._الوحدة != value))
-				{
-					this._الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ تحرير السجل]", Storage="_تاريخ_تحرير_السجل", DbType="Date NOT NULL")]
-		public System.DateTime تاريخ_تحرير_السجل
-		{
-			get
-			{
-				return this._تاريخ_تحرير_السجل;
-			}
-			set
-			{
-				if ((this._تاريخ_تحرير_السجل != value))
-				{
-					this._تاريخ_تحرير_السجل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وارد أم صادر]", Storage="_وارد_أم_صادر", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string وارد_أم_صادر
-		{
-			get
-			{
-				return this._وارد_أم_صادر;
-			}
-			set
-			{
-				if ((this._وارد_أم_صادر != value))
-				{
-					this._وارد_أم_صادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد]", Storage="_جهة_الإيراد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string جهة_الإيراد
-		{
-			get
-			{
-				return this._جهة_الإيراد;
-			}
-			set
-			{
-				if ((this._جهة_الإيراد != value))
-				{
-					this._جهة_الإيراد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نوع الصادر]", Storage="_نوع_الصادر", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string نوع_الصادر
-		{
-			get
-			{
-				return this._نوع_الصادر;
-			}
-			set
-			{
-				if ((this._نوع_الصادر != value))
-				{
-					this._نوع_الصادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[صادر إلى]", Storage="_صادر_إلى", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string صادر_إلى
-		{
-			get
-			{
-				return this._صادر_إلى;
-			}
-			set
-			{
-				if ((this._صادر_إلى != value))
-				{
-					this._صادر_إلى = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الوارد]", Storage="_المبلغ_الوارد", DbType="Float NOT NULL")]
-		public double المبلغ_الوارد
-		{
-			get
-			{
-				return this._المبلغ_الوارد;
-			}
-			set
-			{
-				if ((this._المبلغ_الوارد != value))
-				{
-					this._المبلغ_الوارد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الصادر]", Storage="_المبلغ_الصادر", DbType="Float NOT NULL")]
-		public double المبلغ_الصادر
-		{
-			get
-			{
-				return this._المبلغ_الصادر;
-			}
-			set
-			{
-				if ((this._المبلغ_الصادر != value))
-				{
-					this._المبلغ_الصادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العملة", DbType="NVarChar(100)")]
-		public string العملة
-		{
-			get
-			{
-				return this._العملة;
-			}
-			set
-			{
-				if ((this._العملة != value))
-				{
-					this._العملة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات إضافية]", Storage="_ملاحظات_إضافية", DbType="NVarChar(300)")]
-		public string ملاحظات_إضافية
-		{
-			get
-			{
-				return this._ملاحظات_إضافية;
-			}
-			set
-			{
-				if ((this._ملاحظات_إضافية != value))
-				{
-					this._ملاحظات_إضافية = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemVw")]
-	public partial class FinancialItemVw
-	{
-		
-		private int _معرف_السجل_المالي;
-		
-		private string _كود_السجل_المالي;
-		
-		private string _اسم_البند_المالي;
-		
-		private string _بيان_السجل_المالي;
-		
-		private string _الدائرة;
-		
-		private string _القسم;
-		
-		private string _الوحدة;
-		
-		private System.DateTime _تاريخ_تحرير_السجل;
-		
-		private string _وارد_أم_صادر;
-		
-		private string _جهة_الإيراد;
-		
-		private string _نوع_الصادر;
-		
-		private string _صادر_إلى;
-		
-		private double _المبلغ_الوارد;
-		
-		private double _المبلغ_الصادر;
-		
-		private string _العملة;
-		
-		private string _ملاحظات_إضافية;
-		
-		public FinancialItemVw()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف السجل المالي]", Storage="_معرف_السجل_المالي", DbType="Int NOT NULL")]
-		public int معرف_السجل_المالي
-		{
-			get
-			{
-				return this._معرف_السجل_المالي;
-			}
-			set
-			{
-				if ((this._معرف_السجل_المالي != value))
-				{
-					this._معرف_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود السجل المالي]", Storage="_كود_السجل_المالي", DbType="NVarChar(50)")]
-		public string كود_السجل_المالي
-		{
-			get
-			{
-				return this._كود_السجل_المالي;
-			}
-			set
-			{
-				if ((this._كود_السجل_المالي != value))
-				{
-					this._كود_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200)")]
-		public string اسم_البند_المالي
-		{
-			get
-			{
-				return this._اسم_البند_المالي;
-			}
-			set
-			{
-				if ((this._اسم_البند_المالي != value))
-				{
-					this._اسم_البند_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[بيان السجل المالي]", Storage="_بيان_السجل_المالي", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
-		public string بيان_السجل_المالي
-		{
-			get
-			{
-				return this._بيان_السجل_المالي;
-			}
-			set
-			{
-				if ((this._بيان_السجل_المالي != value))
-				{
-					this._بيان_السجل_المالي = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string الدائرة
-		{
-			get
-			{
-				return this._الدائرة;
-			}
-			set
-			{
-				if ((this._الدائرة != value))
-				{
-					this._الدائرة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
-		public string القسم
-		{
-			get
-			{
-				return this._القسم;
-			}
-			set
-			{
-				if ((this._القسم != value))
-				{
-					this._القسم = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
-		public string الوحدة
-		{
-			get
-			{
-				return this._الوحدة;
-			}
-			set
-			{
-				if ((this._الوحدة != value))
-				{
-					this._الوحدة = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ تحرير السجل]", Storage="_تاريخ_تحرير_السجل", DbType="Date NOT NULL")]
-		public System.DateTime تاريخ_تحرير_السجل
-		{
-			get
-			{
-				return this._تاريخ_تحرير_السجل;
-			}
-			set
-			{
-				if ((this._تاريخ_تحرير_السجل != value))
-				{
-					this._تاريخ_تحرير_السجل = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وارد أم صادر]", Storage="_وارد_أم_صادر", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string وارد_أم_صادر
-		{
-			get
-			{
-				return this._وارد_أم_صادر;
-			}
-			set
-			{
-				if ((this._وارد_أم_صادر != value))
-				{
-					this._وارد_أم_صادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد]", Storage="_جهة_الإيراد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string جهة_الإيراد
-		{
-			get
-			{
-				return this._جهة_الإيراد;
-			}
-			set
-			{
-				if ((this._جهة_الإيراد != value))
-				{
-					this._جهة_الإيراد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نوع الصادر]", Storage="_نوع_الصادر", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string نوع_الصادر
-		{
-			get
-			{
-				return this._نوع_الصادر;
-			}
-			set
-			{
-				if ((this._نوع_الصادر != value))
-				{
-					this._نوع_الصادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[صادر إلى]", Storage="_صادر_إلى", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string صادر_إلى
-		{
-			get
-			{
-				return this._صادر_إلى;
-			}
-			set
-			{
-				if ((this._صادر_إلى != value))
-				{
-					this._صادر_إلى = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الوارد]", Storage="_المبلغ_الوارد", DbType="Float NOT NULL")]
-		public double المبلغ_الوارد
-		{
-			get
-			{
-				return this._المبلغ_الوارد;
-			}
-			set
-			{
-				if ((this._المبلغ_الوارد != value))
-				{
-					this._المبلغ_الوارد = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الصادر]", Storage="_المبلغ_الصادر", DbType="Float NOT NULL")]
-		public double المبلغ_الصادر
-		{
-			get
-			{
-				return this._المبلغ_الصادر;
-			}
-			set
-			{
-				if ((this._المبلغ_الصادر != value))
-				{
-					this._المبلغ_الصادر = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العملة", DbType="NVarChar(100)")]
-		public string العملة
-		{
 			get
-			{
-				return this._العملة;
-			}
-			set
 			{
-				if ((this._العملة != value))
-				{
-					this._العملة = value;
-				}
+				return this.GetTable<AssetMoveVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات إضافية]", Storage="_ملاحظات_إضافية", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
-		public string ملاحظات_إضافية
+		public System.Data.Linq.Table<SubDepartmentVw> SubDepartmentVws
 		{
 			get
-			{
-				return this._ملاحظات_إضافية;
-			}
-			set
 			{
-				if ((this._ملاحظات_إضافية != value))
-				{
-					this._ملاحظات_إضافية = value;
-				}
+				return this.GetTable<SubDepartmentVw>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
-	public partial class MinorCategoryVw
-	{
-		
-		private int _معرف_الفئة_الفرعية;
-		
-		private int _معرف_الفئة_الرئيسية;
-		
-		private string _اسم_الفئة_الفرعية;
-		
-		private string _وصف_الفئة_الفرعية;
-		
-		private string _اسم_الفئة_الرئيسية;
-		
-		private int _العمر_الإنتاجي_بالسنوات;
-		
-		private double _معدل_الإهلاك;
-		
-		public MinorCategoryVw()
-		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الفئة الفرعية]", Storage="_معرف_الفئة_الفرعية", DbType="Int NOT NULL")]
-		public int معرف_الفئة_الفرعية
+		public System.Data.Linq.Table<AssetStatVw> AssetStatVws
 		{
 			get
-			{
-				return this._معرف_الفئة_الفرعية;
-			}
-			set
 			{
-				if ((this._معرف_الفئة_الفرعية != value))
-				{
-					this._معرف_الفئة_الفرعية = value;
-				}
+				return this.GetTable<AssetStatVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الفئة الرئيسية]", Storage="_معرف_الفئة_الرئيسية", DbType="Int NOT NULL")]
-		public int معرف_الفئة_الرئيسية
+		public System.Data.Linq.Table<AssetVw> AssetVws
 		{
 			get
-			{
-				return this._معرف_الفئة_الرئيسية;
-			}
-			set
 			{
-				if ((this._معرف_الفئة_الرئيسية != value))
-				{
-					this._معرف_الفئة_الرئيسية = value;
-				}
+				return this.GetTable<AssetVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الفرعية
+		public System.Data.Linq.Table<AssetVw_All> AssetVw_Alls
 		{
 			get
-			{
-				return this._اسم_الفئة_الفرعية;
-			}
-			set
 			{
-				if ((this._اسم_الفئة_الفرعية != value))
-				{
-					this._اسم_الفئة_الفرعية = value;
-				}
+				return this.GetTable<AssetVw_All>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
-		public string وصف_الفئة_الفرعية
+		public System.Data.Linq.Table<DepartmentVw> DepartmentVws
 		{
 			get
-			{
-				return this._وصف_الفئة_الفرعية;
-			}
-			set
 			{
-				if ((this._وصف_الفئة_الفرعية != value))
-				{
-					this._وصف_الفئة_الفرعية = value;
-				}
+				return this.GetTable<DepartmentVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string اسم_الفئة_الرئيسية
+		public System.Data.Linq.Table<FinancialItemStatVw> FinancialItemStatVws
 		{
 			get
-			{
-				return this._اسم_الفئة_الرئيسية;
-			}
-			set
 			{
-				if ((this._اسم_الفئة_الرئيسية != value))
-				{
-					this._اسم_الفئة_الرئيسية = value;
-				}
+				return this.GetTable<FinancialItemStatVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int NOT NULL")]
-		public int العمر_الإنتاجي_بالسنوات
+		public System.Data.Linq.Table<FinancialItemVw> FinancialItemVws
 		{
 			get
-			{
-				return this._العمر_الإنتاجي_بالسنوات;
-			}
-			set
 			{
-				if ((this._العمر_الإنتاجي_بالسنوات != value))
-				{
-					this._العمر_الإنتاجي_بالسنوات = value;
-				}
+				return this.GetTable<FinancialItemVw>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float NOT NULL")]
-		public double معدل_الإهلاك
+		public System.Data.Linq.Table<MinorCategoryVw> MinorCategoryVws
 		{
 			get
-			{
-				return this._معدل_الإهلاك;
-			}
-			set
 			{
-				if ((this._معدل_الإهلاك != value))
-				{
-					this._معدل_الإهلاك = value;
-				}
+				return this.GetTable<MinorCategoryVw>();
 			}
 		}
 	}
@@ -4792,7 +1740,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustodianName", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustodianName", DbType="NVarChar(200)")]
 		public string CustodianName
 		{
 			get
@@ -6368,6 +3316,164 @@ namespace AssetManagement
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeTbl")]
+	public partial class EmployeeTbl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _EmployeeCode;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _WorkingAt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnEmployeeCodeChanging(string value);
+    partial void OnEmployeeCodeChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnWorkingAtChanging(string value);
+    partial void OnWorkingAtChanged();
+    #endregion
+		
+		public EmployeeTbl()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeCode", DbType="NVarChar(50)")]
+		public string EmployeeCode
+		{
+			get
+			{
+				return this._EmployeeCode;
+			}
+			set
+			{
+				if ((this._EmployeeCode != value))
+				{
+					this.OnEmployeeCodeChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeeCode = value;
+					this.SendPropertyChanged("EmployeeCode");
+					this.OnEmployeeCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkingAt", DbType="NVarChar(200)")]
+		public string WorkingAt
+		{
+			get
+			{
+				return this._WorkingAt;
+			}
+			set
+			{
+				if ((this._WorkingAt != value))
+				{
+					this.OnWorkingAtChanging(value);
+					this.SendPropertyChanging();
+					this._WorkingAt = value;
+					this.SendPropertyChanged("WorkingAt");
+					this.OnWorkingAtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EstateAreaUnitTbl")]
 	public partial class EstateAreaUnitTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6496,6 +3602,8 @@ namespace AssetManagement
 		
 		private string _IsIncomingOrOutgiung;
 		
+		private string _GroupName;
+		
 		private EntitySet<FinancialItemTbl> _FinancialItemTbls;
 		
     #region Extensibility Method Definitions
@@ -6510,6 +3618,8 @@ namespace AssetManagement
     partial void OnFinancialItemCategoryDetailsChanged();
     partial void OnIsIncomingOrOutgiungChanging(string value);
     partial void OnIsIncomingOrOutgiungChanged();
+    partial void OnGroupNameChanging(string value);
+    partial void OnGroupNameChanged();
     #endregion
 		
 		public FinancialItemCategoryTbl()
@@ -6538,7 +3648,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCategoryName", DbType="NVarChar(200)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinancialItemCategoryName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
 		public string FinancialItemCategoryName
 		{
 			get
@@ -6578,7 +3688,7 @@ namespace AssetManagement
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsIncomingOrOutgiung", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsIncomingOrOutgiung", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string IsIncomingOrOutgiung
 		{
 			get
@@ -6594,6 +3704,26 @@ namespace AssetManagement
 					this._IsIncomingOrOutgiung = value;
 					this.SendPropertyChanged("IsIncomingOrOutgiung");
 					this.OnIsIncomingOrOutgiungChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="NVarChar(200)")]
+		public string GroupName
+		{
+			get
+			{
+				return this._GroupName;
+			}
+			set
+			{
+				if ((this._GroupName != value))
+				{
+					this.OnGroupNameChanging(value);
+					this.SendPropertyChanging();
+					this._GroupName = value;
+					this.SendPropertyChanged("GroupName");
+					this.OnGroupNameChanged();
 				}
 			}
 		}
@@ -9432,6 +6562,8 @@ namespace AssetManagement
 		
 		private System.Nullable<System.DateTime> _LoggedOutAt;
 		
+		private string _SessionActions;
+		
 		private EntityRef<UserTbl> _UserTbl;
 		
     #region Extensibility Method Definitions
@@ -9446,6 +6578,8 @@ namespace AssetManagement
     partial void OnLoggedInAtChanged();
     partial void OnLoggedOutAtChanging(System.Nullable<System.DateTime> value);
     partial void OnLoggedOutAtChanged();
+    partial void OnSessionActionsChanging(string value);
+    partial void OnSessionActionsChanged();
     #endregion
 		
 		public UserLoginTbl()
@@ -9534,6 +6668,26 @@ namespace AssetManagement
 					this._LoggedOutAt = value;
 					this.SendPropertyChanged("LoggedOutAt");
 					this.OnLoggedOutAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionActions", DbType="NVarChar(MAX)")]
+		public string SessionActions
+		{
+			get
+			{
+				return this._SessionActions;
+			}
+			set
+			{
+				if ((this._SessionActions != value))
+				{
+					this.OnSessionActionsChanging(value);
+					this.SendPropertyChanging();
+					this._SessionActions = value;
+					this.SendPropertyChanged("SessionActions");
+					this.OnSessionActionsChanged();
 				}
 			}
 		}
@@ -9659,6 +6813,12 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ManageSubDepartments;
 		
+		private System.Nullable<bool> _AddNewEmployee;
+		
+		private System.Nullable<bool> _ManageEmployees;
+		
+		private System.Nullable<bool> _ViewEmployeeCustodies;
+		
 		private System.Nullable<bool> _AddNewSquare;
 		
 		private System.Nullable<bool> _ManageSquares;
@@ -9714,6 +6874,8 @@ namespace AssetManagement
 		private System.Nullable<bool> _IsSectionIndependent;
 		
 		private System.Nullable<bool> _IsDepartmentIndependent;
+		
+		private System.Nullable<bool> _ViewSessionActionsLog;
 		
 		private EntitySet<UserTbl> _UserTbls;
 		
@@ -9781,6 +6943,12 @@ namespace AssetManagement
     partial void OnAddNewSubDepartmentChanged();
     partial void OnManageSubDepartmentsChanging(System.Nullable<bool> value);
     partial void OnManageSubDepartmentsChanged();
+    partial void OnAddNewEmployeeChanging(System.Nullable<bool> value);
+    partial void OnAddNewEmployeeChanged();
+    partial void OnManageEmployeesChanging(System.Nullable<bool> value);
+    partial void OnManageEmployeesChanged();
+    partial void OnViewEmployeeCustodiesChanging(System.Nullable<bool> value);
+    partial void OnViewEmployeeCustodiesChanged();
     partial void OnAddNewSquareChanging(System.Nullable<bool> value);
     partial void OnAddNewSquareChanged();
     partial void OnManageSquaresChanging(System.Nullable<bool> value);
@@ -9837,6 +7005,8 @@ namespace AssetManagement
     partial void OnIsSectionIndependentChanged();
     partial void OnIsDepartmentIndependentChanging(System.Nullable<bool> value);
     partial void OnIsDepartmentIndependentChanged();
+    partial void OnViewSessionActionsLogChanging(System.Nullable<bool> value);
+    partial void OnViewSessionActionsLogChanged();
     #endregion
 		
 		public UserRoleTbl()
@@ -10445,6 +7615,66 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewEmployee", DbType="Bit")]
+		public System.Nullable<bool> AddNewEmployee
+		{
+			get
+			{
+				return this._AddNewEmployee;
+			}
+			set
+			{
+				if ((this._AddNewEmployee != value))
+				{
+					this.OnAddNewEmployeeChanging(value);
+					this.SendPropertyChanging();
+					this._AddNewEmployee = value;
+					this.SendPropertyChanged("AddNewEmployee");
+					this.OnAddNewEmployeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageEmployees", DbType="Bit")]
+		public System.Nullable<bool> ManageEmployees
+		{
+			get
+			{
+				return this._ManageEmployees;
+			}
+			set
+			{
+				if ((this._ManageEmployees != value))
+				{
+					this.OnManageEmployeesChanging(value);
+					this.SendPropertyChanging();
+					this._ManageEmployees = value;
+					this.SendPropertyChanged("ManageEmployees");
+					this.OnManageEmployeesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewEmployeeCustodies", DbType="Bit")]
+		public System.Nullable<bool> ViewEmployeeCustodies
+		{
+			get
+			{
+				return this._ViewEmployeeCustodies;
+			}
+			set
+			{
+				if ((this._ViewEmployeeCustodies != value))
+				{
+					this.OnViewEmployeeCustodiesChanging(value);
+					this.SendPropertyChanging();
+					this._ViewEmployeeCustodies = value;
+					this.SendPropertyChanged("ViewEmployeeCustodies");
+					this.OnViewEmployeeCustodiesChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewSquare", DbType="Bit")]
 		public System.Nullable<bool> AddNewSquare
 		{
@@ -11005,6 +8235,26 @@ namespace AssetManagement
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewSessionActionsLog", DbType="Bit")]
+		public System.Nullable<bool> ViewSessionActionsLog
+		{
+			get
+			{
+				return this._ViewSessionActionsLog;
+			}
+			set
+			{
+				if ((this._ViewSessionActionsLog != value))
+				{
+					this.OnViewSessionActionsLogChanging(value);
+					this.SendPropertyChanging();
+					this._ViewSessionActionsLog = value;
+					this.SendPropertyChanged("ViewSessionActionsLog");
+					this.OnViewSessionActionsLogChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRoleTbl_UserTbl", Storage="_UserTbls", ThisKey="ID", OtherKey="UserRole")]
 		public EntitySet<UserTbl> UserTbls
 		{
@@ -11051,27 +8301,3106 @@ namespace AssetManagement
 		}
 	}
 	
-	public partial class GetSubDeptsOfActiveUserResult
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetMoveVw")]
+	public partial class AssetMoveVw
 	{
 		
-		private System.Nullable<int> _subDeptID;
+		private int _ID;
 		
-		public GetSubDeptsOfActiveUserResult()
+		private string _MainCategoryName;
+		
+		private string _MinorCategoryName;
+		
+		private string _AssetCode;
+		
+		private string _SectionName;
+		
+		private string _DepartmentName;
+		
+		private string _SubDepartmentName;
+		
+		private string _SquareName;
+		
+		private string _StatusName;
+		
+		private string _CustodianName;
+		
+		private System.Nullable<System.DateTime> _InsertedOn;
+		
+		private int _AssetSubDepartment;
+		
+		public AssetMoveVw()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subDeptID", DbType="Int")]
-		public System.Nullable<int> subDeptID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
 		{
 			get
 			{
-				return this._subDeptID;
+				return this._ID;
 			}
 			set
 			{
-				if ((this._subDeptID != value))
+				if ((this._ID != value))
 				{
-					this._subDeptID = value;
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainCategoryName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string MainCategoryName
+		{
+			get
+			{
+				return this._MainCategoryName;
+			}
+			set
+			{
+				if ((this._MainCategoryName != value))
+				{
+					this._MainCategoryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinorCategoryName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string MinorCategoryName
+		{
+			get
+			{
+				return this._MinorCategoryName;
+			}
+			set
+			{
+				if ((this._MinorCategoryName != value))
+				{
+					this._MinorCategoryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetCode", DbType="NVarChar(100)")]
+		public string AssetCode
+		{
+			get
+			{
+				return this._AssetCode;
+			}
+			set
+			{
+				if ((this._AssetCode != value))
+				{
+					this._AssetCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectionName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string SectionName
+		{
+			get
+			{
+				return this._SectionName;
+			}
+			set
+			{
+				if ((this._SectionName != value))
+				{
+					this._SectionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string DepartmentName
+		{
+			get
+			{
+				return this._DepartmentName;
+			}
+			set
+			{
+				if ((this._DepartmentName != value))
+				{
+					this._DepartmentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubDepartmentName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string SubDepartmentName
+		{
+			get
+			{
+				return this._SubDepartmentName;
+			}
+			set
+			{
+				if ((this._SubDepartmentName != value))
+				{
+					this._SubDepartmentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SquareName", DbType="NVarChar(100)")]
+		public string SquareName
+		{
+			get
+			{
+				return this._SquareName;
+			}
+			set
+			{
+				if ((this._SquareName != value))
+				{
+					this._SquareName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StatusName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string StatusName
+		{
+			get
+			{
+				return this._StatusName;
+			}
+			set
+			{
+				if ((this._StatusName != value))
+				{
+					this._StatusName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustodianName", DbType="NVarChar(200)")]
+		public string CustodianName
+		{
+			get
+			{
+				return this._CustodianName;
+			}
+			set
+			{
+				if ((this._CustodianName != value))
+				{
+					this._CustodianName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsertedOn", DbType="Date")]
+		public System.Nullable<System.DateTime> InsertedOn
+		{
+			get
+			{
+				return this._InsertedOn;
+			}
+			set
+			{
+				if ((this._InsertedOn != value))
+				{
+					this._InsertedOn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssetSubDepartment", DbType="Int NOT NULL")]
+		public int AssetSubDepartment
+		{
+			get
+			{
+				return this._AssetSubDepartment;
+			}
+			set
+			{
+				if ((this._AssetSubDepartment != value))
+				{
+					this._AssetSubDepartment = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SubDepartmentVw")]
+	public partial class SubDepartmentVw
+	{
+		
+		private int _معرف_الوحدة;
+		
+		private string _اسم_الوحدة;
+		
+		private string _القسم_التابعة_له;
+		
+		private string _الدائرة_التي_يتبع_لها_القسم;
+		
+		public SubDepartmentVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الوحدة]", Storage="_معرف_الوحدة", DbType="Int NOT NULL")]
+		public int معرف_الوحدة
+		{
+			get
+			{
+				return this._معرف_الوحدة;
+			}
+			set
+			{
+				if ((this._معرف_الوحدة != value))
+				{
+					this._معرف_الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الوحدة]", Storage="_اسم_الوحدة", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string اسم_الوحدة
+		{
+			get
+			{
+				return this._اسم_الوحدة;
+			}
+			set
+			{
+				if ((this._اسم_الوحدة != value))
+				{
+					this._اسم_الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[القسم التابعة له]", Storage="_القسم_التابعة_له", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string القسم_التابعة_له
+		{
+			get
+			{
+				return this._القسم_التابعة_له;
+			}
+			set
+			{
+				if ((this._القسم_التابعة_له != value))
+				{
+					this._القسم_التابعة_له = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الدائرة التي يتبع لها القسم]", Storage="_الدائرة_التي_يتبع_لها_القسم", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة_التي_يتبع_لها_القسم
+		{
+			get
+			{
+				return this._الدائرة_التي_يتبع_لها_القسم;
+			}
+			set
+			{
+				if ((this._الدائرة_التي_يتبع_لها_القسم != value))
+				{
+					this._الدائرة_التي_يتبع_لها_القسم = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetStatVw")]
+	public partial class AssetStatVw
+	{
+		
+		private int _معرف_الأصل;
+		
+		private string _كود_الأصل;
+		
+		private int _العدد;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
+		
+		private string _الساحة;
+		
+		private string _الفئة_الرئيسية;
+		
+		private string _الفئة_الفرعية;
+		
+		private string _مواصفات_الأصل;
+		
+		private string _الموديل;
+		
+		private string _اللون;
+		
+		private string _الحجم___السعة;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الشراء;
+		
+		private System.Nullable<double> _سعر_الشراء;
+		
+		private string _عملة_سعر_الشراء;
+		
+		private string _مكان_التواجد;
+		
+		private string _حالة_الأصل_الآنية;
+		
+		private string _نسبة_الاستفادة_منه;
+		
+		private double _السعر_الفعلي_الحالي;
+		
+		private string _اسم_صاحب_العهدة;
+		
+		private string _تفاصيل_إضافية;
+		
+		private string _ملاحظات_أخرى;
+		
+		private string _عنوان_العقار;
+		
+		private string _اسم_المالك;
+		
+		private string _المستغل_منه;
+		
+		private string _مع_من_ورقة_الملكية;
+		
+		private string _مساحة_العقار;
+		
+		private string _وحدة_مساحة_العقار;
+		
+		private string _رقم_لوحة_المركبة;
+		
+		private int _سنة_صنع_المركبة;
+		
+		private string _رقم_الهيكل__الشاصيه__للمركبة;
+		
+		private string _رقم_المحرك_للمركبة;
+		
+		private double _معدل_الإهلاك_للأصل;
+		
+		private string _العمر_الافتراضي_المتبقي_للأصل;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
+		
+		public AssetStatVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
+		public int معرف_الأصل
+		{
+			get
+			{
+				return this._معرف_الأصل;
+			}
+			set
+			{
+				if ((this._معرف_الأصل != value))
+				{
+					this._معرف_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
+		public string كود_الأصل
+		{
+			get
+			{
+				return this._كود_الأصل;
+			}
+			set
+			{
+				if ((this._كود_الأصل != value))
+				{
+					this._كود_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
+		public int العدد
+		{
+			get
+			{
+				return this._العدد;
+			}
+			set
+			{
+				if ((this._العدد != value))
+				{
+					this._العدد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
+		public string الساحة
+		{
+			get
+			{
+				return this._الساحة;
+			}
+			set
+			{
+				if ((this._الساحة != value))
+				{
+					this._الساحة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الرئيسية
+		{
+			get
+			{
+				return this._الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._الفئة_الرئيسية != value))
+				{
+					this._الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الفرعية
+		{
+			get
+			{
+				return this._الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._الفئة_الفرعية != value))
+				{
+					this._الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string مواصفات_الأصل
+		{
+			get
+			{
+				return this._مواصفات_الأصل;
+			}
+			set
+			{
+				if ((this._مواصفات_الأصل != value))
+				{
+					this._مواصفات_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string الموديل
+		{
+			get
+			{
+				return this._الموديل;
+			}
+			set
+			{
+				if ((this._الموديل != value))
+				{
+					this._الموديل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50)")]
+		public string اللون
+		{
+			get
+			{
+				return this._اللون;
+			}
+			set
+			{
+				if ((this._اللون != value))
+				{
+					this._اللون = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الحجم___السعة
+		{
+			get
+			{
+				return this._الحجم___السعة;
+			}
+			set
+			{
+				if ((this._الحجم___السعة != value))
+				{
+					this._الحجم___السعة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الشراء
+		{
+			get
+			{
+				return this._تاريخ_الشراء;
+			}
+			set
+			{
+				if ((this._تاريخ_الشراء != value))
+				{
+					this._تاريخ_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
+		public System.Nullable<double> سعر_الشراء
+		{
+			get
+			{
+				return this._سعر_الشراء;
+			}
+			set
+			{
+				if ((this._سعر_الشراء != value))
+				{
+					this._سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
+		public string عملة_سعر_الشراء
+		{
+			get
+			{
+				return this._عملة_سعر_الشراء;
+			}
+			set
+			{
+				if ((this._عملة_سعر_الشراء != value))
+				{
+					this._عملة_سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string مكان_التواجد
+		{
+			get
+			{
+				return this._مكان_التواجد;
+			}
+			set
+			{
+				if ((this._مكان_التواجد != value))
+				{
+					this._مكان_التواجد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string حالة_الأصل_الآنية
+		{
+			get
+			{
+				return this._حالة_الأصل_الآنية;
+			}
+			set
+			{
+				if ((this._حالة_الأصل_الآنية != value))
+				{
+					this._حالة_الأصل_الآنية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string نسبة_الاستفادة_منه
+		{
+			get
+			{
+				return this._نسبة_الاستفادة_منه;
+			}
+			set
+			{
+				if ((this._نسبة_الاستفادة_منه != value))
+				{
+					this._نسبة_الاستفادة_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
+		public double السعر_الفعلي_الحالي
+		{
+			get
+			{
+				return this._السعر_الفعلي_الحالي;
+			}
+			set
+			{
+				if ((this._السعر_الفعلي_الحالي != value))
+				{
+					this._السعر_الفعلي_الحالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_صاحب_العهدة
+		{
+			get
+			{
+				return this._اسم_صاحب_العهدة;
+			}
+			set
+			{
+				if ((this._اسم_صاحب_العهدة != value))
+				{
+					this._اسم_صاحب_العهدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string تفاصيل_إضافية
+		{
+			get
+			{
+				return this._تفاصيل_إضافية;
+			}
+			set
+			{
+				if ((this._تفاصيل_إضافية != value))
+				{
+					this._تفاصيل_إضافية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ملاحظات_أخرى
+		{
+			get
+			{
+				return this._ملاحظات_أخرى;
+			}
+			set
+			{
+				if ((this._ملاحظات_أخرى != value))
+				{
+					this._ملاحظات_أخرى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string عنوان_العقار
+		{
+			get
+			{
+				return this._عنوان_العقار;
+			}
+			set
+			{
+				if ((this._عنوان_العقار != value))
+				{
+					this._عنوان_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_المالك
+		{
+			get
+			{
+				return this._اسم_المالك;
+			}
+			set
+			{
+				if ((this._اسم_المالك != value))
+				{
+					this._اسم_المالك = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string المستغل_منه
+		{
+			get
+			{
+				return this._المستغل_منه;
+			}
+			set
+			{
+				if ((this._المستغل_منه != value))
+				{
+					this._المستغل_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string مع_من_ورقة_الملكية
+		{
+			get
+			{
+				return this._مع_من_ورقة_الملكية;
+			}
+			set
+			{
+				if ((this._مع_من_ورقة_الملكية != value))
+				{
+					this._مع_من_ورقة_الملكية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string مساحة_العقار
+		{
+			get
+			{
+				return this._مساحة_العقار;
+			}
+			set
+			{
+				if ((this._مساحة_العقار != value))
+				{
+					this._مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
+		public string وحدة_مساحة_العقار
+		{
+			get
+			{
+				return this._وحدة_مساحة_العقار;
+			}
+			set
+			{
+				if ((this._وحدة_مساحة_العقار != value))
+				{
+					this._وحدة_مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string رقم_لوحة_المركبة
+		{
+			get
+			{
+				return this._رقم_لوحة_المركبة;
+			}
+			set
+			{
+				if ((this._رقم_لوحة_المركبة != value))
+				{
+					this._رقم_لوحة_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
+		public int سنة_صنع_المركبة
+		{
+			get
+			{
+				return this._سنة_صنع_المركبة;
+			}
+			set
+			{
+				if ((this._سنة_صنع_المركبة != value))
+				{
+					this._سنة_صنع_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_الهيكل__الشاصيه__للمركبة
+		{
+			get
+			{
+				return this._رقم_الهيكل__الشاصيه__للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
+				{
+					this._رقم_الهيكل__الشاصيه__للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_المحرك_للمركبة
+		{
+			get
+			{
+				return this._رقم_المحرك_للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_المحرك_للمركبة != value))
+				{
+					this._رقم_المحرك_للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
+		public double معدل_الإهلاك_للأصل
+		{
+			get
+			{
+				return this._معدل_الإهلاك_للأصل;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك_للأصل != value))
+				{
+					this._معدل_الإهلاك_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
+		public string العمر_الافتراضي_المتبقي_للأصل
+		{
+			get
+			{
+				return this._العمر_الافتراضي_المتبقي_للأصل;
+			}
+			set
+			{
+				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
+				{
+					this._العمر_الافتراضي_المتبقي_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الإدخال
+		{
+			get
+			{
+				return this._تاريخ_الإدخال;
+			}
+			set
+			{
+				if ((this._تاريخ_الإدخال != value))
+				{
+					this._تاريخ_الإدخال = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetVw")]
+	public partial class AssetVw
+	{
+		
+		private int _معرف_الأصل;
+		
+		private string _كود_الأصل;
+		
+		private int _العدد;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
+		
+		private string _الساحة;
+		
+		private string _الفئة_الرئيسية;
+		
+		private string _الفئة_الفرعية;
+		
+		private string _مواصفات_الأصل;
+		
+		private string _الموديل;
+		
+		private string _اللون;
+		
+		private string _الحجم___السعة;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الشراء;
+		
+		private System.Nullable<double> _سعر_الشراء;
+		
+		private string _عملة_سعر_الشراء;
+		
+		private string _مكان_التواجد;
+		
+		private string _حالة_الأصل_الآنية;
+		
+		private string _نسبة_الاستفادة_منه;
+		
+		private double _السعر_الفعلي_الحالي;
+		
+		private string _اسم_صاحب_العهدة;
+		
+		private string _تفاصيل_إضافية;
+		
+		private string _ملاحظات_أخرى;
+		
+		private string _عنوان_العقار;
+		
+		private string _اسم_المالك;
+		
+		private string _المستغل_منه;
+		
+		private string _مع_من_ورقة_الملكية;
+		
+		private string _مساحة_العقار;
+		
+		private string _وحدة_مساحة_العقار;
+		
+		private string _رقم_لوحة_المركبة;
+		
+		private int _سنة_صنع_المركبة;
+		
+		private string _رقم_الهيكل__الشاصيه__للمركبة;
+		
+		private string _رقم_المحرك_للمركبة;
+		
+		private double _معدل_الإهلاك_للأصل;
+		
+		private string _العمر_الافتراضي_المتبقي_للأصل;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
+		
+		public AssetVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
+		public int معرف_الأصل
+		{
+			get
+			{
+				return this._معرف_الأصل;
+			}
+			set
+			{
+				if ((this._معرف_الأصل != value))
+				{
+					this._معرف_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
+		public string كود_الأصل
+		{
+			get
+			{
+				return this._كود_الأصل;
+			}
+			set
+			{
+				if ((this._كود_الأصل != value))
+				{
+					this._كود_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
+		public int العدد
+		{
+			get
+			{
+				return this._العدد;
+			}
+			set
+			{
+				if ((this._العدد != value))
+				{
+					this._العدد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
+		public string الساحة
+		{
+			get
+			{
+				return this._الساحة;
+			}
+			set
+			{
+				if ((this._الساحة != value))
+				{
+					this._الساحة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الرئيسية
+		{
+			get
+			{
+				return this._الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._الفئة_الرئيسية != value))
+				{
+					this._الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الفرعية
+		{
+			get
+			{
+				return this._الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._الفئة_الفرعية != value))
+				{
+					this._الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string مواصفات_الأصل
+		{
+			get
+			{
+				return this._مواصفات_الأصل;
+			}
+			set
+			{
+				if ((this._مواصفات_الأصل != value))
+				{
+					this._مواصفات_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string الموديل
+		{
+			get
+			{
+				return this._الموديل;
+			}
+			set
+			{
+				if ((this._الموديل != value))
+				{
+					this._الموديل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string اللون
+		{
+			get
+			{
+				return this._اللون;
+			}
+			set
+			{
+				if ((this._اللون != value))
+				{
+					this._اللون = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الحجم___السعة
+		{
+			get
+			{
+				return this._الحجم___السعة;
+			}
+			set
+			{
+				if ((this._الحجم___السعة != value))
+				{
+					this._الحجم___السعة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الشراء
+		{
+			get
+			{
+				return this._تاريخ_الشراء;
+			}
+			set
+			{
+				if ((this._تاريخ_الشراء != value))
+				{
+					this._تاريخ_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
+		public System.Nullable<double> سعر_الشراء
+		{
+			get
+			{
+				return this._سعر_الشراء;
+			}
+			set
+			{
+				if ((this._سعر_الشراء != value))
+				{
+					this._سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
+		public string عملة_سعر_الشراء
+		{
+			get
+			{
+				return this._عملة_سعر_الشراء;
+			}
+			set
+			{
+				if ((this._عملة_سعر_الشراء != value))
+				{
+					this._عملة_سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string مكان_التواجد
+		{
+			get
+			{
+				return this._مكان_التواجد;
+			}
+			set
+			{
+				if ((this._مكان_التواجد != value))
+				{
+					this._مكان_التواجد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string حالة_الأصل_الآنية
+		{
+			get
+			{
+				return this._حالة_الأصل_الآنية;
+			}
+			set
+			{
+				if ((this._حالة_الأصل_الآنية != value))
+				{
+					this._حالة_الأصل_الآنية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string نسبة_الاستفادة_منه
+		{
+			get
+			{
+				return this._نسبة_الاستفادة_منه;
+			}
+			set
+			{
+				if ((this._نسبة_الاستفادة_منه != value))
+				{
+					this._نسبة_الاستفادة_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
+		public double السعر_الفعلي_الحالي
+		{
+			get
+			{
+				return this._السعر_الفعلي_الحالي;
+			}
+			set
+			{
+				if ((this._السعر_الفعلي_الحالي != value))
+				{
+					this._السعر_الفعلي_الحالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_صاحب_العهدة
+		{
+			get
+			{
+				return this._اسم_صاحب_العهدة;
+			}
+			set
+			{
+				if ((this._اسم_صاحب_العهدة != value))
+				{
+					this._اسم_صاحب_العهدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string تفاصيل_إضافية
+		{
+			get
+			{
+				return this._تفاصيل_إضافية;
+			}
+			set
+			{
+				if ((this._تفاصيل_إضافية != value))
+				{
+					this._تفاصيل_إضافية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ملاحظات_أخرى
+		{
+			get
+			{
+				return this._ملاحظات_أخرى;
+			}
+			set
+			{
+				if ((this._ملاحظات_أخرى != value))
+				{
+					this._ملاحظات_أخرى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string عنوان_العقار
+		{
+			get
+			{
+				return this._عنوان_العقار;
+			}
+			set
+			{
+				if ((this._عنوان_العقار != value))
+				{
+					this._عنوان_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_المالك
+		{
+			get
+			{
+				return this._اسم_المالك;
+			}
+			set
+			{
+				if ((this._اسم_المالك != value))
+				{
+					this._اسم_المالك = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string المستغل_منه
+		{
+			get
+			{
+				return this._المستغل_منه;
+			}
+			set
+			{
+				if ((this._المستغل_منه != value))
+				{
+					this._المستغل_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string مع_من_ورقة_الملكية
+		{
+			get
+			{
+				return this._مع_من_ورقة_الملكية;
+			}
+			set
+			{
+				if ((this._مع_من_ورقة_الملكية != value))
+				{
+					this._مع_من_ورقة_الملكية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string مساحة_العقار
+		{
+			get
+			{
+				return this._مساحة_العقار;
+			}
+			set
+			{
+				if ((this._مساحة_العقار != value))
+				{
+					this._مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
+		public string وحدة_مساحة_العقار
+		{
+			get
+			{
+				return this._وحدة_مساحة_العقار;
+			}
+			set
+			{
+				if ((this._وحدة_مساحة_العقار != value))
+				{
+					this._وحدة_مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string رقم_لوحة_المركبة
+		{
+			get
+			{
+				return this._رقم_لوحة_المركبة;
+			}
+			set
+			{
+				if ((this._رقم_لوحة_المركبة != value))
+				{
+					this._رقم_لوحة_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
+		public int سنة_صنع_المركبة
+		{
+			get
+			{
+				return this._سنة_صنع_المركبة;
+			}
+			set
+			{
+				if ((this._سنة_صنع_المركبة != value))
+				{
+					this._سنة_صنع_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_الهيكل__الشاصيه__للمركبة
+		{
+			get
+			{
+				return this._رقم_الهيكل__الشاصيه__للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
+				{
+					this._رقم_الهيكل__الشاصيه__للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_المحرك_للمركبة
+		{
+			get
+			{
+				return this._رقم_المحرك_للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_المحرك_للمركبة != value))
+				{
+					this._رقم_المحرك_للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
+		public double معدل_الإهلاك_للأصل
+		{
+			get
+			{
+				return this._معدل_الإهلاك_للأصل;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك_للأصل != value))
+				{
+					this._معدل_الإهلاك_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
+		public string العمر_الافتراضي_المتبقي_للأصل
+		{
+			get
+			{
+				return this._العمر_الافتراضي_المتبقي_للأصل;
+			}
+			set
+			{
+				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
+				{
+					this._العمر_الافتراضي_المتبقي_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الإدخال
+		{
+			get
+			{
+				return this._تاريخ_الإدخال;
+			}
+			set
+			{
+				if ((this._تاريخ_الإدخال != value))
+				{
+					this._تاريخ_الإدخال = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AssetVw_All")]
+	public partial class AssetVw_All
+	{
+		
+		private int _معرف_الأصل;
+		
+		private string _كود_الأصل;
+		
+		private int _العدد;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
+		
+		private string _الساحة;
+		
+		private string _الفئة_الرئيسية;
+		
+		private string _الفئة_الفرعية;
+		
+		private string _مواصفات_الأصل;
+		
+		private string _الموديل;
+		
+		private string _اللون;
+		
+		private string _الحجم___السعة;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الشراء;
+		
+		private System.Nullable<double> _سعر_الشراء;
+		
+		private string _عملة_سعر_الشراء;
+		
+		private string _مكان_التواجد;
+		
+		private string _حالة_الأصل_الآنية;
+		
+		private string _نسبة_الاستفادة_منه;
+		
+		private double _السعر_الفعلي_الحالي;
+		
+		private string _اسم_صاحب_العهدة;
+		
+		private string _تفاصيل_إضافية;
+		
+		private string _ملاحظات_أخرى;
+		
+		private string _عنوان_العقار;
+		
+		private string _اسم_المالك;
+		
+		private string _المستغل_منه;
+		
+		private string _مع_من_ورقة_الملكية;
+		
+		private string _مساحة_العقار;
+		
+		private string _وحدة_مساحة_العقار;
+		
+		private string _رقم_لوحة_المركبة;
+		
+		private int _سنة_صنع_المركبة;
+		
+		private string _رقم_الهيكل__الشاصيه__للمركبة;
+		
+		private string _رقم_المحرك_للمركبة;
+		
+		private double _معدل_الإهلاك_للأصل;
+		
+		private string _العمر_الافتراضي_المتبقي_للأصل;
+		
+		private System.Nullable<System.DateTime> _تاريخ_الإدخال;
+		
+		public AssetVw_All()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الأصل]", Storage="_معرف_الأصل", DbType="Int NOT NULL")]
+		public int معرف_الأصل
+		{
+			get
+			{
+				return this._معرف_الأصل;
+			}
+			set
+			{
+				if ((this._معرف_الأصل != value))
+				{
+					this._معرف_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود الأصل]", Storage="_كود_الأصل", DbType="NVarChar(100)")]
+		public string كود_الأصل
+		{
+			get
+			{
+				return this._كود_الأصل;
+			}
+			set
+			{
+				if ((this._كود_الأصل != value))
+				{
+					this._كود_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العدد", DbType="Int NOT NULL")]
+		public int العدد
+		{
+			get
+			{
+				return this._العدد;
+			}
+			set
+			{
+				if ((this._العدد != value))
+				{
+					this._العدد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الساحة", DbType="NVarChar(100)")]
+		public string الساحة
+		{
+			get
+			{
+				return this._الساحة;
+			}
+			set
+			{
+				if ((this._الساحة != value))
+				{
+					this._الساحة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الرئيسية]", Storage="_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الرئيسية
+		{
+			get
+			{
+				return this._الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._الفئة_الرئيسية != value))
+				{
+					this._الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الفئة الفرعية]", Storage="_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الفئة_الفرعية
+		{
+			get
+			{
+				return this._الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._الفئة_الفرعية != value))
+				{
+					this._الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مواصفات الأصل]", Storage="_مواصفات_الأصل", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string مواصفات_الأصل
+		{
+			get
+			{
+				return this._مواصفات_الأصل;
+			}
+			set
+			{
+				if ((this._مواصفات_الأصل != value))
+				{
+					this._مواصفات_الأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الموديل", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string الموديل
+		{
+			get
+			{
+				return this._الموديل;
+			}
+			set
+			{
+				if ((this._الموديل != value))
+				{
+					this._الموديل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_اللون", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string اللون
+		{
+			get
+			{
+				return this._اللون;
+			}
+			set
+			{
+				if ((this._اللون != value))
+				{
+					this._اللون = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الحجم / السعة]", Storage="_الحجم___السعة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string الحجم___السعة
+		{
+			get
+			{
+				return this._الحجم___السعة;
+			}
+			set
+			{
+				if ((this._الحجم___السعة != value))
+				{
+					this._الحجم___السعة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الشراء]", Storage="_تاريخ_الشراء", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الشراء
+		{
+			get
+			{
+				return this._تاريخ_الشراء;
+			}
+			set
+			{
+				if ((this._تاريخ_الشراء != value))
+				{
+					this._تاريخ_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سعر الشراء]", Storage="_سعر_الشراء", DbType="Float")]
+		public System.Nullable<double> سعر_الشراء
+		{
+			get
+			{
+				return this._سعر_الشراء;
+			}
+			set
+			{
+				if ((this._سعر_الشراء != value))
+				{
+					this._سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عملة سعر الشراء]", Storage="_عملة_سعر_الشراء", DbType="NVarChar(100)")]
+		public string عملة_سعر_الشراء
+		{
+			get
+			{
+				return this._عملة_سعر_الشراء;
+			}
+			set
+			{
+				if ((this._عملة_سعر_الشراء != value))
+				{
+					this._عملة_سعر_الشراء = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مكان التواجد]", Storage="_مكان_التواجد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string مكان_التواجد
+		{
+			get
+			{
+				return this._مكان_التواجد;
+			}
+			set
+			{
+				if ((this._مكان_التواجد != value))
+				{
+					this._مكان_التواجد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[حالة الأصل الآنية]", Storage="_حالة_الأصل_الآنية", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string حالة_الأصل_الآنية
+		{
+			get
+			{
+				return this._حالة_الأصل_الآنية;
+			}
+			set
+			{
+				if ((this._حالة_الأصل_الآنية != value))
+				{
+					this._حالة_الأصل_الآنية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نسبة الاستفادة منه]", Storage="_نسبة_الاستفادة_منه", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string نسبة_الاستفادة_منه
+		{
+			get
+			{
+				return this._نسبة_الاستفادة_منه;
+			}
+			set
+			{
+				if ((this._نسبة_الاستفادة_منه != value))
+				{
+					this._نسبة_الاستفادة_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[السعر الفعلي الحالي]", Storage="_السعر_الفعلي_الحالي", DbType="Float NOT NULL")]
+		public double السعر_الفعلي_الحالي
+		{
+			get
+			{
+				return this._السعر_الفعلي_الحالي;
+			}
+			set
+			{
+				if ((this._السعر_الفعلي_الحالي != value))
+				{
+					this._السعر_الفعلي_الحالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم صاحب العهدة]", Storage="_اسم_صاحب_العهدة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_صاحب_العهدة
+		{
+			get
+			{
+				return this._اسم_صاحب_العهدة;
+			}
+			set
+			{
+				if ((this._اسم_صاحب_العهدة != value))
+				{
+					this._اسم_صاحب_العهدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تفاصيل إضافية]", Storage="_تفاصيل_إضافية", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string تفاصيل_إضافية
+		{
+			get
+			{
+				return this._تفاصيل_إضافية;
+			}
+			set
+			{
+				if ((this._تفاصيل_إضافية != value))
+				{
+					this._تفاصيل_إضافية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات أخرى]", Storage="_ملاحظات_أخرى", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ملاحظات_أخرى
+		{
+			get
+			{
+				return this._ملاحظات_أخرى;
+			}
+			set
+			{
+				if ((this._ملاحظات_أخرى != value))
+				{
+					this._ملاحظات_أخرى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[عنوان العقار]", Storage="_عنوان_العقار", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string عنوان_العقار
+		{
+			get
+			{
+				return this._عنوان_العقار;
+			}
+			set
+			{
+				if ((this._عنوان_العقار != value))
+				{
+					this._عنوان_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم المالك]", Storage="_اسم_المالك", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_المالك
+		{
+			get
+			{
+				return this._اسم_المالك;
+			}
+			set
+			{
+				if ((this._اسم_المالك != value))
+				{
+					this._اسم_المالك = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المستغل منه]", Storage="_المستغل_منه", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string المستغل_منه
+		{
+			get
+			{
+				return this._المستغل_منه;
+			}
+			set
+			{
+				if ((this._المستغل_منه != value))
+				{
+					this._المستغل_منه = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مع من ورقة الملكية]", Storage="_مع_من_ورقة_الملكية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string مع_من_ورقة_الملكية
+		{
+			get
+			{
+				return this._مع_من_ورقة_الملكية;
+			}
+			set
+			{
+				if ((this._مع_من_ورقة_الملكية != value))
+				{
+					this._مع_من_ورقة_الملكية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مساحة العقار]", Storage="_مساحة_العقار", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string مساحة_العقار
+		{
+			get
+			{
+				return this._مساحة_العقار;
+			}
+			set
+			{
+				if ((this._مساحة_العقار != value))
+				{
+					this._مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وحدة مساحة العقار]", Storage="_وحدة_مساحة_العقار", DbType="NVarChar(100)")]
+		public string وحدة_مساحة_العقار
+		{
+			get
+			{
+				return this._وحدة_مساحة_العقار;
+			}
+			set
+			{
+				if ((this._وحدة_مساحة_العقار != value))
+				{
+					this._وحدة_مساحة_العقار = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم لوحة المركبة]", Storage="_رقم_لوحة_المركبة", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string رقم_لوحة_المركبة
+		{
+			get
+			{
+				return this._رقم_لوحة_المركبة;
+			}
+			set
+			{
+				if ((this._رقم_لوحة_المركبة != value))
+				{
+					this._رقم_لوحة_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[سنة صنع المركبة]", Storage="_سنة_صنع_المركبة", DbType="Int NOT NULL")]
+		public int سنة_صنع_المركبة
+		{
+			get
+			{
+				return this._سنة_صنع_المركبة;
+			}
+			set
+			{
+				if ((this._سنة_صنع_المركبة != value))
+				{
+					this._سنة_صنع_المركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم الهيكل (الشاصيه) للمركبة]", Storage="_رقم_الهيكل__الشاصيه__للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_الهيكل__الشاصيه__للمركبة
+		{
+			get
+			{
+				return this._رقم_الهيكل__الشاصيه__للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_الهيكل__الشاصيه__للمركبة != value))
+				{
+					this._رقم_الهيكل__الشاصيه__للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[رقم المحرك للمركبة]", Storage="_رقم_المحرك_للمركبة", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string رقم_المحرك_للمركبة
+		{
+			get
+			{
+				return this._رقم_المحرك_للمركبة;
+			}
+			set
+			{
+				if ((this._رقم_المحرك_للمركبة != value))
+				{
+					this._رقم_المحرك_للمركبة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك للأصل]", Storage="_معدل_الإهلاك_للأصل", DbType="Float NOT NULL")]
+		public double معدل_الإهلاك_للأصل
+		{
+			get
+			{
+				return this._معدل_الإهلاك_للأصل;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك_للأصل != value))
+				{
+					this._معدل_الإهلاك_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الافتراضي المتبقي للأصل]", Storage="_العمر_الافتراضي_المتبقي_للأصل", DbType="NVarChar(50)")]
+		public string العمر_الافتراضي_المتبقي_للأصل
+		{
+			get
+			{
+				return this._العمر_الافتراضي_المتبقي_للأصل;
+			}
+			set
+			{
+				if ((this._العمر_الافتراضي_المتبقي_للأصل != value))
+				{
+					this._العمر_الافتراضي_المتبقي_للأصل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ الإدخال]", Storage="_تاريخ_الإدخال", DbType="Date")]
+		public System.Nullable<System.DateTime> تاريخ_الإدخال
+		{
+			get
+			{
+				return this._تاريخ_الإدخال;
+			}
+			set
+			{
+				if ((this._تاريخ_الإدخال != value))
+				{
+					this._تاريخ_الإدخال = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DepartmentVw")]
+	public partial class DepartmentVw
+	{
+		
+		private int _معرف_القسم;
+		
+		private string _اسم_القسم;
+		
+		private string _الدائرة_التي_يتبع_لها_القسم;
+		
+		public DepartmentVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف القسم]", Storage="_معرف_القسم", DbType="Int NOT NULL")]
+		public int معرف_القسم
+		{
+			get
+			{
+				return this._معرف_القسم;
+			}
+			set
+			{
+				if ((this._معرف_القسم != value))
+				{
+					this._معرف_القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم القسم]", Storage="_اسم_القسم", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string اسم_القسم
+		{
+			get
+			{
+				return this._اسم_القسم;
+			}
+			set
+			{
+				if ((this._اسم_القسم != value))
+				{
+					this._اسم_القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[الدائرة التي يتبع لها القسم]", Storage="_الدائرة_التي_يتبع_لها_القسم", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة_التي_يتبع_لها_القسم
+		{
+			get
+			{
+				return this._الدائرة_التي_يتبع_لها_القسم;
+			}
+			set
+			{
+				if ((this._الدائرة_التي_يتبع_لها_القسم != value))
+				{
+					this._الدائرة_التي_يتبع_لها_القسم = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemStatVw")]
+	public partial class FinancialItemStatVw
+	{
+		
+		private int _معرف_السجل_المالي;
+		
+		private string _كود_السجل_المالي;
+		
+		private string _اسم_البند_المالي;
+		
+		private string _بيان_السجل_المالي;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
+		
+		private System.DateTime _تاريخ_تحرير_السجل;
+		
+		private string _وارد_أم_صادر;
+		
+		private string _جهة_الإيراد;
+		
+		private string _نوع_الصادر;
+		
+		private string _صادر_إلى;
+		
+		private double _المبلغ_الوارد;
+		
+		private double _المبلغ_الصادر;
+		
+		private string _العملة;
+		
+		private string _ملاحظات_إضافية;
+		
+		private string _مجموعة_البند_المالي;
+		
+		public FinancialItemStatVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف السجل المالي]", Storage="_معرف_السجل_المالي", DbType="Int NOT NULL")]
+		public int معرف_السجل_المالي
+		{
+			get
+			{
+				return this._معرف_السجل_المالي;
+			}
+			set
+			{
+				if ((this._معرف_السجل_المالي != value))
+				{
+					this._معرف_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود السجل المالي]", Storage="_كود_السجل_المالي", DbType="NVarChar(50)")]
+		public string كود_السجل_المالي
+		{
+			get
+			{
+				return this._كود_السجل_المالي;
+			}
+			set
+			{
+				if ((this._كود_السجل_المالي != value))
+				{
+					this._كود_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_البند_المالي
+		{
+			get
+			{
+				return this._اسم_البند_المالي;
+			}
+			set
+			{
+				if ((this._اسم_البند_المالي != value))
+				{
+					this._اسم_البند_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[بيان السجل المالي]", Storage="_بيان_السجل_المالي", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string بيان_السجل_المالي
+		{
+			get
+			{
+				return this._بيان_السجل_المالي;
+			}
+			set
+			{
+				if ((this._بيان_السجل_المالي != value))
+				{
+					this._بيان_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ تحرير السجل]", Storage="_تاريخ_تحرير_السجل", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_تحرير_السجل
+		{
+			get
+			{
+				return this._تاريخ_تحرير_السجل;
+			}
+			set
+			{
+				if ((this._تاريخ_تحرير_السجل != value))
+				{
+					this._تاريخ_تحرير_السجل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وارد أم صادر]", Storage="_وارد_أم_صادر", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string وارد_أم_صادر
+		{
+			get
+			{
+				return this._وارد_أم_صادر;
+			}
+			set
+			{
+				if ((this._وارد_أم_صادر != value))
+				{
+					this._وارد_أم_صادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد]", Storage="_جهة_الإيراد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string جهة_الإيراد
+		{
+			get
+			{
+				return this._جهة_الإيراد;
+			}
+			set
+			{
+				if ((this._جهة_الإيراد != value))
+				{
+					this._جهة_الإيراد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نوع الصادر]", Storage="_نوع_الصادر", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string نوع_الصادر
+		{
+			get
+			{
+				return this._نوع_الصادر;
+			}
+			set
+			{
+				if ((this._نوع_الصادر != value))
+				{
+					this._نوع_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[صادر إلى]", Storage="_صادر_إلى", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string صادر_إلى
+		{
+			get
+			{
+				return this._صادر_إلى;
+			}
+			set
+			{
+				if ((this._صادر_إلى != value))
+				{
+					this._صادر_إلى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الوارد]", Storage="_المبلغ_الوارد", DbType="Float NOT NULL")]
+		public double المبلغ_الوارد
+		{
+			get
+			{
+				return this._المبلغ_الوارد;
+			}
+			set
+			{
+				if ((this._المبلغ_الوارد != value))
+				{
+					this._المبلغ_الوارد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الصادر]", Storage="_المبلغ_الصادر", DbType="Float NOT NULL")]
+		public double المبلغ_الصادر
+		{
+			get
+			{
+				return this._المبلغ_الصادر;
+			}
+			set
+			{
+				if ((this._المبلغ_الصادر != value))
+				{
+					this._المبلغ_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العملة", DbType="NVarChar(100)")]
+		public string العملة
+		{
+			get
+			{
+				return this._العملة;
+			}
+			set
+			{
+				if ((this._العملة != value))
+				{
+					this._العملة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات إضافية]", Storage="_ملاحظات_إضافية", DbType="NVarChar(300)")]
+		public string ملاحظات_إضافية
+		{
+			get
+			{
+				return this._ملاحظات_إضافية;
+			}
+			set
+			{
+				if ((this._ملاحظات_إضافية != value))
+				{
+					this._ملاحظات_إضافية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مجموعة البند المالي]", Storage="_مجموعة_البند_المالي", DbType="NVarChar(200)")]
+		public string مجموعة_البند_المالي
+		{
+			get
+			{
+				return this._مجموعة_البند_المالي;
+			}
+			set
+			{
+				if ((this._مجموعة_البند_المالي != value))
+				{
+					this._مجموعة_البند_المالي = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemVw")]
+	public partial class FinancialItemVw
+	{
+		
+		private int _معرف_السجل_المالي;
+		
+		private string _كود_السجل_المالي;
+		
+		private string _اسم_البند_المالي;
+		
+		private string _بيان_السجل_المالي;
+		
+		private string _الدائرة;
+		
+		private string _القسم;
+		
+		private string _الوحدة;
+		
+		private System.DateTime _تاريخ_تحرير_السجل;
+		
+		private string _وارد_أم_صادر;
+		
+		private string _جهة_الإيراد;
+		
+		private string _نوع_الصادر;
+		
+		private string _صادر_إلى;
+		
+		private double _المبلغ_الوارد;
+		
+		private double _المبلغ_الصادر;
+		
+		private string _العملة;
+		
+		private string _ملاحظات_إضافية;
+		
+		private string _مجموعة_البند_المالي;
+		
+		public FinancialItemVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف السجل المالي]", Storage="_معرف_السجل_المالي", DbType="Int NOT NULL")]
+		public int معرف_السجل_المالي
+		{
+			get
+			{
+				return this._معرف_السجل_المالي;
+			}
+			set
+			{
+				if ((this._معرف_السجل_المالي != value))
+				{
+					this._معرف_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[كود السجل المالي]", Storage="_كود_السجل_المالي", DbType="NVarChar(50)")]
+		public string كود_السجل_المالي
+		{
+			get
+			{
+				return this._كود_السجل_المالي;
+			}
+			set
+			{
+				if ((this._كود_السجل_المالي != value))
+				{
+					this._كود_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم البند المالي]", Storage="_اسم_البند_المالي", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_البند_المالي
+		{
+			get
+			{
+				return this._اسم_البند_المالي;
+			}
+			set
+			{
+				if ((this._اسم_البند_المالي != value))
+				{
+					this._اسم_البند_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[بيان السجل المالي]", Storage="_بيان_السجل_المالي", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string بيان_السجل_المالي
+		{
+			get
+			{
+				return this._بيان_السجل_المالي;
+			}
+			set
+			{
+				if ((this._بيان_السجل_المالي != value))
+				{
+					this._بيان_السجل_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الدائرة", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string الدائرة
+		{
+			get
+			{
+				return this._الدائرة;
+			}
+			set
+			{
+				if ((this._الدائرة != value))
+				{
+					this._الدائرة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_القسم", DbType="NVarChar(4000)")]
+		public string القسم
+		{
+			get
+			{
+				return this._القسم;
+			}
+			set
+			{
+				if ((this._القسم != value))
+				{
+					this._القسم = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_الوحدة", DbType="NVarChar(4000)")]
+		public string الوحدة
+		{
+			get
+			{
+				return this._الوحدة;
+			}
+			set
+			{
+				if ((this._الوحدة != value))
+				{
+					this._الوحدة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[تاريخ تحرير السجل]", Storage="_تاريخ_تحرير_السجل", DbType="Date NOT NULL")]
+		public System.DateTime تاريخ_تحرير_السجل
+		{
+			get
+			{
+				return this._تاريخ_تحرير_السجل;
+			}
+			set
+			{
+				if ((this._تاريخ_تحرير_السجل != value))
+				{
+					this._تاريخ_تحرير_السجل = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وارد أم صادر]", Storage="_وارد_أم_صادر", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string وارد_أم_صادر
+		{
+			get
+			{
+				return this._وارد_أم_صادر;
+			}
+			set
+			{
+				if ((this._وارد_أم_صادر != value))
+				{
+					this._وارد_أم_صادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[جهة الإيراد]", Storage="_جهة_الإيراد", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string جهة_الإيراد
+		{
+			get
+			{
+				return this._جهة_الإيراد;
+			}
+			set
+			{
+				if ((this._جهة_الإيراد != value))
+				{
+					this._جهة_الإيراد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[نوع الصادر]", Storage="_نوع_الصادر", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string نوع_الصادر
+		{
+			get
+			{
+				return this._نوع_الصادر;
+			}
+			set
+			{
+				if ((this._نوع_الصادر != value))
+				{
+					this._نوع_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[صادر إلى]", Storage="_صادر_إلى", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string صادر_إلى
+		{
+			get
+			{
+				return this._صادر_إلى;
+			}
+			set
+			{
+				if ((this._صادر_إلى != value))
+				{
+					this._صادر_إلى = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الوارد]", Storage="_المبلغ_الوارد", DbType="Float NOT NULL")]
+		public double المبلغ_الوارد
+		{
+			get
+			{
+				return this._المبلغ_الوارد;
+			}
+			set
+			{
+				if ((this._المبلغ_الوارد != value))
+				{
+					this._المبلغ_الوارد = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[المبلغ الصادر]", Storage="_المبلغ_الصادر", DbType="Float NOT NULL")]
+		public double المبلغ_الصادر
+		{
+			get
+			{
+				return this._المبلغ_الصادر;
+			}
+			set
+			{
+				if ((this._المبلغ_الصادر != value))
+				{
+					this._المبلغ_الصادر = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_العملة", DbType="NVarChar(100)")]
+		public string العملة
+		{
+			get
+			{
+				return this._العملة;
+			}
+			set
+			{
+				if ((this._العملة != value))
+				{
+					this._العملة = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ملاحظات إضافية]", Storage="_ملاحظات_إضافية", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string ملاحظات_إضافية
+		{
+			get
+			{
+				return this._ملاحظات_إضافية;
+			}
+			set
+			{
+				if ((this._ملاحظات_إضافية != value))
+				{
+					this._ملاحظات_إضافية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[مجموعة البند المالي]", Storage="_مجموعة_البند_المالي", DbType="NVarChar(200)")]
+		public string مجموعة_البند_المالي
+		{
+			get
+			{
+				return this._مجموعة_البند_المالي;
+			}
+			set
+			{
+				if ((this._مجموعة_البند_المالي != value))
+				{
+					this._مجموعة_البند_المالي = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MinorCategoryVw")]
+	public partial class MinorCategoryVw
+	{
+		
+		private int _معرف_الفئة_الفرعية;
+		
+		private int _معرف_الفئة_الرئيسية;
+		
+		private string _اسم_الفئة_الفرعية;
+		
+		private string _وصف_الفئة_الفرعية;
+		
+		private string _اسم_الفئة_الرئيسية;
+		
+		private int _العمر_الإنتاجي_بالسنوات;
+		
+		private double _معدل_الإهلاك;
+		
+		public MinorCategoryVw()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الفئة الفرعية]", Storage="_معرف_الفئة_الفرعية", DbType="Int NOT NULL")]
+		public int معرف_الفئة_الفرعية
+		{
+			get
+			{
+				return this._معرف_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._معرف_الفئة_الفرعية != value))
+				{
+					this._معرف_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معرف الفئة الرئيسية]", Storage="_معرف_الفئة_الرئيسية", DbType="Int NOT NULL")]
+		public int معرف_الفئة_الرئيسية
+		{
+			get
+			{
+				return this._معرف_الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._معرف_الفئة_الرئيسية != value))
+				{
+					this._معرف_الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الفرعية]", Storage="_اسم_الفئة_الفرعية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الفرعية
+		{
+			get
+			{
+				return this._اسم_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الفرعية != value))
+				{
+					this._اسم_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[وصف الفئة الفرعية]", Storage="_وصف_الفئة_الفرعية", DbType="NVarChar(300)")]
+		public string وصف_الفئة_الفرعية
+		{
+			get
+			{
+				return this._وصف_الفئة_الفرعية;
+			}
+			set
+			{
+				if ((this._وصف_الفئة_الفرعية != value))
+				{
+					this._وصف_الفئة_الفرعية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[اسم الفئة الرئيسية]", Storage="_اسم_الفئة_الرئيسية", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string اسم_الفئة_الرئيسية
+		{
+			get
+			{
+				return this._اسم_الفئة_الرئيسية;
+			}
+			set
+			{
+				if ((this._اسم_الفئة_الرئيسية != value))
+				{
+					this._اسم_الفئة_الرئيسية = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[العمر الإنتاجي بالسنوات]", Storage="_العمر_الإنتاجي_بالسنوات", DbType="Int NOT NULL")]
+		public int العمر_الإنتاجي_بالسنوات
+		{
+			get
+			{
+				return this._العمر_الإنتاجي_بالسنوات;
+			}
+			set
+			{
+				if ((this._العمر_الإنتاجي_بالسنوات != value))
+				{
+					this._العمر_الإنتاجي_بالسنوات = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[معدل الإهلاك]", Storage="_معدل_الإهلاك", DbType="Float NOT NULL")]
+		public double معدل_الإهلاك
+		{
+			get
+			{
+				return this._معدل_الإهلاك;
+			}
+			set
+			{
+				if ((this._معدل_الإهلاك != value))
+				{
+					this._معدل_الإهلاك = value;
 				}
 			}
 		}
