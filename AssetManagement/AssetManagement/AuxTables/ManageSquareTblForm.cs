@@ -36,6 +36,7 @@ namespace AssetManagement.AuxTables
                 squareTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الساحات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -64,6 +65,7 @@ namespace AssetManagement.AuxTables
                 return;
             squareGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الساحات" });
             mainAlertControl.Show(this, "تم تصدير بيانات الساحات إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الساحات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
     }
 }

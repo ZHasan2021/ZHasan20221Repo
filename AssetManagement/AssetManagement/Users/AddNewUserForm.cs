@@ -180,6 +180,7 @@ namespace AssetManagement.Users
                     StaticCode.mainDbContext.UserTbls.InsertOnSubmit(newUrs);
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, $"تم {((updateExisted) ? "حفظ التعديلات" : "إضافة الحساب")} بنجاح", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"{((updateExisted) ? "تعديل" : "إضافة")} المستخدم ذو الاسم ({newUrs.Username}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

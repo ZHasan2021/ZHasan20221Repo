@@ -65,6 +65,11 @@ namespace AssetManagement.Assets
             e.AlertForm.Location = new Point(200, 500);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteAssetBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من أنك تريد حذف سجل الأصل، سيتم أيضاً حذف سجلات النقل والتصريف والإهلاك الخاصة بهذا الأصل؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -89,6 +94,7 @@ namespace AssetManagement.Assets
                 this.Validate();
                 this.assetMoveVwBindingSource.EndEdit();
                 mainAlertControl.Show(this, "تم حذف الأصل وكل سجلات النقل والتصريف والإهلاك بنجاح بنجاح سجل نقل بنجاح", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $" حذف أصل موجود يحمل الكود {assetCodeTextBox.Text} مع سجلات النقل والتصريف التابعة له - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

@@ -185,6 +185,7 @@ namespace AssetManagement.Assets
                 assetMoveVwGridControl.DataSource = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv => asmv.AssetID == currSrchRes.ID);
                 mainAlertControl.Show(this, "تم نقل الأصل وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
                 searchResultsListBox.Visible = viewAssetInformationBtn.Visible = false;
+                StaticCode.activeUserLogin.SessionActions += $"نقل الأصل ذو الكود {assetToMove.AssetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

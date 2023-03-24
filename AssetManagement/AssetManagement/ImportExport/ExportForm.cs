@@ -422,6 +422,7 @@ namespace AssetManagement.Finance
                 };
                 StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newExport);
                 StaticCode.mainDbContext.SubmitChanges();
+                StaticCode.activeUserLogin.SessionActions += $"تصدير بيانات {tablesExported}{((exportBySectionRadioButton.Checked) ? $" ضمن دائرة {exportBySectionLookUpEdit.Text}" : "")}{((exportByDepartmentRadioButton.Checked) ? $" ضمن قسم {exportByDepartmentSearchLookUpEdit.Text}" : "")}{((exportBySubDepartmentRadioButton.Checked) ? $" ضمن وحدة {exportBySubDepartmentSearchLookUpEdit.Text}" : "")} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

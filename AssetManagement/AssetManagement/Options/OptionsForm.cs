@@ -31,6 +31,7 @@ namespace AssetManagement.Options
                 StaticCode.appOptions.AssetLifeSpanThresholdToWarn = Convert.ToInt32(assetLifeSpanThresholdToWarnNumericUpDown.Value);
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل إعدادات التطبيق - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 this.Close();
             }
             catch

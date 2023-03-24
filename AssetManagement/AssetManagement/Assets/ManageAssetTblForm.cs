@@ -18,6 +18,7 @@ namespace AssetManagement.Assets
     {
         int currRow = -1;
         int cardType = 0;
+        string cardTitle = "";
         IQueryable<AssetTbl> customDS = null;
         string optionalFormTitle = "";
         IQueryable<AssetTbl> filteredAssets = null;
@@ -135,6 +136,7 @@ namespace AssetManagement.Assets
 
         private void saveChangesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            StaticCode.activeUserLogin.SessionActions += $"تعديل في سجلات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             this.Validate();
             assetVwBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
@@ -146,6 +148,7 @@ namespace AssetManagement.Assets
             SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx" };
             if (exportDlg.ShowDialog() != DialogResult.OK)
                 return;
+            StaticCode.activeUserLogin.SessionActions += $"تصدير سجلات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             assetGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الأصول" });
             mainAlertControl.Show(this, "تم تصدير بيانات الأصول إلى اكسل", StaticCode.ApplicationTitle);
         }
@@ -166,6 +169,8 @@ namespace AssetManagement.Assets
             try
             {
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currAssetID).AssetCode;
+                StaticCode.activeUserLogin.SessionActions += $"عرض بطاقة {cardTitle} للأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID, cardType);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
@@ -201,6 +206,8 @@ namespace AssetManagement.Assets
             try
             {
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currAssetID).AssetCode;
+                StaticCode.activeUserLogin.SessionActions += $"نافذة تعديل بيانات الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 UpdateExistedAssetForm cardVwFrm = new UpdateExistedAssetForm(currAssetID);
                 cardVwFrm.ShowDialog();
                 StaticCode.mainDbContext = new AssetMngDbDataContext();
@@ -230,6 +237,8 @@ namespace AssetManagement.Assets
             try
             {
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currAssetID).AssetCode;
+                StaticCode.activeUserLogin.SessionActions += $"نافذة حذف بيانات الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 DeleteAssetForm cardVwFrm = new DeleteAssetForm(currAssetID);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
@@ -280,6 +289,7 @@ namespace AssetManagement.Assets
                 assetToTransact.AssetNotes += $"[تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل]";
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, "تم إهلاك الأصل" + ((getAssetsOutOfWorkBarCheckItem.Checked) ? " وإخراجه من الخدمة" : ""), StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"إهلاك الأصل ذو الكود {assetToTransact.AssetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {
@@ -301,10 +311,12 @@ namespace AssetManagement.Assets
 
             try
             {
+                string allAssetsCodes = "";
                 for (int i = 0; i < assetGridView.RowCount; i++)
                 {
                     Application.DoEvents();
 
+                    allAssetsCodes += assetGridView.GetRowCellValue(i, colكودالأصل) + ", ";
                     AssetTbl assetToTransact = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetGridView.GetRowCellValue(i, colمعرفالأصل)));
                     StaticCode.mainDbContext.AssetTransactionTbls.InsertOnSubmit(new AssetTransactionTbl()
                     {
@@ -323,8 +335,10 @@ namespace AssetManagement.Assets
                         assetToTransact.ItemsQuantity = 0;
                     assetToTransact.AssetNotes += $"[تم إهلاك ({assetToTransact.ItemsQuantity}) من الأصل]";
                 }
+                allAssetsCodes = allAssetsCodes.Trim().Trim(',').Trim();
                 StaticCode.mainDbContext.SubmitChanges();
                 mainAlertControl.Show(this, $"تم إهلاك ({assetGridView.RowCount}) أصل / أصول {((getAssetsOutOfWorkBarCheckItem.Checked) ? " وإخراجها من الخدمة" : "")}", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"إهلاك مجموعة من الأصول ذات الكودات {allAssetsCodes} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {
@@ -334,6 +348,7 @@ namespace AssetManagement.Assets
 
         private void moveAllBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            StaticCode.activeUserLogin.SessionActions += $"نافذة نقل مجموعة من الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             MoveAllAssetsForm mvAllFrm = new MoveAllAssetsForm(filteredAssets);
             mvAllFrm.ShowDialog();
             LoadAssets();
@@ -360,6 +375,7 @@ namespace AssetManagement.Assets
             {
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
                 string assetCode = assetGridView.GetRowCellValue(currRow, colكودالأصل).ToString();
+                StaticCode.activeUserLogin.SessionActions += $"فتح مجلد الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
                 if (!Directory.Exists(assetFolder))
                     Directory.CreateDirectory(assetFolder);
@@ -386,6 +402,7 @@ namespace AssetManagement.Assets
                     return;
                 int currAssetID = Convert.ToInt32(assetGridView.GetRowCellValue(currRow, colمعرفالأصل));
                 string assetCode = assetGridView.GetRowCellValue(currRow, colكودالأصل).ToString();
+                StaticCode.activeUserLogin.SessionActions += $"إضافة مرفقات لمجلد الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
                 if (!Directory.Exists(assetFolder))
                     Directory.CreateDirectory(assetFolder);
@@ -404,18 +421,21 @@ namespace AssetManagement.Assets
         private void generalCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             cardType = 1;
+            cardTitle = "النموذج العام";
             showAssetCardBarButtonItem_ItemClick(sender, e);
         }
 
         private void estatesCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             cardType = 2;
+            cardTitle = "نموذج العقارات";
             showAssetCardBarButtonItem_ItemClick(sender, e);
         }
 
         private void vehiclesCardBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             cardType = 3;
+            cardTitle = "نموذج المركبات";
             showAssetCardBarButtonItem_ItemClick(sender, e);
         }
     }

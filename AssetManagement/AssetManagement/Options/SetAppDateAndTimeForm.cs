@@ -34,6 +34,7 @@ namespace AssetManagement.Options
                 StaticCode.appOptions.ShiftDays = appDate1.Subtract(DateTime.Today).Days;
                 StaticCode.appOptions.ShiftSeconds = appTime1.Subtract(DateTime.Now).Hours * 3600 + appTime1.Subtract(DateTime.Now).Minutes * 60;
                 StaticCode.mainDbContext.SubmitChanges();
+                StaticCode.activeUserLogin.SessionActions += $"تعديل وقت وتاريخ التطبيق - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 this.Close();
             }
             catch

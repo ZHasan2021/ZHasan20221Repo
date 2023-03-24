@@ -456,6 +456,7 @@ namespace AssetManagement.Assets
                     }
                 }
                 this.assetVwTableAdapter.FillByQuery(customVw, plusQry);
+                StaticCode.activeUserLogin.SessionActions += $"إجراء جرد أصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 moveAllDropDownButton.Text = $"نقل ({assetsQry.Count()}) أصل/أصول";
             }
         }
@@ -940,6 +941,22 @@ namespace AssetManagement.Assets
             astEp.Save();
 
             mainAlertControl.Show(this, "تم التصدير بنجاح", StaticCode.ApplicationTitle);
+            string formTitle = "";
+            switch (formNo)
+            {
+                case 1:
+                    formTitle = "النموذج العام";
+                    break;
+                case 2:
+                    formTitle = "نموذج العقارات";
+                    break;
+                case 3:
+                    formTitle = "نموذج المركبات";
+                    break;
+                default:
+                    break;
+            }
+            StaticCode.activeUserLogin.SessionActions += $"تصدير أصول وفق {formTitle} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void allAssetsExportBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

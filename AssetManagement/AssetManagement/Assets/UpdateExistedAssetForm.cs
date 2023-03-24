@@ -310,6 +310,7 @@ namespace AssetManagement.Assets
                 Thread.Sleep(500);
                 this.assetTblTableAdapter.Fill(this.assetMngDbDataSet.AssetTbl);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $" تعديل أصل موجود يحمل الكود {assetCodeTextBox.Text} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 //this.Close();
             }
             catch

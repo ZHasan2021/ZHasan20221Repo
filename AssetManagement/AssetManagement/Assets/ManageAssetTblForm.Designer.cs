@@ -114,7 +114,7 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colرقملوحةالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colرقمالهيكلالشاصيهللمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colمعدلالإهلاكللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colالعمرالافتراضيالمتبقيللأصل = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -583,7 +583,7 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار,
             this.colرقملوحةالمركبة,
             this.colسنةصنعالمركبة,
-            this.gridColumn2,
+            this.colرقمالهيكلالشاصيهللمركبة,
             this.colرقمالمحركللمركبة,
             this.colمعدلالإهلاكللأصل,
             this.colالعمرالافتراضيالمتبقيللأصل});
@@ -892,14 +892,14 @@ namespace AssetManagement.Assets
             this.colسنةصنعالمركبة.VisibleIndex = 29;
             this.colسنةصنعالمركبة.Width = 94;
             // 
-            // gridColumn2
+            // colرقمالهيكلالشاصيهللمركبة
             // 
-            this.gridColumn2.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
-            this.gridColumn2.MinWidth = 120;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 30;
-            this.gridColumn2.Width = 120;
+            this.colرقمالهيكلالشاصيهللمركبة.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
+            this.colرقمالهيكلالشاصيهللمركبة.MinWidth = 120;
+            this.colرقمالهيكلالشاصيهللمركبة.Name = "colرقمالهيكلالشاصيهللمركبة";
+            this.colرقمالهيكلالشاصيهللمركبة.Visible = true;
+            this.colرقمالهيكلالشاصيهللمركبة.VisibleIndex = 30;
+            this.colرقمالهيكلالشاصيهللمركبة.Width = 120;
             // 
             // colرقمالمحركللمركبة
             // 
@@ -1086,6 +1086,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
+            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -1259,7 +1260,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Columns.GridColumn colوحدةمساحةالعقار;
         private DevExpress.XtraGrid.Columns.GridColumn colرقملوحةالمركبة;
         private DevExpress.XtraGrid.Columns.GridColumn colسنةصنعالمركبة;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn colرقمالهيكلالشاصيهللمركبة;
         private DevExpress.XtraGrid.Columns.GridColumn colرقمالمحركللمركبة;
         private DevExpress.XtraGrid.Columns.GridColumn colمعدلالإهلاكللأصل;
         private DevExpress.XtraGrid.Columns.GridColumn colالعمرالافتراضيالمتبقيللأصل;

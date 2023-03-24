@@ -202,6 +202,7 @@ namespace AssetManagement.Assets
                 StaticCode.mainDbContext.SubmitChanges();
                 this.Validate();
                 mainAlertControl.Show(this, $"تم نقل ({srchRes.Count()}) أصل / أصول وإضافة سجل نقل بنجاح", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"نقل الأصول ذات الكودات {String.Join(", ", srchRes.Select(asv1 => asv1.كود_الأصل).ToList())} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 this.Close();
                 this.DialogResult = DialogResult.OK;
             }

@@ -36,6 +36,7 @@ namespace AssetManagement.AuxTables
                 outgoingTypeTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول أنواع الصادر - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {

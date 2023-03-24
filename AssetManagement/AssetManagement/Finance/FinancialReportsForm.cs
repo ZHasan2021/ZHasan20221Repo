@@ -2224,11 +2224,14 @@ namespace AssetManagement.Finance
                         ExcelRange oneRng = oneSh.Cells[iRow, startCol, iRow, leftTotalsColumn - 1];
                         using (var cells = oneSh.Cells[iRow, leftTotalsColumn])
                         {
-                            cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
                             cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
                             cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            if (iRow == fiCasNamesStartRow - 1 || iRow == lowerTotalsRow)
+                            {
+                                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
+                            }
                             if (iRow == fiCasNamesStartRow - 1)
                                 cells.Value = "المجموع";
                             else

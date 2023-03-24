@@ -48,6 +48,7 @@ namespace AssetManagement.Users
                 StaticCode.mainConn.Open();
 
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول حسابات المستخدمين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -62,6 +63,7 @@ namespace AssetManagement.Users
             ManageUserRoleTblForm usrrlFrm = new ManageUserRoleTblForm();
             usrrlFrm.ShowDialog();
             this.userRoleTblTableAdapter.Fill(this.assetMngDbDataSet.UserRoleTbl);
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة جدول صلاحيات المستخدمين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -75,6 +77,7 @@ namespace AssetManagement.Users
             AddNewUserForm usrFrm = new AddNewUserForm();
             usrFrm.ShowDialog();
             this.userTblTableAdapter.Fill(this.assetMngDbDataSet.UserTbl);
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة مستخدم جديد - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void userTblBindingNavigatorEditItem_Click(object sender, EventArgs e)
@@ -86,8 +89,10 @@ namespace AssetManagement.Users
             }
             try
             {
-                int currAssetID = Convert.ToInt32(userGridView.GetRowCellValue(currRow, colID));
-                AddNewUserForm usrFrm = new AddNewUserForm(currAssetID);
+                int currUserID = Convert.ToInt32(userGridView.GetRowCellValue(currRow, colID));
+                int currUserName = Convert.ToInt32(userGridView.GetRowCellValue(currRow, colUsername));
+                StaticCode.activeUserLogin.SessionActions += $"نافذة تعديل المستخدم {currUserName} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+                AddNewUserForm usrFrm = new AddNewUserForm(currUserID);
                 usrFrm.ShowDialog();
                 currRow = 0;
                 this.userTblTableAdapter.Fill(this.assetMngDbDataSet.UserTbl);

@@ -111,7 +111,7 @@ namespace AssetManagement.Assets
             this.layoutViewField_colرقملوحةالمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.colسنةصنعالمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colسنةصنعالمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewColumn2 = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.colرقمالهيكلالشاصيهللمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn2 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.colرقمالمحركللمركبة = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_colرقمالمحركللمركبة = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -294,6 +294,7 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
+            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -383,7 +384,7 @@ namespace AssetManagement.Assets
             this.colوحدةمساحةالعقار,
             this.colرقملوحةالمركبة,
             this.colسنةصنعالمركبة,
-            this.layoutViewColumn2,
+            this.colرقمالهيكلالشاصيهللمركبة,
             this.colرقمالمحركللمركبة,
             this.colمعدلالإهلاكللأصل,
             this.colالعمرالافتراضيالمتبقيللأصل});
@@ -890,13 +891,13 @@ namespace AssetManagement.Assets
             this.layoutViewField_colسنةصنعالمركبة.Size = new System.Drawing.Size(221, 26);
             this.layoutViewField_colسنةصنعالمركبة.TextSize = new System.Drawing.Size(185, 17);
             // 
-            // layoutViewColumn2
+            // colرقمالهيكلالشاصيهللمركبة
             // 
-            this.layoutViewColumn2.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
-            this.layoutViewColumn2.LayoutViewField = this.layoutViewField_layoutViewColumn2;
-            this.layoutViewColumn2.MinWidth = 25;
-            this.layoutViewColumn2.Name = "layoutViewColumn2";
-            this.layoutViewColumn2.Width = 94;
+            this.colرقمالهيكلالشاصيهللمركبة.FieldName = "رقم الهيكل (الشاصيه) للمركبة";
+            this.colرقمالهيكلالشاصيهللمركبة.LayoutViewField = this.layoutViewField_layoutViewColumn2;
+            this.colرقمالهيكلالشاصيهللمركبة.MinWidth = 25;
+            this.colرقمالهيكلالشاصيهللمركبة.Name = "colرقمالهيكلالشاصيهللمركبة";
+            this.colرقمالهيكلالشاصيهللمركبة.Width = 94;
             // 
             // layoutViewField_layoutViewColumn2
             // 
@@ -1161,7 +1162,7 @@ namespace AssetManagement.Assets
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colرقملوحةالمركبة;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn colسنةصنعالمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colسنةصنعالمركبة;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn layoutViewColumn2;
+        private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقمالهيكلالشاصيهللمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn2;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn colرقمالمحركللمركبة;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colرقمالمحركللمركبة;

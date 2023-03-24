@@ -48,6 +48,7 @@ namespace AssetManagement.AuxTables
             StaticCode.mainDbContext.MinorCategoryTbls.InsertOnSubmit(newMiCaRecord);
             StaticCode.mainDbContext.SubmitChanges();
             mainAlertControl.Show(this, "تمت إضافة الفئة الفرعية", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"إضافة الفئة الفرعية {minorCategoryNameTextBox.Text.Trim()} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
 
             minorCategoryNameTextBox.Text = minorCategoryDescriptionTextBox.Text = "";
             mainCategoryLookUpEdit.EditValue = null;

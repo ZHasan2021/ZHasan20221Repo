@@ -31,6 +31,7 @@ namespace AssetManagement.AuxTables
             importExportTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول سجلات الاستيراد والتصدير - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

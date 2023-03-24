@@ -59,25 +59,14 @@ namespace AssetManagement.AuxTables
                 return;
             }
 
-            bool addFinancialCategoryItem = StaticCode.activeUserRole.AddNewFinancialItemCategory == true && StaticCode.mainDbContext.FinancialItemCategoryTbls.Count(fica => fica.FinancialItemCategoryName == newMainCategoryNameTextBox.Text.Trim()) == 0;
-            addFinancialCategoryItem = false;
-
             StaticCode.mainDbContext.MainCategoryTbls.InsertOnSubmit(new MainCategoryTbl() { MainCategoryName = newMainCategoryNameTextBox.Text.Trim(), MainCategoryDescription = newMainCategoryDescriptionTextBox.Text.Trim() });
-            if (addFinancialCategoryItem)
-            {
-                FinancialItemCategoryTbl newFICat = new FinancialItemCategoryTbl()
-                {
-                    FinancialItemCategoryName = newMainCategoryDescriptionTextBox.Text.Trim(),
-                    FinancialItemCategoryDetails = "أصول ثابتة",
-                };
-                StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(newFICat);
-            }
             StaticCode.mainDbContext.SubmitChanges();
 
             this.mainCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MainCategoryTbl);
             this.minorCategoryTblTableAdapter.Fill(this.assetMngDbDataSet.MinorCategoryTbl);
 
-            mainAlertControl.Show(this, $"تم إضافة فئة رئيسية{((addFinancialCategoryItem) ? " مع بند مالي جديد كذلك" : "")}", StaticCode.ApplicationTitle);
+            mainAlertControl.Show(this, $"تم إضافة فئة رئيسية", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"إضافة الفئة الرئيسية {newMainCategoryNameTextBox.Text.Trim()} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             addNewMainCategoryGroupBox.Visible = false;
         }
 

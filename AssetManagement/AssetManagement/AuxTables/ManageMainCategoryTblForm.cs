@@ -39,6 +39,7 @@ namespace AssetManagement.AuxTables
                 mainCategoryTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الفئات الرئيسية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -62,6 +63,7 @@ namespace AssetManagement.AuxTables
 
         private void manageMinorCategoryTblToolStripButton_Click(object sender, EventArgs e)
         {
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة جدول الفئات الفرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageMinorCategoryTblForm mica = new ManageMinorCategoryTblForm();
             mica.ShowDialog();
         }

@@ -162,6 +162,7 @@ namespace AssetManagement.Assets
                 assetTransactionGridControl.DataSource = StaticCode.mainDbContext.AssetTransactionTbls.Where(asmv => asmv.AssetID == assetToTransact_MVw.ID);
                 mainAlertControl.Show(this, $"تم تصريف الأصل وإضافة سجل تصريف بنجاح{((assetSold) ? " وإضافة سجل مالي خاص ببيع الأصل" : "")}", StaticCode.ApplicationTitle);
                 searchResultsListBox.Visible = viewAssetInformationBtn.Visible = false;
+                StaticCode.activeUserLogin.SessionActions += $"{transactionTypeLookUpEdit.Text} الأصل ذو الكود {assetToTransact.AssetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {
@@ -249,11 +250,6 @@ namespace AssetManagement.Assets
         }
 
         private void getAssetOutOfWorkCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void assetMoveVwGridControl_Click(object sender, EventArgs e)
         {
 
         }

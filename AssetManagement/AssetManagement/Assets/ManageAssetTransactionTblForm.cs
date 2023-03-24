@@ -79,6 +79,7 @@ namespace AssetManagement.AuxTables
             this.assetTransactionTblBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تعديل في سجلات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -92,6 +93,7 @@ namespace AssetManagement.AuxTables
             SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx" };
             if (exportDlg.ShowDialog() != DialogResult.OK)
                 return;
+            StaticCode.activeUserLogin.SessionActions += $"تصدير سجلات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             assetTransactionGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "سجلات تصريف الأصول" });
             mainAlertControl.Show(this, "تم تصدير سجلات تصريف الأصول إلى اكسل", StaticCode.ApplicationTitle);
         }
@@ -106,6 +108,7 @@ namespace AssetManagement.AuxTables
             try
             {
                 int currAssetID = Convert.ToInt32(assetTransactionGridView.GetRowCellValue(currRow, colAssetID));
+                StaticCode.activeUserLogin.SessionActions += $"عرض بطاقة الأصل ذو الكود {StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == currAssetID).AssetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 AssetCardViewForm cardVwFrm = new AssetCardViewForm(currAssetID);
                 cardVwFrm.ShowDialog();
                 currRow = 0;
@@ -175,8 +178,9 @@ namespace AssetManagement.AuxTables
                 assetOFD.Multiselect = true;
                 if (assetOFD.ShowDialog() != DialogResult.OK)
                     return;
-                string assetID = assetTransactionGridView.GetRowCellValue(currRow, colAssetID).ToString();
-                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetID)).AssetCode;
+                int assetID = Convert.ToInt32(assetTransactionGridView.GetRowCellValue(currRow, colAssetID));
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == assetID).AssetCode;
+                StaticCode.activeUserLogin.SessionActions += $"إضافة مرفقات لمجلد الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
                 if (!Directory.Exists(assetFolder))
                     Directory.CreateDirectory(assetFolder);
@@ -201,8 +205,9 @@ namespace AssetManagement.AuxTables
             }
             try
             {
-                string assetID = assetTransactionGridView.GetRowCellValue(currRow, colAssetID).ToString();
-                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == Convert.ToInt32(assetID)).AssetCode;
+                int assetID = Convert.ToInt32(assetTransactionGridView.GetRowCellValue(currRow, colAssetID));
+                string assetCode = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == assetID).AssetCode;
+                StaticCode.activeUserLogin.SessionActions += $"فتح مجلد الأصل ذو الكود {assetCode} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 string assetFolder = StaticCode.AssetsAttachmentsFolder + assetCode + "//";
                 if (!Directory.Exists(assetFolder))
                     Directory.CreateDirectory(assetFolder);

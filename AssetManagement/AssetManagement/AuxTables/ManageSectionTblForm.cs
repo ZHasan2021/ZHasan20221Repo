@@ -36,6 +36,7 @@ namespace AssetManagement.AuxTables
                 sectionTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الدوائر - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -64,6 +65,7 @@ namespace AssetManagement.AuxTables
                 return;
             sectionGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الدوائر" });
             mainAlertControl.Show(this, "تم تصدير بيانات الدوائر إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الدوائر - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
     }
 }

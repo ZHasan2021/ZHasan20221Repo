@@ -74,7 +74,7 @@ namespace AssetManagement.Assets
                     assetLayoutView.Columns.Remove(colمساحةالعقار);
                     assetLayoutView.Columns.Remove(colمعمنورقةالملكية);
                     assetLayoutView.Columns.Remove(colوحدةمساحةالعقار);
-                    assetLayoutView.Columns.Remove(colرقملوحةالمركبة);
+                    assetLayoutView.Columns.Remove(colرقمالهيكلالشاصيهللمركبة);
                     //colاسمالمالك.Visible = colالمستغلمنه.Visible = colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible = colعنوانالعقار.Visible = colمساحةالعقار.Visible = colمعمنورقةالملكية.Visible = colوحدةمساحةالعقار.Visible = colرقملوحةالمركبة.Visible = false;
                     break;
                 case 2:
@@ -83,6 +83,7 @@ namespace AssetManagement.Assets
                     assetLayoutView.Columns.Remove(colسنةصنعالمركبة);
                     assetLayoutView.Columns.Remove(colاللون);
                     assetLayoutView.Columns.Remove(colالموديل);
+                    assetLayoutView.Columns.Remove(colرقمالهيكلالشاصيهللمركبة);
                     //colرقمالمحركللمركبة.Visible = colرقملوحةالمركبة.Visible = colسنةصنعالمركبة.Visible =  colالموديل.Visible = colاللون.Visible = false;
                     break;
                 case 3:

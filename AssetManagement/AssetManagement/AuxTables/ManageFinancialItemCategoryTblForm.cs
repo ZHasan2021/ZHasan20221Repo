@@ -36,6 +36,7 @@ namespace AssetManagement.AuxTables
                 financialItemCategoryTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول البنود المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -58,6 +59,7 @@ namespace AssetManagement.AuxTables
                 return;
             financialItemCategoryGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول البنود المالية" });
             mainAlertControl.Show(this, "تم تصدير بيانات البنود المالية إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول البنود المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)

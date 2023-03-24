@@ -40,6 +40,7 @@ namespace AssetManagement.AuxTables
                 departmentTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الوحدات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -67,6 +68,7 @@ namespace AssetManagement.AuxTables
                 return;
             subDepartmentGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الوحدات" });
             mainAlertControl.Show(this, "تم تصدير بيانات الوحدات إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الوحدات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
     }
 }

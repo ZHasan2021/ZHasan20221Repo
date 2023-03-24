@@ -304,6 +304,7 @@ namespace AssetManagement.Assets
                 }
                 this.DialogResult = DialogResult.OK;
                 AssetAdded = true;
+                StaticCode.activeUserLogin.SessionActions += $" إضافة أصل جديد يحمل الكود {assetCodeTextBox.Text} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 AssetCode = assetCodeTextBox.Text;
                 e.Cancel = false;
             }

@@ -5,6 +5,7 @@ using AssetManagement.Options;
 using AssetManagement.Properties;
 using AssetManagement.Users;
 using DevExpress.XtraReports.UI;
+using LINQtoCSV;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace AssetManagement
         IQueryable<AssetTbl> assetsWithoutPurchaseDateList = null;
         IQueryable<AssetTbl> missingDataAssetsList = null;
         int timer3 = 0;
+        bool isRestarted = false;
 
         public MainForm()
         {
@@ -44,7 +46,7 @@ namespace AssetManagement
 
             StaticCode.activeUserLogin = new UserLoginTbl()
             {
-                LoggedInAt = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds),
+                LoggedInAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds),
                 UserID = StaticCode.activeUser.ID
             };
             ApplyUserRolesOnInterface();
@@ -54,9 +56,9 @@ namespace AssetManagement
         {
             StaticCode.activeUser.UserNotes = mainMemoEdit.EditValue?.ToString();
             StaticCode.mainDbContext.SubmitChanges();
-            if (MessageBox.Show("هل تريد بالتاكيد إغلاق البرنامج؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (isRestarted || MessageBox.Show("هل تريد بالتاكيد إغلاق البرنامج؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                StaticCode.activeUserLogin.LoggedOutAt = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds);
+                StaticCode.activeUserLogin.LoggedOutAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds);
                 StaticCode.mainDbContext.UserLoginTbls.InsertOnSubmit(StaticCode.activeUserLogin);
                 StaticCode.mainDbContext.SubmitChanges();
                 e.Cancel = false;
@@ -91,21 +93,21 @@ namespace AssetManagement
         #region Import/Export
         private void manageImportExportTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الاستيراد والتصدير - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الاستيراد والتصدير - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageImportExportTblForm ieFrm = new ManageImportExportTblForm();
             ieFrm.ShowDialog();
         }
 
         private void exportDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة تصدير البيانات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة تصدير البيانات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ExportForm expFrm = new ExportForm();
             expFrm.ShowDialog();
         }
 
         private void importDataBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة استيراد البيانات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة استيراد البيانات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportForm impFrm = new ImportForm();
             impFrm.ShowDialog();
             timer3 = 0;
@@ -149,7 +151,7 @@ namespace AssetManagement
 
         private void addNewAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة أصل جديد - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة أصل جديد - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AddNewAssetForm newAsstFrm = new AddNewAssetForm();
             DialogResult frmRes = newAsstFrm.ShowDialog();
             if (frmRes == DialogResult.OK)
@@ -158,95 +160,95 @@ namespace AssetManagement
 
         private void manageAssetTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             CustomAssetsForm cuFrm = new CustomAssetsForm();
             cuFrm.ShowDialog();
         }
 
         private void addNewAssetMovementBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة نقل أصل - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة نقل أصل - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             MoveAssetForm mvFrm = new MoveAssetForm();
             mvFrm.ShowDialog();
         }
 
         private void addNewAssetTransactionBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة تصريف أصل - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة تصريف أصل - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             TransacteAssetForm trsFrm = new TransacteAssetForm();
             trsFrm.ShowDialog();
         }
 
         private void manageAssetMovementTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات نقل الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات نقل الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageAssetMovementTblForm astmvFrm = new ManageAssetMovementTblForm();
             astmvFrm.ShowDialog();
         }
 
         private void manageAssetTransactionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات تصريف الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageAssetTransactionTblForm asttsFrm = new ManageAssetTransactionTblForm();
             asttsFrm.ShowDialog();
         }
 
         private void addNewAssetInventoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات جرد الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة جرد الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             NewAssetInventoryForm invFrm = new NewAssetInventoryForm();
             invFrm.ShowDialog();
         }
 
         private void deleteAssetsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة حذف أصل - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة حذف أصل - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             DeleteAssetForm dFrm = new DeleteAssetForm();
             dFrm.ShowDialog();
         }
 
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة تقارير الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة تقارير الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AssetsXtraReport2 repFrm = new AssetsXtraReport2();
             repFrm.ShowPreviewDialog();
         }
 
         private void updateExistedAssetBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة تعديل أصل - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة تعديل أصل - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             UpdateExistedAssetForm updFrm = new UpdateExistedAssetForm();
             updFrm.ShowDialog();
         }
 
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إحصائيات الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إحصائيات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AssetsStatsForm3 statFrm = new AssetsStatsForm3();
             statFrm.ShowDialog();
         }
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق النموذج العام - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق النموذج العام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 1);
         }
 
         private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج العقارات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج العقارات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 2);
         }
 
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج المركبات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج المركبات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 3);
         }
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات نقل الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات نقل الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusBarStaticItem.Caption = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات نقل أصول" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -363,7 +365,7 @@ namespace AssetManagement
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات تصريف الأصول - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusBarStaticItem.Caption = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات تصريف أصول" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -643,7 +645,7 @@ namespace AssetManagement
         #region Options
         private void setAppDateAndTimeBarStaticItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة ضبط الوقت والتاريخ - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة ضبط الوقت والتاريخ - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             if (StaticCode.activeUserRole.SetDateAndTime == true)
             {
                 SetAppDateAndTimeForm setdtFrm = new SetAppDateAndTimeForm();
@@ -653,14 +655,14 @@ namespace AssetManagement
 
         private void setAppDateAndTimeBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة ضبط الوقت والتاريخ - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة ضبط الوقت والتاريخ - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             SetAppDateAndTimeForm appDtFrm = new SetAppDateAndTimeForm();
             appDtFrm.ShowDialog();
         }
 
         private void optionsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إعدادات التطبيق - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إعدادات التطبيق - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             OptionsForm optFrm = new OptionsForm();
             optFrm.ShowDialog();
             timer3 = 0;
@@ -670,21 +672,21 @@ namespace AssetManagement
         #region Aux tables
         private void manageMainCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الرئيسية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الرئيسية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageMainCategoryTblForm macaFrm = new ManageMainCategoryTblForm();
             macaFrm.ShowDialog();
         }
 
         private void manageMinorCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الثانوية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الثانوية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageMinorCategoryTblForm micaFrm = new ManageMinorCategoryTblForm();
             micaFrm.ShowDialog();
         }
 
         private void importAssetsCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الفئات الفرعية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الفئات الفرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -799,42 +801,42 @@ namespace AssetManagement
 
         private void addNewMainCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الرئيسية والفرعية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الفئات الرئيسية والفرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageCategoriesTblsForm catFrm = new ManageCategoriesTblsForm();
             catFrm.ShowDialog();
         }
 
         private void addNewMinorCategoryBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة فئة فرعية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة فئة فرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AddNewMinorCategoryForm addFrm = new AddNewMinorCategoryForm();
             addFrm.ShowDialog();
         }
 
         private void manageSectionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الدوائر - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الدوائر - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageSectionTblForm secFrm = new ManageSectionTblForm();
             secFrm.ShowDialog();
         }
 
         private void manageDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الأقسام - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الأقسام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageDepartmentTblForm dptFrm = new ManageDepartmentTblForm();
             dptFrm.ShowDialog();
         }
 
         private void manageSubDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الوحدات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الوحدات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageSubDepartmentTblForm sdptFrm = new ManageSubDepartmentTblForm();
             sdptFrm.ShowDialog();
         }
 
         private void importSectionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الدوائر - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الدوائر - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -900,7 +902,7 @@ namespace AssetManagement
 
         private void importDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الأقسام - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الأقسام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -998,7 +1000,7 @@ namespace AssetManagement
 
         private void importSubDepartmentTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الوحدات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الوحدات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1102,27 +1104,27 @@ namespace AssetManagement
 
         private void manageEmployeeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الموظفين - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageEmployeeTblForm empFrm = new ManageEmployeeTblForm();
             empFrm.ShowDialog();
         }
 
         private void importEmployeeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الموظفين - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
 
         }
 
         private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات البنود المالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات البنود المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageFinancialItemCategoryTblForm ficFrm = new ManageFinancialItemCategoryTblForm();
             ficFrm.ShowDialog();
         }
 
         private void importFinancialItemsCategoriesFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات البنود المالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات البنود المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1139,7 +1141,7 @@ namespace AssetManagement
             int ficaNameCol = columnsHeaders.IndexOf("اسم البند المالي") + 1;
             int ficaDetCol = columnsHeaders.IndexOf("وصف البند المالي") + 1;
             int ficaInOutCol = columnsHeaders.IndexOf("صادر أم وارد") + 1;
-            int ficaGroupNameCol = columnsHeaders.IndexOf("اسم المجموعة التي يندرج تحتها البند الماليد") + 1;
+            int ficaGroupNameCol = columnsHeaders.IndexOf("اسم المجموعة التي يندرج تحتها البند المالي") + 1;
             if (ficaNameCol == 0)
             {
                 actionsStatusMemoEdit.Text = "عمود اسم البند المالي غير موجود";
@@ -1230,21 +1232,21 @@ namespace AssetManagement
 
         private void manageCurrencyTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات العملات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات العملات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageCurrencyTblForm curFrm = new ManageCurrencyTblForm();
             curFrm.ShowDialog();
         }
 
         private void manageSquareTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الساحات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الساحات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageSquareTblForm squFrm = new ManageSquareTblForm();
             squFrm.ShowDialog();
         }
 
         private void importSquareTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الساحات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الساحات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1315,14 +1317,14 @@ namespace AssetManagement
 
         private void manageModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الموديلات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الموديلات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageModelTblForm mdlFrm = new ManageModelTblForm();
             mdlFrm.ShowDialog();
         }
 
         private void importModelTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الموديلات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الموديلات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1393,7 +1395,7 @@ namespace AssetManagement
 
         private void manageEstateAreaUnitTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات واحدات مساحات العقارات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات واحدات مساحات العقارات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageEstateAreaUnitTblForm eauFrm = new ManageEstateAreaUnitTblForm();
             eauFrm.ShowDialog();
         }
@@ -1406,14 +1408,14 @@ namespace AssetManagement
 
         private void manageIncomingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات جهات الإيراد - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات جهات الإيراد - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageIncomingTypeTblForm inTyFrm = new ManageIncomingTypeTblForm();
             inTyFrm.ShowDialog();
         }
 
         private void manageOutgoingTypeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات أنواع السجلات المالية الصادرة - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات أنواع السجلات المالية الصادرة - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageOutgoingTypeTblForm ouTyFrm = new ManageOutgoingTypeTblForm();
             ouTyFrm.ShowDialog();
         }
@@ -1428,7 +1430,7 @@ namespace AssetManagement
             bool dbBackedup = StaticCode.BackupDb(backupDbFileName);
             if (dbBackedup)
             {
-                StaticCode.activeUserLogin.SessionActions += $"نسخ احتياطي لقاعدة البيانات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+                StaticCode.activeUserLogin.SessionActions += $"نسخ احتياطي لقاعدة البيانات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 mainAlertControl.Show(this, "تم النسخ الاحتياطي بنجاح", StaticCode.ApplicationTitle);
             }
             else
@@ -1437,31 +1439,43 @@ namespace AssetManagement
 
         private void restoreDbBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MessageBox.Show("هل تريد بالتاكيد استعادة نسخة سابقة من قاعدة البيانات؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
             OpenFileDialog bakOFD = new OpenFileDialog() { Filter = "Backup file (*.bak)|*.bak" };
             if (bakOFD.ShowDialog() != DialogResult.OK)
             {
                 mainAlertControl.Show(this, "تم الإلغاء", StaticCode.ApplicationTitle);
                 return;
             }
-            bool dbRestored = StaticCode.RestoreDb(bakOFD.FileName);
-            if (dbRestored)
+
+            if (MessageBox.Show("هل تريد بالتاكيد استعادة نسخة سابقة من قاعدة البيانات؟", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            StreamWriter bakNameWr = new StreamWriter(StaticCode.TmpRestoreFilePath);
+            bakNameWr.Write(bakOFD.FileName);
+            bakNameWr.Close();
+
+            if (MessageBox.Show("تم استعادة قاعدة البيانات لكن تحتاج لإعادة تشغيل البرنامج ليتم تطبيق التغييرات", StaticCode.ApplicationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                StaticCode.activeUserLogin.SessionActions += $"استعادة لقاعدة البيانات - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-                mainAlertControl.Show(this, "تم استعادة قاعدة البيانات لكن تحتاج لإعادة تشغيل البرنامج ليتم تطبيق التغييرات", StaticCode.ApplicationTitle);
+                isRestarted = true;
+                Application.Restart();
             }
-            else
-            {
-                mainAlertControl.Show(this, "لم يتم استعادة قاعدة البيانات، حاول لاحقاُ", StaticCode.ApplicationTitle);
-            }
+
+            //bool dbRestored = StaticCode.RestoreDb(bakOFD.FileName);
+            //if (dbRestored)
+            //{
+            //    StaticCode.activeUserLogin.SessionActions += $"استعادة لقاعدة البيانات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            //    mainAlertControl.Show(this, "تم استعادة قاعدة البيانات لكن تحتاج لإعادة تشغيل البرنامج ليتم تطبيق التغييرات", StaticCode.ApplicationTitle);
+            //}
+            //else
+            //{
+            //    mainAlertControl.Show(this, "لم يتم استعادة قاعدة البيانات، حاول لاحقاُ", StaticCode.ApplicationTitle);
+            //}
         }
         #endregion
 
         #region Finance
         private void addNewFinancialItemBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"إضافة سجل مالي جديد - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"إضافة سجل مالي جديد - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AddNewFinancialItemForm newFinFrm = new AddNewFinancialItemForm();
             newFinFrm.ShowDialog();
 
@@ -1471,14 +1485,14 @@ namespace AssetManagement
 
         private void manageFinancialItemsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"إدارة السجلات المالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"إدارة السجلات المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageFinancialItemTblForm fiItFrm = new ManageFinancialItemTblForm();
             fiItFrm.Show();
         }
 
         private void prepareFinancialReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"عرض التقارير المالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"عرض التقارير المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             StaticCode.mainDbContext.Dispose();
             StaticCode.mainDbContext = new AssetMngDbDataContext();
             FinancialReportsForm fiRpFrm = new FinancialReportsForm();
@@ -1487,7 +1501,7 @@ namespace AssetManagement
 
         private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد سجلات مالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد سجلات مالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1517,7 +1531,7 @@ namespace AssetManagement
 
         private void financialItemsStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"إحصائيات السجلات المالية - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"إحصائيات السجلات المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             mainAlertControl.Show(this, StaticCode.ApplicationTitle, "هذه الميزة قيد الإنجاز حالياً");
             //FinancialStatsForm fistFrm = new FinancialStatsForm();
             //fistFrm.ShowDialog();
@@ -1615,6 +1629,7 @@ namespace AssetManagement
             addNewUserBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageUserTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageUserRoleTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageUsers == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            viewUserActionsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewSessionActionsLog == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             backupDbBarButtonItem.Visibility = (StaticCode.activeUserRole.BackupDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             restoreDbBarButtonItem.Visibility = (StaticCode.activeUserRole.RestoreDb == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             deleteAssetsBarButtonItem.Visibility = (StaticCode.activeUserRole.DeleteAssetRecord == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
@@ -1641,14 +1656,14 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void addNewUserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة مستخدم جديد - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إضافة مستخدم جديد - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             AddNewUserForm usrFrm = new AddNewUserForm();
             usrFrm.ShowDialog();
         }
 
         private void manageUserTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة حسابات المستخدمين - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة حسابات المستخدمين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageUserTblForm mngusrFrm = new ManageUserTblForm();
             mngusrFrm.ShowDialog();
 
@@ -1665,13 +1680,13 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             {
                 if (StaticCode.activeUserLogin != null)
                 {
-                    StaticCode.activeUserLogin.LoggedOutAt = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds);
+                    StaticCode.activeUserLogin.LoggedOutAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds);
                     StaticCode.mainDbContext.UserLoginTbls.InsertOnSubmit(StaticCode.activeUserLogin);
                     StaticCode.mainDbContext.SubmitChanges();
                 }
                 StaticCode.activeUserLogin = new UserLoginTbl()
                 {
-                    LoggedInAt = DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds),
+                    LoggedInAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds),
                     UserID = StaticCode.activeUser.ID
                 };
                 ApplyUserRolesOnInterface();
@@ -1681,11 +1696,18 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
 
         private void manageUserRoleTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة صلاحيات المستخدمين - {DateTime.Now.AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة صلاحيات المستخدمين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageUserRoleTblForm mngusrrlFrm = new ManageUserRoleTblForm();
             mngusrrlFrm.ShowDialog();
 
             ApplyUserRolesOnInterface();
+        }
+
+        private void viewUserActionsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            StaticCode.activeUserLogin.SessionActions += $"نافذة عرض نشاطات المستخدمين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            ManageUserLoginTblForm mngusrssFrm = new ManageUserLoginTblForm();
+            mngusrssFrm.ShowDialog();
         }
         #endregion
     }

@@ -38,6 +38,7 @@ namespace AssetManagement.AuxTables
                 departmentTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الأقسام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -66,6 +67,7 @@ namespace AssetManagement.AuxTables
                 return;
             departmentGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الأقسام" });
             mainAlertControl.Show(this, "تم تصدير بيانات الأقسام إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الأقسام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
     }
 }

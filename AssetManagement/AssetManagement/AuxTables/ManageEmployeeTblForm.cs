@@ -41,6 +41,7 @@ namespace AssetManagement.AuxTables
                 employeeTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -69,6 +70,7 @@ namespace AssetManagement.AuxTables
                 return;
             employeeGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الموظفين" });
             mainAlertControl.Show(this, "تم تصدير بيانات الموظفين إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void employeeTblBindingNavigatorViewCustodiesItem_Click(object sender, EventArgs e)
@@ -82,6 +84,7 @@ namespace AssetManagement.AuxTables
             {
                 string currEmployeeFirstName = employeeGridView.GetRowCellValue(currRow, colFirstName).ToString().Trim();
                 var employeeAssets = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.CustodianName == currEmployeeFirstName);
+                StaticCode.activeUserLogin.SessionActions += $"عرض العهدات المستلمة من قبل الموظف {employeeGridView.GetRowCellValue(currRow, colFirstName)} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 ManageAssetTblForm desFrm1 = new ManageAssetTblForm(employeeAssets, "العهدات المستلمة من قبل الموظف " + employeeGridView.GetRowCellValue(currRow, colFirstName));
                 desFrm1.ShowDialog();
                 GC.Collect();

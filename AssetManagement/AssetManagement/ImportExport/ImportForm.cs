@@ -327,6 +327,7 @@ namespace AssetManagement.Finance
                 }
 
                 mainAlertControl.Show(this, "تم استيراد البيانات بشكل سليم وإضافة سجل تقرير حول العملية", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات{((importBySectionRadioButton.Checked) ? $" ضمن دائرة {importBySectionLookUpEdit.Text}" : "")}{((importByDepartmentRadioButton.Checked) ? $" ضمن قسم {importByDepartmentSearchLookUpEdit.Text}" : "")}{((importBySubDepartmentRadioButton.Checked) ? $" ضمن وحدة {importBySubDepartmentSearchLookUpEdit.Text}" : "")} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

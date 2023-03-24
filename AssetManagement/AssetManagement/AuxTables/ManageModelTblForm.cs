@@ -33,6 +33,7 @@ namespace AssetManagement.AuxTables
             this.modelTblBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الموديلات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -48,6 +49,7 @@ namespace AssetManagement.AuxTables
                 return;
             modelGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الموديلات" });
             mainAlertControl.Show(this, "تم تصدير بيانات الموديلات إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الموديلات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
     }
 }

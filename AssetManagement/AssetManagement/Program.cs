@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,6 +22,15 @@ namespace AssetManagement
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            if (File.Exists(StaticCode.TmpRestoreFilePath))
+            {
+                StreamReader bakNameRdr = new StreamReader(StaticCode.TmpRestoreFilePath);
+                string backupFilePath = bakNameRdr.ReadToEnd();
+                bakNameRdr.Close();
+                StaticCode.RestoreDb(backupFilePath);
+                File.Delete(StaticCode.TmpRestoreFilePath);
+            }
 
             using (Mutex mutex = new Mutex(false, "Global\\" + StaticCode.appGuid))
             {

@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using Microsoft.VisualBasic.FileIO;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,7 +36,8 @@ namespace AssetManagement
         public static string BackupFolder = $"{Application.StartupPath}//Backup files//";
         public static string PMName = "PM";
         public static string MngAbbr = "Mng_";
-        
+        public static string TmpRestoreFilePath = StaticCode.BackupFolder + "tmp_Restore.txt";
+
         public static void AssignDbParams()
         {
             mainDbContext = new AssetMngDbDataContext();
@@ -45,6 +48,82 @@ namespace AssetManagement
             appOptions = mainDbContext.OptionsTbls.Single(opt => opt.ID == 1);
             MngAbbr = appOptions.MngAbbr;
             activeUserRole = mainDbContext.UserRoleTbls.Single(usrrl => usrrl.ID == activeUser.UserRole);
+        }
+
+        public static void SqlToCsv(string csvFilePath)
+        {
+            SqlConnection sqlCon = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlCmd.CommandText = "SELECT * FROM AssetTbl";
+            sqlCmd.Connection = sqlCon;
+            sqlCon.Open();
+
+            using (var CommandText = new SqlCommand("SELECT * FROM AssetTbl"))
+            using (var reader = sqlCmd.ExecuteReader())
+            using (var outFile = File.CreateText(csvFilePath))
+            {
+                string[] columnNames = GetColumnNames(reader).ToArray();
+                int numFields = columnNames.Length;
+                outFile.WriteLine(string.Join(",", columnNames));
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] columnValues =
+                            Enumerable.Range(0, numFields)
+                                      .Select(i => reader.GetValue(i).ToString())
+                                      .Select(field => string.Concat("\"", field.Replace("\"", "\"\""), "\""))
+                                      .ToArray();
+                        outFile.WriteLine(string.Join(",", columnValues));
+                    }
+                }
+            }
+        }
+
+        public static DataTable GetDataTabletFromCSVFile(string csv_file_path)
+        {
+            DataTable csvData = new DataTable();
+            try
+            {
+                using (TextFieldParser csvReader = new TextFieldParser(csv_file_path))
+                {
+                    csvReader.SetDelimiters(new string[] { "," });
+                    csvReader.HasFieldsEnclosedInQuotes = true;
+                    string[] colFields = csvReader.ReadFields();
+                    foreach (string column in colFields)
+                    {
+                        DataColumn datecolumn = new DataColumn(column);
+                        datecolumn.AllowDBNull = true;
+                        csvData.Columns.Add(datecolumn);
+                    }
+                    while (!csvReader.EndOfData)
+                    {
+                        string[] fieldData = csvReader.ReadFields();
+                        //Making empty value as null
+                        for (int i = 0; i < fieldData.Length; i++)
+                        {
+                            if (fieldData[i] == "")
+                            {
+                                fieldData[i] = null;
+                            }
+                        }
+                        csvData.Rows.Add(fieldData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return csvData;
+        }
+
+        public static IEnumerable<string> GetColumnNames(IDataReader reader)
+        {
+            foreach (DataRow row in reader.GetSchemaTable().Rows)
+            {
+                yield return (string)row["ColumnName"];
+            }
         }
 
         public static bool BackupDb(string backupName)
@@ -69,7 +148,7 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb2(string backupName)
+        public static bool RestoreDb3(string backupName)
         {
             try
             {
@@ -92,7 +171,7 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb3(string backupName)
+        public static bool RestoreDb(string backupName)
         {
             try
             {
@@ -118,7 +197,7 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb(string backupName)
+        public static bool RestoreDb2(string backupName)
         {
             try
             {
@@ -376,8 +455,8 @@ namespace AssetManagement
             int carEngineColumn = 13;
 
             List<string> assetsCodes = srcExcelWs.Cells.Where(cl1 => cl1.Start.Column == assetCodeColumn && cl1.End.Column == assetCodeColumn && cl1.Start.Row >= startRow && !cl1.Offset(0, -1).Value.ToString().Contains("ملاحظة:")).Select(cl2 => cl2.Value?.ToString()).ToList();
-            List<string> newCodes = mainDbContext.AssetTbls.Where(ast1 => !assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
-            List<string> existedCodes = mainDbContext.AssetTbls.Where(ast1 => assetsCodes.Contains(ast1.AssetCode)).Select(ast2 => ast2.AssetCode).ToList();
+            List<string> newCodes = assetsCodes.Where(code1 => !mainDbContext.AssetTbls.Select(ast1 => ast1.AssetCode).Contains(code1)).Select(code2 => code2).ToList();
+            List<string> existedCodes = assetsCodes.Where(code1 => mainDbContext.AssetTbls.Select(ast1 => ast1.AssetCode).Contains(code1)).Select(code2 => code2).ToList();
             int existedAssetsCount = existedCodes.Count();
             int newAssetsCount = assetsCodes.Count() - existedAssetsCount;
 
@@ -735,14 +814,8 @@ namespace AssetManagement
                 tmpMainDbContext.Dispose();
                 return null;
             }
-            string newCodesStr = "";
-            foreach (string oneN in newCodes)
-                newCodesStr += oneN + " , ";
-            newCodesStr = newCodesStr.Trim().Trim(',').Trim();
-            string existedCodesStr = "";
-            foreach (string oneN in existedCodes)
-                existedCodesStr += oneN + " , ";
-            existedCodesStr = existedCodesStr.Trim().Trim(',').Trim();
+            string newCodesStr = String.Join(", ", newCodes);
+            string existedCodesStr = String.Join(", ", existedCodes);
             string importNotes = $"الاستيراد من نموذج أصول:\r\n1- الأصول المضافة({newAssetsCount}):\r\n{newCodesStr}\r\n2- الأصول التي تم تعديلها({((updateExistedAssets) ? existedAssetsCount : 0)}):\r\n{((updateExistedAssets) ? existedCodesStr : "(لا يوجد)")}";
             ImportExportTbl newImport = new ImportExportTbl()
             {
@@ -1610,11 +1683,17 @@ namespace AssetManagement
                     }
                     outgoingAmountVal = Math.Round(outgoingAmountVal, 1);
                     string incomingOrOutgoingVal = (isIncoming) ? "وارد" : "صادر";
-                    DateTime fiDateVal = DateTime.Today;
-                    if (!isIncoming && !DateTime.TryParse(srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString(), out fiDateVal))
+
+                    string dateVal = srcExcelWs.Cells[rowStartNo, fiDateCol].Value?.ToString();
+                    string dateExp = @"^[0-9]{2}-[0-9]{2}-[0-9]{4}$";
+                    if (String.IsNullOrEmpty(dateVal) || !Regex.IsMatch(dateVal, dateExp))
                     {
                         return ($"قيمة التاريخ في السطر {rowStartNo} غير صحيحة");
                     }
+                    int yearPart = Convert.ToInt32(dateVal.Substring(6, 4));
+                    int monthPart = Convert.ToInt32(dateVal.Substring(3, 2));
+                    int dayPart = Convert.ToInt32(dateVal.Substring(0, 2));
+                    DateTime fiDateVal = new DateTime(yearPart, monthPart, dayPart);
 
                     if (!mainDbContext.CurrencyTbls.Any(cu1 => cu1.CurrencyName == curVal))
                     {

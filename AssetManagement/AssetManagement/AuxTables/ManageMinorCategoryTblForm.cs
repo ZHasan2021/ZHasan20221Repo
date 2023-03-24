@@ -40,6 +40,7 @@ namespace AssetManagement.AuxTables
                 minorCategoryTblBindingSource.EndEdit();
                 tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
                 mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول الفئات الفرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch (SqlException)
             {
@@ -62,9 +63,11 @@ namespace AssetManagement.AuxTables
                 return;
             minorCategoryGridControl.ExportToXlsx(exportDlg.FileName, new DevExpress.XtraPrinting.XlsxExportOptions() { ShowGridLines = false, SheetName = "جدول الفئات الفرعية" });
             mainAlertControl.Show(this, "تم تصدير بيانات الفئات الفرعية إلى اكسل", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تصدير جدول الفئات الفرعية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
         private void minorCategoryTblBindingNavigatorManageMainCategoriesItem_Click(object sender, EventArgs e)
         {
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة جدول الفئات الرئيسية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ManageMainCategoryTblForm maca = new ManageMainCategoryTblForm();
             maca.ShowDialog();
         }
@@ -73,11 +76,6 @@ namespace AssetManagement.AuxTables
         {
             e.AlertForm.Size = new Size(350, 150);
             e.AlertForm.Location = new Point(200, 200);
-        }
-
-        private void manageMinorCategoryTblToolStripButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
