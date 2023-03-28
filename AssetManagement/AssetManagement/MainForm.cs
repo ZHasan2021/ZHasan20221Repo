@@ -39,6 +39,29 @@ namespace AssetManagement
             InitializeComponent();
         }
 
+        private void DoTheseOnLoadOrLogin()
+        {
+            ApplyUserRolesOnInterface();
+            StaticCode.activeUserLogin = new UserLoginTbl()
+            {
+                LoggedInAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds),
+                UserID = StaticCode.activeUser.ID
+            };
+            timer3 = 0;
+            StaticCode.AutoBackup();
+            int backupFilesCount = StaticCode.CountOfBackupFiles();
+            if (backupFilesCount >= 10)
+            {
+                mainAlertControl.Show(this, StaticCode.ApplicationTitle, "لديك عشر ملفات نسخ احتياطية على الأقل ضمن مجلد النسخ الاحتياطية، يفضل حذف بعض النسخ غير الهامة");
+                Process.Start(StaticCode.BackupFolder);
+            }
+            if (StaticCode.AppToday.Day == 1 && StaticCode.AppToday.Month == 1)
+            {
+                StaticCode.AddRecycledOfLastYear();
+                StaticCode.activeUserLogin.SessionActions += $"إضافة السجلات المالية الخاصة بمدور السنة الماضية بكل العملات المتوفرة - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            }
+        }
+
         #region Form
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -49,7 +72,7 @@ namespace AssetManagement
                 LoggedInAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds),
                 UserID = StaticCode.activeUser.ID
             };
-            ApplyUserRolesOnInterface();
+            DoTheseOnLoadOrLogin();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -161,7 +184,7 @@ namespace AssetManagement
         private void manageAssetTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            CustomAssetsForm cuFrm = new CustomAssetsForm();
+            CustomAssetsForm cuFrm = new CustomAssetsForm(1);
             cuFrm.ShowDialog();
         }
 
@@ -182,14 +205,14 @@ namespace AssetManagement
         private void manageAssetMovementTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات نقل الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            ManageAssetMovementTblForm astmvFrm = new ManageAssetMovementTblForm();
+            CustomAssetsForm astmvFrm = new CustomAssetsForm(2);
             astmvFrm.ShowDialog();
         }
 
         private void manageAssetTransactionTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            ManageAssetTransactionTblForm asttsFrm = new ManageAssetTransactionTblForm();
+            CustomAssetsForm asttsFrm = new CustomAssetsForm(3);
             asttsFrm.ShowDialog();
         }
 
@@ -230,25 +253,25 @@ namespace AssetManagement
 
         private void fromGeneralFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق النموذج العام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد أصول وفق النموذج العام - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 1);
         }
 
         private void fromEstatesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج العقارات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد أصول وفق نموذج العقارات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 2);
         }
 
         private void fromVehiclesFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق نموذج المركبات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد أصول وفق نموذج المركبات - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             ImportAssetsFromExcel(sender, e, 3);
         }
 
         private void fromAssetsMovementsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات نقل الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد بيانات نقل أصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusBarStaticItem.Caption = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات نقل أصول" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -315,15 +338,15 @@ namespace AssetManagement
                     string mvToVal = astWs.Cells[iRow, mvToCol].Value?.ToString();
                     DateTime mvDateVal = new DateTime(1899, 12, 30).AddDays(Convert.ToInt32(astWs.Cells[iRow, mvDateCol].Value?.ToString()));
 
-                    var existedAsset = StaticCode.mainDbContext.AssetTbls.Where(ast1 => ast1.AssetCode == assetCodeVal);
-                    if (existedAsset == null || existedAsset.Count() == 0)
+                    var existedAsset = StaticCode.mainDbContext.AssetVws.Where(astv1 => astv1.كود_الأصل == assetCodeVal);
+                    if (!existedAsset.Any())
                     {
                         nonExistedAssets.Add(assetCodeVal);
                         continue;
                     }
-                    AssetTbl assetToAddMovement = existedAsset.First();
+                    AssetTbl assetToAddMovement = StaticCode.mainDbContext.AssetTbls.Single(ast1 => ast1.ID == existedAsset.First().معرف_الأصل);
                     var existedRecords = StaticCode.mainDbContext.AssetMovementTbls.Where(asmv1 => asmv1.AssetID == assetToAddMovement.ID && asmv1.MovementDate == mvDateVal && asmv1.FieldChanged == movedFieldVal && asmv1.OldValue == mvFromVal && asmv1.NewValue == mvToVal);
-                    if (existedRecords.Count() > 0)
+                    if (existedRecords.Any())
                     {
                         existedRecordsCount++;
                         continue;
@@ -336,6 +359,70 @@ namespace AssetManagement
                         OldValue = mvFromVal,
                         NewValue = mvToVal,
                     });
+
+                    // Apply the movement data
+                    switch (movedFieldVal)
+                    {
+                        case "الدائرة":
+                            break;
+                        case "القسم":
+                            break;
+                        case "الوحدة":
+                            bool sectionExisted = false;
+                            bool deptExisted = false;
+                            string sectionName = "";
+                            string deptName = "";
+                            string subDeptName = mvToVal;
+                            for (int iRow2 = 2; iRow2 <= astWs.Dimension.End.Row; iRow2++)
+                            {
+                                Application.DoEvents();
+
+                                string assetCodeVal2 = astWs.Cells[iRow2, assetCodeCol].Value?.ToString();
+                                if (assetCodeVal != assetCodeVal2)
+                                    continue;
+                                string movedFieldVal2 = astWs.Cells[iRow2, movedFieldCol].Value?.ToString();
+                                if (movedFieldVal2 != "الدائرة" && movedFieldVal2 != "القسم")
+                                    continue;
+                                string mvFromVal2 = astWs.Cells[iRow2, mvFromCol].Value?.ToString();
+                                string mvToVal2 = astWs.Cells[iRow2, mvToCol].Value?.ToString();
+                                if (movedFieldVal2 == "الدائرة")
+                                {
+                                    sectionName = mvToVal2;
+                                    sectionExisted = true;
+                                }
+                                if (movedFieldVal2 == "القسم")
+                                {
+                                    deptName = mvToVal2;
+                                    deptExisted = true;
+                                }
+                                if (sectionExisted && deptExisted)
+                                    break;
+                            }
+                            if (sectionExisted && deptExisted)
+                            {
+                                int subDeptID = StaticCode.SubDeptByThreeLevels(sectionName, deptName, subDeptName);
+                                assetToAddMovement.AssetSubDepartment = subDeptID;
+                            }
+                            break;
+                        case "الساحة":
+                            if (!StaticCode.mainDbContext.SquareTbls.Any(sq1 => sq1.SquareName == mvToVal))
+                            {
+                                StaticCode.mainDbContext.SquareTbls.InsertOnSubmit(new SquareTbl { SquareName = mvToVal, SquareLocation = "" });
+                                StaticCode.mainDbContext.SubmitChanges();
+                            }
+                            int newSqID = StaticCode.mainDbContext.SquareTbls.First(sq1 => sq1.SquareName == mvToVal).ID;
+                            assetToAddMovement.AssetSquare = newSqID;
+                            break;
+                        case "صاحب العهدة":
+                            assetToAddMovement.CustodianName = mvToVal;
+                            break;
+                        case "مكان التواجد":
+                            assetToAddMovement.PlaceOfPresence = mvToVal;
+                            break;
+                        default:
+                            break;
+                    }
+
                     addedRecordsCount++;
                 }
                 catch
@@ -360,12 +447,13 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات نقل الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات نقل الأصول للتأكد من ذلك";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات نقل أصول وفق التفاصيل التالية: 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})، 2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})، 3- عدد سجلات النقل المضافة ({addedRecordsCount})، 4- عدد سجلات النقل غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             mainProgressPanel.Visible = false;
         }
 
         private void fromAssetsTransactionsFormBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد بيانات تصريف أصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusBarStaticItem.Caption = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx", Title = "فتح ملف بيانات تصريف أصول" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -533,6 +621,7 @@ namespace AssetManagement
             StaticCode.mainDbContext.ImportExportTbls.InsertOnSubmit(newImport);
             StaticCode.mainDbContext.SubmitChanges();
             actionsStatusMemoEdit.Text = $"تم استيراد سجلات تصريف الأصول بنجاح:\r\n {importNotes}\r\n----------------\r\n راجع إدارة سجلات تصريف الأصول للتأكد من ذلك";
+            StaticCode.activeUserLogin.SessionActions += $"استيراد سجلات تصريف أصول وفق التفاصيل التالية: 1- عدد السجلات الموجودة مسبقاً والتي لم يتم تحديثها ({existedRecordsCount})، 2- عدد الأصول المضمنة في الملف وغير موجودة في سجلات الأصول ({nonExistedAssets.Count()})، 3- عدد سجلات التصريف المضافة ({addedRecordsCount})، 4- عدد سجلات التصريف غير المضافة نتيجة خطأ في إحدى القيم ({notAddedRecordsCount}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             mainProgressPanel.Visible = false;
         }
 
@@ -577,6 +666,7 @@ namespace AssetManagement
                 actionsStatusMemoEdit.Text = $"تمت العملية بنجاح وفق التفاصيل التالية:\r\n1- عدد الأصول المضافة ({newAssetsCount})\r\n2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})\r\n3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel})\r\n---------------";
                 mainProgressPanel.Visible = false;
                 mainAlertControl.Show(this, "تم استيراد الأصول بنجاح وإضافة سجل استيراد يضم التفاصيل المتعلقة، راجع إدارة سجلات الأصول وسجلات عمليات الاستيراد للتأكد من ذلك", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"استيراد أصول وفق التفاصيل التالية: 1- عدد الأصول المضافة ({newAssetsCount})، 2- عدد الأصول المحدثة ({((updateExistedAssets) ? existedAssetsCount_UserForm : 0)})، 3- عدد الأصول الموجودة ولم يتم تحديثها لأنها مضافة أساساً عن طريق استيراد ملف إكسل ({existedAssetsCount_ImportExcel}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 timer3 = 0;
             }
         }
@@ -1102,19 +1192,6 @@ namespace AssetManagement
             return;
         }
 
-        private void manageEmployeeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            ManageEmployeeTblForm empFrm = new ManageEmployeeTblForm();
-            empFrm.ShowDialog();
-        }
-
-        private void importEmployeeTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد بيانات الموظفين - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-
-        }
-
         private void manageFinancialItemCategoryTblBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة إدارة سجلات البنود المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
@@ -1501,7 +1578,7 @@ namespace AssetManagement
 
         private void importFinancialItemsFromExcelBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"استيراد سجلات مالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"تحميل ملف استيراد سجلات مالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             actionsStatusMemoEdit.Text = "";
             OpenFileDialog assetsFileOFD = new OpenFileDialog() { Filter = "Excel worbook 2007-2022 (*.xlsx)|*.xlsx" };
             if (assetsFileOFD.ShowDialog() != DialogResult.OK)
@@ -1524,6 +1601,7 @@ namespace AssetManagement
                 GC.Collect();
                 string actionMsg = $"تم استيراد السجلات المالية بنجاح، وتم إضافة ({newAssetsAdded}) أصول إلى سجلات الأصول كذلك، راجع إدارة سجلات الأصول والسجلات المالية للتأكد من ذلك";
                 mainAlertControl.Show(this, actionMsg, StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"استيراد سجلات مالية من ملف إكسل - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 timer3 = 0;
                 return;
             }
@@ -1531,7 +1609,7 @@ namespace AssetManagement
 
         private void financialItemsStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            StaticCode.activeUserLogin.SessionActions += $"إحصائيات السجلات المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+            StaticCode.activeUserLogin.SessionActions += $"نافذة إحصائيات السجلات المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             mainAlertControl.Show(this, StaticCode.ApplicationTitle, "هذه الميزة قيد الإنجاز حالياً");
             //FinancialStatsForm fistFrm = new FinancialStatsForm();
             //fistFrm.ShowDialog();
@@ -1647,11 +1725,6 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
             prepareFinancialReportsBarButtonItem.Visibility = (StaticCode.activeUserRole.ViewFinancialReports == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageIncomingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageIncomingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             manageOutgoingTypeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageOutgoingTypes == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            manageEmployeeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.ManageEmployees == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-            importEmployeeTblBarButtonItem.Visibility = (StaticCode.activeUserRole.AddNewEmployee == true) ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-
-            manageEmployeeTblBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            importEmployeeTblBarButtonItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void addNewUserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1684,13 +1757,8 @@ importFinancialItemsFromExcelBarButtonItem.Visibility = (StaticCode.activeUserRo
                     StaticCode.mainDbContext.UserLoginTbls.InsertOnSubmit(StaticCode.activeUserLogin);
                     StaticCode.mainDbContext.SubmitChanges();
                 }
-                StaticCode.activeUserLogin = new UserLoginTbl()
-                {
-                    LoggedInAt = DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds),
-                    UserID = StaticCode.activeUser.ID
-                };
-                ApplyUserRolesOnInterface();
-                timer3 = 0;
+
+                DoTheseOnLoadOrLogin();
             }
         }
 

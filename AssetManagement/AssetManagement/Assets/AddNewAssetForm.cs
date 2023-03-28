@@ -27,8 +27,6 @@ namespace AssetManagement.Assets
 
         private void AddNewAssetForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'assetMngDbDataSet1.EmployeeTbl' table. You can move, or remove it, as needed.
-            this.employeeTblTableAdapter.Fill(this.assetMngDbDataSet1.EmployeeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.FinancialItemCategoryTbl' table. You can move, or remove it, as needed.
             this.financialItemCategoryTblTableAdapter.Fill(this.assetMngDbDataSet1.FinancialItemCategoryTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet1.SubDepartmentTbl' table. You can move, or remove it, as needed.
@@ -60,7 +58,6 @@ namespace AssetManagement.Assets
             manageModelTblBtn.Visible = StaticCode.activeUserRole.ManageModels == true;
             manageEstateAreaUnitTblBtn.Visible = StaticCode.activeUserRole.ManageEstateAreaUnits == true;
             manageFinancialItemCategoryTblBtn.Visible = isNewAssetRadioButton.Checked && StaticCode.activeUserRole.ManageFinancialItemCategories == true;
-            manageEmployeeTblBtn.Visible = StaticCode.activeUserRole.ManageEmployees == true;
             assetFinancialItemCategoryLookUpEdit.Properties.DataSource = StaticCode.mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.IsIncomingOrOutgiung == "صادر" && fica1.FinancialItemCategoryDetails.Contains(StaticCode.AssetAsFiCaStatement));
 
             if (StaticCode.activeUserRole.IsSectionIndependent != true)
@@ -228,7 +225,7 @@ namespace AssetManagement.Assets
                 }
                 else
                 {
-                    assetSubD = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(assetDeptLookUpEdit.EditValue));
+                    assetSubD = StaticCode.GetDefaultSubDeptByDeptID(Convert.ToInt32(assetDeptLookUpEdit.EditValue));
                 }
                 if (!StaticCode.mainDbContext.EstateAreaUnitTbls.Any())
                 {
@@ -398,14 +395,6 @@ namespace AssetManagement.Assets
             mdlFrm.ShowDialog();
 
             this.modelTblTableAdapter.Fill(this.assetMngDbDataSet.ModelTbl);
-        }
-
-        private void manageEmployeeTblBtn_Click(object sender, EventArgs e)
-        {
-            ManageEmployeeTblForm empFrm = new ManageEmployeeTblForm();
-            empFrm.ShowDialog();
-
-            this.employeeTblTableAdapter.Fill(this.assetMngDbDataSet.EmployeeTbl);
         }
 
         private void minorCategoryLookUpEdit_EditValueChanged(object sender, EventArgs e)

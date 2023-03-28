@@ -69,9 +69,6 @@ namespace AssetManagement.Users
             this.colManageDepartments = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewSubDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManageSubDepartments = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAddNewEmployee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colManageEmployees = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colViewEmployeeCustodies = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewSquare = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colManageSquares = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAddNewCurrency = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -184,9 +181,6 @@ namespace AssetManagement.Users
             this.colManageDepartments,
             this.colAddNewSubDepartment,
             this.colManageSubDepartments,
-            this.colAddNewEmployee,
-            this.colManageEmployees,
-            this.colViewEmployeeCustodies,
             this.colAddNewSquare,
             this.colManageSquares,
             this.colAddNewCurrency,
@@ -526,30 +520,6 @@ namespace AssetManagement.Users
             this.colManageSubDepartments.VisibleIndex = 28;
             this.colManageSubDepartments.Width = 150;
             // 
-            // colAddNewEmployee
-            // 
-            this.colAddNewEmployee.Caption = "إضافة موظف جديد";
-            this.colAddNewEmployee.FieldName = "AddNewEmployee";
-            this.colAddNewEmployee.MinWidth = 150;
-            this.colAddNewEmployee.Name = "colAddNewEmployee";
-            this.colAddNewEmployee.Width = 150;
-            // 
-            // colManageEmployees
-            // 
-            this.colManageEmployees.Caption = "إدارة جدول الموظفين";
-            this.colManageEmployees.FieldName = "ManageEmployees";
-            this.colManageEmployees.MinWidth = 150;
-            this.colManageEmployees.Name = "colManageEmployees";
-            this.colManageEmployees.Width = 150;
-            // 
-            // colViewEmployeeCustodies
-            // 
-            this.colViewEmployeeCustodies.Caption = "عرض العهدات المسلّمة لموظف";
-            this.colViewEmployeeCustodies.FieldName = "ViewEmployeeCustodies";
-            this.colViewEmployeeCustodies.MinWidth = 150;
-            this.colViewEmployeeCustodies.Name = "colViewEmployeeCustodies";
-            this.colViewEmployeeCustodies.Width = 150;
-            // 
             // colAddNewSquare
             // 
             this.colAddNewSquare.Caption = "إضافة ساحة جديدة";
@@ -853,7 +823,6 @@ namespace AssetManagement.Users
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
-            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -1111,8 +1080,5 @@ namespace AssetManagement.Users
         private DevExpress.XtraGrid.Columns.GridColumn colManageOutgoingTypes;
         private DevExpress.XtraGrid.Columns.GridColumn colViewFinancialItemsStats;
         private DevExpress.XtraGrid.Columns.GridColumn colViewSessionActionsLog;
-        private DevExpress.XtraGrid.Columns.GridColumn colAddNewEmployee;
-        private DevExpress.XtraGrid.Columns.GridColumn colManageEmployees;
-        private DevExpress.XtraGrid.Columns.GridColumn colViewEmployeeCustodies;
     }
 }

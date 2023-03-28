@@ -94,7 +94,7 @@ namespace AssetManagement.Assets
             this.mainCategoryLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.mainCategoryTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetInfoTabPage2 = new System.Windows.Forms.TabPage();
-            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.custodianNameTextBox = new System.Windows.Forms.TextBox();
             this.carManufacturingYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.carEngineNumberTextBox = new System.Windows.Forms.TextBox();
             this.carEngineNumberLabel = new System.Windows.Forms.Label();
@@ -148,10 +148,8 @@ namespace AssetManagement.Assets
             this.estateAreaUnitTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EstateAreaUnitTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.modelTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.ModelTblTableAdapter();
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.custodianNameTextBox = new System.Windows.Forms.TextBox();
             this.assetInformationGroupBox.SuspendLayout();
             this.assetInfoTabControl.SuspendLayout();
             this.assetInfoTabPage1.SuspendLayout();
@@ -183,7 +181,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).BeginInit();
             this.assetInfoTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).BeginInit();
@@ -1017,15 +1014,19 @@ namespace AssetManagement.Assets
             this.assetInfoTabPage2.Location = new System.Drawing.Point(4, 33);
             this.assetInfoTabPage2.Name = "assetInfoTabPage2";
             this.assetInfoTabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 544);
+            this.assetInfoTabPage2.Size = new System.Drawing.Size(1271, 554);
             this.assetInfoTabPage2.TabIndex = 1;
             this.assetInfoTabPage2.Text = "2";
             this.assetInfoTabPage2.UseVisualStyleBackColor = true;
             // 
-            // employeeTblBindingSource
+            // custodianNameTextBox
             // 
-            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
-            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet;
+            this.custodianNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.custodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.custodianNameTextBox.Location = new System.Drawing.Point(855, 26);
+            this.custodianNameTextBox.Name = "custodianNameTextBox";
+            this.custodianNameTextBox.Size = new System.Drawing.Size(234, 28);
+            this.custodianNameTextBox.TabIndex = 305;
             // 
             // carManufacturingYearNumericUpDown
             // 
@@ -1505,7 +1506,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -1527,10 +1527,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
             // 
-            // employeeTblTableAdapter
-            // 
-            this.employeeTblTableAdapter.ClearBeforeFill = true;
-            // 
             // modelTblTableAdapter
             // 
             this.modelTblTableAdapter.ClearBeforeFill = true;
@@ -1538,15 +1534,6 @@ namespace AssetManagement.Assets
             // assetVwTableAdapter
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
-            // 
-            // custodianNameTextBox
-            // 
-            this.custodianNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.custodianNameTextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.custodianNameTextBox.Location = new System.Drawing.Point(855, 26);
-            this.custodianNameTextBox.Name = "custodianNameTextBox";
-            this.custodianNameTextBox.Size = new System.Drawing.Size(234, 28);
-            this.custodianNameTextBox.TabIndex = 305;
             // 
             // UpdateExistedAssetForm
             // 
@@ -1604,7 +1591,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.mainCategoryTblBindingSource)).EndInit();
             this.assetInfoTabPage2.ResumeLayout(false);
             this.assetInfoTabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carManufacturingYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estateAreaUnitTblBindingSource)).EndInit();
@@ -1737,8 +1723,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.ListBox allAttachmentsListBox;
         private System.Windows.Forms.Button attachFilesBtn;
         private System.Windows.Forms.Button openAssetFolderBtn;
-        private System.Windows.Forms.BindingSource employeeTblBindingSource;
-        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
         private System.Windows.Forms.TextBox custodianNameTextBox;
     }
 }

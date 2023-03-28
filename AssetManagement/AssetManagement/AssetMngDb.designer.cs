@@ -48,9 +48,6 @@ namespace AssetManagement
     partial void InsertDepartmentTbl(DepartmentTbl instance);
     partial void UpdateDepartmentTbl(DepartmentTbl instance);
     partial void DeleteDepartmentTbl(DepartmentTbl instance);
-    partial void InsertEmployeeTbl(EmployeeTbl instance);
-    partial void UpdateEmployeeTbl(EmployeeTbl instance);
-    partial void DeleteEmployeeTbl(EmployeeTbl instance);
     partial void InsertEstateAreaUnitTbl(EstateAreaUnitTbl instance);
     partial void UpdateEstateAreaUnitTbl(EstateAreaUnitTbl instance);
     partial void DeleteEstateAreaUnitTbl(EstateAreaUnitTbl instance);
@@ -182,14 +179,6 @@ namespace AssetManagement
 			get
 			{
 				return this.GetTable<DepartmentTbl>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EmployeeTbl> EmployeeTbls
-		{
-			get
-			{
-				return this.GetTable<EmployeeTbl>();
 			}
 		}
 		
@@ -3316,164 +3305,6 @@ namespace AssetManagement
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EmployeeTbl")]
-	public partial class EmployeeTbl : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _EmployeeCode;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private string _WorkingAt;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnEmployeeCodeChanging(string value);
-    partial void OnEmployeeCodeChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnWorkingAtChanging(string value);
-    partial void OnWorkingAtChanged();
-    #endregion
-		
-		public EmployeeTbl()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeCode", DbType="NVarChar(50)")]
-		public string EmployeeCode
-		{
-			get
-			{
-				return this._EmployeeCode;
-			}
-			set
-			{
-				if ((this._EmployeeCode != value))
-				{
-					this.OnEmployeeCodeChanging(value);
-					this.SendPropertyChanging();
-					this._EmployeeCode = value;
-					this.SendPropertyChanged("EmployeeCode");
-					this.OnEmployeeCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkingAt", DbType="NVarChar(200)")]
-		public string WorkingAt
-		{
-			get
-			{
-				return this._WorkingAt;
-			}
-			set
-			{
-				if ((this._WorkingAt != value))
-				{
-					this.OnWorkingAtChanging(value);
-					this.SendPropertyChanging();
-					this._WorkingAt = value;
-					this.SendPropertyChanged("WorkingAt");
-					this.OnWorkingAtChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EstateAreaUnitTbl")]
 	public partial class EstateAreaUnitTbl : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3818,6 +3649,8 @@ namespace AssetManagement
 		
 		private System.Nullable<int> _RelevantRecordID;
 		
+		private string _AddingMethod;
+		
 		private EntityRef<CurrencyTbl> _CurrencyTbl;
 		
 		private EntityRef<CurrencyTbl> _CurrencyTbl1;
@@ -3868,6 +3701,8 @@ namespace AssetManagement
     partial void OnLastModifiedByChanged();
     partial void OnRelevantRecordIDChanging(System.Nullable<int> value);
     partial void OnRelevantRecordIDChanged();
+    partial void OnAddingMethodChanging(string value);
+    partial void OnAddingMethodChanged();
     #endregion
 		
 		public FinancialItemTbl()
@@ -4267,6 +4102,26 @@ namespace AssetManagement
 					this._RelevantRecordID = value;
 					this.SendPropertyChanged("RelevantRecordID");
 					this.OnRelevantRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddingMethod", DbType="NVarChar(50)")]
+		public string AddingMethod
+		{
+			get
+			{
+				return this._AddingMethod;
+			}
+			set
+			{
+				if ((this._AddingMethod != value))
+				{
+					this.OnAddingMethodChanging(value);
+					this.SendPropertyChanging();
+					this._AddingMethod = value;
+					this.SendPropertyChanged("AddingMethod");
+					this.OnAddingMethodChanged();
 				}
 			}
 		}
@@ -6813,12 +6668,6 @@ namespace AssetManagement
 		
 		private System.Nullable<bool> _ManageSubDepartments;
 		
-		private System.Nullable<bool> _AddNewEmployee;
-		
-		private System.Nullable<bool> _ManageEmployees;
-		
-		private System.Nullable<bool> _ViewEmployeeCustodies;
-		
 		private System.Nullable<bool> _AddNewSquare;
 		
 		private System.Nullable<bool> _ManageSquares;
@@ -6943,12 +6792,6 @@ namespace AssetManagement
     partial void OnAddNewSubDepartmentChanged();
     partial void OnManageSubDepartmentsChanging(System.Nullable<bool> value);
     partial void OnManageSubDepartmentsChanged();
-    partial void OnAddNewEmployeeChanging(System.Nullable<bool> value);
-    partial void OnAddNewEmployeeChanged();
-    partial void OnManageEmployeesChanging(System.Nullable<bool> value);
-    partial void OnManageEmployeesChanged();
-    partial void OnViewEmployeeCustodiesChanging(System.Nullable<bool> value);
-    partial void OnViewEmployeeCustodiesChanged();
     partial void OnAddNewSquareChanging(System.Nullable<bool> value);
     partial void OnAddNewSquareChanged();
     partial void OnManageSquaresChanging(System.Nullable<bool> value);
@@ -7611,66 +7454,6 @@ namespace AssetManagement
 					this._ManageSubDepartments = value;
 					this.SendPropertyChanged("ManageSubDepartments");
 					this.OnManageSubDepartmentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddNewEmployee", DbType="Bit")]
-		public System.Nullable<bool> AddNewEmployee
-		{
-			get
-			{
-				return this._AddNewEmployee;
-			}
-			set
-			{
-				if ((this._AddNewEmployee != value))
-				{
-					this.OnAddNewEmployeeChanging(value);
-					this.SendPropertyChanging();
-					this._AddNewEmployee = value;
-					this.SendPropertyChanged("AddNewEmployee");
-					this.OnAddNewEmployeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageEmployees", DbType="Bit")]
-		public System.Nullable<bool> ManageEmployees
-		{
-			get
-			{
-				return this._ManageEmployees;
-			}
-			set
-			{
-				if ((this._ManageEmployees != value))
-				{
-					this.OnManageEmployeesChanging(value);
-					this.SendPropertyChanging();
-					this._ManageEmployees = value;
-					this.SendPropertyChanged("ManageEmployees");
-					this.OnManageEmployeesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewEmployeeCustodies", DbType="Bit")]
-		public System.Nullable<bool> ViewEmployeeCustodies
-		{
-			get
-			{
-				return this._ViewEmployeeCustodies;
-			}
-			set
-			{
-				if ((this._ViewEmployeeCustodies != value))
-				{
-					this.OnViewEmployeeCustodiesChanging(value);
-					this.SendPropertyChanging();
-					this._ViewEmployeeCustodies = value;
-					this.SendPropertyChanged("ViewEmployeeCustodies");
-					this.OnViewEmployeeCustodiesChanged();
 				}
 			}
 		}
@@ -10679,6 +10462,8 @@ namespace AssetManagement
 		
 		private string _مجموعة_البند_المالي;
 		
+		private string _طريقة_الإضافة;
+		
 		public FinancialItemStatVw()
 		{
 		}
@@ -10954,6 +10739,22 @@ namespace AssetManagement
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[طريقة الإضافة]", Storage="_طريقة_الإضافة", DbType="NVarChar(50)")]
+		public string طريقة_الإضافة
+		{
+			get
+			{
+				return this._طريقة_الإضافة;
+			}
+			set
+			{
+				if ((this._طريقة_الإضافة != value))
+				{
+					this._طريقة_الإضافة = value;
+				}
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FinancialItemVw")]
@@ -10993,6 +10794,8 @@ namespace AssetManagement
 		private string _ملاحظات_إضافية;
 		
 		private string _مجموعة_البند_المالي;
+		
+		private string _طريقة_الإضافة;
 		
 		public FinancialItemVw()
 		{
@@ -11266,6 +11069,22 @@ namespace AssetManagement
 				if ((this._مجموعة_البند_المالي != value))
 				{
 					this._مجموعة_البند_المالي = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[طريقة الإضافة]", Storage="_طريقة_الإضافة", DbType="NVarChar(50)")]
+		public string طريقة_الإضافة
+		{
+			get
+			{
+				return this._طريقة_الإضافة;
+			}
+			set
+			{
+				if ((this._طريقة_الإضافة != value))
+				{
+					this._طريقة_الإضافة = value;
 				}
 			}
 		}

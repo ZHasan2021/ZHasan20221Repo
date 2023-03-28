@@ -25,6 +25,9 @@ namespace AssetManagement.Finance
         string reportSectionName = "";
         string reportDeptName = "";
         string reportSubDeptName = "";
+        bool isDurationReport = false;
+        DateTime fromDate = DateTime.Today;
+        DateTime toDate = DateTime.Today;
 
         public FinancialReportsForm()
         {
@@ -86,8 +89,8 @@ namespace AssetManagement.Finance
 
         private void FinancialReportsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (File.Exists(StaticCode.SubLevelTotalsOutPath))
-                File.Delete(StaticCode.SubLevelTotalsOutPath);
+            if (File.Exists(StaticCode.DetailedFinancialReportPath))
+                File.Delete(StaticCode.DetailedFinancialReportPath);
             if (File.Exists(StaticCode.ExpensesAnalysisReportPath))
                 File.Delete(StaticCode.ExpensesAnalysisReportPath);
         }
@@ -206,8 +209,8 @@ namespace AssetManagement.Finance
             }
             if (searchWithinPeriodCheckBox.Checked)
             {
-                DateTime fromDate = DateTime.Today;
-                DateTime toDate = DateTime.Today;
+                fromDate = DateTime.Today;
+                toDate = DateTime.Today;
                 if (fromToRadioButton.Checked)
                 {
                     fromDate = Convert.ToDateTime(fromDateDateEdit.EditValue);
@@ -243,7 +246,6 @@ namespace AssetManagement.Finance
             else
             {
                 List<int> IDsIncluded = reportQueryResults.Select(fii1 => fii1.ID).ToList();
-                var financialItemsQryVw = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => IDsIncluded.Contains(fiv1.معرف_السجل_المالي));
                 string plusQry = "";
                 if (IDsIncluded.Count() == 0)
                     plusQry = " WHERE 1 > 2;";
@@ -272,6 +274,8 @@ namespace AssetManagement.Finance
                     }
                 }
                 this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);
+                reportQueryResults = reportQueryResults.Where(fiit1 => fiit1.AddingMethod != "Calculated");
+                var financialItemsQryVw = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => reportQueryResults.Select(fiit1 => fiit1.ID).Contains(fiv1.معرف_السجل_المالي));
 
                 #region Prepare the totals of each sub-level by currency
                 if (searchAllRadioButton.Checked)
@@ -347,7 +351,7 @@ namespace AssetManagement.Finance
                 #endregion
 
                 #region Prepare the excel details of each sub-level by currency
-                string financialReportXlsx = StaticCode.SubLevelTotalsOutPath;
+                string financialReportXlsx = StaticCode.DetailedFinancialReportPath;
                 if (File.Exists(financialReportXlsx))
                     File.Delete(financialReportXlsx);
                 ExcelPackage financialReport_SubLevelsEp = new ExcelPackage(new FileInfo(financialReportXlsx));
@@ -402,7 +406,9 @@ namespace AssetManagement.Finance
                     sheet_Title_Name1_short += " - " + oneCurr;
                     sheet_Title_Name2_short += " - " + oneCurr;
                     var incomingOrDirectOutgoingSubLevelQry = financialItemsQryVw_OneCurr.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
+                    var incomingOrDirectOutgoingSubLevelQry_Prev = incomingOrDirectOutgoingSubLevelQry.Where(fivp1 => fivp1.تاريخ_تحرير_السجل < fromDate);
                     var financialItemsQryVw_OneCurr_Head = financialItemsQryVw_OneCurr;
+                    var financialItemsQryVw_OneCurr_Head_Prev = financialItemsQryVw_OneCurr_Head.Where(fivp1 => fivp1.تاريخ_تحرير_السجل < fromDate);
                     switch (reportLevel)
                     {
                         case 1:
@@ -421,6 +427,7 @@ namespace AssetManagement.Finance
                     double totalOutgoing_HeadSubLevel = financialItemsQryVw_OneCurr_Head.CalcOutgoingOfFinancialItems();
                     var directOutgoingSubLevelQry = financialItemsQryVw_OneCurr.Where(idoufv => idoufv.وارد_أم_صادر == "صادر" && idoufv.نوع_الصادر == "صادرات مباشرة");
                     double totalRecycled_HeadSubLevel = financialItemsQryVw_OneCurr_Head.CalcRecycledOfFinancialItems();
+                    double totalRecycled_HeadSubLevel_Prev = financialItemsQryVw_OneCurr_Head_Prev.CalcRecycledOfFinancialItems();
 
                     #region General financial report
                     ExcelWorksheet generalFinancialReportWs = financialReport_SubLevelsWb.Worksheets.Add(sheet_Title_Name1_short);
@@ -465,6 +472,7 @@ namespace AssetManagement.Finance
 
                             #region Incoming of sub-level
                             var financialItemsQryVw_OneCurr_Head1 = financialItemsQryVw_OneCurr.Where(fivh1 => fivh1.الدائرة == StaticCode.PMName && fivh1.القسم == StaticCode.PMName && fivh1.الوحدة == StaticCode.PMName);
+                            var financialItemsQryVw_OneCurr_Head1_Prev = financialItemsQryVw_OneCurr_Head1.Where(fivhp1 => fivhp1.تاريخ_تحرير_السجل < fromDate);
                             var incoming_HeadSubLevelQry1 = financialItemsQryVw_OneCurr_Head1.Where(fiv1 => fiv1.وارد_أم_صادر == "وارد").OrderByDescending(fiv11 => fiv11.جهة_الإيراد);
                             double totalIncomingSubLevel1 = financialItemsQryVw_OneCurr_Head1.CalcIncomingOfFinancialItems();
 
@@ -640,7 +648,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems());
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head1.CalcRecycledOfFinancialItems() + ((isDurationReport) ? financialItemsQryVw_OneCurr_Head1_Prev.CalcRecycledOfFinancialItems() : 0));
                             }
                             using (var cells = generalFinancialReportWs.Cells[recycledRow1, 3])
                             {
@@ -673,6 +681,7 @@ namespace AssetManagement.Finance
 
                             #region Incoming of sub-level
                             var financialItemsQryVw_OneCurr_Head2 = financialItemsQryVw_OneCurr.Where(fivh2 => fivh2.القسم == "" && fivh2.الوحدة == "");
+                            var financialItemsQryVw_OneCurr_Head2_Prev = financialItemsQryVw_OneCurr_Head2.Where(fivhp2 => fivhp2.تاريخ_تحرير_السجل < fromDate);
                             var incoming_HeadSubLevelQry2 = financialItemsQryVw_OneCurr_Head2.Where(fiv2 => fiv2.وارد_أم_صادر == "وارد").OrderByDescending(fiv22 => fiv22.جهة_الإيراد);
                             double totalIncomingSubLevel2 = financialItemsQryVw_OneCurr_Head2.CalcIncomingOfFinancialItems();
 
@@ -848,7 +857,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems());
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head2.CalcRecycledOfFinancialItems() + ((isDurationReport) ? financialItemsQryVw_OneCurr_Head2_Prev.CalcRecycledOfFinancialItems() : 0));
                             }
                             using (var cells = generalFinancialReportWs.Cells[recycledRow2, 3])
                             {
@@ -881,6 +890,7 @@ namespace AssetManagement.Finance
 
                             #region Incoming of sub-level
                             var financialItemsQryVw_OneCurr_Head3 = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == "");
+                            var financialItemsQryVw_OneCurr_Head3_Prev = financialItemsQryVw_OneCurr_Head3.Where(fivhp3 => fivhp3.تاريخ_تحرير_السجل < fromDate);
                             var incoming_HeadSubLevelQry3 = financialItemsQryVw_OneCurr_Head3.Where(fiv2 => fiv2.وارد_أم_صادر == "وارد").OrderByDescending(fiv33 => fiv33.جهة_الإيراد);
                             double totalIncoming_HeadSubLevel3 = financialItemsQryVw_OneCurr_Head3.CalcIncomingOfFinancialItems();
 
@@ -1056,7 +1066,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems());
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head3.CalcRecycledOfFinancialItems() + ((isDurationReport) ? financialItemsQryVw_OneCurr_Head3_Prev.CalcRecycledOfFinancialItems() : 0));
                             }
                             using (var cells = generalFinancialReportWs.Cells[recycledRow3, 3])
                             {
@@ -1089,6 +1099,7 @@ namespace AssetManagement.Finance
 
                             #region Incoming of sub-level
                             var financialItemsQryVw_OneCurr_Head4 = financialItemsQryVw_OneCurr.Where(fivh3 => fivh3.الوحدة == searchBySubDepartmentSearchLookUpEdit.Text);
+                            var financialItemsQryVw_OneCurr_Head4_Prev = financialItemsQryVw_OneCurr_Head4.Where(fivhp4 => fivhp4.تاريخ_تحرير_السجل < fromDate);
                             var incoming_HeadSubLevelQry4 = financialItemsQryVw_OneCurr_Head4.Where(fiv2 => fiv2.وارد_أم_صادر == "وارد").OrderByDescending(fiv44 => fiv44.جهة_الإيراد);
                             double totalIncoming_HeadSubLevel4 = financialItemsQryVw_OneCurr_Head4.CalcIncomingOfFinancialItems();
 
@@ -1264,7 +1275,7 @@ namespace AssetManagement.Finance
                                 cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                                 cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 239, 218));
                                 cells.Style.Border.BorderAround(ExcelBorderStyle.Dotted);
-                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems());
+                                cells.Value = Math.Round(financialItemsQryVw_OneCurr_Head4.CalcRecycledOfFinancialItems() + ((isDurationReport) ? financialItemsQryVw_OneCurr_Head4_Prev.CalcRecycledOfFinancialItems() : 0));
                             }
                             using (var cells = generalFinancialReportWs.Cells[recycledRow4, 3])
                             {
@@ -1477,7 +1488,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(198, 224, 180));
-                        cells.Value = Math.Round(totalRecycled_HeadSubLevel);
+                        cells.Value = Math.Round(totalRecycled_HeadSubLevel + ((isDurationReport) ? totalRecycled_HeadSubLevel_Prev : 0));
                     }
 
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 3])
@@ -1501,7 +1512,7 @@ namespace AssetManagement.Finance
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                         cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(169, 208, 142));
-                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems());
+                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems() + ((isDurationReport) ? incomingOrDirectOutgoingSubLevelQry_Prev.CalcRecycledOfFinancialItems() : 0));
                     }
                     using (var cells = detailedFinancialReportWs.Cells[figuresRow + 2, 6])
                     {
@@ -1631,7 +1642,7 @@ namespace AssetManagement.Finance
                             cells.Style.Border.BorderAround(ExcelBorderStyle.Medium);
                             cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
                             cells.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(45, 211, 199));
-                            cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems());
+                            cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems() + ((isDurationReport) ? incomingOrDirectOutgoingSubLevelQry_Prev.CalcRecycledOfFinancialItems() : 0));
                         }
                         tableRow++;
                     }
@@ -1732,6 +1743,7 @@ namespace AssetManagement.Finance
                                 default:
                                     break;
                             }
+                            var subLevelRecords_Prev = subLevelRecords.Where(fivp1 => fivp1.تاريخ_تحرير_السجل < fromDate);
                             string recycledHeadSubText = "";
                             switch (reportLevel)
                             {
@@ -1767,7 +1779,7 @@ namespace AssetManagement.Finance
                                 cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                                 cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cells.Style.Border.Top.Style = cells.Style.Border.Bottom.Style = cells.Style.Border.Right.Style = cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                                cells.Value = Math.Round(subLevelRecords.CalcRecycledOfFinancialItems());
+                                cells.Value = Math.Round(subLevelRecords.CalcRecycledOfFinancialItems() + ((isDurationReport) ? subLevelRecords_Prev.CalcRecycledOfFinancialItems() : 0));
                             }
                             detailedFinancialReportWs.Row(allRecycledRow).Height = 22;
                             allRecycledRow++;
@@ -2268,7 +2280,7 @@ namespace AssetManagement.Finance
             if (File.Exists(financialReportSFD.FileName))
                 File.Delete(financialReportSFD.FileName);
             string targetPath = financialReportSFD.FileName;
-            if (!File.Exists(StaticCode.FinancialReportPath))
+            if (!File.Exists(StaticCode.BlankFinancialReportPath))
             {
                 mainAlertControl.Show(this, "فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle);
                 MessageBox.Show("فورم التقرير المالي غير موجود", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2276,7 +2288,7 @@ namespace AssetManagement.Finance
             }
             if (File.Exists(targetPath))
                 File.Delete(targetPath);
-            File.Copy(StaticCode.FinancialReportPath, targetPath, true);
+            File.Copy(StaticCode.BlankFinancialReportPath, targetPath, true);
             ExcelPackage fiRpEp = new ExcelPackage(new FileInfo(targetPath));
             ExcelWorkbook fiRpWb = fiRpEp.Workbook;
             ExcelWorksheet fiRpWs = fiRpWb.Worksheets.First();
@@ -2529,7 +2541,7 @@ namespace AssetManagement.Finance
 
         private void searchWithinPeriodCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            searchWithinPeriodPanel.Visible = searchWithinPeriodCheckBox.Checked;
+            searchWithinPeriodPanel.Visible = isDurationReport = searchWithinPeriodCheckBox.Checked;
         }
 
         private void manageSectionTblBtn_Click(object sender, EventArgs e)
@@ -2706,7 +2718,7 @@ namespace AssetManagement.Finance
                 return;
             }
             string financialReportXlsx = financialReportSFD.FileName;
-            File.Copy(StaticCode.SubLevelTotalsOutPath, financialReportSFD.FileName, true);
+            File.Copy(StaticCode.DetailedFinancialReportPath, financialReportSFD.FileName, true);
             mainAlertControl.Show(this, "تم حفظ ملف الإكسل", StaticCode.ApplicationTitle);
         }
 

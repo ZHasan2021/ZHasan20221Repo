@@ -34,8 +34,7 @@ namespace AssetManagement.Assets
             this.assetCodeTextBox = new System.Windows.Forms.TextBox();
             this.assetCodeLabel = new System.Windows.Forms.Label();
             this.moveAssetGroupBox = new System.Windows.Forms.GroupBox();
-            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
+            this.toCustodianNameTextBox = new System.Windows.Forms.TextBox();
             this.toPlaceOfPresenceCheckBox = new System.Windows.Forms.CheckBox();
             this.toPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
             this.fromPlaceOfPresenceTextBox = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@ namespace AssetManagement.Assets
             this.fromSubDepartmentLabel = new System.Windows.Forms.Label();
             this.toSubDepartmentLookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.subDepartmentTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assetMngDbDataSet = new AssetManagement.AssetMngDbDataSet();
             this.assetMovementTblBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -96,7 +96,6 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.assetMoveVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetMoveVwTableAdapter();
@@ -109,12 +108,10 @@ namespace AssetManagement.Assets
             this.viewAssetInformationBtn = new System.Windows.Forms.Button();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.toCustodianNameTextBox = new System.Windows.Forms.TextBox();
             this.moveAssetGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementTblBindingNavigator)).BeginInit();
             this.assetMovementTblBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwGridControl)).BeginInit();
@@ -192,15 +189,13 @@ namespace AssetManagement.Assets
             this.moveAssetGroupBox.Text = "معلومات الأصل الحالية والجديدة";
             this.moveAssetGroupBox.Visible = false;
             // 
-            // employeeTblBindingSource
+            // toCustodianNameTextBox
             // 
-            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
-            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet;
-            // 
-            // assetMngDbDataSet
-            // 
-            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
-            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.toCustodianNameTextBox.Location = new System.Drawing.Point(243, 266);
+            this.toCustodianNameTextBox.Name = "toCustodianNameTextBox";
+            this.toCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
+            this.toCustodianNameTextBox.TabIndex = 235;
+            this.toCustodianNameTextBox.Visible = false;
             // 
             // toPlaceOfPresenceCheckBox
             // 
@@ -283,6 +278,11 @@ namespace AssetManagement.Assets
             // 
             this.subDepartmentTblBindingSource.DataMember = "SubDepartmentTbl";
             this.subDepartmentTblBindingSource.DataSource = this.assetMngDbDataSet;
+            // 
+            // assetMngDbDataSet
+            // 
+            this.assetMngDbDataSet.DataSetName = "AssetMngDbDataSet";
+            this.assetMngDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // assetMovementTblBindingNavigator
             // 
@@ -802,7 +802,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -823,10 +822,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
-            // 
-            // employeeTblTableAdapter
-            // 
-            this.employeeTblTableAdapter.ClearBeforeFill = true;
             // 
             // subDepartmentTblTableAdapter
             // 
@@ -903,14 +898,6 @@ namespace AssetManagement.Assets
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
             // 
-            // toCustodianNameTextBox
-            // 
-            this.toCustodianNameTextBox.Location = new System.Drawing.Point(243, 266);
-            this.toCustodianNameTextBox.Name = "toCustodianNameTextBox";
-            this.toCustodianNameTextBox.Size = new System.Drawing.Size(261, 28);
-            this.toCustodianNameTextBox.TabIndex = 235;
-            this.toCustodianNameTextBox.Visible = false;
-            // 
             // MoveAssetForm
             // 
             this.AcceptButton = this.searchAssetBtn;
@@ -934,10 +921,9 @@ namespace AssetManagement.Assets
             this.Load += new System.EventHandler(this.MoveAssetForm_Load);
             this.moveAssetGroupBox.ResumeLayout(false);
             this.moveAssetGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assetMngDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetMovementTblBindingNavigator)).EndInit();
             this.assetMovementTblBindingNavigator.ResumeLayout(false);
             this.assetMovementTblBindingNavigator.PerformLayout();
@@ -1040,8 +1026,6 @@ namespace AssetManagement.Assets
         private System.Windows.Forms.TextBox toPlaceOfPresenceTextBox;
         private System.Windows.Forms.TextBox fromPlaceOfPresenceTextBox;
         private System.Windows.Forms.Label fromPlaceOfPresenceLabel;
-        private System.Windows.Forms.BindingSource employeeTblBindingSource;
-        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
         private System.Windows.Forms.TextBox toCustodianNameTextBox;
     }
 }

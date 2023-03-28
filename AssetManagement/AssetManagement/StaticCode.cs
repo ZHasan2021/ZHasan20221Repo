@@ -111,7 +111,7 @@ namespace AssetManagement
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -171,6 +171,21 @@ namespace AssetManagement
             }
         }
 
+        public static bool AutoBackup()
+        {
+            if (!Directory.Exists(BackupFolder))
+                Directory.CreateDirectory(BackupFolder);
+            string autoBackupName = $"{DateTime.Now.AddDays(appOptions.ShiftDays).AddSeconds(appOptions.ShiftSeconds).ToString("yyyy-MM-dd, HH-mm-ss")}.bak";
+            return BackupDb(BackupFolder + autoBackupName);
+        }
+
+        public static int CountOfBackupFiles()
+        {
+            if (!Directory.Exists(BackupFolder))
+                return 0;
+            return Directory.GetFiles(BackupFolder).Count(oneF => Path.GetExtension(oneF) == ".bak");
+        }
+
         public static bool RestoreDb(string backupName)
         {
             try
@@ -211,9 +226,8 @@ namespace AssetManagement
                 sqlConnection.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                string dddd = ex.Message;
                 return false;
             }
         }
@@ -244,7 +258,7 @@ namespace AssetManagement
             }
         }
 
-        public static int GetSubDeptForPM()
+        public static int GetDefaultSubDeptForPM()
         {
             int assetSubD = 0;
             var qry_PM = mainDbContext.SubDepartmentVws.Where(sdptv1 => sdptv1.اسم_الوحدة == (PMName) && sdptv1.القسم_التابعة_له == (PMName) && sdptv1.الدائرة_التي_يتبع_لها_القسم == PMName);
@@ -268,7 +282,7 @@ namespace AssetManagement
             return assetSubD;
         }
 
-        public static int GetSubDeptBySectionID(int sctID)
+        public static int GetDefaultSubDeptBySectionID(int sctID)
         {
             int assetSubD = 0;
             string sctName = "";
@@ -298,7 +312,7 @@ namespace AssetManagement
             return assetSubD;
         }
 
-        public static int GetSubDeptByDeptID(int dptID)
+        public static int GetDefaultSubDeptByDeptID(int dptID)
         {
             int assetSubD = 0;
             string sctName = "";
@@ -327,6 +341,18 @@ namespace AssetManagement
             return assetSubD;
         }
 
+        public static int GetDefaultSubDeptForActiveUser()
+        {
+            int subDept = 0;
+            if (activeUserRole.IsSectionIndependent == true)
+                subDept = GetDefaultSubDeptForPM();
+            else if (activeUserRole.IsDepartmentIndependent == true)
+                subDept = GetDefaultSubDeptBySectionID(Convert.ToInt32(activeUser.UserSection));
+            else
+                subDept = GetDefaultSubDeptByDeptID(Convert.ToInt32(activeUser.UserDept));
+            return subDept;
+        }
+
         public static List<int> GetSubDeptsListByDeptID(int dptID)
         {
             if (!StaticCode.mainDbContext.SubDepartmentTbls.Any(sdpt1 => sdpt1.MainDepartment == dptID))
@@ -342,6 +368,60 @@ namespace AssetManagement
             if (!StaticCode.mainDbContext.SubDepartmentTbls.Any(sdpt1 => dptIDs.Contains(sdpt1.MainDepartment)))
                 return null;
             return StaticCode.mainDbContext.SubDepartmentTbls.Where(sdpt1 => dptIDs.Contains(sdpt1.MainDepartment)).Select(sdpt2 => sdpt2.ID).ToList();
+        }
+
+        public static int SubDeptByThreeLevels(string sectionName, string deptName, string subDeptName)
+        {
+            int sectionID = 0;
+            int deptID = 0;
+            int subDeptID = 0;
+            if (!StaticCode.mainDbContext.SectionTbls.Any(sct1 => sct1.SectionName == sectionName))
+            {
+                SectionTbl newSection = new SectionTbl() { SectionName = sectionName };
+                StaticCode.mainDbContext.SectionTbls.InsertOnSubmit(newSection);
+                StaticCode.mainDbContext.SubmitChanges();
+                sectionID = newSection.ID;
+                DepartmentTbl newDept = new DepartmentTbl() { DepartmentName = deptName, SectionOfDepartment = sectionID };
+                StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newDept);
+                StaticCode.mainDbContext.SubmitChanges();
+                deptID = newDept.ID;
+                SubDepartmentTbl newSDept = new SubDepartmentTbl() { SubDepartmentName = subDeptName, MainDepartment = deptID };
+                StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newSDept);
+                StaticCode.mainDbContext.SubmitChanges();
+                subDeptID = newSDept.ID;
+            }
+            else
+            {
+                sectionID = StaticCode.mainDbContext.SectionTbls.First(sct1 => sct1.SectionName == sectionName).ID;
+                if (!StaticCode.mainDbContext.DepartmentTbls.Any(dpt1 => dpt1.DepartmentName == deptName && dpt1.SectionOfDepartment == sectionID))
+                {
+                    DepartmentTbl newDept = new DepartmentTbl() { DepartmentName = deptName, SectionOfDepartment = sectionID };
+                    StaticCode.mainDbContext.DepartmentTbls.InsertOnSubmit(newDept);
+                    StaticCode.mainDbContext.SubmitChanges();
+                    deptID = newDept.ID;
+                    SubDepartmentTbl newSDept = new SubDepartmentTbl() { SubDepartmentName = subDeptName, MainDepartment = deptID };
+                    StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newSDept);
+                    StaticCode.mainDbContext.SubmitChanges();
+                    subDeptID = newSDept.ID;
+                }
+                else
+                {
+                    deptID = StaticCode.mainDbContext.DepartmentTbls.First(dpt1 => dpt1.DepartmentName == deptName && dpt1.SectionOfDepartment == sectionID).ID;
+                    if (!StaticCode.mainDbContext.SubDepartmentTbls.Any(sdpt1 => sdpt1.SubDepartmentName == subDeptName && sdpt1.MainDepartment == deptID))
+                    {
+                        SubDepartmentTbl newSDept = new SubDepartmentTbl() { SubDepartmentName = subDeptName, MainDepartment = deptID };
+                        StaticCode.mainDbContext.SubDepartmentTbls.InsertOnSubmit(newSDept);
+                        StaticCode.mainDbContext.SubmitChanges();
+                        subDeptID = newSDept.ID;
+                    }
+                    else
+                    {
+                        subDeptID = StaticCode.mainDbContext.SubDepartmentTbls.First(sdpt1 => sdpt1.SubDepartmentName == subDeptName && sdpt1.MainDepartment == deptID).ID;
+                    }
+                }
+            }
+
+            return subDeptID;
         }
 
         public static List<int> GetAssetsSubDeptsOfActiveUser()
@@ -494,13 +574,13 @@ namespace AssetManagement
             {
                 if (sectionName == StaticCode.PMName)
                 {
-                    assetSubD = StaticCode.GetSubDeptForPM();
+                    assetSubD = StaticCode.GetDefaultSubDeptForPM();
                 }
                 else
                 {
                     if (String.IsNullOrEmpty(sectionName) && String.IsNullOrEmpty(departmentName) && String.IsNullOrEmpty(subDepartmentName))
                     {
-                        assetSubD = StaticCode.GetSubDeptForPM();
+                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                     }
                     else
                     {
@@ -517,11 +597,11 @@ namespace AssetManagement
                 {
                     if (sectionName.ToUpper() == StaticCode.PMName)
                     {
-                        assetSubD = StaticCode.GetSubDeptForPM();
+                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                     }
                     else
                     {
-                        assetSubD = GetSubDeptBySectionID(sctID);
+                        assetSubD = GetDefaultSubDeptBySectionID(sctID);
                     }
                 }
                 else // Department
@@ -530,7 +610,7 @@ namespace AssetManagement
                     {
                         if (String.IsNullOrEmpty(departmentName))
                         {
-                            assetSubD = StaticCode.GetSubDeptBySectionID(sctID);
+                            assetSubD = StaticCode.GetDefaultSubDeptBySectionID(sctID);
                         }
                         else
                         {
@@ -544,7 +624,7 @@ namespace AssetManagement
                         dptID = mainDbContext.DepartmentVws.Where(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName).First().معرف_القسم;
                         if (activeUserRole.IsDepartmentIndependent == true)
                         {
-                            assetSubD = GetSubDeptByDeptID(dptID);
+                            assetSubD = GetDefaultSubDeptByDeptID(dptID);
                         }
                         else // SubDepartment
                         {
@@ -556,11 +636,11 @@ namespace AssetManagement
                                 {
                                     if (String.IsNullOrEmpty(departmentName))
                                     {
-                                        assetSubD = StaticCode.GetSubDeptForPM();
+                                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                                     }
                                     else
                                     {
-                                        assetSubD = StaticCode.GetSubDeptByDeptID(dptID);
+                                        assetSubD = StaticCode.GetDefaultSubDeptByDeptID(dptID);
                                     }
                                 }
                                 else
@@ -831,6 +911,7 @@ namespace AssetManagement
             tmpMainDbContext.SubmitChanges();
             return "Done!";
         }
+
         public static string AssetsAttachmentsFolder = $"{Application.StartupPath}//Assets attachments//";
 
         public static IQueryable<AssetTbl> GetAssetsToDestruct()
@@ -1471,9 +1552,9 @@ namespace AssetManagement
 
         #region Finance
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
-        public static string FinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
-        public static string SubLevelTotalsPath = $"{FinanceFolder}SubLevelTotalsForm.xlsx";
-        public static string SubLevelTotalsOutPath = $"{FinanceFolder}التقرير المالي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
+        public static string BlankFinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
+        public static string GeneralFinancialReportPath = $"{FinanceFolder}التقرير المالي العام{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
+        public static string DetailedFinancialReportPath = $"{FinanceFolder}التقرير المالي التفصيلي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string ExpensesAnalysisReportPath = $"{FinanceFolder}تحليل المصروفات{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string AssetAsFiCaStatement = "أصول ثابتة";
         public static string FinancialItemsAttachmentsFolder = $"{Application.StartupPath}//Financial items attachments//";
@@ -1536,13 +1617,13 @@ namespace AssetManagement
             {
                 if (sectionName.ToUpper() == StaticCode.PMName)
                 {
-                    assetSubD = StaticCode.GetSubDeptForPM();
+                    assetSubD = StaticCode.GetDefaultSubDeptForPM();
                 }
                 else
                 {
                     if (String.IsNullOrEmpty(sectionName) && String.IsNullOrEmpty(departmentName) && String.IsNullOrEmpty(subDepartmentName))
                     {
-                        assetSubD = StaticCode.GetSubDeptForPM();
+                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                     }
                     else
                     {
@@ -1557,11 +1638,11 @@ namespace AssetManagement
                 {
                     if (sectionName.ToUpper() == StaticCode.PMName)
                     {
-                        assetSubD = StaticCode.GetSubDeptForPM();
+                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                     }
                     else
                     {
-                        assetSubD = GetSubDeptBySectionID(sctID);
+                        assetSubD = GetDefaultSubDeptBySectionID(sctID);
                     }
                 }
                 else // Department
@@ -1570,7 +1651,7 @@ namespace AssetManagement
                     {
                         if (String.IsNullOrEmpty(departmentName))
                         {
-                            assetSubD = StaticCode.GetSubDeptBySectionID(sctID);
+                            assetSubD = StaticCode.GetDefaultSubDeptBySectionID(sctID);
                         }
                         else
                         {
@@ -1582,7 +1663,7 @@ namespace AssetManagement
                         dptID = mainDbContext.DepartmentVws.Where(dpt1 => dpt1.اسم_القسم == departmentName && dpt1.الدائرة_التي_يتبع_لها_القسم == sectionName).First().معرف_القسم;
                         if (activeUserRole.IsDepartmentIndependent == true)
                         {
-                            assetSubD = GetSubDeptByDeptID(dptID);
+                            assetSubD = GetDefaultSubDeptByDeptID(dptID);
                         }
                         else // SubDepartment
                         {
@@ -1594,11 +1675,11 @@ namespace AssetManagement
                                 {
                                     if (String.IsNullOrEmpty(departmentName))
                                     {
-                                        assetSubD = StaticCode.GetSubDeptForPM();
+                                        assetSubD = StaticCode.GetDefaultSubDeptForPM();
                                     }
                                     else
                                     {
-                                        assetSubD = StaticCode.GetSubDeptByDeptID(dptID);
+                                        assetSubD = StaticCode.GetDefaultSubDeptByDeptID(dptID);
                                     }
                                 }
                                 else
@@ -1749,6 +1830,7 @@ namespace AssetManagement
                         IncomingOrOutgoing = incomingOrOutgoingVal,
                         OutgoingAmount = (isIncoming) ? 0 : outgoingAmountVal,
                         AdditionalNotes = "",
+                        AddingMethod = "Import/Excel",
                     };
                     importedAssets.Add(newFinancialItem);
                     rowStartNo++;
@@ -1765,11 +1847,6 @@ namespace AssetManagement
                         if (!StaticCode.mainDbContext.EstateAreaUnitTbls.Any(esu1 => esu1.EstateAreaUnitName == StaticCode.missingDataStatement))
                         {
                             StaticCode.mainDbContext.EstateAreaUnitTbls.InsertOnSubmit(new EstateAreaUnitTbl() { EstateAreaUnitName = StaticCode.missingDataStatement });
-                            StaticCode.mainDbContext.SubmitChanges();
-                        }
-                        if (!StaticCode.mainDbContext.EmployeeTbls.Any(emp1 => emp1.FirstName == StaticCode.missingDataStatement && emp1.LastName == StaticCode.missingDataStatement && emp1.EmployeeCode == StaticCode.missingDataStatement && emp1.WorkingAt == StaticCode.missingDataStatement))
-                        {
-                            StaticCode.mainDbContext.EmployeeTbls.InsertOnSubmit(new EmployeeTbl() { FirstName = StaticCode.missingDataStatement, LastName = StaticCode.missingDataStatement, EmployeeCode = StaticCode.missingDataStatement, WorkingAt = StaticCode.missingDataStatement });
                             StaticCode.mainDbContext.SubmitChanges();
                         }
                         AssetTbl newAssetByFoundCode = new AssetTbl()
@@ -1837,6 +1914,45 @@ namespace AssetManagement
             mainDbContext.SubmitChanges();
             return "Done!";
         }
+
+        public static void AddRecycledOfLastYear()
+        {
+            string recycledStatement = "مدور محسوب لسنة " + (StaticCode.AppToday.Year - 1);
+            int fiCaID = 0;
+            if (!StaticCode.mainDbContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == "رصيد مدور" && fica1.IsIncomingOrOutgiung == "وارد"))
+
+            {
+                StaticCode.mainDbContext.FinancialItemCategoryTbls.InsertOnSubmit(new FinancialItemCategoryTbl() { FinancialItemCategoryName = "رصيد مدور", IsIncomingOrOutgiung = "وارد", FinancialItemCategoryDetails = "رصيد مدور", GroupName = "وارد" });
+                StaticCode.mainDbContext.SubmitChanges();
+            }
+            fiCaID = StaticCode.mainDbContext.FinancialItemCategoryTbls.First(fica1 => fica1.FinancialItemCategoryName == "رصيد مدور" && fica1.IsIncomingOrOutgiung == "وارد").ID;
+            foreach (CurrencyTbl oneCurr in StaticCode.mainDbContext.CurrencyTbls)
+            {
+                if (StaticCode.mainDbContext.FinancialItemVws.Any(fiv1 => fiv1.بيان_السجل_المالي == recycledStatement && fiv1.وارد_أم_صادر == "وارد" && fiv1.العملة == oneCurr.CurrencyName && fiv1.طريقة_الإضافة == "Calculated"))
+                    continue;
+
+                var allFiItsBeforeToday = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.تاريخ_تحرير_السجل < AppToday && fiv1.العملة == oneCurr.CurrencyName).GetTotalFinancialTableOfLevel_Default();
+
+                FinancialItemTbl lastYearRecycledFiIt = new FinancialItemTbl()
+                {
+                    FinancialItemInsertionDate = StaticCode.AppToday,
+                    IncomingOrOutgoing = "وارد",
+                    IncomingAmount = allFiItsBeforeToday.CalcRecycledOfFinancialItems(),
+                    OutgoingAmount = 0,
+                    FinancialItemDescription = recycledStatement,
+                    FinancialItemCurrency = oneCurr.ID,
+                    IncomingFrom = "أخرى",
+                    OutgoingTo = "",
+                    OutgoingType = "",
+                    FinancialItemSubDept = GetDefaultSubDeptForActiveUser(),
+                    AddingMethod = "Calculated",
+                    FinancialItemCategory = fiCaID,
+                    AdditionalNotes = "",
+                };
+                StaticCode.mainDbContext.FinancialItemTbls.InsertOnSubmit(lastYearRecycledFiIt);
+            }
+            StaticCode.mainDbContext.SubmitChanges();
+        }
         #endregion
     }
 
@@ -1844,9 +1960,9 @@ namespace AssetManagement
     {
         public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemVw> fivQry)
         {
-            if (!fivQry.Any() || !fivQry.Any(fivi => fivi.وارد_أم_صادر == "وارد"))
+            if (!fivQry.Any() || !fivQry.Any(fivi => fivi.وارد_أم_صادر == "وارد" && fivi.طريقة_الإضافة != "Calculated"))
                 return 0;
-            return (fivQry.Where(fivi => fivi.وارد_أم_صادر == "وارد").OrderByDescending(fiv22 => fiv22.جهة_الإيراد).Sum(fivi2 => fivi2.المبلغ_الوارد));
+            return (fivQry.Where(fivi => fivi.وارد_أم_صادر == "وارد" && fivi.طريقة_الإضافة != "Calculated").OrderByDescending(fiv22 => fiv22.جهة_الإيراد).Sum(fivi2 => fivi2.المبلغ_الوارد));
         }
 
         public static double CalcIncomingOfFinancialItems(this IQueryable<FinancialItemTbl> fiitQry)
@@ -1889,7 +2005,7 @@ namespace AssetManagement
         /// <returns></returns>
         public static IQueryable<FinancialItemVw> GetTotalFinancialTableOfLevel_Default(this IQueryable<FinancialItemVw> fivQry)
         {
-            var fivResult = fivQry;
+            var fivResult = fivQry.Where(fiv1 => fiv1.طريقة_الإضافة != "Calculated");
             if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 fivResult = fivQry.Where(idoufv1 => (idoufv1.وارد_أم_صادر == "وارد" && (idoufv1.جهة_الإيراد == "أخرى" || (idoufv1.جهة_الإيراد == "من المستوى الأعلى" && idoufv1.الدائرة == StaticCode.PMName && idoufv1.القسم == StaticCode.PMName && idoufv1.الوحدة == StaticCode.PMName))) || (idoufv1.وارد_أم_صادر == "صادر" && idoufv1.نوع_الصادر == "صادرات مباشرة")).OrderByDescending(idoufv2 => idoufv2.وارد_أم_صادر);
             else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)

@@ -76,6 +76,7 @@ namespace AssetManagement.Finance
             financialItemTblBindingSource.EndEdit();
             tableAdapterManager.UpdateAll(this.assetMngDbDataSet);
             mainAlertControl.Show(this, "تم الحفظ", StaticCode.ApplicationTitle);
+            StaticCode.activeUserLogin.SessionActions += $"تعديل في جدول السجلات المالية - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
         }
 
         private void mainAlertControl_FormLoad(object sender, DevExpress.XtraBars.Alerter.AlertFormLoadEventArgs e)
@@ -103,9 +104,15 @@ namespace AssetManagement.Finance
             }
             try
             {
-                int currAssetID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
-                AddNewFinancialItemForm cardVwFrm = new AddNewFinancialItemForm(currAssetID);
-                cardVwFrm.ShowDialog();
+                int currFinancialItemID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
+                if (StaticCode.mainDbContext.FinancialItemTbls.Single(fi1 => fi1.ID == currFinancialItemID).AddingMethod == "Calculated")
+                {
+                    mainAlertControl.Show(this, "هذا السجل محسوب تلقائياً وليس مضافاً من قبل المستخدم، لذا لا يمكن تعديله أو حذفه", StaticCode.ApplicationTitle);
+                    return;
+                }
+                StaticCode.activeUserLogin.SessionActions += $"نافذة تعديل سجل مالي موجود - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
+                AddNewFinancialItemForm updateFiFrm = new AddNewFinancialItemForm(currFinancialItemID);
+                updateFiFrm.ShowDialog();
                 currRow = 0;
                 this.financialItemVwTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemVw);
                 //this.financialItemTblTableAdapter.Fill(this.assetMngDbDataSet.FinancialItemTbl);
@@ -130,9 +137,14 @@ namespace AssetManagement.Finance
             try
             {
                 int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
-                FinancialItemTbl recToDelte = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == currFiItID);
-                StaticCode.mainDbContext.FinancialItemTbls.DeleteOnSubmit(recToDelte);
-                int relevantRecordID = recToDelte.FindRelevantFinancialItem();
+                FinancialItemTbl recToDelete = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == currFiItID);
+                if (recToDelete.AddingMethod == "Calculated")
+                {
+                    mainAlertControl.Show(this, "هذا السجل محسوب تلقائياً وليس مضافاً من قبل المستخدم، لذا لا يمكن تعديله أو حذفه", StaticCode.ApplicationTitle);
+                    return;
+                }
+                StaticCode.mainDbContext.FinancialItemTbls.DeleteOnSubmit(recToDelete);
+                int relevantRecordID = recToDelete.FindRelevantFinancialItem();
                 if (relevantRecordID > 0)
                 {
                     FinancialItemTbl relevantRecToDelte = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == relevantRecordID);
@@ -146,6 +158,7 @@ namespace AssetManagement.Finance
                 if (relevantRecordID > 0)
                     deleteSuccessMsg += " وسجل إضافي مرتبط به";
                 mainAlertControl.Show(this, deleteSuccessMsg, StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"حذف سجل مالي بيانه ({recToDelete.FinancialItemDescription}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {
@@ -173,10 +186,12 @@ namespace AssetManagement.Finance
             try
             {
                 int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
+                FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == currFiItID);
                 string fiItCode = StaticCode.mainDbContext.FinancialItemTbls.Single(fiit1 => fiit1.ID == currFiItID).FinancialItemCode;
                 string fiItFolder = StaticCode.FinancialItemsAttachmentsFolder + fiItCode + "//";
                 if (!Directory.Exists(fiItFolder))
                     Directory.CreateDirectory(fiItFolder);
+                StaticCode.activeUserLogin.SessionActions += $"فتح مجلد سجل مالي بيانه ({currFiIt.FinancialItemDescription}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
                 Process.Start(fiItFolder);
             }
             catch
@@ -199,6 +214,7 @@ namespace AssetManagement.Finance
                 if (assetOFD.ShowDialog() != DialogResult.OK)
                     return;
                 int currFiItID = Convert.ToInt32(financialItemGridView.GetRowCellValue(currRow, colمعرفالسجلالمالي));
+                FinancialItemTbl currFiIt = StaticCode.mainDbContext.FinancialItemTbls.Single(fii1 => fii1.ID == currFiItID);
                 string fiItCode = StaticCode.mainDbContext.FinancialItemTbls.Single(fiit1 => fiit1.ID == currFiItID).FinancialItemCode;
                 string fiItFolder = StaticCode.FinancialItemsAttachmentsFolder + fiItCode + "//";
                 if (!Directory.Exists(fiItFolder))
@@ -208,6 +224,7 @@ namespace AssetManagement.Finance
                     File.Copy(oneFile, fiItFolder + Path.GetFileName(oneFile), true);
                 }
                 mainAlertControl.Show(this, $"تم إضافة ({assetOFD.FileNames.Count()}) مرفق/ات", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"إضافة مرفق/ات لمجلد سجل مالي بيانه ({currFiIt.FinancialItemDescription}) - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

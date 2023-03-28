@@ -440,12 +440,6 @@
     <Compile Include="AuxTables\ManageIncomingTypeTblForm.Designer.cs">
       <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuxTables\ManageEmployeeTblForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AuxTables\ManageEmployeeTblForm.Designer.cs">
-      <DependentUpon>ManageEmployeeTblForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AuxTables\ManageSubDepartmentTblForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -679,9 +673,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageIncomingTypeTblForm.resx">
       <DependentUpon>ManageIncomingTypeTblForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AuxTables\ManageEmployeeTblForm.resx">
-      <DependentUpon>ManageEmployeeTblForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuxTables\ManageSubDepartmentTblForm.resx">
       <DependentUpon>ManageSubDepartmentTblForm.cs</DependentUpon>

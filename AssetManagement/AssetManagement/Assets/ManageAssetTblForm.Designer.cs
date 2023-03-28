@@ -1086,7 +1086,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = this.currencyTblTableAdapter;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = this.estateAreaUnitTblTableAdapter;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;

@@ -164,7 +164,6 @@ namespace AssetManagement.AuxTables
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = null;
-            this.tableAdapterManager.EmployeeTblTableAdapter = null;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = this.financialItemCategoryTblTableAdapter;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;

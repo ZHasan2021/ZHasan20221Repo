@@ -25,8 +25,6 @@ namespace AssetManagement.Assets
 
         private void NewAssetInventoryForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'assetMngDbDataSet.EmployeeTbl' table. You can move, or remove it, as needed.
-            this.employeeTblTableAdapter.Fill(this.assetMngDbDataSet.EmployeeTbl);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.SubDepartmentVw' table. You can move, or remove it, as needed.
             this.subDepartmentVwTableAdapter.Fill(this.assetMngDbDataSet.SubDepartmentVw);
             // TODO: This line of code loads data into the 'assetMngDbDataSet.DepartmentVw' table. You can move, or remove it, as needed.

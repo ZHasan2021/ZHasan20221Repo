@@ -54,7 +54,6 @@ namespace AssetManagement.Assets
             this.squareTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SquareTblTableAdapter();
             this.sectionTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SectionTblTableAdapter();
             this.tableAdapterManager = new AssetManagement.AssetMngDbDataSetTableAdapters.TableAdapterManager();
-            this.employeeTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter();
             this.subDepartmentTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.SubDepartmentTblTableAdapter();
             this.assetMoveVwBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assetMoveVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetMoveVwTableAdapter();
@@ -65,7 +64,6 @@ namespace AssetManagement.Assets
             this.assetTblTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetTblTableAdapter();
             this.assetTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.assetVwTableAdapter = new AssetManagement.AssetMngDbDataSetTableAdapters.AssetVwTableAdapter();
-            this.employeeTblBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toCustodianNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.toSubDepartmentLookUpEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subDepartmentTblBindingSource)).BeginInit();
@@ -84,7 +82,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toPlaceOfPresenceCheckBox
@@ -324,7 +321,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CurrencyTblTableAdapter = null;
             this.tableAdapterManager.DepartmentTblTableAdapter = this.departmentTblTableAdapter;
-            this.tableAdapterManager.EmployeeTblTableAdapter = this.employeeTblTableAdapter;
             this.tableAdapterManager.EstateAreaUnitTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemCategoryTblTableAdapter = null;
             this.tableAdapterManager.FinancialItemTblTableAdapter = null;
@@ -345,10 +341,6 @@ namespace AssetManagement.Assets
             this.tableAdapterManager.UserLoginTblTableAdapter = null;
             this.tableAdapterManager.UserRoleTblTableAdapter = null;
             this.tableAdapterManager.UserTblTableAdapter = null;
-            // 
-            // employeeTblTableAdapter
-            // 
-            this.employeeTblTableAdapter.ClearBeforeFill = true;
             // 
             // subDepartmentTblTableAdapter
             // 
@@ -394,11 +386,6 @@ namespace AssetManagement.Assets
             // assetVwTableAdapter
             // 
             this.assetVwTableAdapter.ClearBeforeFill = true;
-            // 
-            // employeeTblBindingSource
-            // 
-            this.employeeTblBindingSource.DataMember = "EmployeeTbl";
-            this.employeeTblBindingSource.DataSource = this.assetMngDbDataSet;
             // 
             // toCustodianNameTextBox
             // 
@@ -454,7 +441,6 @@ namespace AssetManagement.Assets
             ((System.ComponentModel.ISupportInitialize)(this.assetMoveVwBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assetTblBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeTblBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,8 +480,6 @@ namespace AssetManagement.Assets
         private AssetMngDbDataSetTableAdapters.AssetVwTableAdapter assetVwTableAdapter;
         private System.Windows.Forms.CheckBox toPlaceOfPresenceCheckBox;
         private System.Windows.Forms.TextBox toPlaceOfPresenceTextBox;
-        private System.Windows.Forms.BindingSource employeeTblBindingSource;
-        private AssetMngDbDataSetTableAdapters.EmployeeTblTableAdapter employeeTblTableAdapter;
         private System.Windows.Forms.TextBox toCustodianNameTextBox;
     }
 }

@@ -18,9 +18,22 @@ namespace AssetManagement.Assets
     public partial class CustomAssetsForm : Form
     {
         IQueryable<AssetTbl> assetsQry = null;
+        int parentForm = 0;
 
         public CustomAssetsForm()
         {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// 1: AssetTbl
+        /// 2: AssetMovementTbl
+        /// 3: AssetTransactionTbl
+        /// </summary>
+        /// <param name="parentForm"></param>
+        public CustomAssetsForm(int parentFormParam)
+        {
+            parentForm = parentFormParam;
             InitializeComponent();
         }
 
@@ -242,8 +255,23 @@ namespace AssetManagement.Assets
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
-            ManageAssetTblForm mngFrm = new ManageAssetTblForm(assetsQry);
-            mngFrm.ShowDialog();
+            switch (parentForm)
+            {
+                case 1:
+                    ManageAssetTblForm mngAssetFrm = new ManageAssetTblForm(assetsQry);
+                    mngAssetFrm.ShowDialog();
+                    break;
+                case 2:
+                    ManageAssetMovementTblForm mngAssetMvFrm = new ManageAssetMovementTblForm(assetsQry);
+                    mngAssetMvFrm.ShowDialog();
+                    break;
+                case 3:
+                    ManageAssetTransactionTblForm mngAssetTrFrm = new ManageAssetTransactionTblForm(assetsQry);
+                    mngAssetTrFrm.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

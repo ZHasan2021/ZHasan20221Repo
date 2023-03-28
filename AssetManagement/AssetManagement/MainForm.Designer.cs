@@ -109,8 +109,6 @@ namespace AssetManagement
             this.importSubDepartmentTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.importSquareTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.importModelTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.manageEmployeeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.importEmployeeTblBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewUserActionsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.mainRibbonMiniToolbar = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             this.assetsRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -142,7 +140,6 @@ namespace AssetManagement
             this.actionsStatusMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.mainProgressPanel = new DevExpress.XtraWaitForm.ProgressPanel();
             this.breakingAlertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.applyImportedAssetMovementsBarCheckItem = new DevExpress.XtraBars.BarCheckItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionsStatusMemoEdit.Properties)).BeginInit();
@@ -229,10 +226,7 @@ namespace AssetManagement
             this.importSubDepartmentTblBarButtonItem,
             this.importSquareTblBarButtonItem,
             this.importModelTblBarButtonItem,
-            this.manageEmployeeTblBarButtonItem,
-            this.importEmployeeTblBarButtonItem,
-            this.viewUserActionsBarButtonItem,
-            this.applyImportedAssetMovementsBarCheckItem});
+            this.viewUserActionsBarButtonItem});
             this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
             this.mainRibbonControl.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.mainRibbonControl.MaxItemId = 109;
@@ -1432,44 +1426,6 @@ namespace AssetManagement
             this.importModelTblBarButtonItem.Name = "importModelTblBarButtonItem";
             this.importModelTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importModelTblBarButtonItem_ItemClick);
             // 
-            // manageEmployeeTblBarButtonItem
-            // 
-            this.manageEmployeeTblBarButtonItem.Caption = "إدارة جدول الموظفين";
-            this.manageEmployeeTblBarButtonItem.Id = 103;
-            this.manageEmployeeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3848173;
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.manageEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.manageEmployeeTblBarButtonItem.Name = "manageEmployeeTblBarButtonItem";
-            this.manageEmployeeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.manageEmployeeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.manageEmployeeTblBarButtonItem_ItemClick);
-            // 
-            // importEmployeeTblBarButtonItem
-            // 
-            this.importEmployeeTblBarButtonItem.Caption = "استيراد أسماء الموظفين";
-            this.importEmployeeTblBarButtonItem.Id = 104;
-            this.importEmployeeTblBarButtonItem.ImageOptions.Image = global::AssetManagement.Properties.Resources._3643510;
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.importEmployeeTblBarButtonItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.importEmployeeTblBarButtonItem.Name = "importEmployeeTblBarButtonItem";
-            this.importEmployeeTblBarButtonItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
-            this.importEmployeeTblBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importEmployeeTblBarButtonItem_ItemClick);
-            // 
             // viewUserActionsBarButtonItem
             // 
             this.viewUserActionsBarButtonItem.Caption = "عرض نشاطات المستخدمين";
@@ -1515,7 +1471,6 @@ namespace AssetManagement
             this.newAssetRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.addNewAssetBarButtonItem);
             this.newAssetRibbonPageGroup.ItemLinks.Add(this.importAssetsFromExcelBarSubItem);
-            this.newAssetRibbonPageGroup.ItemLinks.Add(this.applyImportedAssetMovementsBarCheckItem);
             this.newAssetRibbonPageGroup.Name = "newAssetRibbonPageGroup";
             this.newAssetRibbonPageGroup.Text = "أصل جديد - New asset";
             // 
@@ -1610,8 +1565,6 @@ namespace AssetManagement
             // otherAuxTablesRibbonPageGroup
             // 
             this.otherAuxTablesRibbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.True;
-            this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageEmployeeTblBarButtonItem);
-            this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.importEmployeeTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageSquareTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.importSquareTblBarButtonItem);
             this.otherAuxTablesRibbonPageGroup.ItemLinks.Add(this.manageEstateAreaUnitTblBarButtonItem);
@@ -1900,25 +1853,6 @@ namespace AssetManagement
             this.breakingAlertControl.ButtonClick += new DevExpress.XtraBars.Alerter.AlertButtonClickEventHandler(this.breakingAlertControl_ButtonClick);
             this.breakingAlertControl.FormLoad += new DevExpress.XtraBars.Alerter.AlertFormLoadEventHandler(this.breakingAlertControl_FormLoad);
             // 
-            // applyImportedAssetMovementsBarCheckItem
-            // 
-            this.applyImportedAssetMovementsBarCheckItem.Caption = "تطبيق سجلات النقل المستوردة";
-            this.applyImportedAssetMovementsBarCheckItem.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
-            this.applyImportedAssetMovementsBarCheckItem.Id = 108;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Hovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Hovered.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Hovered.Options.UseBackColor = true;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Hovered.Options.UseFont = true;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Normal.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Normal.Options.UseFont = true;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Normal.Options.UseTextOptions = true;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Normal.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Pressed.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Pressed.Options.UseBackColor = true;
-            this.applyImportedAssetMovementsBarCheckItem.ItemAppearance.Pressed.Options.UseFont = true;
-            this.applyImportedAssetMovementsBarCheckItem.Name = "applyImportedAssetMovementsBarCheckItem";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -2053,10 +1987,7 @@ namespace AssetManagement
         private DevExpress.XtraBars.BarButtonItem importSubDepartmentTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importSquareTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem importModelTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem manageEmployeeTblBarButtonItem;
-        private DevExpress.XtraBars.BarButtonItem importEmployeeTblBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem viewUserActionsBarButtonItem;
-        private DevExpress.XtraBars.BarCheckItem applyImportedAssetMovementsBarCheckItem;
     }
 }
 

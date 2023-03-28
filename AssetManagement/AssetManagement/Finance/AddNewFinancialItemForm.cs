@@ -284,13 +284,13 @@ namespace AssetManagement.Finance
                 int assetSubD = 0;
                 if (StaticCode.activeUserRole.IsSectionIndependent == true)
                 {
-                    assetSubD = StaticCode.GetSubDeptForPM();
+                    assetSubD = StaticCode.GetDefaultSubDeptForPM();
                 }
                 else
                 {
-                    assetSubD = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
+                    assetSubD = StaticCode.GetDefaultSubDeptBySectionID(Convert.ToInt32(financialItemSectionLookUpEdit.EditValue));
                     if (StaticCode.activeUserRole.IsDepartmentIndependent != true)
-                        assetSubD = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
+                        assetSubD = StaticCode.GetDefaultSubDeptByDeptID(Convert.ToInt32(financialItemDeptLookUpEdit.EditValue));
                 }
                 StaticCode.mainDbContext.SubmitChanges();
 
@@ -303,6 +303,7 @@ namespace AssetManagement.Finance
                 {
                     newFiIt.FinancialItemCode = StaticCode.GetTheNewFinancialItemCode();
                     newFiIt.FinancialItemSubDept = assetSubD;
+                    newFiIt.AddingMethod = "UserForm";
                 }
                 newFiIt.FinancialItemCategory = Convert.ToInt32(financialItemCategoryLookUpEdit.EditValue);
                 newFiIt.FinancialItemDescription = financialItemDescriptionTextBox.Text.Trim();
@@ -358,9 +359,9 @@ namespace AssetManagement.Finance
 
                             int subD_Incoming = 0;
                             if (StaticCode.activeUserRole.IsSectionIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptBySectionID(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
+                                subD_Incoming = StaticCode.GetDefaultSubDeptBySectionID(Convert.ToInt32(outgoingToSectionLookUpEdit.EditValue));
                             else if (StaticCode.activeUserRole.IsDepartmentIndependent == true)
-                                subD_Incoming = StaticCode.GetSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
+                                subD_Incoming = StaticCode.GetDefaultSubDeptByDeptID(Convert.ToInt32(outgoingToDeptLookUpEdit.EditValue));
                             else
                                 subD_Incoming = Convert.ToInt32(outgoingToSubDeptLookUpEdit.EditValue);
 
@@ -408,6 +409,7 @@ namespace AssetManagement.Finance
                 }
 
                 mainAlertControl.Show(this, $"تمت {((updateExisted) ? "تعديل" : "إضافة")} السجل المالي بنجاح", StaticCode.ApplicationTitle);
+                StaticCode.activeUserLogin.SessionActions += $"{((updateExisted) ? "تعديل" : "إضافة")} سجل مالي {newFiIt.IncomingOrOutgoing} بتاريخ {newFiIt.FinancialItemInsertionDate.ToString("yyyy-MM-dd")} - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
             }
             catch
             {

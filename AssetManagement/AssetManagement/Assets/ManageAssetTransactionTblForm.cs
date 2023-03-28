@@ -17,15 +17,24 @@ namespace AssetManagement.AuxTables
     public partial class ManageAssetTransactionTblForm : Form
     {
         int currRow = -1;
+        IQueryable<AssetTbl> customDS = null;
 
         public ManageAssetTransactionTblForm()
         {
             InitializeComponent();
         }
 
+        public ManageAssetTransactionTblForm(IQueryable<AssetTbl> customAssets)
+        {
+            customDS = customAssets;
+            InitializeComponent();
+        }
+
         void LoadAssets()
         {
             List<int> IDsIncluded = StaticCode.mainDbContext.AssetVw_Alls.Select(astv1 => astv1.معرف_الأصل).ToList();
+            if (customDS != null)
+                IDsIncluded = customDS.Select(ast1 => ast1.ID).ToList();
             string plusQry = "";
             if (IDsIncluded.Count() == 0)
                 plusQry = " WHERE 1 > 2;";
@@ -90,7 +99,7 @@ namespace AssetManagement.AuxTables
 
         private void assetTransactionTblBindingNavigatorExportToExcelItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx" };
+            SaveFileDialog exportDlg = new SaveFileDialog() { Filter = "Excel workbook (2007-2022)(*.xlsx)|*.xlsx", FileName = "سجلات تصريف الأصول" };
             if (exportDlg.ShowDialog() != DialogResult.OK)
                 return;
             StaticCode.activeUserLogin.SessionActions += $"تصدير سجلات تصريف الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
