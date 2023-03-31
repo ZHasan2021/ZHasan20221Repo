@@ -148,29 +148,6 @@ namespace AssetManagement
             }
         }
 
-        public static bool RestoreDb3(string backupName)
-        {
-            try
-            {
-                SqlConnection dbConn = new SqlConnection(new Properties.Settings().AssetMngDbConnectionString);
-                if (dbConn.State != System.Data.ConnectionState.Open)
-                    dbConn.Open();
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(new Properties.Settings().AssetMngDbConnectionString);
-                string server = builder.DataSource;
-                string database = builder.InitialCatalog;
-                using (SqlCommand backupDbComm = new SqlCommand($"RESTORE DATABASE AssetMngDb FROM DISK='{backupName}' WITH REPLACE", dbConn))
-                {
-                    backupDbComm.ExecuteNonQuery();
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                string dddd = ex.Message;
-                return false;
-            }
-        }
-
         public static bool AutoBackup()
         {
             if (!Directory.Exists(BackupFolder))
@@ -1553,7 +1530,7 @@ namespace AssetManagement
         #region Finance
         public static string FinanceFolder = $"{Application.StartupPath}//Finance forms//";
         public static string BlankFinancialReportPath = $"{FinanceFolder}financial blank report.xlsx";
-        public static string GeneralFinancialReportPath = $"{FinanceFolder}التقرير المالي العام{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
+        public static string GeneralFinancialReportPath = $"التقرير المالي المعياري{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string DetailedFinancialReportPath = $"{FinanceFolder}التقرير المالي التفصيلي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string ExpensesAnalysisReportPath = $"{FinanceFolder}تحليل المصروفات{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string AssetAsFiCaStatement = "أصول ثابتة";
@@ -1792,15 +1769,6 @@ namespace AssetManagement
                         rowStartNo++;
                         continue;
                     }
-                    var existedFiItCat = mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == ficaVal);
-
-                    var existedFiIt = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.الدائرة == sectionName && fiv1.القسم == departmentName && fiv1.الوحدة == subDepartmentName && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Day == fiDateVal.Day && fiv1.وارد_أم_صادر == incomingOrOutgoingVal && fiv1.اسم_البند_المالي == ficaVal && fiv1.المبلغ_الوارد == incomingAmountVal && fiv1.المبلغ_الصادر == outgoingAmountVal && fiv1.العملة == curVal && fiv1.جهة_الإيراد == incomingFromVal && fiv1.نوع_الصادر == outgoingTypeVal);
-                    if (existedFiIt.Any())
-                    {
-                        existedFinancialItems.Add(rowStartNo);
-                        rowStartNo++;
-                        continue;
-                    }
 
                     if (ficaVal != null && ficaVal.Contains("مدور"))
                     {
@@ -1814,6 +1782,16 @@ namespace AssetManagement
                             rowStartNo++;
                             continue;
                         }
+                    }
+
+                    var existedFiItCat = mainDbContext.FinancialItemCategoryTbls.Where(fica1 => fica1.FinancialItemCategoryName == ficaVal);
+
+                    var existedFiIt = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => fiv1.الدائرة == sectionName && fiv1.القسم == departmentName && fiv1.الوحدة == subDepartmentName && fiv1.تاريخ_تحرير_السجل.Year == fiDateVal.Year && fiv1.تاريخ_تحرير_السجل.Month == fiDateVal.Month && fiv1.تاريخ_تحرير_السجل.Day == fiDateVal.Day && fiv1.وارد_أم_صادر == incomingOrOutgoingVal && fiv1.اسم_البند_المالي == ficaVal && fiv1.المبلغ_الوارد == incomingAmountVal && fiv1.المبلغ_الصادر == outgoingAmountVal && fiv1.العملة == curVal && fiv1.جهة_الإيراد == incomingFromVal && fiv1.نوع_الصادر == outgoingTypeVal);
+                    if (existedFiIt.Any())
+                    {
+                        existedFinancialItems.Add(rowStartNo);
+                        rowStartNo++;
+                        continue;
                     }
 
                     FinancialItemTbl newFinancialItem = new FinancialItemTbl()

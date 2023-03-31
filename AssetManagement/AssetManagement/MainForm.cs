@@ -233,7 +233,7 @@ namespace AssetManagement
         private void viewReportsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة تقارير الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            AssetsXtraReport2 repFrm = new AssetsXtraReport2();
+            AssetsXtraReport repFrm = new AssetsXtraReport();
             repFrm.ShowPreviewDialog();
         }
 

@@ -681,6 +681,8 @@ namespace AssetManagement.Assets
             // 
             // colمواصفاتالأصل
             // 
+            this.colمواصفاتالأصل.AppearanceCell.Options.UseTextOptions = true;
+            this.colمواصفاتالأصل.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colمواصفاتالأصل.FieldName = "مواصفات الأصل";
             this.colمواصفاتالأصل.MinWidth = 200;
             this.colمواصفاتالأصل.Name = "colمواصفاتالأصل";
@@ -780,6 +782,8 @@ namespace AssetManagement.Assets
             // 
             // colاسمصاحبالعهدة
             // 
+            this.colاسمصاحبالعهدة.AppearanceCell.Options.UseTextOptions = true;
+            this.colاسمصاحبالعهدة.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colاسمصاحبالعهدة.FieldName = "اسم صاحب العهدة";
             this.colاسمصاحبالعهدة.MinWidth = 120;
             this.colاسمصاحبالعهدة.Name = "colاسمصاحبالعهدة";
@@ -789,6 +793,8 @@ namespace AssetManagement.Assets
             // 
             // colتفاصيلإضافية
             // 
+            this.colتفاصيلإضافية.AppearanceCell.Options.UseTextOptions = true;
+            this.colتفاصيلإضافية.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colتفاصيلإضافية.ColumnEdit = this.assetDetailsRepositoryItemMemoEdit;
             this.colتفاصيلإضافية.FieldName = "تفاصيل إضافية";
             this.colتفاصيلإضافية.MinWidth = 250;
@@ -803,6 +809,8 @@ namespace AssetManagement.Assets
             // 
             // colملاحظاتأخرى
             // 
+            this.colملاحظاتأخرى.AppearanceCell.Options.UseTextOptions = true;
+            this.colملاحظاتأخرى.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colملاحظاتأخرى.ColumnEdit = this.assetNotesRepositoryItemMemoEdit;
             this.colملاحظاتأخرى.FieldName = "ملاحظات أخرى";
             this.colملاحظاتأخرى.MinWidth = 250;
@@ -840,6 +848,8 @@ namespace AssetManagement.Assets
             // 
             // colالمستغلمنه
             // 
+            this.colالمستغلمنه.AppearanceCell.Options.UseTextOptions = true;
+            this.colالمستغلمنه.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colالمستغلمنه.FieldName = "المستغل منه";
             this.colالمستغلمنه.MinWidth = 100;
             this.colالمستغلمنه.Name = "colالمستغلمنه";
@@ -849,6 +859,8 @@ namespace AssetManagement.Assets
             // 
             // colمعمنورقةالملكية
             // 
+            this.colمعمنورقةالملكية.AppearanceCell.Options.UseTextOptions = true;
+            this.colمعمنورقةالملكية.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colمعمنورقةالملكية.FieldName = "مع من ورقة الملكية";
             this.colمعمنورقةالملكية.MinWidth = 120;
             this.colمعمنورقةالملكية.Name = "colمعمنورقةالملكية";
