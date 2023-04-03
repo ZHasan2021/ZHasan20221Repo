@@ -687,7 +687,6 @@ C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debu
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsStatsForm.resources
-C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsStatsForm3.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetsXtraReport.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.DeleteAssetForm.resources
 C:\Users\ASUS\Documents\ZHasan20221Repo\AssetManagement\AssetManagement\obj\Debug\AssetManagement.Assets.AssetCardViewForm.resources

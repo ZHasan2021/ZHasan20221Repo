@@ -20,8 +20,7 @@ namespace AssetManagement.Finance
 {
     public partial class FinancialReportsForm : Form
     {
-        IQueryable<FinancialItemTbl> reportQueryResults = null;
-        IQueryable<FinancialItemTbl> reportQueryResults_Prev = null;
+        IQueryable<FinancialItemVw> financialItemsQryVw = null;
         int reportLevel = 0;
         string reportSectionName = "";
         string reportDeptName = "";
@@ -158,7 +157,7 @@ namespace AssetManagement.Finance
                 return;
             }
 
-            reportQueryResults = StaticCode.mainDbContext.FinancialItemTbls.Select(fi1 => fi1);
+            financialItemsQryVw = StaticCode.mainDbContext.FinancialItemVws.Select(fiv1 => fiv1);
             reportLevel = 1;
             if (searchBySectionCheckBox.Checked)
             {
@@ -170,9 +169,7 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == Convert.ToInt32(searchBySectionLookUpEdit.EditValue) select dpt1.ID).ToList();
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                    reportQueryResults = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    financialItemsQryVw = financialItemsQryVw.Where(fi1 => fi1.الدائرة == searchBySectionLookUpEdit.Text);
                     reportSectionName = searchBySectionLookUpEdit.Text;
                     reportLevel = 2;
                 }
@@ -187,8 +184,7 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == Convert.ToInt32(searchByDepartmentSearchLookUpEdit.EditValue) select sdep1.ID).ToList();
-                    reportQueryResults = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                    financialItemsQryVw = financialItemsQryVw.Where(fi1 => fi1.القسم == searchByDepartmentSearchLookUpEdit.Text);
                     reportDeptName = searchByDepartmentSearchLookUpEdit.Text;
                     reportLevel = 3;
                 }
@@ -203,12 +199,12 @@ namespace AssetManagement.Finance
                 }
                 else
                 {
-                    reportQueryResults = reportQueryResults.Where(fi1 => fi1.FinancialItemSubDept == Convert.ToInt32(searchBySubDepartmentSearchLookUpEdit.EditValue));
+                    financialItemsQryVw = financialItemsQryVw.Where(fi1 => fi1.الوحدة == searchBySubDepartmentSearchLookUpEdit.Text);
                     reportSubDeptName = searchBySubDepartmentSearchLookUpEdit.Text;
                     reportLevel = 4;
                 }
             }
-            reportQueryResults_Prev = reportQueryResults.Where(fiit1 => fiit1.FinancialItemInsertionDate < fromDate);
+            var financialItemsQryVw_Prev = financialItemsQryVw.Where(fiit1 => fiit1.تاريخ_تحرير_السجل < fromDate);
             if (searchWithinPeriodCheckBox.Checked)
             {
                 fromDate = DateTime.Today;
@@ -228,14 +224,14 @@ namespace AssetManagement.Finance
                     fromDate = new DateTime(annualDateTimePicker.Value.Year, 1, 1);
                     toDate = new DateTime(annualDateTimePicker.Value.Year, 12, 31);
                 }
-                reportQueryResults = reportQueryResults.Where(fi => fi.FinancialItemInsertionDate >= fromDate && fi.FinancialItemInsertionDate <= toDate);
+                financialItemsQryVw = financialItemsQryVw.Where(fi => fi.تاريخ_تحرير_السجل >= fromDate && fi.تاريخ_تحرير_السجل <= toDate);
             }
             if (searchByCurrencyCheckBox.Checked)
             {
-                reportQueryResults = reportQueryResults.Where(fi => fi.FinancialItemCurrency == Convert.ToInt32(searchByCurrencyLookUpEdit.EditValue));
-                reportQueryResults_Prev = reportQueryResults_Prev.Where(fi => fi.FinancialItemCurrency == Convert.ToInt32(searchByCurrencyLookUpEdit.EditValue));
+                financialItemsQryVw = financialItemsQryVw.Where(fi => fi.العملة == searchByCurrencyLookUpEdit.Text);
+                financialItemsQryVw_Prev = financialItemsQryVw_Prev.Where(fi => fi.العملة == searchByCurrencyLookUpEdit.Text);
             }
-            bool resultsFound = reportQueryResults != null && reportQueryResults.Count() > 0;
+            bool resultsFound = financialItemsQryVw.Any();
             exportFinancialReportToExcelDropDownButton.Enabled = financialReportTabControl.Visible = resultsFound;
             #endregion
 
@@ -247,7 +243,7 @@ namespace AssetManagement.Finance
                 return;
             }
             #region Fille the report's tbale
-            List<int> IDsIncluded = reportQueryResults.Select(fii1 => fii1.ID).ToList();
+            List<int> IDsIncluded = financialItemsQryVw.Select(fii1 => fii1.معرف_السجل_المالي).ToList();
             string plusQry = "";
             if (IDsIncluded.Count() == 0)
                 plusQry = " WHERE 1 > 2;";
@@ -278,9 +274,13 @@ namespace AssetManagement.Finance
             this.financialItemVwTableAdapter.FillByQuery(customVw, plusQry);
             #endregion
 
-            reportQueryResults = reportQueryResults.Where(fiit1 => fiit1.AddingMethod != "Calculated");
-            var financialItemsQryVw = StaticCode.mainDbContext.FinancialItemVws.Where(fiv1 => reportQueryResults.Select(fiit1 => fiit1.ID).Contains(fiv1.معرف_السجل_المالي));
-            var financialItemsQryVw_Prev = StaticCode.mainDbContext.FinancialItemVws.Where(fivp1 => reportQueryResults_Prev.Select(fiit1 => fiit1.ID).Contains(fivp1.معرف_السجل_المالي));
+            if (!financialItemsQryVw.Any())
+            {
+                mainAlertControl.Show(this, "لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle);
+                MessageBox.Show("لا يوجد سجلات مالية ضمن اختياراتك", StaticCode.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                progressPanel1.Visible = false;
+                return;
+            }
 
             #region Prepare the totals of each sub-level by currency
             if (searchAllRadioButton.Checked)
@@ -301,9 +301,9 @@ namespace AssetManagement.Finance
             }
             subLevelTotalsTreeView.Visible = reportLevel < 4;
             subLevelTotalsTreeView.Nodes.Clear();
-            totalIncomesNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcIncomingOfFinancialItems());
-            totalOutcomesNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcOutgoingOfFinancialItems());
-            totalCycledNumericUpDown.Value = Convert.ToDecimal(reportQueryResults.CalcRecycledOfFinancialItems());
+            totalIncomesNumericUpDown.Value = Convert.ToDecimal(financialItemsQryVw.CalcIncomingOfFinancialItems());
+            totalOutcomesNumericUpDown.Value = Convert.ToDecimal(financialItemsQryVw.CalcOutgoingOfFinancialItems());
+            totalCycledNumericUpDown.Value = Convert.ToDecimal(financialItemsQryVw.CalcRecycledOfFinancialItems());
 
             switch (reportLevel)
             {
@@ -314,7 +314,7 @@ namespace AssetManagement.Finance
                         Application.DoEvents();
                         List<int> dptQry = (from dpt1 in StaticCode.mainDbContext.DepartmentTbls where dpt1.SectionOfDepartment == oneItem.ID select dpt1.ID).ToList();
                         List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where dptQry.Contains(sdep1.MainDepartment) select sdep1.ID).ToList();
-                        var levelQry1 = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                        var levelQry1 = financialItemsQryVw.Where(fiv1 => fiv1.الدائرة == oneItem.SectionName);
 
                         TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SectionName);
                         oneNode.Nodes.Add($"الوارد: {levelQry1.CalcIncomingOfFinancialItems()}");
@@ -328,7 +328,7 @@ namespace AssetManagement.Finance
                     {
                         Application.DoEvents();
                         List<int> sdptQry = (from sdep1 in StaticCode.mainDbContext.SubDepartmentTbls where sdep1.MainDepartment == oneItem.ID select sdep1.ID).ToList();
-                        var levelQry2 = from qry in reportQueryResults where sdptQry.Contains(qry.FinancialItemSubDept) select qry;
+                        var levelQry2 = financialItemsQryVw.Where(fiv2 => fiv2.القسم == oneItem.DepartmentName);
 
                         TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.DepartmentName);
                         oneNode.Nodes.Add($"الوارد: {levelQry2.CalcIncomingOfFinancialItems()}");
@@ -341,7 +341,7 @@ namespace AssetManagement.Finance
                     foreach (SubDepartmentTbl oneItem in subLevelQuery3)
                     {
                         Application.DoEvents();
-                        var levelQry3 = reportQueryResults.Where(fi1 => fi1.FinancialItemSubDept == oneItem.ID);
+                        var levelQry3 = financialItemsQryVw.Where(fiv3 => fiv3.الوحدة == oneItem.SubDepartmentName);
 
                         TreeNode oneNode = subLevelTotalsTreeView.Nodes.Add(oneItem.SubDepartmentName);
                         oneNode.Nodes.Add($"الوارد: {levelQry3.CalcIncomingOfFinancialItems()}");
@@ -1108,26 +1108,26 @@ namespace AssetManagement.Finance
                         cells.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                         cells.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                         cells.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                        cells.Value = Math.Round(financialItemsQryVw_OneCurr.CalcRecycledOfFinancialItems());
+                        cells.Value = Math.Round(incomingOrDirectOutgoingSubLevelQry.CalcRecycledOfFinancialItems() + ((isDurationReport) ? incomingOrDirectOutgoingSubLevelQry_Prev.CalcRecycledOfFinancialItems() : 0));
                     }
 
                     foreach (string oneSLN in subLevelNames)
                     {
-                        var subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
-                        var subLevelRecords_Prev = financialItemsQryVw_OneCurr_Prev.Where(sln1 => sln1.الدائرة == oneSLN);
+                        var subLevelRecords = incomingOrDirectOutgoingSubLevelQry.Where(sln1 => sln1.الدائرة == oneSLN);
+                        var subLevelRecords_Prev = incomingOrDirectOutgoingSubLevelQry_Prev.Where(sln1 => sln1.الدائرة == oneSLN);
                         switch (reportLevel)
                         {
                             case 1:
-                                subLevelRecords = financialItemsQryVw_OneCurr.Where(sln1 => sln1.الدائرة == oneSLN);
-                                subLevelRecords_Prev = financialItemsQryVw_OneCurr_Prev.Where(sln1 => sln1.الدائرة == oneSLN);
+                                subLevelRecords = incomingOrDirectOutgoingSubLevelQry.Where(sln1 => sln1.الدائرة == oneSLN);
+                                subLevelRecords_Prev = incomingOrDirectOutgoingSubLevelQry_Prev.Where(sln1 => sln1.الدائرة == oneSLN);
                                 break;
                             case 2:
-                                subLevelRecords = financialItemsQryVw_OneCurr.Where(sln2 => sln2.القسم == oneSLN);
-                                subLevelRecords_Prev = financialItemsQryVw_OneCurr_Prev.Where(sln2 => sln2.القسم == oneSLN);
+                                subLevelRecords = incomingOrDirectOutgoingSubLevelQry.Where(sln2 => sln2.القسم == oneSLN);
+                                subLevelRecords_Prev = incomingOrDirectOutgoingSubLevelQry_Prev.Where(sln2 => sln2.القسم == oneSLN);
                                 break;
                             case 3:
-                                subLevelRecords = financialItemsQryVw_OneCurr.Where(sln3 => sln3.الوحدة == oneSLN);
-                                subLevelRecords_Prev = financialItemsQryVw_OneCurr_Prev.Where(sln3 => sln3.الوحدة == oneSLN);
+                                subLevelRecords = incomingOrDirectOutgoingSubLevelQry.Where(sln3 => sln3.الوحدة == oneSLN);
+                                subLevelRecords_Prev = incomingOrDirectOutgoingSubLevelQry_Prev.Where(sln3 => sln3.الوحدة == oneSLN);
                                 break;
                             default:
                                 break;
@@ -1861,7 +1861,7 @@ namespace AssetManagement.Finance
             fiRpWs.Cells[2, 7].Value = subDepartmentVal;
             fiRpWs.Cells[2, 8, 2, 9].Value = $"التاريخ: {DateTime.Today.ToString("yyyy-MM-dd")}";
             int startRow = 5;
-            var financialItemsQry2 = reportQueryResults.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
+            var financialItemsQry2 = financialItemsQryVw.GetTotalFinancialTableOfLevel(reportLevel, reportSectionName, reportDeptName, reportSubDeptName);
             if (isDurationReport)
             {
                 foreach (CurrencyTbl oneCurr in StaticCode.mainDbContext.CurrencyTbls)

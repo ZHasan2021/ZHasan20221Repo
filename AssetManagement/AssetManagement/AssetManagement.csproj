@@ -338,23 +338,17 @@
     <Compile Include="Assets\AddNewAssetForm.Designer.cs">
       <DependentUpon>AddNewAssetForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Assets\AssetsStatsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Assets\AssetsStatsForm.Designer.cs">
-      <DependentUpon>AssetsStatsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Assets\AssetCardViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Assets\AssetCardViewForm.Designer.cs">
       <DependentUpon>AssetCardViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Assets\AssetsStatsForm3.cs">
+    <Compile Include="Assets\AssetsStatsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Assets\AssetsStatsForm3.Designer.cs">
-      <DependentUpon>AssetsStatsForm3.cs</DependentUpon>
+    <Compile Include="Assets\AssetsStatsForm.Designer.cs">
+      <DependentUpon>AssetsStatsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Assets\AssetsXtraReport.cs">
       <SubType>Component</SubType>
@@ -622,9 +616,6 @@
     </None>
     <EmbeddedResource Include="Assets\AssetsStatsForm.resx">
       <DependentUpon>AssetsStatsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\AssetsStatsForm3.resx">
-      <DependentUpon>AssetsStatsForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\AssetsXtraReport.resx">
       <DependentUpon>AssetsXtraReport.cs</DependentUpon>

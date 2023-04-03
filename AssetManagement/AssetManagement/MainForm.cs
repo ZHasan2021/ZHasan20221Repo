@@ -247,7 +247,7 @@ namespace AssetManagement
         private void viewStatsBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             StaticCode.activeUserLogin.SessionActions += $"نافذة إحصائيات الأصول - {DateTime.Now.AddDays(StaticCode.appOptions.ShiftDays).AddSeconds(StaticCode.appOptions.ShiftSeconds)}\r\n";
-            AssetsStatsForm3 statFrm = new AssetsStatsForm3();
+            AssetsStatsForm statFrm = new AssetsStatsForm();
             statFrm.ShowDialog();
         }
 

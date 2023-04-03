@@ -1534,6 +1534,7 @@ namespace AssetManagement
         public static string DetailedFinancialReportPath = $"{FinanceFolder}التقرير المالي التفصيلي{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string ExpensesAnalysisReportPath = $"{FinanceFolder}تحليل المصروفات{DateTime.Today.ToString("yyyy-MM-dd")}.xlsx";
         public static string AssetAsFiCaStatement = "أصول ثابتة";
+        public static string AutoRecycledStatement = "مدور محسوب لسنة";
         public static string FinancialItemsAttachmentsFolder = $"{Application.StartupPath}//Financial items attachments//";
 
         public static string GetTheNewFinancialItemCode()
@@ -1895,7 +1896,7 @@ namespace AssetManagement
 
         public static void AddRecycledOfLastYear()
         {
-            string recycledStatement = "مدور محسوب لسنة " + (StaticCode.AppToday.Year - 1);
+            string recycledStatement = $"{AutoRecycledStatement} {(StaticCode.AppToday.Year - 1)}";
             int fiCaID = 0;
             if (!StaticCode.mainDbContext.FinancialItemCategoryTbls.Any(fica1 => fica1.FinancialItemCategoryName == "رصيد مدور" && fica1.IsIncomingOrOutgiung == "وارد"))
 
